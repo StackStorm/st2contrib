@@ -1,0 +1,22 @@
+{
+    "name": "jira-create-issue",
+    "runner_type": "run-local",
+    "description": "Create JIRA issue action.",
+    "enabled": true,
+    "content_pack": "jira",
+    "entry_point": "create_issue.py",
+    "parameters": {
+        "project_name": {
+            "type": "string"
+        },
+        "issue_summary": {
+            "type": "string"
+        },
+        "issue_description": {
+            "type": "string"
+        },
+        "issue_type": {
+            "type": "string"
+        }
+    }
+}
