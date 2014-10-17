@@ -7,12 +7,12 @@ try:
     import simplejson as json
 except ImportError:
     import json
-import os, argparse
+import os
 import sys
 
 from jira.client import JIRA
 
-CONFIG_FILE = os.path.join(os.path.dirname(__file__),'lib/jira_config.json')
+CONFIG_FILE = './jira_config.json'
 
 
 class AuthedJiraClient(object):
@@ -43,16 +43,13 @@ def _read_cert(file_path):
         return f.read()
 
 
-def _parse_args():
-
-    parser = argparse.ArgumentParser(description='Create a new Jira Issue')
-    parser.add_argument('--project_name', help='Jira Project Name', default="DEMO")
-    parser.add_argument('--issue_summary', help='Brief Issue Summary')
-    parser.add_argument('--issue_description', help='Full Issue Description')
-    parser.add_argument('--issue_type', help='Type of Issue')
-    args = parser.parse_args()
-
-    return args
+def _parse_args(args):
+    params = {}
+    params['project_name'] = args[1]
+    params['issue_summary'] = args[2]
+    params['issue_description'] = args[3]
+    params['issue_type'] = args[4]
+    return params
 
 
 def _get_jira_client(config):
@@ -62,7 +59,7 @@ def _get_jira_client(config):
     rsa_key = _read_cert(rsa_cert_file)
     oauth_creds = {
         'access_token': config['oauth_token'],
-        'access_token_secret': config['oauth_token_secret'],
+        'access_token_secret': config['oauth_secret'],
         'consumer_key': config['consumer_key'],
         'key_cert': rsa_key
     }
@@ -79,27 +76,26 @@ def _get_config():
 
 
 def main(args):
-    cfg = _get_config()
     try:
-        client = _get_jira_client(cfg)
+        client = _get_jira_client(_get_config())
     except Exception as e:
         sys.stderr.write('Failed to create JIRA client: %s\n' % str(e))
         sys.exit(1)
 
-    params = _parse_args()
-    proj = params.project_name
+    params = _parse_args(args)
+    proj = params['project_name']
     try:
         if not client.is_project_exists(proj):
             raise Exception('Project ' + proj + ' does not exist.')
-        issue = client.create_issue(project=params.project_name,
-                                    summary=params.issue_summary,
-                                    desc=params.issue_description,
-                                    issuetype=params.issue_type)
+        issue = client.create_issue(project=params['project_name'],
+                                    summary=params['issue_summary'],
+                                    desc=params['issue_description'],
+                                    issuetype=params['issue_type'])
     except Exception as e:
         sys.stderr.write(str(e) + '\n')
         sys.exit(2)
     else:
-        sys.stdout.write('Issue ' + str(issue) + ' created.\n')
+        sys.stdout.write('Issue ' + issue + ' created.\n')
 
 if __name__ == '__main__':
     main(sys.argv)

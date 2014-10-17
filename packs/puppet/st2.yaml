@@ -1,0 +1,6 @@
+---
+name : puppet
+description : st2 content pack containing puppet integrations
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

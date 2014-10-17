@@ -4,8 +4,20 @@
     "description": "Create JIRA issue action.",
     "enabled": true,
     "content_pack": "jira",
-    "entry_point": "create_issue.py",
+    "entry_point": "jira/create_issue.py",
     "parameters": {
+        "jira_server": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "oauth_token_secret": {
+            "type": "string"
+        },
+        "consumer_key": {
+            "type": "string"
+        },
         "project_name": {
             "type": "string"
         },

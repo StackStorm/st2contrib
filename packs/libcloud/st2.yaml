@@ -1,0 +1,6 @@
+---
+name : libcloud
+description : st2 content pack containing libcloud integrations
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
