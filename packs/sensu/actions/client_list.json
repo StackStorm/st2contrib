@@ -1,0 +1,20 @@
+{
+    "name": "sensu_client_list",
+    "runner_type": "run-local",
+    "description": "List Sensu clients",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "clients.py",
+    "parameters": {
+        "limit": {
+            "type": "string",
+            "description": "The number of clients to return.",
+            "default": null
+        },
+        "offset": {
+            "type": "string",
+            "description": "The number of clients to offset before returning items.",
+            "default": null
+        }
+    }
+}

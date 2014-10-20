@@ -1,0 +1,20 @@
+{
+    "name": "sensu_aggregate_list",
+    "runner_type": "run-local",
+    "description": "List Sensu Aggregate Stats",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "aggregates.py",
+    "parameters": {
+        "limit": {
+            "type": "string",
+            "description": "The number of aggregates to return.",
+            "default": null
+        },
+        "offset": {
+            "type": "string",
+            "description": "The number of aggregates to offset before returning items.",
+            "default": null
+        }
+    }
+}

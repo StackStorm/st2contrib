@@ -1,0 +1,15 @@
+{
+    "name": "sensu_event_client_list",
+    "runner_type": "run-local",
+    "description": "List Sensu events for a given client",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "events.py",
+    "parameters": {
+        "client": {
+            "type": "string",
+            "description": "The client name"
+        }
+    },
+    "required_parameters": ["client"]
+}

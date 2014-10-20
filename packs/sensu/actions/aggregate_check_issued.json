@@ -1,0 +1,23 @@
+{
+    "name": "sensu_check_aggregates_issued",
+    "runner_type": "run-local",
+    "description": "Get a specific Sensu check aggregate",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "aggregates.py",
+    "parameters": {
+        "check": {
+            "type": "string",
+            "description": "The client name"
+        },
+        "suumarize": {
+            "type": "string",
+            "description": "Summarizes the output field in the event data. (summarize=ouput)"
+        },
+        "results": {
+            "type": "string",
+            "description": "Return the raw result data"
+        }
+    },
+    "required_parameters": ["check"]
+}

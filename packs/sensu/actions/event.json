@@ -1,0 +1,19 @@
+{
+    "name": "sensu_event_info",
+    "runner_type": "run-local",
+    "description": "Get Sensu event info",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "events.py",
+    "parameters": {
+        "client": {
+            "type": "string",
+            "description": "The client name"
+        },
+        "check": {
+            "type": "string",
+            "description": "The check to get information on"
+        }
+    },
+    "required_parameters": ["client", "check"]
+}
