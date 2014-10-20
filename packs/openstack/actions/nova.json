@@ -1,0 +1,8 @@
+{ "name": "nova"
+, "runner_type": "run-local"
+, "description": "Run OpenStack Nova commands"
+, "enabled": true
+, "content_pack": "openstack"
+, "entry_point": "nova.py"
+, "parameters": {}
+}

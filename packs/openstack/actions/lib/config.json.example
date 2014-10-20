@@ -1,0 +1,10 @@
+{ "username": "",
+  "password": "",
+  "tenant": "",
+  "auth_url": "",
+  "endpoints": {   
+    "keystone": "",
+    "nova":"",
+    "glance":"",
+    "cinder":"" }
+}
