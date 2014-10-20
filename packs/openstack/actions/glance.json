@@ -1,0 +1,8 @@
+{ "name": "glance"
+, "runner_type": "run-local"
+, "description": "Run OpenStack Glance commands"
+, "enabled": true
+, "content_pack": "openstack"
+, "entry_point": "glance.py"
+, "parameters": {}
+}

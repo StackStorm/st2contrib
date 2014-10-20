@@ -1,0 +1,25 @@
+{
+    "name": "sensu_check_request",
+    "runner_type": "run-local",
+    "description": "Schedule a Sensu check request",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "checks.py",
+    "parameters": {
+        "check": {
+            "type": "string",
+            "description": "The check name"
+        },
+        "subscribers": {
+            "type": "string",
+            "description": "The subscribers to run the check on"
+        },
+        "request": {
+            "type": "string",
+            "description": "Schedule a check",
+            "default": "true",
+            "immutable": true
+        }
+    },
+    "required_parameters": ["check", "subscribers"]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "sensu_event_delete",
+    "runner_type": "run-local",
+    "description": "Delete a Sensu event",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "events.py",
+    "parameters": {
+        "client": {
+            "type": "string",
+            "description": "The client name"
+        },
+        "check": {
+            "type": "string",
+            "description": "The check name"
+        }
+    },
+    "required_parameters": ["client"]
+}

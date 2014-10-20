@@ -1,0 +1,9 @@
+{
+    "name": "sensu_info",
+    "runner_type": "run-local",
+    "description": "Sensu System Info",
+    "enabled": true,
+    "content_pack": "sensu",
+    "entry_point": "info.py",
+    "parameters": {}
+}
