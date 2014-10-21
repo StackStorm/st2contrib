@@ -9,6 +9,12 @@
         "client": {
             "type": "string",
             "description": "The client name"
+        },
+        "delete": {
+            "type": "string",
+            "description": "",
+            "default": "yes",
+            "immutable": true
         }
     },
     "required_parameters": ["client"]
