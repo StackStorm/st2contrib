@@ -12,7 +12,7 @@ parser.add_argument('--offset', nargs='?', default=None)
 parser.add_argument('--age', nargs='?', default=None)
 parser.add_argument('--summarize', nargs='?', default=None)
 parser.add_argument('--results', nargs='?', default=None)
-parser.add_Argument('--delete', nargs='?', default=None)
+parser.add_argument('--delete', nargs='?', default=None)
 
 args = parser.parse_args()
 
