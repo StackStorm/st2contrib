@@ -2,7 +2,6 @@
 , "runner_type": "run-local"
 , "description": "Returns the users associated with a list of instance ids"
 , "enabled": true
-, "content_pack": "openstack"
 , "entry_point": "get_instance_owners.py"
 , "parameters": {
     "instance_ids": {

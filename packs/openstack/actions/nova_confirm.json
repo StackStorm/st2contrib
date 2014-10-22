@@ -2,7 +2,6 @@
 , "runner_type": "run-local"
 , "description": "Confirms a resize or migrate"
 , "enabled": true
-, "content_pack": "openstack"
 , "entry_point": "nova_confirm.py"
 , "parameters": {
     "server_id": {

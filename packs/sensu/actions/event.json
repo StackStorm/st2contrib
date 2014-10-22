@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "Get Sensu event info",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "events.py",
     "parameters": {
         "client": {

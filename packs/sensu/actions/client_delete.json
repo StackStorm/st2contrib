@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "Delete a Sensu client",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "clients.py",
     "parameters": {
         "client": {
