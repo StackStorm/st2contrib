@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "Schedule a Sensu check request",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "checks.py",
     "parameters": {
         "check": {

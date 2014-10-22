@@ -2,7 +2,6 @@
 , "runner_type": "run-local"
 , "description": "Returns a list of instances by hypervisor"
 , "enabled": true
-, "content_pack": "openstack"
 , "entry_point": "nova_instances.py"
 , "parameters": {
     "hostname": {

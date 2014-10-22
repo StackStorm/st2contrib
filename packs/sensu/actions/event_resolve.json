@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "Get Sensu client info",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "clients.py",
     "parameters": {
         "client": {

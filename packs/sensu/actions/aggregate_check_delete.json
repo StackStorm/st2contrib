@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "Delete Sensu check aggregates",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "aggregates.py",
     "parameters": {
         "check": {

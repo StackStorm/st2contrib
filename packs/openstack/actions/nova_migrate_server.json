@@ -2,7 +2,6 @@
 , "runner_type": "run-local"
 , "description": "Evacuate guests from compute node"
 , "enabled": true
-, "content_pack": "openstack"
 , "entry_point": "nova_migrate_server.py"
 , "parameters": {
     "server_id": {

@@ -22,7 +22,6 @@ def generate_meta(fabfile):
       print e
       next
     action_meta['entry_point'] = "fabaction.py"
-    action_meta['content_pack'] = "fabric"
     action_meta['runner_type'] = "run-local-script"
     action_meta['enabled'] = True
 
@@ -30,14 +29,14 @@ def generate_meta(fabfile):
     parameters['kwarg_op'] = {"immutable": True, "type": "string", "default": ""}
     parameters['user'] = {"immutable": True}
     parameters['dir'] = {"immutable": True}
-    parameters["task"] = {  "type": "string", 
+    parameters["task"] = {  "type": "string",
                             "description": "task name to be executed",
                             "immutable": True,
                             "default": fabtask.wrapped.func_name }
     if fabparams:
       parameters.update(fabparams)
     action_meta['parameters'] = parameters
-    
+
     fname = action_dir + action_meta['name'] + ".json"
     try:
       print "Writing %s..." % fname
@@ -59,7 +58,7 @@ def getArgs(task, fabfile):
       filtered = filter(None,re.split('\((.*)\):.*',line))
       if len(filtered) < 2:
         return None
-      
+
       argstring = filtered[1]
       for arg in argstring.split(','):
         if re.search('=',arg):

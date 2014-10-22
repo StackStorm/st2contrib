@@ -3,7 +3,6 @@
     "runner_type": "run-local",
     "description": "List Sensu Aggregate Stats",
     "enabled": true,
-    "content_pack": "sensu",
     "entry_point": "aggregates.py",
     "parameters": {
         "limit": {
