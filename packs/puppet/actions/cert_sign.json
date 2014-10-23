@@ -1,18 +1,18 @@
 {
-    "name": "puppet_cert_clean",
+    "name": "cert_sign",
     "runner_type": "run-python",
-    "description": "Revoke a host's certificate (if applicable) and remove all files related to that host from puppet cert's storage.",
+    "description": "Sign an outstanding certificate request.",
     "enabled": true,
-    "entry_point": "puppet_cert_clean.py",
+    "entry_point": "cert_sign.py",
     "parameters": {
-       "environment": {
+        "environment": {
             "type": "string",
             "description": "Environment to use.",
             "position": 0
         },
         "host": {
             "type": "string",
-            "description": "Host to clean the certificate for",
+            "description": "Host to sign the certificate for",
             "position": 1
         }
     },

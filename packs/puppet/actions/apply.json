@@ -1,9 +1,9 @@
 {
-    "name": "puppet_apply",
+    "name": "apply",
     "runner_type": "run-remote-script",
     "description": "Apply a standalone puppet manifest to a local system.",
     "enabled": true,
-    "entry_point": "puppet_apply.py",
+    "entry_point": "apply.py",
     "parameters": {
         "file": {
             "type": "string",
