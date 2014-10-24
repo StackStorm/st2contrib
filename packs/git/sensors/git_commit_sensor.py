@@ -5,10 +5,6 @@
 # Also requires git CLI tool to be installed.
 
 import datetime
-try:
-    import simplejson as json
-except ImportError:
-    import json
 import os
 import time
 

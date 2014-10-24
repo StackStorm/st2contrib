@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 
-# Requirements
-# pip install docker-py
-
-try:
-    import simplejson as json
-except ImportError:
-    import json
-import os
+# Requirements:
+# See ../requirements.txt
 import time
 
 import docker

@@ -10,4 +10,9 @@
     since: null
     before: null
     limit: -1
+  build_options:
+    rm: false,
+    quiet: false,
+    nocache: false,
+    timeout: 10
   poll_interval: 5
