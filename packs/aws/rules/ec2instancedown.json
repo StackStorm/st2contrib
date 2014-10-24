@@ -1,16 +1,23 @@
-{ "name": "ec2.instance.down"
-, "description": "Email about down hosts that are not marked as acknowledged"
-, "enabled": true
-, "trigger": 
-  { "name": "ec2.instance.status"}
-, "criteria": 
-  { "trigger.state" :
-      { "pattern": "(?!running)"
-      , "type": "matchregex" }
-  }
-, "action":
-  { "name": "stormbot_say"
-  , "parameters":
-    { "cmd": "AWS instance_down EC2 Instance State Change<br>Instance: {{trigger.instance_name}} ({{trigger.instance_id}}) is now in state: {{trigger.state}}"}
-  }
+{
+    "name": "ec2.instance.down",
+    "description": "Email about down hosts that are not marked as acknowledged",
+    "enabled": true,
+
+    "trigger": {
+        "type": "aws.ec2_instance_status"
+    },
+
+    "criteria": {
+        "trigger.state" : {
+            "pattern": "(?!running)",
+            "type": "matchregex"
+        }
+     },
+
+    "action": {
+        "ref": "core.stormbot_say",
+        "parameters": {
+            "cmd": "AWS instance_down EC2 Instance State Change<br>Instance: {{trigger.instance_name}} ({{trigger.instance_id}}) is now in state: {{trigger.state}}"
+        }
+    }
 }
