@@ -1,4 +1,7 @@
 import boto.ec2
+import logging
+
+LOG = logging.getLogger(__name__)
 
 
 class EC2Client(object):
@@ -13,8 +16,8 @@ class EC2Client(object):
             self._conn = boto.ec2.connect_to_region(self._region,
                                                     aws_access_key_id=self._access_key_id,
                                                     aws_secret_access_key=self._secret_access_key)
-        except Exception as e:
-            print("Exception connecting to EC2 region: %s: %s" % (self._region, e))
+        except:
+            LOG.exception('Exception connecting to EC2 region: %s', self._region)
 
     def get_instance_details(self):
         payload = {}
@@ -30,8 +33,8 @@ class EC2Client(object):
                 instance_payload['state'] = i.state
                 instance_payload['state_code'] = i.state_code
                 payload[i.id] = instance_payload
-        except Exception as e:
-            print("Exception %s" % e)
+        except Exception:
+            LOG.exception("Failed to get instances.")
         return payload
 
     def get_volume_details(self):
@@ -50,6 +53,6 @@ class EC2Client(object):
                 v_payload['device_map'] = v.attach_data.device
                 v_payload['instance_id'] = v.attach_data.instance_id
                 payload[v.id] = v_payload
-        except Exception as e:
-            print("Exception %s" % e)
+        except Exception:
+            LOG.exception("Failed to get volumes.")
         return payload
