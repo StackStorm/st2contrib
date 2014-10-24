@@ -8,24 +8,24 @@ Currently, the actions listed bellow are supported:
 
 ### Core
 
-* Applying a standalone manifest to a local system - `puppet_apply`
-* Run puppet agent - `puppet_run_agent`
+* Applying a standalone manifest to a local system - `apply`
+* Run puppet agent - `run_agent`
 
 ### Certificate Management
 
-* Certificate signing - `puppet_cert_sign`
-* Certificate revocation - `puppet_cert_revoke`
-* Certificate cleaning - `puppet_cert_clean`
+* Certificate signing - `cert_sign`
+* Certificate revocation - `cert_revoke`
+* Certificate cleaning - `cert_clean`
 
 ## How it works
 
-All the actions except `puppet_apply` and `puppet_agent_run` are Python runner
+All the actions except `apply` and `agent_run` are Python runner
 actions which are executed on the node where Stanley is running.
 
 Those actions work by talking to the puppet master using the REST based HTTP
 API.
 
-`puppet_apply` and `puppet_agent_run` actions are remote runner actions. They
+`apply` and `agent_run` actions are remote runner actions. They
 work by executing puppet CLI commands on the desired remote host.
 
 #### Configuration

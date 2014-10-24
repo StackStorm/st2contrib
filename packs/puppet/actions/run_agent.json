@@ -1,9 +1,9 @@
 {
-    "name": "puppet_run_agent",
+    "name": "run_agent",
     "runner_type": "run-remote-script",
     "description": "Run puppet agent.",
     "enabled": true,
-    "entry_point": "puppet_run_agent.py",
+    "entry_point": "run_agent.py",
     "parameters": {
         "server": {
             "type": "string",

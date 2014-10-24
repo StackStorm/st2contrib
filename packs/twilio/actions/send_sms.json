@@ -1,5 +1,5 @@
 {
-    "name": "twilio_sms",
+    "name": "send_sms",
     "runner_type": "run-python",
     "description": "This sends a SMS using twilio.",
     "enabled": true,
