@@ -2,8 +2,7 @@ from lib.client import EC2Client
 
 
 class EC2ConnectMixin(object):
-    def __init__(self, container_service, config=None):
-        self._log = self._container_service.get_logger(self.__class__.__name__)
+    def __init__(self, config=None):
         self._config = config
         self._ec2 = None
 
