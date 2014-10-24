@@ -1,18 +1,15 @@
 #!/usr/bin/env python
 
 # Requirements
-# pip install jira
+# See ../requirements.txt
 
-try:
-    import simplejson as json
-except ImportError:
-    import json
 import os
 import sys
 
 from jira.client import JIRA
+import yaml
 
-CONFIG_FILE = './jira_config.json'
+CONFIG_FILE = os.path.join(os.path.dirname(__file__), '../config.yaml')
 
 
 class AuthedJiraClient(object):
@@ -72,7 +69,7 @@ def _get_config():
     if not os.path.exists(CONFIG_FILE):
         raise Exception('Config file not found at %s.' % CONFIG_FILE)
     with open(CONFIG_FILE) as f:
-        return json.load(f)
+        return yaml.safe_load(f)
 
 
 def main(args):
