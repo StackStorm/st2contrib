@@ -6,28 +6,36 @@
     "entry_point": "jira/create_issue.py",
     "parameters": {
         "jira_server": {
-            "type": "string"
+            "type": "string",
+            "description": "The JIRA server to connect to."
         },
         "oauth_token": {
-            "type": "string"
+            "type": "string",
+            "description": "JIRA OAuth token."
         },
         "oauth_token_secret": {
-            "type": "string"
+            "type": "string",
+            "description": "JIRA OAuth token secret."
         },
         "consumer_key": {
-            "type": "string"
+            "type": "string",
+            "description": "Consumer key used for the JIRA application."
         },
         "project_name": {
-            "type": "string"
+            "type": "string",
+            "description": "JIRA project to use."
         },
         "issue_summary": {
-            "type": "string"
+            "type": "string",
+            "description": "Summary of the issue to be created."
         },
         "issue_description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description if the JIRA issue."
         },
         "issue_type": {
-            "type": "string"
+            "enum": ["Task", "Story", "Epic", "Bug"],
+            "description": "Type of JIRA issue."
         }
     }
 }

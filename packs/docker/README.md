@@ -19,4 +19,4 @@ whenever a new container is spun up or an exisiting one is shut down.
 YMMV if you use versions not listed here.
 
 ## Configuration
-1. Edit docker_config.json and look at the options. These options mirror the options of docker CLI. 
+1. Edit config.yaml and look at the options. These options mirror the options of docker CLI. 

@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 
 # Requirements
-# pip install docker
+# See ../requirements.txt
 
 try:
     import simplejson as json
-except ImportError:
+except:
     import json
 import os
 import sys
 
 import docker
 import six
+import yaml
 
-CONFIG_FILE = './docker_config.json'
+CONFIG_FILE = os.path.join(os.path.dirname(__file__), '../config.yaml')
 
 
 class DockerWrapper(object):
@@ -61,7 +62,7 @@ def _get_config(file):
     if not os.path.exists(file):
         raise Exception('Config file not found at %s.' % file)
     with open(file) as f:
-        return json.load(f)
+        return yaml.safe_load(f)
 
 
 def _parse_args(args):
