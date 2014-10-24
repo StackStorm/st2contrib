@@ -14,7 +14,7 @@ To use either of the sensor or action, following are the dependencies:
 2. pip install jira # installs python JIRA client
 
 ## Configuration
-Sensor and action come with a json configuration file (jira_config.json). You'll need to configure the following:
+Sensor and action come with a json configuration file (config.yaml). You'll need to configure the following:
 
 1. JIRA server
 2. OAuth token
