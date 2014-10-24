@@ -1,0 +1,20 @@
+{ "name": "vm.details"
+, "runner_type": "run-local"
+, "description": "Details of AWS Instance."
+, "enabled": true
+, "entry_point": "vmdetails.py"
+, "parameters": {
+    "id":{
+      "type": "string",
+      "description": "AWS Instance ID"
+    },
+    "iponly": {
+      "type": "string",
+      "description": "Only return IP address"
+    },
+    "json": {
+      "type": "string",
+      "description": "Return output in json format"
+    }
+  }
+}
