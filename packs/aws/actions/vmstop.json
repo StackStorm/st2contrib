@@ -1,0 +1,7 @@
+{ "name": "vm.stop"
+, "runner_type": "run-local"
+, "description": "Stop an AWS instance."
+, "enabled": true
+, "entry_point": "vmchangestate.py stop "
+, "parameters": {}
+}
