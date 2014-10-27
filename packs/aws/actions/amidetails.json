@@ -4,18 +4,10 @@
 , "enabled": true
 , "entry_point": "amidetails.py"
 , "parameters": {
-    "id":{
+    "ami_id":{
       "type": "string",
-      "description": "AWS AMI ID"
-    },
-    "idonly": {
-      "type": "string",
-      "description": "Only return AMI ID"
-    },
-    "json": {
-      "type": "string",
-      "description": "Return output in json format"
+      "description": "AWS AMI ID",
+      "required": true
     }
-
   }
 }
