@@ -8,18 +8,20 @@
         "from_number": {
             "type": "string",
             "description": "Your twilio 'from' number in E.164 format. Example +14151234567.",
+            "required": true,
             "position": 0
         },
         "to_number": {
             "type": "string",
             "description": "Recipient number in E.164 format. Example +14151234567.",
+            "required": true,
             "position": 1
         },
         "body": {
             "type": "string",
             "description": "Body of the message.",
+            "required": true,
             "position": 2
         }
-    },
-    "required_parameters": ["from_number", "to_number", "body"]
+    }
 }

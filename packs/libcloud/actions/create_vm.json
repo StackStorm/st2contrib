@@ -7,24 +7,27 @@
     "parameters": {
         "credentials": {
             "type": "string",
-            "description": "Name of the credentials set (as defined in the config) to use."
+            "description": "Name of the credentials set (as defined in the config) to use.",
+            "required": true
         },
         "name": {
             "type": "string",
-            "description": "Name fo a new VM"
+            "description": "Name fo a new VM",
+            "required": true
         },
         "size_id": {
             "type": "string",
-            "description": "ID of a size to use"
+            "description": "ID of a size to use",
+            "required": true
         },
         "image_id": {
             "type": "string",
-            "description": "ID of an image to use"
+            "description": "ID of an image to use",
+            "required": true
         },
         "location_id": {
             "type": "string",
             "description": "ID of a location to use"
         }
-    },
-    "required_parameters": ["credentials", "name", "size_id", "image_id"]
+    }
 }

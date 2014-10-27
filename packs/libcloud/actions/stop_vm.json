@@ -7,12 +7,13 @@
     "parameters": {
         "credentials": {
             "type": "string",
-            "description": "Name of the credentials set (as defined in the config) to use."
+            "description": "Name of the credentials set (as defined in the config) to use.",
+            "required": true
         },
         "vm_id": {
             "type": "string",
-            "description": "ID of a VM to stop."
+            "description": "ID of a VM to stop.",
+            "required": true
         }
-    },
-    "required_parameters": ["credentials", "vm_id"]
+    }
 }

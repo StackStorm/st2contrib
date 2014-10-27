@@ -7,16 +7,18 @@
     "parameters": {
         "credentials": {
             "type": "string",
-            "description": "Name of the credentials set (as defined in the config) to use."
+            "description": "Name of the credentials set (as defined in the config) to use.",
+            "required": true
         },
         "name": {
             "type": "string",
-            "description": "Name for the imported key pair"
+            "description": "Name for the imported key pair",
+            "required": true
         },
         "key_material": {
             "type": "string",
-            "description": "Public SSH key material"
+            "description": "Public SSH key material",
+            "required": true
         }
-    },
-    "required_parameters": ["credentials", "name", "key_material"]
+    }
 }

@@ -7,12 +7,13 @@
     "parameters": {
         "client": {
             "type": "string",
-            "description": "The client name"
+            "description": "The client name",
+            "required": true
         },
         "check": {
             "type": "string",
-            "description": "The check to get information on"
+            "description": "The check to get information on",
+            "required": true
         }
-    },
-    "required_parameters": ["client", "check"]
+    }
 }

@@ -7,7 +7,8 @@
     "parameters": {
         "check": {
             "type": "string",
-            "description": "The client name"
+            "description": "The client name",
+            "required": true
         },
         "delete": {
             "type": "string",
@@ -15,6 +16,5 @@
             "default": "yes",
             "immutable": true
         }
-    },
-    "required_parameters": ["check"]
+    }
 }
