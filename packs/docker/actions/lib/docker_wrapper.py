@@ -1,20 +1,16 @@
-#!/usr/bin/env python
-
-# Requirements
-# See ../requirements.txt
+import sys
 
 try:
     import simplejson as json
 except:
     import json
-import os
-import sys
 
-import docker
 import six
-import yaml
+import docker
 
-CONFIG_FILE = os.path.join(os.path.dirname(__file__), '../config.yaml')
+__all__ = [
+    'DockerWrapper'
+]
 
 
 class DockerWrapper(object):
@@ -56,34 +52,3 @@ class DockerWrapper(object):
                 json_output = six.advance_iterator(result)
         except:
             pass
-
-
-def _get_config(file):
-    if not os.path.exists(file):
-        raise Exception('Config file not found at %s.' % file)
-    with open(file) as f:
-        return yaml.safe_load(f)
-
-
-def _parse_args(args):
-    params = {}
-    params['docker_artifacts_path'] = args[1]
-    params['tag_for_image'] = args[2]
-    return params
-
-
-def main(args):
-    config = _get_config(CONFIG_FILE)
-    try:
-        docker_client = DockerWrapper(config)
-    except Exception as e:
-        sys.stderr.write('Unable to create docker client: %s\n' % str(e))
-        sys.exit(1)
-    params = _parse_args(args)
-    if os.path.isdir(params['docker_artifacts_path']):
-        docker_client.build(path=params['docker_artifacts_path'], tag=params['tag_for_image'])
-    else:
-        docker_client.build(fileobj=params['docker_artifacts_path'], tag=params['tag_for_image'])
-
-if __name__ == '__main__':
-    main(sys.argv)
