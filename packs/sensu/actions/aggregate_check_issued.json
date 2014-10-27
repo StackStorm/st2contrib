@@ -7,7 +7,8 @@
     "parameters": {
         "check": {
             "type": "string",
-            "description": "The client name"
+            "description": "The client name",
+            "required": true
         },
         "suumarize": {
             "type": "string",
@@ -17,6 +18,5 @@
             "type": "string",
             "description": "Return the raw result data"
         }
-    },
-    "required_parameters": ["check"]
+    }
 }

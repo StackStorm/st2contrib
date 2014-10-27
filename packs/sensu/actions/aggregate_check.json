@@ -7,12 +7,12 @@
     "parameters": {
         "check": {
             "type": "string",
-            "description": "The client name"
+            "description": "The client name",
+            "required": true
         },
         "age": {
             "type": "string",
             "description": "The number of seconds old an aggregate must be to be listed."
         }
-    },
-    "required_parameters": ["check"]
+    }
 }

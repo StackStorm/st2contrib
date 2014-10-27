@@ -7,7 +7,8 @@
     "parameters": {
         "client": {
             "type": "string",
-            "description": "The client name"
+            "description": "The client name",
+            "required": true
         },
         "check": {
             "type": "string",
@@ -19,6 +20,5 @@
             "default": "yes",
             "immutable": true
         }
-    },
-    "required_parameters": ["client"]
+    }
 }

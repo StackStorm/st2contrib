@@ -8,13 +8,14 @@
        "environment": {
             "type": "string",
             "description": "Environment to use.",
+            "required": true,
             "position": 0
         },
         "host": {
             "type": "string",
             "description": "Host to clean the certificate for",
+            "required": true,
             "position": 1
         }
-    },
-    "required_parameters": ["environment", "host"]
+    }
 }

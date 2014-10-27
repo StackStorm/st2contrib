@@ -8,6 +8,7 @@
         "file": {
             "type": "string",
             "description": "Path to the puppet module file",
+            "required": true,
             "position": 0
         },
         "execute": {
@@ -21,6 +22,5 @@
             "description": "Specific JSON catalog file to use",
             "position": 2
         }
-    },
-    "required_parameters": ["file"]
+    }
 }
