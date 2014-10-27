@@ -4,17 +4,13 @@
 , "enabled": true
 , "entry_point": "vmdetails.py"
 , "parameters": {
-    "id":{
+    "instance_id":{
       "type": "string",
       "description": "AWS Instance ID"
     },
     "iponly": {
       "type": "string",
       "description": "Only return IP address"
-    },
-    "json": {
-      "type": "string",
-      "description": "Return output in json format"
     }
   }
 }
