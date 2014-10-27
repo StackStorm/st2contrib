@@ -1,7 +1,17 @@
 { "name": "vm.start"
-, "runner_type": "run-local"
+, "runner_type": "run-python"
 , "description": "Start an AWS instance."
 , "enabled": true
-, "entry_point": "vmchangestate.py start "
-, "parameters": {}
+, "entry_point": "vmchangestate.py"
+, "parameters": {
+    "state" : {
+        "type": "string",
+        "default": "start",
+        "immutable": true
+    },
+    "instance_id": {
+        "type": "string",
+        "required": true
+    }
+}
 }
