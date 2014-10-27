@@ -12,8 +12,9 @@ import urlparse
 # ST2 configuration
 ST2_HOST = '172.31.39.97'
 ST2_WEBHOOKS_PORT = '6000'
-ST2_WEBHOOKS_PATH = '/webhooks/st2/'
+
 ST2_API_PORT = '9101'
+ST2_WEBHOOKS_PATH = '/webhooks/st2/'
 ST2_TRIGGERS_PATH = '/triggertypes/'
 ST2_TRIGGER_TYPE = 'nagios.service.state_change'
 
