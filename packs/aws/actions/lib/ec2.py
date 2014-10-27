@@ -20,13 +20,17 @@ class EC2(object):
                                           aws_access_key_id=self._access_key_id,
                                           aws_secret_access_key=self._secret_access_key)
 
-    def getInstanceDetails(self, instance_id=None):
+    def getInstanceDetails(self, instance_id=None, iponly=False):
         LOG.debug('Retrieving deatils for instance %s.', instance_id)
         payload = {}
         instance_ids = [instance_id] if instance_id else None
         instances = self._conn.get_only_instances(instance_ids=instance_ids)
         for i in instances:
             instance_payload = {}
+            payload[i.id] = instance_payload
+            instance_payload['ip_address'] = i.ip_address
+            if iponly:
+                continue
             instance_payload['instance_type'] = i.instance_type
             instance_payload['launch_time'] = i.launch_time
             instance_payload['tags'] = i.tags
@@ -34,7 +38,6 @@ class EC2(object):
             instance_payload['ip_address'] = i.ip_address
             instance_payload['state'] = i.state
             instance_payload['state_code'] = i.state_code
-            payload[i.id] = instance_payload
         LOG.debug(payload)
         return payload
 
