@@ -1,20 +1,33 @@
-import os
 import base64
-import requests
 import json
+import os
+import requests
+
+import yaml
 
 
-class Sensu():
+def parseOutput(r):
+    try:
+        output = {}
+        json.loads(r.text)
+        for c in r.json():
+            output[c['name']] = c
+        return json.dumps(output)
+    except:
+        return r.text
+
+
+class Sensu(object):
 
     def __init__(self, conf):
 
         config_file = os.path.join(os.path.dirname(__file__), conf)
         try:
             fh = open(config_file)
-            self.config = json.load(fh)
+            self.config = yaml.safe_load(fh)
             fh.close()
         except Exception as e:
-            print "Error reading config file %s: %s" % (conf, e)
+            print("Error reading config file %s: %s" % (conf, e))
 
         if self.config['ssl']:
             protocol = 'https'
@@ -32,7 +45,7 @@ class Sensu():
         return {"Authorization": auth_header, "Content-Type": content_header}
 
 
-class Aggregates():
+class Aggregates(object):
 
     def __init__(self, conf):
         sensu = Sensu(conf)
@@ -81,7 +94,7 @@ class Aggregates():
                 data=data))
 
 
-class Checks():
+class Checks(object):
 
     def __init__(self, conf):
         self.sensu = Sensu(conf)
@@ -110,7 +123,7 @@ class Checks():
                 data=payload))
 
 
-class Clients():
+class Clients(object):
 
     def __init__(self, conf):
         sensu = Sensu(conf)
@@ -143,7 +156,7 @@ class Clients():
         return parseOutput(requests.get(url=url, headers=self.headers))
 
 
-class Stashes():
+class Stashes(object):
 
     def __init__(self, conf):
         sensu = Sensu(conf)
@@ -156,7 +169,7 @@ class Stashes():
             data['limit'] = limit
         if offset:
             data['offset'] = offset
-        return parseOutut(
+        return parseOutput(
             requests.get(
                 url=self.url,
                 headers=self.headers,
@@ -164,7 +177,7 @@ class Stashes():
 
     def get(self, stash):
         url = "%s/%s" % (self.url, stash)
-        return parseOutput(requests.get(url=self.url, headers=self.headers))
+        return parseOutput(requests.get(url=url, headers=self.headers))
 
     def post(self, data):
         return parseOutput(
@@ -182,7 +195,7 @@ class Stashes():
                 data=data))
 
 
-class Status():
+class Status(object):
 
     def __init__(self, conf):
         sensu = Sensu(conf)
@@ -203,7 +216,7 @@ class Status():
         return parseOutput(requests.get(url=url, headers=self.headers))
 
 
-class Events():
+class Events(object):
 
     def __init__(self, conf):
         self.sensu = Sensu(conf)
@@ -233,14 +246,3 @@ class Events():
                 url=url,
                 headers=self.headers,
                 data=payload))
-
-
-def parseOutput(r):
-    try:
-        output = {}
-        json.loads(r.text)
-        for c in r.json():
-            output[c['name']] = c
-        return json.dumps(output)
-    except:
-        return r.text
