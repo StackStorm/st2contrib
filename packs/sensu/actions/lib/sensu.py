@@ -21,7 +21,7 @@ class Sensu(object):
 
     def __init__(self, conf):
 
-        config_file = os.path.join(os.path.dirname(__file__), conf)
+        config_file = os.path.join(os.path.dirname(__file__), '../', conf)
         try:
             fh = open(config_file)
             self.config = yaml.safe_load(fh)
