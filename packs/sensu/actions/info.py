@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 from lib import sensu
-import argparse, sys
+import argparse
+import sys
 
 parser = argparse.ArgumentParser(description='Sensu System Info')
 

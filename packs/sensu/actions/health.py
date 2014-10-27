@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 from lib import sensu
-import argparse, sys
+import argparse
+import sys
 
 parser = argparse.ArgumentParser(description='Sensu Health Check')
 
@@ -11,4 +12,4 @@ args = parser.parse_args()
 
 status = sensu.Status('config.json')
 
-print status.health(args.consumers,args.messages)
+print status.health(args.consumers, args.messages)
