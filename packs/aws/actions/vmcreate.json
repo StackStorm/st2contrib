@@ -3,5 +3,14 @@
 , "description": "Create a new AWS instance."
 , "enabled": true
 , "entry_point": "vmcreate.py"
-, "parameters": {}
+, "parameters": {
+    "ami" : {
+        "type": "string",
+        "required": true
+    },
+    "instance_type" : {
+        "type": "string",
+        "required": true
+    }
+}
 }
