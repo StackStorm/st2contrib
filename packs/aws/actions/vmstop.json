@@ -2,6 +2,16 @@
 , "runner_type": "run-local"
 , "description": "Stop an AWS instance."
 , "enabled": true
-, "entry_point": "vmchangestate.py stop "
-, "parameters": {}
+, "entry_point": "vmchangestate.py"
+, "parameters": {
+    "state" : {
+        "type": "string",
+        "default": "stop",
+        "immutable": true
+    },
+    "instance_id": {
+        "type": "string",
+        "required": true
+    }
+}
 }
