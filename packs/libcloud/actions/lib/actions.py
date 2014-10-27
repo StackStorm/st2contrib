@@ -1,5 +1,3 @@
-import os
-
 try:
     import libcloud
 except ImportError:
@@ -17,8 +15,6 @@ __all__ = [
     'SingleVMAction',
     'BaseAction',
 ]
-
-CONFIG_FILE_PATH = os.path.join(os.path.dirname(__file__), 'config.json')
 
 
 class BaseAction(Action):
