@@ -4,8 +4,8 @@ from lib.puppet_client import PuppetHTTPAPIClient
 
 
 class PuppetBasePythonAction(Action):
-    def __init__(self):
-        super(PupperBasePythonAction, self).__init__()
+    def __init__(self, config):
+        super(PuppetBasePythonAction, self).__init__(config=config)
         self.client = self._get_client()
 
     def _get_client(self):
