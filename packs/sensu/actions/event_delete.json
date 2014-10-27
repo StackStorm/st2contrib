@@ -1,5 +1,5 @@
 {
-    "name": "sensu_event_delete",
+    "name": "event_delete",
     "runner_type": "run-local",
     "description": "Delete a Sensu event",
     "enabled": true,

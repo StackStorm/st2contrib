@@ -1,5 +1,5 @@
 {
-    "name": "sensu_client_list",
+    "name": "client_list",
     "runner_type": "run-local",
     "description": "List Sensu clients",
     "enabled": true,

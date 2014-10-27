@@ -1,5 +1,5 @@
 {
-    "name": "sensu_check_request",
+    "name": "check_request",
     "runner_type": "run-local",
     "description": "Schedule a Sensu check request",
     "enabled": true,

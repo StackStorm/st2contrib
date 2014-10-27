@@ -1,5 +1,5 @@
 {
-    "name": "sensu_aggregate_list",
+    "name": "aggregate_list",
     "runner_type": "run-local",
     "description": "List Sensu Aggregate Stats",
     "enabled": true,

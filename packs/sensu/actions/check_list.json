@@ -1,5 +1,5 @@
 {
-    "name": "sensu_check_list",
+    "name": "check_list",
     "runner_type": "run-local",
     "description": "List Sensu checks",
     "enabled": true,

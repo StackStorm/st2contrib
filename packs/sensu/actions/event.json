@@ -1,5 +1,5 @@
 {
-    "name": "sensu_event_info",
+    "name": "event_info",
     "runner_type": "run-local",
     "description": "Get Sensu event info",
     "enabled": true,

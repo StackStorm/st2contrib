@@ -1,5 +1,5 @@
 {
-    "name": "sensu_event_client_list",
+    "name": "event_client_list",
     "runner_type": "run-local",
     "description": "List Sensu events for a given client",
     "enabled": true,

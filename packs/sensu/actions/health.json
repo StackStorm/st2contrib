@@ -1,5 +1,5 @@
 {
-    "name": "sensu_health",
+    "name": "health",
     "runner_type": "run-local",
     "description": "Sensu System Health",
     "enabled": true,

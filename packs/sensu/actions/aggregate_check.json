@@ -1,5 +1,5 @@
 {
-    "name": "sensu_check_aggregates",
+    "name": "check_aggregates",
     "runner_type": "run-local",
     "description": "Get Sensu check aggregates",
     "enabled": true,

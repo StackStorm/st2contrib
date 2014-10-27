@@ -1,5 +1,5 @@
 {
-    "name": "sensu_check_aggregates_delete",
+    "name": "check_aggregates_delete",
     "runner_type": "run-local",
     "description": "Delete Sensu check aggregates",
     "enabled": true,
