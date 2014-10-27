@@ -3,5 +3,14 @@
 , "description": "Delete an AWS Images."
 , "enabled": true
 , "entry_point": "amideregister.py"
-, "parameters": {}
+, "parameters": {
+    "search": {
+        "type": "string",
+        "required": true
+    },
+    "pattern": {
+        "type": "string",
+        "required": true
+    }
+}
 }
