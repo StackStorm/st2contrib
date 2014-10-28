@@ -15,7 +15,7 @@ Configure st2 to use syslog.  In /etc/st2/st2.conf, make sure these lines to poi
 
 Restart St2:
 
-  st2ctl restart
+    st2ctl restart
 
 Next you can either configure the system to log via syslog on the local host, or point to a remote syslog server.
 
@@ -38,12 +38,12 @@ Then restart rsyslog:
 
 To configure St2 to log to a remote server, change the host (and port if applicable) in /etc/st2/st2.conf:
 
-  [syslog]
-  host = localhost
-  port = 514
-  facility = local7
+    [syslog]
+    host = localhost
+    port = 514
+    facility = local7
 
 Restart St2:
 
-  st2ctl restart
+    st2ctl restart
 
