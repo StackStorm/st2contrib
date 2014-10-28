@@ -11,7 +11,7 @@ class OpenStack(object):
 
     def __init__(self, conf):
 
-        config_file = os.path.join(os.path.dirname(__file__), '../', conf)
+        config_file = os.path.join(os.path.dirname(__file__), conf)
         try:
             fh = open(config_file)
             config = json.load(fh)
