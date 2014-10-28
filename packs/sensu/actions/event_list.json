@@ -1,8 +1,21 @@
 {
     "name": "event_list",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "List Sensu events",
     "enabled": true,
     "entry_point": "events.py",
-    "parameters": {}
+    "parameters": {
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true
+        }
+    }
 }

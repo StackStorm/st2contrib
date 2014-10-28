@@ -1,6 +1,6 @@
 {
     "name": "event_client_list",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "List Sensu events for a given client",
     "enabled": true,
     "entry_point": "events.py",
@@ -9,6 +9,18 @@
             "type": "string",
             "description": "The client name",
             "required": true
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true
         }
     }
 }

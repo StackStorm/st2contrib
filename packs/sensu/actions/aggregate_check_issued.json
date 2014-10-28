@@ -1,6 +1,6 @@
 {
     "name": "check_aggregates_issued",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "Get a specific Sensu check aggregate",
     "enabled": true,
     "entry_point": "aggregates.py",
@@ -17,6 +17,18 @@
         "results": {
             "type": "string",
             "description": "Return the raw result data"
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true
         }
     }
 }

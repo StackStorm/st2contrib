@@ -1,6 +1,6 @@
 {
     "name": "check_info",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "Get Sensu check info",
     "enabled": true,
     "entry_point": "checks.py",
@@ -9,6 +9,18 @@
             "type": "string",
             "description": "The check name",
             "required": true
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true
         }
     }
 }

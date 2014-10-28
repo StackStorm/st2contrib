@@ -1,6 +1,6 @@
 {
     "name": "health",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "Sensu System Health",
     "enabled": true,
     "entry_point": "health.py",
@@ -14,6 +14,18 @@
             "type": "string",
             "description": "The maximum number of transport queued messages to be considered healthy.",
             "default": "100"
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true
         }
     }
 }

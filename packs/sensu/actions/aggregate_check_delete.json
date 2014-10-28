@@ -1,6 +1,6 @@
 {
     "name": "check_aggregates_delete",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "Delete Sensu check aggregates",
     "enabled": true,
     "entry_point": "aggregates.py",
@@ -14,6 +14,18 @@
             "type": "string",
             "description": "",
             "default": "yes",
+            "immutable": true
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
             "immutable": true
         }
     }

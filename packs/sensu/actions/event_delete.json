@@ -1,6 +1,6 @@
 {
     "name": "event_delete",
-    "runner_type": "run-local",
+    "runner_type": "run-local-script",
     "description": "Delete a Sensu event",
     "enabled": true,
     "entry_point": "events.py",
@@ -18,6 +18,18 @@
             "type": "string",
             "description": "",
             "default": "yes",
+            "immutable": true
+        },
+        "dir": {
+            "immutable": true
+        },
+        "sudo": {
+            "immutable": true
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
             "immutable": true
         }
     }
