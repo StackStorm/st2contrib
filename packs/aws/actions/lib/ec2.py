@@ -8,11 +8,11 @@ LOG = logging.getLogger(__name__)
 
 class EC2(object):
 
-    def __init__(self, region, access_key_id, secret_access_key):
-        self._region = self.config['region']
-        self._access_key_id = self.config['access_key_id']
-        self._secret_access_key = self.config['secret_access_key']
-        self._interval = self.config['interval']
+    def __init__(self, config):
+        self._region = config['region']
+        self._access_key_id = config['access_key_id']
+        self._secret_access_key = config['secret_access_key']
+        self._interval = config['interval']
         self._conn = self.connect(self._region)
 
     def connect(self, region):
