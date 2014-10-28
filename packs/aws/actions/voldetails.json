@@ -5,8 +5,7 @@
 , "entry_point": "voldetails.py"
 , "parameters": {
     "volume_id": {
-        "type": "string",
-        "required": true
+        "type": "string"
     }
 }
 }

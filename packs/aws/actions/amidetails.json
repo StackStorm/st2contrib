@@ -6,8 +6,7 @@
 , "parameters": {
     "ami_id":{
       "type": "string",
-      "description": "AWS AMI ID",
-      "required": true
+      "description": "AWS AMI ID"
     }
   }
 }
