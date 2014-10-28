@@ -1,7 +1,12 @@
 { "name": "vol.details"
-, "runner_type": "run-local"
+, "runner_type": "run-python"
 , "description": "Details of AWS Volumes."
 , "enabled": true
 , "entry_point": "voldetails.py"
-, "parameters": {}
+, "parameters": {
+    "volume_id": {
+        "type": "string",
+        "required": true
+    }
+}
 }
