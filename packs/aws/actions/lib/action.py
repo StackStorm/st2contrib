@@ -1,11 +1,9 @@
 from lib import ec2
+from st2actions.runners.pythonrunner import Action
 
 
-class BaseAction(object):
+class BaseAction(Action):
 
     def __init__(self, config):
-        super(BaseAction, self).__init__()
-        region = self.config['region']
-        access_key_id = self.config['access_key_id']
-        secret_access_key = self.config['secret_access_key']
-        self.ec2 = ec2.EC2(region, access_key_id, secret_access_key)
+        super(BaseAction, self).__init__(config)
+        self.ec2 = ec2.EC2(config)
