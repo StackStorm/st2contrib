@@ -1,7 +1,16 @@
 { "name": "vol.orphans"
-, "runner_type": "run-local"
+, "runner_type": "run-python"
 , "description": "Find orphaned volumes."
 , "enabled": true
 , "entry_point": "volorphans.py"
-, "parameters": {}
+, "parameters": {
+    "volume_id": {
+        "type": "string",
+        "default": null
+    },
+    "delete": {
+        "type": "boolean",
+        "default": false
+    }
+}
 }
