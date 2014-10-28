@@ -1,0 +1,6 @@
+---
+host: "localhost"
+port: "4567"
+user: "admin"
+pass: "secret"
+ssl: false
