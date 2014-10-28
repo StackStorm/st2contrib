@@ -1,7 +1,17 @@
 { "name": "vm.destroy"
-, "runner_type": "run-local"
+, "runner_type": "run-python"
 , "description": "Destroy an AWS instance."
 , "enabled": true
-, "entry_point": "vmchangestate.py terminate "
-, "parameters": {}
+, "entry_point": "vmchangestate.py"
+, "parameters": {
+    "state" : {
+        "type": "string",
+        "default": "terminate",
+        "immutable": true
+    },
+    "instance_id": {
+        "type": "string",
+        "required": true
+    }
+}
 }

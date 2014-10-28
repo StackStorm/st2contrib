@@ -1,17 +1,7 @@
-#!/usr/bin/python
+from lib import action
 
-import sys, argparse, json
-from lib import ec2
 
-parser = argparse.ArgumentParser(description='Show volume information')
-parser.add_argument('id', help='EC2 Volume ID', nargs='?', default=None)
-args = parser.parse_args()
+class VolumeDetails(action.BaseAction):
 
-e = ec2.EC2('config.json')
-
-volumes = e.getVolumeDetails(args.id)
-
-for v in volumes:
-  print "VOLUME: %s:" % v
-  for k in volumes[v]:
-    print "\t%s : %s" % (k, volumes[v][k])
+    def run(self, volume_id):
+        return self.ec2.getVolumeDetails(volume_id)
