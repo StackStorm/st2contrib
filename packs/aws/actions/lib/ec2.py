@@ -57,6 +57,7 @@ class EC2(object):
             v_payload['attach_time'] = v.attach_data.attach_time
             v_payload['device_map'] = v.attach_data.device
             v_payload['instance_id'] = v.attach_data.instance_id
+            payload[v.id] = v_payload
         LOG.debug(payload)
         return payload
 
@@ -70,6 +71,7 @@ class EC2(object):
             image_data['state'] = i.state
             image_data['architecture'] = i.architecture
             image_data['root_device_type'] = i.root_device_type
+            image_list[i.id] = image_data
         return image_list
 
     def deregisterAMI(self, ami):
