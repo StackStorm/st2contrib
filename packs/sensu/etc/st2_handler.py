@@ -94,7 +94,7 @@ def _post_event_to_st2(url, body):
 def main(args):
 
     body = {}
-    body['name'] = ST2_TRIGGERTYPE_REF
+    body['trigger'] = ST2_TRIGGERTYPE_REF
     body['payload'] = json.loads(sys.stdin.read().strip())
     _post_event_to_st2(_get_st2_webhooks_url(), body)
 
