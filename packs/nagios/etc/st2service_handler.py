@@ -10,13 +10,15 @@ import sys
 import urlparse
 
 # ST2 configuration
-ST2_HOST = '172.31.39.97'
+ST2_HOST = 'localhost'
 ST2_WEBHOOKS_PORT = '6000'
 
 ST2_API_PORT = '9101'
 ST2_WEBHOOKS_PATH = '/webhooks/st2/'
 ST2_TRIGGERS_PATH = '/triggertypes/'
-ST2_TRIGGER_TYPE = 'nagios.service.state_change'
+ST2_TRIGGERTYPE_PACK = 'nagios'
+ST2_TRIGGERTYPE_NAME = 'service-state-change'
+ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
 
 STATE_MESSAGE = {
     'OK': 'All is well on the Western front.',
@@ -33,7 +35,7 @@ OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
 def _create_trigger_type():
     try:
         url = _get_st2_triggers_url()
-        payload = {'name': ST2_TRIGGER_TYPE}
+        payload = {'name': ST2_TRIGGERTYPE_NAME, 'pack': ST2_TRIGGERTYPE_PACK}
         # sys.stdout.write('POST: %s: Body: %s\n' % (url, payload))
         post_resp = requests.post(url, data=json.dumps(payload))
     except:
@@ -52,12 +54,16 @@ def _create_trigger_type():
 def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
-        url = _get_st2_triggers_url() + ST2_TRIGGER_TYPE + '/'
+        url = _get_st2_triggers_url() + '?ref=' + ST2_TRIGGERTYPE_REF
         # sys.stdout.write('GET: %s\n' % url)
         get_resp = requests.get(url)
-        if get_resp.status_code == httplib.NOT_FOUND:
+
+        if get_resp.status_code != httplib.OK:
             _create_trigger_type()
-        _create_trigger_type()
+        else:
+            body = json.loads(get_resp.text)
+            if len(body) == 0:
+                _create_trigger_type()
     except:
         raise
     else:
@@ -115,7 +121,7 @@ def main(args):
 
     payload = _get_payload(host, service, event_id, state, state_type, attempt)
     body = {}
-    body['name'] = ST2_TRIGGER_TYPE
+    body['trigger'] = ST2_TRIGGERTYPE_REF
     body['payload'] = payload
     _post_event_to_st2(_get_st2_webhooks_url(), body)
 
