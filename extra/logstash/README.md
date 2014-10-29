@@ -19,7 +19,7 @@ Your St2 audit logs should start getting indexed by ElasticSearch shortly.  You 
 
 ####Setup dashboard
 
-The easiest way to install the dashboard is through the Kibana UI.  
+The dashboards are located in the 'dashboards' folder.  The easiest way to install them is through the Kibana UI.  
 
 1. Click the 'load' button in the upper right corner
 2. Click 'Advanced'
@@ -27,4 +27,4 @@ The easiest way to install the dashboard is through the Kibana UI.
 
 Alternatively, you can copy the dashboard to the app/dashboards directory of Logstash.  By default on Ubuntu, that is here:
 
-    /var/www/kibana/app/dashboards/
+    cp dashboards/st2.json /var/www/kibana/app/dashboards/
