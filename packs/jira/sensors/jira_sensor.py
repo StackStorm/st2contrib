@@ -26,6 +26,9 @@ class JIRASensor(object):
         self._project = None
         self._issues_in_project = None
         self._jql_query = None
+        self._trigger_name = 'issues_tracker'
+        self._trigger_pack = 'jira'
+        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
 
     def _read_cert(self, file_path):
         with open(file_path) as f:
@@ -70,7 +73,8 @@ class JIRASensor(object):
     def get_trigger_types(self):
         return [
             {
-                'name': 'st2.jira.issue_tracker',
+                'name': self._trigger_name,
+                'pack': self._trigger_pack,
                 'description': 'JIRA issues tracker',
                 'payload_info': ['project', 'issue_name', 'issue_url', 'created', 'assignee',
                                  'fix_versions', 'issue_type']
@@ -100,8 +104,7 @@ class JIRASensor(object):
                     break
 
     def _dispatch_issues_trigger(self, issue):
-        trigger = {}
-        trigger['name'] = 'st2.jira.project_tracker'
+        trigger = self._trigger_ref
         payload = {}
         payload['issue_name'] = issue.key
         payload['issue_url'] = issue.self
