@@ -1,0 +1,11 @@
+language: python
+python: 2.7
+os:
+  - linux
+
+script:
+  - make all
+
+notifications:
+  email:
+    - eng@stackstorm.com
