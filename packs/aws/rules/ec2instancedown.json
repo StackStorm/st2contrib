@@ -4,7 +4,7 @@
     "enabled": true,
 
     "trigger": {
-        "type": "aws.ec2_instance_status"
+        "type": "aws.instance_status"
     },
 
     "criteria": {
