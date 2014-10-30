@@ -35,7 +35,11 @@ OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
 def _create_trigger_type():
     try:
         url = _get_st2_triggers_url()
-        payload = {'name': ST2_TRIGGERTYPE_NAME, 'pack': ST2_TRIGGERTYPE_PACK}
+        payload = {
+            'name': ST2_TRIGGERTYPE_NAME,
+            'pack': ST2_TRIGGERTYPE_PACK,
+            'description': 'Trigger type for nagios event handler.'
+        }
         # sys.stdout.write('POST: %s: Body: %s\n' % (url, payload))
         post_resp = requests.post(url, data=json.dumps(payload))
     except:
@@ -54,7 +58,7 @@ def _create_trigger_type():
 def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
-        url = _get_st2_triggers_url() + '?ref=' + ST2_TRIGGERTYPE_REF
+        url = _get_st2_triggers_url() + '/' + ST2_TRIGGERTYPE_REF
         # sys.stdout.write('GET: %s\n' % url)
         get_resp = requests.get(url)
 
