@@ -4,11 +4,11 @@
     "enabled": true,
     "trigger": {
         "type": "nagios.service.state_change"
-    }, 
-    "criteria": {}, 
+    },
+    "criteria": {},
     "action": {
-        "name": "send_mail"
-      , "parameters": 
+        "ref": "send_mail"
+      , "parameters":
       { "cmd": "patrick@stackstorm.com 'ST2 Nagios Service Alert [{{trigger.state_type}}]: {{trigger.state}}' '{{trigger.service}} on {{trigger.host}} is {{trigger.state}} {{trigger.state_type}}.<br>Attempts: {{trigger.attempt}}.<br>MSG: {{trigger.msg}}'"}
       }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "nagios.service.check_load_procd", 
+    "name": "nagios.service.check_load_procd",
     "description": "Check D state procs on host when load is high",
     "enabled": true,
     "trigger": {
@@ -12,13 +12,13 @@
       "trigger.state_type":{
         "pattern": "HARD",
         "type": "matchregex" }
-    }, 
+    },
     "action": {
-        "name": "check_procs", 
+        "ref": "check_procs",
         "parameters": {
             "hosts": "{{trigger.host}}",
             "cmd": "state D"
        }
-    } 
+    }
 }
 
