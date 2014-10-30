@@ -1,5 +1,5 @@
 {
-    "name": "nagios.service.check_load", 
+    "name": "nagios.service.check_load",
     "description": "Check cpu load on host",
     "enabled": true,
     "trigger": {
@@ -12,13 +12,13 @@
       "trigger.state_type":{
         "pattern": "HARD",
         "type": "matchregex" }
-    }, 
+    },
     "action": {
-        "name": "check_loadavg", 
+        "ref": "check_loadavg",
         "parameters": {
             "hosts": "{{trigger.host}}",
             "cmd": "all"
         }
-    } 
+    }
 }
 
