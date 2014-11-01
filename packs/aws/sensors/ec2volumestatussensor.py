@@ -8,14 +8,15 @@ class EC2VolumeStatusSensor(EC2ConnectMixin):
         super(EC2VolumeStatusSensor, self).__init__(config)
         self._container_service = container_service
         self._interval = config.get('interval', 20)
+        self._trigger_name = 'volume_status'
+        self._trigger_pack = 'aws'
+        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
 
     def start(self):
         while True:
             data = self.ec2.get_volume_details()
             for i in data:
-                trigger = {}
-                trigger['name'] = 'st2.ec2.volume_status'
-
+                trigger = self._trigger_ref
                 payload = data[i]
                 payload['event_id'] = 'ec2-volume-status-check-' + str(int(time.time()))
                 payload['volume_id'] = i
@@ -29,7 +30,8 @@ class EC2VolumeStatusSensor(EC2ConnectMixin):
     def get_trigger_types(self):
         return [
             {
-                'name': 'st2.ec2.volume_status',
+                'name': self._trigger_name,
+                'pack': self._trigger_pack,
                 'description': 'EC2 Volume Status Sensor',
                 'payload_schema': {
                     'type': 'object',

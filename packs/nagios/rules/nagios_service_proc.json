@@ -1,5 +1,5 @@
 {
-    "name": "nagios.service.check_proc", 
+    "name": "nagios.service.check_proc",
     "description": "Check process state on host",
     "enabled": true,
     "trigger": {
@@ -12,9 +12,9 @@
       "state_type":{
         "pattern": "HARD",
         "type": "matchregex" }
-    }, 
+    },
     "action": {
-        "name": "check_pgrep", 
+        "ref": "check_pgrep",
         "parameters": {
             "hosts": "{{trigger.host}}",
             "cmd": "{{trigger.service}} 1 10"

@@ -1,6 +1,6 @@
 import os
 import re
-import json
+import yaml
 import types
 from keystoneclient.auth.identity import v2
 from keystoneclient import session
@@ -14,7 +14,7 @@ class OpenStack(object):
         config_file = os.path.join(os.path.dirname(__file__), conf)
         try:
             fh = open(config_file)
-            config = json.load(fh)
+            config = yaml.load(fh)
             fh.close()
         except Exception as e:
             print("Error reading config file %s: %s" % (conf, e))

@@ -19,6 +19,9 @@ class GitCommitSensor(object):
         self._logger = self._container_service.get_logger(__name__)
         self._old_head = None
         self._remote = None
+        self._trigger_name = 'head_sha_monitor'
+        self._trigger_pack = 'git'
+        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
 
     def setup(self):
         git_opts = self._config
@@ -74,7 +77,8 @@ class GitCommitSensor(object):
 
     def get_trigger_types(self):
         return [{
-            'name': 'st2.git.head_sha_monitor',
+            'name': self._trigger_name,
+            'pack': self._trigger_pack,
             'description': 'Stackstorm git commits tracker',
             'payload_schema': {
                 'type': 'object',
@@ -103,8 +107,7 @@ class GitCommitSensor(object):
         pass
 
     def _dispatch_trigger(self, commit):
-        trigger = {}
-        trigger['name'] = 'st2.git.head_sha_monitor'
+        trigger = self._trigger_ref
         payload = {}
         payload['branch'] = self._repo.active_branch.name
         payload['revision'] = str(commit)

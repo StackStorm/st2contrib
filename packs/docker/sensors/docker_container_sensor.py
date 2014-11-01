@@ -15,6 +15,9 @@ class DockerSensor(object):
         self._config = config
         self._ps_opts = None
         self._poll_interval = 5  # seconds.
+        self._trigger_name = 'container_tracker'
+        self._trigger_pack = 'docker'
+        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
 
     def setup(self):
         docker_opts = self._config
@@ -60,7 +63,8 @@ class DockerSensor(object):
 
     def get_trigger_types(self):
         return [{
-            'name': 'st2.docker.container_tracker',
+            'name': self._trigger_name,
+            'pack': self._trigger_pack,
             'description': 'Stackstorm Docker containers tracker',
             'payload_schema': {
                 'type': 'object',
@@ -82,8 +86,7 @@ class DockerSensor(object):
         pass
 
     def _dispatch_trigger(self, container):
-        trigger = {}
-        trigger['name'] = 'st2.docker.container_tracker'
+        trigger = self._trigger_ref
         payload = {}
         payload['container_info'] = container
         self._container_service.dispatch(trigger, payload)
