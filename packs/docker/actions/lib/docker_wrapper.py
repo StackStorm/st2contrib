@@ -50,5 +50,5 @@ class DockerWrapper(object):
                 output = json.loads(json_output)
                 sys.stdout.write(output['stream'] + '\n')
                 json_output = six.advance_iterator(result)
-        except:
-            pass
+        except Exception, e:
+            raise e
