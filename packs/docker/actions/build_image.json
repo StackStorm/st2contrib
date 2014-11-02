@@ -7,7 +7,8 @@
     "parameters": {
         "dockerfile_path": {
             "type": "string",
-            "description": "Local dir containing Dockerfile or local path to Dockerfile or remote url."
+            "description": "Local dir containing Dockerfile or local path to Dockerfile or remote url.",
+            "required": true
         },
         "tag": {
             "type": "string",
