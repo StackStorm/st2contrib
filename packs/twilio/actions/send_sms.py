@@ -15,8 +15,9 @@ class TwilioSendSMSAction(Action):
         try:
             self.client.messages.create(body=body, from_=from_number, to=to_number)
         except Exception as e:
-            self.logger.error('Failed sending sms to: %s, exception: %s\n' %
-                              (to_number, str(e)))
-            sys.exit(1)
+            error_msg = ('Failed sending sms to: %s, exception: %s\n' %
+                         (to_number, str(e.msg)))
+            self.logger.error(error_msg)
+            raise Exception(error_msg)
 
         self.logger.info('Successfully sent sms to: %s\n' % (to_number))
