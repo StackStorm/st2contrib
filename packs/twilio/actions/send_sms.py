@@ -1,5 +1,3 @@
-import sys
-
 from twilio.rest import TwilioRestClient
 
 from st2actions.runners.pythonrunner import Action
