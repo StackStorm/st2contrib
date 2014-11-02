@@ -1,12 +1,12 @@
 ---
   credentials:
-    ec2_prod:
+    ec2_prod_us_west_1:
       api_key: "username"
       api_secret: "password"
       type: "compute"
       provider: "ec2_us_east"
       region: "us-west-1"
-    rax_dev:
+    rax_dev_iad:
       api_key: "username"
       api_secret: "password"
       type: "compute"
