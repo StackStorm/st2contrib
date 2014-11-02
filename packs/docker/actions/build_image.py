@@ -13,4 +13,5 @@ class DockerBuildImageAction(DockerBasePythonAction):
         if os.path.isdir(dockerfile_path):
             return self.wrapper.build(path=dockerfile_path, tag=tag)
         else:
-            return self.wrapper.build(fileobj=dockerfile_path, tag=tag)
+            with open(dockerfile_path, 'r') as fp:
+                return self.wrapper.build(fileobj=fp, tag=tag)
