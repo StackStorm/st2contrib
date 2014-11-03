@@ -7,31 +7,26 @@
     "parameters": {
         "server": {
             "type": "string",
-            "description": "Name of the puppet master server.",
-            "position": 0
+            "description": "Name of the puppet master server."
         },
         "certname": {
             "type": "string",
-            "description": "Certname (unique ID) of the client.",
-            "position": 1
+            "description": "Certname (unique ID) of the client."
         },
         "daemonize": {
             "type": "boolean",
             "description": "Send the process into the background.",
-            "default": false,
-            "position": 2
+            "default": false
         },
         "onetime": {
             "type": "boolean",
             "description": "Run the configuration once. Runs a single (normally daemonized) Puppet run.",
-            "default": true,
-            "position": 3
+            "default": true
         },
         "debug": {
             "type": "boolean",
             "description": "Enable full debugging.",
-            "default": false,
-            "position": 4
+            "default": false
         }
     }
 }
