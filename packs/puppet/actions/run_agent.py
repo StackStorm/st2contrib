@@ -43,14 +43,11 @@ if __name__ == '__main__':
                         required=False)
     parser.add_argument('--daemonize', help='Send the process into the background',
                         action='store_true', default=False, required=False)
-    parser.add_argument('--no_onetime', help='Disable one time run mode',
-                        action='store_true', required=False)
+    parser.add_argument('--onetime', help='Use one time run mode',
+                        action='store_true', default=True, required=False)
     parser.add_argument('--debug', help='Enable full debugging',
                         action='store_true', default=False, required=False)
     args = vars(parser.parse_args())
-
-    no_onetime = args.pop('no_onetime', False)
-    args['onetime'] = not no_onetime
 
     if not args['daemonize'] and not args['onetime']:
         raise ValueError('When --no_onetime is provided, --daemonize needs'
