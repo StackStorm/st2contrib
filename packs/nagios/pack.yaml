@@ -1,0 +1,6 @@
+---
+name : nagios
+description : Nagios integration pack. See README.md for setup instructions. 
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
