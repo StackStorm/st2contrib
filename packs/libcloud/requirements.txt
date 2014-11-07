@@ -1,1 +1,1 @@
-libcloud
+apache-libcloud>=0.15.1
