@@ -12,4 +12,5 @@ flake8:
 
 .PHONY: configs-check
 configs-check:
-	find ${ROOT_DIR}/packs/* -name "*.json" -print0 | xargs -0 -I FILENAME python -mjson.tool FILENAME
+	find ${ROOT_DIR}/packs/* -name "*.json" -print0 | xargs -0 -I FILENAME ./scripts/validate-json-file.sh FILENAME
+	find ${ROOT_DIR}/packs/* -name "*.yaml" -print0 | xargs -0 -I FILENAME ./scripts/validate-yaml-file.sh FILENAME
