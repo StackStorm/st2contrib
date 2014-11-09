@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Requirements:
 # See ../requirements.txt
 import time
@@ -14,9 +12,8 @@ class DockerSensor(object):
         self._container_service = container_service
         self._config = config
         self._ps_opts = None
-        self._poll_interval = 5  # seconds.
 
-        self._trigger_name = 'container_tracker'
+        self._poll_interval = 5  # seconds
         self._trigger_pack = 'docker'
 
     def setup(self):
