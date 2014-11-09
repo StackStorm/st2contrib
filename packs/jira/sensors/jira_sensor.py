@@ -60,7 +60,6 @@ class JIRASensor(object):
         self._jql_query = 'project=%s' % self._project
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
-        self._dispatch_issues_trigger(self._issues_in_project['STORM-1'])
 
     def start(self):
         while True:
