@@ -28,7 +28,7 @@ class JIRASensor(object):
         self._jql_query = None
         self._trigger_name = 'issues_tracker'
         self._trigger_pack = 'jira'
-        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
+        self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
     def _read_cert(self, file_path):
         with open(file_path) as f:
@@ -60,7 +60,6 @@ class JIRASensor(object):
         self._jql_query = 'project=%s' % self._project
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
-        self._dispatch_issues_trigger(self._issues_in_project['STORM-1'])
 
     def start(self):
         while True:
