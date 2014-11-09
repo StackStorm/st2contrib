@@ -1,5 +1,7 @@
 # StackStorm Community Repo
 
+[![StackStorm](https://github.com/stackstorm/st2/raw/master/stackstorm_logo.png)](http://www.stackstorm.com)
+
 [![Build Status](https://travis-ci.org/StackStorm/st2contrib.svg?branch=master)](https://travis-ci.org/StackStorm/st2contrib)
 
 Contents of this repository are comprise of integrations and automations that
