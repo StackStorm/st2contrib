@@ -17,7 +17,7 @@ class DockerSensor(object):
         self._poll_interval = 5  # seconds.
         self._trigger_name = 'container_tracker'
         self._trigger_pack = 'docker'
-        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
+        self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
     def setup(self):
         docker_opts = self._config
