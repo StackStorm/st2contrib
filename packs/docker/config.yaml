@@ -4,7 +4,6 @@
   timeout: 10
   ps_options:
     quiet: false
-    all: true
     trunc: true
     latest: false
     since: null

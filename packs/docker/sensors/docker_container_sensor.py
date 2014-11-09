@@ -50,13 +50,13 @@ class DockerSensor(object):
         while True:
             containers = self._get_active_containers()
 
-            # Stopped / deleted
+            # Stopped
             for id, running_container in six.iteritems(self._running_containers):
                 if id not in containers:
                     self._dispatch_trigger(trigger=stopped_trigger_ref,
                                            container=running_container)
 
-            # Started / added
+            # Started
             for id, container in six.iteritems(containers):
                 if id not in self._running_containers:
                     self._dispatch_trigger(trigger=started_trigger_ref,
@@ -115,7 +115,8 @@ class DockerSensor(object):
 
     def _get_active_containers(self):
         opts = self._ps_opts
-        containers = self._client.containers(quiet=opts['quiet'], all=opts['all'],
+        # Note: We pass all=False since we want to manually detect stopped containers
+        containers = self._client.containers(quiet=opts['quiet'], all=False,
                                              trunc=opts['trunc'], latest=opts['latest'],
                                              since=opts['since'], before=opts['before'],
                                              limit=opts['limit'])
