@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Requirements:
 # See ../requirements.txt
 import time
@@ -14,10 +12,9 @@ class DockerSensor(object):
         self._container_service = container_service
         self._config = config
         self._ps_opts = None
-        self._poll_interval = 5  # seconds.
-        self._trigger_name = 'container_tracker'
+
+        self._poll_interval = 5  # seconds
         self._trigger_pack = 'docker'
-        self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
     def setup(self):
         docker_opts = self._config
@@ -41,18 +38,26 @@ class DockerSensor(object):
         self._poll_interval = docker_opts.get('poll_interval', self._poll_interval)
 
     def start(self):
+        started_trigger  = self.get_trigger_types()[0]
+        stopped_trigger = self.get_trigger_types()[1]
+
+        started_trigger_ref = '.'.join([self._trigger_pack, started_trigger['name']])
+        stopped_trigger_ref = '.'.join([self._trigger_pack, stopped_trigger['name']])
+
         while True:
             containers = self._get_active_containers()
 
-            # Deleted.
+            # Stopped
             for id, running_container in six.iteritems(self._running_containers):
                 if id not in containers:
-                    self._dispatch_trigger(running_container)
+                    self._dispatch_trigger(trigger=stopped_trigger_ref,
+                                           container=running_container)
 
-            # Added.
+            # Started
             for id, container in six.iteritems(containers):
                 if id not in self._running_containers:
-                    self._dispatch_trigger(container)
+                    self._dispatch_trigger(trigger=started_trigger_ref,
+                                           container=container)
 
             self._running_containers = containers
             time.sleep(self._poll_interval)
@@ -62,19 +67,34 @@ class DockerSensor(object):
             self._client.close()
 
     def get_trigger_types(self):
-        return [{
-            'name': self._trigger_name,
-            'pack': self._trigger_pack,
-            'description': 'Stackstorm Docker containers tracker',
-            'payload_schema': {
-                'type': 'object',
-                'properties': {
-                    'container_info': {
-                        'type': 'object'
+        return [
+            {
+                'name': 'container_tracker.started',
+                'pack': self._trigger_pack,
+                'description': 'Trigger which indicates that a container has been started',
+                'payload_schema': {
+                    'type': 'object',
+                    'properties': {
+                        'container_info': {
+                            'type': 'object'
+                        }
+                    }
+                }
+            },
+            {
+                'name': 'container_tracker.stopped',
+                'pack': self._trigger_pack,
+                'description': 'Trigger which indicates that a container has been stopped',
+                'payload_schema': {
+                    'type': 'object',
+                    'properties': {
+                        'container_info': {
+                            'type': 'object'
+                        }
                     }
                 }
             }
-        }]
+        ]
 
     def add_trigger(self, trigger):
         pass
@@ -85,15 +105,15 @@ class DockerSensor(object):
     def remove_trigger(self, trigger):
         pass
 
-    def _dispatch_trigger(self, container):
-        trigger = self._trigger_ref
+    def _dispatch_trigger(self, trigger, container):
         payload = {}
         payload['container_info'] = container
         self._container_service.dispatch(trigger, payload)
 
     def _get_active_containers(self):
         opts = self._ps_opts
-        containers = self._client.containers(quiet=opts['quiet'], all=opts['all'],
+        # Note: We pass all=False since we want to manually detect stopped containers
+        containers = self._client.containers(quiet=opts['quiet'], all=False,
                                              trunc=opts['trunc'], latest=opts['latest'],
                                              since=opts['since'], before=opts['before'],
                                              limit=opts['limit'])

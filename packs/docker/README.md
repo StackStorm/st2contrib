@@ -17,6 +17,13 @@ Dockerfile) and a tag to use for the image.
 This sensor watches the list of containers on local box and sends triggers
 whenever a new container is spun up or an exisiting one is shut down.
 
+This sensor exposes the following triggers:
+
+* `docker.container_tracker.started` - Dispatched when a new container has
+  been detected / started
+* `docker.container_tracker.stopped` - Dispatched when an existing container
+  has been stopped
+
 ## Requirements
 
 1. Python 2.7 or greater
@@ -27,7 +34,8 @@ YMMV if you use versions not listed here.
 
 ## Configuration
 
-1. Edit config.yaml and look at the options. These options mirror the options of docker CLI.
+1. Edit config.yaml and look at the options. These options mirror the options
+   of docker CLI.
 
 ## Notes
 
