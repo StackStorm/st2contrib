@@ -21,7 +21,7 @@ class GitCommitSensor(object):
         self._remote = None
         self._trigger_name = 'head_sha_monitor'
         self._trigger_pack = 'git'
-        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
+        self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
     def setup(self):
         git_opts = self._config
