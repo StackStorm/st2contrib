@@ -1,30 +1,29 @@
 from lib.actions import BaseAction
 
 __all__ = [
-    'ListVMsAction'
+    'ListDNSZonesAction'
 ]
 
-NODE_ATTRIBUTES = [
+ZONE_ATTRIBUTES = [
     'id',
-    'name',
-    'state',
-    'public_ips',
-    'private_ips'
+    'domain',
+    'type',
+    'ttl'
 ]
 
 
-class ListVMsAction(BaseAction):
-    api_type = 'compute'
+class ListDNSZonesAction(BaseAction):
+    api_type = 'dns'
 
     def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
-        vms = driver.list_nodes()
+        zones = driver.list_zones()
         result = []
 
-        for vm in vms:
-            values = vm.__dict__
+        for zone in zones:
+            values = zone.__dict__
             item = dict([(k, v) for k, v in values.items()
-                         if k in NODE_ATTRIBUTES])
+                         if k in ZONE_ATTRIBUTES])
             result.append(item)
 
         return result

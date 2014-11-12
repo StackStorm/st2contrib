@@ -18,7 +18,7 @@ __all__ = [
 
 
 class BaseAction(Action):
-    description = None
+    api_type = None
 
     def _get_driver_for_credentials(self, credentials):
         """
@@ -42,6 +42,10 @@ class BaseAction(Action):
         else:
             raise ValueError('Unsupported type: %s' % (provider_type))
 
+        if provider_type != self.api_type:
+            raise ValueError('Expected credentials for "%s", but got credentials for "%s"' %
+                             (self.api_type, provider_type))
+
         cls = get_driver(provider_config['provider'])
 
         driver_args = [provider_config['api_key'],
@@ -60,8 +64,6 @@ class BaseAction(Action):
 
 
 class SingleVMAction(BaseAction):
-    description = 'Libcloud VM action'
-
     def _get_node_for_id(self, node_id, driver=None):
         """
         Retrieve Libcloud node instance for the provided node id.

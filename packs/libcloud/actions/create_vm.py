@@ -10,7 +10,7 @@ __all__ = [
 
 
 class CreateVMAction(BaseAction):
-    description = 'Create a new VM'
+    api_type = 'compute'
 
     def run(self, credentials, name, size_id, image_id, location_id=None):
         driver = self._get_driver_for_credentials(credentials=credentials)

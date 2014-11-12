@@ -6,7 +6,7 @@ __all__ = [
 
 
 class ImportPublicSSHKeyAction(BaseAction):
-    description = 'Import public SSH key'
+    api_type = 'compute'
 
     def run(self, credentials, name, key_material):
         driver = self._get_driver_for_credentials(credentials=credentials)

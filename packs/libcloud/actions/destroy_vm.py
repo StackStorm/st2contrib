@@ -6,7 +6,7 @@ __all__ = [
 
 
 class DestroyVMAction(SingleVMAction):
-    description = 'Destroy a VM'
+    api_type = 'compute'
 
     def run(self, credentials, vm_id):
         driver = self._get_driver_for_credentials(credentials=credentials)

@@ -6,7 +6,7 @@ __all__ = [
 
 
 class CreateDNSRecordAction(BaseAction):
-    description = 'Create new DNS record'
+    api_type = 'dns'
 
     def run(self, credentials, domain, name, type, data, ttl=500):
         driver = self._get_driver_for_credentials(credentials=credentials)

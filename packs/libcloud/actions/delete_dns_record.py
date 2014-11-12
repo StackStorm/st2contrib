@@ -8,7 +8,7 @@ __all__ = [
 
 
 class DeleteDNSRecordAction(BaseAction):
-    description = 'Delete an existing DNS record'
+    api_type = 'dns'
 
     def run(self, credentials, record_id):
         driver = self._get_driver_for_credentials(credentials=credentials)
