@@ -13,6 +13,8 @@ ZONE_ATTRIBUTES = [
 
 
 class ListDNSZonesAction(BaseAction):
+    api_type = 'dns'
+
     def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
         zones = driver.list_zones()

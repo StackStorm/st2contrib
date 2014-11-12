@@ -10,6 +10,8 @@ __all__ = [
 
 
 class CreateVMAction(BaseAction):
+    api_type = 'compute'
+
     def run(self, credentials, name, size_id, image_id, location_id=None):
         driver = self._get_driver_for_credentials(credentials=credentials)
         size = NodeSize(id=size_id, name=None,

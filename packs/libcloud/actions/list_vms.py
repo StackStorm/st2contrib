@@ -14,6 +14,8 @@ NODE_ATTRIBUTES = [
 
 
 class ListVMsAction(BaseAction):
+    api_type = 'compute'
+
     def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
         vms = driver.list_nodes()

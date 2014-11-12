@@ -18,6 +18,8 @@ __all__ = [
 
 
 class BaseAction(Action):
+    api_type = None
+
     def _get_driver_for_credentials(self, credentials):
         """
         Retrieve Libcloud provider driver instance for a particular credentials
@@ -39,6 +41,10 @@ class BaseAction(Action):
             get_driver = get_dns_driver
         else:
             raise ValueError('Unsupported type: %s' % (provider_type))
+
+        if provider_type != self.api_type:
+            raise ValueError('Expected credentials for "%s", but got credentials for "%s"' %
+                             (self.api_type, provider_type))
 
         cls = get_driver(provider_config['provider'])
 

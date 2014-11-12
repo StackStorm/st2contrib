@@ -6,6 +6,8 @@ __all__ = [
 
 
 class StartVMAction(SingleVMAction):
+    api_type = 'compute'
+
     def run(self, credentials, vm_id):
         driver = self._get_driver_for_credentials(credentials=credentials)
         node = self._get_node_for_id(node_id=vm_id, driver=driver)
