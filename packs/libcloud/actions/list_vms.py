@@ -1,4 +1,4 @@
-from lib.actions import SingleVMAction
+from lib.actions import BaseAction
 
 __all__ = [
     'ListVMsAction'
@@ -13,7 +13,7 @@ NODE_ATTRIBUTES = [
 ]
 
 
-class ListVMsAction(SingleVMAction):
+class ListVMsAction(BaseAction):
     description = 'List VMs'
 
     def run(self, credentials):
