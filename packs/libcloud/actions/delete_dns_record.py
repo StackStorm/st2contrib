@@ -8,8 +8,6 @@ __all__ = [
 
 
 class DeleteDNSRecordAction(BaseAction):
-    description = 'Delete an existing DNS record'
-
     def run(self, credentials, record_id):
         driver = self._get_driver_for_credentials(credentials=credentials)
         record = Record(id=record_id, name=None, type=None, data=None,

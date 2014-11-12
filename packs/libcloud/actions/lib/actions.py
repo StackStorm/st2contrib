@@ -18,8 +18,6 @@ __all__ = [
 
 
 class BaseAction(Action):
-    description = None
-
     def _get_driver_for_credentials(self, credentials):
         """
         Retrieve Libcloud provider driver instance for a particular credentials
@@ -60,8 +58,6 @@ class BaseAction(Action):
 
 
 class SingleVMAction(BaseAction):
-    description = 'Libcloud VM action'
-
     def _get_node_for_id(self, node_id, driver=None):
         """
         Retrieve Libcloud node instance for the provided node id.
