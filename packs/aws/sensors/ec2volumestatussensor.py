@@ -10,7 +10,7 @@ class EC2VolumeStatusSensor(EC2ConnectMixin):
         self._interval = config.get('interval', 20)
         self._trigger_name = 'volume_status'
         self._trigger_pack = 'aws'
-        self._trigger_ref = '.'.join([self._trigger_name, self._trigger_pack])
+        self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
     def start(self):
         while True:
