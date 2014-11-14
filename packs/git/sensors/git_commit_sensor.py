@@ -79,12 +79,12 @@ class GitCommitSensor(object):
         return [{
             'name': self._trigger_name,
             'pack': self._trigger_pack,
-            'description': 'Stackstorm git commits tracker',
+            'description': 'Trigger when indicates a new commit has been detected',
             'payload_schema': {
                 'type': 'object',
                 'properties': {
                     'author': {'type': 'string'},
-                    'author_email': {'type', 'string'},
+                    'author_email': {'type': 'string'},
                     'authored_date': {'type': 'string'},
                     'author_tz_offset': {'type': 'string'},
                     'committer': {'type': 'string'},

@@ -1,6 +1,6 @@
 ---
-  entry_point: "docker_container_sensor.py"
   class_name: "DockerSensor"
+  entry_point: "docker_container_sensor.py"
   description: "Docker sensor"
   poll_interval: 5
   trigger_types:

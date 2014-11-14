@@ -74,7 +74,7 @@ class JIRASensor(object):
             {
                 'name': self._trigger_name,
                 'pack': self._trigger_pack,
-                'description': 'JIRA issues tracker',
+                'description': 'Trigger which indicates that a new issue has been created',
                 'payload_info': ['project', 'issue_name', 'issue_url', 'created', 'assignee',
                                  'fix_versions', 'issue_type']
             }
