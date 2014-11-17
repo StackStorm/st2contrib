@@ -66,8 +66,9 @@ class DockerSensor(object):
         StackStorm, only require sensor to implement "poll" method and the
         actual poll schedueling is handled outside of the sensor class.
         """
-        self.poll()
-        time.sleep(self._poll_interval)
+        while True:
+            self.poll()
+            time.sleep(self._poll_interval)
 
     def stop(self):
         if getattr(self._client, 'close') is not None:

@@ -61,7 +61,15 @@ class JIRASensor(object):
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
 
+    def poll(self):
+        self._detect_new_issues()
+
     def start(self):
+        """
+        Note: This method is only needed for StackStorm v0.5. Newer versions of
+        StackStorm, only require sensor to implement "poll" method and the
+        actual poll schedueling is handled outside of the sensor class.
+        """
         while True:
             self._detect_new_issues()
             time.sleep(self._poll_interval)
@@ -70,6 +78,10 @@ class JIRASensor(object):
         pass
 
     def get_trigger_types(self):
+        """
+        Note: This method is only needed for StackStorm v0.5. In newer versions,
+        trigger_types are defined in the sensor metadata file.
+        """
         return [
             {
                 'name': self._trigger_name,

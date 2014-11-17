@@ -46,36 +46,44 @@ class GitCommitSensor(object):
 
         self._remote = self._repo.remote('origin')
 
+    def poll(self):
+        # Fetch new commits
+        try:
+            pulled = self._remote.pull()
+            self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
+        except:
+            self._logger.exception('Failed git pull from remote repo.')
+
+        head = self._repo.commit()
+        head_sha = head.hexsha
+
+        if not self._old_head:
+            self._old_head = head_sha
+            if len(self._repo.heads) == 1:  # There is exactly one commit. Kick off a trigger.
+                self._dispatch_trigger(head)
+            continue
+
+        if head_sha != self._old_head:
+            try:
+                self._dispatch_trigger(head)
+            except Exception:
+                self._logger.exception('Failed dispatching trigger.')
+            else:
+                self._old_head = head_sha
+
     def start(self):
         while True:
-            head = self._repo.commit()
-            head_sha = head.hexsha
-
-            if not self._old_head:
-                self._old_head = head_sha
-                if len(self._repo.heads) == 1:  # There is exactly one commit. Kick off a trigger.
-                    self._dispatch_trigger(head)
-                continue
-
-            if head_sha != self._old_head:
-                try:
-                    self._dispatch_trigger(head)
-                except Exception:
-                    self._logger.exception('Failed dispatching trigger.')
-                else:
-                    self._old_head = head_sha
-
+            self.poll()
             time.sleep(self._poll_interval)
-            try:
-                pulled = self._remote.pull()
-                self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
-            except:
-                self._logger.exception('Failed git pull from remote repo.')
 
     def stop(self):
         pass
 
     def get_trigger_types(self):
+        """
+        Note: This method is only needed for StackStorm v0.5. In newer versions,
+        trigger_types are defined in the sensor metadata file.
+        """
         return [{
             'name': self._trigger_name,
             'pack': self._trigger_pack,
