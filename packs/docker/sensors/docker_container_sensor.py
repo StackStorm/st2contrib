@@ -43,7 +43,7 @@ class DockerSensor(object):
         self._running_containers = self._get_active_containers()
         self._poll_interval = docker_opts.get('poll_interval', self._poll_interval)
 
-    def poll(self):
+    def run(self):
         containers = self._get_active_containers()
 
         # Stopped
@@ -67,7 +67,7 @@ class DockerSensor(object):
         actual poll schedueling is handled outside of the sensor class.
         """
         while True:
-            self.poll()
+            self.run()
             time.sleep(self._poll_interval)
 
     def stop(self):

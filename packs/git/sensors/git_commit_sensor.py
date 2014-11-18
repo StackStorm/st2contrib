@@ -46,7 +46,7 @@ class GitCommitSensor(object):
 
         self._remote = self._repo.remote('origin')
 
-    def poll(self):
+    def run(self):
         # Fetch new commits
         try:
             pulled = self._remote.pull()
@@ -73,7 +73,7 @@ class GitCommitSensor(object):
 
     def start(self):
         while True:
-            self.poll()
+            self.run()
             time.sleep(self._poll_interval)
 
     def stop(self):

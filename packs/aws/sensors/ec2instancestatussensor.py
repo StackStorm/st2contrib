@@ -12,7 +12,7 @@ class EC2InstanceStatusSensor(EC2ConnectMixin):
         self._trigger_pack = 'aws'
         self._trigger_ref = '.'.join([self._trigger_pack, self._trigger_name])
 
-    def poll(self):
+    def run(self):
         data = self._ec2.get_instance_details()
         for i in data:
             trigger = self._trigger_ref
@@ -31,7 +31,7 @@ class EC2InstanceStatusSensor(EC2ConnectMixin):
         actual poll schedueling is handled outside of the sensor class.
         """
         while True:
-            self.poll()
+            self.run()
             time.sleep(self._interval)
 
     def get_trigger_types(self):

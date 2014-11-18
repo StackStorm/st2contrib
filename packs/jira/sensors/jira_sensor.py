@@ -61,7 +61,7 @@ class JIRASensor(object):
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
 
-    def poll(self):
+    def run(self):
         self._detect_new_issues()
 
     def start(self):
@@ -71,7 +71,7 @@ class JIRASensor(object):
         actual poll schedueling is handled outside of the sensor class.
         """
         while True:
-            self._detect_new_issues()
+            self.run()
             time.sleep(self._poll_interval)
 
     def stop(self):
