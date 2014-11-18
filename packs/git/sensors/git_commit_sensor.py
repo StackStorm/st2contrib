@@ -4,19 +4,21 @@
 # pip install gitpython
 # Also requires git CLI tool to be installed.
 
-import datetime
 import os
-import time
+import datetime
 
 from git.repo import Repo
 
+from st2reactor.sensor.base import PollingSensor
 
-class GitCommitSensor(object):
-    def __init__(self, container_service, config=None):
-        self._container_service = container_service
-        self._config = config
-        self._poll_interval = 1  # seconds.
-        self._logger = self._container_service.get_logger(__name__)
+
+class GitCommitSensor(PollingSensor):
+    def __init__(self, dispatcher, config=None, poll_interval=5):
+        super(GitCommitSensor, self).__init__(dispatcher=dispatcher,
+                                              config=config,
+                                              poll_interval=poll_interval)
+
+        self._logger = self._dispatcher.get_logger(__name__)
         self._old_head = None
         self._remote = None
         self._trigger_name = 'head_sha_monitor'
@@ -46,7 +48,7 @@ class GitCommitSensor(object):
 
         self._remote = self._repo.remote('origin')
 
-    def run(self):
+    def poll(self):
         # Fetch new commits
         try:
             pulled = self._remote.pull()
@@ -71,39 +73,8 @@ class GitCommitSensor(object):
             else:
                 self._old_head = head_sha
 
-    def start(self):
-        while True:
-            self.run()
-            time.sleep(self._poll_interval)
-
-    def stop(self):
+    def cleanup(self):
         pass
-
-    def get_trigger_types(self):
-        """
-        Note: This method is only needed for StackStorm v0.5. In newer versions,
-        trigger_types are defined in the sensor metadata file.
-        """
-        return [{
-            'name': self._trigger_name,
-            'pack': self._trigger_pack,
-            'description': 'Trigger when indicates a new commit has been detected',
-            'payload_schema': {
-                'type': 'object',
-                'properties': {
-                    'author': {'type': 'string'},
-                    'author_email': {'type': 'string'},
-                    'authored_date': {'type': 'string'},
-                    'author_tz_offset': {'type': 'string'},
-                    'committer': {'type': 'string'},
-                    'committer_email': {'type': 'string'},
-                    'committed_date': {'type': 'string'},
-                    'committer_tz_offset': {'type': 'string'},
-                    'revision': {'type': 'string'},
-                    'branch': {'type': 'string'}
-                }
-            }
-        }]
 
     def add_trigger(self, trigger):
         pass
@@ -128,7 +99,7 @@ class GitCommitSensor(object):
         payload['committed_date'] = self._to_date(commit.committed_date)
         payload['committer_tz_offset'] = commit.committer_tz_offset
         self._logger.debug('Found new commit. Dispatching trigger: %s', payload)
-        self._container_service.dispatch(trigger, payload)
+        self._dispatcher.dispatch(trigger, payload)
 
     def _to_date(self, ts_epoch):
         return datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%dT%H:%M:%SZ')

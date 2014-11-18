@@ -1,26 +1,23 @@
 # Requirements:
 # See ../requirements.txt
-import time
-
 import docker
 import six
 
+from st2reactor.sensor.base import PollingSensor
 
-class DockerSensor(object):
-    def __init__(self, container_service, config=None):
+
+class DockerSensor(PollingSensor):
+    def __init__(self, dispatcher, config=None, poll_interval=5):
+        super(DockerSensor, self).__init__(dispatcher=dispatcher,
+                                           config=config,
+                                           poll_interval=poll_interval)
         self._running_containers = {}
-        self._container_service = container_service
-        self._config = config
         self._ps_opts = None
 
-        self._poll_interval = 5  # seconds
         self._trigger_pack = 'docker'
 
-        started_trigger = self.get_trigger_types()[0]
-        stopped_trigger = self.get_trigger_types()[1]
-
-        self._started_trigger_ref = '.'.join([self._trigger_pack, started_trigger['name']])
-        self._stopped_trigger_ref = '.'.join([self._trigger_pack, stopped_trigger['name']])
+        self._started_trigger_ref = '.'.join([self._trigger_pack, 'container_tracker.started'])
+        self._stopped_trigger_ref = '.'.join([self._trigger_pack, 'container_tracker.stopped'])
 
     def setup(self):
         docker_opts = self._config
@@ -41,9 +38,8 @@ class DockerSensor(object):
                                      version=self._version,
                                      timeout=self._timeout)
         self._running_containers = self._get_active_containers()
-        self._poll_interval = docker_opts.get('poll_interval', self._poll_interval)
 
-    def run(self):
+    def poll(self):
         containers = self._get_active_containers()
 
         # Stopped
@@ -60,53 +56,9 @@ class DockerSensor(object):
 
         self._running_containers = containers
 
-    def start(self):
-        """
-        Note: This method is only needed for StackStorm v0.5. Newer versions of
-        StackStorm, only require sensor to implement "poll" method and the
-        actual poll schedueling is handled outside of the sensor class.
-        """
-        while True:
-            self.run()
-            time.sleep(self._poll_interval)
-
-    def stop(self):
+    def cleanup(self):
         if getattr(self._client, 'close') is not None:
             self._client.close()
-
-    def get_trigger_types(self):
-        """
-        Note: This method is only needed for StackStorm v0.5. In newer versions,
-        trigger_types are defined in the sensor metadata file.
-        """
-        return [
-            {
-                'name': 'container_tracker.started',
-                'pack': self._trigger_pack,
-                'description': 'Trigger which indicates that a container has been started',
-                'payload_schema': {
-                    'type': 'object',
-                    'properties': {
-                        'container_info': {
-                            'type': 'object'
-                        }
-                    }
-                }
-            },
-            {
-                'name': 'container_tracker.stopped',
-                'pack': self._trigger_pack,
-                'description': 'Trigger which indicates that a container has been stopped',
-                'payload_schema': {
-                    'type': 'object',
-                    'properties': {
-                        'container_info': {
-                            'type': 'object'
-                        }
-                    }
-                }
-            }
-        ]
 
     def add_trigger(self, trigger):
         pass
@@ -120,7 +72,7 @@ class DockerSensor(object):
     def _dispatch_trigger(self, trigger, container):
         payload = {}
         payload['container_info'] = container
-        self._container_service.dispatch(trigger, payload)
+        self._dispatcher.dispatch(trigger, payload)
 
     def _get_active_containers(self):
         opts = self._ps_opts

@@ -1,18 +1,21 @@
 # See ./requirements.txt for requirements.
 import os
-import time
 
 from jira.client import JIRA
 
+from st2reactor.sensor.base import PollingSensor
 
-class JIRASensor(object):
+
+class JIRASensor(PollingSensor):
     '''
     Sensor will monitor for any new projects created in JIRA and
     emit trigger instance when one is created.
     '''
-    def __init__(self, container_service, config=None):
-        self._container_service = container_service
-        self._config = config
+    def __init__(self, dispatcher, config=None, poll_interval=5):
+        super(JIRASensor, self).__init__(dispatcher=dispatcher,
+                                         config=config,
+                                         poll_interval=poll_interval)
+
         self._jira_url = None
         # The Consumer Key created while setting up the "Incoming Authentication" in
         # JIRA for the Application Link.
@@ -61,36 +64,11 @@ class JIRASensor(object):
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
 
-    def run(self):
+    def poll(self):
         self._detect_new_issues()
 
-    def start(self):
-        """
-        Note: This method is only needed for StackStorm v0.5. Newer versions of
-        StackStorm, only require sensor to implement "poll" method and the
-        actual poll schedueling is handled outside of the sensor class.
-        """
-        while True:
-            self.run()
-            time.sleep(self._poll_interval)
-
-    def stop(self):
+    def cleanup(self):
         pass
-
-    def get_trigger_types(self):
-        """
-        Note: This method is only needed for StackStorm v0.5. In newer versions,
-        trigger_types are defined in the sensor metadata file.
-        """
-        return [
-            {
-                'name': self._trigger_name,
-                'pack': self._trigger_pack,
-                'description': 'Trigger which indicates that a new issue has been created',
-                'payload_info': ['project', 'issue_name', 'issue_url', 'created', 'assignee',
-                                 'fix_versions', 'issue_type']
-            }
-        ]
 
     def add_trigger(self, trigger):
         pass
@@ -125,4 +103,4 @@ class JIRASensor(object):
         payload['assignee'] = issue.raw['fields']['assignee']
         payload['fix_versions'] = issue.raw['fields']['fixVersions']
         payload['issue_type'] = issue.raw['fields']['issuetype']['name']
-        self._container_service.dispatch(trigger, payload)
+        self._dispatcher.dispatch(trigger, payload)
