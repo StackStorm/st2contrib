@@ -13,12 +13,12 @@ from st2reactor.sensor.base import PollingSensor
 
 
 class GitCommitSensor(PollingSensor):
-    def __init__(self, dispatcher, config=None, poll_interval=5):
-        super(GitCommitSensor, self).__init__(dispatcher=dispatcher,
+    def __init__(self, sensor_service, config=None, poll_interval=5):
+        super(GitCommitSensor, self).__init__(sensor_service=sensor_service,
                                               config=config,
                                               poll_interval=poll_interval)
 
-        self._logger = self._dispatcher.get_logger(__name__)
+        self._logger = self._sensor_service.get_logger(__name__)
         self._old_head = None
         self._remote = None
         self._trigger_name = 'head_sha_monitor'
@@ -99,7 +99,7 @@ class GitCommitSensor(PollingSensor):
         payload['committed_date'] = self._to_date(commit.committed_date)
         payload['committer_tz_offset'] = commit.committer_tz_offset
         self._logger.debug('Found new commit. Dispatching trigger: %s', payload)
-        self._dispatcher.dispatch(trigger, payload)
+        self._sensor_service.dispatch(trigger, payload)
 
     def _to_date(self, ts_epoch):
         return datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%dT%H:%M:%SZ')

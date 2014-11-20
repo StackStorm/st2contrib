@@ -6,8 +6,8 @@ from lib.sensorbase import EC2ConnectMixin
 
 
 class EC2InstanceStatusSensor(PollingSensor, EC2ConnectMixin):
-    def __init__(self, dispatcher, config=None, poll_interval=20):
-        PollingSensor.__init__(self, dispatcher=dispatcher, config=config,
+    def __init__(self, sensor_service, config=None, poll_interval=20):
+        PollingSensor.__init__(self, sensor_service=sensor_service, config=config,
                                poll_interval=poll_interval)
         EC2ConnectMixin.__init__(self, config=config)
 
@@ -23,6 +23,6 @@ class EC2InstanceStatusSensor(PollingSensor, EC2ConnectMixin):
             payload['event_id'] = 'ec2-instance-check-' + str(int(time.time()))
             payload['instance_id'] = i
             try:
-                self._dispatcher.dispatch(trigger, payload)
+                self._sensor_service.dispatch(trigger, payload)
             except Exception as e:
                 self._log.exception('Exception %s handling st2.ec2.instance_status', e)

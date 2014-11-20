@@ -7,8 +7,8 @@ from st2reactor.sensor.base import PollingSensor
 
 
 class DockerSensor(PollingSensor):
-    def __init__(self, dispatcher, config=None, poll_interval=5):
-        super(DockerSensor, self).__init__(dispatcher=dispatcher,
+    def __init__(self, sensor_service, config=None, poll_interval=5):
+        super(DockerSensor, self).__init__(sensor_service=sensor_service,
                                            config=config,
                                            poll_interval=poll_interval)
         self._running_containers = {}
@@ -72,7 +72,7 @@ class DockerSensor(PollingSensor):
     def _dispatch_trigger(self, trigger, container):
         payload = {}
         payload['container_info'] = container
-        self._dispatcher.dispatch(trigger, payload)
+        self._sensor_service.dispatch(trigger, payload)
 
     def _get_active_containers(self):
         opts = self._ps_opts

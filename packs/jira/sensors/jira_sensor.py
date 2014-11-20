@@ -11,8 +11,8 @@ class JIRASensor(PollingSensor):
     Sensor will monitor for any new projects created in JIRA and
     emit trigger instance when one is created.
     '''
-    def __init__(self, dispatcher, config=None, poll_interval=5):
-        super(JIRASensor, self).__init__(dispatcher=dispatcher,
+    def __init__(self, sensor_service, config=None, poll_interval=5):
+        super(JIRASensor, self).__init__(sensor_service=sensor_service,
                                          config=config,
                                          poll_interval=poll_interval)
 
@@ -103,4 +103,4 @@ class JIRASensor(PollingSensor):
         payload['assignee'] = issue.raw['fields']['assignee']
         payload['fix_versions'] = issue.raw['fields']['fixVersions']
         payload['issue_type'] = issue.raw['fields']['issuetype']['name']
-        self._dispatcher.dispatch(trigger, payload)
+        self._sensor_service.dispatch(trigger, payload)
