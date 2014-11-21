@@ -1,5 +1,4 @@
-
---
+---
   class_name: "EC2VolumeStatusSensor"
   entry_point: "ec2volumestatussensor.py"
   description: "Sensor which monitors EC2 volumes status"
