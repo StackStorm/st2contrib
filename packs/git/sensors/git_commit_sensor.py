@@ -63,7 +63,7 @@ class GitCommitSensor(PollingSensor):
             self._old_head = head_sha
             if len(self._repo.heads) == 1:  # There is exactly one commit. Kick off a trigger.
                 self._dispatch_trigger(head)
-            continue
+            return
 
         if head_sha != self._old_head:
             try:
