@@ -12,6 +12,7 @@
         },
         "args": {
             "description": "Command line arguments",
+            "default": " ",
             "position": 1
         },
         "dir": {
