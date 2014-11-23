@@ -1,0 +1,31 @@
+{ "name": "check_processes"
+, "runner_type": "run-remote-script"
+, "description": "Check Interesting Processes"
+, "enabled": true
+, "entry_point": "checks/check_processes.py"
+, "parameters": {
+    "search": {
+      "type": "string",
+      "description": "Which field search for the given criteria",
+      "default": "name",
+      "position": 0
+    },
+    "criteria": {
+      "type": "string",
+      "description": "search criteria",
+      "position": 1
+    },
+    "dir": {
+      "immutable": true
+    },
+    "kwarg_op": {
+      "immutable": true
+    },
+    "sudo": {
+      "immutable": true
+    },
+    "cmd": {
+      "immutable": true
+    }
+  }
+}

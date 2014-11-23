@@ -1,0 +1,22 @@
+{ "name": "file_touch"
+, "runner_type": "run-remote-script"
+, "description": "Touches a file"
+, "enabled": true
+, "entry_point": "file_touch.sh"
+, "parameters": {
+    "file": {
+      "type": "string",
+      "description": "Path of the file to be touched",
+      "position": 0
+    },
+    "dir": {
+      "immutable": true
+    },
+    "kwarg_op": {
+      "immutable": true
+    },
+    "sudo": {
+      "immutable": true
+    }
+  }
+}

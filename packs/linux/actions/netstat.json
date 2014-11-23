@@ -1,0 +1,33 @@
+{
+    "name": "netstat",
+    "runner_type": "run-remote-script",
+    "description": "Run netstat",
+    "enabled": true,
+    "entry_point": "command.sh",
+    "parameters": {
+        "command": {
+            "immutable": true,
+            "default": "netstat",
+            "position": 0
+        },
+        "args": {
+            "description": "Command line arguments",
+            "position": 1
+        },
+        "dir": {
+            "immutable": true,
+            "default": "/home/stanley/"
+        },
+        "sudo": {
+            "immutable": true,
+            "default": false
+        },
+        "cmd": {
+            "immutable": true
+        },
+        "kwarg_op": {
+            "immutable": true,
+            "default": "--"
+        }
+    }
+}
