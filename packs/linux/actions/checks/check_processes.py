@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, sys, re
+import os, sys, re, json
 
 class checkProcs(object):
 
@@ -63,14 +63,13 @@ class checkProcs(object):
       self.byPid(criteria)
 
   def show(self):
-    prettyOut = ""
+    prettyOut = {}
     if len(self.interestingProcs)>0:
       for proc in self.interestingProcs:
-        prettyOut += "%s %s - time:%s\n" % (proc[0],proc[1],proc[13])
-    else:
-      prettyOut = "No processes matched criteria"
+        #prettyOut += "%s %s - time:%s\n" % (proc[0],proc[1],proc[13])
+        prettyOut[proc[0]] = proc[1]
 
-    print prettyOut
+    print json.dumps(prettyOut)
 
 
 if __name__ == '__main__':
