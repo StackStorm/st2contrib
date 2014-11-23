@@ -7,6 +7,7 @@ time = sys.argv[1]
 loadAvgFile = "/proc/loadavg"
 cpuInfoFile = "/proc/cpuinfo"
 cpus = 0
+output = {}
 
 try:
   fh = open(loadAvgFile,'r')
@@ -23,20 +24,20 @@ try:
       cpus += 1
   fh.close()
 except:
-  print "Error opeing %s" % cpuInfoFile
+  print "Error opening %s" % cpuInfoFile
 
   
-oneMin = "1 min load/core: %s " % str(float(load[0])/cpus)
-fiveMin = "5 min load/core: %s " % str(float(load[1])/cpus)
-fifteenMin = "15 min load/core: %s " % str(float(load[2])/cpus)
+output['1'] = str(float(load[0])/cpus)
+output['5'] = str(float(load[1])/cpus)
+output['15'] =  str(float(load[2])/cpus)
 
 if time == '1' or time == 'one':
-  print oneMin
+  print output['1']
 elif time == '5' or time == 'five':
-  print fiveMin
+  print output['5']
 elif time == '15' or time == 'fifteen':
-  print fifteenMin
+  print output['15']
 else:
-  print oneMin + " " + fiveMin + " " + fifteenMin
+  print output
 
 exit(0)
