@@ -13,9 +13,17 @@
             "pattern": "check_load",
             "type": "equals"
         },
+        "trigger.check.output": {
+            "pattern": ".*CRITICAL.*",
+            "type": "matchregex"
+        },
         "trigger.occurrences": {
-            "pattern": 2,
+            "pattern": 1,
             "type": "gt"
+        },
+        "trigger.action": {
+            "pattern": "create",
+            "type": "matchregex"
         }
     },
 
