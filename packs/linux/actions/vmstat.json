@@ -1,19 +1,18 @@
 {
     "name": "vmstat",
-    "runner_type": "run-remote-script",
+    "runner_type": "run-remote",
     "description": "Run vmstat",
     "enabled": true,
-    "entry_point": "command.sh",
+    "entry_point": "",
     "parameters": {
-        "command": {
+        "cmd": {
             "immutable": true,
-            "default": "vmstat",
+            "default": "vmstat {{args}}",
             "position": 0
         },
         "args": {
             "description": "Command line arguments",
-            "default": " ",
-            "position": 1
+            "default": " "
         },
         "dir": {
             "immutable": true,
@@ -22,9 +21,6 @@
         "sudo": {
             "immutable": true,
             "default": false
-        },
-        "cmd": {
-            "immutable": true
         },
         "kwarg_op": {
             "immutable": true,
