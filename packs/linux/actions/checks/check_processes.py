@@ -24,11 +24,14 @@ class checkProcs(object):
 
   def process(self,criteria):
     for p in self.allProcs:
-      fh = open(self.procDir + "/" + p + "/stat")
-      pInfo = fh.readline().split()
-      cmdfh = open(self.procDir + "/" + p + "/cmdline")
-      cmd = cmdfh.readline()
-      pInfo[1] = cmd
+      try:
+        fh = open(self.procDir + "/" + p + "/stat")
+        pInfo = fh.readline().split()
+        cmdfh = open(self.procDir + "/" + p + "/cmdline")
+        cmd = cmdfh.readline()
+        pInfo[1] = cmd
+      except:
+        continue
       if criteria == 'state':
         if pInfo[2] == self.state:
           self.interestingProcs.append(pInfo)
@@ -71,9 +74,10 @@ class checkProcs(object):
         prettyOut[proc[0]] = proc[1]
 
     if self.pidlist is True:
-      print ' '.join(prettyOut.keys())
-    else:
-      print json.dumps(prettyOut)
+      pidlist = ' '.join(prettyOut.keys())
+      sys.stderr.write(pidlist)
+
+    print json.dumps(prettyOut)
 
 
 if __name__ == '__main__':
