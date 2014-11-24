@@ -5,14 +5,14 @@
 , "entry_point": "checks/check_processes.py"
 , "parameters": {
     "search": {
-      "type": "string",
-      "description": "Which field search for the given criteria",
+      "enum": ["state", "name", "pid"],
+      "description": "Which field to search: state, name, or PID",
       "default": "name",
       "position": 0
     },
     "criteria": {
       "type": "string",
-      "description": "search criteria",
+      "description": "search criteria.  Can be a regular expression.",
       "position": 1
     },
     "args": {
