@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import time
-import os, sys
+import os, sys, json
 time = sys.argv[1]
 
 loadAvgFile = "/proc/loadavg"
@@ -38,6 +38,6 @@ elif time == '5' or time == 'five':
 elif time == '15' or time == 'fifteen':
   print output['15']
 else:
-  print output
+  print json.dumps(output)
 
 exit(0)
