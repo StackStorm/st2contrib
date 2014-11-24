@@ -37,6 +37,15 @@
       "params": {
         "hosts": "{{hostname}}",
         "pids": "{{d_state_processes[hostname].stderr}} {{r_state_processes[hostname].stderr}}" },
+      "on-success": "lsof",
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "lsof",
+      "ref": "linux.lsof_pids",
+      "params": {
+        "hosts": "{{hostname}}",
+        "pids": "{{d_state_processes[hostname].stderr}} {{r_state_processes[hostname].stderr}}" },
       "on-success": "to_file",
       "on-failure": "email_escalation"
     },
