@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os, sys, re, json
 
@@ -19,7 +19,7 @@ class CheckProcs(object):
   def setup(self,debug=False,pidlist=False):
     self.debug = debug
     self.pidlist = pidlist
-    if debug is True: print "Debug is on"
+    if debug is True: print("Debug is on")
     self.allProcs = [procs for procs in os.listdir(self.procDir) if procs.isdigit() and int(procs) != int(self.myPid)]
 
   def process(self,criteria):
@@ -80,7 +80,7 @@ class CheckProcs(object):
       pidlist = ' '.join(prettyOut.keys())
       sys.stderr.write(pidlist)
 
-    print json.dumps(prettyOut)
+    print(json.dumps(prettyOut))
 
 
 if __name__ == '__main__':
