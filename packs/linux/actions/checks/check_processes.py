@@ -16,8 +16,9 @@ class checkProcs(object):
   def __init__(self):
     self.myPid = os.getpid()
 
-  def setup(self,debug=False):
+  def setup(self,debug=False,pidlist=False):
     self.debug = debug
+    self.pidlist = pidlist
     if debug is True: print "Debug is on"
     self.allProcs = [procs for procs in os.listdir(self.procDir) if procs.isdigit() and int(procs) != int(self.myPid)]
 
@@ -69,11 +70,19 @@ class checkProcs(object):
         #prettyOut += "%s %s - time:%s\n" % (proc[0],proc[1],proc[13])
         prettyOut[proc[0]] = proc[1]
 
-    print json.dumps(prettyOut)
+    if self.pidlist is True:
+      print ' '.join(prettyOut.keys())
+    else:
+      print json.dumps(prettyOut)
 
 
 if __name__ == '__main__':
 
+  if "pidlist" in sys.argv:
+    pidlist=True
+  else:
+    pidlist=False
+
   foo = checkProcs()
-  foo.setup(debug=False)
+  foo.setup(debug=False,pidlist=pidlist)
   foo.run(sys.argv[1],sys.argv[2])

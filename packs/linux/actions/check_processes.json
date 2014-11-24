@@ -15,6 +15,11 @@
       "description": "search criteria",
       "position": 1
     },
+    "args": {
+      "type": "string",
+      "description": "Additional arguments",
+      "position": 2
+    },
     "dir": {
       "immutable": true
     },
