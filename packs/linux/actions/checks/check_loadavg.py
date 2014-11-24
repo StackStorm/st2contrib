@@ -40,4 +40,4 @@ elif time == '15' or time == 'fifteen':
 else:
   print json.dumps(output)
 
-exit(0)
+sys.exit(0)
