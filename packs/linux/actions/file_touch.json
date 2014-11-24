@@ -1,13 +1,18 @@
 { "name": "file_touch"
-, "runner_type": "run-remote-script"
+, "runner_type": "run-remote"
 , "description": "Touches a file"
 , "enabled": true
-, "entry_point": "file_touch.sh"
+, "entry_point": ""
 , "parameters": {
+    "cmd": {
+      "immutable": true,
+      "default": "echo $(date +%s) > {{file}}",
+      "position": 0
+    },
     "file": {
       "type": "string",
       "description": "Path of the file to be touched",
-      "position": 0
+      "required": true
     },
     "dir": {
       "immutable": true
