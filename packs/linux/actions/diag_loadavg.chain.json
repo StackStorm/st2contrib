@@ -1,0 +1,66 @@
+{
+  "chain": [
+    {
+      "name": "check_load",
+      "ref": "linux.check_loadavg",
+      "params": {
+        "hosts": "{{hostname}}",
+        "period": "all" },
+      "on-success": "d_state_processes",
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "d_state_processes",
+      "ref": "linux.check_processes",
+      "params": {
+        "hosts": "{{hostname}}",
+        "search": "state",
+        "criteria": "D",
+        "args": "pidlist" },
+      "on-success": "r_state_processes",
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "r_state_processes",
+      "ref": "linux.check_processes",
+      "params": {
+        "hosts": "{{hostname}}",
+        "search": "state",
+        "criteria": "R",
+        "args": "pidlist"  },
+      "on-success": "netstat",
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "netstat",
+      "ref": "linux.netstat_grep",
+      "params": {
+        "hosts": "{{hostname}}",
+        "pids": "{{d_state_processes[hostname].stderr}} {{r_state_processes[hostname].stderr}}" },
+      "on-success": "to_file",
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "stormbot_say",
+      "ref": "core.stormbot_say",
+      "params": {
+        "source": "ACTION",
+        "name": "load_alert_diagnostics",
+        "msg": "'\nLOAD: {{check_load[hostname].stdout}}\nState D: {{d_state_processes[hostname].stdout}}\nState R:{{r_state_processes[hostname].stdout}}'" },
+      "on-failure": "email_escalation"
+    },
+    {
+      "name": "email_escalation",
+      "ref": "core.local",
+      "params": {
+        "cmd": "echo 'ST2 Workflow Failure\tThe load_alert workflow has failed\t{{__results}}' >> /tmp/chain && echo 'Output written to file'" }
+    },
+    {
+      "name": "to_file",
+      "ref": "core.local",
+      "params": {
+        "cmd": "echo 'ST2 Workflow Results\n\tThe load_alert workflow results:\n\n{{__results}}' >> /tmp/chain && echo 'Output written to file'" }
+    }
+  ],
+  "default": "check_load"
+}
