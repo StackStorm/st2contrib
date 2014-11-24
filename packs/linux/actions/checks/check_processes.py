@@ -2,7 +2,7 @@
 
 import os, sys, re, json
 
-class checkProcs(object):
+class CheckProcs(object):
 
   myPid = 0
   state = ""
@@ -32,6 +32,10 @@ class checkProcs(object):
         pInfo[1] = cmd
       except:
         continue
+      finally:
+       cmdfh.close()
+       fh.close()
+
       if criteria == 'state':
         if pInfo[2] == self.state:
           self.interestingProcs.append(pInfo)
@@ -41,7 +45,6 @@ class checkProcs(object):
       elif criteria == 'pid':
         if pInfo[0] == self.pid:
           self.interestingProcs.append(pInfo)
-      fh.close()
 
   def byState(self, state):
     self.state = state
@@ -87,6 +90,6 @@ if __name__ == '__main__':
   else:
     pidlist=False
 
-  foo = checkProcs()
+  foo = CheckProcs()
   foo.setup(debug=False,pidlist=pidlist)
   foo.run(sys.argv[1],sys.argv[2])
