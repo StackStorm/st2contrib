@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os, sys, re, json
 
-class checkProcs(object):
+class CheckProcs(object):
 
   myPid = 0
   state = ""
@@ -19,7 +19,7 @@ class checkProcs(object):
   def setup(self,debug=False,pidlist=False):
     self.debug = debug
     self.pidlist = pidlist
-    if debug is True: print "Debug is on"
+    if debug is True: print("Debug is on")
     self.allProcs = [procs for procs in os.listdir(self.procDir) if procs.isdigit() and int(procs) != int(self.myPid)]
 
   def process(self,criteria):
@@ -32,6 +32,10 @@ class checkProcs(object):
         pInfo[1] = cmd
       except:
         continue
+      finally:
+       cmdfh.close()
+       fh.close()
+
       if criteria == 'state':
         if pInfo[2] == self.state:
           self.interestingProcs.append(pInfo)
@@ -41,7 +45,6 @@ class checkProcs(object):
       elif criteria == 'pid':
         if pInfo[0] == self.pid:
           self.interestingProcs.append(pInfo)
-      fh.close()
 
   def byState(self, state):
     self.state = state
@@ -77,7 +80,7 @@ class checkProcs(object):
       pidlist = ' '.join(prettyOut.keys())
       sys.stderr.write(pidlist)
 
-    print json.dumps(prettyOut)
+    print(json.dumps(prettyOut))
 
 
 if __name__ == '__main__':
@@ -87,6 +90,6 @@ if __name__ == '__main__':
   else:
     pidlist=False
 
-  foo = checkProcs()
+  foo = CheckProcs()
   foo.setup(debug=False,pidlist=pidlist)
   foo.run(sys.argv[1],sys.argv[2])

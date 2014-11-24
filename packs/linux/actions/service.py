@@ -1,12 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import platform, re, sys,os, subprocess
 
 distro = platform.linux_distribution()[0]
 
-sys.argv.pop(0)
-
-args = {'act': sys.argv[0],'service': sys.argv[1]}
+args = {'act': sys.argv[1],'service': sys.argv[2]}
 
 if re.search(distro,'Ubuntu'):
   if os.path.isfile("/etc/init/%s.conf" % args['service']):
@@ -14,7 +12,7 @@ if re.search(distro,'Ubuntu'):
   elif os.path.isfile("/etc/init.d/%s" % args['service']):
     cmd = "/etc/init.d/%s %s" % (args['service'],args['act'])
   else:
-    print "Unknown service"
+    print("Unknown service")
     sys.exit(2)
 
 elif re.search(distro,'Redhat') or re.search(distro,'Fedora'):

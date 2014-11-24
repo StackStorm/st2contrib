@@ -5,8 +5,8 @@
 , "entry_point": "checks/check_loadavg.py"
 , "parameters": {
     "period": {
-      "type": "string",
-      "description": "Time period for load avg: 1,5,10 minutes, or 'all'",
+      "enum": ["1", "5", "15", "all" ],
+      "description": "Time period for load avg: 1,5,15 minutes, or 'all'",
       "default": "all",
       "position": 0
     },
