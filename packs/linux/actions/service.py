@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import platform, re, sys,os, subprocess
 
@@ -12,7 +12,7 @@ if re.search(distro,'Ubuntu'):
   elif os.path.isfile("/etc/init.d/%s" % args['service']):
     cmd = "/etc/init.d/%s %s" % (args['service'],args['act'])
   else:
-    print "Unknown service"
+    print("Unknown service")
     sys.exit(2)
 
 elif re.search(distro,'Redhat') or re.search(distro,'Fedora'):
