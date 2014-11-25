@@ -12,13 +12,7 @@ class EC2ConnectMixin(object):
                               self._config['secret_access_key'])
         self._ec2.connect()
 
-    def start(self):
-        pass
-
-    def stop(self):
-        pass
-
-    def get_trigger_types(self):
+    def cleanup(self):
         pass
 
     def add_trigger(self, trigger):

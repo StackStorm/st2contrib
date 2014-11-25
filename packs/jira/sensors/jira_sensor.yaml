@@ -1,0 +1,17 @@
+---
+  class_name: "JIRASensor"
+  entry_point: "jira_sensor.py"
+  description: "Sensor which monitors JIRA for new tickets"
+  poll_interval: 5
+  trigger_types:
+    -
+      name: "issues_tracker"
+      description: "Trigger which indicates that a new issue has been created"
+      payload_info:
+        - "project"
+        - "issue_name"
+        - "issue_url"
+        - "created"
+        - "assignee"
+        - "fix_versions"
+        - "issue_type"

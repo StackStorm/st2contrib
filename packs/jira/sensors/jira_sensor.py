@@ -1,18 +1,21 @@
 # See ./requirements.txt for requirements.
 import os
-import time
 
 from jira.client import JIRA
 
+from st2reactor.sensor.base import PollingSensor
 
-class JIRASensor(object):
+
+class JIRASensor(PollingSensor):
     '''
     Sensor will monitor for any new projects created in JIRA and
     emit trigger instance when one is created.
     '''
-    def __init__(self, container_service, config=None):
-        self._container_service = container_service
-        self._config = config
+    def __init__(self, sensor_service, config=None, poll_interval=5):
+        super(JIRASensor, self).__init__(sensor_service=sensor_service,
+                                         config=config,
+                                         poll_interval=poll_interval)
+
         self._jira_url = None
         # The Consumer Key created while setting up the "Incoming Authentication" in
         # JIRA for the Application Link.
@@ -61,24 +64,11 @@ class JIRASensor(object):
         all_issues = self._jira_client.search_issues(self._jql_query, maxResults=None)
         self._issues_in_project = {issue.key: issue for issue in all_issues}
 
-    def start(self):
-        while True:
-            self._detect_new_issues()
-            time.sleep(self._poll_interval)
+    def poll(self):
+        self._detect_new_issues()
 
-    def stop(self):
+    def cleanup(self):
         pass
-
-    def get_trigger_types(self):
-        return [
-            {
-                'name': self._trigger_name,
-                'pack': self._trigger_pack,
-                'description': 'JIRA issues tracker',
-                'payload_info': ['project', 'issue_name', 'issue_url', 'created', 'assignee',
-                                 'fix_versions', 'issue_type']
-            }
-        ]
 
     def add_trigger(self, trigger):
         pass
@@ -113,4 +103,4 @@ class JIRASensor(object):
         payload['assignee'] = issue.raw['fields']['assignee']
         payload['fix_versions'] = issue.raw['fields']['fixVersions']
         payload['issue_type'] = issue.raw['fields']['issuetype']['name']
-        self._container_service.dispatch(trigger, payload)
+        self._sensor_service.dispatch(trigger, payload)

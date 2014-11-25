@@ -1,0 +1,33 @@
+
+---
+  class_name: "GitCommitSensor"
+  entry_point: "git_commit_sensor.py"
+  description: "Sensor which monitors git repository for new commits"
+  poll_interval: 5
+  trigger_types:
+    -
+      name: "head_sha_monitor"
+      description: "Trigger which indicates that a new commit has been detected"
+      payload_schema:
+        type: "object"
+        properties:
+          author:
+            type: "string"
+          author_email:
+            type: "string"
+          authored_date:
+            type: "string"
+          author_tz_offset:
+            type: "string"
+          committer:
+            type: "string"
+          committer_email:
+            type: "string"
+          committed_date:
+            type: "string"
+          committer_tz_offset:
+            type: "string"
+          revision:
+            type: "string"
+          branch:
+            type: "string"

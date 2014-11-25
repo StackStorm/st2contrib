@@ -4,19 +4,21 @@
 # pip install gitpython
 # Also requires git CLI tool to be installed.
 
-import datetime
 import os
-import time
+import datetime
 
 from git.repo import Repo
 
+from st2reactor.sensor.base import PollingSensor
 
-class GitCommitSensor(object):
-    def __init__(self, container_service, config=None):
-        self._container_service = container_service
-        self._config = config
-        self._poll_interval = 1  # seconds.
-        self._logger = self._container_service.get_logger(__name__)
+
+class GitCommitSensor(PollingSensor):
+    def __init__(self, sensor_service, config=None, poll_interval=5):
+        super(GitCommitSensor, self).__init__(sensor_service=sensor_service,
+                                              config=config,
+                                              poll_interval=poll_interval)
+
+        self._logger = self._sensor_service.get_logger(__name__)
         self._old_head = None
         self._remote = None
         self._trigger_name = 'head_sha_monitor'
@@ -46,56 +48,33 @@ class GitCommitSensor(object):
 
         self._remote = self._repo.remote('origin')
 
-    def start(self):
-        while True:
-            head = self._repo.commit()
-            head_sha = head.hexsha
+    def poll(self):
+        # Fetch new commits
+        try:
+            pulled = self._remote.pull()
+            self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
+        except:
+            self._logger.exception('Failed git pull from remote repo.')
 
-            if not self._old_head:
-                self._old_head = head_sha
-                if len(self._repo.heads) == 1:  # There is exactly one commit. Kick off a trigger.
-                    self._dispatch_trigger(head)
-                continue
+        head = self._repo.commit()
+        head_sha = head.hexsha
 
-            if head_sha != self._old_head:
-                try:
-                    self._dispatch_trigger(head)
-                except Exception:
-                    self._logger.exception('Failed dispatching trigger.')
-                else:
-                    self._old_head = head_sha
+        if not self._old_head:
+            self._old_head = head_sha
+            if len(self._repo.heads) == 1:  # There is exactly one commit. Kick off a trigger.
+                self._dispatch_trigger(head)
+            return
 
-            time.sleep(self._poll_interval)
+        if head_sha != self._old_head:
             try:
-                pulled = self._remote.pull()
-                self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
-            except:
-                self._logger.exception('Failed git pull from remote repo.')
+                self._dispatch_trigger(head)
+            except Exception:
+                self._logger.exception('Failed dispatching trigger.')
+            else:
+                self._old_head = head_sha
 
-    def stop(self):
+    def cleanup(self):
         pass
-
-    def get_trigger_types(self):
-        return [{
-            'name': self._trigger_name,
-            'pack': self._trigger_pack,
-            'description': 'Stackstorm git commits tracker',
-            'payload_schema': {
-                'type': 'object',
-                'properties': {
-                    'author': {'type': 'string'},
-                    'author_email': {'type', 'string'},
-                    'authored_date': {'type': 'string'},
-                    'author_tz_offset': {'type': 'string'},
-                    'committer': {'type': 'string'},
-                    'committer_email': {'type': 'string'},
-                    'committed_date': {'type': 'string'},
-                    'committer_tz_offset': {'type': 'string'},
-                    'revision': {'type': 'string'},
-                    'branch': {'type': 'string'}
-                }
-            }
-        }]
 
     def add_trigger(self, trigger):
         pass
@@ -120,7 +99,7 @@ class GitCommitSensor(object):
         payload['committed_date'] = self._to_date(commit.committed_date)
         payload['committer_tz_offset'] = commit.committer_tz_offset
         self._logger.debug('Found new commit. Dispatching trigger: %s', payload)
-        self._container_service.dispatch(trigger, payload)
+        self._sensor_service.dispatch(trigger, payload)
 
     def _to_date(self, ts_epoch):
         return datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%dT%H:%M:%SZ')
