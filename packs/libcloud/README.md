@@ -15,6 +15,10 @@ Currently, the following actions listed bellow are supported:
 * Start a VM
 * Destroy a VM
 
+### Storage
+
+* Upload a file to a container
+
 ### DNS
 
 * Create a new DNS record
