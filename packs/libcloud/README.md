@@ -18,6 +18,7 @@ Currently, the following actions listed bellow are supported:
 ### Storage
 
 * Upload a file to a container
+* Enable CDN for a container and retrieve container CDN URL
 
 ### DNS
 
