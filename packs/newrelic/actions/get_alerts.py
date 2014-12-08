@@ -2,8 +2,6 @@ import requests
 
 from st2actions.runners.pythonrunner import Action
 
-APP_OK_STATES = ['green']
-
 
 class GetAppHealthStatusAction(Action):
     """
