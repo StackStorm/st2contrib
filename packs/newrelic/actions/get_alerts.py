@@ -13,9 +13,9 @@ class GetAppHealthStatusAction(Action):
         self.headers = {
             'content-type': 'application/x-www-form-urlencoded',
         }
+        self.headers['X-Api-Key'] = self.config['api_key']
 
-    def run(self, api_key, app_name=None):
-        self.headers['X-Api-Key'] = api_key
+    def run(self, app_name=None):
         # XXX: New Relic APIs allow you to filter just based on app_name
         # but it doesn't work.
         body = None
