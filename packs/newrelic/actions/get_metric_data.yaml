@@ -1,0 +1,28 @@
+---
+  name: "get_metric_data"
+  runner_type: "run-python"
+  description: "Get metric data for metric."
+  enabled: true
+  entry_point: "get_metric_data.py"
+  parameters:
+    metric_base_name:
+      type: "string"
+      description: "Base name of the metric."
+      required: true
+    metrics:
+      type: "array"
+      description: "Comma separated list of metric names."
+      items:
+        type: "string"
+      required: true
+    from:
+      type: "string"
+      description: "Start time (ISO format, e.g. 2014-03-01T20:59:00+00:00)"
+      required: true
+    to:
+      type: "string"
+      description: "End time (ISO format, e.g. 2014-03-01T20:59:00+00:00)"
+      required: true
+    app_id:
+      type: "string"
+      description: "New Relic application id."
