@@ -6,6 +6,7 @@ except ImportError:
     raise ImportError(message)
 
 from libcloud.compute.providers import get_driver as get_compute_driver
+from libcloud.storage.providers import get_driver as get_storage_driver
 from libcloud.dns.providers import get_driver as get_dns_driver
 from libcloud.compute.base import Node
 
@@ -37,6 +38,8 @@ class BaseAction(Action):
         provider_type = provider_config.get('type', None)
         if provider_type == 'compute':
             get_driver = get_compute_driver
+        elif provider_type == 'storage':
+            get_driver = get_storage_driver
         elif provider_type == 'dns':
             get_driver = get_dns_driver
         else:
