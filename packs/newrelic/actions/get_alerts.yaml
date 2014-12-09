@@ -1,0 +1,11 @@
+---
+  name: "get_alerts"
+  runner_type: "run-python"
+  description: "Get alerts for app."
+  enabled: true
+  entry_point: "get_alerts.py"
+  parameters:
+    app_name:
+      type: "string"
+      description: "New relic app name."
+      required: false
