@@ -11,9 +11,9 @@ import urlparse
 
 # ST2 configuration
 ST2_HOST = 'localhost'
-ST2_WEBHOOKS_PORT = '6000'
-ST2_WEBHOOKS_PATH = '/webhooks/st2/'
 ST2_API_PORT = '9101'
+
+ST2_WEBHOOKS_PATH = '/webhooks/st2/'
 ST2_TRIGGERS_PATH = '/triggertypes/'
 ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
@@ -73,7 +73,7 @@ def _get_st2_triggers_url():
 
 
 def _get_st2_webhooks_url():
-    url = urlparse.urlunparse(('http',  ST2_HOST + ':' + ST2_WEBHOOKS_PORT, ST2_WEBHOOKS_PATH,
+    url = urlparse.urlunparse(('http',  ST2_HOST + ':' + ST2_API_PORT, ST2_WEBHOOKS_PATH,
                                None, None, None))
     return url
 
