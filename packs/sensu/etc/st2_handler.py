@@ -13,8 +13,8 @@ import urlparse
 ST2_HOST = 'localhost'
 ST2_API_PORT = '9101'
 
-ST2_WEBHOOKS_PATH = '/webhooks/st2/'
-ST2_TRIGGERS_PATH = '/triggertypes/'
+ST2_WEBHOOKS_PATH = '/v1/webhooks/st2/'
+ST2_TRIGGERS_PATH = '/v1/triggertypes/'
 ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
