@@ -5,8 +5,5 @@ consumer_secret:
 access_token:
 access_token_secret:
 
-keywords:
-  - first keyword
-  - second keyword
-  - nth keyword
+query: "StackStorm OR Stack_Storm OR @StackStorm"
 language: en
