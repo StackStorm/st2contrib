@@ -32,13 +32,15 @@ class TwitterSearchSensor(PollingSensor):
             tso.set_language(language)
 
         tso.set_result_type('recent')
+        tso.set_count(self._config.get('count', 30))
         tso.set_include_entities(False)
 
         if self._last_id:
             tso.set_since_id(self._last_id)
 
         try:
-            tweets = list(self._client.search_tweets_iterable(tso))
+            tweets = self._client.search_tweets(tso)
+            tweets = tweets['content']['statuses']
         except Exception as e:
             self._logger.exception('Polling Twitter failed: %s' % (str(e)))
             return

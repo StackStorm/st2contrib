@@ -10,6 +10,8 @@ Pack which allows integration with Twitter.
 * ``access_token_secret`` - Twitter API access token secret
 * ``query`` - A query to search the twitter timeline for. You can use all the
   query operators described at https://dev.twitter.com/rest/public/search
+* ``count`` - Number of latest tweets matching the criteria to retrieve.
+  Defaults to 30, maximum is 100.
 * ``language`` - If specified, only return tweets in the provided language
 
 ## Sensors
