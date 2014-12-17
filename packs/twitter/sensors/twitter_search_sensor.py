@@ -12,6 +12,7 @@ class TwitterSearchSensor(PollingSensor):
                                                   config=config,
                                                   poll_interval=poll_interval)
         self._trigger_ref = 'twitter.matched_tweet'
+        self._logger = self._sensor_service.get_logger(__name__)
 
     def setup(self):
         self._client = TwitterSearch(
@@ -36,7 +37,12 @@ class TwitterSearchSensor(PollingSensor):
         if self._last_id:
             tso.set_since_id(self._last_id)
 
-        tweets = list(self._client.search_tweets_iterable(tso))
+        try:
+            tweets = list(self._client.search_tweets_iterable(tso))
+        except Exception as e:
+            self._logger.exception('Polling Twitter failed: %s' % (str(e)))
+            return
+
         tweets = list(reversed(tweets))
 
         if tweets:
