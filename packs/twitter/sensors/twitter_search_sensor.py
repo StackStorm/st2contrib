@@ -1,8 +1,9 @@
 from TwitterSearch import TwitterSearch
 from TwitterSearch import TwitterSearchOrder
 
-
 from st2reactor.sensor.base import PollingSensor
+
+BASE_URL = 'https://twitter.com'
 
 
 class TwitterSearchSensor(PollingSensor):
@@ -58,6 +59,8 @@ class TwitterSearchSensor(PollingSensor):
 
     def _dispatch_trigger_for_tweet(self, tweet):
         trigger = self._trigger_ref
+
+        url = '%s/%s/status/%s' % (BASE_URL, tweet['user']['screen_name'], tweet['id'])
         payload = {
             'id': tweet['id'],
             'created_at': tweet['created_at'],
@@ -71,6 +74,7 @@ class TwitterSearchSensor(PollingSensor):
                 'location': tweet['user']['location'],
                 'description': tweet['user']['description'],
             },
-            'text': tweet['text']
+            'text': tweet['text'],
+            'url': url
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
