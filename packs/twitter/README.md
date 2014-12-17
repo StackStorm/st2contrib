@@ -9,7 +9,7 @@ Pack which allows integration with Twitter.
 * ``access_token`` - Twitter API access token
 * ``access_token_secret`` - Twitter API access token secret
 
-* ``keyword`` - A list of keyword to search the Twitter timeline for
+* ``keywords`` - A list of keyword to search the Twitter timeline for
 * ``language`` - If specified, only return tweets in the provided language
 
 ## Sensors
