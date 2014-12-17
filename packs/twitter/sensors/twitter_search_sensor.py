@@ -37,9 +37,10 @@ class TwitterSearchSensor(PollingSensor):
             tso.set_since_id(self._last_id)
 
         tweets = list(self._client.search_tweets_iterable(tso))
+        tweets = list(reversed(tweets))
 
         if tweets:
-            self._last_id = tweets[0]['id']
+            self._last_id = tweets[-1]['id']
 
         for tweet in tweets:
             self._dispatch_trigger_for_tweet(tweet=tweet)
