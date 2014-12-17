@@ -1,0 +1,19 @@
+---
+  class_name: "TwitterSearchSensor"
+  entry_point: "twitter_search_sensor.py"
+  description: "Sensor which monitors twitter timeline for new tweets matching the specified criteria"
+  poll_interval: 15
+  trigger_types:
+    -
+      name: "matched_tweet"
+      description: "Trigger which represents a matching tweet"
+      payload_info:
+        - "id"
+        - "created_at"
+        - "lang"
+        - "place"
+        - "retweet_count"
+        - "favorite_count"
+        - "user"
+        - "text"
+        - "url"
