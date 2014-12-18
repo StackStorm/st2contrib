@@ -1,6 +1,6 @@
 # Twilio Integration Pack
 
-Pack which allows integration with [Twilio][https://www.twilio.com/] service.
+Pack which allows integration with [Twilio](https://www.twilio.com/) service.
 
 ## Configuration
 
