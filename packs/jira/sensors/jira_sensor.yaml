@@ -7,11 +7,20 @@
     -
       name: "issues_tracker"
       description: "Trigger which indicates that a new issue has been created"
-      payload_info:
-        - "project"
-        - "issue_name"
-        - "issue_url"
-        - "created"
-        - "assignee"
-        - "fix_versions"
-        - "issue_type"
+      payload_schema:
+        type: "object"
+        properties:
+          project:
+            type: "string"
+          issue_name:
+            type: "string"
+          issue_url:
+            type: "string"
+          created:
+            type: "string"
+          assignee:
+            type: "string"
+          fix_versions:
+            type: "string"
+          issue_type:
+            type: "string"
