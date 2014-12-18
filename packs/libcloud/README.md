@@ -1,6 +1,6 @@
-# Libcloud Content Pack
+# Libcloud Integration Pack
 
-This content pack allows you to integrate with
+This integration pack allows you to integrate with
 [Apache Libcloud](http://libcloud.apache.org/).
 
 ## Actions

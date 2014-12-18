@@ -1,6 +1,6 @@
-# Puppet Content Pack
+# Puppet Integration Pack
 
-This content pack allows for integration with [Puppet](http://puppetlabs.com/).
+This intgeration pack allows for integration with [Puppet](http://puppetlabs.com/).
 
 ## Actions
 
