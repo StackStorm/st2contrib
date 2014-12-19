@@ -10,12 +10,18 @@ Pack which allows integration with [Slack](https://slack.com/) service.
 * ``icon_emoji`` - Default icon of the user under which the messages will be
   posted. This setting can be overridden on per action basis.
 
+### Obtaining a Webhook URL
+
 To configure a webhook and obtain a URL, go to
 https://<your company>.slack.com/services/new/incoming-webhook, select a
 channel you would like the messages to be posted to and click on "Add
 Incoming WebHooks Integration" button.
 
+![Step 1](/images/slack_generate_webhook_url_1.png)
+
 On the next page you will find an automatically generated webhook URL.
+
+![Step 2](/images/slack_generate_webhook_url_2.png)
 
 ## Actions
 
