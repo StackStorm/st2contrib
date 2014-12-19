@@ -1,0 +1,4 @@
+---
+webhook_url: "https://hooks.slack.com/services/<replace me>"
+username: "my-bot"
+icon_emoji: ":panda_face:"
