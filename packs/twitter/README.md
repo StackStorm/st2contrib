@@ -20,3 +20,9 @@ Pack which allows integration with Twitter.
 
 This sensor searches Twitter for recent tweets matching the criteria defined in
 the config. When a matching Tweet is found, a trigger is dispatcher.
+
+## Rules
+
+### relay_tweet_to_slack
+
+Rule which shows how to relay every matched tweet to the Slack channel.
