@@ -10,7 +10,7 @@
             "description": "Name of the credentials set (as defined in the config) to use.",
             "required": true
         },
-        "vm-id": {
+        "vm_id": {
             "type": "string",
             "description": "ID of a VM to destroy.",
             "required": true

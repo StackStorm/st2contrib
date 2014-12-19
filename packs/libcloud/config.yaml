@@ -22,3 +22,8 @@
       api_secret: "password"
       type: "dns"
       provider: "zerigo"
+    exoscale_prod:
+      api_key: "username"
+      api_secret: "password"
+      type: "compute"
+      provider: "exoscale"
