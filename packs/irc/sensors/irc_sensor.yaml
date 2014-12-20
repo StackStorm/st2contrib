@@ -1,0 +1,11 @@
+---
+  class_name: "IRCSensor"
+  entry_point: "irc_sensor.py"
+  description: "Sensor which monitors IRC and dispatches a trigger for each public and private message"
+  trigger_types:
+    -
+      name: "pubmsg"
+      description: "Trigger which represents a public message"
+    -
+      name: "privmsg"
+      description: "Trigger which represents a private message"
