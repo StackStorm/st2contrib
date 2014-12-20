@@ -27,8 +27,8 @@ Example trigger payload:
         "nick": "Kami__",
         "host": "gateway/web/irccloud.com/x-uvv"
     },
-    "message": "this is a test message",
-    "channel": "#test989"
+    "channel": "#test989",
+    "message": "this is a test message"
 }
 ```
 

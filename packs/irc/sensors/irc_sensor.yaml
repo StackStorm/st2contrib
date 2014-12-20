@@ -6,6 +6,23 @@
     -
       name: "pubmsg"
       description: "Trigger which represents a public message"
+      payload_schema:
+        type: "object"
+        properties:
+          source:
+            type: "object"
+          channel:
+            type: "string"
+          message:
+            type: "string"
+
     -
       name: "privmsg"
       description: "Trigger which represents a private message"
+      payload_schema:
+        type: "object"
+        properties:
+          source:
+            type: "object"
+          message:
+            type: "string"
