@@ -19,7 +19,7 @@ class SlackSensor(PollingSensor):
                                           config=config,
                                           poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
-        self._token = self._config['token']
+        self._token = self._config['sensor']['token']
         self._handlers = {
             'message': self._handle_message
         }
