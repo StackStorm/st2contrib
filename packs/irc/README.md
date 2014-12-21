@@ -28,6 +28,7 @@ Example trigger payload:
         "host": "gateway/web/irccloud.com/x-uvv"
     },
     "channel": "#test989",
+    "timestamp": 1419166748,
     "message": "this is a test message"
 }
 ```
@@ -42,6 +43,7 @@ Example trigger payload:
         "nick": "Kami__",
         "host": "gateway/web/irccloud.com/x-uvv"
     },
+    "timestamp": 1419166748,
     "message": "hello stackstorm!"
 }
 ```

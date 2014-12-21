@@ -1,3 +1,4 @@
+import time
 import random
 
 import eventlet
@@ -34,10 +35,12 @@ class StackStormSensorBot(SingleServerIRCBot):
         connection.nick(new_nickname)
 
     def on_pubmsg(self, connection, event):
+        event.timestamp = int(time.time())
         handler = self._handlers.get('pubmsg', lambda connection, event: connection)
         handler(connection=connection, event=event)
 
     def on_privmsg(self, connection, event):
+        event.timestamp = int(time.time())
         handler = self._handlers.get('privmsg', lambda connection, event: connection)
         handler(connection=connection, event=event)
 
@@ -89,6 +92,7 @@ class IRCSensor(Sensor):
                 'host': event.source.host
             },
             'channel': event.target,
+            'timestamp': event.timestamp,
             'message': event.arguments[0]
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
@@ -100,6 +104,7 @@ class IRCSensor(Sensor):
                 'nick': event.source.nick,
                 'host': event.source.host
             },
+            'timestamp': event.timestamp,
             'message': event.arguments[0]
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
