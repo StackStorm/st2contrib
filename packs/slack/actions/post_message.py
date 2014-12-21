@@ -12,8 +12,9 @@ __all__ = [
 
 class PostMessageAction(Action):
     def run(self, message, username=None, icon_emoji=None):
-        username = username if username else self.config['username']
-        icon_emoji = icon_emoji if icon_emoji else self.config['icon_emoji']
+        config = self.config['post_message_action']
+        username = username if username else config['actions']['username']
+        icon_emoji = icon_emoji if icon_emoji else config['icon_emoji']
 
         headers = {}
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -23,7 +24,7 @@ class PostMessageAction(Action):
             'text': message
         }
         data = 'payload=%s' % (json.dumps(body))
-        response = requests.post(url=self.config['webhook_url'],
+        response = requests.post(url=config['webhook_url'],
                                  headers=headers, data=data)
 
         if response.status_code == httplib.OK:
