@@ -9,7 +9,6 @@ Pack which allows integration with [Slack](https://slack.com/) service.
   messages will be posted. This setting can be overridden on per action basis.
 * ``post_message_action.icon_emoji`` - Default icon of the user under which the
   messages will be posted. This setting can be overridden on per action basis.
-
 * ``sensor.token`` - Authentication token used to authenticate against Real
   Time Messaging API.
 
@@ -74,7 +73,7 @@ Example trigger payload:
         "name": "test"
     },
     "timestamp": 1419164091,
-    "text": "bb"
+    "text": "This is a test message."
 }
 ```
 
