@@ -16,8 +16,8 @@ eventlet.monkey_patch(
 class SlackSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=None):
         super(SlackSensor, self).__init__(sensor_service=sensor_service,
-                                        config=config,
-                                        poll_interval=poll_interval)
+                                          config=config,
+                                          poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['token']
         self._handlers = {
@@ -29,9 +29,11 @@ class SlackSensor(PollingSensor):
 
     def setup(self):
         self._client = SlackClient(self._token)
-        status = self._client.rtm_connect()
+        data = self._client.rtm_connect()
 
-        if not status:
+        self._populate_cache(user_data=data['users'], channel_data=data['channels'])
+
+        if not data:
             msg = 'Failed to connect to the Slack API. Invalid token?'
             raise Exception(msg)
 
@@ -52,6 +54,17 @@ class SlackSensor(PollingSensor):
 
     def remove_trigger(self, trigger):
         pass
+
+    def _populate_cache(self, user_data, channel_data):
+        """
+        Populate users and channels cache from info which is returned on
+        rtm.start
+        """
+        for user in user_data:
+            self._user_info_cache[user['id']] = user
+
+        for channel in channel_data:
+            self._channel_info_cache[channel['id']] = channel
 
     def _handle_result(self, result):
         for item in result:
