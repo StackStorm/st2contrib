@@ -94,6 +94,7 @@ class SlackSensor(PollingSensor):
                 'name': channel_info['name'],
                 'topic': channel_info['topic']['value'],
             },
+            'timestamp': int(float(data['ts'])),
             'text': data['text']
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
