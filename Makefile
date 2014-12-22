@@ -1,7 +1,7 @@
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: all
-all: configs-check
+all: configs-check metadata-check
 
 .PHONY: lint
 lint: flake8 configs-check metadata-check
