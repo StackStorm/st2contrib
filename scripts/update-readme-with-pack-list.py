@@ -41,7 +41,7 @@ def generate_pack_list_table(packs):
     for pack_name, metadata in packs:
         values = copy.deepcopy(metadata)
         values['base_url'] = BASE_URL
-        line = '| [%(name)s](%(base_url)s/%(name)s) | %(description)s | %(author)s | %(version)s' % (values)
+        line = '| [%(name)s](%(base_url)s/%(name)s) | %(description)s | [%(author)s](mailto:%(email)s) | %(version)s' % (values)
         lines.append(line)
 
     result = '\n'.join(lines)
