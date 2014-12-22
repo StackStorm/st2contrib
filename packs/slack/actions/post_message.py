@@ -13,7 +13,7 @@ __all__ = [
 class PostMessageAction(Action):
     def run(self, message, username=None, icon_emoji=None):
         config = self.config['post_message_action']
-        username = username if username else config['actions']['username']
+        username = username if username else config['username']
         icon_emoji = icon_emoji if icon_emoji else config['icon_emoji']
 
         headers = {}
