@@ -5,6 +5,9 @@ Pack which allows integration with [Slack](https://slack.com/) service.
 ## Configuration
 
 * ``post_message_action.webhook_url`` - Webhook URL.
+* ``post_message_action.channel`` - Channel to send the message to (e.g.
+  `#mychannel`). If not specified, messages will be sent to the channel which
+  is selected when configuring a webhook.
 * ``post_message_action.username`` - Default name of the user under which the
   messages will be posted. This setting can be overridden on per action basis.
 * ``post_message_action.icon_emoji`` - Default icon of the user under which the
