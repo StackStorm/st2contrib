@@ -13,8 +13,6 @@ parser.add_argument('--limit', nargs='?', default=False)
 parser.add_argument('--offset', nargs='?', default=False)
 args = parser.parse_args()
 
-print(args)
-
 clients = sensu.Clients('config.yaml')
 
 if not args.client:
