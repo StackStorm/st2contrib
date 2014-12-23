@@ -13,6 +13,9 @@
       type: "string"
       description: "Bot username."
       required: false
+    channel:
+      type: "string"
+      description: "Optional channel to post to"
     icon_emoji:
       type: "string"
       description: "Bot icon"
