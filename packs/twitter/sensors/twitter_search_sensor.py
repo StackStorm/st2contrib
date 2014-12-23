@@ -1,5 +1,6 @@
 from TwitterSearch import TwitterSearch
 from TwitterSearch import TwitterSearchOrder
+from TwitterSearch import TwitterSearchException
 
 from st2reactor.sensor.base import PollingSensor
 
@@ -13,6 +14,9 @@ class TwitterSearchSensor(PollingSensor):
                                                   poll_interval=poll_interval)
         self._trigger_ref = 'twitter.matched_tweet'
         self._logger = self._sensor_service.get_logger(__name__)
+
+        self._original_poll_interval = self.get_poll_interval()
+        self._rate_limit_reached = False
 
     def setup(self):
         self._client = TwitterSearch(
@@ -41,9 +45,32 @@ class TwitterSearchSensor(PollingSensor):
         try:
             tweets = self._client.search_tweets(tso)
             tweets = tweets['content']['statuses']
+        except TwitterSearchException as e:
+            if e.code == 429:
+                # Rate limit has been reached, increase poll interval
+                self._rate_limit_reached = True
+
+                current_poll_interval = self.get_poll_interval()
+                new_poll_interval = (current_poll_interval * 2)
+
+                message = ('Polling Twitter failed because rate limit has been reached %s. '
+                           'Increaseing poll intervall to "%s" seconds' %
+                           (str(e), new_poll_interval))
+                self._logger.exception(message)
+
+                self.set_poll_interval(poll_interval=new_poll_interval)
+                return
+
+            self._logger.exception('Polling Twitter failed: %s' % (str(e)))
+            return
         except Exception as e:
             self._logger.exception('Polling Twitter failed: %s' % (str(e)))
             return
+
+        if self._rate_limit_reached:
+            # We are not rate limited anymore, restore original poll interval.
+            self._rate_limit_reached = False
+            self.set_poll_interval(poll_interval=self._original_poll_interval)
 
         tweets = list(reversed(tweets))
 
