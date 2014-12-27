@@ -61,3 +61,7 @@ Payloads](https://developer.github.com/v3/activity/events/types/) page.
 
 Note: Similar thing can be achieved using Github webhooks in combination with
 StackStorm webhook handler.
+
+## Actions
+
+* ``add_comment`` - Add comment to the provided issue / pull request.
