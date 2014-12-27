@@ -1,0 +1,6 @@
+---
+name : github
+description : st2 content pack containing github integrations
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

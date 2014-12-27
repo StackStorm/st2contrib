@@ -1,0 +1,7 @@
+---
+token: ""
+
+repository_sensor:
+  user: "StackStorm"
+  repository: "st2"
+  count: 30  # Maximum number of old events to retrieve
