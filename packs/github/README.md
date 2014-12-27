@@ -30,7 +30,7 @@ Currently supported event types:
 * ``ForkEvent`` - Triggered when a user forks a repository.
 * ``WatchEvent`` - Triggered when a user stars a repository.
 
-#### github.repository_sensor trigger
+#### github.repository_event trigger
 
 Example trigger payload:
 
