@@ -65,3 +65,4 @@ StackStorm webhook handler.
 ## Actions
 
 * ``add_comment`` - Add comment to the provided issue / pull request.
+* ``add_status`` - Add commit status to the provided commit.

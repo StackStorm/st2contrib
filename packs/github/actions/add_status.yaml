@@ -1,0 +1,31 @@
+---
+  name: "add_status"
+  runner_type: "run-python"
+  description: "Add a commit status for a provided ref."
+  enabled: true
+  entry_point: "add_status.py"
+  parameters:
+    user:
+      type: "string"
+      description: "User / organization name."
+      required: true
+    repo:
+      type: "string"
+      description: "Repository name."
+      required: true
+    sha:
+      type: "string"
+      description: "Commit SHA"
+      required: true
+    state:
+      type: "string"
+      description: "State of the status (pending, success, error, failure)"
+      required: true
+    target_url:
+      type: "string"
+      description: "The target URL to associate with this status."
+      required: false
+    description:
+      type: "string"
+      description: "A short description of the status."
+      required: false
