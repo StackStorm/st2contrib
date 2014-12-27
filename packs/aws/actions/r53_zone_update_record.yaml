@@ -1,0 +1,34 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: r53_zone_update_record
+parameters:
+  action:
+    default: update_record
+    immutable: true
+    type: string
+  cls:
+    default: Zone
+    immutable: true
+    type: string
+  comment:
+    default: ''
+    type: string
+  module_path:
+    default: boto.route53.zone
+    immutable: true
+    type: string
+  new_identifier:
+    type: string
+  new_ttl:
+    type: string
+  new_value:
+    required: true
+    type: string
+  old_record:
+    required: true
+    type: string
+  zone:
+    required: true
+    type: string
+runner_type: run-python
