@@ -1,5 +1,7 @@
 ---
-region: "us-west-2"
-access_key_id: ""
-secret_access_key: ""
+setup:
+  region: ""
+  aws_access_key_id: ""
+  aws_secret_access_key: ""
 interval: 20
+st2_user_data: ""

@@ -1,0 +1,29 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: r53_zone_delete_mx
+parameters:
+  action:
+    default: delete_mx
+    immutable: true
+    type: string
+  all:
+    default: false
+    type: boolean
+  cls:
+    default: Zone
+    immutable: true
+    type: string
+  identifier:
+    type: string
+  module_path:
+    default: boto.route53.zone
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+  zone:
+    required: true
+    type: string
+runner_type: run-python

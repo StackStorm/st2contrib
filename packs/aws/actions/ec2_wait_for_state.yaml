@@ -1,0 +1,13 @@
+description: ''
+enabled: true
+entry_point: ec2_wait_for_state.py
+name: ec2_wait_for_state
+parameters:
+  instance_id:
+    required: true
+    type: string
+  state:
+    default: running
+    required: true
+    type: string
+runner_type: run-python
