@@ -2,7 +2,7 @@ AWS Integration Pack
 =====
 The StackStorm AWS integration pack supplies action integration for EC2 and Route53.
 
-##### Setup
+#### Setup
 
 You will need to add a set of AWS credentials, and default zone to the config.yaml file:
 
@@ -18,7 +18,7 @@ You can generate the access key and secret access key by following these directi
 
 http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html#Using_CreateAccessKey
 
-###### st2_user_data
+##### st2_user_data
 
 Optionally, you can set the user_data to set a default file to be used during new instance creation.  Put your user_data file somewhere accessible by the StackStorm user, and use the st2_user_data config option to set it.
 
@@ -26,7 +26,7 @@ Optionally, you can set the user_data to set a default file to be used during ne
 
 This file/script will be used for all invocations of the ec2_run_instances action
 
-##### Route53 Actions
+#### Route53 Actions
 
 * r53\_build\_base\_http\_request
 * r53\_change\_rrsets
@@ -78,7 +78,7 @@ This file/script will be used for all invocations of the ec2_run_instances actio
 * r53\_zone\_update\_mx
 * r53\_zone\_update\_record
 
-##### EC2 Actions
+#### EC2 Actions
 
 * ec2\_allocate\_address
 * ec2\_assign\_private\_ip\_addresses
