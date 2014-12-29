@@ -1,0 +1,22 @@
+---
+  class_name: "GithubRepositorySensor"
+  entry_point: "github_repository_sensor.py"
+  description: "Sensor which monitors Github repository for activity"
+  poll_interval: 30
+  trigger_types:
+    -
+      name: "repository_event"
+      description: "Trigger which indicates a new repository action"
+      payload_schema:
+        type: "object"
+        properties:
+          id:
+            type: "string"
+          created_at:
+            type: "string"
+          type:
+            type: "string"
+          actor:
+            type: "object"
+          payload:
+            type: "object"

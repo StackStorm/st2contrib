@@ -1,0 +1,23 @@
+---
+  name: "add_comment"
+  runner_type: "run-python"
+  description: "Add a comment to the provided issue / pull request."
+  enabled: true
+  entry_point: "add_comment.py"
+  parameters:
+    user:
+      type: "string"
+      description: "User / organization name."
+      required: true
+    repo:
+      type: "string"
+      description: "Repository name."
+      required: true
+    issue:
+      type: "integer"
+      description: "Issue / pull request number"
+      required: true
+    body:
+      type: "string"
+      description: "Comment body"
+      required: true
