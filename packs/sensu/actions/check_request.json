@@ -21,13 +21,7 @@
             "default": "true",
             "immutable": true
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

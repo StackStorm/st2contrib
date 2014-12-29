@@ -15,13 +15,7 @@
             "description": "The maximum number of transport queued messages to be considered healthy.",
             "default": "100"
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

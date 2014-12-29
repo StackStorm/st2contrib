@@ -10,13 +10,7 @@
             "description": "The check name",
             "required": true
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {
