@@ -2,8 +2,6 @@
 
 This integration pack allows you to integrate with
 [Apache Libcloud](http://libcloud.apache.org/).
-This allows you to create actions on all cloud providers
-supported by libcloud.
 
 ## Actions
 

@@ -19,6 +19,10 @@
             "type": "string",
             "description": "ID of a size to use"
         },
+        "size_name": {
+            "type": "string",
+            "description": "name of the size to use"
+        },
         "image_id": {
             "type": "string",
             "description": "ID of an image to use"
@@ -26,10 +30,6 @@
         "image_name": {
             "type": "string",
             "description": "name of the image to use"
-        },
-        "size_name": {
-            "type": "string",
-            "description": "name of the size to use"
         },
         "location_id": {
             "type": "string",

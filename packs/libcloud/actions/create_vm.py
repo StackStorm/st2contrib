@@ -12,30 +12,38 @@ __all__ = [
 class CreateVMAction(BaseAction):
     api_type = 'compute'
 
-    def run(self, credentials, name, size_id=None, image_id=None,
-            size_name=None, image_name=None, location_id=None):
+    def run(self, credentials, name, size_id=None, image_id=None, size_name=None, image_name=None,
+            location_id=None):
         driver = self._get_driver_for_credentials(credentials=credentials)
         location = NodeLocation(id=location_id, name=None,
                                 country=None, driver=driver)
-        self.logger.info('Creating node...')
 
-        if size_id != None and image_id != None:
-            image = NodeImage(id=image_id, name=None,
-                              driver=driver)
+        if (not size_id and not size_name) or (size_id and size_name):
+            raise ValueError('Either "size_id" or "size_name" needs to be provided')
+
+        if (not image_id and not image_name) or (image_id and image_name):
+            raise ValueError('Either "image_id" or "image_name" needs to be provided')
+
+        if size_id is not None:
             size = NodeSize(id=size_id, name=None,
                             ram=None, disk=None, bandwidth=None,
                             price=None, driver=driver)
-
-            kwargs = {'name': name, 'size': size, 'image': image}
-
-        if size_name != None and image_name != None:
-            image = [i for i in driver.list_images() if i.extra['displaytext'] == image_name][0]
+        elif size_name is not None:
             size = [s for s in driver.list_sizes() if s.name == size_name][0]
 
-            kwargs = {'name': name, 'size': size, 'image': image}
+        if image_id is not None:
+            image = NodeImage(id=image_id, name=None,
+                              driver=driver)
+        elif image_name is not None:
+            image = [i for i in driver.list_images() if
+                     i['extra'].get('displaytext', image.name) == image_name][0]
+
+        kwargs = {'name': name, 'size': size, 'image': image}
 
         if location_id:
             kwargs['location'] = location
+
+        self.logger.info('Creating node...')
 
         node = driver.create_node(**kwargs)
 
