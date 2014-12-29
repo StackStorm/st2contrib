@@ -29,14 +29,14 @@ class CreateVMAction(BaseAction):
                             ram=None, disk=None, bandwidth=None,
                             price=None, driver=driver)
         elif size_name is not None:
-            size = [s for s in driver.list_sizes() if s.name == size_name][0]
+            size = [s for s in driver.list_sizes() if size_name in s.name][0]
 
         if image_id is not None:
             image = NodeImage(id=image_id, name=None,
                               driver=driver)
         elif image_name is not None:
             image = [i for i in driver.list_images() if
-                     i['extra'].get('displaytext', image.name) == image_name][0]
+                     image_name in i['extra'].get('displaytext', image.name)][0]
 
         kwargs = {'name': name, 'size': size, 'image': image}
 
