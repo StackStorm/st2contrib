@@ -5,9 +5,10 @@ Pack which allows integration with [Github](https://github.com/).
 ## Configuration
 
 * ``token`` - Authentication token.
-* ``repository_sensor.user`` - Name of the user or organization to which
-  the repository you want to monitor belongs.
-* ``repository_sensor.repository`` - Name of the repository to monitor.
+* ``repository_sensor.repositories`` - A list of repositories to monitor. Each
+  item needs to contain the following keys: ``user`` - user or organization the
+  repository you want to monitor belongs to and ``name`` - name of the
+  repository you want to monitor.
 
 ## Obtaining Authentication Token
 
@@ -36,6 +37,7 @@ Example trigger payload:
 
 ```json
 {
+    "repository": "st2",
     "id": "2482918921",
     "type": "WatchEvent",
     "created_at": "2014-12-25T11:47:27.000000Z",
@@ -53,7 +55,8 @@ Example trigger payload:
 }
 ```
 
-All the events contain `id`, `created_at`, `actor` and `payload` attribute.
+All the events contain `repository`, `id`, `created_at`, `actor` and
+`payload` attribute.
 
 Value of the payload attribute depends on the event type. You can see a list
 of the available event types and their attributes on the [Event Types &
