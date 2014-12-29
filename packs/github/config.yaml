@@ -2,6 +2,11 @@
 token: ""
 
 repository_sensor:
-  user: "StackStorm"
-  repository: "st2"
+  repositories:
+    -
+      user: "StackStorm"
+      name: "st2"
+    -
+      user: "StackStorm"
+      name: "st2contrib"
   count: 30  # Maximum number of old events to retrieve

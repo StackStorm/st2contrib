@@ -28,31 +28,58 @@ class GithubRepositorySensor(PollingSensor):
                                                      poll_interval=poll_interval)
         self._trigger_ref = 'github.repository_event'
         self._logger = self._sensor_service.get_logger(__name__)
-        self._last_event_id = None
+
+        self._client = None
+        self._repositories = []
+        self._last_event_ids = {}
 
     def setup(self):
         self._client = Github(self._config['token'])
 
-        self._user = self._client.get_user(self._config['repository_sensor']['user'])
-        self._repository = self._user.get_repo(self._config['repository_sensor']['repository'])
+        for repository_dict in self._config['repository_sensor']['repositories']:
+            user = self._client.get_user(repository_dict['user'])
+            repository = user.get_repo(repository_dict['name'])
+            self._repositories.append((repository_dict['name'], repository))
 
     def poll(self):
+        for repository_name, repository_obj in self._repositories:
+            self._logger.debug('Processing repository "%s"' %
+                               (repository_name))
+            self._process_repository(name=repository_name,
+                                     repository=repository_obj)
+
+    def _process_repository(self, name, repository):
+        """
+        Retrieve events for the provided repository and dispatch triggers for
+        new events.
+
+        :param name: Repository name.
+        :type name: ``str``
+
+        :param repository: Repository object.
+        :type repository: :class:`Repository`
+        """
+        assert(isinstance(name, basestring))
+
         count = self._config['repository_sensor']['count']
-        events = self._repository.get_events()[:count]
+
+        events = repository.get_events()[:count]
         events = list(reversed(list(events)))
 
+        last_event_id = self._last_event_ids.get(name, None)
+
         for event in events:
-            if self._last_event_id and event.id <= self._last_event_id:
+            if last_event_id and int(event.id) <= int(last_event_id):
                 # This event has already been processed
                 continue
 
-            self._handle_event(event=event)
+            self._handle_event(repository=name, event=event)
 
         if events:
-            self._last_event_id = events[-1].id
+            self._last_event_ids[name] = events[-1].id
 
     def cleanup(self):
-        # TODO: Persist last_id so we can resume
+        # TODO: Persist last_ids so we can resume and avoid duplicate events
         pass
 
     def add_trigger(self, trigger):
@@ -64,14 +91,14 @@ class GithubRepositorySensor(PollingSensor):
     def remove_trigger(self, trigger):
         pass
 
-    def _handle_event(self, event):
+    def _handle_event(self, repository, event):
         if event.type not in self.EVENT_TYPE_WHITELIST:
             self._logger.debug('Skipping ignored event (type=%s)' % (event.type))
             return
 
-        self._dispatch_trigger_for_event(event=event)
+        self._dispatch_trigger_for_event(repository=repository, event=event)
 
-    def _dispatch_trigger_for_event(self, event):
+    def _dispatch_trigger_for_event(self, repository, event):
         trigger = self._trigger_ref
 
         created_at = event.created_at
@@ -81,6 +108,7 @@ class GithubRepositorySensor(PollingSensor):
 
         # Common attributes
         payload = {
+            'repository': repository,
             'id': event.id,
             'created_at': created_at,
             'type': event.type,
