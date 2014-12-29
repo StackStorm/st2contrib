@@ -27,9 +27,10 @@ Related tools that help make it easier to integrate and consume StackStorm conte
 
 Name | Description | Author | Latest Version
 ---- | ----------- | ------ | -------------- 
-| [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | [st2-dev](mailto:info@stackstorm.com) | 0.1
+| [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | [st2-dev](mailto:info@stackstorm.com) | 0.2
 | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
 | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
+| [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
 | [irc](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | st2 content pack containing irc integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
 | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
 | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1
