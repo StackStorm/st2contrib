@@ -15,13 +15,7 @@
             "description": "The check to get information on",
             "required": true
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

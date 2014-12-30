@@ -15,13 +15,7 @@
             "description": "The number of aggregates to offset before returning items.",
             "default": null
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

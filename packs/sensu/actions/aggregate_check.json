@@ -14,13 +14,7 @@
             "type": "string",
             "description": "The number of seconds old an aggregate must be to be listed."
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

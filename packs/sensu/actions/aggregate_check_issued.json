@@ -18,13 +18,7 @@
             "type": "string",
             "description": "Return the raw result data"
         },
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {

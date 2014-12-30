@@ -5,13 +5,7 @@
     "enabled": true,
     "entry_point": "events.py",
     "parameters": {
-        "dir": {
-            "immutable": true
-        },
         "sudo": {
-            "immutable": true
-        },
-        "cmd": {
             "immutable": true
         },
         "kwarg_op": {
