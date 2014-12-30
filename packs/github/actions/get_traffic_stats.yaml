@@ -1,0 +1,11 @@
+---
+name: get_traffic_stats
+runner_type: run-python
+description: Retrieve traffic statistics for a given repository
+enabled: true
+entry_point: get_traffic_stats.py
+parameters:
+  repo:
+    type: string
+    description: "Repository to query for traffic stats (org/repo)"
+    required: true
