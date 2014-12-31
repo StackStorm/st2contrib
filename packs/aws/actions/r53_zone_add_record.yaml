@@ -28,7 +28,7 @@ parameters:
     type: string
   ttl:
     default: 60
-    type: string
+    type: integer
   value:
     required: true
     type: string
