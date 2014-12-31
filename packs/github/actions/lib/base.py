@@ -36,7 +36,7 @@ class BaseGithubAction(Action):
         session.post(session_url, data = login_data)
         return session
 
-    def _get_analytics(self, category=None, repo=None):
+    def _get_analytics(self, category, repo):
         url = 'https://github.com/' + repo + '/graphs/' + category
         s = self._web_session()
         response = s.get(url)
