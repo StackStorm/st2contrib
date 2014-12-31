@@ -1,5 +1,7 @@
 ---
 token: ""
+user: ""
+password: ""
 
 repository_sensor:
   repositories:

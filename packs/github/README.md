@@ -9,6 +9,8 @@ Pack which allows integration with [Github](https://github.com/).
   item needs to contain the following keys: ``user`` - user or organization the
   repository you want to monitor belongs to and ``name`` - name of the
   repository you want to monitor.
+* ``user`` - GitHub Username (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
+* ``password`` - GitHub Password (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
 
 ## Obtaining Authentication Token
 
