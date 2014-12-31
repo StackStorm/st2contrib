@@ -23,6 +23,15 @@ packs.
 
 Related tools that help make it easier to integrate and consume StackStorm content.
 
+## Tests and Automated Checks
+
+To run tests and all the other automated checks which run on Travis CI, run the following
+command:
+
+```bash
+make all
+```
+
 ## Available Packs
 
 Name | Description | Author | Latest Version
