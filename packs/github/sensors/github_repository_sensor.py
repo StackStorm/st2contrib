@@ -66,7 +66,7 @@ class GithubRepositorySensor(PollingSensor):
         events = repository.get_events()[:count]
         events = list(reversed(list(events)))
 
-        last_event_id = self._last_event_ids.get(name, None)
+        last_event_id = self._get_last_id(name=name)
 
         for event in events:
             if last_event_id and int(event.id) <= int(last_event_id):
@@ -76,10 +76,9 @@ class GithubRepositorySensor(PollingSensor):
             self._handle_event(repository=name, event=event)
 
         if events:
-            self._last_event_ids[name] = events[-1].id
+            self._set_last_id(name=name, last_id=events[-1].id)
 
     def cleanup(self):
-        # TODO: Persist last_ids so we can resume and avoid duplicate events
         pass
 
     def add_trigger(self, trigger):
@@ -90,6 +89,28 @@ class GithubRepositorySensor(PollingSensor):
 
     def remove_trigger(self, trigger):
         pass
+
+    def _get_last_id(self, name):
+        """
+        :param name: Repository name.
+        :type name: ``str``
+        """
+        if not self._last_event_ids.get(name, None) and hasattr(self._sensor_service, 'get_value'):
+            key_name = 'last_id.%s' % (name)
+            self._last_event_ids[name] = self._sensor_service.get_value(name=key_name)
+
+        return self._last_event_ids.get(name, None)
+
+    def _set_last_id(self, name, last_id):
+        """
+        :param name: Repository name.
+        :type name: ``str``
+        """
+        self._last_event_ids[name] = last_id
+
+        if hasattr(self._sensor_service, 'set_value'):
+            key_name = 'last_id.%s' % (name)
+            self._sensor_service.set_value(name=key_name, value=last_id)
 
     def _handle_event(self, repository, event):
         if event.type not in self.EVENT_TYPE_WHITELIST:
