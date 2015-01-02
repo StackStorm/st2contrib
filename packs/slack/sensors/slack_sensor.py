@@ -31,11 +31,11 @@ class SlackSensor(PollingSensor):
         self._client = SlackClient(self._token)
         data = self._client.rtm_connect()
 
-        self._populate_cache(user_data=data['users'], channel_data=data['channels'])
-
         if not data:
             msg = 'Failed to connect to the Slack API. Invalid token?'
             raise Exception(msg)
+
+        self._populate_cache(user_data=data['users'], channel_data=data['channels'])
 
     def poll(self):
         result = self._client.rtm_read()
