@@ -7,10 +7,7 @@ import os, yaml, json, time
 
 class BaseAction(Action):
 
-    def __init__(self, config):
-        super(BaseAction, self).__init__(config)
-
-    def run(self,keyfile,username,hostname,timeout,retries):
+    def run(self, keyfile, username, hostname, timeout, retries):
  
         key = paramiko.RSAKey.from_private_key_file(keyfile)
         client = paramiko.SSHClient()
@@ -18,9 +15,11 @@ class BaseAction(Action):
 
         for x in range(retries):
             try:
-                client.connect( hostname = hostname, username = username, pkey = key )
+                client.connect(hostname=hostname, username=username, pkey=key)
                 return True
             except Exception, e: 
                 self.logger.info(e)
                 time.sleep(timeout)
             time.sleep(20)
+        self.logger.info("Exceeded max retries")
+        return False
