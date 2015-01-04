@@ -9,16 +9,7 @@
         }
     },
 
-    "criteria": {
-        "trigger.body.action": {
-            "pattern": "closed",
-            "type": "equals"
-        },
-        "trigger.body.pull_request.merged": {
-            "pattern": "True",
-            "type": "equals"
-        }
-    },
+    "criteria": { },
 
     "action": {
         "ref": "core.local",

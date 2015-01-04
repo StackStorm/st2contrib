@@ -1,0 +1,25 @@
+---
+name: clone
+runner_type: run-remote
+description: "Clone a repository"
+enabled: true
+entry_point: ''
+parameters:
+  source:
+    type: string
+    description: Source URI to clone a repository from
+    required: true
+    position: 1
+  ref:
+    type: string
+    description: Requested git ref to check the repository out to.
+    default: master
+    position: 2
+  destination:
+    type: string
+    description: Location on the filesystem to clone the repository to
+    required: true
+    position: 3
+  cmd:
+    default: "git clone -b {{ref}} {{source}} {{destination}}"
+    immutable: true
