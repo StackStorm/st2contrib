@@ -1,7 +1,7 @@
 description: 'Dig action'
 enabled: true
 entry_point: dig.py
-name: dig_short
+name: dig
 parameters:
   queryopts:
     default: 'short'
