@@ -1,7 +1,7 @@
 ---
     name: 'cp'
     runner_type: 'run-remote'
-    description: 'Move file(s)'
+    description: 'Copy file(s)'
     enabled: true
     entry_point: ''
     parameters:
