@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SYSTEMUSER="stanley"
+PUBKEY=""
 
 create_user() {
 

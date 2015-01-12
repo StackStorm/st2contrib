@@ -8,19 +8,15 @@
     image_id:
       type: "string"
       description: "AWS image id to create instance from"
-      default: ""
+      required: true
     instance_type:
       type: "string"
       description: "Flavor to use for instance creation"
       default: "t2.medium"
-    environment:
-      type: "string"
-      description: "Environment to deploy to"
-      default: "staging"
     key_name:
       type: "string"
       description: "SSH key to use during intial instance creation"
-      default: ""
+      required: true
     base_user:
       type: "string"
       description: "Username for initial ssh test"
@@ -28,12 +24,16 @@
     keyfile:
       type: "string"
       description: "Path to local private key that corresponds to {{key_name}}"
-      default: ""
+      required: true
     dns_zone:
       type: "string"
       description: "Route53 DNS Zone to add host to"
-      default: ""
+      required: true
     hostname:
       type: "string"
       description: "Short hostname"
+      required: true
+    subnet_id:
+      type: "string"
+      description: "AWS Subnet ID"
       required: true

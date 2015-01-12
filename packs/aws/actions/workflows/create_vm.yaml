@@ -1,19 +1,12 @@
 ---
   chain:
     -
-      name: "get_subnet_id"
-      ref: "st2cd.kvstore"
-      params:
-        key: "{{environment}}_subnet"
-        action: "get"
-      on-success: "run_instance"
-    -
       name: "run_instance"
       ref: "aws.ec2_run_instances"
       params:
         image_id: "{{image_id}}"
         instance_type: "{{instance_type}}"
-        subnet_id: "{{get_subnet_id.result}}"
+        subnet_id: "{{subnet_id}}"
         key_name: "{{key_name}}"
       on-success: "wait_for_instance"
     -
@@ -73,4 +66,4 @@
         timeout: 30
         retries: 10
 
-  default: "get_subnet_id"
+  default: "run_instance"
