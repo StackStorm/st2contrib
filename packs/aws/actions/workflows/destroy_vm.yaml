@@ -1,0 +1,34 @@
+---
+  chain:
+    -
+      name: "get_instance_dns"
+      ref: "linux.dig"
+      params:
+        hostname: "{{hostname}}.{{dns_zone}}"
+        count: 1
+      on-success: "get_instances"
+    -
+      name: "get_instances"
+      ref: "aws.ec2_get_only_instances"
+      params: {}
+      on-success: "id"
+    -
+      name: "id"
+      ref: "core.local"
+      params:
+        cmd: "echo '{% for i in get_instances.result -%}{% if (i.private_dns_name + '.') == get_instance_dns.result[0] -%}{{i.id}}{%- endif %}{%- endfor %}'"
+      on-success: "destroy_vm"
+    -
+      name: "destroy_vm"
+      ref: "aws.ec2_terminate_instances"
+      params:
+        instance_ids: "{{id.localhost.stdout}}"
+      on-success: "delete_cname"
+    -
+      name: "delete_cname"
+      ref: "aws.r53_zone_delete_cname"
+      params:
+        zone: "{{dns_zone}}"
+        name: "{{hostname}}.{{dns_zone}}"
+
+  default: "get_instance_dns"

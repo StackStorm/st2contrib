@@ -1,0 +1,15 @@
+---
+  name: "destroy_vm"
+  runner_type: "action-chain"
+  description: "Destroys a VM and removes it from Route53"
+  enabled: true
+  entry_point: "workflows/destroy_vm.yaml"
+  parameters:
+    dns_zone:
+      type: "string"
+      description: "Route53 DNS Zone to add host to"
+      required: true
+    hostname:
+      type: "string"
+      description: "Short hostname"
+      required: true
