@@ -31,7 +31,16 @@ class BaseAction(Action):
 
     def st2_user_data(self):
         return self.userdata
-        
+
+    def split_tags(self,tags):
+        tag_dict = {}
+        split_tags = tags.split(',')
+        for tag in split_tags:
+            if re.search('=',tag):
+                k, v = tag.split('=',1)
+                tag_dict[k] = v
+        return tag_dict
+       
     def wait_for_state(self, instance_id, state):
         state_list = {}
         obj = self.ec2_connect()
