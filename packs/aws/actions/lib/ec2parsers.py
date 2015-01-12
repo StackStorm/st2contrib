@@ -5,7 +5,7 @@ import boto.route53
 
 class FieldLists():
     ADDRESS = ['public_ip','instance_id','domain','allocation_id','association_id','network_interface_id','network_interface_owner_id','private_ip_address']
-    INSTANCE = ['id','public_dns_name','private_dns_name','state','state_code','previous_state','previous_state_code','key_name','instance_type','launch_time','image_id','placement','placement_group','placement_tenancy','kernel','ramdisk','architecture','hypervisor','virtualization_type','ami_launch_index','monitored','monitoring_state','spot_instance_request_id','subnet_id','vpc_id','private_ip_address','ip_address','platform','root_device_name','root_device_type','state_reason','ebs_optimized']
+    INSTANCE = ['id','public_dns_name','private_dns_name','state','state_code','previous_state','previous_state_code','key_name','instance_type','launch_time','image_id','placement','placement_group','placement_tenancy','kernel','ramdisk','architecture','hypervisor','virtualization_type','ami_launch_index','monitored','monitoring_state','spot_instance_request_id','subnet_id','vpc_id','private_ip_address','ip_address','platform','root_device_name','root_device_type','state_reason']
     VOLUME = ['id','create_time','status','size','snapshot_id','zone','type','iops','encrypted']
     EC2ZONE = ['name', 'state', 'region_name', 'messages']
     RECORD = [ 'alias_dns_name', 'alias_evaluate_target_health', 'alias_hosted_zone_id', 'failover', 'health_check', 'identifier', 'name', 'region', 'resource_records',  'ttl', 'type', 'weight']
