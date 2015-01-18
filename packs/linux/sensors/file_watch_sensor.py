@@ -29,7 +29,11 @@ class FileWatchSensor(Sensor):
     def cleanup(self):
         if self._tail:
             self._tail.should_run = False
-            self._tail.notifier.stop()
+
+            try:
+                self._tail.notifier.stop()
+            except Exception:
+                pass
 
     def add_trigger(self, trigger):
         pass
