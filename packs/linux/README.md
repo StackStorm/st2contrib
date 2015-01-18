@@ -2,6 +2,29 @@
 
 This pack contains actions for commonly used Linux commands and tools.
 
+## Configuration
+
+* ``file_watch_sensor.file_paths`` - A list of paths to files to monitor.
+
+## Sensors
+
+### FileWatchSensor
+
+This sensor monitors specified files for new new lines. Once a new line is
+detected, a trigger is emitted.
+
+### linux.file_watch.line trigger
+
+Example trigger payload:
+
+```json
+{
+    "file_path": "/var/log/auth.log",
+    "file_name": "auth.log",
+    "line": "Jan 18 13:38:15 vagrant-ubuntu-trusty-64 sudo:  vagrant : TTY=pts/3 ; PWD=/data/stanley ; USER=root ; COMMAND=/bin/ls"
+}
+```
+
 ## Actions
 
 * ``vmstat`` - Wrapper around the `vmstat` command.
