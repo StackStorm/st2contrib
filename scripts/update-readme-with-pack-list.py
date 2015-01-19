@@ -6,6 +6,8 @@ Script which updates README.md with a list of all the available packs.
 
 import os
 import copy
+import glob
+import json
 import argparse
 
 import yaml
@@ -14,7 +16,14 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PACKS_DIR = os.path.join(CURRENT_DIR, '../packs')
 README_PATH = os.path.join(CURRENT_DIR, '../README.md')
 
-BASE_URL = 'https://github.com/StackStorm/st2contrib/tree/master/packs'
+PARSER_FUNCS = {
+    '.json': json.loads,
+    '.yml': yaml.safe_load,
+    '.yaml': yaml.safe_load
+}
+
+BASE_REPO_URL = 'https://github.com/StackStorm/st2contrib'
+BASE_PACKS_URL = 'https://github.com/StackStorm/st2contrib/tree/master/packs'
 
 
 def get_pack_list():
@@ -31,18 +40,121 @@ def get_pack_metadata(pack):
     metadata = yaml.safe_load(content)
     return metadata
 
+def get_pack_resources(pack):
+    sensors_path = os.path.join(PACKS_DIR, pack, 'sensors/')
+    actions_path = os.path.join(PACKS_DIR, pack, 'actions/')
+
+    sensor_metadata_files = glob.glob(sensors_path + '/*.json')
+    sensor_metadata_files += glob.glob(sensors_path + '/*.yaml')
+    sensor_metadata_files += glob.glob(sensors_path + '/*.yml')
+
+    action_metadata_files = glob.glob(actions_path + '/*.json')
+    action_metadata_files += glob.glob(actions_path + '/*.yaml')
+    action_metadata_files += glob.glob(actions_path + '/*.yml')
+
+    resources = {
+        'sensors': [],
+        'actions': []
+    }
+
+    for sensor_metadata_file in sensor_metadata_files:
+        file_name, file_ext = os.path.splitext(sensor_metadata_file)
+
+        with open(sensor_metadata_file, 'r') as fp:
+            content = fp.read()
+
+        content = PARSER_FUNCS[file_ext](content)
+        item = {
+            'name': content['class_name'],
+            'description': content.get('description', None)
+        }
+        resources['sensors'].append(item)
+
+    for action_metadata_file in action_metadata_files:
+        file_name, file_ext = os.path.splitext(action_metadata_file)
+
+        with open(action_metadata_file, 'r') as fp:
+            content = fp.read()
+
+        content = PARSER_FUNCS[file_ext](content)
+
+        if 'name' not in content:
+            continue
+
+        item = {
+            'name': content['name'],
+            'description': content.get('description', None)
+        }
+        resources['actions'].append(item)
+
+    resources['sensors'] = sorted(resources['sensors'], key=lambda i: i['name'])
+    resources['actions'] = sorted(resources['actions'], key=lambda i: i['name'])
+
+    return resources
+
 
 def generate_pack_list_table(packs):
     lines = []
 
-    lines.append('Name | Description | Author | Latest Version')
-    lines.append('---- | ----------- | ------ | -------------- ')
+    lines.append('Name | Description | Author | Latest Version | Available Resources')
+    lines.append('---- | ----------- | ------ | -------------- | -------------------')
 
     for pack_name, metadata in packs:
         values = copy.deepcopy(metadata)
-        values['base_url'] = BASE_URL
-        line = '| [%(name)s](%(base_url)s/%(name)s) | %(description)s | [%(author)s](mailto:%(email)s) | %(version)s' % (values)
+        values['base_packs_url'] = BASE_PACKS_URL
+        values['base_repo_url'] = BASE_REPO_URL
+        line = '| [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
         lines.append(line)
+
+    result = '\n'.join(lines)
+    return result
+
+
+def generate_pack_resources_tables(packs):
+    lines = []
+
+    for pack_name, _ in packs:
+        pack_resources = get_pack_resources(pack=pack_name)
+        table = generate_pack_resources_table(pack_name=pack_name,
+                                              resources=pack_resources)
+        if not table:
+            continue
+
+        lines.append(table)
+
+    result = '\n\n'.join(lines)
+    return result
+
+
+def generate_pack_resources_table(pack_name, resources):
+    lines = []
+
+    if not resources['sensors'] and not resources['actions']:
+        return None
+
+    lines.append('### %s pack' % (pack_name))
+    lines.append('')
+
+    if resources['sensors']:
+        lines.append('#### Sensors')
+        lines.append('')
+        lines.append('Name | Description')
+        lines.append('---- | -----------')
+
+        for sensor in resources['sensors']:
+            lines.append('%s | %s' % (sensor['name'], sensor['description']))
+
+        if resources['actions']:
+            lines.append('')
+
+    if resources['actions']:
+        lines.append('#### Actions')
+        lines.append('')
+        lines.append('Name | Description')
+        lines.append('---- | -----------')
+
+        for action in resources['actions']:
+            lines.append('%s | %s' % (action['name'], action['description']))
 
     result = '\n'.join(lines)
     return result
@@ -73,7 +185,10 @@ def main(dry_run):
             continue
 
         packs_with_metadata.append((pack, metadata))
-    table = generate_pack_list_table(packs=packs_with_metadata)
+
+    table1 = generate_pack_list_table(packs=packs_with_metadata)
+    table2 = generate_pack_resources_tables(packs=packs_with_metadata)
+    table = '%s\n%s' % (table1, table2)
     updated_readme = get_updated_readme(table=table)
 
     if dry_run:
