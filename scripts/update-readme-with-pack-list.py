@@ -97,7 +97,7 @@ def generate_pack_list_table(packs):
     lines = []
 
     lines.append('Name | Description | Author | Latest Version | Available Resources')
-    lines.append('---- | ----------- | ------ | -------------- | [click]()')
+    lines.append('---- | ----------- | ------ | -------------- | -------------------')
 
     for pack_name, metadata in packs:
         values = copy.deepcopy(metadata)
