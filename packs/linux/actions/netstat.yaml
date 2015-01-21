@@ -4,21 +4,11 @@
   description: "Run netstat"
   enabled: true
   entry_point: ""
-  parameters: 
-    cmd: 
+  parameters:
+    cmd:
       immutable: true
       default: "netstat {{args}}"
       position: 0
-    args: 
+    args:
       description: "Command line arguments"
       default: " "
-    dir: 
-      immutable: true
-      default: "/home/stanley/"
-    sudo: 
-      immutable: true
-      default: false
-    kwarg_op: 
-      immutable: true
-      default: "--"
-

@@ -4,20 +4,11 @@
   description: "Run lsof for a group of PIDs"
   enabled: true
   entry_point: ""
-  parameters: 
-    cmd: 
+  parameters:
+    cmd:
       immutable: true
       default: "for pid in {{pids}}; do lsof -p $pid; done"
       position: 0
-    pids: 
+    pids:
       description: "List of pids"
       default: "''"
-    dir: 
-      immutable: true
-      default: "/home/stanley/"
-    sudo: 
-      immutable: true
-      default: true
-    kwarg_op: 
-      immutable: true
-      default: "--"

@@ -4,9 +4,9 @@
   description: "Check CPU Load Average on a Host"
   enabled: true
   entry_point: "checks/check_loadavg.py"
-  parameters: 
-    period: 
-      enum: 
+  parameters:
+    period:
+      enum:
         - "1"
         - "5"
         - "15"
@@ -14,11 +14,3 @@
       description: "Time period for load avg: 1,5,15 minutes, or 'all'"
       default: "all"
       position: 0
-    dir: 
-      immutable: true
-    kwarg_op: 
-      immutable: true
-    sudo: 
-      immutable: true
-    cmd: 
-      immutable: true

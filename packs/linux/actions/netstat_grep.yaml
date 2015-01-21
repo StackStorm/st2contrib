@@ -4,20 +4,11 @@
   description: "Grep netstat results"
   enabled: true
   entry_point: ""
-  parameters: 
-    cmd: 
+  parameters:
+    cmd:
       immutable: true
       default: "for pid in {{pids}}; do netstat -pant | grep $pid; done; exit 0"
       position: 0
-    pids: 
+    pids:
       description: "List of pids"
       default: "''"
-    dir: 
-      immutable: true
-      default: "/home/stanley/"
-    sudo: 
-      immutable: true
-      default: true
-    kwarg_op: 
-      immutable: true
-      default: "--"

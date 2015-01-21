@@ -4,19 +4,12 @@
   description: "Kill processes using pkill"
   enabled: true
   entry_point: ""
-  parameters: 
-    cmd: 
+  parameters:
+    cmd:
       immutable: true
       default: "pkill -e {{process}}"
       position: 0
-    process: 
+    process:
       type: "string"
       description: "Process name to kill"
       required: true
-    dir: 
-      immutable: true
-    kwarg_op: 
-      immutable: true
-    sudo: 
-      immutable: true
-      default: true
