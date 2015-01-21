@@ -10,6 +10,8 @@ class ActionManager(action.BaseAction):
         del kwargs['module_path']
         if action == 'run_instances':
             kwargs['user_data'] = self.st2_user_data()
+        if action == 'create_tags':
+            kwargs['tags'] = self.split_tags(kwargs['tags'])
         if 'cls' in kwargs.keys():
             cls = kwargs['cls']
             del kwargs['cls']
