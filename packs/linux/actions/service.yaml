@@ -4,20 +4,12 @@
   description: "Stops, Starts, or Restarts a service"
   enabled: true
   entry_point: "service.py"
-  parameters: 
-    act: 
+  parameters:
+    act:
       type: "string"
       description: "Action to perform on service"
       position: 0
-    service: 
+    service:
       type: "string"
       description: "Name of service"
       position: 1
-    sudo: 
-      type: "boolean"
-      immutable: true
-      default: true
-    dir: 
-      immutable: true
-    kwarg_op: 
-      immutable: true

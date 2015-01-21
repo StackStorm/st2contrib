@@ -4,18 +4,12 @@
   description: "Touches a file"
   enabled: true
   entry_point: ""
-  parameters: 
-    cmd: 
+  parameters:
+    cmd:
       immutable: true
       default: "echo $(date +%s) > {{file}}"
       position: 0
-    file: 
+    file:
       type: "string"
       description: "Path of the file to be touched"
       required: true
-    dir: 
-      immutable: true
-    kwarg_op: 
-      immutable: true
-    sudo: 
-      immutable: true
