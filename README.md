@@ -58,6 +58,8 @@ Name | Description | Author | Latest Version | Available Resources
 
 Name | Description
 ---- | -----------
+create_vm | Create a VM, add DNS to Route53
+destroy_vm | Destroys a VM and removes it from Route53
 ec2_allocate_address | 
 ec2_assign_private_ip_addresses | 
 ec2_associate_address | 
@@ -238,6 +240,7 @@ r53_zone_update_a |
 r53_zone_update_cname | 
 r53_zone_update_mx | 
 r53_zone_update_record | 
+set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
 
 ### docker pack
 
@@ -354,7 +357,9 @@ netstat_grep | Grep netstat results
 pkill | Kill processes using pkill
 rm | Remove file(s)
 rsync | Copy file(s) from one place to another w/ rsync
+scp | Secure copy file(s)
 service | Stops, Starts, or Restarts a service
+traceroute | Traceroute a Host
 vmstat | Run vmstat
 wait_for_ssh | Wait for SSH
 
