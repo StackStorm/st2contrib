@@ -1,5 +1,5 @@
 name: traceroute
-runner_type: run-local
+runner_type: run-remote
 description: "Traceroute a Host"
 enabled: true
 entry_point: 'traceroute.sh'
