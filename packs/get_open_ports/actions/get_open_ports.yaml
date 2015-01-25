@@ -1,0 +1,10 @@
+name: get_open_ports
+runner_type: run-python
+description: Retrieve open ports for a given host
+enabled: true
+entry_point: get_open_ports.py
+parameters:
+  host:
+    type: string
+    description: "Host to query for open ports"
+    required: true
