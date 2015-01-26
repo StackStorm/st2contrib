@@ -1,0 +1,15 @@
+---
+  name: 'test_rule'
+  enabled: true
+  description: 'test_rule'
+  trigger:
+    type: dripstat.alert
+  criteria:
+    trigger.alert_name:
+      pattern: 'appResponseTime'
+      type: eq
+  action:
+    ref: slack.post_message
+    parameters:
+      message: "Test {{trigger.jvm_host}} {{trigger.started_at}} {{trigger.app_name}} {{trigger.alert_name}}"
+      channel: '#console'
