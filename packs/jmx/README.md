@@ -48,6 +48,5 @@ attributes / metrics specified in the config.
 
 ## Notice
 
-extern/jmxquery/ is part of the [ck-agent
-project](https://github.com/cloudkick/ck-agent/) licensed under Apache 2.0
-license.
+extern/jmxquery/ is part of the [ck-agent project](https://github.com/cloudkick/ck-agent/)
+licensed under Apache 2.0 license.
