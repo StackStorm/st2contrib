@@ -1,0 +1,8 @@
+---
+hostname: 'localhost'
+port: 7199
+username:
+password:
+object_name: 'java.lang:type=Memory'
+attribute_name: 'HeapMemoryUsage'
+attribute_keys:
