@@ -2,6 +2,7 @@
 *.sqlite
 *.swp
 *.log
+*.class
 
 # C extensions
 *.so
