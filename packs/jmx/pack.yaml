@@ -1,0 +1,6 @@
+---
+name: jmx
+description: st2 content pack containing Java JMX integrations
+version: 0.1
+author: st2-dev
+email: info@stackstorm.com
