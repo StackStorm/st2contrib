@@ -50,7 +50,7 @@ def _create_trigger_type():
 def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
-        url = _get_st2_triggers_url() + '/' + ST2_TRIGGERTYPE_REF
+        url = _get_st2_triggers_url() + ST2_TRIGGERTYPE_REF
         # sys.stdout.write('GET: %s\n' % url)
         get_resp = requests.get(url)
 
