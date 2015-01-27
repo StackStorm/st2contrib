@@ -1,6 +1,10 @@
 ---
-name : jira 
+name : jira
 description : st2 content pack containing jira integrations
+keywords:
+  - issues
+  - ticket management
+  - project management
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com
