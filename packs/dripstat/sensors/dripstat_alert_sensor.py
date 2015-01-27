@@ -1,5 +1,7 @@
-from st2reactor.sensor.base import PollingSensor
+import eventlet
 import requests
+
+from st2reactor.sensor.base import PollingSensor
 
 __all_ = [
     'DripstatAlertSensor'
@@ -13,6 +15,7 @@ eventlet.monkey_patch(
     socket=True,
     thread=True,
     time=True)
+
 
 class DripstatAlertSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=None):
@@ -45,7 +48,7 @@ class DripstatAlertSensor(PollingSensor):
 
     def _api_request(self, endpoint, params={}):
         url = BASE_URL + endpoint
-        default_params = { 'clientId': self._api_key }
+        default_params = {'clientId': self._api_key}
         params.update(default_params)
         response = requests.get(url, params=params)
         return response.json()
@@ -59,4 +62,3 @@ class DripstatAlertSensor(PollingSensor):
             'jvm_host': alert['jvmHost']
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
-
