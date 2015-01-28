@@ -1,5 +1,10 @@
 import nmap
+
 from st2actions.runners.pythonrunner import Action
+
+"""
+Note: This action requires nmap binary to be available and needs to run as root.
+"""
 
 class PortScanner(Action):
 
