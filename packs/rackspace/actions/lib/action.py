@@ -19,7 +19,6 @@ class PyraxBaseAction(Action):
         # Needs to be extracted to per-action
         region = self.config['region'].upper()
 
-        print 'xxx', region
 
         pyrax.set_setting('identity_type', 'rackspace')
         pyrax.set_default_region(region)
