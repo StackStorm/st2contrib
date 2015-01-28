@@ -9,8 +9,11 @@ __all__ = [
 
 
 class CreateVMAction(PyraxBaseAction):
-    def run(self, name, image_id, flavor_id, key_material=None):
-        cs = self.pyrax.cloudservers
+    def run(self, name, image_id, flavor_id, key_material=None, region=None):
+        if region:
+            cs = self.pyrax.connect_to_cloudservers(region=region)
+        else:
+            cs = self.pyrax.cloudservers
 
         image = cs.images.get(image_id)
         flavor = cs.flavors.get(flavor_id)
