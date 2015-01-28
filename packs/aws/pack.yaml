@@ -1,6 +1,13 @@
 ---
 name : aws
 description : st2 content pack containing Amazon Web Services integrations.
+keywords:
+  - aws
+  - amazon web services
+  - amazon
+  - ec2
+  - route53
+  - cloud
 version : 0.2
 author : st2-dev
 email : info@stackstorm.com

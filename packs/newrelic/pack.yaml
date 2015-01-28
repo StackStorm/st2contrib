@@ -1,6 +1,11 @@
 ---
 name : newrelic
 description : st2 content pack containing newrelic integrations
+keywords:
+  - new relic
+  - monitoring
+  - app monitoring
+  - application level monitoring
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

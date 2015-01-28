@@ -1,6 +1,10 @@
 ---
 name : twitter
 description : st2 content pack containing twitter integrations
+keywords:
+  - twitter
+  - social media
+  - social networks
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

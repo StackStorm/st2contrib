@@ -1,6 +1,10 @@
 ---
 name : github
 description : st2 content pack containing github integrations
+keywords:
+  - github
+  - git
+  - scm
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com
