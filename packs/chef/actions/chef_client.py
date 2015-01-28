@@ -10,7 +10,7 @@ class ChefClientRunner(ChefRunner):
 
     chef_binary = 'chef-client'
     cmdline_options = [
-        ('-r', 'rewrite_runlist', {})
+        ('-r', '--rewrite_runlist', {})
     ]
 
     def __init__(self):

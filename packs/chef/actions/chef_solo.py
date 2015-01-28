@@ -10,7 +10,7 @@ class ChefSoloRunner(ChefRunner):
 
     chef_binary = 'chef-solo'
     cmdline_options = [
-        ('-r', 'recipe_url', {})
+        ('-r', '--recipe_url', {})
     ]
 
     def __init__(self):
