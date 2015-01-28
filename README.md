@@ -367,6 +367,7 @@ cp | Copy file(s)
 diag_loadavg | Diagnostic workflow for high load alert
 dig | Dig action
 file_touch | Touches a file
+get_open_ports | Retrieve open ports for a given host
 lsof | Run lsof
 lsof_pids | Run lsof for a group of PIDs
 mv | Move file(s)
