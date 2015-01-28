@@ -1,0 +1,13 @@
+name: "iostat"
+runner_type: "run-remote"
+description: "returns I/O stats of system storage"
+enabled: true
+entry_point: ""
+parameters:
+  cmd:
+    immutable: true
+    default: "iostat {{args}}"
+    position: 0
+  args:
+    description: "Command line arguments"
+    default: " " 
