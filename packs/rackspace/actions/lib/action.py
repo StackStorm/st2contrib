@@ -19,9 +19,11 @@ class PyraxBaseAction(Action):
         # Needs to be extracted to per-action
         region = self.config['region'].upper()
 
-
         pyrax.set_setting('identity_type', 'rackspace')
         pyrax.set_default_region(region)
         pyrax.set_credentials(username, api_key)
+
+        pyrax.cloudservers = pyrax.connect_to_cloudservers(region=region)
+        pyrax.cloud_loadbalancers = pyrax.connect_to_cloud_loadbalancers(region=region)
 
         return pyrax

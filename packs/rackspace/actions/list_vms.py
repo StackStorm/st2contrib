@@ -8,10 +8,10 @@ __all__ = [
 
 class ListVMsAction(PyraxBaseAction):
     def run(self, region=None):
-        cs = self.pyrax.cloudservers
-
         if region:
-            self.pyrax.connect_to_cloudservers(region=region)
+            cs = self.pyrax.connect_to_cloudservers(region=region)
+        else:
+            cs = self.pyrax.cloudservers
 
         servers = cs.list()
 
