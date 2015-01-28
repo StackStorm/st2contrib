@@ -1,0 +1,10 @@
+---
+name: list_vms
+runner_type: run-python
+description: List all the available vms.
+enabled: true
+entry_point: list_vms.py
+parameters:
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
