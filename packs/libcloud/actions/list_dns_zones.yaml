@@ -1,0 +1,11 @@
+---
+name: list_dns_zones
+runner_type: run-python
+description: List available zones.
+enabled: true
+entry_point: list_dns_zones.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
