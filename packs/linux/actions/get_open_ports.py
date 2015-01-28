@@ -22,9 +22,5 @@ class PortScanner(Action):
              for port in ports:
                port_details = {port:{'state':ps[host][comm][port]['state'], 'service':ps[host][comm][port]['name'], 'protocol':comm}}
                result.append(port_details)
+
     return result
-
-if __name__ == "__main__":
-  ps = PortScanner()
-  ps.run()
-
