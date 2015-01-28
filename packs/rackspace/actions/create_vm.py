@@ -1,6 +1,7 @@
 import random
 
 from lib.action import PyraxBaseAction
+from lib.formatters import to_server_dict
 
 __all__ = [
     'CreateVMAction'
@@ -33,15 +34,5 @@ class CreateVMAction(PyraxBaseAction):
         public_ips = [ip['addr'] for ip in server.addresses['public']]
         private_ips = [ip['addr'] for ip in server.addresses['private']]
 
-        result = {
-            'id': server.id,
-            'name': server.name,
-            'status': server.status,
-            'image_id': server.image['id'],
-            'flavor_id': server.flavor['id'],
-            'public_ips': public_ips,
-            'private_ips': private_ips,
-            'key_name': server.key_name
-        }
-
+        result = to_server_dict(server=server)
         return result
