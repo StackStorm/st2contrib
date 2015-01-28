@@ -16,6 +16,12 @@
             "description": "ID of a record to delete",
             "required": true,
             "position": 1
+        },
+        "zone_id": {
+              "type": "string",
+              "description": "ID of the zone to list the records for.",
+              "required": true,
+              "position": 2
         }
     }
 }
