@@ -37,6 +37,23 @@ NORMAL_REPORT_DELAY_KEY = 'normal_report_delay'
 
 
 class NewRelicHookSensor(Sensor):
+    """
+    Sensor class that starts up a flask webapp that listens to alert hooks from NewRelic.
+    It translates hooks into appropriate triggers using the following mapping -
+       1. Web app incident and apdex problem opened -> WEB_APP_ALERT_TRIGGER
+       2. Incident escalated to downtime (app)      -> WEB_APP_ALERT_TRIGGER
+       3. Apdex problem closed (app)                -> WEB_APP_NORMAL_TRIGGER_REF
+       4. Downtime problem closed (app)             -> WEB_APP_NORMAL_TRIGGER_REF
+       5. Server incident and CPU problem opened    -> SERVER_ALERT_TRIGGER_REF
+       6. Incident escalated after 5 minutes        -> SERVER_ALERT_TRIGGER_REF
+       7. Server downtime ends                      -> SERVER_NORMAL_TRIGGER_REF
+       8. CPU problem closed                        -> SERVER_NORMAL_TRIGGER_REF
+
+    Note : Some hooks like cancel or disable of an inciden and open or close of alert policy
+    are ignored.
+
+    All return to normal events are always fired after a delay period.
+    """
 
     def __init__(self, sensor_service, config=None):
         self._config = config
@@ -58,6 +75,11 @@ class NewRelicHookSensor(Sensor):
         pass
 
     def run(self):
+        """
+        Validate required params and starts up the webapp that listen to hooks from NewRelic.
+        """
+        if not self._api_url:
+            raise Exception('NewRelic API url not found.')
         if not self._api_key:
             raise Exception('NewRelic API key not found.')
         if not self._host or not self._port or not self._url:
@@ -79,6 +101,10 @@ class NewRelicHookSensor(Sensor):
         #
         alert_body = request.get_json().get('alert', None)
 
+        if alert_body.get('severity', None) not in ['critical', 'downtime']:
+            self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
+            return jsonify({}, http_client.ACCEPTED)
+
         hook_headers = self._get_headers_as_dict(request.headers)
         hook_handler = self._get_hook_handler(alert_body, hook_headers)
 
@@ -91,32 +117,31 @@ class NewRelicHookSensor(Sensor):
         except Exception:
             self._log.Exception('Failed to handle nr hook %s.', alert_body)
 
-        # payload = {}
-        # payload['headers'] = hook_headers
-        # payload['body'] = hook_body
-        # self._dispatch_payload(payload)
-
         return jsonify({}, http_client.ACCEPTED)
 
     def _get_hook_handler(self, alert_body, hook_headers):
         if not alert_body:
             return None
 
-        # (todo) include severity check
-
         if 'servers' in alert_body:
             return self._server_hook_handler
+
         # For now everything else is web app hook. Hooks for key transaction, mobile app or plugin
         # alert all would be rolled up the application level.
         return self._app_hook_handler
 
     def _app_hook_handler(self, alert_body, hook_headers):
 
+        if not alert_body['application_name']:
+            self._log.info('No application found for alert %s. Will Ignore.', alert_body)
+            return
+
         long_description = alert_body['long_description']
 
         if self._is_alert_opened(long_description) or \
            self._is_escalated_downtime(long_description):
 
+            # handled opened and escalation to downtime immediately.
             payload = {
                 'alert': alert_body,
                 'header': hook_headers
@@ -126,6 +151,7 @@ class NewRelicHookSensor(Sensor):
         elif self._is_alert_closed(long_description) or \
              self._is_downtime_recovered(long_description):
 
+            # handled closed and recovered after a delay.
             payload = {
                 'alert': alert_body,
                 'header': hook_headers
@@ -135,11 +161,17 @@ class NewRelicHookSensor(Sensor):
 
         elif self._is_alert_canceled(long_description) or \
              self._is_alert_acknowledged(long_description):
+
+            # ignore canceled or acknowledged
             self._log.info('Ignored alert : %s.', alert_body)
 
-    def _dispatch_application_normal(self, payload):
+    def _dispatch_application_normal(self, payload, attempt_no=0):
         '''
+        Dispatches WEB_APP_NORMAL_TRIGGER_REF if the application health_status is 'green'.
         '''
+        # basic guard to avoid queuing up forever.
+        if attempt_no == 10:
+            self._log.warn('Abandoning WEB_APP_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
         application = self._get_application(payload['alert']['application_name'])
         if application['health_status'] in ['green']:
             self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
@@ -147,7 +179,7 @@ class NewRelicHookSensor(Sensor):
             self._log.info('Application %s has state %s. Rescheduling normal check.',
                            application['name'], application['health_status'])
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
-                                 payload)
+                                 payload, attempt_no + 1)
 
     def _server_hook_handler(self, alert_body, hook_headers):
         long_description = alert_body['long_description']
@@ -174,9 +206,13 @@ class NewRelicHookSensor(Sensor):
              self._is_alert_acknowledged(long_description):
             self._log.info('Ignored alert : %s.', alert_body)
 
-    def _dispatch_server_normal(self, payload):
+    def _dispatch_server_normal(self, payload, attempt_no=0):
         '''
+        Dispatches SERVER_NORMAL_TRIGGER_REF if the all servers health_status is 'green'.
         '''
+        # basic guard to avoid queuing up forever.
+        if attempt_no == 10:
+            self._log.warn('Abandoning SERVER_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
         servers = self._get_servers(payload['alert']['servers'])
         # make sure all servers are ok.
         all_servers_ok = True
@@ -192,7 +228,7 @@ class NewRelicHookSensor(Sensor):
                 self._log.info('server %s has state %s. Rescheduling normal check.',
                                server['name'], server['health_status'])
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
-                                 payload)
+                                 payload, attempt_no + 1)
 
     # alert test methods
     def _is_alert_opened(self, long_description):
