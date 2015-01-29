@@ -16,14 +16,11 @@ class GetAppHealthStatusAction(Action):
         self.headers['X-Api-Key'] = self.config['api_key']
 
     def run(self, app_name=None):
-        # XXX: New Relic APIs allow you to filter just based on app_name
-        # but it doesn't work.
-        body = None
+        params = None
         if app_name:
-            app_name.replace(' ', '+')
-            body = 'filter[name]=' + app_name
+            params = {'filter[name]': app_name}
 
-        resp = requests.get(self.url, headers=self.headers, data=body).json()
+        resp = requests.get(self.url, headers=self.headers, params=params).json()
 
         app_status_map = {}
         for application in resp['applications']:
