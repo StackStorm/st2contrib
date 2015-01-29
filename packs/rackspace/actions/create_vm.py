@@ -34,8 +34,5 @@ class CreateVMAction(PyraxBaseAction):
 
         self.logger.info('Server successfully created: %s' % (server))
 
-        public_ips = [ip['addr'] for ip in server.addresses['public']]
-        private_ips = [ip['addr'] for ip in server.addresses['private']]
-
         result = to_server_dict(server=server)
         return result
