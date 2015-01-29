@@ -50,8 +50,10 @@ Name | Description | Author | Latest Version | Available Resources
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
 | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
+| [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | rackspace | [jfryman](mailto:jfryman@FryBook) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
+| [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
 | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
 ### aws pack
@@ -417,6 +419,25 @@ cert_revoke | Revoke the certificate of a client.
 cert_sign | Sign an outstanding certificate request.
 run_agent | Run puppet agent.
 
+### rackspace pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_node_to_loadbalancer | Add a new node to load balancer
+create_dns_record | Create a new DNS record.
+create_dns_zone | Create a new DNS zone.
+create_loadbalancer | Create a new loadbalancer.
+create_vm | Create a new VM / cloud server
+delete_dns_record | Delete a DNS record.
+delete_dns_zone | Delete a DNS zone.
+delete_node_from_loadbalancer | Delete a node from a load balancer
+delete_vm | Delete a vm.
+list_dns_records | List all records for a particular zone.
+list_dns_zones | List all the DNS zones.
+list_vms | List all the available vms.
+
 ### sensu pack
 
 #### Actions
@@ -455,6 +476,14 @@ SlackSensor | Sensor which monitors Slack for activity
 Name | Description
 ---- | -----------
 post_message | Post a message to the Slack channel.
+
+### st2 pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+kvstore | Get value from datastore
 
 ### twilio pack
 
