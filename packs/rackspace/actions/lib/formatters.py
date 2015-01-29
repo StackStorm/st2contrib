@@ -1,6 +1,7 @@
 __all__ = [
     'to_server_dict',
-    'to_dns_zone_dict'
+    'to_dns_zone_dict',
+    'to_dns_record_dict'
 ]
 
 
@@ -26,5 +27,16 @@ def to_dns_zone_dict(zone):
         'name': zone.name,
         'email_address': zone.emailAddress,
         'ttl': zone.ttl
+    }
+    return result
+
+
+def to_dns_record_dict(record):
+    result = {
+        'id': record.id,
+        'name': record.name,
+        'type': record.type,
+        'data': record.data,
+        'ttl': record.ttl
     }
     return result
