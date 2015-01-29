@@ -1,5 +1,6 @@
 __all__ = [
-    'to_server_dict'
+    'to_server_dict',
+    'to_dns_zone_dict'
 ]
 
 
@@ -15,5 +16,15 @@ def to_server_dict(server):
         'public_ips': public_ips,
         'private_ips': private_ips,
         'key_name': server.key_name
+    }
+    return result
+
+
+def to_dns_zone_dict(zone):
+    result = {
+        'id': zone.id,
+        'name': zone.name,
+        'email_address': zone.emailAddress,
+        'ttl': zone.ttl
     }
     return result

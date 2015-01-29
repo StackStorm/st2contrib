@@ -25,5 +25,6 @@ class PyraxBaseAction(Action):
 
         pyrax.cloudservers = pyrax.connect_to_cloudservers(region=region)
         pyrax.cloud_loadbalancers = pyrax.connect_to_cloud_loadbalancers(region=region)
+        pyrax.cloud_dns = pyrax.connect_to_cloud_dns(region=region)
 
         return pyrax
