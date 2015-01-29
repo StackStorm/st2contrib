@@ -15,11 +15,19 @@
 
 import eventlet
 import requests
+import sys
 
 from flask import jsonify, request, Flask
 from six.moves import http_client
 from six.moves import urllib_parse
 from st2reactor.sensor.base import Sensor
+
+eventlet.monkey_patch(
+    os=True,
+    select=True,
+    socket=True,
+    thread=False if '--use-debugger' in sys.argv else True,
+    time=True)
 
 PACK = 'newrelic'
 WEB_APP_ALERT_TRIGGER_REF = '{}.{}'.format(PACK, 'WebAppAlertTrigger')
@@ -171,7 +179,8 @@ class NewRelicHookSensor(Sensor):
         '''
         # basic guard to avoid queuing up forever.
         if attempt_no == 10:
-            self._log.warn('Abandoning WEB_APP_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
+            self._log.warning('Abandoning WEB_APP_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
+            return
         application = self._get_application(payload['alert']['application_name'])
         if application['health_status'] in ['green']:
             self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
@@ -212,7 +221,8 @@ class NewRelicHookSensor(Sensor):
         '''
         # basic guard to avoid queuing up forever.
         if attempt_no == 10:
-            self._log.warn('Abandoning SERVER_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
+            self._log.warning('Abandoning SERVER_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
+            return
         servers = self._get_servers(payload['alert']['servers'])
         # make sure all servers are ok.
         all_servers_ok = True
@@ -273,15 +283,6 @@ class NewRelicHookSensor(Sensor):
             servers['server_name'] = resp['servers'][0] if resp['servers'] else None
         return servers
 
-    def cleanup(self):
-        # self._log.info('cleanup called.')
-        # # If Flask is using the default Werkzeug server, then call shutdown on it.
-        # func = request.environ.get('werkzeug.server.shutdown')
-        # if func is None:
-        #     raise Exception('Not running with the Werkzeug Server')
-        # func()
-        pass
-
     @staticmethod
     def _get_sensor_config_param(config, param_name, default=None):
         sensor_config = NewRelicHookSensor._get_sensor_config(config)
@@ -301,6 +302,9 @@ class NewRelicHookSensor(Sensor):
         return headers_dict
 
     # ignore
+    def cleanup(self):
+        pass
+
     def add_trigger(self, trigger):
         pass
 
