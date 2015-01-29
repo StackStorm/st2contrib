@@ -26,7 +26,7 @@ class KVPAction(Action):
             return kvp.value
         else:
             instance = KeyValuePair()
-            if action == 'create':
+            if action == 'set':
                 instance.id = key
             else:
                 instance.id = client.keys.get_by_name(key).id
