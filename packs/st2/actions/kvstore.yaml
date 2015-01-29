@@ -1,0 +1,22 @@
+---
+description: 'Get value from datastore'
+enabled: true
+entry_point: kvstore.py
+name: kvstore
+parameters:
+  key:
+    required: True
+    type: string
+  st2host:
+    default: '127.0.0.1'
+    type: string
+  action:
+    required: true
+    enum:
+      - 'create'
+      - 'get'
+      - 'delete'
+      - 'update'
+  value:
+    type: string
+runner_type: run-python

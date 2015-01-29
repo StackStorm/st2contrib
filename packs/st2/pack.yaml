@@ -1,0 +1,8 @@
+### Place information about your pack version here.
+---
+name: st2
+description: StackStorm pack management
+version: 0.1.0
+author: st2-dev
+email: info@stackstorm.com
+
