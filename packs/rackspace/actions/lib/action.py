@@ -23,6 +23,10 @@ class PyraxBaseAction(Action):
         pyrax.set_default_region(region)
         pyrax.set_credentials(username, api_key)
 
+        debug = self.config.get('debug', False)
+        if debug:
+            pyrax.set_http_debug(True)
+
         pyrax.cloudservers = pyrax.connect_to_cloudservers(region=region)
         pyrax.cloud_loadbalancers = pyrax.connect_to_cloud_loadbalancers(region=region)
         pyrax.cloud_dns = pyrax.connect_to_cloud_dns(region=region)

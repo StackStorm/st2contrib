@@ -1,4 +1,5 @@
---- 
+---
   username: jfryman
   api_key: ca8295b12b80496abf08c7cad21c7997
   region: IAD
+  debug: false
