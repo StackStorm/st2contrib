@@ -8,3 +8,4 @@ parameters:
   vm_id:
     type: string
     description: ID of a VM to delete.
+    required: true

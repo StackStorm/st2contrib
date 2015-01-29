@@ -8,3 +8,4 @@ parameters:
   zone_id:
     type: string
     description: ID of a DNS zone to delete.
+    required: true
