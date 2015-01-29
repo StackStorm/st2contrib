@@ -1,0 +1,11 @@
+---
+name: delete_dns_zone
+runner_type: run-python
+description: Delete a DNS zone.
+enabled: true
+entry_point: delete_dns_zone.py
+parameters:
+  zone_id:
+    type: string
+    description: ID of a DNS zone to delete.
+    required: true

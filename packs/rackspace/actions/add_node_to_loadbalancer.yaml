@@ -1,0 +1,21 @@
+---
+name: add_node_to_loadbalancer
+runner_type: run-python
+description: Add a new node to load balancer
+enabled: true
+entry_point: add_node_to_loadbalancer.py
+parameters:
+  loadbalancer_id:
+    type: string
+    description: ID of the loadbalancer
+    required: true
+    position: 1
+  ip:
+    type: string
+    description: IP address of endpoint
+    position: 2
+  port:
+    type: string
+    description: Port the loadbalancer should forward to
+    default: '80'
+    position: 3

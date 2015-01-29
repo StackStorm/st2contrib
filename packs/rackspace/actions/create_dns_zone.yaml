@@ -1,0 +1,23 @@
+---
+name: create_dns_zone
+runner_type: run-python
+description: Create a new DNS zone.
+enabled: true
+entry_point: create_dns_zone.py
+parameters:
+  name:
+    type: string
+    description: Zone name (e.g. mydomain.com)
+    required: true
+  email_address:
+    type: string
+    description: Email address of the domain administrator.
+    required: true
+  ttl:
+    type: integer
+    description: Optional TTL. Default is 3600 and minimum is 300.
+    required: false
+  comment:
+    type: string
+    description: Optional comment to associate with a domain.
+    required: false
