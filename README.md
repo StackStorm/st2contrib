@@ -386,6 +386,12 @@ wait_for_ssh | Wait for SSH
 
 ### newrelic pack
 
+#### Sensors
+
+Name | Description
+---- | -----------
+NewRelicAppSensor | Sensor which watches for alerts from NewRelic.
+
 #### Actions
 
 Name | Description
