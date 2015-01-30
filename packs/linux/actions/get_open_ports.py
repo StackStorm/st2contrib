@@ -11,15 +11,12 @@ Note 2: We only scan for open TCP ports since scanning for open UDP ports
 
 
 class PortScanner(Action):
-    def run(self, host):
+    def run(self, ip_address):
         result = []
         port_details = {}
         ps = nmap.PortScanner()
-        ps.scan(host, arguments='--min-parallelism 100 -sT')
+        ps.scan(ip_address, arguments='--min-parallelism 100 -sT')
         for target_host in ps.all_hosts():
-            if target_host not in ps.all_hosts():
-                continue
-
             for comm in ps[target_host].all_protocols():
                 if comm in ['tcp', 'udp', 'ip', 'sctp']:
                     ports = ps[target_host][comm].keys()
@@ -27,8 +24,8 @@ class PortScanner(Action):
                     for port in ports:
                         port_details = {
                             port: {
-                                'state': ps[host][comm][port]['state'],
-                                'service': ps[host][comm][port]['name'],
+                                'state': ps[ip_address][comm][port]['state'],
+                                'service': ps[ip_address][comm][port]['name'],
                                 'protocol': comm
                             }
                         }

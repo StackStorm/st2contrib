@@ -4,7 +4,7 @@ description: Retrieve open ports for a given host
 enabled: true
 entry_point: get_open_ports.py
 parameters:
-  host:
+  ip_address:
     type: string
-    description: "Host to query for open ports"
+    description: "IP address of a host to query open ports from"
     required: true
