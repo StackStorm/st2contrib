@@ -13,7 +13,7 @@ parameters:
   action:
     required: true
     enum:
-      - 'create'
+      - 'set'
       - 'get'
       - 'delete'
       - 'update'

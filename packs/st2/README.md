@@ -1,6 +1,8 @@
 # StackStorm Integration Pack
 
-The super-meta package! This integration allows integration with StackStorm.
+The super-meta package! This integration allows integration with StackStorm. 
+
+Requires StackStorm <= `v0.8.0`
 
 ## Configuration:
 
