@@ -13,6 +13,10 @@ parameters:
     type: string
     description: Full record name including a domain (e.g. myrecord.mydomain.com)
     required: true
+  data:
+    type: string
+    description: Record data (e.g. 1.2.3.4)
+    required: true
   type:
     type: string
     description: Record type (e.g. A, AAAA, TXT, MX, etc.)
