@@ -1,0 +1,10 @@
+---
+name: kv.grep
+enabled: true
+description: 'Grep for values in datastore'
+runner_type: run-python
+entry_point: kv_grep.py
+parameters:
+  query:
+    required: True
+    type: string
