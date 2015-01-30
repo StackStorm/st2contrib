@@ -1,6 +1,6 @@
 name: "iostat"
 runner_type: "run-remote"
-description: "reutrns I/O stats of system storage"
+description: "returns I/O stats of system storage"
 enabled: true
 entry_point: ""
 parameters:
@@ -9,7 +9,7 @@ parameters:
     default: 1
   cpu:
     type: 'boolean'
-    description: "Display CPU"
+    description: "Display CPU stats"
     default: true
   device:
     description: "display only device stats"
