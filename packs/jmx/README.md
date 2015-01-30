@@ -33,6 +33,8 @@ attributes / metrics specified in the config.
 
 #### jmx.metric trigger
 
+Example trigger payload:
+
 ```json
 {
     "object_name": "java.lang:type=Memory",
@@ -45,6 +47,9 @@ attributes / metrics specified in the config.
     }
 }
 ```
+
+Note: Each trigger contains only one metric which means that multiple metrics
+result in multiple triggers being emitted (one per metric).
 
 ## Notice
 
