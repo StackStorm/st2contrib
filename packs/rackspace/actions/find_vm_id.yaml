@@ -1,0 +1,11 @@
+---
+  name: find_vm_id
+  runner_type: run-python
+  description: Find a virtual machine id based on name
+  enabled: true
+  entry_point: find_vm_id.py
+  parameters:
+    name:
+      type: string
+      description: Name of VM to find ID of
+      required: true

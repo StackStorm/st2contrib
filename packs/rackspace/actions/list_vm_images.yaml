@@ -1,0 +1,6 @@
+---
+name: list_vm_images
+runner_type: run-python
+description: List all the available VM images
+enabled: true
+entry_point: list_vm_images.py
