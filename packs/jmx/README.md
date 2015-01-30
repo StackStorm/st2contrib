@@ -37,6 +37,8 @@ Example trigger payload:
 
 ```json
 {
+    "jmx_hostname": "localhost",
+    "jmx_port": 7199,
     "object_name": "java.lang:type=Memory",
     "attribute_name": "HeapMemoryUsage",
     "attribute_keys": null,

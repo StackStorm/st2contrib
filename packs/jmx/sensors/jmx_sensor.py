@@ -90,8 +90,12 @@ class JMXSensor(PollingSensor):
 
     def _dispatch_trigger_for_metric(self, metric):
         assert isinstance(metric, dict)
+
+        config = self._config
         trigger = self._trigger_ref
         payload = {
+            'jmx_hostname': config['hostname'],
+            'jmx_port': config['port'],
             'object_name': self._config['object_name'],
             'attribute_name': self._config['attribute_name'],
             'attribute_keys': self._config.get('attribute_keys', None),
