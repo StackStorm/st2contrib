@@ -5,10 +5,10 @@ description: 'Performs installation of chef-client on remote nodes'
 enabled: true
 entry_point: 'chef_install.py'
 parameters:
-    omnibus:
-        description: "Install chef-client using omnibus installer. (Always enabled, since it's the only supported way)."
-        type: 'boolean'
-        default: True
+    method:
+        description: "Specify the method to install chef. (Omnibus is enabled by default, since it's the only supported way)."
+        type: 'string'
+        default: omnibus
     pre_release:
         description: 'Install a pre-release version. Requires that version is also specified.'
         type: 'boolean'

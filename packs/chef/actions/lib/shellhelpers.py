@@ -6,8 +6,8 @@ import select
 import io
 
 # Starts command in subprocess processing output as it appears.
-def shell_out(command, env={}):
-    env = os.environ.copy().update(env)
+def shell_out(command, env=None):
+    env = os.environ.copy().update(env or {})
     shell = False if isinstance(command, list) else True
     proc = subprocess.Popen(args=command, stdin=None, stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE, env=env, shell=shell)
@@ -40,14 +40,18 @@ class CmdlineParser(object):
             self.parser.add_argument(k, lg , **kwargs)
             self._keyname[ lg.lstrip('-') ] = k
 
-    def parse(self, argv=[]):
-        return vars( self.parser.parse_args(None) )
 
-    def short_arglist(self, kwargs={}):
-        return self._arg_list(self.parse(), short=True)
+    def parse(self, argv=None):
+        return vars( self.parser.parse_args(argv) )
 
-    def long_arglist(self, kwargs={}):
-        return self._arg_list(self.parse(), short=False)
+
+    def short_arglist(self, kwargs=None):
+        return self._arg_list(kwargs or self.parse(), short=True)
+
+
+    def long_arglist(self, kwargs=None):
+        return self._arg_list(kwargs or self.parse(), short=False)
+
 
     def _arg_list(self, kwargs, short=None):
         '''

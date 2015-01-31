@@ -13,7 +13,7 @@ class ChefInstaller(object):
     SUPPORTED_METHODS = [ 'omnibus' ]
 
     cmdline_options = [
-        ('-o', '--omnibus', { 'action': 'store_true' }),
+        ('-m', '--method', {}),
         ('-p', '--pre_release', { 'action': 'store_true' }),
         ('-v', '--version', {}),
         ('-d', '--download_path', {})
@@ -33,15 +33,15 @@ class ChefInstaller(object):
     def execute(self):
         self.parser = shell.CmdlineParser(self.cmdline_options)
         options = self.parser.parse()
-        install_method = [i for i in options.keys() if i in self.SUPPORTED_METHODS ]
+        install_method = options['method']
 
-        if len(install_method) > 1:
-            sys.stderr.write("You can't use more than one installation method!\n")
-            sys.stderr.write("Choose one of the following methods: %s\n" % ', '.join(self.SUPPORTED_METHODS))
+        if not (install_method in self.SUPPORTED_METHODS):
+            sys.stderr.write("Chef pack doesn't support the given installation method: %s\n") % install_method
             sys.exit(1)
 
-        del(options[install_method[0]])
-        self.install(install_method[0], options)
+
+        del( options['method'] )
+        self.install(install_method, options)
 
 
 if __name__ == '__main__':
