@@ -41,20 +41,20 @@ class CmdlineParser(object):
             self._keyname[ lg.lstrip('-') ] = k
 
     def parse(self, argv=[]):
-        return vars( self.parser.parse_args(argv or None) )
+        return vars( self.parser.parse_args(None) )
 
     def short_arglist(self, kwargs={}):
-        _arg_list(kwargs or self.parse(), short=True)
+        return self._arg_list(self.parse(), short=True)
 
     def long_arglist(self, kwargs={}):
-        _arg_list(kwargs or self.parse(), short=False)
+        return self._arg_list(self.parse(), short=False)
 
     def _arg_list(self, kwargs, short=None):
         '''
         Returns list of command line arguments with short or long key names.
         '''
         cmd = []
-        for n, v in (self.args or self.parse()).items():
+        for n, v in (self.parse()).items():
             if not v: continue
             k = self._keyname[n] if short else n
             # We handle switch in case value is True
