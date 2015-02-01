@@ -105,7 +105,6 @@ class NewRelicHookSensor(Sensor):
             #      OR
             # deployment : {...}
             #
-            self._log.info(request.get_json())
             alert_body = request.get_json().get('alert', None)
 
             if alert_body.get('severity', None) not in ['critical', 'downtime']:
@@ -140,7 +139,6 @@ class NewRelicHookSensor(Sensor):
         return self._app_hook_handler
 
     def _app_hook_handler(self, alert_body, hook_headers):
-
         if not alert_body['application_name']:
             self._log.info('No application found for alert %s. Will Ignore.', alert_body)
             return
@@ -155,7 +153,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
-            self._sensor_service.dispatch(WEB_APP_ALERT_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_ALERT_TRIGGER_REF, payload)
 
         elif self._is_alert_closed(long_description) or \
              self._is_downtime_recovered(long_description):
@@ -184,7 +182,7 @@ class NewRelicHookSensor(Sensor):
             return
         application = self._get_application(payload['alert']['application_name'])
         if application['health_status'] in ['green']:
-            self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
         else:
             self._log.info('Application %s has state %s. Rescheduling normal check.',
                            application['name'], application['health_status'])
@@ -200,7 +198,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
-            self._sensor_service.dispatch(SERVER_ALERT_TRIGGER_REF, payload)
+            self._dispatch_trigger(SERVER_ALERT_TRIGGER_REF, payload)
 
         elif self._is_alert_closed(long_description) or \
              self._is_downtime_recovered(long_description):
@@ -233,13 +231,17 @@ class NewRelicHookSensor(Sensor):
                 break
 
         if all_servers_ok:
-            self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
         else:
             for server in servers:
                 self._log.info('server %s has state %s. Rescheduling normal check.',
                                server['name'], server['health_status'])
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
                                  payload, attempt_no + 1)
+
+    def _dispatch_trigger(self, trigger, payload):
+        self._sensor_service.dispatch(trigger, payload)
+        self._log.info('Dispatched %s with payload %s.', trigger, payload)
 
     # alert test methods
     def _is_alert_opened(self, long_description):
