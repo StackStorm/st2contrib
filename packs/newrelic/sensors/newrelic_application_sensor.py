@@ -17,8 +17,7 @@ import eventlet
 import requests
 import sys
 
-from flask import jsonify, request, Flask
-from six.moves import http_client
+from flask import request, Flask
 from six.moves import urllib_parse
 from st2reactor.sensor.base import Sensor
 
@@ -95,37 +94,39 @@ class NewRelicHookSensor(Sensor):
                             (self._host, self._port, self._url))
         self._log.info('NewRelicHookSensor up. host %s, port %s, url %s', self._host, self._port,
                        self._url)
-        self._app.add_url_rule(self._url, None, self._handle_nrhook, methods=['POST'])
+
+        @self._app.route(self._url, methods=['POST'])
+        def handle_nrhook():
+
+            # hooks are sent for alerts and deployments. Only care about alerts so ignoring
+            # deployments. Body expected to be of the form -
+            #
+            # alert : {...}
+            #      OR
+            # deployment : {...}
+            #
+            self._log.info(request.get_json())
+            alert_body = request.get_json().get('alert', None)
+
+            if alert_body.get('severity', None) not in ['critical', 'downtime']:
+                self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
+                return 'ACCEPTED'
+
+            hook_headers = self._get_headers_as_dict(request.headers)
+            hook_handler = self._get_hook_handler(alert_body, hook_headers)
+
+            # all handling based off 'docs' found in this documentation -
+            # https://docs.newrelic.com/docs/alerts/alert-policies/examples/webhook-examples
+
+            try:
+                if hook_handler:
+                    hook_handler(alert_body, hook_headers)
+            except Exception:
+                self._log.Exception('Failed to handle nr hook %s.', alert_body)
+
+            return 'ACCEPTED'
+
         self._app.run(host=self._host, port=self._port)
-
-    def _handle_nrhook(self, url):
-
-        # hooks are sent for alerts and deployments. Only care about alerts so ignoring
-        # deployments. Body expected to be of the form -
-        #
-        # alert : {...}
-        #      OR
-        # deployment : {...}
-        #
-        alert_body = request.get_json().get('alert', None)
-
-        if alert_body.get('severity', None) not in ['critical', 'downtime']:
-            self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
-            return jsonify({}, http_client.ACCEPTED)
-
-        hook_headers = self._get_headers_as_dict(request.headers)
-        hook_handler = self._get_hook_handler(alert_body, hook_headers)
-
-        # all handling based off 'docs' found in this documentation -
-        # https://docs.newrelic.com/docs/alerts/alert-policies/examples/webhook-examples
-
-        try:
-            if hook_handler:
-                hook_handler(alert_body, hook_headers)
-        except Exception:
-            self._log.Exception('Failed to handle nr hook %s.', alert_body)
-
-        return jsonify({}, http_client.ACCEPTED)
 
     def _get_hook_handler(self, alert_body, hook_headers):
         if not alert_body:
