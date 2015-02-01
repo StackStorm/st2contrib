@@ -1,4 +1,5 @@
 # Licensed to the StackStorm, Inc ('StackStorm') under one or more
+
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
 # The ASF licenses this file to You under the Apache License, Version 2.0
@@ -13,10 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
+import json
+
 import eventlet
 import requests
-import sys
-
 from flask import request, Flask
 from six.moves import urllib_parse
 from st2reactor.sensor.base import Sensor
@@ -72,7 +74,7 @@ class NewRelicHookSensor(Sensor):
         self._host = self._get_sensor_config_param(self._config, APP_HOST_KEY)
         self._port = self._get_sensor_config_param(self._config, APP_PORT_KEY)
         self._url = self._get_sensor_config_param(self._config, APP_URL_KEY)
-        self._normal_report_delay = self._get_sensor_config_param(self._config, 300)
+        self._normal_report_delay = self._get_sensor_config_param(self._config, NORMAL_REPORT_DELAY_KEY, 300)
 
         self._app = Flask(__name__)
         self._log = self._sensor_service.get_logger(__name__)
@@ -105,7 +107,19 @@ class NewRelicHookSensor(Sensor):
             #      OR
             # deployment : {...}
             #
-            alert_body = request.get_json().get('alert', None)
+            # JSON inside form encoded data, seriously?
+            data = request.form
+            alert_body = data.get('alert', None)
+
+            if not alert_body:
+                self._log.info('Request doesn\'t contain "alert" attribute, ignoring...')
+                return 'IGNORED'
+
+            try:
+                alert_body = json.loads(alert_body)
+            except Exception:
+                self._log.exception('Failed to parse request body: %s' % (alert_body))
+                return 'IGNORED'
 
             if alert_body.get('severity', None) not in ['critical', 'downtime']:
                 self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
@@ -121,7 +135,7 @@ class NewRelicHookSensor(Sensor):
                 if hook_handler:
                     hook_handler(alert_body, hook_headers)
             except Exception:
-                self._log.Exception('Failed to handle nr hook %s.', alert_body)
+                self._log.exception('Failed to handle nr hook %s.', alert_body)
 
             return 'ACCEPTED'
 

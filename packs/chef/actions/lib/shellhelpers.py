@@ -5,12 +5,13 @@ import subprocess
 import select
 import io
 
+
 # Starts command in subprocess processing output as it appears.
 def shell_out(command, env=None):
     env = os.environ.copy().update(env or {})
     shell = False if isinstance(command, list) else True
     proc = subprocess.Popen(args=command, stdin=None, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, env=env, shell=shell)
+                            stderr=subprocess.PIPE, env=env, shell=shell)
     while True:
         fdlist = [proc.stdout.fileno(), proc.stderr.fileno()]
         ios = select.select(fdlist, [], [])
@@ -20,7 +21,8 @@ def shell_out(command, env=None):
             else:
                 sys.stderr.write(proc.stderr.read(io.DEFAULT_BUFFER_SIZE))
 
-        if proc.poll() != None: break
+        if proc.poll() is not None:
+            break
     return proc.returncode
 
 
@@ -37,12 +39,12 @@ class CmdlineParser(object):
         self.parser = argparse.ArgumentParser()
         self._keyname = {}
         for k, lg, kwargs in parser_options:
-            self.parser.add_argument(k, lg , **kwargs)
-            self._keyname[ lg.lstrip('-') ] = k
+            self.parser.add_argument(k, lg, **kwargs)
+            self._keyname[lg.lstrip('-')] = k
 
 
     def parse(self, argv=None):
-        return vars( self.parser.parse_args(argv) )
+        return vars(self.parser.parse_args(argv))
 
 
     def short_arglist(self, kwargs=None):
@@ -59,8 +61,9 @@ class CmdlineParser(object):
         '''
         cmd = []
         for n, v in (self.parse()).items():
-            if not v: continue
+            if not v:
+                continue
             k = self._keyname[n] if short else n
             # We handle switch in case value is True
-            cmd += [k] if v == True else [k, v]
+            cmd += [k] if v is True else [k, v]
         return cmd

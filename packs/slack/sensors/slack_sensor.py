@@ -1,6 +1,7 @@
 import json
 
 import eventlet
+import time
 from slackclient import SlackClient
 
 from st2reactor.sensor.base import PollingSensor
@@ -21,7 +22,7 @@ class SlackSensor(PollingSensor):
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['sensor']['token']
         self._handlers = {
-            'message': self._handle_message
+            'message': self._handle_message,
         }
 
         self._user_info_cache = {}
@@ -35,7 +36,8 @@ class SlackSensor(PollingSensor):
             msg = 'Failed to connect to the Slack API. Invalid token?'
             raise Exception(msg)
 
-        self._populate_cache(user_data=data['users'], channel_data=data['channels'])
+        self._populate_cache(user_data=self._api_call('users.list'),
+                                channel_data=self._api_call('channels.list'))
 
     def poll(self):
         result = self._client.rtm_read()
@@ -60,10 +62,11 @@ class SlackSensor(PollingSensor):
         Populate users and channels cache from info which is returned on
         rtm.start
         """
-        for user in user_data:
+
+        for user in user_data['members']:
             self._user_info_cache[user['id']] = user
 
-        for channel in channel_data:
+        for channel in channel_data['channels']:
             self._channel_info_cache[channel['id']] = channel
 
     def _handle_result(self, result):
@@ -75,7 +78,11 @@ class SlackSensor(PollingSensor):
     def _handle_message(self, data):
         trigger = 'slack.message'
 
-        # Note: We resolve user and channel information to provide more context
+        if 'subtype' in data:
+            # 'user_typing' events may not actually have text, but represent a state change
+            # Note: We resolve user and channel information to provide more context
+            return
+
         user_info = self._get_user_info(user_id=data['user'])
         channel_info = self._get_channel_info(channel_id=data['channel'])
 
