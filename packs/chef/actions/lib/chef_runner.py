@@ -1,8 +1,8 @@
 #!/usr/bin/env python2.7
 
 import sys
-import sys
 from lib import shellhelpers as shell
+
 
 class ChefRunner(object):
     '''
@@ -23,8 +23,8 @@ class ChefRunner(object):
 
     def execute(self):
         parser = shell.CmdlineParser(self.cmdline_options)
-        command = ( [ self._locate_binary(self.chef_binary) ] +
-                        parser.short_arglist() )
+        command = ([self._locate_binary(self.chef_binary)] +
+                   parser.short_arglist())
 
         exit_code = shell.shell_out(command)
         sys.exit(exit_code)
