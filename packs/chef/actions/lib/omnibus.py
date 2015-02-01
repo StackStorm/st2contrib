@@ -1,3 +1,5 @@
+import pipes
+
 import shellhelpers as shell
 
 
@@ -10,29 +12,37 @@ class Omnibus(object):
 
     def build_command(self, version=None, pre_release=False,
                       download_path=None):
-        command = "curl -sL %s | sudo bash" % self.OMNITRUCK
+        command = "curl -sL %s | sudo bash" % (pipes.quote(self.OMNITRUCK))
+
+        command_args = []
 
         if pre_release or version or download_path:
-            command += " -s --"
+            command_args += ['-s', '--']
 
         if pre_release:
-            command += " -p"
+            command_args += ['-p']
 
         if version:
-            command += " -v \"%s\"" % version
+            command_args += ['-v', version]
 
         if download_path:
-            command += " -d \"%s\"" % download_path
+            command_args += ['-v', download_path]
+
+        command_args = [pipes.quote(arg) for arg in command_args]
+        command_args = ' '.join(command_args)
+        command = command + ' ' + command_args
 
         return command
 
     def chef_installed(self):
         knife = "/opt/chef/bin/knife"
-        command = "test -x %s" % knife
+        command = "test -x %s" % (pipes.quote(knife))
         version = self.options['version']
 
         if version:
-            command += " && %s --version | grep 'Chef: %s'" % (knife, version)
+            command += (" && %s --version | grep %s" %
+                        (pipes.quote(knife),
+                         pipes.quote('Chef: %s' % (version))))
 
         exit_code = shell.shell_out(command)
         return exit_code == 0
