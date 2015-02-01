@@ -78,35 +78,33 @@ class SlackSensor(PollingSensor):
     def _handle_message(self, data):
         trigger = 'slack.message'
 
-        if data.has_key('subtype'):
-            if data['subtype'] == 'message_changed':
-                # Edited message does not contain channel information for callback
-                pass
-        else:
+        if 'subtype' in data:
             # 'user_typing' events may not actually have text, but represent a state change
             # Note: We resolve user and channel information to provide more context
-            user_info = self._get_user_info(user_id=data['user'])
-            channel_info = self._get_channel_info(channel_id=data['channel'])
+            return
 
-            payload = {
-                'user': {
-                    'id': user_info['id'],
-                    'name': user_info['name'],
-                    'first_name': user_info['profile']['first_name'],
-                    'last_name': user_info['profile']['last_name'],
-                    'real_name': user_info['profile']['real_name'],
-                    'is_admin': user_info['is_admin'],
-                    'is_owner': user_info['is_owner']
-                },
-                'channel': {
-                    'id': channel_info['id'],
-                    'name': channel_info['name'],
-                    'topic': channel_info['topic']['value'],
-                },
-                'timestamp': int(float(data['ts'])),
-                'text': data['text']
-            }
-            self._sensor_service.dispatch(trigger=trigger, payload=payload)
+        user_info = self._get_user_info(user_id=data['user'])
+        channel_info = self._get_channel_info(channel_id=data['channel'])
+
+        payload = {
+            'user': {
+                'id': user_info['id'],
+                'name': user_info['name'],
+                'first_name': user_info['profile']['first_name'],
+                'last_name': user_info['profile']['last_name'],
+                'real_name': user_info['profile']['real_name'],
+                'is_admin': user_info['is_admin'],
+                'is_owner': user_info['is_owner']
+            },
+            'channel': {
+                'id': channel_info['id'],
+                'name': channel_info['name'],
+                'topic': channel_info['topic']['value'],
+            },
+            'timestamp': int(float(data['ts'])),
+            'text': data['text']
+        }
+        self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
     def _get_user_info(self, user_id):
         if user_id not in self._user_info_cache:
