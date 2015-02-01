@@ -111,11 +111,15 @@ class NewRelicHookSensor(Sensor):
             data = request.form
             alert_body = data.get('alert', None)
 
+            if not alert_body:
+                self._log.info('Request doesn\'t contain "alert" attribute, ignoring...')
+                return 'IGNORED'
+
             try:
                 alert_body = json.loads(alert_body)
             except Exception:
                 self._log.exception('Failed to parse request body: %s' % (alert_body))
-                return
+                return 'IGNORED'
 
             if alert_body.get('severity', None) not in ['critical', 'downtime']:
                 self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
