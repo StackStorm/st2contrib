@@ -17,8 +17,7 @@ import eventlet
 import requests
 import sys
 
-from flask import jsonify, request, Flask
-from six.moves import http_client
+from flask import request, Flask
 from six.moves import urllib_parse
 from st2reactor.sensor.base import Sensor
 
@@ -95,37 +94,38 @@ class NewRelicHookSensor(Sensor):
                             (self._host, self._port, self._url))
         self._log.info('NewRelicHookSensor up. host %s, port %s, url %s', self._host, self._port,
                        self._url)
-        self._app.add_url_rule(self._url, None, self._handle_nrhook, methods=['POST'])
+
+        @self._app.route(self._url, methods=['POST'])
+        def handle_nrhook():
+
+            # hooks are sent for alerts and deployments. Only care about alerts so ignoring
+            # deployments. Body expected to be of the form -
+            #
+            # alert : {...}
+            #      OR
+            # deployment : {...}
+            #
+            alert_body = request.get_json().get('alert', None)
+
+            if alert_body.get('severity', None) not in ['critical', 'downtime']:
+                self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
+                return 'ACCEPTED'
+
+            hook_headers = self._get_headers_as_dict(request.headers)
+            hook_handler = self._get_hook_handler(alert_body, hook_headers)
+
+            # all handling based off 'docs' found in this documentation -
+            # https://docs.newrelic.com/docs/alerts/alert-policies/examples/webhook-examples
+
+            try:
+                if hook_handler:
+                    hook_handler(alert_body, hook_headers)
+            except Exception:
+                self._log.Exception('Failed to handle nr hook %s.', alert_body)
+
+            return 'ACCEPTED'
+
         self._app.run(host=self._host, port=self._port)
-
-    def _handle_nrhook(self, url):
-
-        # hooks are sent for alerts and deployments. Only care about alerts so ignoring
-        # deployments. Body expected to be of the form -
-        #
-        # alert : {...}
-        #      OR
-        # deployment : {...}
-        #
-        alert_body = request.get_json().get('alert', None)
-
-        if alert_body.get('severity', None) not in ['critical', 'downtime']:
-            self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
-            return jsonify({}, http_client.ACCEPTED)
-
-        hook_headers = self._get_headers_as_dict(request.headers)
-        hook_handler = self._get_hook_handler(alert_body, hook_headers)
-
-        # all handling based off 'docs' found in this documentation -
-        # https://docs.newrelic.com/docs/alerts/alert-policies/examples/webhook-examples
-
-        try:
-            if hook_handler:
-                hook_handler(alert_body, hook_headers)
-        except Exception:
-            self._log.Exception('Failed to handle nr hook %s.', alert_body)
-
-        return jsonify({}, http_client.ACCEPTED)
 
     def _get_hook_handler(self, alert_body, hook_headers):
         if not alert_body:
@@ -139,7 +139,6 @@ class NewRelicHookSensor(Sensor):
         return self._app_hook_handler
 
     def _app_hook_handler(self, alert_body, hook_headers):
-
         if not alert_body['application_name']:
             self._log.info('No application found for alert %s. Will Ignore.', alert_body)
             return
@@ -154,7 +153,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
-            self._sensor_service.dispatch(WEB_APP_ALERT_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_ALERT_TRIGGER_REF, payload)
 
         elif self._is_alert_closed(long_description) or \
              self._is_downtime_recovered(long_description):
@@ -183,7 +182,7 @@ class NewRelicHookSensor(Sensor):
             return
         application = self._get_application(payload['alert']['application_name'])
         if application['health_status'] in ['green']:
-            self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
         else:
             self._log.info('Application %s has state %s. Rescheduling normal check.',
                            application['name'], application['health_status'])
@@ -199,7 +198,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
-            self._sensor_service.dispatch(SERVER_ALERT_TRIGGER_REF, payload)
+            self._dispatch_trigger(SERVER_ALERT_TRIGGER_REF, payload)
 
         elif self._is_alert_closed(long_description) or \
              self._is_downtime_recovered(long_description):
@@ -232,13 +231,17 @@ class NewRelicHookSensor(Sensor):
                 break
 
         if all_servers_ok:
-            self._sensor_service.dispatch(WEB_APP_NORMAL_TRIGGER_REF, payload)
+            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
         else:
             for server in servers:
                 self._log.info('server %s has state %s. Rescheduling normal check.',
                                server['name'], server['health_status'])
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
                                  payload, attempt_no + 1)
+
+    def _dispatch_trigger(self, trigger, payload):
+        self._sensor_service.dispatch(trigger, payload)
+        self._log.info('Dispatched %s with payload %s.', trigger, payload)
 
     # alert test methods
     def _is_alert_opened(self, long_description):
