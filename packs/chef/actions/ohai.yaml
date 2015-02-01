@@ -1,6 +1,6 @@
 ---
 name: 'ohai'
-runner_type: 'run-remote'
+runner_type: 'run-remote-script'
 description: 'Performs chef-solo run on remote hosts.'
 enabled: true
 entry_point: 'chef_ohai.py'

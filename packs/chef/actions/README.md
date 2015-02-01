@@ -42,10 +42,10 @@ Performs remote invocation of *chef-client*.
 Use parameters *environment, attributes, log_level, why_run, override_runlist* which have the same meaning as for **chef.solo** action.
 
 * `rewrite_runlist` - Specify a **string** providing rewrite run list. Permanently replaces the current run list with specified items. *Default*: `none`.
- 
+
 ### __chef.ohai action__
 
-Invokes ohai on remote nodes. The action accepts one single optional parameter which is a slash separated path to an ohai attribute.
+Invokes ohai on remote nodes. The action accepts one single optional parameter **path** representing an ohai attribute.
 
 ### Examples
 ```shell
@@ -54,8 +54,9 @@ st2 run chef.install hosts=st2_agent_1 version=11.18.0 # to install the specifie
 st2 run chef.install hosts=st2_agent_1 # to install latest version
 
 # Invocation of chef-solo. /tmp/dna.json must present on remote nodes.
-st2 run chef.solo hosts=st2_agent_1 recipe_url="https://github.com/dennybaa/st2-chef-test/raw/master/cookbooks.tgz" attributes=/tmp/dna.json 
+st2 run chef.solo hosts=st2_agent_1 recipe_url="https://github.com/dennybaa/st2-chef-test/raw/master/cookbooks.tgz" attributes=/tmp/dna.json
 
 # Querying ohai
-st2 run chef.ohai hosts=st2_agent_1 network/interfaces/eth0/addresses
+st2 run chef.ohai hosts=st2_agent_1 path=network/interfaces/eth0/addresses
+st2 run chef.ohai hosts=st2_agent_1
 ```
