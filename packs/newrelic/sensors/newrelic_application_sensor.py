@@ -74,7 +74,7 @@ class NewRelicHookSensor(Sensor):
         self._host = self._get_sensor_config_param(self._config, APP_HOST_KEY)
         self._port = self._get_sensor_config_param(self._config, APP_PORT_KEY)
         self._url = self._get_sensor_config_param(self._config, APP_URL_KEY)
-        self._normal_report_delay = self._get_sensor_config_param(self._config, 300)
+        self._normal_report_delay = self._get_sensor_config_param(self._config, NORMAL_REPORT_DELAY_KEY, 300)
 
         self._app = Flask(__name__)
         self._log = self._sensor_service.get_logger(__name__)
