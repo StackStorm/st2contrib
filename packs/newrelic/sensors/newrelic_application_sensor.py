@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import six
 import sys
 import json
 
@@ -177,6 +178,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
+            self._log.info('App alert closed. Delay.')
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
                                  payload)
 
@@ -194,14 +196,17 @@ class NewRelicHookSensor(Sensor):
         if attempt_no == 10:
             self._log.warning('Abandoning WEB_APP_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
             return
-        application = self._get_application(payload['alert']['application_name'])
-        if application['health_status'] in ['green']:
-            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
-        else:
-            self._log.info('Application %s has state %s. Rescheduling normal check.',
-                           application['name'], application['health_status'])
-            eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
-                                 payload, attempt_no + 1)
+        try:
+            application = self._get_application(payload['alert']['application_name'])
+            if application['health_status'] in ['green']:
+                self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
+            else:
+                self._log.info('Application %s has state %s. Rescheduling normal check.',
+                               application['name'], application['health_status'])
+                eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
+                                     payload, attempt_no + 1)
+        except Exception:
+            self._log.exception('Failed delay dispatch. Payload %s.', payload)
 
     def _server_hook_handler(self, alert_body, hook_headers):
         long_description = alert_body['long_description']
@@ -221,6 +226,7 @@ class NewRelicHookSensor(Sensor):
                 'alert': alert_body,
                 'header': hook_headers
             }
+            self._log.info('App alert closed. Delay.')
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
                                  payload)
 
@@ -236,22 +242,25 @@ class NewRelicHookSensor(Sensor):
         if attempt_no == 10:
             self._log.warning('Abandoning SERVER_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
             return
-        servers = self._get_servers(payload['alert']['servers'])
-        # make sure all servers are ok.
-        all_servers_ok = True
-        for server in servers:
-            all_servers_ok &= server['health_status'] in ['green']
-            if not all_servers_ok:
-                break
+        try:
+            servers = self._get_servers(payload['alert']['servers'])
+            # make sure all servers are ok.
+            all_servers_ok = True
+            for name, server in six.iteritems(servers):
+                all_servers_ok &= server['health_status'] in ['green']
+                if not all_servers_ok:
+                    break
 
-        if all_servers_ok:
-            self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
-        else:
-            for server in servers:
-                self._log.info('server %s has state %s. Rescheduling normal check.',
-                               server['name'], server['health_status'])
-            eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
-                                 payload, attempt_no + 1)
+            if all_servers_ok:
+                self._dispatch_trigger(SERVER_NORMAL_TRIGGER_REF, payload)
+            else:
+                for server in servers:
+                    self._log.info('server %s has state %s. Rescheduling normal check.',
+                                   server['name'], server['health_status'])
+                eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
+                                     payload, attempt_no + 1)
+        except:
+            self._log.exception('Failed delay dispatch. Payload %s.', payload)
 
     def _dispatch_trigger(self, trigger, payload):
         self._sensor_service.dispatch(trigger, payload)
@@ -297,7 +306,7 @@ class NewRelicHookSensor(Sensor):
             params = {'filter[name]': server_name}
             url = urllib_parse.urljoin(self._api_url, 'servers.json')
             resp = requests.get(url, headers=self._headers, params=params).json()
-            servers['server_name'] = resp['servers'][0] if resp['servers'] else None
+            servers[server_name] = resp['servers'][0] if resp['servers'] else None
         return servers
 
     @staticmethod
