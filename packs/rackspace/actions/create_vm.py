@@ -9,7 +9,8 @@ __all__ = [
 
 
 class CreateVMAction(PyraxBaseAction):
-    def run(self, name, image_id, flavor_id, key_material=None, region=None):
+    def run(self, name, image_id, flavor_id, key_material=None, metadata=None,
+            region=None):
         if region:
             cs = self.pyrax.connect_to_cloudservers(region=region)
         else:
@@ -27,7 +28,7 @@ class CreateVMAction(PyraxBaseAction):
         self.logger.info('Creating server...')
 
         server = cs.servers.create(name=name, image=image, flavor=flavor,
-                                   key_name=key_name)
+                                   key_name=key_name, meta=metadata)
 
         # Block until provisioned
         self.pyrax.utils.wait_for_build(server)

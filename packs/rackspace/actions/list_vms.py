@@ -7,7 +7,7 @@ __all__ = [
 
 
 class ListVMsAction(PyraxBaseAction):
-    def run(self, region=None):
+    def run(self, region=None, metadata=None):
         if region:
             cs = self.pyrax.connect_to_cloudservers(region=region)
         else:
@@ -18,6 +18,25 @@ class ListVMsAction(PyraxBaseAction):
         result = []
         for server in servers:
             item = to_server_dict(server=server)
+
+            if metadata:
+                include = self._metadata_intersection(server=item,
+                                                      metadata=metadata)
+
+                if not include:
+                    continue
+
             result.append(item)
 
         return result
+
+    def _metadata_intersection(self, server, metadata):
+        server_metadata = server.get('metadata', {})
+
+        for key, value in metadata.items():
+            server_metadata_value = server_metadata.get(key, None)
+
+            if not server_metadata_value or server_metadata_value != value:
+                return False
+
+        return True

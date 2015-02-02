@@ -21,6 +21,10 @@ parameters:
     type: string
     description: Optional public SSH key material
     required: false
+  metadata:
+    type: object
+    description: Optional metadata to associate with the server (key/value pairs).
+    required: false
   region:
     type: string
     description: Optional region name. Defaults to region specified in the config.
