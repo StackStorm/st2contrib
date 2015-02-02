@@ -16,7 +16,8 @@ def to_server_dict(server):
         'flavor_id': server.flavor['id'],
         'public_ips': public_ips,
         'private_ips': private_ips,
-        'key_name': server.key_name
+        'key_name': server.key_name,
+        'metadata': server.metadata
     }
     return result
 
