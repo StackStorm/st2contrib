@@ -44,6 +44,16 @@ class StackStormSensorBot(SingleServerIRCBot):
         handler = self._handlers.get('privmsg', lambda connection, event: connection)
         handler(connection=connection, event=event)
 
+    def on_join(self, connection, event):
+        event.timestamp = int(time.time())
+        handler = self._handlers.get('join', lambda connection, event: connection)
+        handler(connection=connection, event=event)
+
+    def on_part(self, connection, event):
+        event.timestamp = int(time.time())
+        handler = self._handlers.get('part', lambda connection, event: connection)
+        handler(connection=connection, event=event)
+
 
 class IRCSensor(Sensor):
     def __init__(self, sensor_service, config=None):
@@ -60,7 +70,9 @@ class IRCSensor(Sensor):
     def setup(self):
         handlers = {
             'pubmsg': self._handle_pubmsg,
-            'privmsg': self._handle_privmsg
+            'privmsg': self._handle_privmsg,
+            'join': self._handle_join,
+            'part': self._handle_part
         }
         self._bot = StackStormSensorBot(server_host=self._server_host,
                                         server_port=self._server_port,
@@ -106,5 +118,29 @@ class IRCSensor(Sensor):
             },
             'timestamp': event.timestamp,
             'message': event.arguments[0]
+        }
+        self._sensor_service.dispatch(trigger=trigger, payload=payload)
+
+    def _handle_join(self, connection, event):
+        trigger = 'irc.join'
+        payload = {
+            'source': {
+                'nick': event.source.nick,
+                'host': event.source.host
+            },
+            'timestamp': event.timestamp,
+            'channel': event.target
+        }
+        self._sensor_service.dispatch(trigger=trigger, payload=payload)
+
+    def _handle_part(self, connection, event):
+        trigger = 'irc.part'
+        payload = {
+            'source': {
+                'nick': event.source.nick,
+                'host': event.source.host
+            },
+            'timestamp': event.timestamp,
+            'channel': event.target
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)

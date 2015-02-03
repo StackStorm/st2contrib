@@ -19,6 +19,8 @@ directly to the bot.
 
 #### irc.pubmsg trigger
 
+Dispatched when a message is posted to the channel.
+
 Example trigger payload:
 
 ```json
@@ -35,6 +37,8 @@ Example trigger payload:
 
 #### irc.privmsg trigger
 
+Dispatched when a message is sent directly to the sensor bot.
+
 Example trigger payload:
 
 ```json
@@ -45,5 +49,39 @@ Example trigger payload:
     },
     "timestamp": 1419166748,
     "message": "hello stackstorm!"
+}
+```
+
+#### irc.join trigger
+
+Dispatched when a user joins a channel.
+
+Example trigger payload:
+
+```json
+{
+    "source": {
+        "nick": "Kami__",
+        "host": "gateway/web/irccloud.com/x-uvv"
+    },
+    "channel": "#test989",
+    "timestamp": 1419166748
+}
+```
+
+#### irc.part trigger
+
+Dispatched when a user parts a channel.
+
+Example trigger payload:
+
+```json
+{
+    "source": {
+        "nick": "Kami__",
+        "host": "gateway/web/irccloud.com/x-uvv"
+    },
+    "channel": "#test989",
+    "timestamp": 1419166748
 }
 ```
