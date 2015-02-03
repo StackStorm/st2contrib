@@ -11,11 +11,12 @@
         properties:
           source:
             type: "object"
+          timestamp:
+            type: "integer"
           channel:
             type: "string"
           message:
             type: "string"
-
     -
       name: "privmsg"
       description: "Trigger which represents a private message"
@@ -24,5 +25,31 @@
         properties:
           source:
             type: "object"
+          timestamp:
+            type: "integer"
           message:
+            type: "string"
+    -
+      name: "join"
+      description: "Trigger which represents user joining a channel"
+      payload_schema:
+        type: "object"
+        properties:
+          source:
+            type: "object"
+          timestamp:
+            type: "integer"
+          channel:
+            type: "string"
+    -
+      name: "part"
+      description: "Trigger which represents user parting a channel"
+      payload_schema:
+        type: "object"
+        properties:
+          source:
+            type: "object"
+          timestamp:
+            type: "integer"
+          channel:
             type: "string"
