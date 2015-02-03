@@ -80,9 +80,9 @@ class SlackSensor(PollingSensor):
 
         if 'subtype' in data:
             # 'user_typing' events may not actually have text, but represent a state change
-            # Note: We resolve user and channel information to provide more context
             return
 
+        # Note: We resolve user and channel information to provide more context
         user_info = self._get_user_info(user_id=data['user'])
         channel_info = self._get_channel_info(channel_id=data['channel'])
 
