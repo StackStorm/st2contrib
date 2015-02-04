@@ -17,14 +17,14 @@ class PagerDutyAction(Action):
     return pager
 
 ##get all the acknowledged incidents
-  def ack_incidents(self):
+  def get_ack_incidents(self):
     ack_alarms = []
     for incident in self.pager.incidents.list(status="acknowledged"):
       ack_alarms.append(incident.incident_key)
     return ack_alarms
 
 # get all the triggered incidents
-  def triggered_incidents(self):
+  def get_triggered_incidents(self):
     trigger_alarms = []
     for incident in self.pager.incidents.list(status="triggered"):
       trigger_alarms.append(incident.incident_key)

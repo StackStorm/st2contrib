@@ -1,5 +1,3 @@
-import json
-import requests
 from lib.action import PagerDutyAction
 
 
