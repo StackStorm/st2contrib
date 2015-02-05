@@ -1,0 +1,35 @@
+---
+  name: "invoke_method"
+  runner_type: "run-python"
+  description: "Invoke a provided MBean method exposed over JMX."
+  enabled: true
+  entry_point: "invoke_method.py"
+  parameters:
+    hostname:
+      type: "string"
+      description: "JMX service hostname."
+      required: true
+    port:
+      type: "integer"
+      description: "JMX service port"
+      required: true
+    bean_name:
+      type: "string"
+      description: "MBean name."
+      required: true
+    command:
+      type: "string"
+      description: "Command to invoke."
+      required: true
+    arguments:
+      type: "array"
+      description: "List of arguments to pass to the method."
+      required: false
+    username:
+      type: "string"
+      description: "Optional JMX authentication username."
+      required: false
+    password:
+      type: "string"
+      description: "Optional JMX authentication password."
+      required: false

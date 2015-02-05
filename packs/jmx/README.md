@@ -55,5 +55,11 @@ result in multiple triggers being emitted (one per metric).
 
 ## Notice
 
-extern/jmxquery/ is part of the [ck-agent project](https://github.com/cloudkick/ck-agent/)
+* ``extern/jmxquery/`` is part of the [ck-agent project](https://github.com/cloudkick/ck-agent/)
 licensed under Apache 2.0 license.
+* ``extern/cmdline-jmxclient`` is part of the [cmdline-jmxclient](http://crawler.archive.org/cmdline-jmxclient/) project.
+
+## Actions
+
+* ``invoke_method`` -  invokes an arbitrary MBean method which is exposed over
+  JMX.
