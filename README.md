@@ -37,6 +37,7 @@ make all
 Name | Description | Author | Latest Version | Available Resources
 ---- | ----------- | ------ | -------------- | -------------------
 | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
+| [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
 | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
@@ -246,6 +247,16 @@ r53_zone_update_mx |
 r53_zone_update_record | 
 set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
 
+### chef pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+client | Performs chef-client run on remote hosts.
+install | Performs installation of chef-client on remote nodes
+solo | Performs chef-solo run on remote hosts.
+
 ### docker pack
 
 #### Sensors
@@ -329,6 +340,12 @@ Name | Description
 ---- | -----------
 JMXSensor | Sensor which monitors Java application for attributes / metrics exposed through JMX protocol
 
+#### Actions
+
+Name | Description
+---- | -----------
+invoke_method | Invoke a provided MBean method exposed over JMX.
+
 ### libcloud pack
 
 #### Actions
@@ -390,7 +407,7 @@ wait_for_ssh | Wait for SSH
 
 Name | Description
 ---- | -----------
-NewRelicAppSensor | Sensor which watches for alerts from NewRelic.
+NewRelicHookSensor | Sensor which watches for alerts from NewRelic.
 
 #### Actions
 
@@ -438,11 +455,20 @@ create_loadbalancer | Create a new loadbalancer.
 create_vm | Create a new VM / cloud server
 delete_dns_record | Delete a DNS record.
 delete_dns_zone | Delete a DNS zone.
+delete_loadbalancer | Delete a loadbalancer
 delete_node_from_loadbalancer | Delete a node from a load balancer
 delete_vm | Delete a vm.
+find_dns_record_id | Find a DNS record ID based on name
+find_dns_zone_id | Find a DNS zone id based on name
+find_loadbalancer_id | Find a loadbalancer id based on name
+find_vm_id | Find a virtual machine id based on name
 list_dns_records | List all records for a particular zone.
 list_dns_zones | List all the DNS zones.
-list_vms | List all the available vms.
+list_vm_images | List all the available VM images
+list_vm_sizes | List all the available VM sizes
+list_vms | List all the available vms. Optionally filter on the metadata values.
+test | Action to execute arbitrary linux command remotely.
+test_py | Action to execute arbitrary linux command remotely.
 
 ### sensu pack
 
@@ -489,7 +515,11 @@ post_message | Post a message to the Slack channel.
 
 Name | Description
 ---- | -----------
-kvstore | Get value from datastore
+kv.delete | Delete value from datastore
+kv.get | Get value from datastore
+kv.get | Get value from datastore
+kv.grep | Grep for values in datastore
+kv.set | Set value in datastore
 
 ### twilio pack
 
