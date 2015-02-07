@@ -6,5 +6,5 @@ entry_point: resolve_incident.py
 parameters:
   event_keys:
     type: array
-    description: Key for event to be resolved, You can also Provide comma seprated keys
+    description: Key for event to be resolved, You can also Provide comma separated keys
 
