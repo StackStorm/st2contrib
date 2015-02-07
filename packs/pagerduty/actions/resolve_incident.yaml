@@ -4,7 +4,7 @@ description: Resolve an incident whose key is provided
 enabled: true
 entry_point: resolve_incident.py
 parameters:
-  event_key:
-    type: string
+  event_keys:
+    type: array
     description: Key for event to be resolved, You can also Provide comma seprated keys
 
