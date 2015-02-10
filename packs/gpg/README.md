@@ -2,6 +2,11 @@
 
 Pack which allows integration with [GnuPG](https://www.gnupg.org/).
 
+## Requirements
+
+For this pack to work you need to have access to a compatible version of the
+GnuGP executable.
+
 ## Configuration
 
 * ``gpgbinary`` - Optional path to the gpg binary to use.
