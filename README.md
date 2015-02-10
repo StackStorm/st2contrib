@@ -42,6 +42,7 @@ Name | Description | Author | Latest Version | Available Resources
 | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
 | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
 | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#github-pack)
+| [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
 | [irc](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | st2 content pack containing irc integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#irc-pack)
 | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jira-pack)
 | [jmx](https://github.com/StackStorm/st2contrib/tree/master/packs/jmx) | st2 content pack containing Java JMX integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jmx-pack)
@@ -310,6 +311,17 @@ add_status | Add a commit status for a provided ref.
 get_clone_stats | Retrieve clone statistics for a given repository
 get_traffic_stats | Retrieve traffic statistics for a given repository
 
+### gpg pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+decrypt_file | Decrypt asymmetrically encrypted GPG file.
+encrypt_file | Encrypt a file using asymmetric encryption for the provided recipients.
+import_keys | Import keys into the keyring.
+list_keys | List all keys in the keyring.
+
 ### irc pack
 
 #### Sensors
@@ -467,8 +479,6 @@ list_dns_zones | List all the DNS zones.
 list_vm_images | List all the available VM images
 list_vm_sizes | List all the available VM sizes
 list_vms | List all the available vms. Optionally filter on the metadata values.
-test | Action to execute arbitrary linux command remotely.
-test_py | Action to execute arbitrary linux command remotely.
 
 ### sensu pack
 
