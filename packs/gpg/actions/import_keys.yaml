@@ -1,0 +1,11 @@
+---
+  name: "import_keys"
+  runner_type: "run-python"
+  description: "Import keys into the keyring."
+  enabled: true
+  entry_point: "import_keys.py"
+  parameters:
+    file_path:
+      type: "string"
+      description: "Path to the file containing a single or multiple keys as ASCII string."
+      required: true
