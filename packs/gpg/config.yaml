@@ -1,0 +1,4 @@
+---
+gpgbinary: "gpg"
+gpghome:
+debug: false

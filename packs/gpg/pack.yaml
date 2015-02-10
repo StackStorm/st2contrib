@@ -1,0 +1,13 @@
+---
+name: gpg
+description: Pack for working with GPG.
+keywords:
+  - gpg
+  - pgp
+  - gnupg
+  - privacy
+  - encryption
+  - crypto
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
