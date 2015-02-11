@@ -64,6 +64,8 @@ class ServiceNotificationsSensor(Sensor):
         def handle_notification_webhook():
             return self._handle_notification_webhook()
 
+        self._log.info('Listening for webhooks on http://%s:%s%s' %
+                       (self._host, self._port, self._path))
         self._app.run(host=self._host, port=self._port)
 
     def cleanup(self):
