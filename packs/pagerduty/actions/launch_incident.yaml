@@ -6,9 +6,9 @@ entry_point: launch_incident.py
 parameters:
   details:
     type: string
-    description: Name for the incident to launch
+    description: Details of the incident 
     
   description:
     type: string
-    description: Description of incident
+    description: Description of the incident
     required: true
