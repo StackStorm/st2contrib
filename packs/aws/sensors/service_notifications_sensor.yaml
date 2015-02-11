@@ -1,6 +1,6 @@
 ---
   class_name: "ServiceNotificationsSensor"
-  entry_point: "service_notification_sensor.py"
+  entry_point: "service_notifications_sensor.py"
   description: "Sensor which exposes an HTTP interface and listens for AWS service notifications delivered via AWS SNS"
   trigger_types:
     -
