@@ -6,13 +6,15 @@ The StackStorm AWS integration pack supplies action integration for EC2 and Rout
 
 You will need to add a set of AWS credentials, and default zone to the config.yaml file:
 
-  ---
-  setup:
-    region: ""
-    aws_access_key_id: ""
-    aws_secret_access_key: ""
-  interval: 20
-  st2_user_data: ""
+```yaml
+---
+setup:
+  region: ""
+  aws_access_key_id: ""
+  aws_secret_access_key: ""
+interval: 20
+st2_user_data: ""
+ ```
 
 You can generate the access key and secret access key by following these directions:
 
@@ -26,7 +28,9 @@ http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html#Using_C
 
 Optionally, you can set the user_data to set a default file to be used during new instance creation.  Put your user_data file somewhere accessible by the StackStorm user, and use the st2_user_data config option to set it.
 
-  st2_user_data: "/full/path/to/file"
+```yaml
+st2_user_data: "/full/path/to/file"
+ ```
 
 This file/script will be used for all invocations of the ec2_run_instances action
 
