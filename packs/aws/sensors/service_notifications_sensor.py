@@ -44,7 +44,6 @@ class ServiceNotificationsSensor(Sensor):
     def __init__(self, sensor_service, config=None):
         super(ServiceNotificationsSensor, self).__init__(sensor_service=sensor_service,
                                                  config=config)
-        print self._config
         self._config = self._config.get('service_notifications_sensor', {})
 
         self._host = self._config.get('host', 'localhost')
