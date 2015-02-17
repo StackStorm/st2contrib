@@ -1,7 +1,6 @@
 import json
 
 import eventlet
-import time
 from slackclient import SlackClient
 
 from st2reactor.sensor.base import PollingSensor
@@ -12,6 +11,10 @@ eventlet.monkey_patch(
     socket=True,
     thread=True,
     time=True)
+
+EVENT_TYPE_WHITELIST = [
+    'message'
+]
 
 
 class SlackSensor(PollingSensor):
@@ -77,9 +80,10 @@ class SlackSensor(PollingSensor):
 
     def _handle_message(self, data):
         trigger = 'slack.message'
+        event_type = data['type']
 
-        if 'subtype' in data:
-            # 'user_typing' events may not actually have text, but represent a state change
+        if event_type not in EVENT_TYPE_WHITELIST or 'subtype' in data:
+            # Skip unsupported event
             return
 
         # Note: We resolve user and channel information to provide more context
