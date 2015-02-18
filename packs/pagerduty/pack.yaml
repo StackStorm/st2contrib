@@ -1,0 +1,5 @@
+name: pagerduty
+description: Packs which allows integration with PagerDuty services.
+version: 0.1.0
+author: Aamir
+email: raza.aamir01@gmail.com
