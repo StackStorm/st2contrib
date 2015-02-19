@@ -15,6 +15,7 @@ class PostMessageAction(Action):
         config = self.config['post_message_action']
         username = username if username else config['username']
         icon_emoji = icon_emoji if icon_emoji else config.get('icon_emoji', None)
+        channel = channel if channel else config.get('channel', None)
 
         headers = {}
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -23,8 +24,10 @@ class PostMessageAction(Action):
             'icon_emoji': icon_emoji,
             'text': message
         }
-        if channel is not None:
+
+        if channel:
             body['channel'] = channel
+
         data = 'payload=%s' % (json.dumps(body))
         response = requests.post(url=config['webhook_url'],
                                  headers=headers, data=data)
