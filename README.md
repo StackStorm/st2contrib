@@ -51,6 +51,7 @@ Name | Description | Author | Latest Version | Available Resources
 | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
+| [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
 | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. | [jfryman](mailto:jfryman@FryBook) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
@@ -343,6 +344,7 @@ JIRASensor | Sensor which monitors JIRA for new tickets
 Name | Description
 ---- | -----------
 create_issue | Create JIRA issue action.
+get_issue | Retrieve information about a particular JIRA issue.
 
 ### jmx pack
 
@@ -441,6 +443,17 @@ nova | Run OpenStack Nova commands
 nova_confirm | Confirms a resize or migrate
 nova_instances | Returns a list of instances by hypervisor
 nova_migrate_server | Evacuate guests from compute node
+
+### pagerduty pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+ack_incident | ACK an incident on PagerDuty
+get_open_incidents | Retrive list of open incidents from PagerDuty
+launch_incident | Launch an incident on PagerDuty
+resolve_incident | Resolve an incident whose key is provided
 
 ### puppet pack
 
