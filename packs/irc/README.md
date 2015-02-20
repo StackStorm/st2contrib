@@ -85,3 +85,12 @@ Example trigger payload:
     "timestamp": 1419166748
 }
 ```
+
+## Actions
+
+* ``post_message`` - Action which sends a message to the specified IRC channel.
+  The IRC server and bot nickname are specified in the config (see
+  Configuration section above). Note: This action establish a new short-running
+  connection to an IRC server for each action run. This approach has multiple
+  limitations (it's slow, depends on server settings such as maximum number of
+  connections per host, etc.)
