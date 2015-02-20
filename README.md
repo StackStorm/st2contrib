@@ -331,6 +331,12 @@ Name | Description
 ---- | -----------
 IRCSensor | Sensor which monitors IRC and dispatches a trigger for each public and private message
 
+#### Actions
+
+Name | Description
+---- | -----------
+post_message | Send a message to an IRC channel.
+
 ### jira pack
 
 #### Sensors
