@@ -310,6 +310,7 @@ Name | Description
 add_comment | Add a comment to the provided issue / pull request.
 add_status | Add a commit status for a provided ref.
 get_clone_stats | Retrieve clone statistics for a given repository
+get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
 
 ### gpg pack
