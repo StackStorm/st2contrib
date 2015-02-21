@@ -74,3 +74,6 @@ StackStorm webhook handler.
 
 * ``add_comment`` - Add comment to the provided issue / pull request.
 * ``add_status`` - Add commit status to the provided commit.
+* ``get_issue`` - Retrieve information about a particular issue. Note: You
+  only need to specify authentication token in the config if you use this
+  action with a private repository.
