@@ -4,7 +4,10 @@ Pack which allows integration with [Github](https://github.com/).
 
 ## Configuration
 
-* ``token`` - Authentication token.
+* ``token`` - Authentication token. Note: token only needs to be specified for
+  actions such as ``add_comment`` and ``add_status`` which require
+  authentication. If you use ``get_issue`` action only with public
+  repositories, then token doesn't need to be specified.
 * ``repository_sensor.repositories`` - A list of repositories to monitor. Each
   item needs to contain the following keys: ``user`` - user or organization the
   repository you want to monitor belongs to and ``name`` - name of the

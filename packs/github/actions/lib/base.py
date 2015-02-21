@@ -13,7 +13,7 @@ BASE_URL = 'https://github.com'
 class BaseGithubAction(Action):
     def __init__(self, config):
         super(BaseGithubAction, self).__init__(config=config)
-        self._client = Github(self.config['token'])
+        self._client = Github(self.config.get('token', None))
 
     def _web_session(self):
         '''Returns a requests session to scrape off the web'''
