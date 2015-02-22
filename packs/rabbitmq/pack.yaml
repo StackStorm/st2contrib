@@ -1,0 +1,13 @@
+---
+name : rabbitmq
+description : st2 content pack containing rabbitmq integrations
+keywords:
+  - rabbitmq
+  - queuing
+  - messaging
+  - aqmp
+  - stomp
+  - message broker
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
