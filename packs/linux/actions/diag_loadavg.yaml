@@ -3,7 +3,7 @@
   description: "Diagnostic workflow for high load alert"
   runner_type: "action-chain"
   enabled: true
-  entry_point: "diag_loadavg.chain.yaml"
+  entry_point: "workflows/diag_loadavg.yaml"
   parameters: 
     hostname: 
       type: "string"
