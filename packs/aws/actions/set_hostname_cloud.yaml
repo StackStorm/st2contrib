@@ -5,12 +5,6 @@
   enabled: true
   entry_point: ""
   parameters: 
-    dir: 
-      immutable: true
-      default: "/home/stanley/"
-    sudo: 
-      immutable: true
-      default: true
     hostname:
       type: "string"
       description: "The hostname to set"
