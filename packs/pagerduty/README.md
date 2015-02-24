@@ -7,10 +7,10 @@ The action to integrate PD into stackstorm. This action is capable fof perofrmin
 
 # Confgiuration
 
-You need the following parmters to be in the config.yaml file
+You need the following parameters to be in the config.yaml file
 `subdomain: `'name of subdomain '
-`api_key:` MmzGEJKsqmq7DrmE4w1R
-`service_Api:` 1148e87e51fe4688aaba21b88b264692
+`api_key:` API-KEY
+`service_Api:` SERVICE-API
 
 ##How to get API key
 Once you sign in to you PD subdomain go to the API access tab and under create New API key give the key name in description and click on create key that will create API key, copy and paste that API key in the config.yaml file.
