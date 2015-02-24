@@ -10,8 +10,8 @@
         type: "object"
         properties:
           file_path:
-            type: "object"
+            type: "string"
           file_name:
-            type: "object"
+            type: "string"
           line:
             type: "string"
