@@ -16,6 +16,12 @@ parameters:
         type: 'string'
         required: true
 
-    arguments:
+    args:
         description: 'Arguments to pass to the module'
         type: array
+        required: false
+
+    kwargs:
+        description: 'Key Pair arguments to pass to the module'
+        type: object
+        required: false
