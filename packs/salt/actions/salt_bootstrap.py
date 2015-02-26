@@ -1,11 +1,11 @@
 import salt.cloud
 
-__all__ = [
-    'SaltInstaller'
-]
+from st2actions.runners.pythonrunner import Action
 
-class SaltInstaller(object):
+
+class SaltInstaller(Action):
     def run(name, provider, instance_id):
         client = salt.cloud.CloudClient('/etc/salt/cloud')
-        ret = client.create(names=[name], provider=provider, instance_id=instance_id)
+        ret = client.create(names=[name], provider=provider,
+                            instance_id=instance_id)
         return ret
