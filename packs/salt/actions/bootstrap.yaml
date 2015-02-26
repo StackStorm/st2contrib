@@ -2,7 +2,7 @@
 name: 'bootstrap'
 runner_type: 'run-python'
 description: 'Bootstrap servers with salt.cloud runner'
-enabled: true
+enabled: True
 entry_point: 'salt_bootstrap.py'
 parameters:
     instance_id:
