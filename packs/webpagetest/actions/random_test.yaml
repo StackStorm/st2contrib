@@ -1,0 +1,11 @@
+---
+name: "random_test"
+runner_type: "run-python"
+description: "Test a domain on WebPageTest from a random location."
+enabled: true
+entry_point: "random_test.py"
+parameters:
+  domain:
+    type: "string"
+    description: "Site to test."
+    required: true
