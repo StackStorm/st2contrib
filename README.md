@@ -47,7 +47,6 @@ Name | Description | Author | Latest Version | Available Resources
 | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jira-pack)
 | [jmx](https://github.com/StackStorm/st2contrib/tree/master/packs/jmx) | st2 content pack containing Java JMX integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jmx-pack)
 | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#libcloud-pack)
-| [linux](https://github.com/StackStorm/st2contrib/tree/master/packs/linux) | Generic linux actions | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#linux-pack)
 | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
@@ -55,6 +54,7 @@ Name | Description | Author | Latest Version | Available Resources
 | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. | [jfryman](mailto:jfryman@FryBook) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
+| [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | [gtmanfred](mailto:danielwallace@gtmanfred.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
@@ -353,6 +353,7 @@ Name | Description
 ---- | -----------
 create_issue | Create JIRA issue action.
 get_issue | Retrieve information about a particular JIRA issue.
+post_issue_details | 
 
 ### jmx pack
 
@@ -389,39 +390,6 @@ reboot_vm | Reboot a running VM.
 start_vm | Start a new VM.
 stop_vm | Stop a running VM.
 upload_file | Upload a file to the provider container
-
-### linux pack
-
-#### Sensors
-
-Name | Description
----- | -----------
-FileWatchSensor | Sensor which monitors files for new lines
-
-#### Actions
-
-Name | Description
----- | -----------
-check_loadavg | Check CPU Load Average on a Host
-check_processes | Check Interesting Processes
-cp | Copy file(s)
-diag_loadavg | Diagnostic workflow for high load alert
-dig | Dig action
-file_touch | Touches a file
-get_open_ports | Retrieve open ports for a given host
-lsof | Run lsof
-lsof_pids | Run lsof for a group of PIDs
-mv | Move file(s)
-netstat | Run netstat
-netstat_grep | Grep netstat results
-pkill | Kill processes using pkill
-rm | Remove file(s)
-rsync | Copy file(s) from one place to another w/ rsync
-scp | Secure copy file(s)
-service | Stops, Starts, or Restarts a service
-traceroute | Traceroute a Host
-vmstat | Run vmstat
-wait_for_ssh | Wait for SSH
 
 ### newrelic pack
 
@@ -509,6 +477,15 @@ list_dns_zones | List all the DNS zones.
 list_vm_images | List all the available VM images
 list_vm_sizes | List all the available VM sizes
 list_vms | List all the available vms. Optionally filter on the metadata values.
+
+### salt pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+bootstrap | Bootstrap servers with salt.cloud runner
+client | Run salt LocalClient functions
 
 ### sensu pack
 
