@@ -1,0 +1,14 @@
+description: 'Destroys an instance'
+enabled: true
+entry_point: run.py
+name: destroy_instance
+parameters:
+  action:
+    default: destroy_instance
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+
+runner_type: run-python

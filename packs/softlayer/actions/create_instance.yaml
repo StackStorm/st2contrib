@@ -1,0 +1,41 @@
+description: 'Creates a new instance'
+enabled: true
+entry_point: run.py
+name: create_instance
+parameters:
+  action:
+    default: create_instance
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+  ex_domain:
+    required: false
+    type: string
+  ex_cpus:
+    required: false
+    type: integer
+  ex_disk:
+    required: false
+    type: integer
+  ex_ram:
+    required: false
+    type: integer
+  ex_bandwidth:
+    required: false
+    type: integer
+  ex_local_disk:
+    required: false
+    type: boolean
+  ex_datacenter:
+    required: true
+    type: string
+  ex_os:
+    required: false
+    type: string
+  ex_keyname:
+    required: true
+    type: string
+
+runner_type: run-python
