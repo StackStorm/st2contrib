@@ -1,0 +1,9 @@
+---
+name: mistral
+description: Mistral integrations to operate mistral.
+keywords:
+  - mistral
+  - workflows
+version: 0.0.1
+author: StackStorm
+email: support@stackstorm.com
