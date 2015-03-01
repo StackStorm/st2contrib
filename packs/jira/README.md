@@ -43,7 +43,7 @@ This documentation is written as of 06/17/2014. JIRA 6.3 implements OAuth1. Most
 
 ### JiraSensor
 
-The sensor monitors for new projects and sends a trigger into the system whenever there is a new project.
+The sensor monitors for new tickets and sends a trigger into the system whenever there is a new ticket.
 
 ## Actions
 
