@@ -11,9 +11,9 @@ parameters:
     required: true
     position: 1
   port:
-    type: string
+    type: integer
     description: Port the loadbalancer should listen on.
-    default: '80'
+    default: 80
     position: 2
   protocol:
     type: string
