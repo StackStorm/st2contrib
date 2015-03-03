@@ -1,4 +1,5 @@
 import json
+import re
 
 import eventlet
 from slackclient import SlackClient
@@ -24,6 +25,7 @@ class SlackSensor(PollingSensor):
                                           poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['sensor']['token']
+
         self._handlers = {
             'message': self._handle_message,
         }
@@ -106,7 +108,7 @@ class SlackSensor(PollingSensor):
                 'topic': channel_info['topic']['value'],
             },
             'timestamp': int(float(data['ts'])),
-            'text': data['text']
+            'text': re.sub("<http.*[|](.*)>", "\\1", data['text']) # Removes any server-side formatting for domains only
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
