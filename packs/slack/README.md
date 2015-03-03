@@ -16,6 +16,9 @@ Pack which allows integration with [Slack](https://slack.com/) service.
   is used.
 * ``sensor.token`` - Authentication token used to authenticate against Real
   Time Messaging API.
+* ``sensor.strip_formatting`` - By default, Slack automatically parses URLs, images,
+  channels, and usernames. This option removes formatting and only returns the raw
+  data from the client (URL only today)
 
 ### Obtaining a Webhook URL
 
