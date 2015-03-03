@@ -25,11 +25,7 @@ class SlackSensor(PollingSensor):
                                           poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['sensor']['token']
-        if 'strip_formatting' in self._config['sensor']:
-            self._strip_formatting = self._config['sensor']['strip_formatting']
-        else:
-            self._strip_formatting = False
-
+        self._strip_formatting = self._config['sensor'].get('strip_formatting', False)
         self._handlers = {
             'message': self._handle_message,
         }
