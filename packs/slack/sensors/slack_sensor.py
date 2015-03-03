@@ -1,4 +1,5 @@
 import json
+import re
 
 import eventlet
 from slackclient import SlackClient
@@ -24,6 +25,7 @@ class SlackSensor(PollingSensor):
                                           poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['sensor']['token']
+        self._strip_formatting = self._config['sensor'].get('strip_formatting', False)
         self._handlers = {
             'message': self._handle_message,
         }
@@ -90,6 +92,12 @@ class SlackSensor(PollingSensor):
         user_info = self._get_user_info(user_id=data['user'])
         channel_info = self._get_channel_info(channel_id=data['channel'])
 
+        # Removes formatting from messages if enabled by the user in config
+        if self._strip_formatting:
+            text = re.sub("<http.*[|](.*)>", "\\1", data['text'])
+        else:
+            text = data['text']
+
         payload = {
             'user': {
                 'id': user_info['id'],
@@ -106,7 +114,7 @@ class SlackSensor(PollingSensor):
                 'topic': channel_info['topic']['value'],
             },
             'timestamp': int(float(data['ts'])),
-            'text': data['text']
+            'text': text
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
