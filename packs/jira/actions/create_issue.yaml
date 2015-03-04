@@ -9,10 +9,6 @@ parameters:
     type: string
     description: Issue summary.
     required: true
-  description:
-    type: string
-    description: Issue description.
-    required: false
   type:
     type: string
     description: Issue type.
@@ -21,4 +17,9 @@ parameters:
       - Story
       - Epic
       - Bug
+    default: Task
+    required: true
+  description:
+    type: string
+    description: Issue description.
     required: false
