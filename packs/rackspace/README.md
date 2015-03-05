@@ -23,7 +23,9 @@ Cloud](http://www.rackspace.com/cloud) services such as:
 * `create_vm` - Create a new VM.
 * `delete_vm` - Delete an existing VM.
 * `get_vm_info` - Retrieve details on a single VM
-* `list_vms_by_ip` - Return a list of all managed IPs by metadata/count
+* `list_vm_ips` - Return a list of all managed IPs by metadata/count
+* `list_vm_ids` - Return a list of all managed IDs by metadata/count
+* `list_vm_names` - Return a list of all managed names by metadata/count
 
 ### Cloud Load Balancers
 
