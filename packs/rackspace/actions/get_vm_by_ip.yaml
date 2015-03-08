@@ -1,0 +1,15 @@
+---
+name: get_vm_by_ip
+runner_type: run-python
+description: Retrieve information for a VM which matches the provided public IP.
+enabled: true
+entry_point: get_vm_by_ip.py
+parameters:
+  ip_address:
+    type: string
+    description: IP address to filter on.
+    required: true
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
+    required: false
