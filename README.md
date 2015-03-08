@@ -352,7 +352,7 @@ JIRASensor | Sensor which monitors JIRA for new tickets
 
 Name | Description
 ---- | -----------
-create_issue | Create JIRA issue action.
+create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
 post_issue_details | 
 
@@ -484,6 +484,10 @@ find_dns_record_id | Find a DNS record ID based on name
 find_dns_zone_id | Find a DNS zone id based on name
 find_loadbalancer_id | Find a loadbalancer id based on name
 find_vm_id | Find a virtual machine id based on name
+get_vm_ids | Retrieve IDs for all the available VMs. Optionally filter by metadata and count.
+get_vm_info | Retrieve information for a provided VM. Optionally filter on the metadata values.
+get_vm_ips | Retrieve public IP addresses for all the available VMs. Optionally filter by metadata and count.
+get_vm_names | List all the available vms by names. Optionally filter by metadata and count
 list_dns_records | List all records for a particular zone.
 list_dns_zones | List all the DNS zones.
 list_vm_images | List all the available VM images
