@@ -2,8 +2,9 @@ from lib.action import PyraxBaseAction
 from lib.formatters import to_server_dict
 
 __all__ = [
-    'GetVMInfoActio'
+    'GetVMInfoAction'
 ]
+
 
 class GetVMInfoAction(PyraxBaseAction):
     def run(self, vm_id, region=None):
@@ -16,3 +17,5 @@ class GetVMInfoAction(PyraxBaseAction):
             item = to_server_dict(server=server)
             if server.id == vm_id:
                 return item
+
+        return None

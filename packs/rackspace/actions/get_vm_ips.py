@@ -1,11 +1,12 @@
-from lib.action import PyraxBaseAction
+from lib.action import BaseVMsAction
 from lib.formatters import to_server_dict
 
 __all__ = [
     'GetVMIPsAction'
 ]
 
-class GetVMIPsAction(PyraxBaseAction):
+
+class GetVMIPsAction(BaseVMsAction):
     def run(self, count=None, region=None, metadata=None):
         if region:
             cs = self.pyrax.connect_to_cloudservers(region=region)
@@ -25,20 +26,10 @@ class GetVMIPsAction(PyraxBaseAction):
                 if not include:
                     continue
 
-            result.append(item['public_ips'][1])
+            public_ips = item.get('public_ips', [])
+            result.extend(public_ips)
 
         if count:
             return result[0:count]
         else:
             return result
-
-    def _metadata_intersection(self, server, metadata):
-        server_metadata = server.get('metadata', {})
-
-        for key, value in metadata.items():
-            server_metadata_value = server_metadata.get(key, None)
-
-            if not server_metadata_value or server_metadata_value != value:
-                return False
-
-        return True

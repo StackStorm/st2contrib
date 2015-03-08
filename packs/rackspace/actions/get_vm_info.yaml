@@ -1,7 +1,7 @@
 ---
 name: get_vm_info
 runner_type: run-python
-description: List all the available vms. Optionally filter on the metadata values.
+description: Retrieve information for a provided VM. Optionally filter on the metadata values.
 enabled: true
 entry_point: get_vm_info.py
 parameters:

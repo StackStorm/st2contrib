@@ -1,7 +1,7 @@
 ---
 name: get_vm_ips
 runner_type: run-python
-description: List all the available vms by IP. Optionally filter by metadata and count
+description: Retrieve public IP addresses for all the available VMs. Optionally filter by metadata and count.
 enabled: true
 entry_point: get_vm_ips.py
 parameters:

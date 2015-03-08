@@ -1,7 +1,7 @@
 ---
 name: get_vm_ids
 runner_type: run-python
-description: List all the available vms by ID. Optionally filter by metadata and count
+description: Retrieve IDs for all the available VMs. Optionally filter by metadata and count.
 enabled: true
 entry_point: get_vm_ids.py
 parameters:
