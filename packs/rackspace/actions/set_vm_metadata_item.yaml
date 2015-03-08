@@ -1,0 +1,23 @@
+---
+name: set_vm_metadata_item
+runner_type: run-python
+description: Set a value of a metadata item for a provided VM.
+enabled: true
+entry_point: set_vm_metadata_item.py
+parameters:
+  vm_id:
+    type: string
+    description: ID of a VM to operate on.
+    required: true
+  key:
+    type: string
+    description: Metadata key.
+    required: true
+  value:
+    type: string
+    description: Metadata value.
+    required: true
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
+    required: false
