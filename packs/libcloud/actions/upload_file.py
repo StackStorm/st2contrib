@@ -19,7 +19,7 @@ class UploadFileAction(BaseAction):
             container = driver.get_container(container_name=container_name)
         except ContainerDoesNotExistError:
             self.logger.debug('Container "%s" doesn\'t exist, creating it...' %
-                              (container))
+                              (container_name))
             container = driver.create_container(container_name=container_name)
 
         object_name = object_name if object_name else os.path.basename(file_path)
