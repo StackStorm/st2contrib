@@ -484,6 +484,7 @@ find_dns_record_id | Find a DNS record ID based on name
 find_dns_zone_id | Find a DNS zone id based on name
 find_loadbalancer_id | Find a loadbalancer id based on name
 find_vm_id | Find a virtual machine id based on name
+get_vm_by_ip | Retrieve information for a VM which matches the provided public IP.
 get_vm_ids | Retrieve IDs for all the available VMs. Optionally filter by metadata and count.
 get_vm_info | Retrieve information for a provided VM. Optionally filter on the metadata values.
 get_vm_ips | Retrieve public IP addresses for all the available VMs. Optionally filter by metadata and count.
@@ -493,6 +494,8 @@ list_dns_zones | List all the DNS zones.
 list_vm_images | List all the available VM images
 list_vm_sizes | List all the available VM sizes
 list_vms | List all the available vms. Optionally filter on the metadata values.
+set_vm_metadata | Set metadata values for the provided VM.
+set_vm_metadata_item | Set a value of a metadata item for a provided VM.
 
 ### salt pack
 
