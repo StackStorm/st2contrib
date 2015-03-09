@@ -1,0 +1,10 @@
+---
+name : mailgun
+description : st2 content pack containing mailgun integrations
+keywords:
+  - email
+  - mail
+  - mailgun
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

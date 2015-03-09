@@ -1,0 +1,27 @@
+---
+  name: "send_email"
+  runner_type: "run-python"
+  description: "Send email via Mailgun HTTP API."
+  enabled: true
+  entry_point: "send_email.py"
+  parameters:
+    sender:
+      type: "string"
+      description: "Sender (e.g. \"sender@example.com\" or \"John Doe <sender@example.com>\")"
+      required: true
+    recipient:
+      type: "string"
+      description: "Reciepient (e.g. \"recipient@example.com\" or \"John Doe <recipient@example.com>\")"
+      required: true
+    subject:
+      type: "string"
+      description: "Email subject"
+      required: true
+    text:
+      type: "string"
+      description: "Email body (text version)"
+      required: true
+    html:
+      type: "string"
+      description: "Email body (html version)"
+      required: false
