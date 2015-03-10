@@ -28,4 +28,10 @@ class SendEmailAction(Action):
 
         api_url = SEND_EMAIL_API_URL % {'domain': domain}
         response = requests.post(api_url, auth=('api', api_key), data=data)
-        return response.status_code == httplib.OK
+
+        if response.status_code != httplib.OK:
+            msg = ('Failed to send message (status_code=%s): %s' %
+                   (response.status_code, response.text))
+            raise Exception(msg)
+
+        return True
