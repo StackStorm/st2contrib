@@ -18,7 +18,7 @@ eventlet.monkey_patch(
 
 
 class DripstatAlertSensor(PollingSensor):
-    def __init__(self, sensor_service, config=None, poll_interval=None):
+    def __init__(self, sensor_service, config=None, poll_interval=30):
         super(DripstatAlertSensor, self).__init__(sensor_service=sensor_service,
                                                   config=config,
                                                   poll_interval=poll_interval)
