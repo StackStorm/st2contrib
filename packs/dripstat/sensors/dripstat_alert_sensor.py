@@ -68,10 +68,10 @@ class DripstatAlertSensor(PollingSensor):
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
     def _get_last_alert_timestamp(self, app):
-        self._last_alert_timestamp = self._sensor_service.get_value("%s.last_alert_timestamp" % app)
+        last_alert_timestamp = self._sensor_service.get_value("%s.last_alert_timestamp" % app)
 
-        if self._last_alert_timestamp:
-            return self._last_alert_timestamp
+        if last_alert_timestamp:
+            return int(last_alert_timestamp)
         else:
             return 0
 
