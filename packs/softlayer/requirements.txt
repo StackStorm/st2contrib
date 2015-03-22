@@ -1,1 +1,2 @@
 apache-libcloud
+pycrypto

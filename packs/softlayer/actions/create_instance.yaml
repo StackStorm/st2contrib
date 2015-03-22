@@ -1,41 +1,47 @@
 description: 'Creates a new instance'
 enabled: true
-entry_point: run.py
+entry_point: create_instance.py
 name: create_instance
 parameters:
-  action:
-    default: create_instance
-    immutable: true
-    type: string
   name:
     required: true
     type: string
-  ex_domain:
+    description: Hostname for the instance.
+  domain:
     required: false
     type: string
-  ex_cpus:
+    description: domain to attach to the instance (defaults to example.com).
+  cpus:
     required: false
     type: integer
-  ex_disk:
+    description: Cpus for this instance (defaults to 1).
+  disk:
     required: false
     type: integer
-  ex_ram:
+    description: Disk size for this instance (defaults to 100Gb).
+  ram:
     required: false
     type: integer
-  ex_bandwidth:
+    description: Ram size for this instance (defaults to 2048Mb).
+  bandwidth:
     required: false
     type: integer
-  ex_local_disk:
+    description: Max Bandwith for this instance network card (defaults to 10Mb).
+  local_disk:
     required: false
     type: boolean
-  ex_datacenter:
+    description: If disk is local (True) or SAN (False).
+  datacenter:
     required: true
     type: string
-  ex_os:
+    description: Datacenter where this instace will be launched.
+  os:
     required: false
     type: string
-  ex_keyname:
-    required: true
+    description: Softlayer OS Image to boot this instance from (defaults to DEBIAN_LATEST).
+  keyname:
+    required: false
     type: string
+    description: Ssh key to attach to this instance.
 
 runner_type: run-python

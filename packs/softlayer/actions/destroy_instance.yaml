@@ -1,14 +1,11 @@
 description: 'Destroys an instance'
 enabled: true
-entry_point: run.py
+entry_point: destroy_instance.py
 name: destroy_instance
 parameters:
-  action:
-    default: destroy_instance
-    immutable: true
-    type: string
   name:
     required: true
     type: string
+    description: Instance hostname to destroy (Softlayer hostname, so domain included)
 
 runner_type: run-python
