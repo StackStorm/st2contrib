@@ -10,5 +10,6 @@ parameters:
   size:
     required: false
     type: int
-    description: Key length for the keypair. Must be a multiple of 256, and no smaller than 1024. (defaults to 4096)
+    description: Key length for the keypair. Must be a multiple of 256, and no smaller than 1024.
+    default: 4096
 runner_type: run-python

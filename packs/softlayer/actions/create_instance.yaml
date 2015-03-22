@@ -10,27 +10,33 @@ parameters:
   domain:
     required: false
     type: string
-    description: domain to attach to the instance (defaults to example.com).
+    description: domain to attach to the instance.
+    default: example.com
   cpus:
     required: false
     type: integer
-    description: Cpus for this instance (defaults to 1).
+    description: Cpus for this instance.
+    default: 1
   disk:
     required: false
     type: integer
-    description: Disk size for this instance (defaults to 100Gb).
+    description: Disk size for this instance.
+    default: 100
   ram:
     required: false
     type: integer
-    description: Ram size for this instance (defaults to 2048Mb).
+    description: Ram size for this instance.
+    default: 2048
   bandwidth:
     required: false
     type: integer
-    description: Max Bandwith for this instance network card (defaults to 10Mb).
+    description: Max Bandwith for this instance network card.
+    default: 10
   local_disk:
     required: false
     type: boolean
     description: If disk is local (True) or SAN (False).
+    default: True
   datacenter:
     required: true
     type: string
@@ -38,7 +44,8 @@ parameters:
   os:
     required: false
     type: string
-    description: Softlayer OS Image to boot this instance from (defaults to DEBIAN_LATEST).
+    description: Softlayer OS Image to boot this instance from.
+    default: DEBIAN_LATEST
   keyname:
     required: false
     type: string
