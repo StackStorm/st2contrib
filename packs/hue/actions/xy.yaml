@@ -11,11 +11,11 @@ parameters:
     required: true
   x:
     type: number
-    description: X value (e.g.: 0.5)
+    description: "X value (e.g.: 0.5)"
     required: true
   y:
     type: number
-    description: Y value (e.g.: 0.5)
+    description: "Y value (e.g.: 0.5)"
     required: true
   transition_time:
     type: integer
