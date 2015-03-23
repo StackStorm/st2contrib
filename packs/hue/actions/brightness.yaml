@@ -1,0 +1,20 @@
+---
+name: brightness
+runner_type: "run-python"
+description: Change the brightness of a bulb
+enabled: true
+entry_point: 'brightness.py'
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  brightness:
+    type: integer
+    description: "Brightness level (between 0 and 255)"
+    required: true
+  transition_time:
+    type: integer
+    description: "Duration of transition to new state"
+    default: 5
+
