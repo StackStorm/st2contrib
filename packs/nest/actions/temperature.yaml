@@ -1,0 +1,34 @@
+---
+name: temperature
+runner_type: run-python
+description: Manage Nest temperature. Run with no attributes for current state.
+enabled: true
+entry_point: temperature.py
+parameters:
+  temp:
+    type: integer
+    description: Set target temperature
+  temp_low:
+    type: integer
+    description: Set target lower temperature for range
+  temp_high:
+    type: integer
+    description: Set target upper temperature for range
+  scale:
+    type: string
+    description: Scale to use when setting temperature
+    enum:
+      - fahrenheit
+      - celcius
+      - c
+      - f
+    default: celcius
+  structure:
+    type: integer
+    description: ID of Nest Home name
+    default: 0
+  device:
+    type: integer
+    description: ID of specific Nest device in a structure
+    default: 0
+

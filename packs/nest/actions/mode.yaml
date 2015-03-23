@@ -1,0 +1,25 @@
+---
+name: mode
+runner_type: run-python
+description: Manage nest modes
+enabled: true
+entry_point: mode.py
+parameters:
+  mode:
+    type: string
+    description: State to set the fan
+    enum:
+      - heat
+      - cool
+      - range
+      - off
+    required: true
+  structure:
+    type: integer
+    description: ID of Nest Home name
+    default: 0
+  device:
+    type: integer
+    description: ID of specific Nest device in a structure
+    default: 0
+

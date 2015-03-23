@@ -1,0 +1,16 @@
+---
+name: show
+runner_type: run-python
+description: Show current Nest information
+enabled: true
+entry_point: show.py
+parameters:
+  structure:
+    type: integer
+    description: ID of Nest Home name
+    default: 0
+  device:
+    type: integer
+    description: ID of specific Nest device in a structure
+    default: 0
+
