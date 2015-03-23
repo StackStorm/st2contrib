@@ -16,6 +16,9 @@ instance).
 
 * ``new_message`` - Sensor that triggers a rabbitmq.new_message with a payload containing the queue and the body
 
+This sensor should only be used with ``fanout`` and ``topic`` exchanges,  this way it doesn't affect the behavior of the app since messages will still be delivered to other consumers / subscribers.
+If it's used with ``direct`` or ``headers`` exchanges, those messages won't be delivered to other consumers so it will affect app behavior and potentially break it.
+
 ## Sensors Config
 
 * ``queues`` - Comma separated list of queues to check for messages
