@@ -1,0 +1,11 @@
+---
+name: find_id_by_name
+runner_type: "run-python"
+description: Find bulb ID based on nickname
+enabled: true
+entry_point: "find_id_by_name.py"
+parameters:
+  name:
+    type: string
+    description: Name of bulb to lookup ID
+    required: true
