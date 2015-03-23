@@ -10,3 +10,15 @@ Pack which allows integration with [RabbitMQ](http://www.rabbitmq.com/).
 Note: All of the actions invoke ``rabbitmqadmin`` tool and must run on the
 same node where RabbitMQ server is running (they connect to the local 
 instance).
+
+
+## Sensors
+
+* ``new_message`` - Sensor that triggers a rabbitmq.new_message with a payload containing the queue and the body
+
+## Sensors Config
+
+* ``queues`` - Comma separated list of queues to check for messages
+* ``host`` - RabbitMQ host to connect to
+* ``user`` - User to connect to RabbitMQ
+* ``password`` - Password to connect to RabbitMQ
