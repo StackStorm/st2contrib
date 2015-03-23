@@ -1,0 +1,24 @@
+---
+name: xy
+runner_type: "run-python"
+description: Change bulb color based on CIE color space values
+enabled: true
+entry_point: "xy.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  x:
+    type: number
+    description: "X value (e.g.: 0.5)"
+    required: true
+  y:
+    type: number
+    description: "Y value (e.g.: 0.5)"
+    required: true
+  transition_time:
+    type: integer
+    description: "Duration of transition to new state"
+    default: 5
+

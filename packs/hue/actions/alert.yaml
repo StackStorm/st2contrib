@@ -1,0 +1,15 @@
+---
+name: alert
+runner_type: "run-python"
+description: "Send an alert to a light"
+enabled: true
+entry_point: "alert.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  long_alert:
+    type: boolean
+    description: Send a long alert to the light
+
