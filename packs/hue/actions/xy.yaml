@@ -10,12 +10,12 @@ parameters:
     description: ID of the light to manage
     required: true
   x:
-    type: integer
-    description: X value
+    type: number
+    description: X value (e.g.: 0.5)
     required: true
   y:
-    type: integer
-    description: Y value
+    type: number
+    description: Y value (e.g.: 0.5)
     required: true
   transition_time:
     type: integer
