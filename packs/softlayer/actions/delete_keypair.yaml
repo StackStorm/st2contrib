@@ -1,0 +1,10 @@
+description: 'Deletes a keypair by name. If there are mutiple keys with the same name it will only delete the first'
+enabled: true
+entry_point: delete_keypair.py
+name: delete_keypair
+parameters:
+  name:
+    required: true
+    type: string
+    description: Name of the key pair.
+runner_type: run-python
