@@ -1,5 +1,4 @@
 sensor_config:
-  poll_time: 5
   queues:
   host:
   user:
