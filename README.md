@@ -64,6 +64,7 @@ Name | Description | Author | Latest Version | Available Resources
 | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
 | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
+| [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 ### aws pack
 
 #### Actions
@@ -614,6 +615,14 @@ send_sms | This sends a SMS using twilio.
 Name | Description
 ---- | -----------
 TwitterSearchSensor | Sensor which monitors twitter timeline for new tweets matching the specified criteria
+
+### windows pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+wmi_query | Run a WMI query on a particular Windows host.
 
 ## License, and Contributors Agreement
 
