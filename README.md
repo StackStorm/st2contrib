@@ -489,6 +489,12 @@ run_agent | Run puppet agent.
 
 ### rabbitmq pack
 
+#### Sensors
+
+Name | Description
+---- | -----------
+RabbitMQSensor | Sensor which monitors a RabbitMQ queue for new messages
+
 #### Actions
 
 Name | Description
