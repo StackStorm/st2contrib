@@ -19,10 +19,10 @@ parameters:
     description: Scale to use when setting temperature
     enum:
       - fahrenheit
-      - celcius
+      - celsius
       - c
       - f
-    default: celcius
+    default: celsius
   structure:
     type: integer
     description: ID of Nest Home name

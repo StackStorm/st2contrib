@@ -25,6 +25,6 @@ class TemperatureAction(actions.BaseAction):
         return {
             'fahrenheit': self._utils.f_to_c(temp),
             'f': self._utils.f_to_c(temp),
-            'celcius': temp,
+            'celsius': temp,
             'c': temp,
             }.get(scale, temp)
