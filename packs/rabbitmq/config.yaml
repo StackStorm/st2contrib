@@ -3,3 +3,4 @@ sensor_config:
   host:
   username:
   password:
+  deserialization_method:
