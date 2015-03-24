@@ -1,0 +1,23 @@
+---
+  name: "wmi_query"
+  runner_type: "run-python"
+  description: "Run a WMI query on a particular Windows host."
+  enabled: true
+  entry_point: "wmi_query.py"
+  parameters:
+    host:
+      type: "string"
+      description: "IP address of a Windows server to run the query on"
+      required: true
+    password:
+      type: "string"
+      description: "Account password."
+      required: true
+    query:
+      type: "string"
+      description: "WQL query to run."
+      required: true
+    username:
+      type: "string"
+      description: "Account username."
+      required: false
