@@ -7,7 +7,7 @@ entry_point: mode.py
 parameters:
   mode:
     type: string
-    description: State to set the fan
+    description: Mode to change the thermostat to
     enum:
       - heat
       - cool
