@@ -8,7 +8,8 @@ class RabbitMQSensor(PollingSensor):
         super(RabbitMQSensor, self).__init__(sensor_service=sensor_service, config=config, poll_interval=poll_interval)
 
     def cleanup(self):
-        self.conn.close()
+        if self.conn:
+            self.conn.close()
 
     def setup(self):
         self.queues = None
