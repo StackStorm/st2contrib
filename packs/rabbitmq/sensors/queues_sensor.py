@@ -15,12 +15,19 @@ class RabbitMQSensor(PollingSensor):
         self.queues = None
         self.conn = None
         self.channel = None
+
         self.user = self._config['sensor_config']['user']
         self.password = self._config['sensor_config']['password']
         self.queues = self._config['sensor_config']['queues']
         host = self._config['sensor_config']['host']
-        creds = PlainCredentials(username=self.user, password=self.password)
-        self.conn = pika.BlockingConnection(pika.ConnectionParameters(host=host, credentials=creds))
+
+        if self.user and self.password:
+            credentials = PlainCredentials(username=self.user, password=self.password)
+            connection_params = pika.ConnectionParameters(host=host, credentials=credentials)
+        else:
+            connection_params = pika.ConnectionParameters(host=host)
+
+        self.conn = pika.BlockingConnection(connection_params)
         self.channel = self.conn.channel()
         self.channel.basic_qos(prefetch_count=1)
 
