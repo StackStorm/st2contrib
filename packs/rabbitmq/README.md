@@ -25,6 +25,9 @@ If it's used with ``direct`` or ``headers`` exchanges, those messages won't be d
 * ``username`` - Username to connect to RabbitMQ (optional).
 * ``password`` - Password to connect to RabbitMQ (optional).
 * ``queues`` - List of queues to check for messages. See an example below.
+* ``deserialization_method`` - Which method to use to de-serialize the
+  message body. By default, no deserialization method is specified which means
+  the message body is left as it is. Valid values are ``json`` and ``pickle``.
 
 ```yaml
 sensor_config:
