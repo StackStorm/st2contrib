@@ -1,5 +1,5 @@
 sensor_config:
   queues:
   host:
-  user:
+  username:
   password:

@@ -21,13 +21,13 @@ If it's used with ``direct`` or ``headers`` exchanges, those messages won't be d
 
 ## Sensors Config
 
-* ``host`` - RabbitMQ host to connect to
-* ``user`` - User to connect to RabbitMQ
-* ``password`` - Password to connect to RabbitMQ
-* ``queues`` - Yaml list of queues to check for messages, like this:
-```
+* ``host`` - RabbitMQ host to connect to.
+* ``username`` - Username to connect to RabbitMQ (optional).
+* ``password`` - Password to connect to RabbitMQ (optional).
+* ``queues`` - List of queues to check for messages. See an example below.
+
+```yaml
 sensor_config:
-  poll_time: 5
   queues:
     - queue1
     - queue2

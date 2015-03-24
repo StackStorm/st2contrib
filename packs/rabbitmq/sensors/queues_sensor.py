@@ -16,13 +16,13 @@ class RabbitMQSensor(PollingSensor):
         self.conn = None
         self.channel = None
 
-        self.user = self._config['sensor_config']['user']
+        self.username = self._config['sensor_config']['username']
         self.password = self._config['sensor_config']['password']
         self.queues = self._config['sensor_config']['queues']
         host = self._config['sensor_config']['host']
 
-        if self.user and self.password:
-            credentials = PlainCredentials(username=self.user, password=self.password)
+        if self.username and self.password:
+            credentials = PlainCredentials(username=self.username, password=self.password)
             connection_params = pika.ConnectionParameters(host=host, credentials=credentials)
         else:
             connection_params = pika.ConnectionParameters(host=host)
