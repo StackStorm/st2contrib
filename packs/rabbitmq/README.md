@@ -21,7 +21,15 @@ If it's used with ``direct`` or ``headers`` exchanges, those messages won't be d
 
 ## Sensors Config
 
-* ``queues`` - Comma separated list of queues to check for messages
 * ``host`` - RabbitMQ host to connect to
 * ``user`` - User to connect to RabbitMQ
 * ``password`` - Password to connect to RabbitMQ
+* ``queues`` - Yaml list of queues to check for messages, like this:
+```
+sensor_config:
+  poll_time: 5
+  queues:
+    - queue1
+    - queue2
+    - ....
+```

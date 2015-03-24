@@ -16,7 +16,7 @@ class RabbitMQSensor(PollingSensor):
         self.channel = None
         self.user = self._config['sensor_config']['user']
         self.password = self._config['sensor_config']['password']
-        self.queues = self._config['sensor_config']['queues'].split(",")
+        self.queues = self._config['sensor_config']['queues']
         host = self._config['sensor_config']['host']
         creds = PlainCredentials(username=self.user, password=self.password)
         self.conn = pika.BlockingConnection(pika.ConnectionParameters(host=host, credentials=creds))
@@ -25,7 +25,6 @@ class RabbitMQSensor(PollingSensor):
 
     def poll(self):
         for queue in self.queues:
-            queue = queue.strip()  # list of items will get some whitespace in there, remove it just in case
             queue_state = self.channel.queue_declare(queue=queue, durable=True)
             if queue_state.method.message_count != 0:
                 method, properties, body = self.channel.basic_get(queue, no_ack=False)
