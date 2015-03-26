@@ -16,13 +16,7 @@ parameters:
   api_key:
     type: string
     description: User API Key overriding the system key
-  api_secret:
-    type: string
-    description: User API Secret overriding the system key
   token:
     type: string
     description: User oAuth Token overriding the system key
-  token_secret:
-    type: string
-    description: User oAuth Token Secret overiding the system key
 
