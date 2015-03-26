@@ -1,5 +1,3 @@
---- 
-  api_key: e74b490dbd262191cffcd7fa83e593fe
-  api_secret: d51ff4b100e0454ad4daf297c37242e4bc6a3f24b9f9204cb1bac842f21e19b5
-  token: b2db76b34b2ef79cb5723d1a14748a77dbbb06536948489601dc72ae2281c975
-  token_secret: "046a6dbd996acf003ec15761c837df7c"
+---
+  api_key: ""
+  token: ""
