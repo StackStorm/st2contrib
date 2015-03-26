@@ -1,0 +1,18 @@
+---
+name: add_board
+runner_type: "run-python"
+description: Create a new board
+enabled: true
+entry_point: "add_board.py"
+parameters:
+  name:
+    type: string
+    description: Name of new board
+    required: true
+  api_key:
+    type: string
+    description: User API Key overriding the system key
+  token:
+    type: string
+    description: User oAuth Token overriding the system key
+
