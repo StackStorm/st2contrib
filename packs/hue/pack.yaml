@@ -1,0 +1,12 @@
+### Place information about your pack version here.
+---
+name: hue
+description: Philips Hue Pack
+version: 0.0.1
+author: James Fryman
+email: james@stackstorm.com
+keywords:
+  - hue
+  - philips
+  - iot
+

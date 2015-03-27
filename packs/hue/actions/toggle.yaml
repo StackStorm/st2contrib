@@ -1,0 +1,16 @@
+---
+name: toggle
+runner_type: "run-python"
+description: Toggle on/off state of a bulb
+enabled: true
+entry_point: "toggle.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  transition_time:
+    type: integer
+    description: "Duration of transition to new state"
+    default: 5
+

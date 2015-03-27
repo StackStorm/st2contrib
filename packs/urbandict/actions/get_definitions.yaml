@@ -1,0 +1,11 @@
+---
+  name: "get_definitions"
+  runner_type: "run-python"
+  description: "Retrieve definitions from urbandict for the provided term."
+  enabled: true
+  entry_point: "get_definitions.py"
+  parameters:
+    term:
+      type: "string"
+      description: "Term to retrieve the definitions for."
+      required: true

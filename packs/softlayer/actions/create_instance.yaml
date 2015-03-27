@@ -1,0 +1,54 @@
+description: 'Creates a new instance'
+enabled: true
+entry_point: create_instance.py
+name: create_instance
+parameters:
+  name:
+    required: true
+    type: string
+    description: Hostname for the instance.
+  domain:
+    required: false
+    type: string
+    description: domain to attach to the instance.
+    default: example.com
+  cpus:
+    required: false
+    type: integer
+    description: Cpus for this instance.
+    default: 1
+  disk:
+    required: false
+    type: integer
+    description: Disk size for this instance.
+    default: 100
+  ram:
+    required: false
+    type: integer
+    description: Ram size for this instance.
+    default: 2048
+  bandwidth:
+    required: false
+    type: integer
+    description: Max Bandwith for this instance network card.
+    default: 10
+  local_disk:
+    required: false
+    type: boolean
+    description: If disk is local (True) or SAN (False).
+    default: True
+  datacenter:
+    required: true
+    type: string
+    description: Datacenter where this instace will be launched.
+  os:
+    required: false
+    type: string
+    description: Softlayer OS Image to boot this instance from.
+    default: DEBIAN_LATEST
+  keyname:
+    required: false
+    type: string
+    description: Ssh key to attach to this instance.
+
+runner_type: run-python

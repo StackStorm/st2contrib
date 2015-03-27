@@ -1,0 +1,6 @@
+sensor_config:
+  queues:
+  host:
+  username:
+  password:
+  deserialization_method:

@@ -1,0 +1,22 @@
+---
+name: find_list_by_name
+runner_type: "run-python"
+description: Lookup a list ID based on name. Returns one or more IDs
+enabled: true
+entry_point: "find_list_by_name.py"
+parameters:
+  name:
+    type: string
+    description: Lookup a list ID based on name
+    required: true
+  board_id:
+    type: string
+    description: Board ID where list lives
+    required: true
+  api_key:
+    type: string
+    description: User API Key overriding the system key
+  token:
+    type: string
+    description: User oAuth Token overriding the system key
+

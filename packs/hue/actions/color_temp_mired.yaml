@@ -1,0 +1,19 @@
+---
+name: color_temp_mired
+runner_type: "run-python"
+description: Change the bulb color temperature to a specific temperature in mired scale
+enabled: true
+entry_point: "color_temp_mired.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  temperature:
+    type: integer
+    description: "Color temperature"
+    required: true
+  transition_time:
+    type: integer
+    description: "Duration of transition to new state"
+    default: 5

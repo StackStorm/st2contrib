@@ -1,0 +1,16 @@
+---
+  name: "get_search_results"
+  runner_type: "run-python"
+  description: "Retrieve Google search results for the provided query."
+  enabled: true
+  entry_point: "get_search_results.py"
+  parameters:
+    query:
+      type: "string"
+      description: "Search query."
+      required: true
+    count:
+        type: "integer"
+        description: "Maximum number of results to retrieve."
+        required: false
+        default: 10
