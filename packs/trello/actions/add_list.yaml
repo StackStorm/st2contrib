@@ -1,0 +1,22 @@
+---
+name: add_list
+runner_type: "run-python"
+description: Add a new list to a board
+enabled: true
+entry_point: "add_list.py"
+parameters:
+  name:
+    type: string
+    description: Name of new list
+    required: true
+  board_id:
+    type: string
+    description: Board ID to close
+    required: true
+  api_key:
+    type: string
+    description: User API Key overriding the system key
+  token:
+    type: string
+    description: User oAuth Token overriding the system key
+

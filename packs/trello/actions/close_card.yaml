@@ -1,0 +1,18 @@
+---
+name: close_card
+runner_type: "run-python"
+description: Close a card
+enabled: true
+entry_point: "close_card.py"
+parameters:
+  card_id:
+    type: string
+    description: ID of the card to close
+    required: true
+  api_key:
+    type: string
+    description: User API Key overriding the system key
+  token:
+    type: string
+    description: User oAuth Token overriding the system key
+
