@@ -1,13 +1,10 @@
-name: open_incident
+name: ack_incident
 runner_type: run-python
-description: Triggers the event on VictorOps with the given parameters
+description: Acknowledge a triggered event on victorops
 enabled: true
-entry_point: open_incident.py
+entry_point: ack_incident.py
 
 parameters:
-  severity:
-    type: string
-    description: "Describe the severity of incident i,e. critical, info, warning"
   entity:
     type: string
     description: "Provide entity id, This would be used by victorops for stacking up incidents related to this entity"
