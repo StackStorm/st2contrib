@@ -17,6 +17,8 @@ Once you sign in to your Victorops account go to the settings tab and click in I
 
 
 ##How to get Routing Key
+Routing key routes the incident information to the team  that you mention. If there is one team/group you can mention it in config file otherwise you can pass an optional parameter of `notify_group` when opening and incdient to notify any other team/group for any incident. Mention one routing key in config file so that if you dont want to pass parameter again and again it will be picked up by default from config file. The process of adding routing key is described as under
+
 Now to get the routing key you need to scroll down and you will see `Incident Routing` section. Click on `Add Rule`, then add the name of routing key and select the team to which you want to route the incident to. Once thats done copy the name that you just gave in routing key and paste it into the `config.yaml` file. The following images illustrate the steps.
 ![Alt text](/st2contrib/_images/add_rule.png?raw=true "add Rule")
 ![Alt text](/st2contrib/_images/routing_key.png?raw=true "add routing key")

@@ -16,3 +16,8 @@ parameters:
     type: string
     description: "Descriptive message about the event"
     required: false
+  notify_group:
+    type: string
+    description: "send notifications to this group"
+    required: false
+
