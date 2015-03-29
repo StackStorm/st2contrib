@@ -1,0 +1,13 @@
+---
+name: 'kv.set_object'
+enabled: true
+description: 'Serialize and store object in a datastore'
+runner_type: run-python
+entry_point: kv_set_object.py
+parameters:
+  key:
+    required: True
+    type: string
+  value:
+    required: True
+    type: object
