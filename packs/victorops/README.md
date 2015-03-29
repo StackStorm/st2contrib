@@ -1,9 +1,8 @@
 #Victorops
 This action enables the integration of Victorops into stackstorm. It is capable of performing the following actions
-1. List all the open incidents on PD for a subdomain
-2. Send acknowledgment of any incident or you can even send ACK for multiple incidents using comma seprated values
-3. Close and open incident or you can even close multiple open incidents by providing comma sperated values
-4. Launch an incident by giving its details and description
+1. Launch an incident by giving `severity ('INFO', 'WARNING', 'CRITICAL')`, `entity` and a `message` 
+2. Send acknowledgment of any incident using its `entity` id and a `message` indicating acknowledgment
+3. Recover an incident by giving `entity` id and a `message` indicating how the incident was recovered
 
 # Confgiuration
 
