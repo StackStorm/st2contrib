@@ -23,12 +23,17 @@ To obtain API credentials, you need to first register your application on the
 ![Step 1](/_images/twitter_create_app.png)
 
 After you have done that, go to the `Keys and Access Tokens` tab where you can
-find your consumer key and secret. On the same page you can also generate a
-read-only access token.
+find your consumer key and secret. On the same page you can also generate an
+access token (click on the ``Create my access token`` button).
 
 ![Step 2](/_images/twitter_obtain_consumer_key.png)
 
-![Step 3](/_images/twitter_obtain_access_token.png)
+For the sensor a "Read only" token is sufficient, but for the action you need
+to use a token with a "Read and Write" access.
+
+![Step 3](/_images/twitter_create_access_token.png)
+
+![Step 4](/_images/twitter_obtain_access_token.png)
 
 ## Sensors
 
@@ -36,6 +41,10 @@ read-only access token.
 
 This sensor searches Twitter for recent tweets matching the criteria defined in
 the config. When a matching Tweet is found, a trigger is dispatcher.
+
+## Actions
+
+* ``update_status`` - Action which updates your status / posts a new tweet.
 
 ## Rules
 

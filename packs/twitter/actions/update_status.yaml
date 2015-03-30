@@ -1,0 +1,11 @@
+---
+  name: "update_status"
+  runner_type: "run-python"
+  description: "Update your status (post a new tweet)."
+  enabled: true
+  entry_point: "update_status.py"
+  parameters:
+    status:
+      type: "string"
+      description: "New status (tweet message)."
+      required: true
