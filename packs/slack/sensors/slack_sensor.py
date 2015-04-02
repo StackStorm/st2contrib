@@ -19,6 +19,8 @@ EVENT_TYPE_WHITELIST = [
 
 
 class SlackSensor(PollingSensor):
+    DATASTORE_KEY_NAME = 'last_message_timestamp'
+
     def __init__(self, sensor_service, config=None, poll_interval=None):
         super(SlackSensor, self).__init__(sensor_service=sensor_service,
                                           config=config,
@@ -33,6 +35,8 @@ class SlackSensor(PollingSensor):
         self._user_info_cache = {}
         self._channel_info_cache = {}
 
+        self._last_message_timestamp = None
+
     def setup(self):
         self._client = SlackClient(self._token)
         data = self._client.rtm_connect()
@@ -42,13 +46,18 @@ class SlackSensor(PollingSensor):
             raise Exception(msg)
 
         self._populate_cache(user_data=self._api_call('users.list'),
-                                channel_data=self._api_call('channels.list'))
+                             channel_data=self._api_call('channels.list'))
 
     def poll(self):
         result = self._client.rtm_read()
 
-        if result:
-            self._handle_result(result=result)
+        if not result:
+            return
+
+        last_message_timestamp = self._handle_result(result=result)
+
+        if last_message_timestamp:
+            self._set_last_message_timestamp(last_message_timestamp=last_message_timestamp)
 
     def cleanup(self):
         pass
@@ -61,6 +70,24 @@ class SlackSensor(PollingSensor):
 
     def remove_trigger(self, trigger):
         pass
+
+    def _get_last_message_timestamp(self):
+        """
+        :rtype: ``int``
+        """
+        if not self._last_message_timestamp:
+            name = self.DATASTORE_KEY_NAME
+            value = self._sensor_service.get_value(name=name)
+            self._last_message_timestamp = int(value) if value else 0
+
+        return self._last_message_timestamp
+
+    def _set_last_message_timestamp(self, last_message_timestamp):
+        self._last_message_timestamp = last_message_timestamp
+        name = self.DATASTORE_KEY_NAME
+        value = str(last_message_timestamp)
+        self._sensor_service.set_value(name=name, value=value)
+        return last_message_timestamp
 
     def _populate_cache(self, user_data, channel_data):
         """
@@ -75,10 +102,27 @@ class SlackSensor(PollingSensor):
             self._channel_info_cache[channel['id']] = channel
 
     def _handle_result(self, result):
+        """
+        Handle / process the result and return timestamp of the last message.
+        """
+        existing_last_message_timestamp = self._get_last_message_timestamp()
+        new_last_message_timestamp = existing_last_message_timestamp
+
         for item in result:
             item_type = item['type']
+            item_timestamp = int(float(item.get('ts', 0)))
+
+            if existing_last_message_timestamp and item_timestamp <= existing_last_message_timestamp:
+                # We have already seen this message, skip it
+                continue
+
+            if item_timestamp > new_last_message_timestamp:
+                new_last_message_timestamp = item_timestamp
+
             handler_func = self._handlers.get(item_type, lambda data: data)
             handler_func(data=item)
+
+        return new_last_message_timestamp
 
     def _handle_message(self, data):
         trigger = 'slack.message'
@@ -91,6 +135,10 @@ class SlackSensor(PollingSensor):
         # Note: We resolve user and channel information to provide more context
         user_info = self._get_user_info(user_id=data['user'])
         channel_info = self._get_channel_info(channel_id=data['channel'])
+
+        if not user_info or not channel_info:
+            # Deleted user or channel
+            return
 
         # Removes formatting from messages if enabled by the user in config
         if self._strip_formatting:
@@ -116,18 +164,31 @@ class SlackSensor(PollingSensor):
             'timestamp': int(float(data['ts'])),
             'text': text
         }
+
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
     def _get_user_info(self, user_id):
         if user_id not in self._user_info_cache:
-            result = self._api_call('users.info', user=user_id)['user']
+            result = self._api_call('users.info', user=user_id)
+
+            if 'user' not in result:
+                # User doesn't exist or other error
+                return None
+
+            result = result['user']
             self._user_info_cache[user_id] = result
 
         return self._user_info_cache[user_id]
 
     def _get_channel_info(self, channel_id):
         if channel_id not in self._channel_info_cache:
-            result = self._api_call('channels.info', channel=channel_id)['channel']
+            result = self._api_call('channels.info', channel=channel_id)
+
+            if 'channel' not in result:
+                # Channel doesn't exist or other error
+                return None
+
+            result = result['channel']
             self._channel_info_cache[channel_id] = result
 
         return self._channel_info_cache[channel_id]
