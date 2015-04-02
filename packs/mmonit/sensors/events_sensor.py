@@ -27,7 +27,7 @@ class MmonitEventsSensor(PollingSensor):
         if test_login.status_code != 200:
             self._login()
 
-        events_list = self.session.get("{}/reports/events/list").json()
+        events_list = self.session.get("{}/reports/events/list".format(self.url)).json()
         events = self._clear_list(events_list)
         for event in events:
             payload = {"host": event['hostname'], "id": event['id'],
