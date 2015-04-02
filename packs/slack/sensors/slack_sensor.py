@@ -103,9 +103,12 @@ class SlackSensor(PollingSensor):
             'user': {
                 'id': user_info['id'],
                 'name': user_info['name'],
-                'first_name': user_info['profile']['first_name'],
-                'last_name': user_info['profile']['last_name'],
-                'real_name': user_info['profile']['real_name'],
+                'first_name': user_info['profile'].get('first_name',
+                                                       'Unknown'),
+                'last_name': user_info['profile'].get('last_name',
+                                                      'Unknown'),
+                'real_name': user_info['profile'].get('real_name',
+                                                      'Unknown'),
                 'is_admin': user_info['is_admin'],
                 'is_owner': user_info['is_owner']
             },
