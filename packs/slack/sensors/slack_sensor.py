@@ -27,7 +27,8 @@ class SlackSensor(PollingSensor):
                                           poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
         self._token = self._config['sensor']['token']
-        self._strip_formatting = self._config['sensor'].get('strip_formatting', False)
+        self._strip_formatting = self._config['sensor'].get('strip_formatting',
+                                                            False)
         self._handlers = {
             'message': self._handle_message,
         }
@@ -150,9 +151,12 @@ class SlackSensor(PollingSensor):
             'user': {
                 'id': user_info['id'],
                 'name': user_info['name'],
-                'first_name': user_info['profile']['first_name'],
-                'last_name': user_info['profile']['last_name'],
-                'real_name': user_info['profile']['real_name'],
+                'first_name': user_info['profile'].get('first_name',
+                                                       'Unknown'),
+                'last_name': user_info['profile'].get('last_name',
+                                                      'Unknown'),
+                'real_name': user_info['profile'].get('real_name',
+                                                      'Unknown'),
                 'is_admin': user_info['is_admin'],
                 'is_owner': user_info['is_owner']
             },
