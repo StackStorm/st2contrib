@@ -44,7 +44,7 @@ class CmdlineParser(object):
             self._keyname[lg.lstrip('-')] = k
 
     def parse(self, argv=None):
-        argv = argv or sys.argv
+        argv = argv or sys.argv[1:]
         return vars(self.parser.parse_args(args=argv))
 
     def short_arglist(self, kwargs=None):
