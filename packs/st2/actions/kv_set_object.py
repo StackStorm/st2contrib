@@ -1,12 +1,16 @@
+import json
+
 from lib.action import St2BaseAction
 
 __all__ = [
-    'St2KVPSetAction'
+    'St2KVPSetObjectAction'
 ]
 
-class St2KVPSetAction(St2BaseAction):
+
+class St2KVPSetObjectAction(St2BaseAction):
     def run(self, key, value, ttl=None):
-        kvp = self._kvp(name=key, value=value)
+        serialized_value = json.dumps(value)
+        kvp = self._kvp(name=key, value=serialized_value)
         kvp.id = key
 
         if ttl:

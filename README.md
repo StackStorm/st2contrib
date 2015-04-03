@@ -63,6 +63,7 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+| [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
 | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
@@ -613,8 +614,31 @@ Name | Description
 kv.delete | Delete value from datastore
 kv.get | Get value from datastore
 kv.get | Get value from datastore
+kv.get_object | Deserialize and retrieve JSON serialized object from a datastore
 kv.grep | Grep for values in datastore
 kv.set | Set value in datastore
+kv.set_object | Serialize and store object in a datastore
+
+### trello pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_board | Create a new board
+add_card | Add a new card to a list
+add_list | Add a new list to a board
+close_board | Close a board
+close_card | Close a card
+close_list | Close a list belonging to a board
+find_board_by_name | Lookup a board ID based on name. Returns one or more IDs
+find_card_by_name | Lookup a Card ID based on name. Returns one or more IDs
+find_list_by_name | Lookup a list ID based on name. Returns one or more IDs
+move_card | Move a card from one board/list to another board/list
+view_boards | Return a dictionary of all boards and their IDs
+view_cards | View all cards on a board
+view_lists | View all lists belonging to a board
+view_organizations | List all organizations for user
 
 ### twilio pack
 
@@ -631,6 +655,12 @@ send_sms | This sends a SMS using twilio.
 Name | Description
 ---- | -----------
 TwitterSearchSensor | Sensor which monitors twitter timeline for new tweets matching the specified criteria
+
+#### Actions
+
+Name | Description
+---- | -----------
+update_status | Update your status (post a new tweet).
 
 ### urbandict pack
 
