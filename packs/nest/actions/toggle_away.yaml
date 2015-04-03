@@ -1,11 +1,11 @@
 ---
-name: toggle_away
-runner_type: run-python
-description: Toggle current Home/Away status
+name: "toggle_away"
+runner_type: "run-python"
+description: "Toggle current Home/Away status"
 enabled: true
-entry_point: toggle_away.py
+entry_point: "toggle_away.py"
 parameters:
   structure:
-    type: integer
-    description: ID of Nest Home name
+    type: "integer"
+    description: "ID of Nest Home name"
     default: 0

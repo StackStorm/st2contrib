@@ -1,19 +1,19 @@
 ---
-name: humidity
-runner_type: run-python
-description: Manage humidity
+name: "humidity"
+runner_type: "run-python"
+description: "Manage humidity"
 enabled: true
-entry_point: humidity.py
+entry_point: "humidity.py"
 parameters:
   target:
-    type: integer
-    description: Target humidity levels to hit
+    type: "integer"
+    description: "Target humidity levels to hit"
   structure:
-    type: integer
-    description: ID of Nest Home name
+    type: "integer"
+    description: "ID of Nest Home name"
     default: 0
   device:
-    type: integer
-    description: ID of specific Nest device in a structure
+    type: "integer"
+    description: "ID of specific Nest device in a structure"
     default: 0
 
