@@ -7,6 +7,8 @@ This integration pack allows you to integrate with
 
 * `username` - Nest.com username
 * `password` - Nest.com password
+* `structure` - Default nest home ID to query (Default: 0)
+* `device` - Default device ID to query (Default: 0)
 
 ## Actions
 
