@@ -3,7 +3,7 @@ name: "set_temperature"
 runner_type: "run-python"
 description: "Set current temperature."
 enabled: true
-entry_point: "temperature.py"
+entry_point: "set_temperature.py"
 parameters:
   temp:
     type: "integer"

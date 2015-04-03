@@ -6,7 +6,7 @@ class SetTemperatureAction(actions.BaseAction):
         mode = None
 
         # Assume temp if a range is not provided
-        if low_temp and temp_high:
+        if temp_low and temp_high:
             temperature = (self._convert_temperature(temp_low, scale),
                            self._convert_temperature(temp_high, scale))
             # Automatically flip the mode to 'range' to accept the range temp

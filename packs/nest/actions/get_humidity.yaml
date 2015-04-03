@@ -5,13 +5,9 @@ description: "Get the current humidity"
 enabled: true
 entry_point: "get_humidity.py"
 parameters:
-  target:
-    type: "integer"
-    description: "Target humidity levels to hit"
   structure:
     type: "integer"
     description: "ID of Nest Home name"
   device:
     type: "integer"
     description: "ID of specific Nest device in a structure"
-

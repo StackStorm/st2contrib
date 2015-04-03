@@ -3,7 +3,7 @@ name: "set_humidity"
 runner_type: "run-python"
 description: "Set humidity goal for nest"
 enabled: true
-entry_point: "humidity.py"
+entry_point: "set_humidity.py"
 parameters:
   target:
     type: "integer"
