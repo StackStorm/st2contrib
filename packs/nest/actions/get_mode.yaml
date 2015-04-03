@@ -1,9 +1,9 @@
 ---
-name: "show"
+name: "get_mode"
 runner_type: "run-python"
-description: "Show current Nest information"
+description: "Manage nest modes"
 enabled: true
-entry_point: "show.py"
+entry_point: "get_mode.py"
 parameters:
   structure:
     type: "integer"

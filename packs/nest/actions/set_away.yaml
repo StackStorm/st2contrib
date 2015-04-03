@@ -8,4 +8,3 @@ parameters:
   structure:
     type: "integer"
     description: "ID of Nest Home name"
-    default: 0

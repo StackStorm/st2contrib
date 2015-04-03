@@ -1,7 +1,7 @@
 ---
-name: "temperature"
+name: "set_temperature"
 runner_type: "run-python"
-description: "Set current Nest temperature."
+description: "Set current temperature."
 enabled: true
 entry_point: "temperature.py"
 parameters:
@@ -26,9 +26,7 @@ parameters:
   structure:
     type: "integer"
     description: "ID of Nest Home name"
-    default: 0
   device:
     type: "integer"
     description: "ID of specific Nest device in a structure"
-    default: 0
 

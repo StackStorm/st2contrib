@@ -1,13 +1,13 @@
 ---
-name: "mode"
+name: "set_mode"
 runner_type: "run-python"
-description: "Manage nest modes"
+description: "Set current operating mode"
 enabled: true
-entry_point: "mode.py"
+entry_point: "set_mode.py"
 parameters:
   mode:
     type: "string"
-    description: "Mode to change the thermostat to"
+    description: "Mode to set on the thermostat"
     enum:
       - "heat"
       - "cool"
@@ -18,9 +18,7 @@ parameters:
   structure:
     type: "integer"
     description: "ID of Nest Home name"
-    default: 0
   device:
     type: "integer"
     description: "ID of specific Nest device in a structure"
-    default: 0
 

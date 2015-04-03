@@ -20,3 +20,11 @@ class BaseAction(Action):
 
     def _get_structure(self, structure):
         return self._nest.structures[structure]
+
+    def _convert_temperature(self, temperature, scale):
+        return {
+            'fahrenheit': self._utils.f_to_c(temperature),
+            'f': self._utils.f_to_c(temperature),
+            'celsius': temperature,
+            'c': temperature,
+            }.get(scale, temperature)

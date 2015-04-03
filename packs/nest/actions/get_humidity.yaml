@@ -1,10 +1,13 @@
 ---
-name: "show"
+name: "get_humidity"
 runner_type: "run-python"
-description: "Show current Nest information"
+description: "Get the current humidity"
 enabled: true
-entry_point: "show.py"
+entry_point: "get_humidity.py"
 parameters:
+  target:
+    type: "integer"
+    description: "Target humidity levels to hit"
   structure:
     type: "integer"
     description: "ID of Nest Home name"

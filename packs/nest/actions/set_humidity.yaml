@@ -1,17 +1,13 @@
 ---
-name: "fan"
+name: "set_humidity"
 runner_type: "run-python"
-description: "Manage fan state"
+description: "Set humidity goal for nest"
 enabled: true
-entry_point: "fan.py"
+entry_point: "humidity.py"
 parameters:
-  state:
-    type: "string"
-    description: "State to set the fan"
-    enum:
-      - "on"
-      - "auto"
-    default: "auto"
+  target:
+    type: "integer"
+    description: "Target humidity levels to hit"
     required: true
   structure:
     type: "integer"
