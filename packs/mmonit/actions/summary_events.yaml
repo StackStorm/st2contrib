@@ -1,0 +1,6 @@
+---
+name: summary_events
+runner_type: run-python
+description: Returns the events summary for the last 24 hours.
+enabled: true
+entry_point: summary_events.py

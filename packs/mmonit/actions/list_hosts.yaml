@@ -1,0 +1,6 @@
+---
+name: list_hosts
+runner_type: run-python
+description: Returns a list of all hosts registered in M/Monit.
+enabled: true
+entry_point: list_hosts.py

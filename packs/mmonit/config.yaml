@@ -1,3 +1,7 @@
+---
+username: ""
+password: ""
+host: ""
 shared_sensors_config:
   host:
   username:
