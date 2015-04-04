@@ -7,5 +7,5 @@ entry_point: session_delete.py
 parameters:
   attribute:
     type: string
-    description: The key/value of the session attribute to create/update in the following format key:value
+    description: 'The key/value of the session attribute to create/update in the following format key:value'
     required: true

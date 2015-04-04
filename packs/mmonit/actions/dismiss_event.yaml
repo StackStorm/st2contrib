@@ -7,6 +7,6 @@ entry_point: dismiss_event.py
 parameters:
   event_id:
     type: integer
-    description: The event id to dismiss
+    description: 'The event id to dismiss'
     required: true
     position: 1

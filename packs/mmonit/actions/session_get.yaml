@@ -7,5 +7,5 @@ entry_point: session_get.py
 parameters:
   session_key:
     type: string
-    description: The key used to store the data in the session
+    description: 'The key used to store the data in the session.'
     required: false

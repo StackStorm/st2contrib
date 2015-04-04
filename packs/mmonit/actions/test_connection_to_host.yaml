@@ -7,21 +7,21 @@ entry_point: test_connection_to_host.py
 parameters:
   ipaddr:
     type: string
-    description: The Monit http interface IP-Address or hostname.
+    description: 'The Monit http interface IP-Address or hostname.'
     required: true
   port:
     type: integer
-    description: The Monit http interface port number.
+    description: 'The Monit http interface port number.'
     required: true
   ssl:
     type: integer
-    description: The SSL flag. Possible values: 0=disable, 1=enable.
+    description: 'The SSL flag. Possible values: 0=disable, 1=enable.'
     required: true
   monituser:
     type: string
-    description: The Monit http interface username.
+    description: 'The Monit http interface username.'
     required: true
   monitpassword:
     type: string
-    description: The Monit http interface password.
+    description: 'The Monit http interface password.'
     required: true

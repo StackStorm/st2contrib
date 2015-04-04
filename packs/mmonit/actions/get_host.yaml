@@ -7,6 +7,6 @@ entry_point: get_host.py
 parameters:
   host_id:
     type: integer
-    description: ID of the host
+    description: 'ID of the host'
     required: true
     position: 1

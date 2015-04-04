@@ -7,13 +7,13 @@ entry_point: action_host.py
 parameters:
   host_id:
     type: integer
-    description: The host id.
+    description: 'The host id.'
     required: true
   action:
     type: string
-    description: The action. Possible values: "start", "stop", "restart", "monitor", "unmonitor".
+    description: 'The action. Possible values: "start", "stop", "restart", "monitor", "unmonitor".'
     required: true
   service:
     type: string
-    description: The service name to perform the action on.
+    description: 'The service name to perform the action on.'
     required: true

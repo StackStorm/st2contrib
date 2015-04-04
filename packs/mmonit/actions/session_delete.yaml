@@ -7,5 +7,5 @@ entry_point: session_delete.py
 parameters:
   session_key:
     type: integer
-    description: The key of the session attribute to delete
+    description: 'The key of the session attribute to delete'
     required: false

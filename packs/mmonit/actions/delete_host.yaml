@@ -7,6 +7,6 @@ entry_point: delete_host.py
 parameters:
   host_id:
     type: integer
-    description: The id of the host to delete.
+    description: 'The id of the host to delete.'
     required: true
     position: 1

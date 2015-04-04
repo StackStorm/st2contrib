@@ -7,25 +7,25 @@ entry_point: list_status_hosts.py
 parameters:
   host_id:
     type: integer
-    description: Show only hosts with matching host id.
+    description: 'Show only hosts with matching host id.'
     required: false
   hostgroupid:
     type: integer
-    description: Show only hosts which are member of the given hostgroupid
+    description: 'Show only hosts which are member of the given hostgroupid'
     required: false
   platform:
     type: string
-    description: Show only hosts with matching platform.
+    description: 'Show only hosts with matching platform.'
     required: false
   machine:
     type: string
-    description: Show only hosts with matching machine.
+    description: 'Show only hosts with matching machine.'
     required: false
   status:
     type: integer
-    description: Show only hosts with matching status. Possible values: 0=active, 1=inactive, 2=ignored.
+    description: 'Show only hosts with matching status. Possible values: 0=active, 1=inactive, 2=ignored.'
     required: false
   led:
     type: integer
-    description: Show only hosts with matching led. Possible values: 0=red, 1=orange, 2=green, 3=gray.
+    description: 'Show only hosts with matching led. Possible values: 0=red, 1=orange, 2=green, 3=gray.'
     required: false
