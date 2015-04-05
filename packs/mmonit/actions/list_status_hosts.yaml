@@ -25,7 +25,16 @@ parameters:
     type: integer
     description: 'Show only hosts with matching status. Possible values: 0=active, 1=inactive, 2=ignored.'
     required: false
+    enum:
+      - 0
+      - 1
+      - 2
   led:
     type: integer
     description: 'Show only hosts with matching led. Possible values: 0=red, 1=orange, 2=green, 3=gray.'
     required: false
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3

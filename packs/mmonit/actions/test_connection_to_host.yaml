@@ -17,6 +17,9 @@ parameters:
     type: integer
     description: 'The SSL flag. Possible values: 0=disable, 1=enable.'
     required: true
+    enum:
+      - 0
+      - 1
   monituser:
     type: string
     description: 'The Monit http interface username.'

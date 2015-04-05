@@ -13,6 +13,12 @@ parameters:
     type: string
     description: 'The action. Possible values: "start", "stop", "restart", "monitor", "unmonitor".'
     required: true
+    enum:
+      - start
+      - stop
+      - restart
+      - monitor
+      - unmonitor
   service:
     type: string
     description: 'The service name to perform the action on.'
