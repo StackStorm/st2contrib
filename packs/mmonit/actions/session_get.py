@@ -8,7 +8,7 @@ class MmonitSessionGet(MmonitBaseAction):
         req = self.session.post("{}/session/get".format(self.url), data=data)
         try:
             return req.json()
-        except Exception as error:
-            return error.message
+        except Exception:
+            raise
         finally:
             self.logout()

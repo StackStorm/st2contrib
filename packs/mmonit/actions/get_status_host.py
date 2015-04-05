@@ -9,7 +9,7 @@ class MmonitGetStatusHost(MmonitBaseAction):
 
         try:
             return req.json()
-        except Exception as error:
-            return error.message
+        except Exception:
+            raise
         finally:
             self.logout()
