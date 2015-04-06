@@ -35,6 +35,7 @@ class SlackSensor(PollingSensor):
 
         self._user_info_cache = {}
         self._channel_info_cache = {}
+        self._group_info_cache = {}
 
         self._last_message_timestamp = None
 
@@ -47,7 +48,8 @@ class SlackSensor(PollingSensor):
             raise Exception(msg)
 
         self._populate_cache(user_data=self._api_call('users.list'),
-                             channel_data=self._api_call('channels.list'))
+                             channel_data=self._api_call('channels.list'),
+                             group_data=self._api_call('groups.list'),)
 
     def poll(self):
         result = self._client.rtm_read()
@@ -58,7 +60,8 @@ class SlackSensor(PollingSensor):
         last_message_timestamp = self._handle_result(result=result)
 
         if last_message_timestamp:
-            self._set_last_message_timestamp(last_message_timestamp=last_message_timestamp)
+            self._set_last_message_timestamp(
+                last_message_timestamp=last_message_timestamp)
 
     def cleanup(self):
         pass
@@ -90,9 +93,9 @@ class SlackSensor(PollingSensor):
         self._sensor_service.set_value(name=name, value=value)
         return last_message_timestamp
 
-    def _populate_cache(self, user_data, channel_data):
+    def _populate_cache(self, user_data, channel_data, group_data):
         """
-        Populate users and channels cache from info which is returned on
+        Populate users, channels and group cache from info which is returned on
         rtm.start
         """
 
@@ -101,6 +104,9 @@ class SlackSensor(PollingSensor):
 
         for channel in channel_data['channels']:
             self._channel_info_cache[channel['id']] = channel
+
+        for group in group_data['groups']:
+            self._group_info_cache[group['id']] = group
 
     def _handle_result(self, result):
         """
@@ -135,7 +141,13 @@ class SlackSensor(PollingSensor):
 
         # Note: We resolve user and channel information to provide more context
         user_info = self._get_user_info(user_id=data['user'])
-        channel_info = self._get_channel_info(channel_id=data['channel'])
+        channel_info = None
+        channel_id = data.get('channel', '')
+        # Grabbing info based on the type of channel the message is in.
+        if channel_id.startswith('C'):
+            channel_info = self._get_channel_info(channel_id=channel_id)
+        elif channel_id.startswith('G'):
+            channel_info = self._get_group_info(group_id=channel_id)
 
         if not user_info or not channel_info:
             # Deleted user or channel
@@ -164,6 +176,7 @@ class SlackSensor(PollingSensor):
                 'id': channel_info['id'],
                 'name': channel_info['name'],
                 'topic': channel_info['topic']['value'],
+                'is_group': channel_info.get('is_group', False),
             },
             'timestamp': int(float(data['ts'])),
             'text': text
@@ -196,6 +209,19 @@ class SlackSensor(PollingSensor):
             self._channel_info_cache[channel_id] = result
 
         return self._channel_info_cache[channel_id]
+
+    def _get_group_info(self, group_id):
+        if group_id not in self._group_info_cache:
+            result = self._api_call('groups.info', channel=group_id)
+            self._logger.warn('GROUP DATA: %s' % result)
+            if 'group' not in result:
+                # Group doesn't exist or other error
+                return None
+
+            result = result['group']
+            self._group_info_cache[group_id] = result
+
+        return self._group_info_cache[group_id]
 
     def _api_call(self, method, **kwargs):
         result = self._client.api_call(method, **kwargs)
