@@ -37,6 +37,7 @@ make all
 Name | Description | Keywords | Author | Latest Version | Available Resources
 ---- | ----------- | -------- | ------ | -------------- | -------------------
 | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
+| [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
@@ -52,6 +53,7 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
 | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
 | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
+| [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
 | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
@@ -258,6 +260,23 @@ r53_zone_update_mx |
 r53_zone_update_record | 
 set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
 
+### azure pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+create_container | Create a new storage container.
+create_vm | Create a new VM.
+delete_container | Delete a storage container.
+delete_object | Delete an object.
+destroy_vm | Destroy a VM.
+list_container_objects | List storage objects for the provided container.
+list_containers | List storage containers.
+list_vms | List available VMs.
+reboot_vm | Reboot a running VM.
+upload_file | Upload a file to the provided container.
+
 ### chef pack
 
 #### Actions
@@ -425,7 +444,7 @@ list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
 start_vm | Start a new VM.
 stop_vm | Stop a running VM.
-upload_file | Upload a file to the provider container
+upload_file | Upload a file to the provided container
 
 ### mailgun pack
 
@@ -445,6 +464,24 @@ get_task_results | Get results of mistral task in an execution.
 get_workbook_definition | Get the definition of the mistral workbook.
 get_workflow_results | Get results of mistral workflow.
 kill_workflow | Kill a running mistral workflow.
+
+### nest pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_humidity | Get the current humidity
+get_mode | Manage nest modes
+get_temperature | Get the current temperature.
+set_away | Set nest to away mode
+set_fan | Manage fan state
+set_home | Set nest to home mode
+set_humidity | Set humidity goal for nest
+set_mode | Set current operating mode
+set_temperature | Set current temperature.
+show | Show current Nest information
+toggle_away | Toggle current Home/Away status
 
 ### newrelic pack
 
