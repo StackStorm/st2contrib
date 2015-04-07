@@ -14,6 +14,9 @@ certificate file and obtaining subscription ID](https://libcloud.readthedocs.org
 * ``storage.name`` - Your storage account name.
 * ``storage.access_key`` - Your storage account access key.
 
+For information on how to obtain those credentials, see the following page
+[Connecting to Azure Blobs](https://libcloud.readthedocs.org/en/latest/storage/drivers/azure_blobs.html#connecting-to-azure-blobs).
+
 ## Actions
 
 ### Virtual Machines / Servers
