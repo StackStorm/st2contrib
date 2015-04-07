@@ -1,0 +1,6 @@
+---
+name: list_containers
+runner_type: run-python
+description: List storage containers.
+enabled: true
+entry_point: list_containers.py

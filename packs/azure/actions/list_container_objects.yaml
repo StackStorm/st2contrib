@@ -1,0 +1,11 @@
+---
+name: list_container_objects
+runner_type: run-python
+description: List storage objects for the provided container.
+enabled: true
+entry_point: list_container_objects.py
+parameters:
+  name:
+    type: string
+    description: Name of the container to list the objects for.
+    required: true
