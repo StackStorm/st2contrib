@@ -1,5 +1,5 @@
 ---
-  class_name: "DripstatAlertSensor"
+  class_name: "dripstat"
   entry_point: "dripstat_alert_sensor.py"
   description: "Sensor which monitors Dripstat API for active alerts"
   poll_interval: 30
