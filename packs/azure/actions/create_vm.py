@@ -1,10 +1,10 @@
 from libcloud.compute.base import NodeSize
 from libcloud.compute.base import NodeImage
 
-from lib.base import AzureBaseAction
+from lib.base import AzureBaseComputeAction
 
 
-class AzureCreateVMAction(AzureBaseAction):
+class AzureCreateVMAction(AzureBaseComputeAction):
     def run(self, name, size_id, image_id, cloud_service_name,
             storage_service_name=None, new_deployment=False,
             deployment_slot='Production', deployment_name=None,

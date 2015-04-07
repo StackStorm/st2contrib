@@ -1,3 +1,7 @@
 ---
-subscription_id:
-cert_file:
+compute:
+  subscription_id:
+  cert_file:
+storage:
+  name:
+  access_key:

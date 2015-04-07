@@ -1,9 +1,9 @@
 from libcloud.compute.base import Node
 
-from lib.base import AzureBaseAction
+from lib.base import AzureBaseComputeAction
 
 
-class AzureRebootVMAction(AzureBaseAction):
+class AzureRebootVMAction(AzureBaseComputeAction):
     def run(self, vm_id, cloud_service_name, deployment_slot=None):
         node = Node(id=vm_id, name=None, state=None, public_ips=None,
                     private_ips=None, driver=self._driver)
