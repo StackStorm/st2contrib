@@ -26,3 +26,6 @@ certificate file and obtaining subscription ID](https://libcloud.readthedocs.org
 ### Object Storage
 
 * ``list_containers`` - List containers.
+* ``list_container_objects`` - List container objects.
+* ``upload_file`` - Upload local file to the provided container.
+* ``delete_object`` - Delete the provided object.
