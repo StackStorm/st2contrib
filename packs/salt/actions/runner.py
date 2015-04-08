@@ -13,8 +13,7 @@ class SaltRunner(SaltAction):
             st2 run salt.runner manage.down
             st2 run salt.runner manage.down removekeys=True
         '''
-        self.generate_package('runner')
-        self.data['fun'] = cmd
+        self.generate_package('runner', cmd=cmd)
         if args:
             self.data['arg'] = [args]
         if kwargs:

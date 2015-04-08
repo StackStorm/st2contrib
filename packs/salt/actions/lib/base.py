@@ -32,10 +32,12 @@ class SaltAction(Action):
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
 
-    def generate_package(self, client='local'):
+    def generate_package(self, client='local', cmd=None):
         self.data = SaltPackage(client).data
         self.data['username'] = self.username
         self.data['password'] = self.password
+        if cmd:
+            self.data['fun'] = cmd
 
     def generate_request(self):
         req = Request('POST',
