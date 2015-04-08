@@ -1,7 +1,6 @@
 from functools import partial
 
 from st2actions.runners.pythonrunner import Action
-import requests
 from requests import Request
 
 
@@ -32,7 +31,9 @@ class SaltAction(Action):
         self.url = self.config.get('api_url', None)
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
-        self.data = SaltPackage('runner').data
+
+    def generate_package(self, client='local'):
+        self.data = SaltPackage(client).data
         self.data['username'] = self.username
         self.data['password'] = self.password
 
