@@ -1,40 +1,10 @@
-import copy
 import json
-import requests
+from requests import Session
 
-from st2actions.runners.pythonrunner import Action
-
-
-class SaltPacket(object):
-    _data = {"eauth": "pam",
-             "username": "",
-             "password": "",
-             "client": "",
-             "fun": ""}
-
-    def __init__(self, client='local'):
-        self._data['client'] = client
-
-    @property
-    def data(self):
-        return self._data
-
-    @data.setter
-    def data(self, key_value=[]):
-        key, value = key_value
-        self._data[key] = value
+from lib.base import SaltAction
 
 
-class SaltRunnerAction(Action):
-
-    def __init__(self, config):
-        super(SaltRunnerAction, self).__init__(config=config)
-        self.url = self.config.get('api_url', None)
-        self.username = self.config.get('username', None)
-        self.password = self.config.get('password', None)
-        self.data = SaltPacket('runner').data
-        self.data['username'] = self.username
-        self.data['password'] = self.password
+class SaltRunner(SaltAction):
 
     def run(self, cmd, args=None, **kwargs):
         '''
@@ -48,9 +18,7 @@ class SaltRunnerAction(Action):
             self.data['arg'] = [args]
         if kwargs:
             self.data['kwargs'] = kwargs
-        resp = requests.post("{0}/run".format(self.url),
-                             headers={'content-type': 'application/json',
-                                      'charset': 'utf-8'},
-                             data=json.dumps(self.data),
-                             verify=True)
+        request = self.generate_request()
+        request.prepare_body(json.dumps(self.data), None)
+        resp = Session().send(request, verify=True)
         return resp.json()
