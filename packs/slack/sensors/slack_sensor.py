@@ -30,7 +30,7 @@ class SlackSensor(PollingSensor):
         self._strip_formatting = self._config['sensor'].get('strip_formatting',
                                                             False)
         self._handlers = {
-            'message': self._handle_message,
+            'message': self._handle_message_ignore_errors,
         }
 
         self._user_info_cache = {}
@@ -183,6 +183,14 @@ class SlackSensor(PollingSensor):
         }
 
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
+
+    def _handle_message_ignore_errors(self, data):
+        try:
+            self._handle_message(data)
+        except Exception as exc:
+            self._logger.info("Slack sensor encountered an error "
+                              "handling message: %s" % exc)
+            pass
 
     def _get_user_info(self, user_id):
         if user_id not in self._user_info_cache:
