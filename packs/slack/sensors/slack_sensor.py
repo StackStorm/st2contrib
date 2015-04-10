@@ -99,13 +99,13 @@ class SlackSensor(PollingSensor):
         rtm.start
         """
 
-        for user in user_data['members']:
+        for user in user_data.get('members', []):
             self._user_info_cache[user['id']] = user
 
-        for channel in channel_data['channels']:
+        for channel in channel_data.get('channels', []):
             self._channel_info_cache[channel['id']] = channel
 
-        for group in group_data['groups']:
+        for group in group_data.get('groups', []):
             self._group_info_cache[group['id']] = group
 
     def _handle_result(self, result):
