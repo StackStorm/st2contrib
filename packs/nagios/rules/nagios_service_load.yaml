@@ -1,0 +1,18 @@
+---
+name: nagios.service.check_load
+description: Check cpu load on host
+enabled: true
+trigger:
+  type: nagios.service.state_change
+criteria:
+  trigger.service:
+    pattern: "(.*)_check_loadavg"
+    type: matchregex
+  trigger.state_type:
+    pattern: HARD
+    type: matchregex
+action:
+  ref: check_loadavg
+  parameters:
+    hosts: "{{trigger.host}}"
+    cmd: all
