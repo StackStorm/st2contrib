@@ -1,0 +1,15 @@
+---
+description: ''
+enabled: true
+entry_point: runner.py
+name: pillar
+parameters:
+  cmd:
+    default: pillar.help
+    immutable: false
+    type: string
+  action:
+    default: pillar
+    immutable: true
+    type: string
+runner_type: run-python
