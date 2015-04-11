@@ -1,0 +1,113 @@
+---
+name: list_events
+runner_type: run-python
+description: Returns a list of events stored in M/Monit.
+enabled: true
+entry_point: list_events.py
+parameters:
+  active:
+    type: integer
+    description: 'The active events filter. Possible values: 0=show all events, 1=show only active errors, 2=show only active errors but exclude user dismissed errors'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+  hostid:
+    type: integer
+    description: 'Show only events from hosts with matching host id.'
+    required: false
+  hostgroupid:
+    type: integer
+    description: 'Show only events for hosts that are member of the given hostgroupid.'
+    required: false
+  servicenameid:
+    type: integer
+    description: 'Show only events for the given service name id.'
+    required: false
+  servicegroupid:
+    type: integer
+    description: 'Show only events for the given servicegroup id.'
+    required: false
+  servicetype:
+    type: integer
+    description: 'Show only events for the given service type. Possible values: 0=filesystem, 1=directory, 2=file, 3=process, 4=remote host, 5=system, 6=fifo, 7=program.'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+  eventtype:
+    type: integer
+    description: 'Show only events with the given type. Possible values: 1=checksum, 2=resource, 4=timeout, 8=timestamp, 16=size, 32=connection, 64=permission, 128=UID, 256=GID, 512=nonexist, 1024=invalid, 2048=data, 4096=exec, 8192=fsflags, 16384=icmp, 32768=content, 65536=instance, 131072=action, 262144=PID, 524288=PPID, 1048576=heartbeat, 2097152=status, 4194304=uptime.'
+    required: false
+    enum:
+      - 1
+      - 2
+      - 4
+      - 8
+      - 16
+      - 32
+      - 64
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+      - 4096
+      - 8192
+      - 16384
+      - 32768
+      - 65536
+      - 131072
+      - 262144
+      - 524288
+      - 1048576
+      - 2097152
+      - 4194304
+  state:
+    type: integer
+    description: 'Show only events with the given state. Possible values: 0=success, 1=error, 2=change.'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+  datefrom:
+    type: integer
+    description: 'Show only events from the given time stamp.'
+    required: false
+  dateto:
+    type: integer
+    description: 'Show only events until the given time stamp.'
+    required: false
+  results:
+    type: integer
+    description:  'Returns only the given number of events (page size).'
+    required: false
+  startindex:
+    type: integer
+    description:  'Result set offset (page index).'
+    required: false
+  sort_key:
+    type: string
+    description:  'The sort key. Possible values: "date", "hostname", "servicename", "event", "note".'
+    required: false
+    enum:
+      - date
+      - hostname
+      - servicename
+      - event
+      - note
+  sort_dir:
+    type: string
+    description:  'The sort direction. Possible values: "desc" (descending), "asc" (ascending).'
+    required: false
+    enum:
+      - desc
+      - asc
