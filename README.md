@@ -52,6 +52,7 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | libcloud, cloud, dns, dnsaas, lbaas, load balancers, aws, amazon, s3, ec2, rackspace, cloudstack, openstack, cloudsigma, gce, google compute engine | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#libcloud-pack)
 | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
 | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
+| [mmonit](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | st2 content pack containing mmonit integrations | monitoring, mmonit | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mmonit-pack)
 | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 | [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
@@ -464,6 +465,37 @@ get_task_results | Get results of mistral task in an execution.
 get_workbook_definition | Get the definition of the mistral workbook.
 get_workflow_results | Get results of mistral workflow.
 kill_workflow | Kill a running mistral workflow.
+
+### mmonit pack
+
+#### Sensors
+
+Name | Description
+---- | -----------
+MmonitEventsSensor | Sensor which monitors mmonit for events
+
+#### Actions
+
+Name | Description
+---- | -----------
+action_host | Performs the specified action for the selected host services.
+delete_host | Returns details for the given host id.
+dismiss_event | Dismiss the given active event so it doesn't show up in the event list if active filter is set to 2.
+get_event | Returns details for a specific event.
+get_host | Returns details for the given host id.
+get_status_host | Returns detailed status of the given host.
+get_uptime_hosts | Returns services uptime for a particular host.
+list_events | Returns a list of events stored in M/Monit.
+list_hosts | Returns a list of all hosts registered in M/Monit.
+list_status_hosts | Returns the current status of all hosts registered in M/Monit.
+list_uptime_hosts | Returns hosts uptime overview. If a custom range is used, the difference between datefrom and dateto should be in minutes, not in seconds since 1 minute is the lowest data resolution in M/Monit.
+session_delete | Delete session attributes matching key. If no keys were specified, delete all stored attributes.
+session_get | Returns the session attribute matching the session_key argument. If no keys are specified, all stored attributes in the session are returned.
+session_put | Add or update the session attribute. If a named attribute already exist, its old value is replaced.
+summary_events | Returns the events summary for the last 24 hours.
+summary_status | Returns a status summary of all hosts.
+test_connection_to_host | Checks that M/Monit can connect to the host with the given network settings.
+update_host | Updates the host settings in the M/Monit database.
 
 ### nest pack
 
