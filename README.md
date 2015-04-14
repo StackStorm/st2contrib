@@ -323,6 +323,8 @@ GitCommitSensor | Sensor which monitors git repository for new commits
 Name | Description
 ---- | -----------
 clone | Clone a repository
+get_local_repo_latest_commit | Retrieve SHA of the latest commit for the provided branch in a local repository.
+get_remote_repo_latest_commit | Retrieve SHA of the latest commit for the provided branch in a remote repository.
 
 ### github pack
 
