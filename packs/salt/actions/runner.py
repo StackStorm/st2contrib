@@ -10,20 +10,17 @@ class SaltRunner(SaltAction):
         'jobs',
         'manage',
         'pillar',
+        'mine',
         'network'
     ]
 
-    def run(self, **kwargs):
-        _cmd = None
-        if '.' not in kwargs['cmd']:
-            _cmd = '{0}.{1}'.format(kwargs['action'], kwargs['cmd'])
-        else:
-            _cmd = kwargs['cmd']
+    def run(self, action, **kwargs):
+        _cmd = action
         '''
         CLI Examples:
 
-            st2 run salt.jobs active
-            st2 run salt.jobs jobs.list_jobs
+            st2 run salt.runner_jobs.active
+            st2 run salt.runner_jobs.list_jobs
         '''
         self.generate_package('runner', cmd=_cmd)
         #if args:
