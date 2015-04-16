@@ -23,10 +23,8 @@ class SaltRunner(SaltAction):
             st2 run salt.runner_jobs.list_jobs
         '''
         self.generate_package('runner', cmd=_cmd)
-        #if args:
-        #    self.data['arg'] = [args]
-        #if kwargs:
-        #    self.data['kwargs'] = kwargs
+        if kwargs:
+            self.data.update(kwargs['kwargs'])
         request = self.generate_request()
         request.prepare_body(json.dumps(self.data), None)
         resp = Session().send(request, verify=True)
