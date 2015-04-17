@@ -39,3 +39,9 @@ password: clams
     st2 run salt.runner_job.list_jobs kwargs='{"ext_source":"blah"}'
 ```
 
+One can also use the generic "runner" action to execute arbitrary runners.
+
+```bash
+    st2 run salt.runner module=manage.down
+```
+
