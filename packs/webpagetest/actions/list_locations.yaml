@@ -1,0 +1,6 @@
+---
+name: "list_locations"
+runner_type: "run-python"
+description: "List available testing locations."
+enabled: true
+entry_point: "list_locations.py"
