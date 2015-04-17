@@ -3,30 +3,28 @@ import yaml
 action_meta = {
     "name": "",
     "parameters": {
-        "cmd": {
-            "type": "string",
-            "immutable": False,
-            "default": ""
-        },
         "action": {
             "type": "string",
             "immutable": True,
             "default": ""
+        },
+        "kwargs": {
+            "type": "object",
+            "required": False
         }
     },
     "runner_type": "run-python",
-    "description": "",
+    "description": "Run Salt Runner functions through Salt API",
     "enabled": True,
     "entry_point": "runner.py"}
 
 
-def create_manifest(action):
+def generate_action(module_type, action):
     manifest = action_meta
-    manifest['name'] = action
-    manifest['parameters']['cmd']['default'] = '{0}.help'.format(action)
+    manifest['name'] = "{0}_{1}".format(module_type, action)
     manifest['parameters']['action']['default'] = action
 
-    fh = open('{0}.yaml'.format(action), 'w')
+    fh = open('{0}_{1}.yaml'.format(module_type, action), 'w')
     fh.write('---\n')
     fh.write(yaml.dump(manifest, default_flow_style=False))
     fh.close()
