@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_cloud.list_locations
 parameters:
-  action:
+  module:
     default: cloud.list_locations
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_cache.clear_mine_func
 parameters:
-  action:
+  module:
     default: cache.clear_mine_func
     immutable: true
     type: string

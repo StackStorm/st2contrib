@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_manage.status
 parameters:
-  action:
+  module:
     default: manage.status
     immutable: true
     type: string

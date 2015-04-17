@@ -5,7 +5,7 @@ description: 'Run Salt Runner functions through Salt API'
 enabled: true
 entry_point: 'runner.py'
 parameters:
-    action:
+    module:
         description: 'The module to call'
         type: 'string'
         required: true

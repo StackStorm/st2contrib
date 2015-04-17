@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_pillar.show_top
 parameters:
-  action:
+  module:
     default: pillar.show_top
     immutable: true
     type: string

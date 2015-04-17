@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_cloud.action
 parameters:
-  action:
+  module:
     default: cloud.action
     immutable: true
     type: string

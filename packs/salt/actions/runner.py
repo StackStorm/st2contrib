@@ -14,8 +14,8 @@ class SaltRunner(SaltAction):
         'network'
     ]
 
-    def run(self, action, **kwargs):
-        _cmd = action
+    def run(self, module, **kwargs):
+        _cmd = module
         '''
         CLI Examples:
 

@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_manage.versions
 parameters:
-  action:
+  module:
     default: manage.versions
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_jobs.active
 parameters:
-  action:
+  module:
     default: jobs.active
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: runner.py
 name: runner_cloud.full_query
 parameters:
-  action:
+  module:
     default: cloud.full_query
     immutable: true
     type: string
