@@ -2,11 +2,15 @@
 
 Pack which allows integration with SaltStack.
 
-## Configuration
+## Usage Options
+
+### Scenario 1: ST2 Installed on a Salt Master
+
+#### Configuration
 
 This should be installed on the master
 
-## Examples
+#### Examples
 
 ```bash
     st2 run salt.client matches='web*' module=test.ping
@@ -14,3 +18,24 @@ This should be installed on the master
 
     st2 run salt.bootstrap instance_id=<uuid> provider=my-nova name=web.example.com
 ```
+
+### Scenario 2: ST2 Using Salt NetAPI
+
+#### Configuration
+
+In config.yaml:
+
+```yaml
+---
+api_url: https://salt.example.com
+username: stella
+password: clams
+```
+
+#### Examples
+
+```bash
+    st2 run salt.runner_manage.up
+    st2 run salt.runner_job.list_jobs kwargs='{"ext_source":"blah"}'
+```
+
