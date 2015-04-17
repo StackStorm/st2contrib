@@ -5,16 +5,10 @@ description: 'Run Salt Runner functions through Salt API'
 enabled: true
 entry_point: 'runner.py'
 parameters:
-    cmd:
+    action:
         description: 'The module to call'
         type: 'string'
         required: true
-
-    args:
-        description: 'Positional aruments for module'
-        type: 'string'
-        required: false
-
     kwargs:
         description: 'Key Pair arguments to pass to the module'
         type: object
