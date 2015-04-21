@@ -23,8 +23,8 @@ class SaltLocal(SaltAction):
         '''
         CLI Examples:
 
-            st2 run salt.local_test.ping matches='web*'
-            st2 run salt.local_pkg.install kwargs='{"pkgs":["git","httpd"]}'
+            st2 run salt.local module=test.ping matches='web*'
+            st2 run salt.local module=test.ping expr_form=grain target='os:Ubuntu'
         '''
         self.generate_package('local', cmd=module, target=target, expr_form=expr_form)
         request = self.generate_request()
