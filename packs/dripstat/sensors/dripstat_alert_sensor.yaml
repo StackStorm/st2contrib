@@ -9,6 +9,6 @@
       description: "Trigger representing an active alert"
       payload_info:
         - "app_name"
-        - "alert_name"
+        - "alert_type"
         - "started_at"
         - "jvm_host"
