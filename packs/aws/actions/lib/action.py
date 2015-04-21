@@ -44,7 +44,7 @@ class BaseAction(Action):
     def wait_for_state(self, instance_id, state):
         state_list = {}
         obj = self.ec2_connect()
-        time.sleep(3)
+        time.sleep(10)
         for instance in obj.get_only_instances([instance_id,]):
             try:
                 current_state = instance.update()
