@@ -1,10 +1,16 @@
-from functools import partial
-
 from st2actions.runners.pythonrunner import Action
 from requests import Request
 
 
 class SaltPackage(object):
+    _expression_forms = [
+        'glob',
+        'grain',
+        'pillar',
+        'nodegroup',
+        'list',
+        'compound'
+    ]
     _data = {"eauth": "pam",
              "username": "",
              "password": "",
@@ -32,12 +38,15 @@ class SaltAction(Action):
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
 
-    def generate_package(self, client='local', cmd=None):
+    def generate_package(self, client='local', cmd=None, **kwargs):
         self.data = SaltPackage(client).data
         self.data['username'] = self.username
         self.data['password'] = self.password
         if cmd:
             self.data['fun'] = cmd
+        if client is 'local':
+            self.data['tgt'] = kwargs.get('target', '*')
+            self.data['expr_form'] = kwargs.get('expr_form', 'glob')
 
     def generate_request(self):
         req = Request('POST',
