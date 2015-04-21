@@ -1,0 +1,24 @@
+name: "iostat"
+runner_type: "run-remote"
+description: "returns I/O stats of system storage"
+enabled: true
+entry_point: ""
+parameters:
+  count:
+    description: "repeat the display count times"
+    default: 1
+  cpu:
+    type: 'boolean'
+    description: "Display CPU stats"
+    default: true
+  device:
+    description: "display only device stats"
+    type: 'boolean'
+    default: false
+  cmd:
+    immutable: true
+    default: "iostat {{args}}"
+    position: 0
+  args:
+    description: "Command line arguments"
+    default: "-h {% if device == true -%} -d {% endif -%} {% if cpu == true -%} -c {% endif -%}" 
