@@ -1,0 +1,4 @@
+api_key: 20131114/alert/8f048ed9-66af-4406-aa9c-35facef20829
+routing_key: even_team
+debug: false
+url: https://alert.victorops.com/integrations/generic
