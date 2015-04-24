@@ -18,11 +18,12 @@ eventlet.monkey_patch(
 
 
 class DripstatAlertSensor(PollingSensor):
-    def __init__(self, sensor_service, config=None, poll_interval=None):
+    def __init__(self, sensor_service, config=None, poll_interval=30):
         super(DripstatAlertSensor, self).__init__(sensor_service=sensor_service,
                                                   config=config,
                                                   poll_interval=poll_interval)
         self._trigger_ref = 'dripstat.alert'
+        self._log = self._sensor_service.get_logger(__name__)
 
     def setup(self):
         self._api_key = self._config['api_key']
@@ -30,9 +31,12 @@ class DripstatAlertSensor(PollingSensor):
 
     def poll(self):
         for application in self._applications:
-            alerts = self._api_request(endpoint='/alerts', params={'appId': application['id']})
+            alerts = self._api_request(endpoint='/activeAlerts', params={'appId': application['id']})
             for alert in alerts:
-                self._dispatch_trigger_for_alert(application=application['name'], alert=alert)
+                last_alert_timestamp = self._get_last_alert_timestamp(application['name'])
+                if alert['startedAt'] > last_alert_timestamp:
+                    self._set_last_alert_timestamp(application['name'], alert['startedAt'])
+                    self._dispatch_trigger_for_alert(application=application['name'], alert=alert)
 
     def cleanup(self):
         pass
@@ -62,3 +66,14 @@ class DripstatAlertSensor(PollingSensor):
             'jvm_host': alert['jvmHost']
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
+
+    def _get_last_alert_timestamp(self, app):
+        last_alert_timestamp = self._sensor_service.get_value("%s.last_alert_timestamp" % app)
+
+        if last_alert_timestamp:
+            return int(last_alert_timestamp)
+        else:
+            return 0
+
+    def _set_last_alert_timestamp(self, app, timestamp):
+        self._sensor_service.set_value(name='%s.last_alert_timestamp' % app, value=str(timestamp))

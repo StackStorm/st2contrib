@@ -1,0 +1,27 @@
+---
+name: list_uptime_hosts
+runner_type: run-python
+description: Returns hosts uptime overview. If a custom range is used, the difference between datefrom and dateto should be in minutes, not in seconds since 1 minute is the lowest data resolution in M/Monit.
+enabled: true
+entry_point: list_uptime_hosts.py
+parameters:
+  uptime_range:
+    type: integer
+    description: 'The range id. Possible values: 0=today, 5=week, 6=month, 7=three months, 8=six months, 9=year and 12=custom range. Default is 0=today'
+    required: false
+    enum:
+      - 0
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 12
+  datefrom:
+    type: integer
+    description: 'A unix-timestamp (seconds since the epoch, January 1, 1970, 00:00:00 GMT). The timestamp specify the start of a custom uptime range. The range id must also be set to 12, otherwise this argument is ignored.'
+    required: false
+  dateto:
+    type: integer
+    description: 'A unix-timestamp, specifying the end of a custom uptime range.'
+    required: false

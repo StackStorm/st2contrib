@@ -1,0 +1,45 @@
+---
+name: create_vm
+runner_type: run-python
+description: Create a new VM.
+enabled: true
+entry_point: create_vm.py
+parameters:
+  name:
+    type: string
+    description: Name fo a new VM.
+    required: true
+  size_id:
+    type: string
+    description: ID of a size to use.
+    required: true
+  image_id:
+    type: string
+    description: ID of an image to use.
+  cloud_service_name:
+    type: string
+    description: Name of the Azure cloud service to use.
+    required: true
+  storage_service_name:
+    type: string
+    description: Name of the storage service to use.
+    required: false
+  new_deployment:
+    type: string
+    description: True to create a new deployment instead of using an existing one.
+    required: false
+    default: false
+  deployment_slot:
+    type: string
+    description: Deployment slot (production or staging) to use.
+    required: false
+    default: "Production"
+  deployment_name:
+    type: string
+    description: The name of the deployment. If not provided, it defaults to using the cloud service name.
+    required: false
+  admin_user_id:
+    type: string
+    description: Admin user id.
+    required: false
+    default: "azureuser"

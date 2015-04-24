@@ -1,0 +1,9 @@
+---
+name : softlayer
+description : st2 content pack containing Softlayer integrations.
+keywords:
+  - softlayer
+  - cloud
+version : 0.1
+author : Itxaka Serrano Garcia
+email : itxakaserrano@gmail.com

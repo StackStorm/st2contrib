@@ -1,0 +1,25 @@
+---
+name: create_issue
+runner_type: run-python
+description: Create a new JIRA issue / ticket.
+enabled: true
+entry_point: create_issue.py
+parameters:
+  summary:
+    type: string
+    description: Issue summary.
+    required: true
+  type:
+    type: string
+    description: Issue type.
+    enum:
+      - Task
+      - Story
+      - Epic
+      - Bug
+    default: Task
+    required: true
+  description:
+    type: string
+    description: Issue description.
+    required: false

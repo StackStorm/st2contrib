@@ -1,0 +1,11 @@
+---
+name : windows
+description : st2 content pack containing windows integrations
+keywords:
+  - windows
+  - wmi
+  - windows management interface
+  - wql
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

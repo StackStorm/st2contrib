@@ -1,4 +1,4 @@
-from lib.action import PyraxBaseAction
+from lib.action import BaseVMsAction
 from lib.formatters import to_server_dict
 
 __all__ = [
@@ -6,8 +6,8 @@ __all__ = [
 ]
 
 
-class ListVMsAction(PyraxBaseAction):
-    def run(self, region=None):
+class ListVMsAction(BaseVMsAction):
+    def run(self, region=None, metadata=None):
         if region:
             cs = self.pyrax.connect_to_cloudservers(region=region)
         else:
@@ -18,6 +18,14 @@ class ListVMsAction(PyraxBaseAction):
         result = []
         for server in servers:
             item = to_server_dict(server=server)
+
+            if metadata:
+                include = self._metadata_intersection(server=item,
+                                                      metadata=metadata)
+
+                if not include:
+                    continue
+
             result.append(item)
 
         return result

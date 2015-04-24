@@ -15,7 +15,8 @@
       required: false
     channel:
       type: "string"
-      description: "Optional channel to post to"
+      description: "Optional channel to post to. Note channel must contain leading #"
+      required: false
     icon_emoji:
       type: "string"
       description: "Bot icon"

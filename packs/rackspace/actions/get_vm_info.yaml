@@ -1,0 +1,15 @@
+---
+name: get_vm_info
+runner_type: run-python
+description: Retrieve information for a provided VM. Optionally filter on the metadata values.
+enabled: true
+entry_point: get_vm_info.py
+parameters:
+  vm_id:
+    type: string
+    description: ID of a VM to get information on
+    required: true
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
+    required: false

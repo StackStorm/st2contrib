@@ -1,0 +1,14 @@
+---
+name: view_boards
+runner_type: "run-python"
+description: Return a dictionary of all boards and their IDs
+enabled: true
+entry_point: "view_boards.py"
+parameters:
+  api_key:
+    type: string
+    description: User API Key overriding the system key
+  token:
+    type: string
+    description: User oAuth Token overriding the system key
+

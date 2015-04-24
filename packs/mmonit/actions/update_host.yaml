@@ -1,0 +1,61 @@
+---
+name: update_host
+runner_type: run-python
+description: Updates the host settings in the M/Monit database.
+enabled: true
+entry_point: update_host.py
+parameters:
+  host_id:
+    type: integer
+    description: 'ID of the host'
+    required: true
+  hostname:
+    type: string
+    description: 'The host name'
+    required: true
+  keepname:
+    type: integer
+    description: 'Automatic hostname updates flag. Possible values: 0=hostname is automatically updated on change, 1=hostname settings is persistent.'
+    required: false
+    enum:
+      - 0
+      - 1
+  description:
+    type: string
+    description: 'The host description'
+    required: false
+  status:
+    type: integer
+    description: 'The host status. Possible values: 0=Active, 1=Inactive, 2=Ignored. The "Ignored" state is manually set by user to suppress all events from this host.'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+  ipaddrout:
+    type: string
+    description: 'The optional IP-Address which overrides the automatically managed ipaddrin address.'
+    required: false
+  portout:
+    type: integer
+    description: 'The optional port number which overrides the automatically managed portin value. -1 if undefined.'
+    required: false
+  sslout:
+    type: integer
+    description: 'The optional SSL flag which overrides the automatically managed sslin value. Possible values: 0=disabled, 1=enabled.'
+    required: false
+    enum:
+      - 0
+      - 1
+  monituser:
+    type: string
+    description: 'The username used when talking to Monit.'
+    required: false
+  monitpassword:
+    type: string
+    description: 'The password used when talking to Monit'
+    required: false
+  skew:
+    type: integer
+    description: 'Monit has to send the status update within a certain timeframe. The skew specifies the number of Monit cycles M/Monit will wait before reporting the Host as down.'
+    required: false

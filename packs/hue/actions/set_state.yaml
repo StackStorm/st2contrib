@@ -1,0 +1,16 @@
+---
+name: set_state
+runner_type: "run-python"
+description: Send manual state to bulb
+enabled: true
+entry_point: "set_state.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  state:
+    type: object
+    description: Dictionary of values to send directly to bulb
+    required: true
+

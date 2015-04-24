@@ -11,3 +11,7 @@ parameters:
   value:
     required: True
     type: string
+  ttl:
+    type: integer
+    description: 'Optional TTL for the provided value'
+    required: False

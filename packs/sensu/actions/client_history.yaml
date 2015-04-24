@@ -1,0 +1,20 @@
+---
+name: client_history
+runner_type: run-local-script
+description: Get Sensu client history
+enabled: true
+entry_point: clients.py
+parameters:
+  client:
+    type: string
+    description: The client name
+    required: true
+  history:
+    type: string
+    description: ''
+    default: 'yes'
+    immutable: true
+  sudo:
+    immutable: true
+  kwarg_op:
+    immutable: true

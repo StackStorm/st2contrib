@@ -96,14 +96,15 @@ def get_pack_resources(pack):
 def generate_pack_list_table(packs):
     lines = []
 
-    lines.append('Name | Description | Author | Latest Version | Available Resources')
-    lines.append('---- | ----------- | ------ | -------------- | -------------------')
+    lines.append('Name | Description | Keywords | Author | Latest Version | Available Resources')
+    lines.append('---- | ----------- | -------- | ------ | -------------- | -------------------')
 
     for pack_name, metadata in packs:
         values = copy.deepcopy(metadata)
         values['base_packs_url'] = BASE_PACKS_URL
         values['base_repo_url'] = BASE_REPO_URL
-        line = '| [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
+        values['keywords'] = ', '.join(metadata.get('keywords', []))
+        line = '| [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | %(keywords)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
         lines.append(line)
 
     result = '\n'.join(lines)

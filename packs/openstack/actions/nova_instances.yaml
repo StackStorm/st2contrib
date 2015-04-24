@@ -1,0 +1,16 @@
+---
+name: nova_instances
+runner_type: run-local
+description: Returns a list of instances by hypervisor
+enabled: true
+entry_point: nova_instances.py
+parameters:
+  hostname:
+    type: string
+    description: Hostname of the hypervisor
+    position: 0
+  format:
+    type: string
+    description: 'Output formatting: string, json, dict'
+    default: dict
+    position: 1

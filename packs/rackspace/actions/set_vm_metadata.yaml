@@ -1,0 +1,15 @@
+---
+name: set_vm_metadata
+runner_type: run-python
+description: Set metadata values for the provided VM.
+enabled: true
+entry_point: set_vm_metadata.py
+parameters:
+  vm_id:
+    type: string
+    description: ID of a VM to operate on.
+    required: true
+  metadata:
+    type: object
+    description: Metadata to associate with the VM.
+    required: true

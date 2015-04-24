@@ -1,0 +1,11 @@
+description: 'Destroys an instance'
+enabled: true
+entry_point: destroy_instance.py
+name: destroy_instance
+parameters:
+  name:
+    required: true
+    type: string
+    description: Instance hostname to destroy (Softlayer hostname, so domain included)
+
+runner_type: run-python

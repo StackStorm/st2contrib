@@ -1,0 +1,20 @@
+---
+name: "set_humidity"
+runner_type: "run-python"
+description: "Set humidity goal for nest"
+enabled: true
+entry_point: "set_humidity.py"
+parameters:
+  target:
+    type: "integer"
+    description: "Target humidity levels to hit"
+    required: true
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"
+    default: 0
+  device:
+    type: "integer"
+    description: "ID of specific Nest device in a structure"
+    default: 0
+

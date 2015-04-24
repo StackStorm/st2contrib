@@ -1,0 +1,21 @@
+---
+name: check_aggregates_issued
+runner_type: run-local-script
+description: Get a specific Sensu check aggregate
+enabled: true
+entry_point: aggregates.py
+parameters:
+  check:
+    type: string
+    description: The client name
+    required: true
+  suumarize:
+    type: string
+    description: Summarizes the output field in the event data. (summarize=ouput)
+  results:
+    type: string
+    description: Return the raw result data
+  sudo:
+    immutable: true
+  kwarg_op:
+    immutable: true

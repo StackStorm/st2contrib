@@ -44,15 +44,16 @@ class CmdlineParser(object):
 
 
     def parse(self, argv=None):
-        return vars(self.parser.parse_args(argv))
-
+        argv = argv or sys.argv[1:]
+        return vars(self.parser.parse_args(args=argv))
 
     def short_arglist(self, kwargs=None):
-        return self._arg_list(kwargs or self.parse(), short=True)
-
+        kwargs = kwargs or {}
+        return self._arg_list(self.parse(), short=True)
 
     def long_arglist(self, kwargs=None):
-        return self._arg_list(kwargs or self.parse(), short=False)
+        kwargs = kwargs or {}
+        return self._arg_list(self.parse(), short=False)
 
 
     def _arg_list(self, kwargs, short=None):

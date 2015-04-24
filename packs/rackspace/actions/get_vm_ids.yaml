@@ -1,0 +1,19 @@
+---
+name: get_vm_ids
+runner_type: run-python
+description: Retrieve IDs for all the available VMs. Optionally filter by metadata and count.
+enabled: true
+entry_point: get_vm_ids.py
+parameters:
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
+    required: false
+  count:
+    type: integer
+    description: If provided, only return the specified number of entries
+    required: false
+  metadata:
+    type: object
+    description: If provided, only return server which contain the provided metadata values.
+    required: false

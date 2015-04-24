@@ -1,0 +1,19 @@
+---
+  name: "decrypt_file"
+  runner_type: "run-python"
+  description: "Decrypt asymmetrically encrypted GPG file."
+  enabled: true
+  entry_point: "decrypt_file.py"
+  parameters:
+    file_path:
+      type: "string"
+      description: "Path to the encrypted file to decrypt."
+      required: true
+    output_path:
+      type: "string"
+      description: "Path where the decrypted file will be saved."
+      required: True
+    passphrase:
+      type: "string"
+      description: "Optional passpharse for password protected private key"
+      required: false

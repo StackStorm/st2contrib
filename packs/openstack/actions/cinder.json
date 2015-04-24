@@ -1,7 +1,0 @@
-{ "name": "cinder"
-, "runner_type": "run-local"
-, "description": "Run OpenStack Cinder commands"
-, "enabled": true
-, "entry_point": "cinder.py"
-, "parameters": {}
-}

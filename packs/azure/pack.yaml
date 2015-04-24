@@ -1,0 +1,14 @@
+---
+name : azure
+description : st2 content pack containing Microsoft Azure integrations.
+keywords:
+  - microsoft
+  - azure
+  - cloud
+  - libcloud
+  - servers
+  - virtual machines
+  - azure virtual machines
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

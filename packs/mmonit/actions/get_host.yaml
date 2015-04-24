@@ -1,0 +1,12 @@
+---
+name: get_host
+runner_type: run-python
+description: Returns details for the given host id.
+enabled: true
+entry_point: get_host.py
+parameters:
+  host_id:
+    type: integer
+    description: 'ID of the host'
+    required: true
+    position: 1

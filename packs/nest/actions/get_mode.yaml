@@ -1,0 +1,14 @@
+---
+name: "get_mode"
+runner_type: "run-python"
+description: "Manage nest modes"
+enabled: true
+entry_point: "get_mode.py"
+parameters:
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"
+  device:
+    type: "integer"
+    description: "ID of specific Nest device in a structure"
+

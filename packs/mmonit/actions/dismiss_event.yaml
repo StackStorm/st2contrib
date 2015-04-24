@@ -1,0 +1,12 @@
+---
+name: dismiss_event
+runner_type: run-python
+description: Dismiss the given active event so it doesn't show up in the event list if active filter is set to 2.
+enabled: true
+entry_point: dismiss_event.py
+parameters:
+  event_id:
+    type: integer
+    description: 'The event id to dismiss'
+    required: true
+    position: 1

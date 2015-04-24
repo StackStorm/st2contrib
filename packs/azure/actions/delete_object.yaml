@@ -1,0 +1,15 @@
+---
+name: delete_object
+runner_type: run-python
+description: Delete an object.
+enabled: true
+entry_point: delete_object.py
+parameters:
+  container_name:
+    type: string
+    description: Name of the container the object belongs to.
+    required: true
+  object_name:
+    type: string
+    description: Name of the object to delete.
+    required: true

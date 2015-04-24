@@ -1,0 +1,9 @@
+---
+name: webpagetest
+description: st2 content pack containing webpagetest integrations
+keywords:
+  - webpagetest
+  - benchmarking
+version: 0.1
+author: Linuturk
+email: linuturk@onitato.com

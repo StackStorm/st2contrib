@@ -1,0 +1,26 @@
+---
+name: rgb
+runner_type: "run-python"
+description: Change bulb color based on RGB Values
+enabled: true
+entry_point: "rgb.py"
+parameters:
+  light_id:
+    type: string
+    description: ID of the light to manage
+    required: true
+  red:
+    type: integer
+    description: Red value
+    required: true
+  green:
+    type: integer
+    description: Green value
+  blue:
+    type: integer
+    description: Blue value
+  transition_time:
+    type: integer
+    description: "Duration of transition to new state"
+    default: 5
+

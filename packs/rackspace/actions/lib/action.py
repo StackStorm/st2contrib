@@ -3,7 +3,8 @@ import pyrax
 from st2actions.runners.pythonrunner import Action
 
 __all__ = [
-    'PyraxBaseAction'
+    'PyraxBaseAction',
+    'BaseVMsAction'
 ]
 
 
@@ -32,3 +33,16 @@ class PyraxBaseAction(Action):
         pyrax.cloud_dns = pyrax.connect_to_cloud_dns(region=region)
 
         return pyrax
+
+
+class BaseVMsAction(PyraxBaseAction):
+    def _metadata_intersection(self, server, metadata):
+        server_metadata = server.get('metadata', {})
+
+        for key, value in metadata.items():
+            server_metadata_value = server_metadata.get(key, None)
+
+            if not server_metadata_value or server_metadata_value != value:
+                return False
+
+        return True

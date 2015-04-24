@@ -1,0 +1,10 @@
+---
+name: "set_home"
+runner_type: "run-python"
+description: "Set nest to home mode"
+enabled: true
+entry_point: "set_home.py"
+parameters:
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"

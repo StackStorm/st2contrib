@@ -1,0 +1,14 @@
+name: launch_incident 
+runner_type: run-python
+description: Launch an incident on PagerDuty
+enabled: true
+entry_point: launch_incident.py
+parameters:
+  details:
+    type: string
+    description: Details of the incident 
+    
+  description:
+    type: string
+    description: Description of the incident
+    required: true

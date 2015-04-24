@@ -1,0 +1,10 @@
+---
+name : urbandict
+description : st2 content pack containing urban dictionary integrations
+keywords:
+  - urban dict
+  - urban dictionary
+  - puns
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

@@ -1,0 +1,27 @@
+---
+name: 'client'
+runner_type: 'run-python'
+description: 'Run salt LocalClient functions'
+enabled: true
+entry_point: 'client.py'
+parameters:
+    matches:
+        description: 'Minions to target'
+        type: 'string'
+        required: false
+        default: '*'
+
+    module:
+        description: 'Execution module to run on targets'
+        type: 'string'
+        required: true
+
+    args:
+        description: 'Arguments to pass to the module'
+        type: array
+        required: false
+
+    kwargs:
+        description: 'Key Pair arguments to pass to the module'
+        type: object
+        required: false

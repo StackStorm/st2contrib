@@ -1,0 +1,11 @@
+---
+name: session_put
+runner_type: run-python
+description: Add or update the session attribute. If a named attribute already exist, its old value is replaced.
+enabled: true
+entry_point: session_delete.py
+parameters:
+  attribute:
+    type: string
+    description: 'The key/value of the session attribute to create/update in the following format key:value'
+    required: true

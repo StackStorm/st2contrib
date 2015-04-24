@@ -1,0 +1,20 @@
+---
+name: health
+runner_type: run-local-script
+description: Sensu System Health
+enabled: true
+entry_point: health.py
+parameters:
+  consumers:
+    type: string
+    description: The minimum number of transport consumers to be considered healthy.
+    default: '2'
+  messages:
+    type: string
+    description: The maximum number of transport queued messages to be considered
+      healthy.
+    default: '100'
+  sudo:
+    immutable: true
+  kwarg_op:
+    immutable: true
