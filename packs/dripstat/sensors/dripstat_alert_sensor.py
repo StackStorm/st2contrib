@@ -1,5 +1,6 @@
 import eventlet
 import requests
+from datetime import datetime
 
 from st2reactor.sensor.base import PollingSensor
 
@@ -63,6 +64,7 @@ class DripstatAlertSensor(PollingSensor):
             'app_name': application,
             'alert_type': alert['name'],
             'started_at': alert['startedAt'],
+            'started_at_iso8601': datetime.fromtimestamp(alert['startedAt']).isoformat(),
             'jvm_host': alert['jvmHost']
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
