@@ -12,7 +12,7 @@ import requests
 import yaml
 
 # ST2 configuration
-ST2_CONFIG_FILE = './config.yml'
+ST2_CONFIG_FILE = './config.yaml'
 
 ST2_API_BASE_URL = 'http://localhost:9101/v1'
 ST2_AUTH_BASE_URL = 'http://localhost:9100'
@@ -48,7 +48,13 @@ def _create_trigger_type():
             'description': 'Trigger type for nagios event handler.'
         }
         # sys.stdout.write('POST: %s: Body: %s\n' % (url, payload))
-        post_resp = requests.post(url, data=json.dumps(payload))
+        headers = {}
+        headers['Content-Type'] = 'application/json; charset=utf-8'
+
+        if ST2_AUTH_TOKEN:
+            headers['X-Auth-Token'] = ST2_AUTH_TOKEN
+
+        post_resp = requests.post(url, data=json.dumps(payload), headers=headers)
     except:
         sys.stderr.write('Unable to register trigger type with st2.')
         raise
@@ -69,8 +75,13 @@ def _get_auth_url():
 def _get_auth_token():
     global ST2_AUTH_TOKEN
     auth_url = _get_auth_url()
-    resp = requests.post(auth_url, {'ttl': 5 * 60}, auth=(ST2_USERNAME, ST2_PASSWORD))
-    ST2_AUTH_TOKEN = resp.json()['token']
+    try:
+        resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
+                             auth=(ST2_USERNAME, ST2_PASSWORD))
+    except:
+        raise Exception('Cannot get auth token from st2. Will try unauthed.')
+    else:
+        ST2_AUTH_TOKEN = resp.json()['token']
 
 
 def _register_with_st2():
@@ -80,7 +91,11 @@ def _register_with_st2():
         # sys.stdout.write('GET: %s\n' % url)
         if not ST2_AUTH_TOKEN:
             _get_auth_token()
-        get_resp = requests.get(url, headers={'X-Auth-Token': ST2_AUTH_TOKEN})
+
+        if ST2_AUTH_TOKEN:
+            get_resp = requests.get(url, headers={'X-Auth-Token': ST2_AUTH_TOKEN})
+        else:
+            get_resp = requests.get(url)
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type()
@@ -108,7 +123,8 @@ def _post_event_to_st2(url, body):
     headers = {}
     headers['X-ST2-Integration'] = 'nagios.'
     headers['Content-Type'] = 'application/json; charset=utf-8'
-    headers['X-Auth-Token'] = ST2_AUTH_TOKEN
+    if ST2_AUTH_TOKEN:
+        headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
         # sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
         r = requests.post(url, data=json.dumps(body), headers=headers)
@@ -150,18 +166,18 @@ def main(args):
 
 
 if __name__ == '__main__':
-    if not os.path.exists(ST2_CONFIG_FILE):
-        print('Configuration file not found. Exiting.')
-        sys.exit(1)
-
-    with open(ST2_CONFIG_FILE) as f:
-        config = yaml.safe_load(f)
-        ST2_USERNAME = config['st2_username']
-        ST2_PASSWORD = config['st2_password']
-        ST2_API_BASE_URL = config['st2_api_base_url']
-        ST2_AUTH_BASE_URL = config['st2_auth_base_url']
-
     try:
+        if not os.path.exists(ST2_CONFIG_FILE):
+            sys.stderr.write('Configuration file not found. Exiting.\n')
+            sys.exit(1)
+
+        with open(ST2_CONFIG_FILE) as f:
+            config = yaml.safe_load(f)
+            ST2_USERNAME = config['st2_username']
+            ST2_PASSWORD = config['st2_password']
+            ST2_API_BASE_URL = config['st2_api_base_url']
+            ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+
         if not REGISTERED_WITH_ST2:
             _register_with_st2()
     except:
