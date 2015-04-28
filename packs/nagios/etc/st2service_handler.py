@@ -5,19 +5,24 @@ try:
     import simplejson as json
 except ImportError:
     import json
-import requests
+import os
 import sys
-import urlparse
+
+import requests
+import yaml
 
 # ST2 configuration
-ST2_HOST = 'localhost'
-ST2_API_PORT = '9101'
-# Generate an auth token using st2 CLI with a large TTL.
-# http://docs.stackstorm.com/latest/authentication.html#testing
-ST2_AUTH_TOKEN = 'DUMMY'
+ST2_CONFIG_FILE = './config.yml'
 
-ST2_WEBHOOKS_PATH = '/v1/webhooks/st2/'
-ST2_TRIGGERS_PATH = '/v1/triggertypes/'
+ST2_API_BASE_URL = 'http://localhost:9101/v1'
+ST2_AUTH_BASE_URL = 'http://localhost:9100'
+ST2_USERNAME = None
+ST2_PASSWORD = None
+ST2_AUTH_TOKEN = None
+
+ST2_AUTH_PATH = 'tokens'
+ST2_WEBHOOKS_PATH = 'webhooks/st2/'
+ST2_TRIGGERS_PATH = 'triggertypes/'
 ST2_TRIGGERTYPE_PACK = 'nagios'
 ST2_TRIGGERTYPE_NAME = 'service-state-change'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
@@ -57,11 +62,24 @@ def _create_trigger_type():
             sys.stdout.write('Registered trigger type with st2.\n')
 
 
+def _get_auth_url():
+    return '%s/%s' % (ST2_AUTH_BASE_URL, ST2_AUTH_PATH)
+
+
+def _get_auth_token():
+    global ST2_AUTH_TOKEN
+    auth_url = _get_auth_url()
+    resp = requests.post(auth_url, {'ttl': 5 * 60}, auth=(ST2_USERNAME, ST2_PASSWORD))
+    ST2_AUTH_TOKEN = resp.json()['token']
+
+
 def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
         url = _get_st2_triggers_url() + ST2_TRIGGERTYPE_REF
         # sys.stdout.write('GET: %s\n' % url)
+        if not ST2_AUTH_TOKEN:
+            _get_auth_token()
         get_resp = requests.get(url, headers={'X-Auth-Token': ST2_AUTH_TOKEN})
 
         if get_resp.status_code != httplib.OK:
@@ -77,14 +95,12 @@ def _register_with_st2():
 
 
 def _get_st2_triggers_url():
-    url = urlparse.urlunparse(('http', ST2_HOST + ':' + ST2_API_PORT, ST2_TRIGGERS_PATH,
-                              None, None, None))
+    url = '%s/%s' % (ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
     return url
 
 
 def _get_st2_webhooks_url():
-    url = urlparse.urlunparse(('http',  ST2_HOST + ':' + ST2_API_PORT, ST2_WEBHOOKS_PATH,
-                               None, None, None))
+    url = '%s/%s' % (ST2_API_BASE_URL, ST2_WEBHOOKS_PATH)
     return url
 
 
@@ -134,6 +150,17 @@ def main(args):
 
 
 if __name__ == '__main__':
+    if not os.path.exists(ST2_CONFIG_FILE):
+        print('Configuration file not found. Exiting.')
+        sys.exit(1)
+
+    with open(ST2_CONFIG_FILE) as f:
+        config = yaml.safe_load(f)
+        ST2_USERNAME = config['st2_username']
+        ST2_PASSWORD = config['st2_password']
+        ST2_API_BASE_URL = config['st2_api_base_url']
+        ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+
     try:
         if not REGISTERED_WITH_ST2:
             _register_with_st2()
