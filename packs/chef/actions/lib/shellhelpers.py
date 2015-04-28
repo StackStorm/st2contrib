@@ -8,8 +8,7 @@ import io
 
 # Starts command in subprocess processing output as it appears.
 def shell_out(command, env=None):
-    env = env or {}
-    env = os.environ.copy().update(env)
+    env = os.environ.copy().update(env or {})
     shell = False if isinstance(command, list) else True
     proc = subprocess.Popen(args=command, stdin=None, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, env=env, shell=shell)
@@ -43,6 +42,7 @@ class CmdlineParser(object):
             self.parser.add_argument(k, lg, **kwargs)
             self._keyname[lg.lstrip('-')] = k
 
+
     def parse(self, argv=None):
         argv = argv or sys.argv[1:]
         return vars(self.parser.parse_args(args=argv))
@@ -54,6 +54,7 @@ class CmdlineParser(object):
     def long_arglist(self, kwargs=None):
         kwargs = kwargs or {}
         return self._arg_list(self.parse(), short=False)
+
 
     def _arg_list(self, kwargs, short=None):
         '''
