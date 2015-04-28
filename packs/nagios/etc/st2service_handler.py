@@ -12,6 +12,9 @@ import urlparse
 # ST2 configuration
 ST2_HOST = 'localhost'
 ST2_API_PORT = '9101'
+# Generate an auth token using st2 CLI with a large TTL.
+# http://docs.stackstorm.com/latest/authentication.html#testing
+ST2_AUTH_TOKEN = 'DUMMY'
 
 ST2_WEBHOOKS_PATH = '/v1/webhooks/st2/'
 ST2_TRIGGERS_PATH = '/v1/triggertypes/'
@@ -59,7 +62,7 @@ def _register_with_st2():
     try:
         url = _get_st2_triggers_url() + ST2_TRIGGERTYPE_REF
         # sys.stdout.write('GET: %s\n' % url)
-        get_resp = requests.get(url)
+        get_resp = requests.get(url, headers={'X-Auth-Token': ST2_AUTH_TOKEN})
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type()
@@ -89,6 +92,7 @@ def _post_event_to_st2(url, body):
     headers = {}
     headers['X-ST2-Integration'] = 'nagios.'
     headers['Content-Type'] = 'application/json; charset=utf-8'
+    headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
         # sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
         r = requests.post(url, data=json.dumps(body), headers=headers)
