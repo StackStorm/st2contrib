@@ -36,7 +36,7 @@ class DripstatAlertSensor(PollingSensor):
             for alert in alerts:
                 last_alert_timestamp = self._get_last_alert_timestamp(application['name'])
                 epoch = int(alert['startedAt'])/1000
-                if alert['startedAt'] > last_alert_timestamp:
+                if epoch > last_alert_timestamp:
                     self._set_last_alert_timestamp(application['name'], epoch)
                     self._dispatch_trigger_for_alert(application=application['name'], alert=alert, epoch=epoch)
 
