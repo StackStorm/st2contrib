@@ -8,8 +8,15 @@ except ImportError:
 import os
 import sys
 
-import requests
-import yaml
+try:
+    import requests
+except ImportError:
+    raise ImportError('Missing dependency requests. Do ``pip install requests``.')
+
+try:
+    import yaml
+except ImportError:
+    raise ImportError('Missing dependency pyyaml. Do ``pip install pyyaml``.')
 
 # ST2 configuration
 ST2_CONFIG_FILE = './config.yaml'
