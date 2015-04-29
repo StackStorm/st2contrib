@@ -7,6 +7,7 @@ except ImportError:
     import json
 import os
 import sys
+from urlparse import urljoin
 
 try:
     import requests
@@ -69,7 +70,7 @@ def _create_trigger_type():
 
 
 def _get_auth_url():
-    return '%s/%s' % (ST2_AUTH_BASE_URL, ST2_AUTH_PATH)
+    return urljoin(ST2_AUTH_BASE_URL, ST2_AUTH_PATH)
 
 
 def _get_auth_token():
@@ -87,7 +88,7 @@ def _get_auth_token():
 def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
-        url = _get_st2_triggers_url() + ST2_TRIGGERTYPE_REF
+        url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
         # sys.stdout.write('GET: %s\n' % url)
         if not ST2_AUTH_TOKEN:
             _get_auth_token()
@@ -110,12 +111,12 @@ def _register_with_st2():
 
 
 def _get_st2_triggers_url():
-    url = '%s/%s' % (ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
+    url = urljoin(ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
     return url
 
 
 def _get_st2_webhooks_url():
-    url = '%s/%s' % (ST2_API_BASE_URL, ST2_WEBHOOKS_PATH)
+    url = urljoin(ST2_API_BASE_URL, ST2_WEBHOOKS_PATH)
     return url
 
 
