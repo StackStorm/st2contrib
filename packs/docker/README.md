@@ -45,7 +45,7 @@ StackStorm processes are running.
 
 For example, if `stanley` is the name of the system user, he should be added to `docker` group like so:
 
-sudo usermod -a -G docker stanley
-sudo service docker restart
+* sudo usermod -a -G docker stanley
+* sudo service docker restart
 
 (If you are currently logged on as the user you are trying to add, you will have to logout/log back in.)
