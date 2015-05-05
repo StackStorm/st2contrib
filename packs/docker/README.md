@@ -10,6 +10,14 @@ This action builds a docker image given a path to Dockerfile (could be
 directory containing Dockerfile or path to Dockerfile or remote URL containing
 Dockerfile) and a tag to use for the image.
 
+### Pull docker image
+
+This action pulls a docker image from docker registry. Image is identified by repository and tag.
+
+### Push docker image
+
+This action pushes an image to a docker registry. Image is identified by repository and tag.
+
 ## Sensors
 
 ### Docker container spun up/shut down
