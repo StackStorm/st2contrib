@@ -2,11 +2,11 @@ from lib.base import DockerBasePythonAction
 
 
 __all__ = [
-    'DockerPushImageAction'
+    'DockerPullImageAction'
 ]
 
 
-class DockerPushImageAction(DockerBasePythonAction):
+class DockerPullImageAction(DockerBasePythonAction):
     def run(self, repo, tag=None, insecure_registry=False,
             auth_username_override=None, auth_password_override=None):
         auth_override = (auth_username_override and auth_password_override)
