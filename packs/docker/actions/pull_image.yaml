@@ -1,7 +1,7 @@
 ---
 name: pull_image
 runner_type: run-python
-description: Build docker image action. Equivalent to docker build.
+description: Pull docker image action. Equivalent to docker pull.
 enabled: true
 entry_point: pull_image.py
 parameters:
