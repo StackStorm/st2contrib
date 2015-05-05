@@ -1,7 +1,7 @@
 ---
   url: "unix:///var/run/docker.sock"
   version: "1.13"
-  timeout: 10
+  timeout: 60
   ps_options:
     quiet: false
     trunc: true
