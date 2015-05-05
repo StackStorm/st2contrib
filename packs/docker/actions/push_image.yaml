@@ -1,7 +1,7 @@
 ---
 name: push_image
 runner_type: run-python
-description: Build docker image action. Equivalent to docker build.
+description: Push docker image action. Equivalent to docker push.
 enabled: true
 entry_point: push_image.py
 parameters:
