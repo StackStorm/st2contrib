@@ -40,7 +40,7 @@ to use a token with a "Read and Write" access.
 ### TwitterSearchSensor
 
 This sensor searches Twitter for recent tweets matching the criteria defined in
-the config. When a matching Tweet is found, a trigger is dispatcher.
+the config. When a matching Tweet is found, a trigger is dispatched.
 
 ## Actions
 
