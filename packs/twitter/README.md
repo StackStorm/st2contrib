@@ -2,6 +2,9 @@
 
 Pack which allows integration with Twitter.
 
+## Use cases
+* [HOWTO: Broadcast Twitter mentions about your Company to Slack channel](http://stackstorm.com/2014/12/22/monitor-twitter-and-fire-automations-based-on-twitter-keywords-using-stackstorm/)
+
 ## Configuration
 
 * ``consumer_key`` - Twitter API consumer key.
