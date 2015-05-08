@@ -6,6 +6,7 @@ __all__ = [
     'St2BaseAction'
 ]
 
+
 class St2BaseAction(Action):
     def __init__(self, config):
         super(St2BaseAction, self).__init__(config)
@@ -20,4 +21,3 @@ class St2BaseAction(Action):
             return self._client(base_url=host)
         except Exception as e:
             return e
-
