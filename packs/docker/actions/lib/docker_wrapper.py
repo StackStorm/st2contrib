@@ -52,6 +52,24 @@ class DockerWrapper(object):
                 json_output = six.advance_iterator(result)
         except StopIteration:
             pass
-        except Exception, e:
+        except Exception as e:
+            sys.stderr.write('Error: %s' % (str(e)))
+            raise e
+
+    def push(self, repo, tag=None, insecure_registry=False):
+        try:
+            for line in self._client.push(repo, tag=tag, insecure_registry=insecure_registry,
+                                          stream=True):
+                sys.stdout.write(line)
+        except Exception as e:
+            sys.stderr.write('Error: %s' % (str(e)))
+            raise e
+
+    def pull(self, repo, tag=None, insecure_registry=False, auth_config=None):
+        try:
+            for line in self._client.pull(repo, tag=tag, insecure_registry=insecure_registry,
+                                          stream=True, auth_config=auth_config):
+                sys.stdout.write(line)
+        except Exception as e:
             sys.stderr.write('Error: %s' % (str(e)))
             raise e

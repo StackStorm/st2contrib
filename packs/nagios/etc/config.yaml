@@ -1,0 +1,5 @@
+---
+  st2_username: "testu"
+  st2_password: ""
+  st2_api_base_url: "http://localhost:9101/v1"
+  st2_auth_base_url: "http://localhost:9100"

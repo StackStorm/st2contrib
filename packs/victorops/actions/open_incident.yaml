@@ -1,0 +1,23 @@
+name: open_incident
+runner_type: run-python
+description: Triggers the event on VictorOps with the given parameters
+enabled: true
+entry_point: open_incident.py
+
+parameters:
+  severity:
+    type: string
+    description: "Describe the severity of incident i,e. critical, info, warning"
+  entity:
+    type: string
+    description: "Provide entity id, This would be used by victorops for stacking up incidents related to this entity"
+    required: true
+  message:
+    type: string
+    description: "Descriptive message about the event"
+    required: false
+  notify_group:
+    type: string
+    description: "send notifications to this group"
+    required: false
+

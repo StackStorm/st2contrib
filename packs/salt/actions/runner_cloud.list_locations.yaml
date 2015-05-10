@@ -1,0 +1,14 @@
+---
+description: Run Salt Runner functions through Salt API
+enabled: true
+entry_point: runner.py
+name: runner_cloud.list_locations
+parameters:
+  module:
+    default: cloud.list_locations
+    immutable: true
+    type: string
+  kwargs:
+    required: false
+    type: object
+runner_type: run-python
