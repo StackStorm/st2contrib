@@ -75,11 +75,11 @@ Parameter | Description | Details
 
 Search actions perform a specified query in Elasticsearch. There are two search actions available: **search.q** and **search.body**. The first one takes a query string (given in lucene syntax), while the former allows to perform more sophisticated searches using Elasticsearch query DSL.
 
-Both search actions use the same [common parameters]() as curator based actions.
+Both search actions use the same *common parameters* as curator based actions.
 
 ### search.q specific parameters
 
-This action is enhanced with [index selection](#Indices/snapshots selection parameters) parameters to simplify indices matching.
+This action is enhanced with *index selection* parameters to simplify indices matching.
 
 Parameter | Description
 ------------ | ------------
