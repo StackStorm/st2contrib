@@ -1,0 +1,2 @@
+curator
+easydict

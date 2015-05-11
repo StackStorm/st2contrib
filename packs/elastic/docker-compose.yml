@@ -1,0 +1,19 @@
+st2:
+  image: st2
+  links:
+   - elk
+  ports:
+   - "9100:9100"
+   - "9101:9101"
+  command: /bin/bash -c "/root/st2/start.sh ; sleep infinity"
+  volumes:
+   - ./:/opt/stackstorm/packs/default
+elk:
+  image: sebp/elk
+  ports:
+   - "5000:5000"
+   - "5601:5601"
+   - "9200:9200"
+   - "10987:10987" # udp input
+  volumes:
+   - ./conf.d:/etc/logstash/conf.d
