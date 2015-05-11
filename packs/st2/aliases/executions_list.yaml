@@ -1,0 +1,6 @@
+---
+name: "st2-executions-list"
+action_ref: "st2.executions.list"
+description: "List available StackStorm executions."
+formats:
+  - "action={{ action=None }} status={{ status=None }}"
