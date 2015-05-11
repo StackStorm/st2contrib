@@ -38,10 +38,6 @@ class St2BaseAction(Action):
 
         :rtype: ``list`` of ``dict``
         """
-        # Filter out parameters with string value of "None"
-        # This is a work around since the default values can only be strings
-        method_kwargs = dict([(k, v) for k, v in method_kwargs.items() if v != "None"])
-
         method_name = method.__name__
         self.logger.debug('Calling client method "%s" with kwargs "%s"' % (method_name,
                                                                            method_kwargs))
