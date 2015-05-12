@@ -1,0 +1,26 @@
+---
+  chain:
+    -
+      name: "retrieve_actions_list"
+      ref: "st2.actions.list"
+      params:
+        pack: "{{ pack }}"
+      publish:
+        result1: "{{ retrieve_actions_list.result }}"
+      on-success: "format_result"
+      on-failure: "handle_error"
+    -
+      name: "format_result"
+      ref: "st2.chatops.format_list_result"
+      params:
+        result: "{{ retrieve_actions_list.result }}"
+        attributes:
+          - "pack"
+          - "name"
+          - "description"
+      on-failure: "handle_error"
+    -
+      name: "handle_error"
+      ref: "core.local"
+      params:
+        cmd: "echo 'Failed to retrieve actions'"

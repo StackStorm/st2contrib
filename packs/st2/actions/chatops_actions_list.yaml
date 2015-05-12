@@ -1,0 +1,11 @@
+---
+name: "chatops.actions.list"
+enabled: true
+description: "Retrieve a list of available StackStorm actions and format output for ChatOps consumption."
+runner_type: "action-chain"
+entry_point: "workflows/chatops/actions_list.yaml"
+parameters:
+  pack:
+    type: "string"
+    description: "Optional pack to filter on"
+    required: false

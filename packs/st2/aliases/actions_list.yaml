@@ -1,6 +1,6 @@
 ---
 name: "st2-actions-list"
-action_ref: "st2.actions.list"
+action_ref: "st2.chatops.actions.list"
 description: "List available StackStorm actions."
 formats:
   - "pack={{ pack=None }}"
