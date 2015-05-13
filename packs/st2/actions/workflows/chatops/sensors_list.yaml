@@ -1,0 +1,24 @@
+---
+  chain:
+    -
+      name: "retrieve_sensors_list"
+      ref: "st2.sensors.list"
+      params:
+        pack: "{{ pack }}"
+      on-success: "format_result"
+      on-failure: "handle_error"
+    -
+      name: "format_result"
+      ref: "st2.chatops.format_list_result"
+      params:
+        result: "{{ retrieve_sensors_list.result }}"
+        attributes:
+          - "pack"
+          - "name"
+          - "enabled"
+      on-failure: "handle_error"
+    -
+      name: "handle_error"
+      ref: "core.local"
+      params:
+        cmd: "echo 'Failed to retrieve sensors.'"
