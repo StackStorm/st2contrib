@@ -18,6 +18,7 @@
           - "pack"
           - "name"
           - "description"
+          - "enabled"
       on-failure: "handle_error"
     -
       name: "handle_error"
