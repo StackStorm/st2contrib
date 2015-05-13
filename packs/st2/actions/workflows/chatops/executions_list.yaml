@@ -16,6 +16,7 @@
         result: "{{ retrieve_executions_list.result }}"
         attributes:
           - "action.name"
+          - "runner.name"
           - "status"
           - "start_timestamp"
           - "end_timestamp"
