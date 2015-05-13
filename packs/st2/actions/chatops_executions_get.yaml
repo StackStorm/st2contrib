@@ -1,0 +1,14 @@
+---
+name: "chatops.executions.get"
+enabled: true
+description: "Retrieve details for a particular execution format output for ChatOps consumption."
+runner_type: "action-chain"
+entry_point: "workflows/chatops/executions_get.yaml"
+parameters:
+  skip_notify:
+    default:
+      - "retrieve_execution"
+  id:
+    type: "string"
+    description: "ID of execution to retrieve the details for"
+    required: true

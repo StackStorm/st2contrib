@@ -1,0 +1,20 @@
+---
+  chain:
+    -
+      name: "retrieve_execution"
+      ref: "st2.executions.get"
+      params:
+        id: "{{ id }}"
+      on-success: "format_result"
+      on-failure: "handle_error"
+    -
+      name: "format_result"
+      ref: "st2.chatops.format_executions_get_result"
+      params:
+        result: "{{ retrieve_execution.result }}"
+      on-failure: "handle_error"
+    -
+      name: "handle_error"
+      ref: "core.local"
+      params:
+        cmd: "echo 'Failed to retrieve execution.'"
