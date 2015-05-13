@@ -5,6 +5,9 @@ description: "Retrieve a list of available StackStorm actions and format output 
 runner_type: "action-chain"
 entry_point: "workflows/chatops/actions_list.yaml"
 parameters:
+  skip_notify:
+    default:
+      - "retrieve_actions_list"
   pack:
     type: "string"
     description: "Optional pack to filter on"
