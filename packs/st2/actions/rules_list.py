@@ -1,10 +1,19 @@
 from lib.action import St2BaseAction
-from lib.utils import filter_none_values
 from lib.formatters import format_client_list_result
 
 __all__ = [
     'St2RulesListAction'
 ]
+
+EXCLUDE_ATTRIBUTES = [
+    'trigger',
+    'criteria',
+    'action'
+]
+
+
+def format_result(result):
+    return format_client_list_result(result=result, exclude_attributes=EXCLUDE_ATTRIBUTES)
 
 
 class St2RulesListAction(St2BaseAction):
@@ -14,10 +23,7 @@ class St2RulesListAction(St2BaseAction):
         if pack:
             kwargs['pack'] = pack
 
-        # Filter out parameters with string value of "None"
-        # This is a work around since the default values can only be strings
-        kwargs = filter_none_values(kwargs)
         result = self._run_client_method(method=self.client.rules.get_all,
                                          method_kwargs=kwargs,
-                                         format_func=format_client_list_result)
+                                         format_func=format_result)
         return result

@@ -1,8 +1,8 @@
 ---
   chain:
     -
-      name: "retrieve_actions_list"
-      ref: "st2.actions.list"
+      name: "retrieve_rules_list"
+      ref: "st2.rules.list"
       params:
         pack: "{{ pack }}"
       on-success: "format_result"
@@ -11,9 +11,8 @@
       name: "format_result"
       ref: "st2.chatops.format_list_result"
       params:
-        result: "{{ retrieve_actions_list.result }}"
+        result: "{{ retrieve_rules_list.result }}"
         attributes:
-          - "pack"
           - "name"
           - "description"
           - "enabled"
@@ -22,4 +21,4 @@
       name: "handle_error"
       ref: "core.local"
       params:
-        cmd: "echo 'Failed to retrieve actions.'"
+        cmd: "echo 'Failed to retrieve rules.'"
