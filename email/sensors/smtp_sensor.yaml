@@ -1,0 +1,17 @@
+---
+class_name: "SMTPSensor"
+entry_point: "smtp_sensor.py"
+description: "Sensor that emits triggers when e-mail message is received via SMTP"
+trigger_types:
+  -
+    name: message
+    description: "An e-mail receieved via the SMTP sensor"
+    payload_info:
+      - from
+      - to
+      - cc
+      - bcc
+      - headers
+      - subject
+      - body
+      - attachments

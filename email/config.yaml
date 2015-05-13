@@ -1,0 +1,12 @@
+### Place configuration data for your pack here.
+---
+imap_server: "imap.gmail.com"
+imap_username: "james@stackstorm.com"
+imap_password: "tqsyqxagumqwrpwc"
+imap_ssl: true
+smtp_server:
+  enable: false
+  port: 25
+  ssl: false
+  ssl_cert: ""
+  ssl_key: ""
