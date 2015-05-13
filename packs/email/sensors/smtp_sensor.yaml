@@ -4,7 +4,7 @@ entry_point: "smtp_sensor.py"
 description: "Sensor that emits triggers when e-mail message is received via SMTP"
 trigger_types:
   -
-    name: message
+    name: smtp.message
     description: "An e-mail receieved via the SMTP sensor"
     payload_info:
       - from
