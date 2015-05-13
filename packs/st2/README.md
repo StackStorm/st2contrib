@@ -13,6 +13,8 @@ Requires StackStorm >= `v0.8.0`
 
 ## Actions
 
+### Datastore
+
 * ``kv.get`` - Retrieve string value from a datastore.
 * ``kv.set`` - Store string value in a datastore.
 * ``kv.grep`` - Find datastore items which name matches the provided query.
@@ -22,3 +24,17 @@ Requires StackStorm >= `v0.8.0`
   datastore.
 * ``kv.set_object`` - Serialize and store object in a datastore. Note: object
   is serialized as JSON.
+
+## ChatOps commands
+
+By default, this pack also includes ChatOps commands (aliases) which allow you
+to query your StackStorm installation for things such as available actions,
+sensors and more.
+
+* ``!st2-actions-list [pack=<pack name>]`` - List available StackStorm actions.
+* ``!st2-rules-list`` - List available StackStorm rules.
+* ``!st2-sensors-list [pack=<pack name>]`` - List available StackStorm sensors.
+* ``!st2-executions-list [action=<action name>] [status=<status>]`` - View a
+  history of action executions.
+* ``!st2-executions-get id=<execution id>`` - View details for a particular
+  action execution.
