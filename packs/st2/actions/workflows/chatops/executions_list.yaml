@@ -4,7 +4,7 @@
       name: "retrieve_executions_list"
       ref: "st2.executions.list"
       params:
-        action: "{{ action}}"
+        action: "{{ action }}"
         status: "{{ status }}"
         limit: "{{ limit }}"
       on-success: "format_result"
@@ -15,7 +15,7 @@
       params:
         result: "{{ retrieve_executions_list.result }}"
         attributes:
-          - "action.name"
+          - "action.ref"
           - "runner.name"
           - "status"
           - "start_timestamp"
@@ -25,4 +25,4 @@
       name: "handle_error"
       ref: "core.local"
       params:
-        cmd: "echo 'Failed to retrieve rules.'"
+        cmd: "echo 'Failed to retrieve executions.'"
