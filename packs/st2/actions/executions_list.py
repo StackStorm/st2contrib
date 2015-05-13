@@ -1,25 +1,34 @@
 from lib.action import St2BaseAction
-from lib.utils import filter_none_values
 from lib.formatters import format_client_list_result
 
 __all__ = [
     'St2ExecutionsListAction'
 ]
 
+EXCLUDE_ATTRIBUTES = [
+    'trigger',
+    'trigger_type',
+    'trigger_instance',
+    'liveaction',
+    'context'
+]
+
+
+def format_result(result):
+    return format_client_list_result(result=result, exclude_attributes=EXCLUDE_ATTRIBUTES)
+
 
 class St2ExecutionsListAction(St2BaseAction):
-    def run(self, action=None, status=None):
+    def run(self, action=None, status=None, limit=10):
         kwargs = {}
+
+        kwargs['limit'] = limit
 
         if action:
             kwargs['action'] = action
 
         if status:
             kwargs['status'] = status
-
-        # Filter out parameters with string value of "None"
-        # This is a work around since the default values can only be strings
-        kwargs = filter_none_values(kwargs)
 
         if kwargs:
             method = self.client.liveactions.query
@@ -28,5 +37,5 @@ class St2ExecutionsListAction(St2BaseAction):
 
         result = self._run_client_method(method=method,
                                          method_kwargs=kwargs,
-                                         format_func=format_client_list_result)
+                                         format_func=format_result)
         return result

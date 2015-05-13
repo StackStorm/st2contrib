@@ -1,10 +1,13 @@
 ---
-name: "executions.list"
+name: "chatops.executions.list"
 enabled: true
-description: "Retrieve a list of executions."
-runner_type: run-python
-entry_point: executions_list.py
+description: "Retrieve a list of action executions and format output for ChatOps consumption."
+runner_type: "action-chain"
+entry_point: "workflows/chatops/executions_list.yaml"
 parameters:
+  skip_notify:
+    default:
+      - "retrieve_executions_list"
   action:
     type: "string"
     description: "Optional action to filter the executions on"
