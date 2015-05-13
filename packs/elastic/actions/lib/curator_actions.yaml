@@ -179,10 +179,10 @@
       partial:
         description: "Do not fail if primary shard is unavailable."
         type: "boolean"
-      request_timeout:
-        description: "Allow this many seconds before the transaction times out."
-        type: "integer"
+      timeout:
+        description: "Don't wait for action completion more then the specified timeout."
         default: 21600
+        type: "integer"
       # <-- These are index selection parameters!
       time_unit:
         description: "Unit of time to reckon by [hours|days|weeks|months]."
@@ -424,10 +424,10 @@
         description: "Merge to this number of segments per shard."
         type: "integer"
         default: 2
-      request_timeout:
-        description: "Allow this many seconds before the transaction times out"
-        type: "integer"
+      timeout:
+        description: "Don't wait for action completion more then the specified timeout."
         default: 21600
+        type: "integer"
 
       # <-- Indices selection
       time_unit:

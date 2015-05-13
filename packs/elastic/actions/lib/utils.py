@@ -9,8 +9,6 @@ version_max  = (2, 0, 0)
 version_min = (1, 0, 0)
 logger = logging.getLogger(__name__)
 
-ES_ARGS = ['host', 'url_prefix', 'port', 'http_auth', 'use_ssl']
-
 
 def check_version(client):
     """
@@ -34,14 +32,16 @@ def check_master(client, master_only=False):
         sys.exit(9)
 
 
-def get_client(**kwargs):
+def get_client(host, port=9200, url_prefix=None, http_auth=None, use_ssl=False, master_only=False, timeout=30):
     """
     Return an Elasticsearch client using the provided parameters
     """
-    kwargs = {k:kwargs[k] for k in ES_ARGS if kwargs[k]}
-    kwargs['master_only'] = False if not 'master_only' in kwargs else kwargs['master_only']
-    logger.debug("kwargs = {0}".format(kwargs))
-    master_only = kwargs.pop('master_only')
+    kwargs = compact_dict({
+                'host': host, 'port': port, 'http_auth': http_auth,
+                'url_prefix': url_prefix, 'use_ssl': use_ssl,
+                'timeout': timeout
+             })
+    logger.debug("ES client kwargs = {0}".format(kwargs))
     try:
         client = elasticsearch.Elasticsearch(**kwargs)
         # Verify the version is acceptable.

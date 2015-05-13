@@ -1,13 +1,13 @@
 from curator.api.utils import index_closed
 from curator_api_commands import APICommands
-from elastic_action import ElasticAction
+from esbase_action import ESBaseAction
 import logging
 import sys
 
 logger = logging.getLogger(__name__)
 
 
-class CuratorAction(ElasticAction):
+class CuratorAction(ESBaseAction):
 
     def __init__(self, config=None):
         super(CuratorAction, self).__init__(config=config)
@@ -35,21 +35,6 @@ class CuratorAction(ElasticAction):
         if not self._api:
             self._api = APICommands(**self.config)
         return self._api
-
-
-    def override_timeout(self):
-        """
-        Overides default timeout for long lasting operations. Sets it to 6 hours.
-        """
-        # TOFIX: default runner options if overried are NOT passed to the script.
-        #
-        # !!!!
-        self.config.timeout = 600
-
-        if self.command in ('snapshot', 'optimize') and self.config.timeout < 21600:
-            logger.warn('Raising timeout because {0} operation might take time!'.
-                            format(self.command))
-            self.config.timeout = 21600
 
 
     def show_dry_run(self):

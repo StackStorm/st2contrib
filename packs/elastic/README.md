@@ -36,7 +36,7 @@ Parameter | Description | Default
 **port** | Specifies port remote Elasticsearch instance is running on. | `9200`
 **use_ssl** | Set to `true` to connect to Elasticsearch through SSL. | `false`
 **http_auth** | Colon separated string specifying HTTP Basic Authentication. | `none`
-**master_only** | Set to `true` enable operation only on elected master. If connected to a node other than master operation will fail. | `false`
+**master_only** | Set to `true` to allow operation only on elected master. If a host you connect to is not a master node then the operation will fail. | `false`
 **timeout** | Specifies Elasticsearch operation timeout in seconds. | `600`
 **log_level** | Specifies log level \[critical\|error\|warning\|info\|debug\]. | `warn`
 **dry_run** | Set to `true` to enable *dry run* mode not performing any changes. | `false`

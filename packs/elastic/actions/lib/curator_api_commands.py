@@ -30,8 +30,14 @@ class APICommands(object):
     @property
     def client(self):
         if not self._client:
-            self._client = utils.get_client(**self.opts)
+            o = self.opts
+            self._client = utils.get_client(**({
+                'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
+                'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
+                'master_only': o.master_only, 'timeout': o.operation_timeout
+            }))
         return self._client
+
 
     @property
     def iselector(self):
@@ -116,7 +122,7 @@ class APICommands(object):
             'replicas': { 'replicas': opts['count'] },
             'optimize': {
                 'max_num_segments': opts['max_num_segments'],
-                'request_timeout': opts['request_timeout'],
+                'request_timeout': opts['operation_timeout'],
                 'delay': opts['delay']
             },
             'snapshot': {
@@ -125,7 +131,7 @@ class APICommands(object):
                 'ignore_unavailable': opts['ignore_unavailable'],
                 'include_global_state': opts['include_global_state'],
                 'wait_for_completion': opts['wait_for_completion'],
-                'request_timeout': opts['request_timeout']
+                'request_timeout': opts['operation_timeout']
             }
         }.get(command, {})
         return compact_dict(kwargs)

@@ -10,7 +10,8 @@ class CuratorRunner(CuratorAction):
 
     def run(self, **kwargs):
         self.action = kwargs.pop('action')
+        timeout = kwargs.pop('operation_timeout')
         self.config = EasyDict(kwargs)
+        self.config['operation_timeout'] = int(timeout)
         self.set_up_logging()
-        self.override_timeout()
         self.do_command()

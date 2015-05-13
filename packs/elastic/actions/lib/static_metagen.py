@@ -38,9 +38,15 @@ class StaticMetagen(object):
                 "default": False
             },
             "timeout": {
-                "description": "Elasticsearch operation timeout in seconds.",
-                "type": "integer",
-                "default": 600
+                 "description": "Don't wait for action completion more then the specified timeout.",
+                 "default": 600,
+                 "type": "integer"
+            },
+            "operation_timeout": {
+                "description": "Elasticsearch operation timeout in seconds. (It's equal to action timeout).",
+                "default": "{{timeout}}",
+                "immutable": True,
+                "type": "integer"
             },
             "log_level": {
                 "description": "Log level [critical|error|warning|info|debug].",
@@ -82,8 +88,8 @@ class StaticMetagen(object):
     def generate_from_file(self, meta_file):
         if meta_file is None:
             return None
-        fh = open(meta_file)
-        actions = yaml.load(fh.read())
+        with open(meta_file) as fh:
+            actions = yaml.load(fh.read())
         for manifest in self._merge_actions(actions):
             fh = open('{0}.yaml'.format(manifest['name']), 'w')
             fh.write('---\n')

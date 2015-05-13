@@ -1,6 +1,6 @@
 from easydict import EasyDict
 from lib.items_selector import ItemsSelector
-from lib.elastic_action import ElasticAction
+from lib.esbase_action import ESBaseAction
 from collections import defaultdict
 import logging
 import sys
@@ -10,7 +10,7 @@ import json
 logger = logging.getLogger(__name__)
 
 
-class SearchRunner(ElasticAction):
+class SearchRunner(ESBaseAction):
 
     def __init__(self, config=None):
         super(SearchRunner, self).__init__(config=config)
@@ -29,7 +29,9 @@ class SearchRunner(ElasticAction):
 
     def run(self, **kwargs):
         action = kwargs.pop('action')
+        timeout = kwargs.pop('operation_timeout')
         self.config = EasyDict(kwargs)
+        self.config['operation_timeout'] = int(timeout)
         # support full interface for curator iselector
         self.config['dry_run'] = False
         self.set_up_logging()
@@ -44,7 +46,6 @@ class SearchRunner(ElasticAction):
         """Perform URI-based request search.
         """
         accepted_params = ('q','df', 'default_operator', 'from', 'size')
-        # FIX TIMEOUT, can get it since it's built in for st2 actions
         kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
         indices = ','.join(self.iselector.indices())
 
@@ -61,7 +62,6 @@ class SearchRunner(ElasticAction):
         """Perform search using Query DSL.
         """
         accepted_params = ('from', 'size')
-        # FIX TIMEOUT, can get it since it's built in for st2 actions
         kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
         try:
             result = self.client.search(index=self.config.indices, 

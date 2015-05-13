@@ -2,17 +2,22 @@ from st2actions.runners.pythonrunner import Action
 import utils
 import logging
 
-class ElasticAction(Action):
+class ESBaseAction(Action):
 
     def __init__(self, config=None):
-        super(ElasticAction, self).__init__(config=config)
+        super(ESBaseAction, self).__init__(config=config)
         self._client = None
 
 
     @property
     def client(self):
         if not self._client:
-            self._client = utils.get_client(**self.config)
+            o = self.config
+            self._client = utils.get_client(**({
+                'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
+                'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
+                'master_only': o.master_only, 'timeout': o.operation_timeout
+            }))
         return self._client
 
 

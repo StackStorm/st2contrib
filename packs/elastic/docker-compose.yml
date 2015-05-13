@@ -7,7 +7,7 @@ st2:
    - "9101:9101"
   command: /bin/bash -c "/root/st2/start.sh ; sleep infinity"
   volumes:
-   - ./:/opt/stackstorm/packs/default
+   - ./:/opt/stackstorm/packs/elastic
 elk:
   image: sebp/elk
   ports:
