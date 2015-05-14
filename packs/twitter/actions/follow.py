@@ -17,6 +17,6 @@ class FollowAction(Action):
             consumer_secret=self.config['consumer_secret']
         )
         client = Twitter(auth=auth)
-        client.friendship.create(screen_name=screen_name)
+        client.friendships.create(screen_name=screen_name)
 
         return True
