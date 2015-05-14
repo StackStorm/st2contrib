@@ -49,6 +49,7 @@ the config. When a matching Tweet is found, a trigger is dispatched.
 
 * ``update_status`` - Action which updates your status / posts a new tweet.
 * ``direct_message`` - Action to direct message a user.
+* ``follow`` - Action to follow a user.
 
 ## Rules
 
