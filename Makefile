@@ -24,7 +24,7 @@ flake8:
 	@echo
 	@echo "==================== flake8 ===================="
 	@echo
-	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8
+	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8 --config ./.flake8
 
 .PHONY: configs-check
 configs-check:
