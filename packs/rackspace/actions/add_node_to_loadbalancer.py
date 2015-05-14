@@ -4,6 +4,7 @@ __all__ = [
     'AddNodeToLoadBalancerAction'
 ]
 
+
 class AddNodeToLoadBalancerAction(PyraxBaseAction):
     def run(self, loadbalancer_id, ip, port):
         clb = self.pyrax.cloud_loadbalancers

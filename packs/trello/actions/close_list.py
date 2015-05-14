@@ -1,5 +1,6 @@
 from lib import action
 
+
 class CloseListAction(action.BaseAction):
     def run(self, list_id, board_id, api_key=None, token=None):
         if api_key:
@@ -9,4 +10,3 @@ class CloseListAction(action.BaseAction):
         trello_list.close()
 
         return trello_list.closed
-

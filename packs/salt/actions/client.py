@@ -1,4 +1,3 @@
-import copy
 import salt.client
 
 from st2actions.runners.pythonrunner import Action

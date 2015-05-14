@@ -1,5 +1,6 @@
 try:
     import libcloud
+    libcloud
 except ImportError:
     message = ('Missing "apache-libcloud", please install it using pip:\n'
                'pip install apache-libcloud')

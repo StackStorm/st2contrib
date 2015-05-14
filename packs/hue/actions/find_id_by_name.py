@@ -1,5 +1,6 @@
 from lib import action
 
+
 class FindIDByNameAction(action.BaseAction):
     def run(self, name):
         light_id = None

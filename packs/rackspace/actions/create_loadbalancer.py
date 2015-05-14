@@ -4,6 +4,7 @@ __all__ = [
     'CreateLoadBalancerAction'
 ]
 
+
 class CreateLoadBalancerAction(PyraxBaseAction):
     def run(self, name, port, protocol):
         clb = self.pyrax.cloud_loadbalancers
@@ -15,7 +16,7 @@ class CreateLoadBalancerAction(PyraxBaseAction):
 
         # Block until provisioned
         self.pyrax.utils.wait_until(load_balancer, "status", "ACTIVE", interval=1,
-                               attempts=30)
+                                    attempts=30)
 
         self.logger.info('Loadbalancer successfully created: %s' % load_balancer)
 
