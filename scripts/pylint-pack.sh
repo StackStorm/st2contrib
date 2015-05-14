@@ -10,7 +10,7 @@ PYTHONPATH=$(join ":" ${COMPONENTS})
 
 echo "Running pylint on pack: ${PACK_NAME}"
 
-if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" ]; then
+if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" -a ! -d "${PACK_PATH}/etc" ]; then
     echo "Skipping pack without any actions and sensors"
     exit 0
 fi
