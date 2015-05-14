@@ -9,7 +9,7 @@ __all__ = [
 
 
 class DirectMessageAction(Action):
-    def run(self, user, message):
+    def run(self, screen_name, message):
         auth = OAuth(
             token=self.config['access_token'],
             token_secret=self.config['access_token_secret'],
@@ -17,6 +17,6 @@ class DirectMessageAction(Action):
             consumer_secret=self.config['consumer_secret']
         )
         client = Twitter(auth=auth)
-        client.direct_messages.new(user=user, text=message)
+        client.direct_messages.new(user=screen_name, text=message)
 
         return True

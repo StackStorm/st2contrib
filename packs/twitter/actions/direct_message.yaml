@@ -5,9 +5,9 @@
   enabled: true
   entry_point: "direct_message.py"
   parameters:
-    user:
+    screen_name:
       type: "string"
-      description: "The user to direct message."
+      description: "screen name of the user to direct message."
       required: true
     message:
       type: "string"
