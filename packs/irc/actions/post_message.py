@@ -1,3 +1,4 @@
+# pylint: disable=super-on-old-class
 import random
 
 import eventlet
@@ -29,9 +30,9 @@ class StackStormActionIRCBot(SingleServerIRCBot):
     def on_welcome(self, connection, event):
         try:
             connection.join(self._channel)
-            self.connection.privmsg(self._channel, self._message)
+            self.connection.privmsg(self._channel, self._message)  # pylint: disable=no-member
         finally:
-            self.die(msg='Disconnecting')
+            self.die(msg='Disconnecting')  # pylint: disable=no-member
 
     def on_nicknameinuse(self, connection, event):
         new_nickname = '%s-%s' % (connection.get_nickname(), random.randint(1, 1000))
@@ -41,7 +42,7 @@ class StackStormActionIRCBot(SingleServerIRCBot):
 class PostMessageAction(Action):
     def run(self, channel, message):
         bot = self._get_bot(channel=channel, message=message)
-        bot.start()
+        bot.start()  # pylint: disable=no-member
 
         return True
 
