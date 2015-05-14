@@ -6,6 +6,13 @@ all: configs-check metadata-check
 .PHONY: lint
 lint: flake8 configs-check metadata-check
 
+.PHONY: pylint
+pylint:
+	@echo
+	@echo "==================== flake8 ===================="
+	@echo
+	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 pylint -E --rcfile=./.pylintrc
+
 .PHONY: flake8
 flake8:
 	@echo
