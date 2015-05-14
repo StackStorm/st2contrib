@@ -4,10 +4,10 @@ ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 COMPONENTS := $(wildcard /tmp/st2/st2*)
 
 .PHONY: all
-all: pylint configs-check metadata-check
+all: lint
 
 .PHONY: lint
-lint: flake8 configs-check metadata-check
+lint: flake8 pylint configs-check metadata-check
 
 .PHONY: pylint
 pylint: .clone_st2_repo .pylint
