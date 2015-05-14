@@ -12,9 +12,11 @@ class MmonitBaseAction(Action):
 
     def login(self):
         self.session.get(self.url)
-        login = self.session.get("{}/z_security_check".format(self.url), data={"z_csrf_protection": "off",
-                                                                               "z_username": self.user,
-                                                                               "z_password": self.password})
+        data = {"z_csrf_protection": "off",
+                "z_username": self.user,
+                "z_password": self.password}
+        login = self.session.get("{}/z_security_check".format(self.url), data=data)
+
         if login.status_code != 200:
             raise Exception("Could not login to mmonit {}.".format(login.reason))
 

@@ -1,13 +1,14 @@
 from jira import JIRA
 
-#from st2actions.runners.pythonrunner import Action
-class Action(object):
-    def __init__(self, config):
-        self.config = config
-
+#  from st2actions.runners.pythonrunner import Action
 __all__ = [
     'BaseJiraAction'
 ]
+
+
+class Action(object):
+    def __init__(self, config):
+        self.config = config
 
 
 class BaseJiraAction(Action):

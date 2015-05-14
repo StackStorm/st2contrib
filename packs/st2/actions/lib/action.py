@@ -6,6 +6,7 @@ __all__ = [
     'St2BaseAction'
 ]
 
+
 class St2BaseAction(Action):
     def __init__(self, config):
         super(St2BaseAction, self).__init__(config)

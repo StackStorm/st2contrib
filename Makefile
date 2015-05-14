@@ -4,10 +4,10 @@ ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 COMPONENTS := $(wildcard /tmp/st2/st2*)
 
 .PHONY: all
-all: pylint configs-check metadata-check
+all: lint
 
 .PHONY: lint
-lint: flake8 configs-check metadata-check
+lint: flake8 pylint configs-check metadata-check
 
 .PHONY: pylint
 pylint: .clone_st2_repo .pylint
@@ -24,7 +24,7 @@ flake8:
 	@echo
 	@echo "==================== flake8 ===================="
 	@echo
-	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8
+	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8 --config ./.flake8
 
 .PHONY: configs-check
 configs-check:

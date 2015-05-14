@@ -2,8 +2,9 @@ from lib.mmonit import MmonitBaseAction
 
 
 class MmonitListEvents(MmonitBaseAction):
-    def run(self, active=None, hostid=None, hostgroupid=None, servicenameid=None, servicegroupid=None, servicetype=None,
-            eventtype=None, state=None, datefrom=None, results=None, startindex=None, sort_key=None, sort_dir=None):
+    def run(self, active=None, hostid=None, hostgroupid=None, servicenameid=None,
+            servicegroupid=None, servicetype=None, eventtype=None, state=None, datefrom=None,
+            results=None, startindex=None, sort_key=None, sort_dir=None):
         self.login()
         data = {}
 

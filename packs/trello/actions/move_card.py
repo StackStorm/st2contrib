@@ -1,5 +1,6 @@
 from lib import action
 
+
 class MoveCardAction(action.BaseAction):
     def run(self, card_id, target_list_id, api_key=None, token=None):
         if api_key:

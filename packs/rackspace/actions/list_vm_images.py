@@ -1,9 +1,9 @@
 from lib.action import PyraxBaseAction
-from lib.formatters import to_server_dict
 
 __all__ = [
     'ListVMImagesAction'
 ]
+
 
 class ListVMImagesAction(PyraxBaseAction):
     def run(self):

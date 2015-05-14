@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SetModeAction(actions.BaseAction):
     def run(self, mode, structure=None, device=None):
         if structure and device:

@@ -2,7 +2,8 @@ from lib.softlayer import SoftlayerBaseAction
 
 
 class SoftlayerCreateInstance(SoftlayerBaseAction):
-    def run(self, name, datacenter, os="DEBIAN_LATEST", domain="example.com", cpus=1, ram=2048, disk=100, bandwidth=10, local_disk=True, keyname=None):
+    def run(self, name, datacenter, os="DEBIAN_LATEST", domain="example.com", cpus=1, ram=2048,
+            disk=100, bandwidth=10, local_disk=True, keyname=None):
         driver = self._get_driver()
         # build the params list to pass to create_node with the proper kwargs
         create_params = {"name": name, "ex_datacenter": datacenter,

@@ -2,6 +2,7 @@
 
 from lib.chef_runner import ChefRunner
 
+
 class ChefSoloRunner(ChefRunner):
     '''
     ChefRunner type implementation.

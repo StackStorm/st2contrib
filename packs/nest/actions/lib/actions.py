@@ -2,6 +2,7 @@ from st2actions.runners.pythonrunner import Action
 import nest
 from nest import utils as utils
 
+
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
@@ -30,9 +31,11 @@ class BaseAction(Action):
         return self._get_device(self._structure, self._device)
 
     def _convert_temperature(self, temperature, scale):
-        return {
+        result = {
             'fahrenheit': self._utils.f_to_c(temperature),
             'f': self._utils.f_to_c(temperature),
             'celsius': temperature,
-            'c': temperature,
-            }.get(scale, temperature)
+            'c': temperature
+        }
+        result = result.get(scale, temperature)
+        return result

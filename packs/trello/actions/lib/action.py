@@ -1,5 +1,7 @@
-from st2actions.runners.pythonrunner import Action
 from trello import TrelloClient
+
+from st2actions.runners.pythonrunner import Action
+
 
 class BaseAction(Action):
     def __init__(self, config):
@@ -28,4 +30,3 @@ class BaseAction(Action):
                                        token=self._creds['token'])
 
         return self.client
-

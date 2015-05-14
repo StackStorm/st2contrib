@@ -16,7 +16,7 @@ class St2KVPSetObjectAction(St2BaseAction):
         if ttl:
             kvp.ttl = ttl
 
-        update = self.client.keys.update(kvp)
+        self.client.keys.update(kvp)
         response = {
             'key': key,
             'value': value,
