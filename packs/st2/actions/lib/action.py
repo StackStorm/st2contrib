@@ -11,13 +11,12 @@ class St2BaseAction(Action):
         super(St2BaseAction, self).__init__(config)
         self._client = Client
         self._kvp = KeyValuePair
-        self.client = self._client()
+        self.client = self._get_client()
 
-    def _client(self):
+    def _get_client(self):
         host = self.config['base_url']
 
         try:
             return self._client(base_url=host)
         except Exception as e:
             return e
-

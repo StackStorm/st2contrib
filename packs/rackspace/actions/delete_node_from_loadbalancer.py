@@ -4,7 +4,7 @@ __all__ = [
     'DeleteNodeFromLoadBalancerAction'
 ]
 
-class DeleteNodeFromLoadBalancer(PyraxBaseAction):
+class DeleteNodeFromLoadBalancerAction(PyraxBaseAction):
     def run(self, loadbalancer_id, ip):
         clb = self.pyrax.cloud_loadbalancers
 
@@ -22,4 +22,3 @@ class DeleteNodeFromLoadBalancer(PyraxBaseAction):
         self.logger.info('Successfully removed node from loadbalancer: %s' % target_ip)
 
         return target_ip
-

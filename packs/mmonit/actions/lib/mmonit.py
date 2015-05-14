@@ -1,5 +1,3 @@
-from libcloud.compute.providers import Provider
-from libcloud.compute.providers import get_driver
 from st2actions.runners.pythonrunner import Action
 import requests
 
@@ -25,4 +23,5 @@ class MmonitBaseAction(Action):
         self.session.close()
 
     def run(self, **kwargs):
+        # pylint: disable=notimplemented-raised
         raise NotImplemented("You need to override this in your class.")
