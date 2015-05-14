@@ -11,7 +11,7 @@ class SaltPackage(object):
         'list',
         'compound'
     ]
-    _data = {"eauth": "pam",
+    _data = {"eauth": "",
              "username": "",
              "password": "",
              "client": "",
@@ -35,11 +35,13 @@ class SaltAction(Action):
     def __init__(self, config):
         super(SaltAction, self).__init__(config=config)
         self.url = self.config.get('api_url', None)
+        self.eauth = self.config.get('eauth', None)
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
 
     def generate_package(self, client='local', cmd=None, **kwargs):
         self.data = SaltPackage(client).data
+        self.data['eauth'] = self.eauth
         self.data['username'] = self.username
         self.data['password'] = self.password
         if cmd:
