@@ -4,7 +4,7 @@ ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 COMPONENTS := $(wildcard /tmp/st2/st2*)
 
 .PHONY: all
-all: configs-check metadata-check
+all: pylint configs-check metadata-check
 
 .PHONY: lint
 lint: flake8 configs-check metadata-check
