@@ -15,11 +15,12 @@ eventlet.monkey_patch(
     thread=True,
     time=True)
 
+
 class IMAPSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=30):
         super(IMAPSensor, self).__init__(sensor_service=sensor_service,
                                          config=config,
-					                     poll_interval=poll_interval)
+                                         poll_interval=poll_interval)
 
         self._trigger = 'email.imap.message'
         self._logger = self._sensor_service.get_logger(__name__)
@@ -63,11 +64,14 @@ class IMAPSensor(PollingSensor):
             ssl = config.get('ssl', False)
 
             if not user or not password:
-                self._logger.debug('[IMAPSensor]: Missing username/password for {0}'.format(mailbox))
+                self._logger.debug("""[IMAPSensor]: Missing
+                    username/password for {0}""".format(mailbox))
             elif not server:
-                self._logger.debug('[IMAPSensor]: Missing server for {0}'.format(mailbox))
+                self._logger.debug("""[IMAPSensor]: Missing server
+                    for {0}""".format(mailbox))
             else:
-                connection = easyimap.connect(server, user, password, folder, ssl=ssl, port=port)
+                connection = easyimap.connect(server, user, password,
+                                              folder, ssl=ssl, port=port)
                 self._mailboxes[mailbox] = connection
 
     def _poll_for_unread_messages(self, name, mailbox):

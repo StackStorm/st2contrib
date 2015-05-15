@@ -15,6 +15,7 @@ import base64
 
 from st2reactor.sensor.base import Sensor
 
+
 class SMTPSensor(Sensor):
     def __init__(self, sensor_service, config=None):
         super(SMTPSensor, self).__init__(sensor_service=sensor_service,
