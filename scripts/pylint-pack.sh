@@ -35,10 +35,10 @@ if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
     fi
 
     # Install base dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -r requirements-dev.txt
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt
 
     # Install pack dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -r ${PACK_REQUIREMENTS_FILE}
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE}
     PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
 else
     PYTHON_BINARY=`which python`
@@ -48,5 +48,5 @@ export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
 #echo "PYTHONPATH=${PYTHONPATH}"
 #echo "PYTHON_BINARY=${PYTHON_BINARY}"
-find ${PACK_PATH}/* -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc
+find ${PACK_PATH}/* -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc && echo "No pylint issues found."
 exit $?
