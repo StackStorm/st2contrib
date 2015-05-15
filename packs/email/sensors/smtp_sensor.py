@@ -52,9 +52,9 @@ class SMTPSensor(Sensor):
         pass
 
 
-class St2SMTPServer(smtpd.SMTPServer):
+class St2SMTPServer(smtpd.SMTPServer): # pylint: disable=no-member
     def __init__(self, localaddr, remoteaddr, sensor_service, logger, trigger):
-        smtpd.SMTPServer.__init__(self, localaddr, remoteaddr)
+        smtpd.SMTPServer.__init__(self, localaddr, remoteaddr) # pylint: disable=no-member
         self._logger = logger
         self._trigger = trigger
         self._sensor_service = sensor_service
