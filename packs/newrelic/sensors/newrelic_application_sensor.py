@@ -75,7 +75,8 @@ class NewRelicHookSensor(Sensor):
         self._host = self._get_sensor_config_param(self._config, APP_HOST_KEY)
         self._port = self._get_sensor_config_param(self._config, APP_PORT_KEY)
         self._url = self._get_sensor_config_param(self._config, APP_URL_KEY)
-        self._normal_report_delay = self._get_sensor_config_param(self._config, NORMAL_REPORT_DELAY_KEY, 300)
+        self._normal_report_delay = self._get_sensor_config_param(self._config,
+                                                                  NORMAL_REPORT_DELAY_KEY, 300)
 
         self._app = Flask(__name__)
         self._log = self._sensor_service.get_logger(__name__)
@@ -170,8 +171,8 @@ class NewRelicHookSensor(Sensor):
             }
             self._dispatch_trigger(WEB_APP_ALERT_TRIGGER_REF, payload)
 
-        elif self._is_alert_closed(long_description) or \
-             self._is_downtime_recovered(long_description):
+        elif (self._is_alert_closed(long_description) or
+                self._is_downtime_recovered(long_description)):
 
             # handled closed and recovered after a delay.
             payload = {
@@ -182,8 +183,8 @@ class NewRelicHookSensor(Sensor):
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
                                  payload)
 
-        elif self._is_alert_canceled(long_description) or \
-             self._is_alert_acknowledged(long_description):
+        elif (self._is_alert_canceled(long_description) or
+                self._is_alert_acknowledged(long_description)):
 
             # ignore canceled or acknowledged
             self._log.info('Ignored alert : %s.', alert_body)
@@ -219,8 +220,8 @@ class NewRelicHookSensor(Sensor):
             }
             self._dispatch_trigger(SERVER_ALERT_TRIGGER_REF, payload)
 
-        elif self._is_alert_closed(long_description) or \
-             self._is_downtime_recovered(long_description):
+        elif (self._is_alert_closed(long_description) or
+                self._is_downtime_recovered(long_description)):
 
             payload = {
                 'alert': alert_body,
@@ -230,8 +231,8 @@ class NewRelicHookSensor(Sensor):
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
                                  payload)
 
-        elif self._is_alert_canceled(long_description) or \
-             self._is_alert_acknowledged(long_description):
+        elif (self._is_alert_canceled(long_description) or
+                self._is_alert_acknowledged(long_description)):
             self._log.info('Ignored alert : %s.', alert_body)
 
     def _dispatch_server_normal(self, payload, attempt_no=0):

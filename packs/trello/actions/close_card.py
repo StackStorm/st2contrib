@@ -1,5 +1,6 @@
 from lib import action
 
+
 class CloseCardAction(action.BaseAction):
     def run(self, card_id, api_key=None, token=None):
         if api_key:
@@ -9,5 +10,3 @@ class CloseCardAction(action.BaseAction):
         card.set_closed()
 
         return card.closed
-
-

@@ -7,7 +7,9 @@ class MmonitSessionPut(MmonitBaseAction):
         try:
             k, v = attribute.split(":")
         except:
-            raise Exception("The key/value pair {} don't seem to follow the key:value format".format(attribute))
+            error = ("The key/value pair {} don't seem to follow the key:value format".format(
+                     attribute))
+            raise Exception(error)
         data = {k: v}
 
         self.login()

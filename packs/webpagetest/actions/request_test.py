@@ -1,7 +1,7 @@
-import requests
 from lib.webpagetest import WebPageTestAction
 
 __all__ = ['RequestTest']
+
 
 class RequestTest(WebPageTestAction):
     def run(self, domain, location):

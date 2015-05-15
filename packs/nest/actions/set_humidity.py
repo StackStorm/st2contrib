@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SetHumidityAction(actions.BaseAction):
     def run(self, target, structure=None, device=None):
         if structure and device:

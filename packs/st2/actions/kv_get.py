@@ -4,6 +4,7 @@ __all__ = [
     'St2KVPGetAction'
 ]
 
+
 class St2KVPGetAction(St2BaseAction):
     def run(self, key):
         _key = self.client.keys.get_by_name(key)

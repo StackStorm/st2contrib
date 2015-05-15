@@ -26,7 +26,8 @@ class PuppetApplyAction(PuppetBaseAction):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Apply a standalone puppet manifest to a local system')
+    parser = argparse.ArgumentParser(description=('Apply a standalone puppet manifest '
+                                                  'to a local system'))
     parser.add_argument('--file', help='Path to the puppet module file',
                         required=True)
     parser.add_argument('--execute', help='Execute a specific piece of Puppet code',
