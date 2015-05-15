@@ -17,7 +17,6 @@ if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" -a ! -d "${PACK_
     exit 0
 fi
 
-
 # We create virtualenv and install all the pack dependencies. This way pylint can also
 # correctly instrospect all the dependency references
 PACK_VIRTUALENV_DIR="/tmp/venv-${PACK_NAME}"

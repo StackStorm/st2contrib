@@ -6,6 +6,9 @@ os:
 env:
   global:
     - "PIP_DOWNLOAD_CACHE=$HOME/.pip-cache"
+cache:
+  directories:
+    - $HOME/.pip-cache/
 install:
   - pip install -r requirements-dev.txt
 script:
