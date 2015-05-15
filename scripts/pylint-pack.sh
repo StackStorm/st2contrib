@@ -33,14 +33,14 @@ if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
 
         # Create virtualenv
         virtualenv --no-site-packages ${PACK_VIRTUALENV_DIR}
-
-        # Install base dependencies
-        ${PACK_VIRTUALENV_DIR}/bin/pip install -r requirements-dev.txt
-
-        # Install pack dependencies
-        ${PACK_VIRTUALENV_DIR}/bin/pip install -r ${PACK_REQUIREMENTS_FILE}
-        PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
     fi
+
+    # Install base dependencies
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -r requirements-dev.txt
+
+    # Install pack dependencies
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -r ${PACK_REQUIREMENTS_FILE}
+    PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
 else
     PYTHON_BINARY=`which python`
 fi
