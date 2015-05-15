@@ -3,13 +3,13 @@ python: 2.7
 sudo: false
 os:
   - linux
-
+env:
+  global:
+    - "PIP_DOWNLOAD_CACHE=$HOME/.pip-cache"
 install:
   - pip install -r requirements-dev.txt
-
 script:
   - make all
-
 notifications:
   email:
     - eng@stackstorm.com
