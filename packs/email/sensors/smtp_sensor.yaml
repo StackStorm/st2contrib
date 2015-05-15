@@ -9,9 +9,10 @@ trigger_types:
     payload_info:
       - from
       - to
-      - cc
-      - bcc
-      - headers
+      - html
       - subject
-      - body
+      - date
+      - body_plain
+      - body_html
       - attachments
+      - headers
