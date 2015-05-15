@@ -2,7 +2,7 @@
 ---
 name: email
 description: E-Mail Actions/Sensors for StackStorm
-version: 0.0.1
-author: jfryman
+version: 0.1.0
+author: James Fryman
 email: james@stackstorm.com
 
