@@ -1,5 +1,5 @@
 ---
-description:
+description: 'Send some BTC to supplied address.'
 enabled: true
 entry_point: ''
 name: sendtoaddresss

@@ -1,5 +1,5 @@
 ---
-description:
+description: 'Retrieves address of local wallet.'
 enabled: true
 entry_point: ''
 name: getaccountaddress

@@ -1,5 +1,5 @@
 ---
-description:
+description: 'Information of the local wallet.'
 enabled: true
 entry_point: ''
 name: getwalletinfo
