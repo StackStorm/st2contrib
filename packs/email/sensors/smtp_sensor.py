@@ -8,7 +8,6 @@ eventlet.monkey_patch(
     time=True)
 
 from eventlet.green import asyncore
-import json
 import smtpd_green as smtpd
 from flanker import mime
 import hashlib

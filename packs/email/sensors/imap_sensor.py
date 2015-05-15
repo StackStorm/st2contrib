@@ -1,6 +1,5 @@
 import eventlet
 import easyimap
-import json
 from flanker import mime
 
 from st2reactor.sensor.base import PollingSensor
@@ -56,12 +55,12 @@ class IMAPSensor(PollingSensor):
 
     def _parse_mailboxes(self, mailboxes):
         for mailbox, config in mailboxes.items():
-            server   = config.get('server', 'localhost')
-            port     = config.get('port', 143)
-            user     = config.get('username', None)
+            server = config.get('server', 'localhost')
+            port = config.get('port', 143)
+            user = config.get('username', None)
             password = config.get('password', None)
-            folder   = config.get('mailbox', 'INBOX')
-            ssl      = config.get('ssl', False)
+            folder = config.get('mailbox', 'INBOX')
+            ssl = config.get('ssl', False)
 
             if not user or not password:
                 self._logger.debug('[IMAPSensor]: Missing username/password for {0}'.format(mailbox))
