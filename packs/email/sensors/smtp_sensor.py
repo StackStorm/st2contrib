@@ -11,6 +11,8 @@ from eventlet.green import asyncore
 import json
 import smtpd_green as smtpd
 from flanker import mime
+import hashlib
+import base64
 
 from st2reactor.sensor.base import Sensor
 
@@ -58,23 +60,65 @@ class St2SMTPServer(smtpd.SMTPServer):
         self._sensor_service = sensor_service
 
     def process_message(self, peer, mailfrom, rcpttos, data):
-        self._logger.debug('posting message from {0} to {1}'.format(mailfrom, rcpttos))
+        self._logger.debug('posting message from {} to {}'.format(mailfrom, rcpttos))
 
-        # message = mime.from_string(data)
-        # subject = message.subject()
-        # headers = json.dumps(message.header.items())
-        # body = message.parts.body
+        message = self.parse_message(mailfrom, rcpttos, data)
+        self._sensor_service.dispatch(trigger=self._trigger, payload=message)
+        return
 
+    def parse_message(self, mailfrom, rcpttos, data):
+        message = mime.from_string(data)
         payload = {
             'from': None,
             'to': None,
-            'cc': None,
-            'bcc': None,
             'subject': None,
-            'headers': None,
-            'body': None,
-            'attachments': None
+            'date': None,
+            'body_plain': None,
+            'body_html': None,
+            'attachments': [],
+            'headers': message.headers.items(),
         }
 
-        self._sensor_service.dispatch(trigger=self._trigger, payload=payload)
-        return
+        # Try to get the addressee via headers, or
+        # fall-back to raw protocol request
+        if 'To' in message.headers.keys():
+            payload['to'] = message.headers['To']
+        else:
+            payload['to'] = rcpttos
+
+        # Try to get the recipient via headers, or
+        # fall-back to raw protocol request
+        if 'From' in message.headers.keys():
+            payload['from'] = message.headers['From']
+        else:
+            payload['from'] = mailfrom
+
+        if 'Subject' in message.headers.keys():
+            payload['subject'] = message.headers['Subject']
+
+        if 'Date' in message.headers.keys():
+            payload['date'] = message.headers['Date']
+
+        # Body
+        if message.content_type.is_singlepart():
+            payload['body_plain'] = message.body
+        elif message.content_type.is_multipart():
+            for part in message.parts:
+                content_type = part.content_type[0]
+
+                if content_type == 'text/plain':
+                    payload['body_plain'] = part.body
+                elif content_type == 'text/html':
+                    payload['body_html'] = part.body
+                elif part.is_attachment():
+                    attachment = {
+                        'filename': part.detected_file_name,
+                        'md5': hashlib.md5(part.body).hexdigest(),
+                        'sha1': hashlib.sha1(part.body).hexdigest(),
+                        'data': base64.b64encode(part.body),
+                        'encoding': part.content_encoding[0],
+                        'type': content_type,
+                    }
+                    payload['attachments'].append(attachment)
+
+        return payload
