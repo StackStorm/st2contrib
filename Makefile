@@ -18,29 +18,29 @@ pylint: requirements .clone_st2_repo .pylint
 	@echo
 	@echo "==================== pylint ===================="
 	@echo
-	find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/pylint-pack.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/pylint-pack.sh FILENAME
 
 .PHONY: flake8
 flake8: requirements
 	@echo
 	@echo "==================== flake8 ===================="
 	@echo
-	find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8 --config ./.flake8
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8 --config ./.flake8
 
 .PHONY: configs-check
 configs-check: requirements
 	@echo
 	@echo "==================== configs-check ===================="
 	@echo
-	find ${ROOT_DIR}/packs/* -name "*.json" -print0 | xargs -0 -I FILENAME ./scripts/validate-json-file.sh FILENAME
-	find ${ROOT_DIR}/packs/* -name "*.yaml" -print0 | xargs -0 -I FILENAME ./scripts/validate-yaml-file.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.json" -print0 | xargs -0 -I FILENAME ./scripts/validate-json-file.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.yaml" -print0 | xargs -0 -I FILENAME ./scripts/validate-yaml-file.sh FILENAME
 
 .PHONY: metadata-check
 metadata-check: requirements
 	@echo
 	@echo "==================== metadata-check ===================="
 	@echo
-	${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh
+	. $(VIRTUALENV_DIR)/bin/activate; ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh
 
 .PHONY: .clone_st2_repo
 .clone_st2_repo:
