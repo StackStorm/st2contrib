@@ -49,3 +49,4 @@ export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 #echo "PYTHONPATH=${PYTHONPATH}"
 #echo "PYTHON_BINARY=${PYTHON_BINARY}"
 find ${PACK_PATH}/* -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc
+exit $?
