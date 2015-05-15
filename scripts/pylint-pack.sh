@@ -18,27 +18,31 @@ if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" -a ! -d "${PACK_
 fi
 
 
-# We create virtualenv and instasll all the pack dependencies. This way pylint can also
+# We create virtualenv and install all the pack dependencies. This way pylint can also
 # correctly instrospect all the dependency references
 PACK_VIRTUALENV_DIR="/tmp/venv-${PACK_NAME}"
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
 
-# Create virtualenv
-if [ ! -d "${PACK_VIRTUALENV_DIR}" ]; then
-    virtualenv --no-site-packages ${PACK_VIRTUALENV_DIR}
-
-    # Install base dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -r requirements-dev.txt
-fi
-
 # Install per-pack dependencies
 if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
-    echo "Installing pack requirements.txt into ${PACK_VIRTUALENV_DIR}"
-
-    # Install dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -r ${PACK_REQUIREMENTS_FILE}
     PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
+
+    if [ ! -d "${PACK_VIRTUALENV_DIR}" ]; then
+        echo "Installing pack requirements.txt into ${PACK_VIRTUALENV_DIR}"
+
+        # Create virtualenv
+        virtualenv --no-site-packages ${PACK_VIRTUALENV_DIR}
+
+        # Install base dependencies
+        ${PACK_VIRTUALENV_DIR}/bin/pip install -r requirements-dev.txt
+
+        # Install pack dependencies
+        ${PACK_VIRTUALENV_DIR}/bin/pip install -r ${PACK_REQUIREMENTS_FILE}
+        PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
+    fi
+else
+    PYTHON_BINARY=`which python`
 fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
