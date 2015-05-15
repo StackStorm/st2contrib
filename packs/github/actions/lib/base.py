@@ -10,6 +10,7 @@ __all__ = [
 
 BASE_URL = 'https://github.com'
 
+
 class BaseGithubAction(Action):
     def __init__(self, config):
         super(BaseGithubAction, self).__init__(config=config)
@@ -35,7 +36,7 @@ class BaseGithubAction(Action):
         }
 
         session_url = BASE_URL + session_path
-        session.post(session_url, data = login_data)
+        session.post(session_url, data=login_data)
         return session
 
     def _get_analytics(self, category, repo):

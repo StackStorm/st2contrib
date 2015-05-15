@@ -4,6 +4,7 @@ __all__ = [
     'St2KVPSetAction'
 ]
 
+
 class St2KVPSetAction(St2BaseAction):
     def run(self, key, value, ttl=None):
         kvp = self._kvp(name=key, value=value)
@@ -12,7 +13,7 @@ class St2KVPSetAction(St2BaseAction):
         if ttl:
             kvp.ttl = ttl
 
-        update = self.client.keys.update(kvp)
+        self.client.keys.update(kvp)
         response = {
             'key': key,
             'value': value,

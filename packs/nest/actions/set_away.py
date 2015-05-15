@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SetAwayAction(actions.BaseAction):
     def run(self, structure=None):
         if structure:
@@ -9,4 +10,3 @@ class SetAwayAction(actions.BaseAction):
 
         s.away = True
         return s.away
-

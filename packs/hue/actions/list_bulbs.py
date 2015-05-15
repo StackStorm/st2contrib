@@ -1,5 +1,6 @@
 from lib import action
 
+
 class ListBulbsAction(action.BaseAction):
     def run(self):
         bulbs = {}

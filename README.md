@@ -70,9 +70,16 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
 | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
+| [Victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/Victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Victorops-pack)
 | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
 | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 ### aws pack
+
+#### Sensors
+
+Name | Description
+---- | -----------
+ServiceNotificationsSensor | Sensor which exposes an HTTP interface and listens for AWS service notifications delivered via AWS SNS
 
 #### Actions
 
@@ -287,6 +294,7 @@ Name | Description
 ---- | -----------
 client | Performs chef-client run on remote hosts.
 install | Performs installation of chef-client on remote nodes
+ohai | Performs chef-solo run on remote hosts.
 solo | Performs chef-solo run on remote hosts.
 
 ### docker pack
@@ -302,6 +310,8 @@ DockerSensor | Docker sensor
 Name | Description
 ---- | -----------
 build_image | Build docker image action. Equivalent to docker build.
+pull_image | Pull docker image action. Equivalent to docker pull.
+push_image | Push docker image action. Equivalent to docker push.
 
 ### dripstat pack
 
@@ -392,12 +402,6 @@ Name | Description
 ---- | -----------
 IRCSensor | Sensor which monitors IRC and dispatches a trigger for each public and private message
 
-#### Actions
-
-Name | Description
----- | -----------
-post_message | Send a message to an IRC channel.
-
 ### jira pack
 
 #### Sensors
@@ -412,7 +416,6 @@ Name | Description
 ---- | -----------
 create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
-post_issue_details | 
 
 ### jmx pack
 
@@ -626,6 +629,33 @@ Name | Description
 ---- | -----------
 bootstrap | Bootstrap servers with salt.cloud runner
 client | Run salt LocalClient functions
+local | Run Salt Exection Modules through Salt API
+runner | Run Salt Runner functions through Salt API
+runner_cache.clear_all | Run Salt Runner functions through Salt API
+runner_cache.clear_grains | Run Salt Runner functions through Salt API
+runner_cache.clear_mine | Run Salt Runner functions through Salt API
+runner_cache.clear_mine_func | Run Salt Runner functions through Salt API
+runner_cache.clear_pillar | Run Salt Runner functions through Salt API
+runner_cache.grains | Run Salt Runner functions through Salt API
+runner_cache.mine | Run Salt Runner functions through Salt API
+runner_cache.pillar | Run Salt Runner functions through Salt API
+runner_cloud.action | Run Salt Runner functions through Salt API
+runner_cloud.full_query | Run Salt Runner functions through Salt API
+runner_cloud.list_images | Run Salt Runner functions through Salt API
+runner_cloud.list_locations | Run Salt Runner functions through Salt API
+runner_cloud.list_sizes | Run Salt Runner functions through Salt API
+runner_cloud.profile | Run Salt Runner functions through Salt API
+runner_cloud.query | Run Salt Runner functions through Salt API
+runner_cloud.select_query | Run Salt Runner functions through Salt API
+runner_jobs.active | Run Salt Runner functions through Salt API
+runner_jobs.list_jobs | Run Salt Runner functions through Salt API
+runner_manage.down | Run Salt Runner functions through Salt API
+runner_manage.status | Run Salt Runner functions through Salt API
+runner_manage.up | Run Salt Runner functions through Salt API
+runner_manage.versions | Run Salt Runner functions through Salt API
+runner_pillar.show_pillar | Run Salt Runner functions through Salt API
+runner_pillar.show_top | Run Salt Runner functions through Salt API
+runner_thin.generate | Run Salt Runner functions through Salt API
 
 ### sensu pack
 
@@ -732,6 +762,8 @@ TwitterSearchSensor | Sensor which monitors twitter timeline for new tweets matc
 
 Name | Description
 ---- | -----------
+direct_message | Direct message a user.
+follow | Follow a user.
 update_status | Update your status (post a new tweet).
 
 ### urbandict pack
@@ -741,6 +773,16 @@ update_status | Update your status (post a new tweet).
 Name | Description
 ---- | -----------
 get_definitions | Retrieve definitions from urbandict for the provided term.
+
+### victorops pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+ack_incident | Acknowledge a triggered event on victorops
+open_incident | Triggers the event on VictorOps with the given parameters
+recover_incident | Recover a triggered event on victorops
 
 ### webpagetest pack
 

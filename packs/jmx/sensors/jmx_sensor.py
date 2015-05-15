@@ -26,7 +26,8 @@ class JMXSensor(PollingSensor):
         self._check_for_java_binary()
 
         config = self._config
-        url = 'service:jmx:rmi:///jndi/rmi://' + config['hostname'] + ':' + str(config['port']) + '/jmxrmi'
+        url = ('service:jmx:rmi:///jndi/rmi://' + config['hostname'] + ':' +
+               str(config['port']) + '/jmxrmi')
 
         args = [
             'java',

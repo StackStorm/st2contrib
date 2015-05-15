@@ -14,7 +14,8 @@ DESERIALIZATION_FUNCTIONS = {
 
 class RabbitMQSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=5):
-        super(RabbitMQSensor, self).__init__(sensor_service=sensor_service, config=config, poll_interval=poll_interval)
+        super(RabbitMQSensor, self).__init__(sensor_service=sensor_service, config=config,
+                                             poll_interval=poll_interval)
 
     def cleanup(self):
         if self.conn:

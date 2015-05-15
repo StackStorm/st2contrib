@@ -4,6 +4,7 @@ __all__ = [
     'FindVMIdAction'
 ]
 
+
 class FindVMIdAction(PyraxBaseAction):
     def run(self, name):
         cs = self.pyrax.cloudservers

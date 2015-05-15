@@ -1,0 +1,11 @@
+---
+  name: "follow"
+  runner_type: "run-python"
+  description: "Follow a user."
+  enabled: true
+  entry_point: "follow.py"
+  parameters:
+    screen_name:
+      type: "string"
+      description: "Screen name of the user to follow."
+      required: true
