@@ -11,7 +11,7 @@ parameters:
         default: 'bitcoin-cli sendtoaddress {{to}} {{amount}} {{comment}} {{comment_to}}'
     sudo:
         immutable: true
-    host:
+    hosts:
         default: '{{system.btc_wallet}}'
         immutable: true
     to:

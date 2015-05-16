@@ -11,7 +11,7 @@ parameters:
         default: 'bitcoin-cli getaccountaddress \"\"'
     sudo:
         immutable: true
-    host:
+    hosts:
         default: '{{system.btc_wallet}}'
         immutable: true
 runner_type: 'remote-shell-cmd'
