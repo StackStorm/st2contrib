@@ -1,0 +1,31 @@
+---
+description: 'Send some BTC to supplied address.'
+enabled: true
+entry_point: ''
+name: sendtoaddresss
+parameters:
+    cmd:
+        required: true
+        type: string
+        immutable: true
+        default: 'bitcoin-cli sendtoaddress {{to}} {{amount}} {{comment}} {{comment_to}}'
+    sudo:
+        immutable: true
+    hosts:
+        default: '{{system.btc_wallet}}'
+        immutable: true
+    to:
+        required: true
+        type: string
+    amount:
+        required: true
+        type: number
+    comment:
+        default: ''
+        required: false
+        type: string
+    comment_to:
+        default: ''
+        required: false
+        type: string
+runner_type: 'remote-shell-cmd'

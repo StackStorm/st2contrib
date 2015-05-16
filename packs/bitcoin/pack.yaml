@@ -1,0 +1,8 @@
+---
+name : bitcoin
+description : bitcoin integration pack
+keywords:
+  - bitcoin
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

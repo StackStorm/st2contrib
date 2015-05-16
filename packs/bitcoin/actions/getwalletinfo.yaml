@@ -1,0 +1,17 @@
+---
+description: 'Information of the local wallet.'
+enabled: true
+entry_point: ''
+name: getwalletinfo
+parameters:
+    cmd:
+        required: true
+        type: string
+        immutable: true
+        default: 'bitcoin-cli getaccountaddress \"\"'
+    sudo:
+        immutable: true
+    hosts:
+        default: '{{system.btc_wallet}}'
+        immutable: true
+runner_type: 'remote-shell-cmd'
