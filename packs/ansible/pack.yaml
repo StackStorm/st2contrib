@@ -1,0 +1,10 @@
+---
+name : ansible
+description : st2 content pack containing ansible integrations
+keywords:
+  - ansible
+  - cfg management
+  - configuration management
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
