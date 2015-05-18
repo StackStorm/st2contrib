@@ -62,4 +62,4 @@ Just create a StackStorm webhook like below and place it in your pack. Every tim
 
 ### Issues with dots  in trigger instance payload
 
-Logstash generates metrics containing dots like *hits.rate_1m*. There's a known [bug](https://github.com/StackStorm/st2/pull/1465) in StackStorm which is known to resolved, but not yet merged at the moment of writing this example. As soon as it merged into a newer release the suggested example should work fine.
+Logstash generates metrics containing dots like *hits.rate_1m*. There's a known [bug](https://github.com/StackStorm/st2/pull/1465) in StackStorm which is known to be resolved, but not yet merged at the moment of writing of this example. As soon as it merged into a newer release the suggested example should work fine.
