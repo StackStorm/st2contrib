@@ -38,3 +38,5 @@ sensors and more.
   history of action executions.
 * ``!st2-executions-get id=<execution id>`` - View details for a particular
   action execution.
+* ``!st2-executions-re-run id=<execution id>`` - Re-run a particular action
+  execution.
