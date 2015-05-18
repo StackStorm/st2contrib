@@ -1,27 +1,30 @@
 # Elasticsearch integration pack
 
-Pack provides many operations helping to manage your Elasticsearch indices. Current functionality is mostly based on [curator](http://www.elastic.co/guide/en/elasticsearch/client/curator/current/).
+Pack provides many operations helping to manage your Elasticsearch indices and snapshots.
 
-## Features
+## ELK
 
-Pack provides a set of actions based on curator.
+Logstash integration [details](/logstash.md).
+
 
 ## Curator based actions
 
+These actions operate similar to [curator](http://www.elastic.co/guide/en/elasticsearch/client/curator/current/) for Elasticsearch.
+
 Action | Description
 ------ | -----------
-**alias** | Add indices to or remove them from aliases.
-**allocation** | Set routing allocation based on tags.
-**bloom** | Disable the bloom filter cache for indices.
-**close** | Close indices.
-**delete.indices** | Delete indices.
-**delete.snapshots** | Delete snapshots.
-**open** | Open indices.
-**optimize** | Optimize indices.
-**replicas** | Set replica count per shard.
-**show.indices** | Show indices.
-**show.snapshots** | Show snapshots.
-**snapshot** | Capture snapshot of indices.
+**indices.alias** | Add indices to or remove them from aliases.
+**indices.allocation** | Set routing allocation based on tags.
+**indices.bloom** | Disable the bloom filter cache for indices.
+**indices.close** | Close indices.
+**indices.delete** | Delete indices.
+**indices.open** | Open indices.
+**indices.optimize** | Optimize indices.
+**indices.replicas** | Set replica count per shard.
+**indices.show** | Show indices.
+**indices.snapshot** | Capture snapshot of indices.
+**snapshots.delete** | Delete snapshots.
+**snapshots.show** | Show snapshots.
 
 Actions invocation parameters will be described further. But for more detailed description what each action actually does please also refer to the [curator docs](http://www.elastic.co/guide/en/elasticsearch/client/curator/current/), it is more in-depth.
 
@@ -102,15 +105,15 @@ Parameter | Description
 
 ## Usage and examples
 
-Performing *curator operations* on indices or snapshots **at least one** filtering parameter must be specified. That's a generic rule applied to all of curator actions except *show*,  *show* will act on all indices or snapshots if there aren't any other filtering options.
+Performing *curator operations* on indices or snapshots **at least one** filtering parameter must be specified. This's a generic rule applied to all of curator actions except. However *show* actions can be invoked without any filtering parameters, in this case *show*  actions will display full list of indices or snapshots.
 
-Now let's have at a few invocation examples.
+Now let's have a look at a few invocation examples.
 
-### Show and deleting indices
+### Showing and deleting indices
 
 * Show indices older than 2 days:
 ```
-st2 run elastic.show.indices host=elk older_than=2 timestring=%Y.%m.%d
+st2 run elastic.indices.show host=elk older_than=2 timestring=%Y.%m.%d
 ```
 Shows this on my node:
 ```json
@@ -126,25 +129,25 @@ logstash-2015.05.04
 * Delete all indices matching *^logstash.\**:
 
 ```
-st2 run elastic.delete.indices host=elk prefix=logstash
+st2 run elastic.indices.delete host=elk prefix=logstash
 ```
 
 ### Snapshot operations
 
 * Create a snapshot of indices  based on time range criteria:
 ```
-st2 run elastic.snapshot host=elk repository=my_backup newer_than=20 older_than=10 timestring=%Y.%m.%d
+st2 run elastic.indices.snapshot host=elk repository=my_backup newer_than=20 older_than=10 timestring=%Y.%m.%d
 ```
 
 This command will create a snapshot of indices newer than 20 days and older than 10 days. Notice that filtering parameters of snapshot command *apply to indices* not to snapshots. That's why it's important not to mess it up. For example, the timestring parameter when created by curator with default options has a different time scheme.
 
 * Delete specific snapshots:
 ```
-st2 run elastic.delete.snapshots host=elk repository=my_backup snapshot=curator-20150506155615,curator-20150506155619
+st2 run elastic.snapshots.delete host=elk repository=my_backup snapshot=curator-20150506155615,curator-20150506155619
 ```
 * Delete all snapshots:
 ```
-st2 run elastic.delete.snapshots host=elk repository=my_backup all_indices=true
+st2 run elastic.snapshots.delete host=elk repository=my_backup all_indices=true
 ```
 
 ### Querying Elasticsearch
