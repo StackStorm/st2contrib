@@ -1,16 +1,20 @@
 ---
-description: Index Allocation
+description: Disable bloom filter cache
 enabled: true
 entry_point: curator_runner.py
-name: allocation
+name: indices.bloom
 parameters:
   action:
-    default: allocation
+    default: indices.bloom
     immutable: true
     type: string
   all_indices:
     description: Do not filter indices.  Act on all indices.
     type: boolean
+  delay:
+    default: 0
+    description: Pause *n* seconds after disabling bloom filter cache of an index.
+    type: integer
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -51,7 +55,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string
@@ -60,10 +64,6 @@ parameters:
     type: string
   regex:
     description: Provide your own regex, e.g '^prefix-.*-suffix$'.
-    type: string
-  rule:
-    description: Routing allocation rule to apply, e.g. tag=ssd
-    required: true
     type: string
   suffix:
     description: Include only indices ending with suffix.

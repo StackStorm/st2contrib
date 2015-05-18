@@ -1,20 +1,16 @@
 ---
-description: Disable bloom filter cache
+description: Show indices
 enabled: true
 entry_point: curator_runner.py
-name: bloom
+name: indices.show
 parameters:
   action:
-    default: bloom
+    default: indices.show
     immutable: true
     type: string
   all_indices:
     description: Do not filter indices.  Act on all indices.
     type: boolean
-  delay:
-    default: 0
-    description: Pause *n* seconds after disabling bloom filter cache of an index.
-    type: integer
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -55,7 +51,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string

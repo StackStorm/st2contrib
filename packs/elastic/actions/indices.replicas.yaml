@@ -1,16 +1,20 @@
 ---
-description: Create snapshot of indices
+description: Replica Count Per-shard
 enabled: true
 entry_point: curator_runner.py
-name: snapshot
+name: indices.replicas
 parameters:
   action:
-    default: snapshot
+    default: indices.replicas
     immutable: true
     type: string
   all_indices:
     description: Do not filter indices.  Act on all indices.
     type: boolean
+  count:
+    description: Number of replicas the indices should have.
+    required: true
+    type: integer
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -27,13 +31,6 @@ parameters:
   http_auth:
     description: 'Use Basic Authentication ex: user:pass'
     type: string
-  ignore_unavailable:
-    description: Ignore unavailable shards/indices.
-    type: boolean
-  include_global_state:
-    default: true
-    description: Store cluster global state with
-    type: boolean
   index:
     description: Index list to operate on.
     items:
@@ -47,9 +44,6 @@ parameters:
     default: false
     description: Only operate on elected master node.
     type: boolean
-  name:
-    description: Override default name.
-    type: string
   newer_than:
     description: Include only indices newer than n time_units.
     type: integer
@@ -61,10 +55,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
-  partial:
-    description: Do not fail if primary shard is unavailable.
-    type: boolean
+    type: string
   port:
     description: Elasticsearch port.
     type: string
@@ -74,14 +65,6 @@ parameters:
   regex:
     description: Provide your own regex, e.g '^prefix-.*-suffix$'.
     type: string
-  repository:
-    description: Repository name.
-    required: true
-    type: string
-  snapshot_prefix:
-    default: curator-
-    description: Override default prefix.
-    type: string
   suffix:
     description: Include only indices ending with suffix.
     type: string
@@ -90,7 +73,7 @@ parameters:
     description: Unit of time to reckon by [hours|days|weeks|months].
     type: string
   timeout:
-    default: 21600
+    default: 600
     description: Don't wait for action completion more then the specified timeout.
     type: integer
   timestring:
@@ -103,9 +86,5 @@ parameters:
   use_ssl:
     default: false
     description: Connect to Elasticsearch through SSL.
-    type: boolean
-  wait_for_completion:
-    default: true
-    description: Wait for snapshot to complete before returning.
     type: boolean
 runner_type: run-python

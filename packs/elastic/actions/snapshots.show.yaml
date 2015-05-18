@@ -1,19 +1,16 @@
 ---
-description: Delete snapshots
+description: Show snapshots
 enabled: true
 entry_point: curator_runner.py
-name: delete.snapshots
+name: snapshots.show
 parameters:
   action:
-    default: delete.snapshots
+    default: snapshots.show
     immutable: true
     type: string
   all_snapshots:
     description: Do not filter snapshots.  Act on all snapshots.
     type: boolean
-  disk_space:
-    description: Delete indices beyond DISK_SPACE gigabytes.
-    type: string
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -49,7 +46,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string
@@ -63,11 +60,6 @@ parameters:
     description: Repository name.
     required: true
     type: string
-  reverse:
-    default: true
-    description: Only valid with disk_space. Affects sort order of the indices.  True
-      means reverse-alphabetical (if dates are involved, older is deleted first).
-    type: boolean
   snapshot:
     description: Include the provided snapshot in the list. A comma separated list.
     type: string

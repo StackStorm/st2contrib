@@ -1,5 +1,5 @@
 ---
-- show.indices:
+- indices.show:
     description: "Show indices"
     parameters:
       time_unit:
@@ -34,7 +34,7 @@
         type: "boolean"
 
 
-- show.snapshots:
+- snapshots.show:
     description: "Show snapshots"
     parameters:
       time_unit:
@@ -69,7 +69,7 @@
         type: "boolean"
 
 
-- delete.indices:
+- indices.delete:
     description: "Delete indices"
     parameters:
       time_unit:
@@ -111,7 +111,7 @@
         default: true
 
 
-- delete.snapshots:
+- snapshots.delete:
     description: "Delete snapshots"
     parameters:
       time_unit:
@@ -153,7 +153,7 @@
         default: true
 
 
-- snapshot:
+- indices.snapshot:
     description: "Create snapshot of indices"
     parameters:
       # Snapsot creation parameters
@@ -217,7 +217,7 @@
       # -->
 
 
-- alias:
+- indices.alias:
     description: "Index Aliasing"
     parameters:
       name:
@@ -262,7 +262,7 @@
       # -->
 
 
-- allocation:
+- indices.allocation:
     description: "Index Allocation"
     parameters:
       rule:
@@ -302,7 +302,7 @@
         type: "boolean"
       # -->
 
-- bloom:
+- indices.bloom:
     description: "Disable bloom filter cache"
     parameters:
       delay:
@@ -343,7 +343,7 @@
         type: "boolean"
       # -->
 
-- close:
+- indices.close:
     description: "Close indices"
     parameters:
       time_unit:
@@ -378,7 +378,7 @@
         type: "boolean"
 
 
-- open:
+- indices.open:
     description: "Open indices"
     parameters:
       time_unit:
@@ -413,7 +413,7 @@
         type: "boolean"
 
 
-- optimize:
+- indices.optimize:
     description: "Optimize indices"
     parameters:
       delay:
@@ -462,7 +462,7 @@
         type: "boolean"
       # -->
 
-- replicas:
+- indices.replicas:
     description: "Replica Count Per-shard"
     parameters:
       count:

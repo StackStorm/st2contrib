@@ -1,20 +1,16 @@
 ---
-description: Replica Count Per-shard
+description: Close indices
 enabled: true
 entry_point: curator_runner.py
-name: replicas
+name: indices.close
 parameters:
   action:
-    default: replicas
+    default: indices.close
     immutable: true
     type: string
   all_indices:
     description: Do not filter indices.  Act on all indices.
     type: boolean
-  count:
-    description: Number of replicas the indices should have.
-    required: true
-    type: integer
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -55,7 +51,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string

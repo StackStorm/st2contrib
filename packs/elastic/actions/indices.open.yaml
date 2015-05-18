@@ -1,11 +1,11 @@
 ---
-description: Show indices
+description: Open indices
 enabled: true
 entry_point: curator_runner.py
-name: show.indices
+name: indices.open
 parameters:
   action:
-    default: show.indices
+    default: indices.open
     immutable: true
     type: string
   all_indices:

@@ -1,22 +1,25 @@
 ---
-description: Open indices
+description: Delete snapshots
 enabled: true
 entry_point: curator_runner.py
-name: open
+name: snapshots.delete
 parameters:
   action:
-    default: open
+    default: snapshots.delete
     immutable: true
     type: string
-  all_indices:
-    description: Do not filter indices.  Act on all indices.
+  all_snapshots:
+    description: Do not filter snapshots.  Act on all snapshots.
     type: boolean
+  disk_space:
+    description: Delete indices beyond DISK_SPACE gigabytes.
+    type: string
   dry_run:
     default: false
     description: Do not perform any changes.
     type: boolean
   exclude:
-    description: Index list to exclude from the operation.
+    description: Snapshot list to operate on.
     items:
       type: string
     type: array
@@ -27,11 +30,6 @@ parameters:
   http_auth:
     description: 'Use Basic Authentication ex: user:pass'
     type: string
-  index:
-    description: Index list to operate on.
-    items:
-      type: string
-    type: array
   log_level:
     default: warn
     description: Log level [critical|error|warning|info|debug].
@@ -41,28 +39,40 @@ parameters:
     description: Only operate on elected master node.
     type: boolean
   newer_than:
-    description: Include only indices newer than n time_units.
+    description: Include only snapshots newer than n time_units.
     type: integer
   older_than:
-    description: Include only indices older than n  time_units.
+    description: Include only snapshots older than n time_units.
     type: integer
   operation_timeout:
     default: '{{timeout}}'
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string
   prefix:
-    description: Include only indices beginning with prefix.
+    description: Include only snapshots beginning with prefix.
     type: string
   regex:
     description: Provide your own regex, e.g '^prefix-.*-suffix$'.
     type: string
+  repository:
+    description: Repository name.
+    required: true
+    type: string
+  reverse:
+    default: true
+    description: Only valid with disk_space. Affects sort order of the indices.  True
+      means reverse-alphabetical (if dates are involved, older is deleted first).
+    type: boolean
+  snapshot:
+    description: Include the provided snapshot in the list. A comma separated list.
+    type: string
   suffix:
-    description: Include only indices ending with suffix.
+    description: Include only snapshots ending with suffix.
     type: string
   time_unit:
     default: days
@@ -73,8 +83,8 @@ parameters:
     description: Don't wait for action completion more then the specified timeout.
     type: integer
   timestring:
-    description: Python strftime string to match your index definition, e.g. 2015.07.15
-      would be %Y.%m.%d.
+    description: Python strftime string to match your snapshot's definition, e.g.
+      20150715020304 would be %Y%m%d%H%M%S.
     type: string
   url_prefix:
     description: Elasticsearch http url prefix.

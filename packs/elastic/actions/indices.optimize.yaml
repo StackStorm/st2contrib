@@ -1,16 +1,20 @@
 ---
-description: Close indices
+description: Optimize indices
 enabled: true
 entry_point: curator_runner.py
-name: close
+name: indices.optimize
 parameters:
   action:
-    default: close
+    default: indices.optimize
     immutable: true
     type: string
   all_indices:
     description: Do not filter indices.  Act on all indices.
     type: boolean
+  delay:
+    default: 0
+    description: Pause *n* seconds after optimizing an index.
+    type: integer
   dry_run:
     default: false
     description: Do not perform any changes.
@@ -40,6 +44,10 @@ parameters:
     default: false
     description: Only operate on elected master node.
     type: boolean
+  max_num_segments:
+    default: 2
+    description: Merge to this number of segments per shard.
+    type: integer
   newer_than:
     description: Include only indices newer than n time_units.
     type: integer
@@ -51,7 +59,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string
@@ -69,7 +77,7 @@ parameters:
     description: Unit of time to reckon by [hours|days|weeks|months].
     type: string
   timeout:
-    default: 600
+    default: 21600
     description: Don't wait for action completion more then the specified timeout.
     type: integer
   timestring:

@@ -2,10 +2,10 @@
 description: Delete indices
 enabled: true
 entry_point: curator_runner.py
-name: delete.indices
+name: indices.delete
 parameters:
   action:
-    default: delete.indices
+    default: indices.delete
     immutable: true
     type: string
   all_indices:
@@ -54,7 +54,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string

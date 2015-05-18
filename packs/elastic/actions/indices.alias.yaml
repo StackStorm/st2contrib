@@ -2,10 +2,10 @@
 description: Index Aliasing
 enabled: true
 entry_point: curator_runner.py
-name: alias
+name: indices.alias
 parameters:
   action:
-    default: alias
+    default: indices.alias
     immutable: true
     type: string
   all_indices:
@@ -55,7 +55,7 @@ parameters:
     description: Elasticsearch operation timeout in seconds. (It's equal to action
       timeout).
     immutable: true
-    type: integer
+    type: string
   port:
     description: Elasticsearch port.
     type: string
