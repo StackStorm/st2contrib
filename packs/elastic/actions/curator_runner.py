@@ -8,10 +8,16 @@ logger = logging.getLogger(__name__)
 
 class CuratorRunner(CuratorAction):
 
-    def run(self, **kwargs):
-        self.action = kwargs.pop('action')
-        timeout = kwargs.pop('operation_timeout')
+    def run(self, action=None, log_level='warn', dry_run=False, operation_timeout=600, **kwargs):
+        """Curator based action entry point
+        """
+        self.action = action
+        kwargs.update({
+            'timeout': int(operation_timeout),
+            'log_level': log_level,
+            'dry_run': dry_run,
+        })
+
         self.config = EasyDict(kwargs)
-        self.config['operation_timeout'] = int(timeout)
         self.set_up_logging()
         self.do_command()

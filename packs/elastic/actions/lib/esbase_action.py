@@ -16,7 +16,7 @@ class ESBaseAction(Action):
             self._client = utils.get_client(**({
                 'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
                 'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
-                'master_only': o.master_only, 'timeout': o.operation_timeout
+                'master_only': o.master_only, 'timeout': o.timeout
             }))
         return self._client
 

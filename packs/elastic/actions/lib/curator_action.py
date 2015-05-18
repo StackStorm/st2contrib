@@ -1,5 +1,5 @@
 from curator.api.utils import index_closed
-from curator_api_commands import APICommands
+from curator_invoke import CuratorInvoke
 from esbase_action import ESBaseAction
 import logging
 import sys
@@ -20,20 +20,20 @@ class CuratorAction(ESBaseAction):
     @property
     def act_on(self):
         if not self._act_on:
-            _act_on = 'snapshots' if '.snapshots' in self.action else 'indices'
+            _act_on = 'indices' if self.action.startswith('indices') else 'snapshots'
             self._act_on = _act_on
         return self._act_on
 
     @property
     def command(self):
         if not self._command:
-            self._command = self.action.split('.')[0]
+            self._command = self.action.split('.')[1]
         return self._command
 
     @property
     def api(self):
         if not self._api:
-            self._api = APICommands(**self.config)
+            self._api = CuratorInvoke(**self.config)
         return self._api
 
 
@@ -42,8 +42,9 @@ class CuratorAction(ESBaseAction):
         Log dry run output with the command which would have been executed.
         """
         command = self.command
-        items = self.api.fetch(act_on=self.act_on, nofilters_showall=True)
-        print "DRY RUN MODE.  No changes will be made."
+        items = self.api.fetch(act_on=self.act_on, on_nofilters_showall=True)
+        print "DRY RUN MODE. No changes will be made."
+        print "DRY RUN MODE. Executing command {} {}.".format(command, self.act_on)
         for item in items:
             if self.act_on == 'snapshots':
                 print "DRY RUN: {0}: {1}".format(command, item)
@@ -55,7 +56,7 @@ class CuratorAction(ESBaseAction):
         """
         Show indices or snapshots command.
         """
-        items = self.api.fetch(act_on=self.act_on, nofilters_showall=True)
+        items = self.api.fetch(act_on=self.act_on, on_nofilters_showall=True)
         if not self.config.dry_run:
             for item in items:
                 print item
@@ -89,5 +90,5 @@ class CuratorAction(ESBaseAction):
             logger.info("Job starting: {0} {1}".format(self.command, self.act_on))
             logger.debug("Params: {0}".format(self.config))
 
-            success = self.api.invoke(command=self.action)
+            success = self.api.invoke(command=self.command, act_on=self.act_on)
             self.exit_msg(success)

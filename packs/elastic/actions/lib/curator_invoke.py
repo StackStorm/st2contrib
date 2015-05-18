@@ -9,17 +9,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-CMD_TO_API = {
-    'snapshot':         'create_snapshot',
-    'open':             'open_indices',
-    'delete.indices':   'delete',
-    'delete.snapshots': 'delete_snapshot'
-}
+class CuratorInvoke(object):
+    # Supported curator commands for indices and snapshots.
+    SUPPORTS = {
+        'snapshots': ['delete'],
+        'indices':   ['alias', 'allocation', 'bloom', 'close', 'delete',
+                      'open', 'optimize','replicas', 'snapshot']
+    }
 
-
-class APICommands(object):
-    SUPPORTS = [ 'alias', 'allocation', 'bloom', 'close', 'open', 'optimize',
-                 'replicas', 'snapshot', 'delete.indices', 'delete.snapshots' ]
 
     def __init__(self, **opts):
         self.opts = EasyDict(opts)
@@ -34,7 +31,7 @@ class APICommands(object):
             self._client = utils.get_client(**({
                 'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
                 'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
-                'master_only': o.master_only, 'timeout': o.operation_timeout
+                'master_only': o.master_only, 'timeout': o.timeout
             }))
         return self._client
 
@@ -47,12 +44,6 @@ class APICommands(object):
         if not self._iselector:
             self._iselector = ItemsSelector(self.client, **self.opts)
         return self._iselector
-
-
-    def command_acts_on(self, command):
-        if '.snapshots' in command:
-            return 'snapshots'
-        return 'indices'
 
 
     def _chunk_index_list(indices):
@@ -79,12 +70,11 @@ class APICommands(object):
         return chunks
 
 
-    def _enhanced_working_list(self, command):
+    def _enhanced_working_list(self, command, act_on):
         """Enhance working_list by pruning kibana indices and filtering
         disk space. Returns filter working list.
         :rtype: list
         """
-        act_on = self.command_acts_on(command)
         working_list = self.iselector.fetch(act_on=act_on)
 
         # Protect against accidental delete
@@ -103,11 +93,11 @@ class APICommands(object):
         return working_list
 
 
-    def fetch(self, act_on, nofilters_showall=False):
+    def fetch(self, act_on, on_nofilters_showall=False):
         """
         Forwarder method to indices/snapshots selector.
         """
-        return self.iselector.fetch(act_on=act_on, nofilters_showall=nofilters_showall)
+        return self.iselector.fetch(act_on=act_on, on_nofilters_showall=on_nofilters_showall)
 
 
     def command_kwargs(self, command):
@@ -122,7 +112,7 @@ class APICommands(object):
             'replicas': { 'replicas': opts['count'] },
             'optimize': {
                 'max_num_segments': opts['max_num_segments'],
-                'request_timeout': opts['operation_timeout'],
+                'request_timeout': opts['timeout'],
                 'delay': opts['delay']
             },
             'snapshot': {
@@ -131,17 +121,16 @@ class APICommands(object):
                 'ignore_unavailable': opts['ignore_unavailable'],
                 'include_global_state': opts['include_global_state'],
                 'wait_for_completion': opts['wait_for_completion'],
-                'request_timeout': opts['operation_timeout']
+                'request_timeout': opts['timeout']
             }
         }.get(command, {})
         return compact_dict(kwargs)
 
 
-    def _call_api(self, command, *args, **kwargs):
+    def _call_api(self, method, *args, **kwargs):
         """Invoke curator api method call.
         """
-        func_name = CMD_TO_API.get(command, command)
-        api_method = api.__dict__.get(func_name)
+        api_method = api.__dict__.get(method)
         return api_method(self.client, *args, **kwargs)
 
 
@@ -149,48 +138,53 @@ class APICommands(object):
         """Invoke command which acts on indices and perform an api call.
         """
         kwargs = self.command_kwargs(command)
+        method = 'open_indices' if command == 'open' else command
+
         # List is too big and it will be proceeded in chunks.
         if len(api.utils.to_csv(working_list)) > 3072:
             logger.warn('Very large list of indices.  Breaking it up into smaller chunks.')
             success = True
             for indices in chunk_index_list(working_list):
-                if not self._call_api(command, *(indices), **kwargs):
+                if not self._call_api(method, *(indices), **kwargs):
                     success = False
             return success
         else:
-            return self._call_api(command, *(working_list), **kwargs)
+            return self._call_api(method, *(working_list), **kwargs)
 
 
     def command_on_snapshots(self, command, working_list):
         """Invoke command which acts on snapshots and perform an api call.
         """
         if command == 'snapshot':
+            method = 'create_snapshot'
             kwargs = self.command_kwargs(command)
             # The snapshot command should get the full (not chunked)
             # list of indices.
             kwargs['indices'] = working_list
-            return self._call_api(command, **kwargs)
+            return self._call_api(method, **kwargs)
 
-        elif command == 'delete.snapshots':
+        elif command == 'delete':
+            method = 'delete_snapshot'
             success = True
             for s in working_list:
-                if not self._call_api(command, repository=self.opts.repository,
+                if not self._call_api(method, repository=self.opts.repository,
                                                snapshot=s):
                     success = False
             return success
         else:
             # should never get here
-            raise RuntimeError("Unexpected method `{0}'".format(command))
+            raise RuntimeError("Unexpected method `{}.{}'".format('snapshots', command))
 
 
-    def invoke(self, command=None):
+    def invoke(self, command=None, act_on=None):
         """Invoke command through translating it curator api call.
         """
-        if command not in self.SUPPORTS:
-            raise ValueError("Unsupported curator API call `{0}'".format(command))
+        if command not in self.SUPPORTS[act_on]:
+            raise ValueError("Unsupported curator command: {} {}".format(command, act_on))
+        if act_on is None:
+            raise ValueError("Requires act_on either on `indices' or `snapshots'")
 
-        act_on = self.command_acts_on(command)
-        working_list = self._enhanced_working_list(command)
+        working_list = self._enhanced_working_list(command, act_on)
 
         if act_on == 'indices' and command != 'snapshot':
             return self.command_on_indices(command, working_list)

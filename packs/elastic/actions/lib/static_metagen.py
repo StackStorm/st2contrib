@@ -46,7 +46,7 @@ class StaticMetagen(object):
                 "description": "Elasticsearch operation timeout in seconds. (It's equal to action timeout).",
                 "default": "{{timeout}}",
                 "immutable": True,
-                "type": "integer"
+                "type": "string"
             },
             "log_level": {
                 "description": "Log level [critical|error|warning|info|debug].",

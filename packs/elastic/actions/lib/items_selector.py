@@ -26,10 +26,11 @@ class ItemsSelector(object):
         all_items_selected = opts.get('all_{0}'.format(act_on), None)
 
         # Choose explicitly chosen indices or snapshots
+        #
         if act_on == 'indices':
-            explicit_items = filter(None, (opts.index or '').split(','))
+            explicit_items = opts.index or []
         else:
-            explicit_items = filter(None, (opts.snapshot or '').split(','))
+            explicit_items = opts.snapshot or []
 
         # I don't care about using only timestring if it's a `dry_run` of show
         if not any((xstr(opts.newer_than), xstr(opts.older_than), opts.dry_run)) and \
@@ -65,12 +66,12 @@ class ItemsSelector(object):
         return sorted(list(set(working_list)))
 
 
-    def snapshots(self, nofilters_showall=False):
+    def snapshots(self, on_nofilters_showall=False):
         """
         Get a list of snapshots to act on from the provided arguments.
         """
         if not any((self.opts.all_snapshots, self.opts.snapshot, self.ifilter.filter_list)):
-            if nofilters_showall:
+            if on_nofilters_showall:
                 self.opts.all_snapshots = True
             else:
                 print 'Error: At least one snapshot filter parameter must be provided!'
@@ -85,13 +86,13 @@ class ItemsSelector(object):
         return self._apply_filters(snapshots, act_on='snapshots')
 
 
-    def indices(self, nofilters_showall=False):
+    def indices(self, on_nofilters_showall=False):
         """
         Get a list of indices to act on from the provided arguments.
         """
         # Check if we have selection to operate
         if not any((self.opts.all_indices, self.opts.index, self.ifilter.filter_list)):
-            if nofilters_showall:
+            if on_nofilters_showall:
                 self.opts.all_indices = True
             else:
                 print 'Error: At least one index filter parameter must be provided!'
@@ -102,11 +103,11 @@ class ItemsSelector(object):
         return self._apply_filters(indices, act_on='indices')
 
 
-    def fetch(self, act_on, nofilters_showall=False):
+    def fetch(self, act_on, on_nofilters_showall=False):
         if act_on not in ['indices', 'snapshots']:
             raise ValueError('invalid argument: {0}'.format(act_on))
 
         if act_on == 'indices':
-            return self.indices(nofilters_showall=nofilters_showall)
+            return self.indices(on_nofilters_showall=on_nofilters_showall)
         else:
-            return self.snapshots(nofilters_showall=nofilters_showall)
+            return self.snapshots(on_nofilters_showall=on_nofilters_showall)

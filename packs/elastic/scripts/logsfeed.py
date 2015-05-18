@@ -12,15 +12,15 @@ from jinja2 import Template
 
 DEST = 'elk_1'
 PORT = 10987
-JSON = '{"@timestamp":"{{timestamp}},"message":"{{message}}"' 
+JSON = '{"@timestamp":"{{timestamp}},"message":"{{message}}"'
 EOS  = ['.', '?', '!']
 NUM  = 10.0
 INT  = 60.0
- 
+
 def build_dict(words):
     """
     Build a dictionary from the words.
- 
+
     (word1, word2) => [w1, w2, ...]  # key: tuple; value: list
     """
     d = {}
@@ -34,14 +34,14 @@ def build_dict(words):
             d[key] = []
         #
         d[key].append(third)
- 
+
     return d
- 
- 
+
+
 def generate_sentence(d):
     li = [key for key in d.keys() if key[0][0].isupper()]
     key = choice(li)
- 
+
     li = []
     first, second = key
     li.append(first)
@@ -57,19 +57,19 @@ def generate_sentence(d):
         # else
         key = (second, third)
         first, second = key
- 
+
     return ' '.join(li)
- 
- 
- 
+
+
+
 ####################
- 
+
 if __name__ == "__main__":
     pathname = os.path.realpath(__file__)
     fname = os.path.dirname(pathname) + "/seed.txt"
     with open(fname, "r") as f:
         text = f.read().decode("utf-8")
- 
+
     words = text.split()
     d = build_dict(words)
     template = Template(JSON)
