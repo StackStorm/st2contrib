@@ -15,6 +15,17 @@ class AnsibleRunner(AnsibleBaseRunner):
     Modules: http://docs.ansible.com/list_of_all_modules.html
     """
     BINARY_NAME = 'ansible'
+    EXCLUDE_ESCAPE = '--args'
+    """
+    Don't shell-escape `args` parameter, or such commands would fail:
+        $ ansible all --module-name=shell --args='echo 123'
+    """
+    REPLACEMENT_RULES = {
+        '--verbose=v': '-v',
+        '--verbose=vv': '-vv',
+        '--verbose=vvv': '-vvv',
+        '--verbose=vvvv': '-vvvv',
+    }
 
 if __name__ == '__main__':
     AnsibleRunner(sys.argv).execute()

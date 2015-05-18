@@ -1,7 +1,7 @@
 import os
 import sys
 import subprocess
-from st2common.util.shell import quote_unix
+import shell
 
 __all__ = [
     'AnsibleBaseRunner'
@@ -13,6 +13,8 @@ class AnsibleBaseRunner(object):
     Base class for all Ansible Runners
     """
     BINARY_NAME = None
+    EXCLUDE_ESCAPE = None
+    REPLACEMENT_RULES = None
 
     def __init__(self, args):
         """
@@ -25,44 +27,23 @@ class AnsibleBaseRunner(object):
         """
         Execute the command.
         Exit with 0 error code on success or 1 on error.
-        TODO: Streaming output as it appears
         """
+        # TODO: Stream output as it appears
         if subprocess.call(self.cmd) is not 0:
             sys.stderr.write('Executed command "%s"\n' % ' '.join(self.cmd))
             sys.exit(1)
 
     @property
+    @shell.escape_args('EXCLUDE_ESCAPE')
+    @shell.replace_args('REPLACEMENT_RULES')
     def cmd(self):
         """
-        Get full command line with parameters to execute.
+        Get full command line as list.
 
-        NB! Don't shell-escape `args` parameter, or such commands would fail:
-        $ ansible all --module-name=shell --args='echo 123'
-
-        :return: Command line
+        :return: Command line.
         :rtype: ``list``
         """
-        arguments = self._apply_replacements(self.args)
-        quote_specific = lambda a: a if a.startswith('--args') else quote_unix(a)
-        return map(quote_specific, [self.binary] + arguments)
-
-    @staticmethod
-    def _apply_replacements(args):
-        """
-        Apply replacements for input list of arguments.
-
-        :param args:
-        :type args: ``list``
-        :return: New arguments
-        :rtype: ``list``
-        """
-        rules = {
-            '--verbose=v': '-v',
-            '--verbose=vv': '-vv',
-            '--verbose=vvv': '-vvv',
-            '--verbose=vvvv': '-vvvv',
-        }
-        return map(lambda a: rules[a] if a in rules else a, args)
+        return [self.binary] + self.args
 
     @property
     def binary(self):
