@@ -61,6 +61,9 @@
           type: "string"
       snapshot:
         description: "Include the provided snapshot in the list. A comma separated list."
+        type: "array"
+        items:
+          type: "string"
       repository:
         description: "Repository name."
         required: true
@@ -138,6 +141,9 @@
           type: "string"
       snapshot:
         description: "Include the provided snapshot in the list. A comma separated list."
+        type: "array"
+        items:
+          type: "string"
       repository:
         description: "Repository name."
         required: true

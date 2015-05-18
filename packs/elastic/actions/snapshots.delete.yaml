@@ -70,7 +70,9 @@ parameters:
     type: boolean
   snapshot:
     description: Include the provided snapshot in the list. A comma separated list.
-    type: string
+    items:
+      type: string
+    type: array
   suffix:
     description: Include only snapshots ending with suffix.
     type: string
