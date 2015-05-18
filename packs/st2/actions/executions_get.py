@@ -14,6 +14,9 @@ EXCLUDE_ATTRIBUTES = [
 
 
 def format_result(item):
+    if not item:
+        return None
+
     return item.to_dict(exclude_attributes=EXCLUDE_ATTRIBUTES)
 
 
