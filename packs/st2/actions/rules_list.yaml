@@ -1,0 +1,16 @@
+---
+name: "rules.list"
+enabled: true
+description: "Retrieve a list of available StackStorm rules"
+runner_type: run-python
+entry_point: rules_list.py
+parameters:
+  pack:
+    type: "string"
+    description: "Optional pack to filter on"
+    required: false
+  limit:
+    type: "integer"
+    description: "Maximum number of rules to return"
+    default: 10
+    required: false

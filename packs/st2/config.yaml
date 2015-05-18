@@ -1,2 +1,2 @@
-### Place configuration data for your pack here.
 ---
+  base_url: "http://localhost"

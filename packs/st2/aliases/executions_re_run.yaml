@@ -1,0 +1,6 @@
+---
+name: "st2-executions-re-run"
+action_ref: "st2.executions.re_run"
+description: "Re-run an action execution."
+formats:
+  - "id={{ id }}"
