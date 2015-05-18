@@ -43,7 +43,7 @@ Parameter | Description | Default
 
 ### Indices/snapshots selection parameters
 
-These parameters filter indices or snapshots when a command is being applied. 
+These parameters filter indices or snapshots when a command is being applied.
 
 Parameter | Description | Details
 ------------ | ------------ | ------------
@@ -92,9 +92,9 @@ Parameter | Description
 
 ### search.body specific parameters
 
-Parameter | Description 
+Parameter | Description
 ------------ | ------------
-**body** | The search definition using the Query DSL (**required**). 
+**body** | The search definition using the Query DSL (**required**).
 **indices** | A comma-separated list of index names to search. Defaults to `"_all"`.
 **from** | The starting from index of the hits to return. Defaults to 0.
 **size** | The number of hits to return. Defaults to 10.
@@ -115,9 +115,9 @@ st2 run elastic.show.indices host=elk older_than=2 timestring=%Y.%m.%d
 Shows this on my node:
 ```json
 {
-    "result": null, 
-    "exit_code": 0, 
-    "stderr": "", 
+    "result": null,
+    "exit_code": 0,
+    "stderr": "",
     "stdout": "logstash-2015.05.02
 logstash-2015.05.04
 "

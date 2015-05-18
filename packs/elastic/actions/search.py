@@ -23,17 +23,19 @@ class SearchRunner(ESBaseAction):
         Used to fetch indices/snapshots and apply filter to them.
         """
         if not self._iselector:
-            self._iselector = ItemsSelector(self.client, **self.config)
+            kwargs = self.config.copy()
+            # Support iselectors parameters
+            kwargs.update({'dry_run': False})
+            self._iselector = ItemsSelector(self.client, **kwargs)
         return self._iselector
 
 
-    def run(self, **kwargs):
-        action = kwargs.pop('action')
-        timeout = kwargs.pop('operation_timeout')
+    def run(self, action=None,  log_level='warn', operation_timeout=600, **kwargs):
+        kwargs.update({
+            'timeout': int(operation_timeout),
+            'log_level': log_level
+        })
         self.config = EasyDict(kwargs)
-        self.config['operation_timeout'] = int(timeout)
-        # support full interface for curator iselector
-        self.config['dry_run'] = False
         self.set_up_logging()
 
         if action.endswith('.q'):
@@ -64,7 +66,7 @@ class SearchRunner(ESBaseAction):
         accepted_params = ('from', 'size')
         kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
         try:
-            result = self.client.search(index=self.config.indices, 
+            result = self.client.search(index=self.config.indices,
                                         body=self.config.body, **kwargs)
         except elasticsearch.ElasticsearchException as e:
             logger.error(e.message)
