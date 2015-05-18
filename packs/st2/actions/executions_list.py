@@ -19,7 +19,7 @@ def format_result(result):
 
 
 class St2ExecutionsListAction(St2BaseAction):
-    def run(self, action=None, status=None, limit=10):
+    def run(self, action=None, status=None, limit=5):
         kwargs = {}
 
         kwargs['limit'] = limit
