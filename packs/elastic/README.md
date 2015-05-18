@@ -4,7 +4,7 @@ Pack provides many operations helping to manage your Elasticsearch indices and s
 
 ## ELK
 
-Logstash integration [details](/logstash.md).
+Logstash integration [details](/packs/elastic/logstash.md).
 
 
 ## Curator based actions
