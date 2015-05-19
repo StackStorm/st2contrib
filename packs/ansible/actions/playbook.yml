@@ -1,8 +1,8 @@
 ---
-name: "command_local"
-description: "Run ad-hoc Ansible command (module) on local machine"
+name: "playbook"
+description: "Run ansible Playbook"
 runner_type: "local-shell-script"
-entry_point: "ansible.py"
+entry_point: "ansible_playbook.py"
 enabled: true
 parameters:
   kwarg_op:
@@ -24,15 +24,10 @@ parameters:
     description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds"
     type: integer
     default: 600
-  hosts:
-    description: "Hosts. Locked to run the command locally"
+  playbook:
+    description: "Playbook file"
     type: string
     position: 0
-    default: all
-    immutable: true
-  args:
-    description: "Module arguments [-a]"
-    type: string
   background:
     description: "Fork in Background asynchronously for X seconds [-B]"
     type: integer
@@ -55,13 +50,20 @@ parameters:
     description: "Don't make any changes; instead, try to predict some of the changes that may occur [-C]"
     type: boolean
   connection:
-    description: "Connection type to use (default=smart) [-c]. Locked to run the command locally"
+    description: "Connection type to use (default=smart) [-c]"
     type: string
-    default: local
-    immutable: true
+  diff:
+    description: "when changing (small) files and templates, show the differences in those files; works great with --check [-D]"
+    type: boolean
   extra-vars:
     description: "Set additional variables as key=value or YAML/JSON [-e]"
     type: string
+  flush-cache:
+    description: "Clear the fact cache"
+    type: boolean
+  force-handlers:
+    description: "Run handlers even if a task fails"
+    type: boolean
   forks:
     description: "Specify number of parallel processes to use (default=5) [-f]"
     type: integer
@@ -69,30 +71,40 @@ parameters:
     description: "Show help message and exit [-h]"
     type: boolean
   inventory-file:
-    description: "Inventory host file (default=/etc/ansible/hosts) [-i]. Locked to run the command locally"
+    description: "Inventory host file (default=/etc/ansible/hosts) [-i]"
     type: string
-    default: "127.0.0.1,"
-    immutable: true
   limit:
     description: "Further limit selected hosts to an additional pattern [-l]"
     type: string
   list-hosts:
     description: "Outputs a list of matching hosts; does not execute anything else"
     type: boolean
-  module-name:
-    description: "Module name to execute (default=command) [-m]"
-    type: string
+  list-tags:
+    description: "List all available tags"
+    type: boolean
+  list-tasks:
+    description: "List all tasks that would be executed"
+    type: boolean
   module-path:
     description: "Specify path(s) to module library (default=None) [-M]"
     type: string
-  one-line:
-    description: "Condense output [-o]"
+  private-key:
+    description: "Use this file to authenticate the connection"
+    type: string
+  skip-tags:
+    description: "Only run plays and tasks whose tags do not match these values"
+    type: string
+  start-at-task:
+    description: "Start the playbook at the task matching this name"
+    type: string
+  syntax-check:
+    description: "Perform a syntax check on the playbook, but do not execute it"
     type: boolean
-  poll:
-    description: "Set the poll interval if using -B (default=15) [-P]"
-    type: integer
-  tree:
-    description: "Log output to this directory [-t]"
+  tags:
+    description: "Only run plays and tasks tagged with these values [-t]"
+    type: string
+  user:
+    description: "Connect to remote hosts as this user (default=root) [-u]"
     type: string
   vault-password-file:
     description: "Vault password file"

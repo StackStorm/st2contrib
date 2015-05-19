@@ -92,7 +92,7 @@ parameters:
     description: "Log output to this directory [-t]"
     type: string
   user:
-    description: "Connect to remot hosts as this user (default=root) [-u]"
+    description: "Connect to remote hosts as this user (default=root) [-u]"
     type: string
   vault-password-file:
     description: "Vault password file"
