@@ -40,6 +40,7 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
+| [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
 | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
@@ -330,6 +331,15 @@ Name | Description
 ---- | -----------
 DripstatAlertSensor | Sensor which monitors Dripstat API for active alerts
 
+### email pack
+
+#### Sensors
+
+Name | Description
+---- | -----------
+IMAPSensor | Sensor that emits triggers when e-mail message is received via IMAP
+SMTPSensor | Sensor that emits triggers when e-mail message is received via SMTP
+
 ### git pack
 
 #### Sensors
@@ -411,12 +421,6 @@ Name | Description
 ---- | -----------
 IRCSensor | Sensor which monitors IRC and dispatches a trigger for each public and private message
 
-#### Actions
-
-Name | Description
----- | -----------
-post_message | Send a message to an IRC channel.
-
 ### jira pack
 
 #### Sensors
@@ -431,7 +435,6 @@ Name | Description
 ---- | -----------
 create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
-post_issue_details | 
 
 ### jmx pack
 
@@ -729,6 +732,10 @@ destroy_instance | Destroys an instance
 
 Name | Description
 ---- | -----------
+actions.list | Retrieve a list of available StackStorm actions.
+executions.get | Retrieve details of a single execution.
+executions.list | Retrieve a list of executions.
+executions.re_run | Re-run an action execution.
 kv.delete | Delete value from datastore
 kv.get | Get value from datastore
 kv.get | Get value from datastore
@@ -736,6 +743,8 @@ kv.get_object | Deserialize and retrieve JSON serialized object from a datastore
 kv.grep | Grep for values in datastore
 kv.set | Set value in datastore
 kv.set_object | Serialize and store object in a datastore
+rules.list | Retrieve a list of available StackStorm rules
+sensors.list | Retrieve a list of available StackStorm sensors.
 
 ### trello pack
 
