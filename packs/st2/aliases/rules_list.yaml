@@ -2,5 +2,3 @@
 name: "st2-rules-list"
 action_ref: "st2.rules.list"
 description: "List available StackStorm rules."
-formats:
-  - "pack={{ pack=None }}"

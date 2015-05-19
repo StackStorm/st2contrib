@@ -2,5 +2,3 @@
 name: "st2-sensors-list"
 action_ref: "st2.sensors.list"
 description: "List available StackStorm sensors."
-formats:
-  - "pack={{ pack=None }}"
