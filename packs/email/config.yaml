@@ -1,0 +1,12 @@
+### Place configuration data for your pack here.
+---
+imap_mailboxes:
+  default:
+    server: ""
+    port: 993
+    username: ""
+    password: ""
+    ssl: True
+
+smtp_listen_ip: '127.0.0.1'
+smtp_listen_port: 25
