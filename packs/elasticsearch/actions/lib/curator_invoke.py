@@ -71,7 +71,8 @@ class CuratorInvoke(object):
                                )
 
         if not working_list:
-            print 'No {} matched provided args: {}'.format(act_on, self.opts)
+            logger.error('No {} matched provided args: {}'.format(act_on, self.opts))
+            print "ERROR. No {} found in Elasticsearch.".format(act_on)
             sys.exit(99)
 
         return working_list

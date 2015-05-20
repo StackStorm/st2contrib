@@ -61,7 +61,8 @@ class ItemsSelector(object):
             working_list.extend((i for i in explicit_items if i in source_items))
 
         if not working_list:
-            print 'No {0} matched provided args: {1}'.format(act_on, opts)
+            logger.error('No {} matched provided args: {}'.format(act_on, opts))
+            print "ERROR. No {} found in Elasticsearch.".format(act_on)
             sys.exit(99)
 
         # Make a sorted, unique list of indices/snapshots
