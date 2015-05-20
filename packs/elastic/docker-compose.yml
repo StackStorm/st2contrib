@@ -16,4 +16,4 @@ elk:
    - "9200:9200"
    - "10987:10987" # udp input
   volumes:
-   - ./conf.d:/etc/logstash/conf.d
+   - ./etc/conf.d:/etc/logstash/conf.d
