@@ -1,43 +1,40 @@
 # pylint: disable=no-member
 
-from easydict import EasyDict
-from utils import compact_dict
-from collections import defaultdict
 from items_selector import ItemsSelector
+from utils import compact_dict, get_client, chunk_index_list
+from easydict import EasyDict
+from collections import defaultdict
 import curator.api as api
-import utils
 import logging
 import sys
 
 logger = logging.getLogger(__name__)
 
-
 class CuratorInvoke(object):
     # Supported curator commands for indices and snapshots.
     SUPPORTS = {
         'snapshots': ['delete'],
-        'indices':   ['alias', 'allocation', 'bloom', 'close', 'delete',
-                      'open', 'optimize','replicas', 'snapshot']
+        'indices': [
+            'alias', 'allocation', 'bloom', 'close', 'delete',
+            'open', 'optimize','replicas', 'snapshot'
+        ]
     }
-
 
     def __init__(self, **opts):
         self.opts = EasyDict(opts)
         self._client = None
-        self._iselector  = None
-
+        self._iselector = None
 
     @property
     def client(self):
         if not self._client:
             o = self.opts
-            self._client = utils.get_client(**({
+            self._client = get_client(**({
                 'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
                 'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
                 'master_only': o.master_only, 'timeout': o.timeout
             }))
         return self._client
-
 
     @property
     def iselector(self):
@@ -47,7 +44,6 @@ class CuratorInvoke(object):
         if not self._iselector:
             self._iselector = ItemsSelector(self.client, **self.opts)
         return self._iselector
-
 
     def _enhanced_working_list(self, command, act_on):
         """Enhance working_list by pruning kibana indices and filtering
@@ -64,19 +60,16 @@ class CuratorInvoke(object):
         # If filter by disk space, filter the working_list by space:
         if working_list and command == 'delete':
             if self.opts.disk_space:
-                working_list = api.filter.filter_by_space(
-                                    self.client, working_list,
-                                    disk_space=float(self.opts.disk_space),
-                                    reverse=(self.opts.reverse or True)
-                               )
+                working_list = api.filter.filter_by_space(self.client, working_list,
+                                                          disk_space=float(self.opts.disk_space),
+                                                          reverse=(self.opts.reverse or True))
 
         if not working_list:
-            logger.error('No {} matched provided args: {}'.format(act_on, self.opts))
+            logger.error('No %s matched provided args: %s', act_on, self.opts)
             print "ERROR. No {} found in Elasticsearch.".format(act_on)
             sys.exit(99)
 
         return working_list
-
 
     def fetch(self, act_on, on_nofilters_showall=False):
         """
@@ -84,17 +77,16 @@ class CuratorInvoke(object):
         """
         return self.iselector.fetch(act_on=act_on, on_nofilters_showall=on_nofilters_showall)
 
-
     def command_kwargs(self, command):
         """
         Return kwargs dict for a specific command options or return empty dict.
         """
         opts = defaultdict(lambda: None, self.opts)
         kwargs = {
-            'alias': { 'alias': opts['name'], 'remove': opts['remove'] },
-            'allocation': { 'rule': opts['rule'] },
-            'bloom': { 'delay': opts['delay'] },
-            'replicas': { 'replicas': opts['count'] },
+            'alias': {'alias': opts['name'], 'remove': opts['remove']},
+            'allocation': {'rule': opts['rule']},
+            'bloom': {'delay': opts['delay']},
+            'replicas': {'replicas': opts['count']},
             'optimize': {
                 'max_num_segments': opts['max_num_segments'],
                 'request_timeout': opts['timeout'],
@@ -111,16 +103,14 @@ class CuratorInvoke(object):
         }.get(command, {})
         return compact_dict(kwargs)
 
-
     def _call_api(self, method, *args, **kwargs):
         """Invoke curator api method call.
         """
         api_method = api.__dict__.get(method)
 
-        logger.debug("Perfoming api call {} with args: {}, kwargs: {}".format(
-                     method, args, kwargs))
+        logger.debug("Perfoming api call %s with args: %s, kwargs: %s",
+                     method, args, kwargs)
         return api_method(self.client, *args, **kwargs)
-
 
     def command_on_indices(self, command, working_list):
         """Invoke command which acts on indices and perform an api call.
@@ -132,13 +122,12 @@ class CuratorInvoke(object):
         if len(api.utils.to_csv(working_list)) > 3072:
             logger.warn('Very large list of indices.  Breaking it up into smaller chunks.')
             success = True
-            for indices in utils.chunk_index_list(working_list):
+            for indices in chunk_index_list(working_list):
                 if not self._call_api(method, indices, **kwargs):
                     success = False
             return success
         else:
             return self._call_api(method, working_list, **kwargs)
-
 
     def command_on_snapshots(self, command, working_list):
         """Invoke command which acts on snapshots and perform an api call.
@@ -156,13 +145,12 @@ class CuratorInvoke(object):
             success = True
             for s in working_list:
                 if not self._call_api(method, repository=self.opts.repository,
-                                               snapshot=s):
+                                      snapshot=s):
                     success = False
             return success
         else:
             # should never get here
             raise RuntimeError("Unexpected method `{}.{}'".format('snapshots', command))
-
 
     def invoke(self, command=None, act_on=None):
         """Invoke command through translating it curator api call.

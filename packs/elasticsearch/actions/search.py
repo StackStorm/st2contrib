@@ -3,7 +3,6 @@
 from easydict import EasyDict
 from lib.items_selector import ItemsSelector
 from lib.esbase_action import ESBaseAction
-from collections import defaultdict
 import logging
 import sys
 import elasticsearch
@@ -18,7 +17,6 @@ class SearchRunner(ESBaseAction):
         super(SearchRunner, self).__init__(config=config)
         self._iselector = None
 
-
     @property
     def iselector(self):
         """
@@ -31,8 +29,7 @@ class SearchRunner(ESBaseAction):
             self._iselector = ItemsSelector(self.client, **kwargs)
         return self._iselector
 
-
-    def run(self, action=None,  log_level='warn', operation_timeout=600, **kwargs):
+    def run(self, action=None, log_level='warn', operation_timeout=600, **kwargs):
         kwargs.update({
             'timeout': int(operation_timeout),
             'log_level': log_level
@@ -45,12 +42,11 @@ class SearchRunner(ESBaseAction):
         else:
             self.full_search()
 
-
     def simple_search(self):
         """Perform URI-based request search.
         """
-        accepted_params = ('q','df', 'default_operator', 'from', 'size')
-        kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
+        accepted_params = ('q', 'df', 'default_operator', 'from', 'size')
+        kwargs = {k: self.config[k] for k in accepted_params if self.config[k]}
         indices = ','.join(self.iselector.indices())
 
         try:
@@ -61,12 +57,11 @@ class SearchRunner(ESBaseAction):
 
         self._pp_exit(result)
 
-
     def full_search(self):
         """Perform search using Query DSL.
         """
         accepted_params = ('from', 'size')
-        kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
+        kwargs = {k: self.config[k] for k in accepted_params if self.config[k]}
         try:
             result = self.client.search(index=self.config.index,
                                         body=self.config.body, **kwargs)
@@ -75,7 +70,6 @@ class SearchRunner(ESBaseAction):
             sys.exit(2)
 
         self._pp_exit(result)
-
 
     def _pp_exit(self, data):
         """Print Elastcsearch JSON response and exit.

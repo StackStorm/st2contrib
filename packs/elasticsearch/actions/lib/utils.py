@@ -1,13 +1,12 @@
 # pylint: disable=no-member
 
 import elasticsearch
-import curator
 import sys
 import logging
 from curator.api.utils import get_version, is_master_node
 
 # Elasticsearch versions supported
-version_max  = (2, 0, 0)
+version_max = (2, 0, 0)
 version_min = (1, 0, 0)
 logger = logging.getLogger(__name__)
 
@@ -18,10 +17,13 @@ def check_version(client):
     :arg client: The Elasticsearch client connection
     """
     version_number = get_version(client)
-    logger.debug('Detected Elasticsearch version {0}'.format(".".join(map(str,version_number))))
+    logger.debug('Detected Elasticsearch version %s', ".".join(map(str, version_number)))
     if version_number >= version_max or version_number < version_min:
-        print 'Expected Elasticsearch version range > {0} < {1}'.format(".".join(map(str,version_min)),".".join(map(str,version_max)))
-        print 'ERROR: Incompatible with version {0} of Elasticsearch.  Exiting.'.format(".".join(map(str,version_number)))
+        vmin = ".".join(map(str, version_min))
+        vmax = ".".join(map(str, version_max))
+        vnum = ".".join(map(str, version_number))
+        print 'Expected Elasticsearch version range > {} < {}'.format(vmin, vmax)
+        print 'ERROR: Incompatible with version {} of Elasticsearch.  Exiting.'.format(vnum)
         sys.exit(1)
 
 
@@ -58,16 +60,17 @@ def chunk_index_list(indices):
     return chunks
 
 
-def get_client(host, port=9200, url_prefix=None, http_auth=None, use_ssl=False, master_only=False, timeout=30):
+def get_client(host, port=9200, url_prefix=None, http_auth=None, use_ssl=False,
+               master_only=False, timeout=30):
     """
     Return an Elasticsearch client using the provided parameters
     """
     kwargs = compact_dict({
-                'host': host, 'port': port, 'http_auth': http_auth,
-                'url_prefix': url_prefix, 'use_ssl': use_ssl,
-                'timeout': timeout
-             })
-    logger.debug("ES client kwargs = {0}".format(kwargs))
+        'host': host, 'port': port, 'http_auth': http_auth,
+        'url_prefix': url_prefix, 'use_ssl': use_ssl,
+        'timeout': timeout
+    })
+    logger.debug("ES client kwargs = %s", kwargs)
     try:
         client = elasticsearch.Elasticsearch(**kwargs)
         # Verify the version is acceptable.
@@ -84,7 +87,7 @@ def compact_dict(source_dict):
     """
     Drop all elements equal to None
     """
-    return {k:v for k,v in source_dict.items() if v is not None}
+    return {k: v for k, v in source_dict.items() if v is not None}
 
 
 def xstr(s):

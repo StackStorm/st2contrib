@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import sys
 import os
 import datetime
 import time
 import random
 import socket
-from pprint import pprint
 from random import choice
 from jinja2 import Template
 
@@ -24,7 +22,7 @@ def build_dict(words):
     (word1, word2) => [w1, w2, ...]  # key: tuple; value: list
     """
     d = {}
-    for i, word in enumerate(words):
+    for i, _ in enumerate(words):
         try:
             first, second, third = words[i], words[i+1], words[i+2]
         except IndexError:
@@ -60,9 +58,7 @@ def generate_sentence(d):
 
     return ' '.join(li)
 
-
-
-####################
+# #############
 
 if __name__ == "__main__":
     pathname = os.path.realpath(__file__)
@@ -73,8 +69,8 @@ if __name__ == "__main__":
     words = text.split()
     d = build_dict(words)
     template = Template(JSON)
-    sock = socket.socket(socket.AF_INET, # Internet
-                      socket.SOCK_DGRAM) # UDP
+    sock = socket.socket(socket.AF_INET,    # Internet
+                         socket.SOCK_DGRAM) # UDP
 
     while True:
         slept = 0

@@ -1,5 +1,6 @@
 import yaml
 
+
 class StaticMetagen(object):
 
     action_meta = {
@@ -38,12 +39,12 @@ class StaticMetagen(object):
                 "default": False
             },
             "timeout": {
-                 "description": "Don't wait for action completion more then the specified timeout.",
-                 "default": 600,
-                 "type": "integer"
+                "description": "Don't wait for action completion more then the specified timeout.",  # noqa
+                "default": 600,
+                "type": "integer"
             },
             "operation_timeout": {
-                "description": "Elasticsearch operation timeout in seconds. (It's equal to action timeout).",
+                "description": "Elasticsearch operation timeout in seconds. (It's equal to action timeout).",  # noqa
                 "default": "{{timeout}}",
                 "immutable": True,
                 "type": "string"
@@ -73,7 +74,6 @@ class StaticMetagen(object):
         if action_meta is not None:
             self.action_meta.update(action_meta)
 
-
     def generate_action(self, module_type, action):
         manifest = self.action_meta
         manifest['name'] = "{0}_{1}".format(module_type, action)
@@ -83,7 +83,6 @@ class StaticMetagen(object):
         fh.write('---\n')
         fh.write(yaml.dump(manifest, default_flow_style=False))
         fh.close()
-
 
     def generate_from_file(self, meta_file):
         if meta_file is None:
@@ -96,9 +95,8 @@ class StaticMetagen(object):
             fh.write(yaml.dump(manifest, default_flow_style=False))
             fh.close()
 
-
     def _merge_actions(self, actions):
-        for i, action in enumerate(actions):
+        for action in actions:
             name, meta = action.items()[0]
             manifest = self.action_meta.copy()
             manifest['name'] = name
@@ -106,7 +104,8 @@ class StaticMetagen(object):
 
             for k, v in meta['parameters'].items():
                 nv = StaticMetagen.parameter_meta.copy()
-                nv.update(v); meta['parameters'][k] = nv
+                nv.update(v)
+                meta['parameters'][k] = nv
 
             parameters = manifest['parameters'].copy()
             parameters.update(meta['parameters'])
@@ -120,9 +119,6 @@ class StaticMetagen(object):
                 yield alias_manifest
             yield manifest
 
-
 metagen = StaticMetagen()
 metagen.generate_from_file('lib/curator_actions.yaml')
 # print yaml.dump(metagen.meta_actions)
-
-

@@ -1,7 +1,7 @@
 # pylint: disable=no-member
 
-from curator.api.filter import *
 from utils import xstr
+from curator.api.filter import apply_filter
 from easydict import EasyDict
 import curator.api as api
 import sys
@@ -25,7 +25,6 @@ class ItemsFilter(object):
         self.built_list = self._build()
         return self
 
-
     def get_timebased(self):
         """
         Get timebased specific filters.
@@ -40,16 +39,13 @@ class ItemsFilter(object):
 
         return (result.get('newer_than', None), result.get('older_than', None))
 
-
     @property
     def all_items(self):
         return self.opts.get('all_{0}'.format(self.act_on), None)
 
-
     @property
     def filter_list(self):
         return self.built_list
-
 
     @property
     def closed_timerange(self):
@@ -57,7 +53,6 @@ class ItemsFilter(object):
         Closed time range specified, newer_than and older_than both present.
         """
         return len(filter(None, self.get_timebased())) == 2
-
 
     def apply(self, working_list, act_on):
         """
@@ -68,7 +63,7 @@ class ItemsFilter(object):
         result_list = self._apply_closed_timerange(working_list)
 
         if self.all_items:
-            logger.info('Matching all {0}. Ignoring parameters other than exclude.'.format(self.act_on))
+            logger.info('Matching all %s. Ignoring parameters other than exclude.', self.act_on)
 
         # Closed time range couldn't be applied
         if result_list is None:
@@ -84,11 +79,10 @@ class ItemsFilter(object):
             if self.all_items and not 'exclude' in f:
                 continue
 
-            logger.debug('Applying filter: {0}'.format(f))
+            logger.debug('Applying filter: %s', f)
             result_list = apply_filter(result_list, **f)
 
         return result_list
-
 
     def _apply_closed_timerange(self, working_list):
         """
@@ -103,12 +97,11 @@ class ItemsFilter(object):
             if not self.all_items:
                 # We don't apply time range filtering in case of all_* options.
                 logger.debug('Applying time range filters, result will be intersection\n'\
-                             'newer_than: {0}\nolder_than: {1}'.format(newer_than, older_than))
+                             'newer_than: %s\nolder_than: %s', newer_than, older_than)
                 newer_range = set(apply_filter(working_list, **newer_than))
                 older_range = set(apply_filter(working_list, **older_than))
                 result_list = list(newer_range & older_range)
                 return result_list
-
 
     def _build(self):
         """
@@ -120,13 +113,13 @@ class ItemsFilter(object):
         filter_list = []
 
         # No timestring parameter, range parameters a given
-        if not opts.timestring and any(( xstr(opts.newer_than),
-                                         xstr(opts.older_than) )):
+        if not opts.timestring and any((xstr(opts.newer_than),
+                                        xstr(opts.older_than))):
             print 'ERROR: Parameters newer_than/older_than require timestring to be given'
             sys.exit(1)
         # Timestring used alone without newer_than/older_than
-        if opts.timestring is not None and not all(( xstr(opts.newer_than),
-                                                     xstr(opts.older_than) )):
+        if opts.timestring is not None and not all((xstr(opts.newer_than),
+                                                    xstr(opts.older_than))):
             f = api.filter.build_filter(kindOf='timestring',
                                         value=opts.timestring)
             if f: filter_list.append(f)

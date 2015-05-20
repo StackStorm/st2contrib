@@ -3,7 +3,6 @@
 from easydict import EasyDict
 from lib.curator_action import CuratorAction
 import logging
-import sys
 
 logger = logging.getLogger(__name__)
 

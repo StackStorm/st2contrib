@@ -1,8 +1,8 @@
 # pylint: disable=no-member
 
-from curator.api.utils import index_closed
 from curator_invoke import CuratorInvoke
 from esbase_action import ESBaseAction
+from curator.api.utils import index_closed
 import logging
 import sys
 
@@ -18,7 +18,6 @@ class CuratorAction(ESBaseAction):
         self._command = None
         self._api = None
         self._action = None
-
 
     @property
     def action(self):
@@ -43,7 +42,6 @@ class CuratorAction(ESBaseAction):
             self._api = CuratorInvoke(**self.config)
         return self._api
 
-
     def show_dry_run(self):
         """
         Log dry run output with the command which would have been executed.
@@ -56,8 +54,8 @@ class CuratorAction(ESBaseAction):
             if self.act_on == 'snapshots':
                 print "DRY RUN: {0}: {1}".format(command, item)
             else:
-                print "DRY RUN: {0}: {1}{2}".format(command, item, ' (CLOSED)' if index_closed(self.client, item) else '')
-
+                print "DRY RUN: {0}: {1}{2}".format(command, item, ' (CLOSED)'
+                                                    if index_closed(self.client, item) else '')
 
     def do_show(self):
         """
@@ -72,17 +70,17 @@ class CuratorAction(ESBaseAction):
         sys.exit(0)
 
 
-    def exit_msg(self, success):
+    @staticmethod
+    def exit_msg(success):
         """
-        Display a message corresponding to whether the job completed successfully or
-        not, then exit.
+        Display a message corresponding to whether the job completed
+        successfully or not then exit.
         """
         if success:
             logger.info("Job completed successfully.")
         else:
             logger.warn("Job did not complete successfully.")
         sys.exit(0) if success else sys.exit(1)
-
 
     def do_command(self):
         """
@@ -94,8 +92,8 @@ class CuratorAction(ESBaseAction):
         if self.config.dry_run:
             self.show_dry_run()
         else:
-            logger.info("Job starting: {0} {1}".format(self.command, self.act_on))
-            logger.debug("Params: {0}".format(self.config))
+            logger.info("Job starting: %s %s", self.command, self.act_on)
+            logger.debug("Params: %s", self.config)
 
             success = self.api.invoke(command=self.command, act_on=self.act_on)
             self.exit_msg(success)

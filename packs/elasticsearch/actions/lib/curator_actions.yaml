@@ -33,7 +33,6 @@
         description: "Do not filter indices.  Act on all indices."
         type: "boolean"
 
-
 - snapshots.show:
     description: "Show snapshots"
     parameters:
@@ -70,7 +69,6 @@
       all_snapshots:
         description: "Do not filter snapshots.  Act on all snapshots."
         type: "boolean"
-
 
 - indices.delete:
     description: "Delete indices"
@@ -112,7 +110,6 @@
         description: "Only valid with disk_space. Affects sort order of the indices.  True means reverse-alphabetical (if dates are involved, older is deleted first)."
         type: "boolean"
         default: true
-
 
 - snapshots.delete:
     description: "Delete snapshots"
@@ -157,7 +154,6 @@
         description: "Only valid with disk_space. Affects sort order of the indices.  True means reverse-alphabetical (if dates are involved, older is deleted first)."
         type: "boolean"
         default: true
-
 
 - indices.snapshot:
     description: "Create snapshot of indices"
@@ -222,7 +218,6 @@
         type: "boolean"
       # -->
 
-
 - indices.alias:
     description: "Index Aliasing"
     parameters:
@@ -266,7 +261,6 @@
         description: "Do not filter indices.  Act on all indices."
         type: "boolean"
       # -->
-
 
 - indices.allocation:
     description: "Index Allocation"
@@ -383,7 +377,6 @@
         description: "Do not filter indices.  Act on all indices."
         type: "boolean"
 
-
 - indices.open:
     description: "Open indices"
     parameters:
@@ -417,7 +410,6 @@
       all_indices:
         description: "Do not filter indices.  Act on all indices."
         type: "boolean"
-
 
 - indices.optimize:
     description: "Optimize indices"

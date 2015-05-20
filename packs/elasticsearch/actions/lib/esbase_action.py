@@ -1,8 +1,9 @@
 # pylint: disable=no-member
 
+from utils import get_client
 from st2actions.runners.pythonrunner import Action
-import utils
 import logging
+
 
 class ESBaseAction(Action):
 
@@ -10,18 +11,16 @@ class ESBaseAction(Action):
         super(ESBaseAction, self).__init__(config=config)
         self._client = None
 
-
     @property
     def client(self):
         if not self._client:
             o = self.config
-            self._client = utils.get_client(**({
+            self._client = get_client(**({
                 'host': o.host, 'port': o.port, 'url_prefix': o.url_prefix,
                 'http_auth': o.http_auth, 'use_ssl': o.use_ssl,
                 'master_only': o.master_only, 'timeout': o.timeout
             }))
         return self._client
-
 
     def set_up_logging(self):
         """
