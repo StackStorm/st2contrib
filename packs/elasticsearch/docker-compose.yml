@@ -3,6 +3,7 @@ st2:
   links:
    - elk
   ports:
+   - "8080:8080"
    - "9100:9100"
    - "9101:9101"
   command: /bin/bash -c "/root/st2/start.sh ; sleep infinity"

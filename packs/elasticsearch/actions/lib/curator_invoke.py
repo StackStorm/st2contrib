@@ -7,6 +7,7 @@ from items_selector import ItemsSelector
 import curator.api as api
 import utils
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -68,6 +69,11 @@ class CuratorInvoke(object):
                                     disk_space=float(self.opts.disk_space),
                                     reverse=(self.opts.reverse or True)
                                )
+
+        if not working_list:
+            print 'No {} matched provided args: {}'.format(act_on, self.opts)
+            sys.exit(99)
+
         return working_list
 
 
@@ -109,6 +115,9 @@ class CuratorInvoke(object):
         """Invoke curator api method call.
         """
         api_method = api.__dict__.get(method)
+
+        logger.debug("Perfoming api call {} with args: {}, kwargs: {}".format(
+                     method, args, kwargs))
         return api_method(self.client, *args, **kwargs)
 
 
@@ -123,11 +132,11 @@ class CuratorInvoke(object):
             logger.warn('Very large list of indices.  Breaking it up into smaller chunks.')
             success = True
             for indices in utils.chunk_index_list(working_list):
-                if not self._call_api(method, *(indices), **kwargs):
+                if not self._call_api(method, indices, **kwargs):
                     success = False
             return success
         else:
-            return self._call_api(method, *(working_list), **kwargs)
+            return self._call_api(method, working_list, **kwargs)
 
 
     def command_on_snapshots(self, command, working_list):
