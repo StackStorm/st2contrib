@@ -1,6 +1,6 @@
 ---
 name: "command_local"
-description: "Run ad-hoc Ansible command (module) on local machine"
+description: "Run ad-hoc ansible command (module) on local machine"
 runner_type: "local-shell-script"
 entry_point: "ansible.py"
 enabled: true

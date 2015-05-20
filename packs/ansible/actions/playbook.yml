@@ -1,6 +1,6 @@
 ---
 name: "playbook"
-description: "Run ansible Playbook"
+description: "Run ansible playbook"
 runner_type: "local-shell-script"
 entry_point: "ansible_playbook.py"
 enabled: true

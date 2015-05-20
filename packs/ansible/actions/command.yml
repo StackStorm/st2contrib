@@ -1,6 +1,6 @@
 ---
 name: "command"
-description: "Run ad-hoc Ansible (module) command"
+description: "Run ad-hoc ansible command (module)"
 runner_type: "local-shell-script"
 entry_point: "ansible.py"
 enabled: true
