@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from easydict import EasyDict
 from utils import compact_dict
 from collections import defaultdict
@@ -62,7 +64,7 @@ class CuratorInvoke(object):
         if working_list and command == 'delete':
             if self.opts.disk_space:
                 working_list = api.filter.filter_by_space(
-                                    client, working_list,
+                                    self.client, working_list,
                                     disk_space=float(self.opts.disk_space),
                                     reverse=(self.opts.reverse or True)
                                )
@@ -120,7 +122,7 @@ class CuratorInvoke(object):
         if len(api.utils.to_csv(working_list)) > 3072:
             logger.warn('Very large list of indices.  Breaking it up into smaller chunks.')
             success = True
-            for indices in chunk_index_list(working_list):
+            for indices in utils.chunk_index_list(working_list):
                 if not self._call_api(method, *(indices), **kwargs):
                     success = False
             return success

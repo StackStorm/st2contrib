@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from curator.api.utils import *
 from curator.api.filter import *
 from items_filter import ItemsFilter

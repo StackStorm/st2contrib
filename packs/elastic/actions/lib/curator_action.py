@@ -15,7 +15,12 @@ class CuratorAction(ESBaseAction):
         self._act_on = None
         self._command = None
         self._api = None
+        self._action = None
 
+
+    @property
+    def action(self):
+        return self._action
 
     @property
     def act_on(self):

@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from curator.api.filter import *
 from utils import xstr
 from easydict import EasyDict
