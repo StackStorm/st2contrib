@@ -12,7 +12,7 @@ parameters:
     description: The search definition using the Query DSL.
     type: string
     required: true
-  indices:
+  index:
     description:  A comma-separated list of index names to search.
     type: string
     default: '_all'

@@ -55,7 +55,7 @@ class SearchRunner(ESBaseAction):
             result = self.client.search(index=indices, **kwargs)
         except elasticsearch.ElasticsearchException as e:
             logger.error(e.message)
-            sys.exit(99)
+            sys.exit(2)
 
         self._pp_exit(result)
 
@@ -66,11 +66,11 @@ class SearchRunner(ESBaseAction):
         accepted_params = ('from', 'size')
         kwargs = {k:self.config[k] for k in accepted_params if self.config[k]}
         try:
-            result = self.client.search(index=self.config.indices,
+            result = self.client.search(index=self.config.index,
                                         body=self.config.body, **kwargs)
         except elasticsearch.ElasticsearchException as e:
             logger.error(e.message)
-            sys.exit(99)
+            sys.exit(2)
 
         self._pp_exit(result)
 
