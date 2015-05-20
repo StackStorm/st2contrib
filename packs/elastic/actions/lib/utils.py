@@ -32,6 +32,30 @@ def check_master(client, master_only=False):
         sys.exit(9)
 
 
+def chunk_index_list(indices):
+    """
+    This utility chunks very large index lists into 3KB chunks
+    It measures the size as a csv string, then converts back into a list
+    for the return value.
+    :arg indices: A list of indices to act on.
+
+    !When version > 3.0.3 of curator is released. Should be removed!
+    """
+    chunks = []
+    chunk = ""
+    for index in indices:
+        if len(chunk) < 3072:
+            if not chunk:
+                chunk = index
+            else:
+                chunk += "," + index
+        else:
+            chunks.append(chunk.split(','))
+            chunk = index
+    chunks.append(chunk.split(','))
+    return chunks
+
+
 def get_client(host, port=9200, url_prefix=None, http_auth=None, use_ssl=False, master_only=False, timeout=30):
     """
     Return an Elasticsearch client using the provided parameters

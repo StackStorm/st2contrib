@@ -46,30 +46,6 @@ class CuratorInvoke(object):
         return self._iselector
 
 
-    def _chunk_index_list(indices):
-        """
-        This utility chunks very large index lists into 3KB chunks
-        It measures the size as a csv string, then converts back into a list
-        for the return value.
-        :arg indices: A list of indices to act on.
-
-        !When version > 3.0.3 of curator is released. Should be removed!
-        """
-        chunks = []
-        chunk = ""
-        for index in indices:
-            if len(chunk) < 3072:
-                if not chunk:
-                    chunk = index
-                else:
-                    chunk += "," + index
-            else:
-                chunks.append(chunk.split(','))
-                chunk = index
-        chunks.append(chunk.split(','))
-        return chunks
-
-
     def _enhanced_working_list(self, command, act_on):
         """Enhance working_list by pruning kibana indices and filtering
         disk space. Returns filter working list.
