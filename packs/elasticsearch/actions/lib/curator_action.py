@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from curator.api.utils import index_closed
 from curator_invoke import CuratorInvoke
 from esbase_action import ESBaseAction
@@ -61,12 +63,12 @@ class CuratorAction(ESBaseAction):
         """
         Show indices or snapshots command.
         """
-        items = self.api.fetch(act_on=self.act_on, on_nofilters_showall=True)
         if not self.config.dry_run:
-            for item in items:
+            for item in self.api.fetch(act_on=self.act_on,
+                                       on_nofilters_showall=True):
                 print item
         else:
-            self.show_dry_run(items)
+            self.show_dry_run()
         sys.exit(0)
 
 

@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from easydict import EasyDict
 from lib.items_selector import ItemsSelector
 from lib.esbase_action import ESBaseAction
