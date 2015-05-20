@@ -1,5 +1,5 @@
 ---
-name : elastic
+name : elasticsearch
 description : st2 elasticsearch integration pack
 keywords:
   - elasticsearch

@@ -2,10 +2,6 @@
 
 Pack provides many operations helping to manage your Elasticsearch indices and snapshots.
 
-## ELK
-
-Logstash integration [details](/packs/elastic/logstash.md).
-
 
 ## Curator based actions
 
@@ -113,7 +109,7 @@ Now let's have a look at a few invocation examples.
 
 * Show indices older than 2 days:
 ```
-st2 run elastic.indices.show host=elk older_than=2 timestring=%Y.%m.%d
+st2 run elasticsearch.indices.show host=elk older_than=2 timestring=%Y.%m.%d
 ```
 Shows this on my node:
 ```json
@@ -136,18 +132,18 @@ st2 run elastic.indices.delete host=elk prefix=logstash
 
 * Create a snapshot of indices  based on time range criteria:
 ```
-st2 run elastic.indices.snapshot host=elk repository=my_backup newer_than=20 older_than=10 timestring=%Y.%m.%d
+st2 run elasticsearch.indices.snapshot host=elk repository=my_backup newer_than=20 older_than=10 timestring=%Y.%m.%d
 ```
 
 This command will create a snapshot of indices newer than 20 days and older than 10 days. Notice that filtering parameters of snapshot command *apply to indices* not to snapshots. That's why it's important not to mess it up. For example, the timestring parameter when created by curator with default options has a different time scheme.
 
 * Delete specific snapshots:
 ```
-st2 run elastic.snapshots.delete host=elk repository=my_backup snapshot=curator-20150506155615,curator-20150506155619
+st2 run elasticsearch.snapshots.delete host=elk repository=my_backup snapshot=curator-20150506155615,curator-20150506155619
 ```
 * Delete all snapshots:
 ```
-st2 run elastic.snapshots.delete host=elk repository=my_backup all_indices=true
+st2 run elasticsearch.snapshots.delete host=elk repository=my_backup all_indices=true
 ```
 
 ### Querying Elasticsearch
@@ -158,12 +154,12 @@ Let's look at a few examples:
 
 * Run query using DSL syntax:
 ```
-st2 run elastic.search.body host=elk body='{"query":{"match_all":{}}}' pretty=true
+st2 run elasticsearch.search.body host=elk body='{"query":{"match_all":{}}}' pretty=true
 ```
 
 * Run query using URI syntax where **q** is a Lucene string:
 ```
-st2 run elastic.search.q host=elk q='message:my_log_event' prefix=logstash
+st2 run elasticsearch.search.q host=elk q='message:my_log_event' prefix=logstash
 ```
 
 
