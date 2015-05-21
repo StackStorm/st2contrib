@@ -69,7 +69,6 @@ class CuratorAction(ESBaseAction):
             self.show_dry_run()
         sys.exit(0)
 
-
     @staticmethod
     def exit_msg(success):
         """

@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class ItemsFilter(object):
     """
     Class implements curator indices/snapshot filtering by name.
@@ -35,7 +36,8 @@ class ItemsFilter(object):
         for f in self.built_list:
             if f.get('method', None) in ('newer_than', 'older_than'):
                 result[f['method']] = f
-                if len(result) == 2: break
+                if len(result) == 2:
+                    break
 
         return (result.get('newer_than', None), result.get('older_than', None))
 
@@ -76,7 +78,7 @@ class ItemsFilter(object):
             if self.closed_timerange and is_timebased:
                 continue
             # When all items are seleted ignore filters other than exclude
-            if self.all_items and not 'exclude' in f:
+            if self.all_items and 'exclude' not in f:
                 continue
 
             logger.debug('Applying filter: %s', f)
@@ -96,7 +98,7 @@ class ItemsFilter(object):
                 sys.exit(1)
             if not self.all_items:
                 # We don't apply time range filtering in case of all_* options.
-                logger.debug('Applying time range filters, result will be intersection\n'\
+                logger.debug('Applying time range filters, result will be intersection\n'
                              'newer_than: %s\nolder_than: %s', newer_than, older_than)
                 newer_range = set(apply_filter(working_list, **newer_than))
                 older_range = set(apply_filter(working_list, **older_than))
@@ -122,31 +124,36 @@ class ItemsFilter(object):
                                                     xstr(opts.older_than))):
             f = api.filter.build_filter(kindOf='timestring',
                                         value=opts.timestring)
-            if f: filter_list.append(f)
+            if f:
+                filter_list.append(f)
 
         # Timebase filtering
         timebased = zip(('newer_than', 'older_than'), (opts.newer_than,
                                                        opts.older_than))
         for opt, value in timebased:
-            if value is None: continue
+            if value is None:
+                continue
             f = api.filter.build_filter(kindOf=opt, value=value,
                                         timestring=opts.timestring,
                                         time_unit=opts.time_unit)
-            if f: filter_list.append(f)
+            if f:
+                filter_list.append(f)
 
         # Add filtering based on suffix|prefix|regex
         patternbased = zip(('suffix', 'prefix', 'regex'),
                            (opts.suffix, opts.prefix, opts.regex))
 
         for opt, value in patternbased:
-            if value is None: continue
+            if value is None:
+                continue
             f = api.filter.build_filter(kindOf=opt, value=value)
-            if f: filter_list.append(f)
+            if f:
+                filter_list.append(f)
 
         # Add exclude filter
         patterns = filter(None, (opts.exclude or '').split(','))
         for pattern in patterns:
-            f = {'pattern':  pattern, 'exclude': True}
+            f = {'pattern': pattern, 'exclude': True}
             filter_list.append(f)
 
         return filter_list

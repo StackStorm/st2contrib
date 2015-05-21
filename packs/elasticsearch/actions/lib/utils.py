@@ -78,7 +78,7 @@ def get_client(host, port=9200, url_prefix=None, http_auth=None, use_ssl=False,
         # Verify "master_only" status, if applicable
         check_master(client, master_only=master_only)
         return client
-    except Exception as e:
+    except Exception as e:  # noqa
         print "ERROR: Connection failure: {0}".format(e.message)
         sys.exit(1)
 

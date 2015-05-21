@@ -39,12 +39,14 @@ class StaticMetagen(object):
                 "default": False
             },
             "timeout": {
-                "description": "Don't wait for action completion more then the specified timeout.",  # noqa
+                "description": "Don't wait for action completion more then the "
+                               "specified timeout.",
                 "default": 600,
                 "type": "integer"
             },
             "operation_timeout": {
-                "description": "Elasticsearch operation timeout in seconds. (It's equal to action timeout).",  # noqa
+                "description": "Elasticsearch operation timeout in seconds. "
+                               "(It's equal to action timeout).",
                 "default": "{{timeout}}",
                 "immutable": True,
                 "type": "string"

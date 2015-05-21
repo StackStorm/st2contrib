@@ -104,7 +104,7 @@ class ItemsSelector(object):
 
     def fetch(self, act_on, on_nofilters_showall=False):
         if act_on not in ['indices', 'snapshots']:
-            raise ValueError('invalid argument: {0}'.format(act_on))  # noqa
+            raise ValueError('invalid argument: %s', act_on)
 
         if act_on == 'indices':
             return self.indices(on_nofilters_showall=on_nofilters_showall)  # noqa

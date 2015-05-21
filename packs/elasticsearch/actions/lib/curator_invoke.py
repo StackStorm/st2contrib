@@ -10,6 +10,7 @@ import sys
 
 logger = logging.getLogger(__name__)
 
+
 class CuratorInvoke(object):
     # Supported curator commands for indices and snapshots.
     SUPPORTS = {
