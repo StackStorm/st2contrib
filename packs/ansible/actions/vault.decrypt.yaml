@@ -1,6 +1,6 @@
 ---
 name: "vault.decrypt"
-description: "Decrypt ansible files"
+description: "Decrypt ansible data files"
 runner_type: "local-shell-script"
 entry_point: "ansible_vault.py"
 enabled: true

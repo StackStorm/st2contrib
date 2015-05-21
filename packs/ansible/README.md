@@ -8,6 +8,9 @@ After [pack installation](http://docs.stackstorm.com/packs.html#getting-a-pack) 
 * `playbook` - Action to run [Ansible Playbook](http://docs.ansible.com/playbooks.html) (`ansible-playbook` executable).
 * `vault.encrypt` - Encrypt ansible data files (playbooks, vars, roles, etc) with password (`vault` executable).
 * `vault.decrypt` - Decrypt ansible data files (playbooks, vars, roles, etc) with password (`vault` executable).
+* `galaxy.install` - Install role from [Ansible Galaxy](http://docs.ansible.com/galaxy.html) - hub of [community developed roles](https://galaxy.ansible.com/) (`ansible-galaxy`).
+* `galaxy.list` - List installed from Ansible Galaxy roles (`ansible-galaxy` executable).
+* `galaxy.remove` - Remove the role installed from Ansible Galaxy (`ansible-galaxy` executable).
 
 ## Examples
 ##### `ansible.command` examples
@@ -46,4 +49,13 @@ st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt fil
 
 # decrypt all files in /etc/ansible/playbooks directory
 st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt files='playbooks/*'
+```
+
+### `ansible.galaxy` examples
+```sh
+# download many roles
+st2 run ansible.galaxy.install roles='bennojoy.mysql kosssi.composer'
+
+# list rolex
+st2 run ansible.galaxy.list roles-path=/etc/ansible/roles
 ```
