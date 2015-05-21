@@ -1,4 +1,8 @@
 ---
-name: "st2-executions-list"
+name: "st2_executions_list"
 action_ref: "st2.executions.list"
 description: "List available StackStorm executions."
+formats:
+    - "list executions"
+    - "list executions with status {{ status }}"
+    - "list executions for action {{ action }}"

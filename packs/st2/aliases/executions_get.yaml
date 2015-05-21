@@ -1,4 +1,9 @@
 ---
-name: "st2-executions-get"
+name: "st2_executions_get"
 action_ref: "st2.executions.get"
 description: "Retrieve details for a single execution."
+formats:
+    - "get execution {{ id }}"
+    - "show execution {{ id }}"
+    - "executions get {{ id }}"
+    - "executions show {{ id }}"

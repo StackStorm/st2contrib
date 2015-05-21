@@ -1,4 +1,7 @@
 ---
-name: "st2-rules-list"
+name: "st2_rules_list"
 action_ref: "st2.rules.list"
 description: "List available StackStorm rules."
+formats:
+    - "list rules"
+    - "list rules from {{ pack }}"
