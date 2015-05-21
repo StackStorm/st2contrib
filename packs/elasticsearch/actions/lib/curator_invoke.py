@@ -17,7 +17,7 @@ class CuratorInvoke(object):
         'snapshots': ['delete'],
         'indices': [
             'alias', 'allocation', 'bloom', 'close', 'delete',
-            'open', 'optimize','replicas', 'snapshot'
+            'open', 'optimize', 'replicas', 'snapshot'
         ]
     }
 
