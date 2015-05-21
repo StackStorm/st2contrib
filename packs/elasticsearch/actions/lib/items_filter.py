@@ -151,8 +151,7 @@ class ItemsFilter(object):
                 filter_list.append(f)
 
         # Add exclude filter
-        patterns = filter(None, (opts.exclude or '').split(','))
-        for pattern in patterns:
+        for pattern in opts.exclude or []:
             f = {'pattern': pattern, 'exclude': True}
             filter_list.append(f)
 
