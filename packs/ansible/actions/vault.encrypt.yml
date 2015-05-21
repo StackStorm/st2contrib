@@ -38,7 +38,6 @@ parameters:
   cwd:
     description: "Working directory where the command will be executed in"
     type: string
-    default: "/etc/ansible"
   debug:
     description: "Enable debug mode"
     type: boolean

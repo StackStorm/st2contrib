@@ -41,9 +41,9 @@ st2 run ansible.playbook playbook=/etc/ansible/playbooks/nginx.yml limit='all[-1
 # encrypt /tmp/nginx.yml playbook with password containing in vault.txt
 st2 run ansible.vault.encrypt vault-password-file=vault.txt files=/tmp/nginx.yml
 
-# decrypt /etc/ansible/nginx.yml and /etc/ansible/db.yml files. Notice that default cwd is /etc/ansible
-st2 run ansible.vault.decrypt vault-password-file=vault.txt files='nginx.yml db.yml'
+# decrypt /etc/ansible/nginx.yml and /etc/ansible/db.yml files
+st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt files='nginx.yml db.yml'
 
 # decrypt all files in /etc/ansible/playbooks directory
-st2 run ansible.vault.decrypt vault-password-file=vault.txt files='playbooks/*'
+st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt files='playbooks/*'
 ```
