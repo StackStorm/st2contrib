@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# flake8: noqa
 # encoding: utf-8
 import os
 import datetime
