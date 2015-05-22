@@ -3,5 +3,5 @@ name: "st2_rules_list"
 action_ref: "st2.rules.list"
 description: "List available StackStorm rules."
 formats:
-    - "list rules"
-    - "list rules from {{ pack }}"
+    - "st2 list rules"
+    - "st2 list rules from {{ pack }}"
