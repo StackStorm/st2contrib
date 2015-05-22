@@ -14,7 +14,6 @@ class AnsiblePlaybookRunner(AnsibleBaseRunner):
     See: http://docs.ansible.com/playbooks.html
     """
     BINARY_NAME = 'ansible-playbook'
-    EXCLUDE_ESCAPE = ('--limit', '--extra-vars')
     REPLACEMENT_RULES = {
         '--verbose=v': '-v',
         '--verbose=vv': '-vv',

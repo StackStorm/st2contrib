@@ -13,7 +13,6 @@ class AnsibleBaseRunner(object):
     Base class for all Ansible Runners
     """
     BINARY_NAME = None
-    EXCLUDE_ESCAPE = None
     REPLACEMENT_RULES = None
 
     def __init__(self, args):
@@ -25,16 +24,16 @@ class AnsibleBaseRunner(object):
 
     def execute(self):
         """
-        Execute the command.
-        Exit with 0 error code on success or 1 on error.
+        Execute the command and stream stdout and stderr output
+        from child process as it appears without delay.
+        Terminate with child's exit code.
         """
-        # TODO: Stream output as it appears
-        if subprocess.call(self.cmd) is not 0:
+        exit_code = subprocess.call(self.cmd, env=os.environ.copy())
+        if exit_code is not 0:
             sys.stderr.write('Executed command "%s"\n' % ' '.join(self.cmd))
-            sys.exit(1)
+        sys.exit(exit_code)
 
     @property
-    @shell.escape_args('EXCLUDE_ESCAPE')
     @shell.replace_args('REPLACEMENT_RULES')
     def cmd(self):
         """
@@ -56,7 +55,6 @@ class AnsibleBaseRunner(object):
         if not self.BINARY_NAME:
             sys.stderr.write('Ansible binary file name was not specified')
             sys.exit(1)
-        # return os.path.join(get_sandbox_virtualenv_path(pack='ansible'), 'bin', self._BINARY_NAME)
         path = os.path.join('/opt/stackstorm/virtualenvs/ansible/bin', self.BINARY_NAME)
         if not os.path.isfile(path):
             sys.stderr.write('Ansible binary doesnt exist. Is it installed?')

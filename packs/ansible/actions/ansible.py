@@ -15,11 +15,6 @@ class AnsibleRunner(AnsibleBaseRunner):
     Modules: http://docs.ansible.com/list_of_all_modules.html
     """
     BINARY_NAME = 'ansible'
-    EXCLUDE_ESCAPE = ('--args', '--limit', '--extra-vars')
-    """
-    Don't shell-escape `args` and `extra-vars` parameters, or such commands would fail:
-        $ ansible all --module-name=shell --args='echo 123' --extra-vars='a=b c=d'
-    """
     REPLACEMENT_RULES = {
         '--verbose=v': '-v',
         '--verbose=vv': '-vv',

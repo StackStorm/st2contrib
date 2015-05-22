@@ -13,7 +13,7 @@ After [pack installation](http://docs.stackstorm.com/packs.html#getting-a-pack) 
 * `galaxy.remove` - Remove the role installed from Ansible Galaxy (`ansible-galaxy` executable).
 
 ## Examples
-##### `ansible.command` examples
+#### `ansible.command` examples
 ```sh
 # run ansible command with optional verbose parameter
 st2 run ansible.command args='hostname -i' verbose=vv
@@ -30,7 +30,7 @@ ansible all -c local -i '127.0.0.1,' -a 'echo $TERM'
 ansible all --connection=local --inventory-file='127.0.0.1,' --args='echo $TERM'
 ```
 
-##### `ansible.playbook` examples
+#### `ansible.playbook` examples
 ```sh
 # run some simple playbook
 st2 run ansible.playbook playbook=/etc/ansible/playbooks/nginx.yml
@@ -51,7 +51,7 @@ st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt fil
 st2 run ansible.vault.decrypt cwd=/etc/ansible vault-password-file=vault.txt files='playbooks/*'
 ```
 
-### `ansible.galaxy` examples
+#### `ansible.galaxy` examples
 ```sh
 # download many roles
 st2 run ansible.galaxy.install roles='bennojoy.mysql kosssi.composer'
