@@ -14,8 +14,9 @@ def format_result(result):
 
 
 class St2SensorsListAction(St2BaseAction):
-    def run(self, pack=None):
+    def run(self, pack=None, limit=10):
         kwargs = {}
+        kwargs['limit'] = limit
 
         if pack:
             kwargs['pack'] = pack

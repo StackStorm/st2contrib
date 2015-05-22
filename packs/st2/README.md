@@ -31,12 +31,12 @@ By default, this pack also includes ChatOps commands (aliases) which allow you
 to query your StackStorm installation for things such as available actions,
 sensors and more.
 
-* ``!st2-actions-list [pack=<pack name>]`` - List available StackStorm actions.
-* ``!st2-rules-list`` - List available StackStorm rules.
-* ``!st2-sensors-list [pack=<pack name>]`` - List available StackStorm sensors.
-* ``!st2-executions-list [action=<action name>] [status=<status>]`` - View a
+* ``!st2 list actions [pack=<pack name>]`` - List available StackStorm actions.
+* ``!st2 list rules`` - List available StackStorm rules.
+* ``!st2 list sensors [pack=<pack name>]`` - List available StackStorm sensors.
+* ``!st2 list executions [action=<action name>] [status=<status>]`` - View a
   history of action executions.
-* ``!st2-executions-get id=<execution id>`` - View details for a particular
+* ``!st2 executions get <execution id>`` - View details for a particular
   action execution.
-* ``!st2-executions-re-run id=<execution id>`` - Re-run a particular action
+* ``!st2 executions re-run <execution id>`` - Re-run a particular action
   execution.
