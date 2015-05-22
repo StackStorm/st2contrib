@@ -9,3 +9,8 @@ parameters:
     type: "string"
     description: "Optional pack to filter on"
     required: false
+  limit:
+    type: "integer"
+    description: "Maximum number of rules to return"
+    default: 10
+    required: false
