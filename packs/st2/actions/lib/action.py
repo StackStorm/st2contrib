@@ -1,6 +1,6 @@
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
-from st2client.models.datastore import KeyValuePair
+from st2client.models.datastore import KeyValuePair  # pylint: disable=no-name-in-module
 
 from lib.utils import filter_none_values
 
