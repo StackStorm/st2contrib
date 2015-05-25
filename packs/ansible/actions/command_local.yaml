@@ -1,0 +1,108 @@
+---
+name: "command_local"
+description: "Run ad-hoc ansible command (module) on local machine"
+runner_type: "local-shell-script"
+entry_point: "ansible.py"
+enabled: true
+parameters:
+  kwarg_op:
+    description: "Lock operator type to '--'"
+    type: string
+    default: "--"
+    immutable: true
+  sudo:
+    description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
+    type: boolean
+    default: true
+    immutable: true
+  cwd:
+    description: "Working directory where the command will be executed in"
+    type: string
+  timeout:
+    description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds"
+    type: integer
+    default: 600
+  hosts:
+    description: "Hosts. Locked to run the command locally"
+    type: string
+    position: 0
+    default: all
+    immutable: true
+  args:
+    description: "Module arguments [-a]"
+    type: string
+  background:
+    description: "Fork in Background asynchronously for X seconds [-B]"
+    type: integer
+  become:
+    description: "Run operations with become (nopasswd implied) [-b]"
+    type: boolean
+  become-method:
+    description: "Privilege escalation method to use. Valid choices: sudo, su, pbrun, pfexec, runas (default=sudo)"
+    type: string
+    enum:
+      - sudo
+      - su
+      - pbrun
+      - pfexec
+      - runas
+  become-user:
+    description: "Run operations as this user. Works only with 'become'"
+    type: string
+  check:
+    description: "Don't make any changes; instead, try to predict some of the changes that may occur [-C]"
+    type: boolean
+  connection:
+    description: "Connection type to use (default=smart) [-c]. Locked to run the command locally"
+    type: string
+    default: local
+    immutable: true
+  extra-vars:
+    description: "Set additional variables as key=value or YAML/JSON [-e]"
+    type: string
+  forks:
+    description: "Specify number of parallel processes to use (default=5) [-f]"
+    type: integer
+  help:
+    description: "Show help message and exit [-h]"
+    type: boolean
+  inventory-file:
+    description: "Inventory host file (default=/etc/ansible/hosts) [-i]. Locked to run the command locally"
+    type: string
+    default: "127.0.0.1,"
+    immutable: true
+  limit:
+    description: "Further limit selected hosts to an additional pattern [-l]"
+    type: string
+  list-hosts:
+    description: "Outputs a list of matching hosts; does not execute anything else"
+    type: boolean
+  module-name:
+    description: "Module name to execute (default=command) [-m]"
+    type: string
+  module-path:
+    description: "Specify path(s) to module library (default=None) [-M]"
+    type: string
+  one-line:
+    description: "Condense output [-o]"
+    type: boolean
+  poll:
+    description: "Set the poll interval if using -B (default=15) [-P]"
+    type: integer
+  tree:
+    description: "Log output to this directory [-t]"
+    type: string
+  vault-password-file:
+    description: "Vault password file"
+    type: string
+  verbose:
+    description: "Verbose mode (-vvvv to enable connection debugging)"
+    type: string
+    enum:
+      - v
+      - vv
+      - vvv
+      - vvvv
+  version:
+    description: "Show ansible version number and exit"
+    type: boolean

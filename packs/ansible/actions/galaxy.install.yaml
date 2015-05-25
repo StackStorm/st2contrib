@@ -1,0 +1,53 @@
+---
+name: "galaxy.install"
+description: "Download & Install role from ansible galaxy"
+runner_type: "local-shell-script"
+entry_point: "ansible_galaxy.py"
+enabled: true
+parameters:
+  kwarg_op:
+    description: "Lock operator type to '--'"
+    type: string
+    default: "--"
+    immutable: true
+  sudo:
+    description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
+    type: boolean
+    default: true
+    immutable: true
+  timeout:
+    description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds"
+    type: integer
+    default: 300
+  cwd:
+    description: "Working directory where the command will be executed in"
+    type: string
+  action:
+    description: "Action to use"
+    type: string
+    position: 0
+    default: install
+    immutable: true
+  roles:
+    description: "Role(s) to install (separated by space)"
+    type: string
+    position: 1
+    default: ""
+  ignore-errors:
+    description: "Ignore errors and continue with the next specified role [-i]"
+    type: boolean
+  no-deps:
+    description: "Don't download roles listed as dependencies [-n]"
+    type: boolean
+  role-file:
+    description: "A file with list of roles to be installed. Note that role file can contain links to .git or .tar file [-r]"
+    type: string
+  roles-path:
+    description: "The path to the directory containing your roles. The default is the roles_path configured in your ansible.cfg file (/etc/ansible/roles if not configured) [-p]"
+    type: string
+  server:
+    description: "The API server destination [-s]"
+    type: string
+  force:
+    description: "Force overwriting an existing role [-f]"
+    type: boolean
