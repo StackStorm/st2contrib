@@ -32,6 +32,7 @@ parameters:
     description: "Role(s) to install (separated by space)"
     type: string
     position: 1
+    default: ""
   ignore-errors:
     description: "Ignore errors and continue with the next specified role [-i]"
     type: boolean

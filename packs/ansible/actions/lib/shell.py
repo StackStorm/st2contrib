@@ -1,3 +1,5 @@
+import functools
+
 __all__ = [
     'replace_args',
 ]
@@ -13,6 +15,7 @@ def replace_args(attribute=None):
     :rtype: ``callable``
     """
     def _replace_args(f):
+        @functools.wraps(f)
         def _wrapper(self, *args):
             rules = getattr(self, attribute)
             if not rules:

@@ -27,7 +27,7 @@ parameters:
     default: decrypt
     immutable: true
   files:
-    description: "Data file(s) to encrypt (separated by space)"
+    description: "Data file(s) to encrypt (separated by space). Note that original file(s) will be modified"
     type: string
     position: 1
     required: true

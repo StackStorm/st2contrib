@@ -16,7 +16,7 @@ After [pack installation](http://docs.stackstorm.com/packs.html#getting-a-pack) 
 #### `ansible.command` examples
 ```sh
 # run ansible command with optional verbose parameter
-st2 run ansible.command args='hostname -i' verbose=vv
+st2 run ansible.command hosts=all args='hostname -i' verbose=vv
 ```
 
 Action `ansible.command_local` is helper for the `ansible.command` with predefined parameters to run the command locally. So this is the same:
@@ -24,7 +24,7 @@ Action `ansible.command_local` is helper for the `ansible.command` with predefin
 st2 run ansible.command_local args='echo $TERM'
 st2 run ansible.command connection=local inventory-file='127.0.0.1,' hosts=all args='echo $TERM'
 ```
-which is equivalent of ansible commands: 
+which is equivalent of ansible commands:
 ```sh
 ansible all -c local -i '127.0.0.1,' -a 'echo $TERM'
 ansible all --connection=local --inventory-file='127.0.0.1,' --args='echo $TERM'
