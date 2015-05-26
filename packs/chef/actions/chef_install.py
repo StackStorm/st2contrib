@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 
 import sys
-
+import lib
 from lib import shellhelpers as shell
 
 
@@ -20,9 +20,10 @@ class ChefInstaller(object):
         ('-d', '--download_path', {})
     ]
 
-    def install(self, install_method, options):
+    @staticmethod
+    def install(install_method, options):
         exit_code = 0
-        installer = getattr(ChefInstaller, install_method.capitalize())(options)
+        installer = getattr(sys.modules['lib'], install_method.capitalize())(options)
         if not installer.chef_installed():
             exit_code = installer.install()
         else:
@@ -30,13 +31,13 @@ class ChefInstaller(object):
         sys.exit(exit_code)
 
     def execute(self):
-        self.parser = shell.CmdlineParser(self.cmdline_options)
-        options = self.parser.parse()
+        parser = shell.CmdlineParser(self.cmdline_options)
+        options = parser.parse()
         install_method = options['method']
 
-        if not (install_method in self.SUPPORTED_METHODS):
-            error = ("Chef pack doesn't support the given installation method: %s\n" %
-                     (install_method))
+        if install_method not in self.SUPPORTED_METHODS:
+            error = "Chef pack doesn't support the given "\
+                    "installation method: {}\n".format(install_method)
             sys.stderr.write(error)
             sys.exit(1)
 
