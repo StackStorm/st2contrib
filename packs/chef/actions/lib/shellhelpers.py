@@ -1,3 +1,4 @@
+from collections import defaultdict
 import argparse
 import sys
 import os
@@ -36,33 +37,69 @@ class CmdlineParser(object):
                 ('-W', '--why_run', {'action': 'store_true'}),
             ]
         '''
+        not_none = lambda x: x is not None
         self.parser = argparse.ArgumentParser()
-        self._keyname = {}
-        for k, lg, kwargs in parser_options:
-            self.parser.add_argument(k, lg, **kwargs)
-            self._keyname[lg.lstrip('-')] = k
+        self._name_to_key = {}
+        self._translates = defaultdict(lambda: None)
+
+        for k, lk, kwargs in parser_options:
+            # Translates is a local options it's not passed to arg_parser,
+            # it can be used to translate long argument names.
+            translated = kwargs.pop('translates', None)
+            long_name = lk.lstrip('-')
+
+            # Short keys might be missing, so filter None's
+            keys = filter(not_none, (k, lk))
+            self.parser.add_argument(*(keys), **kwargs)
+
+            if translated is not None:
+                self.translates[long_name] = translated
+            self.name_to_key[long_name] = k
+
+    @property
+    def name_to_key(self):
+        return self._name_to_key
+
+    @property
+    def translates(self):
+        return self._translates
 
     def parse(self, argv=None):
         argv = argv or sys.argv[1:]
         return vars(self.parser.parse_args(args=argv))
 
     def short_arglist(self, kwargs=None):
-        kwargs = kwargs or {}
-        return self._arg_list(self.parse(), short=True)
+        kwargs = kwargs or self.parse()
+        return self._arg_list(kwargs, short=True)
 
     def long_arglist(self, kwargs=None):
-        kwargs = kwargs or {}
-        return self._arg_list(self.parse(), short=False)
+        kwargs = kwargs or self.parse()
+        return self._arg_list(kwargs, short=False)
 
     def _arg_list(self, kwargs, short=None):
-        '''
-        Returns list of command line arguments with short or long key names.
+        '''Returns list of command line arguments with short or long key names.
+        Function recieves dict with long key names always, because action runner
+        support only long names.
         '''
         cmd = []
-        for n, v in (self.parse()).items():
-            if not v:
-                continue
-            k = self._keyname[n] if short else n
-            # We handle switch in case value is True
-            cmd += [k] if v is True else [k, v]
+        having_value = ((k, v) for k, v in kwargs.items() if v is not None)
+
+        for long_name, value in having_value:
+            translated = self.translates[long_name]
+            do_short = short
+
+            # Short key might not exist, we should use long name.
+            if self.name_to_key[long_name] is None:
+                do_short = False
+
+            if translated:
+                key = self.translates[long_name]
+            else:
+                if do_short:
+                    key = self.name_to_key[long_name]
+                else:
+                    key = "--{}".format(long_name)
+
+            # Handle switch in case value is True
+            cmd += [key] if value is True else [key, value]
         return cmd
