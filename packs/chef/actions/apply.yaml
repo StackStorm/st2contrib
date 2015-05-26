@@ -1,0 +1,27 @@
+---
+name: 'apply'
+runner_type: 'run-remote-script'
+description: 'Performs one-off resource converge on remote hosts.'
+enabled: true
+entry_point: 'chef_apply.py'
+parameters:
+    attributes:
+        description: 'Load attributes from a JSON file or URL'
+        type: 'string'
+    log_level:
+        description: 'Set the log level (debug, info, warn, error, fatal)'
+        type: 'string'
+    why_run:
+        description: "Enable whyrun mode"
+        type: 'boolean'
+    execute:
+        description: "Execute resources supplied in a string"
+        type: string
+        required: true
+    minimal_ohai:
+        description: "Only run the bare minimum ohai plugins chef needs to function"
+        type: boolean
+    timeout:
+        default: 300
+        description: Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds.
+        type: integer
