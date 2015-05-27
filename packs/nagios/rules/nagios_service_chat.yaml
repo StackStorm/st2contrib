@@ -9,7 +9,8 @@ criteria:
     pattern: 2
     type: gt
 action:
-  ref: stormbot_say
+  ref: hubot.post_message
   parameters:
-    cmd: NAGIOS {{trigger.service}} ID:{{trigger.event_id}} STATE:{{trigger.state}}/{{trigger.state_type}}
+    message: NAGIOS {{trigger.service}} ID:{{trigger.event_id}} STATE:{{trigger.state}}/{{trigger.state_type}}
       {{trigger.msg}}
+    channel: '#general'
