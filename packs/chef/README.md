@@ -31,6 +31,7 @@ Performs remote invocation of *chef-apply*.
 * `why_run` - Set to `true` to enable whyrun mode. *Default*: `false`.
 * `recipe_file` - Specifies the path to a recipe file to be executed (relative to the remote host). *Default*: `none`.
 * `execute` - Execute resources supplied in a string. *Default*: `none`.
+* `minimal_ohai` - Set to `true` to run with the bare minimum of ohai plugins chef needs to function". *Default*: `none`.
 
 ### chef.solo action
 
