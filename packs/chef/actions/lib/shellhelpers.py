@@ -74,7 +74,7 @@ class CmdlineParser(object):
         support only long names.
         '''
         cmd = []
-        having_value = ((k, v) for k, v in kwargs.items() if v is not None)
+        having_value = ((k, v) for k, v in kwargs.items() if v is not None)  # noqa
 
         for long_name, value in having_value:
             do_short = short

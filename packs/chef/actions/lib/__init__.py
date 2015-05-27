@@ -1,1 +1,1 @@
-from omnibus import Omnibus
+from omnibus import Omnibus  # noqa
