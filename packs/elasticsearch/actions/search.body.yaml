@@ -1,0 +1,61 @@
+---
+description: Search query (full body)
+enabled: true
+entry_point: search.py
+name: search.body
+parameters:
+  action:
+    default: search.body
+    immutable: true
+    type: string
+  body:
+    description: The search definition using the Query DSL.
+    type: string
+    required: true
+  index:
+    description:  A comma-separated list of index names to search.
+    type: string
+    default: '_all'
+  from:
+    description: The starting from index of the hits to return. Defaults to 0.
+    type: integer
+    default: 0
+  size:
+    description: The number of hits to return. Defaults to 10.
+    type: integer
+    default: 10
+  pretty:
+    description: Pretty print JSON response.
+    type: boolean
+    default: False
+
+  host:
+    description: Elasticsearch host.
+    required: true
+    type: string
+  http_auth:
+    description: 'Use Basic Authentication ex: user:pass'
+    type: string
+  log_level:
+    default: warn
+    description: Log level [critical|error|warning|info|debug].
+    type: string
+  master_only:
+    default: false
+    description: Only operate on elected master node.
+    type: boolean
+  port:
+    description: Elasticsearch port.
+    type: string
+  timeout:
+    default: 60
+    description: Elasticsearch operation timeout in seconds.
+    type: integer
+  url_prefix:
+    description: Elasticsearch http url prefix.
+    type: string
+  use_ssl:
+    default: false
+    description: Connect to Elasticsearch through SSL.
+    type: boolean
+runner_type: run-python

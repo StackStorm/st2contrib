@@ -1,0 +1,98 @@
+---
+description: Delete snapshots
+enabled: true
+entry_point: curator_runner.py
+name: snapshots.delete
+parameters:
+  action:
+    default: snapshots.delete
+    immutable: true
+    type: string
+  all_snapshots:
+    description: Do not filter snapshots.  Act on all snapshots.
+    type: boolean
+  disk_space:
+    description: Delete indices beyond DISK_SPACE gigabytes.
+    type: string
+  dry_run:
+    default: false
+    description: Do not perform any changes.
+    type: boolean
+  exclude:
+    description: Snapshot list to operate on.
+    items:
+      type: string
+    type: array
+  host:
+    description: Elasticsearch host.
+    required: true
+    type: string
+  http_auth:
+    description: 'Use Basic Authentication ex: user:pass'
+    type: string
+  log_level:
+    default: warn
+    description: Log level [critical|error|warning|info|debug].
+    type: string
+  master_only:
+    default: false
+    description: Only operate on elected master node.
+    type: boolean
+  newer_than:
+    description: Include only snapshots newer than n time_units.
+    type: integer
+  older_than:
+    description: Include only snapshots older than n time_units.
+    type: integer
+  operation_timeout:
+    default: '{{timeout}}'
+    description: Elasticsearch operation timeout in seconds. (It's equal to action
+      timeout).
+    immutable: true
+    type: string
+  port:
+    description: Elasticsearch port.
+    type: string
+  prefix:
+    description: Include only snapshots beginning with prefix.
+    type: string
+  regex:
+    description: Provide your own regex, e.g '^prefix-.*-suffix$'.
+    type: string
+  repository:
+    description: Repository name.
+    required: true
+    type: string
+  reverse:
+    default: true
+    description: Only valid with disk_space. Affects sort order of the indices.  True
+      means reverse-alphabetical (if dates are involved, older is deleted first).
+    type: boolean
+  snapshot:
+    description: Include the provided snapshot in the list. A comma separated list.
+    items:
+      type: string
+    type: array
+  suffix:
+    description: Include only snapshots ending with suffix.
+    type: string
+  time_unit:
+    default: days
+    description: Unit of time to reckon by [hours|days|weeks|months].
+    type: string
+  timeout:
+    default: 600
+    description: Don't wait for action completion more then the specified timeout.
+    type: integer
+  timestring:
+    description: Python strftime string to match your snapshot's definition, e.g.
+      20150715020304 would be %Y%m%d%H%M%S.
+    type: string
+  url_prefix:
+    description: Elasticsearch http url prefix.
+    type: string
+  use_ssl:
+    default: false
+    description: Connect to Elasticsearch through SSL.
+    type: boolean
+runner_type: run-python

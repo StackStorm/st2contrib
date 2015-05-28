@@ -1,0 +1,502 @@
+---
+- indices.show:
+    description: "Show indices"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+
+- snapshots.show:
+    description: "Show snapshots"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only snapshots newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only snapshots older than n time_units."
+        type: "integer"
+      prefix:
+        description: "Include only snapshots beginning with prefix."
+      suffix:
+        description: "Include only snapshots ending with suffix."
+      timestring:
+        description: "Python strftime string to match your snapshot's definition, e.g. 20150715020304 would be %Y%m%d%H%M%S."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Snapshot list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      snapshot:
+        description: "Include the provided snapshot in the list. A comma separated list."
+        type: "array"
+        items:
+          type: "string"
+      repository:
+        description: "Repository name."
+        required: true
+      all_snapshots:
+        description: "Do not filter snapshots.  Act on all snapshots."
+        type: "boolean"
+
+- indices.delete:
+    description: "Delete indices"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      disk_space:
+        description: "Delete indices beyond DISK_SPACE gigabytes."
+        type: "string"
+      reverse:
+        description: "Only valid with disk_space. Affects sort order of the indices.  True means reverse-alphabetical (if dates are involved, older is deleted first)."
+        type: "boolean"
+        default: true
+
+- snapshots.delete:
+    description: "Delete snapshots"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only snapshots newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only snapshots older than n time_units."
+        type: "integer"
+      prefix:
+        description: "Include only snapshots beginning with prefix."
+      suffix:
+        description: "Include only snapshots ending with suffix."
+      timestring:
+        description: "Python strftime string to match your snapshot's definition, e.g. 20150715020304 would be %Y%m%d%H%M%S."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Snapshot list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      snapshot:
+        description: "Include the provided snapshot in the list. A comma separated list."
+        type: "array"
+        items:
+          type: "string"
+      repository:
+        description: "Repository name."
+        required: true
+      all_snapshots:
+        description: "Do not filter snapshots.  Act on all snapshots."
+        type: "boolean"
+      disk_space:
+        description: "Delete indices beyond DISK_SPACE gigabytes."
+        type: "string"
+      reverse:
+        description: "Only valid with disk_space. Affects sort order of the indices.  True means reverse-alphabetical (if dates are involved, older is deleted first)."
+        type: "boolean"
+        default: true
+
+- indices.snapshot:
+    description: "Create snapshot of indices"
+    parameters:
+      # Snapsot creation parameters
+      repository:
+        description: "Repository name."
+        required: true
+      name:
+        description: "Override default name."
+      snapshot_prefix:
+        description: "Override default prefix."
+        default: "curator-"
+      wait_for_completion:
+        description: "Wait for snapshot to complete before returning."
+        type: "boolean"
+        default: true
+      ignore_unavailable:
+        description: "Ignore unavailable shards/indices."
+        type: "boolean"
+      include_global_state:
+        description: "Store cluster global state with"
+        type: "boolean"
+        default: true
+      partial:
+        description: "Do not fail if primary shard is unavailable."
+        type: "boolean"
+      timeout:
+        description: "Don't wait for action completion more then the specified timeout."
+        default: 21600
+        type: "integer"
+      # <-- These are index selection parameters!
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
+
+- indices.alias:
+    description: "Index Aliasing"
+    parameters:
+      name:
+        description: "Alias name"
+        required: true
+      remove:
+        description: "Remove from alias rather than add."
+        default: false
+        type: "boolean"
+
+      # <-- Indices selection
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
+
+- indices.allocation:
+    description: "Index Allocation"
+    parameters:
+      rule:
+        description: "Routing allocation rule to apply, e.g. tag=ssd"
+        required: true
+
+      # <-- Indices selection
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
+
+- indices.bloom:
+    description: "Disable bloom filter cache"
+    parameters:
+      delay:
+        description: "Pause *n* seconds after disabling bloom filter cache of an index."
+        type: "integer"
+        default: 0
+
+      # <-- Indices selection
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
+
+- indices.close:
+    description: "Close indices"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+
+- indices.open:
+    description: "Open indices"
+    parameters:
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+
+- indices.optimize:
+    description: "Optimize indices"
+    parameters:
+      delay:
+        description: "Pause *n* seconds after optimizing an index."
+        type: "integer"
+        default: 0
+      max_num_segments:
+        description: "Merge to this number of segments per shard."
+        type: "integer"
+        default: 2
+      timeout:
+        description: "Don't wait for action completion more then the specified timeout."
+        default: 21600
+        type: "integer"
+
+      # <-- Indices selection
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
+
+- indices.replicas:
+    description: "Replica Count Per-shard"
+    parameters:
+      count:
+        description: "Number of replicas the indices should have."
+        type: "integer"
+        required: true
+
+      # <-- Indices selection
+      time_unit:
+        description: "Unit of time to reckon by [hours|days|weeks|months]."
+        default: "days"
+      newer_than:
+        description: "Include only indices newer than n time_units."
+        type: "integer"
+      older_than:
+        description: "Include only indices older than n  time_units."
+        type: "integer"
+      prefix:
+        description: "Include only indices beginning with prefix."
+      suffix:
+        description: "Include only indices ending with suffix."
+      timestring:
+        description: "Python strftime string to match your index definition, e.g. 2015.07.15 would be %Y.%m.%d."
+      regex:
+        description: "Provide your own regex, e.g '^prefix-.*-suffix$'."
+      exclude:
+        description: "Index list to exclude from the operation."
+        type: "array"
+        items:
+          type: "string"
+      index:
+        description: "Index list to operate on."
+        type: "array"
+        items:
+          type: "string"
+      all_indices:
+        description: "Do not filter indices.  Act on all indices."
+        type: "boolean"
+      # -->
