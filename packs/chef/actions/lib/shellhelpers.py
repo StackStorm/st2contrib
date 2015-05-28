@@ -37,14 +37,13 @@ class CmdlineParser(object):
                 ('-W', '--why_run', {'action': 'store_true'}),
             ]
         '''
-        not_none = lambda x: x is not None  # noqa
         self.parser = argparse.ArgumentParser()
         self._name_to_key = defaultdict(lambda: None)
 
         for k, lk, kwargs in parser_options:
             long_name = lk.lstrip('-')
             # Short keys might be missing, so filter None's
-            keys = filter(not_none, (k, lk))
+            keys = (i for i in (k, lk) if i is not None)
             self.parser.add_argument(*(keys), **kwargs)
             self.name_to_key[long_name] = k
 
