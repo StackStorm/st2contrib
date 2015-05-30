@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
-VIRTUALENV_DIR=virtualenv
-
 PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
 
+PYTHON_BINARY=`which python`
+
 function join { local IFS="$1"; shift; echo "$*"; }
+
+echo $PYTHON_BINARY
+
+if [[ ${PYTHON_BINARY} != *"virtualenv/bin/python" ]]; then
+    echo "Script must run under a virtual environment which is created in the Make target"
+    exit 2
+fi
 
 COMPONENTS=$(find /tmp/st2/* -maxdepth 1 -name "st2*" -type d)
 PACK_PYTHONPATH=$(join ":" ${COMPONENTS})
@@ -24,31 +31,19 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
     exit 0
 fi
 
-# We create a single global virtualenv which is requires with all the packs and install all the
-# pack dependencies. This way pylint can also correctly instrospect all the dependency references.
+# Note: We assume this script is running inside a virtual environment into which we install the
+# the pack dependencies.This way pylint can also correctly instrospect all the dependency
+# references.
 PACK_VIRTUALENV_DIR="/tmp/venv-packs"
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
 
 # Install per-pack dependencies
-if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
-    PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
+# Install base dependencies
+${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt --cache-dir ${HOME}/.pip-cache
 
-    if [ ! -d "${PACK_VIRTUALENV_DIR}" ]; then
-        echo "Installing pack requirements.txt into ${PACK_VIRTUALENV_DIR}"
-
-        # Create virtualenv
-        virtualenv --no-site-packages ${PACK_VIRTUALENV_DIR}
-    fi
-
-    # Install base dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt --cache-dir ${HOME}/.pip-cache
-
-    # Install pack dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE} --cache-dir ${HOME}/.pip-cache
-else
-    PYTHON_BINARY=`which python`
-fi
+# Install pack dependencies
+${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE} --cache-dir ${HOME}/.pip-cache
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
