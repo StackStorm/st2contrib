@@ -7,8 +7,8 @@ PYTHON_BINARY=`which python`
 
 function join { local IFS="$1"; shift; echo "$*"; }
 
-echo $PYTHON_BINARY
-
+# Note: We assume this script is running inside a virtual environment into which we install the
+# the pack dependencies. This way pylint can also correctly instrospect all the dependency,
 if [[ ${PYTHON_BINARY} != *"virtualenv/bin/python" ]]; then
     echo "Script must run under a virtual environment which is created in the Make target"
     exit 2
@@ -19,8 +19,8 @@ PACK_PYTHONPATH=$(join ":" ${COMPONENTS})
 
 echo "Running pylint on pack: ${PACK_NAME}"
 
-if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" -a ! -d "${PACK_PATH}/etc" ]; then
-    echo "Skipping pack without any actions and sensors"
+if [ ! -d "${pack_path}/actions" -a ! -d "${pack_path}/sensors" -a ! -d "${pack_path}/etc" ]; then
+    echo "skipping pack without any actions and sensors"
     exit 0
 fi
 
@@ -31,19 +31,12 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
     exit 0
 fi
 
-# Note: We assume this script is running inside a virtual environment into which we install the
-# the pack dependencies.This way pylint can also correctly instrospect all the dependency
-# references.
-PACK_VIRTUALENV_DIR="/tmp/venv-packs"
-PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
-PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
-
 # Install per-pack dependencies
 # Install base dependencies
-${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt --cache-dir ${HOME}/.pip-cache
+pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-dev.txt
 
 # Install pack dependencies
-${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE} --cache-dir ${HOME}/.pip-cache
+pip install --cache-dir ${HOME}/.pip-cach -q -r ${PACK_REQUIREMENTS_FILE}
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
