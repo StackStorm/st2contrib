@@ -24,7 +24,32 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
     exit 0
 fi
 
-PYTHON_BINARY=`which python`
+# We create a single global virtualenv which is requires with all the packs and install all the
+# pack dependencies. This way pylint can also correctly instrospect all the dependency references.
+PACK_VIRTUALENV_DIR="/tmp/venv-packs"
+PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
+PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
+
+# Install per-pack dependencies
+if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
+    PYTHON_BINARY=${PACK_VIRTUALENV_DIR}/bin/python
+
+    if [ ! -d "${PACK_VIRTUALENV_DIR}" ]; then
+        echo "Installing pack requirements.txt into ${PACK_VIRTUALENV_DIR}"
+
+        # Create virtualenv
+        virtualenv --no-site-packages ${PACK_VIRTUALENV_DIR}
+    fi
+
+    # Install base dependencies
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt
+
+    # Install pack dependencies
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE}
+else
+    PYTHON_BINARY=`which python`
+fi
+
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
 #echo "PYTHONPATH=${PYTHONPATH}"
