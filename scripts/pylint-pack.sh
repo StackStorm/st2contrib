@@ -3,6 +3,7 @@
 PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
 
+PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PYTHON_BINARY=`which python`
 
 function join { local IFS="$1"; shift; echo "$*"; }
@@ -36,7 +37,9 @@ fi
 pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-dev.txt
 
 # Install pack dependencies
-pip install --cache-dir ${HOME}/.pip-cach -q -r ${PACK_REQUIREMENTS_FILE}
+if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
+    pip install --cache-dir ${HOME}/.pip-cach -q -r ${PACK_REQUIREMENTS_FILE}
+fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
