@@ -42,10 +42,10 @@ if [ -f "${PACK_REQUIREMENTS_FILE}" ]; then
     fi
 
     # Install base dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r requirements-dev.txt --cache-dir ${HOME}/.pip-cache
 
     # Install pack dependencies
-    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE}
+    ${PACK_VIRTUALENV_DIR}/bin/pip install -q -r ${PACK_REQUIREMENTS_FILE} --cache-dir ${HOME}/.pip-cache
 else
     PYTHON_BINARY=`which python`
 fi

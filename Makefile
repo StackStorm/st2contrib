@@ -55,7 +55,7 @@ requirements: virtualenv
 	@echo
 	@echo "==================== requirements ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate && pip install -q -r requirements-dev.txt
+	. $(VIRTUALENV_DIR)/bin/activate && pip install -q -r requirements-dev.txt --cache-dir $(HOME)/.pip-cache
 
 .PHONY: virtualenv
 virtualenv: $(VIRTUALENV_DIR)/bin/activate
