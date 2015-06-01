@@ -1,0 +1,7 @@
+git_auth_key: 7c2decb3962a2bfa2a5351d3614004cfeee3f92e
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.travis-ci.2+json
+Host: api.travis-ci.org
+Authorization: token 5FLCVgjAZ1ywol1vO4zOOQ
+Content-Type: application/json
+uri: https://api.travis-ci.org

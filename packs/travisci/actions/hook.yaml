@@ -1,0 +1,15 @@
+name: hook
+runner_type: run-python
+description: enable or disable hooks for git repos, defaults to false if active argument not passed
+enabled: true
+entry_point: hook.py
+parameters:
+  hookid:
+    type: integer
+    description: id of the hook
+    required: true
+  active:
+    type: boolean
+    description: enable/disable a repository
+    required: false
+    default: false
