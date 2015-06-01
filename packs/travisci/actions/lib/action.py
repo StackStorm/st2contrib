@@ -7,9 +7,7 @@ class TravisCI(Action):
         self.travis = self._init_conn()
 
     def _init_conn(self):
-        travis = {
-                  'User_Agent': self.config['User-Agent'],
+        travis = {'User_Agent': self.config['User-Agent'],
                   'Accept': self.config['Accept'],
-                  'Host': self.config['Host'],
-        }
+                  'Host': self.config['Host'], }
         return travis
