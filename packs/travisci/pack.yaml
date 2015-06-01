@@ -1,0 +1,5 @@
+name: Travis CI
+description: Packs which allows integration with Travis CI for interaction with repositories
+version: 0.1.0
+author: Aamir
+email: raza.aamir01@gmail.com
