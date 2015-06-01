@@ -10,6 +10,6 @@ class BuildRepo(TravisCI):
         _HEADERS = self.travis
         _HEADERS['Authorization'] = self.config["Authorization"]
         _HEADERS['Content-Type'] = self.config["Content-Type"]
-        uri = self.config["uri"]+'/builds/'+str(buildid)+'/'+action
+        uri = self.config["uri"] + '/builds/' + str(buildid) + '/' + action
         response = requests.post(uri, headers=_HEADERS)
         return response.content

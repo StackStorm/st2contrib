@@ -11,7 +11,7 @@ class GetHooks(TravisCI):
         _HEADERS = self.travis
         _HEADERS['Authorization'] = self.config["Authorization"]
         _HEADERS['Content-Type'] = self.config["Content-Type"]
-        uri = self.config["uri"]+'/hooks'
+        uri = self.config["uri"] + '/hooks'
         response = requests.get(uri, headers=_HEADERS)
         data = yaml.load(response.content)
         hooks = {}

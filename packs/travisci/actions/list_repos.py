@@ -10,7 +10,7 @@ class GetRepos(TravisCI):
         """
         _HEADERS = self.travis
         _HEADERS['Authorization'] = self.config["Authorization"]
-        uri = self.config["uri"]+'/repos?owner_name='+username
+        uri = self.config["uri"] + '/repos?owner_name=' + username
         response = requests.get(uri, headers=_HEADERS)
         data = yaml.load(response.content)
         repos = {}
