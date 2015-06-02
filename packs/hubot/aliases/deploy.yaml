@@ -1,0 +1,7 @@
+---
+name: "hubot_deploy"
+action_ref: "hubot.deploy"
+description: "Deploy a specific git branch of deployed Hubot"
+formats:
+  - "hubot deploy {{branch}}"
+  - "hubot deploy {{branch}} on {{hosts}}"

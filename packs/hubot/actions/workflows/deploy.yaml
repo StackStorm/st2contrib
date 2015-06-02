@@ -1,0 +1,26 @@
+---
+  chain:
+    -
+      name: "update_hubot_git_ref"
+      ref: "hubot.update_ref"
+      params:
+        branch: "{{branch}}"
+        hosts: "{{hosts}}"
+      on-success: "restart_hubot"
+      on-failure: "failure_no_bot_host"
+    -
+      name: "restart_hubot"
+      ref: "hubot.restart"
+      params:
+        hosts: "{{hosts}}"
+      on-success: "get_branch"
+    -
+      name: "get_branch"
+      ref: "hubot.branch"
+      params:
+        hosts: "{{hosts}}"
+    -
+      name: "failure_no_bot_host"
+      ref: "core.local"
+      params:
+        cmd: "echo '[hubot] Unable to get node where hubot lives. Try setting the key 'hubot.host' in the datastore'"
