@@ -1,0 +1,15 @@
+---
+name: "get_progress"
+runner_type: "python-script"
+description: "Get a progress estimate for a previously submitted analysis task."
+enabled: true
+entry_point: "get_progress.py"
+parameters:
+  uuid:
+    type: "string"
+    description: "the unique identifier of the submitted task, as returned in the task_uuid field of submit methods."
+    required: true
+  raw:
+    type: "boolean"
+    description: "if True, return the raw JSON results of the API query"
+    default: false

@@ -1,0 +1,99 @@
+---
+name: "submit_file_hash"
+runner_type: "python-script"
+description: "Submit a file hash to Lastline for analysis"
+enabled: true
+entry_point: "submit_file_hash.py"
+parameters:
+  md5:
+    type: "string"
+    description: "md5 hash of file"
+  sha1:
+    type: "string"
+    description: "sha1 hash of file"
+  download_path:
+    type: "string"
+    description: "host path from which the submitted file was originally downloaded, as a 'string' of bytes (not unicode)"
+  download_agent:
+    type: "string"
+    description: "HTTP user-agent header that was used when the submitted file was originally downloaded, as a 'string' of bytes (not unicode)"
+  download_referer:
+    type: "string"
+    description: "HTTP referer header that was used when the submitted file was originally downloaded, as a string of bytes (not unicode)"
+  download_request:
+    type: "string"
+    description: "full HTTP request with which the submitted file was originally downloaded, as a string of bytes (not unicode)"
+  full_report_score:
+    type: "integer"
+    description: "if set, this value (between -1 and 101) determines starting at which scores a full report is returned. -1 and 101 indicate 'never return full report'; 0 indicates 'return full report at all times'"
+  bypass_cache:
+    type: "boolean"
+    description: "if True, the API will not serve a cached result. NOTE: This requires special privileges."
+  require_file_analysis:
+    type: "boolean"
+    description: "if True, the submission requires an analysis run to be started. If False, the API will attempt to base a decision solely on static information such as download source reputation and hash lookups. Requires special permissions"
+    default: true
+  mime_type:
+    type: "string"
+    description: "the mime-type of the file; This value should be set when require_file_analysis is True to enforce getting the most information available"
+  analysis_timeout:
+    type: "integer"
+    description: "timeout in seconds after which to terminate analysis. The analysis engine might decide to extend this timeout if necessary. If all analysis subjects terminate before this timeout analysis might be shorter"
+  analysis_env:
+    type: "string"
+    description: "environment in which to run analysis. This includes the operating system as well as version of tools such as Microsoft Office. Example usage: - windows7:office2003, or - windowsxp By default, analysis will run on all available operating systems using the most applicable tools."
+  allow_network_traffic:
+    type: "boolean"
+    description: "if False, all network connections will be redirected to a honeypot. Requires special permissions."
+  filename:
+    type: "string"
+    description: "filename to use during analysis. If none is passed, the analysis engine will pick an appropriate name automatically. An easy way to pass this value is to use 'file_stream.name' for most file-like objects"
+  keep_file_dumps:
+    type: "boolean"
+    description: "if True, all files generated during analysis will be kept for post-processing. NOTE: This can generate large volumes of data and is not recommended. Requires special permissions"
+  keep_memory_dumps:
+    type: "boolean"
+    description: "if True, all buffers allocated during analysis will be kept for post-processing. NOTE: This can generate large volumes of data and is not recommended. Requires special permissions"
+  keep_behavior_log:
+    type: "boolean"
+    description: "if True, the raw behavior log extracted during analysis will be kept for post-processing. NOTE: This can generate very very large volumes of data and is not recommended. Requires special permissions"
+  push_to_portal_account:
+    type: "boolean"
+    description: "if set, a successful submission will be pushed to the web-portal using the specified username"
+  verify:
+    type: "boolean"
+    description: "if False, disable SSL-certificate verification"
+    default: true
+  raw:
+    type: "boolean"
+    description: "if True, return the raw JSON results of the API query"
+    default: false
+  server_ip:
+    type: "string"
+    description: "ASCII dotted-quad representation of the IP address of the server-side endpoint."
+  server_port:
+    type: "integer"
+    description: "integer representation of the port number of the server-side endpoint of the flow tuple."
+  server_host:
+    type: "string"
+    description: "hostname of the server-side endpoint of the connection, as a string of bytes (not unicode)."
+  client_ip:
+    type: "string"
+    description: "ASCII dotted-quad representation of the IP address of the client-side endpoint."
+  client_port:
+    type: "integer"
+    description: "integer representation of the port number of the client-side endpoint of the flow tuple."
+  is_download:
+    type: "boolean"
+    description: "True if the transfer happened in the server -> client direction, False otherwise (client -> server)."
+    default: true
+  protocol:
+    type: "string"
+    description: "app-layer protocol in which the file got transferred. Short ASCII string."
+    default: 'http'
+  report_version:
+    type: "string"
+    description: "Version name of the Report that will be returned (optional)"
+  apk_package_name:
+    type: "string"
+    description: "package name for APK files. Don’t specify manually."
