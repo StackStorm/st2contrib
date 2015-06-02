@@ -115,7 +115,7 @@ FORMATTERS = {
     'local-shell-cmd': format_localrunner_result,
     'run-local': format_localrunner_result,
     'local-shell-script': format_localrunner_result,
-    'run-local-script':  format_localrunner_result,
+    'run-local-script': format_localrunner_result,
     # remoterunner
     'remote-shell-cmd': format_remoterunner_result,
     'run-remote': format_remoterunner_result,
@@ -143,7 +143,7 @@ class PostResultAction(Action):
         endpoint = self.config['endpoint']
 
         if not endpoint:
-            raise valueError('Missing "endpoint" config option')
+            raise ValueError('Missing "endpoint" config option')
 
         url = urljoin(endpoint, "/hubot/st2")
 
@@ -173,7 +173,11 @@ class PostResultAction(Action):
     def _get_message(self, data):
         envelope = '{message}\nstatus : {status}\nexecution: {execution_id}'.format(**data)
         result = self._get_result(data)
-        return '%s\n\nresult :\n--------\n%s' % (envelope, self._get_result(data)) if result else envelope
+        if result:
+            message = '%s\n\nresult :\n--------\n%s' % (envelope, self._get_result(data))
+        else:
+            message = envelope
+        return message
 
     def _get_result(self, data):
         result = data.get('data', {'result': {}}).get('result', '{}')

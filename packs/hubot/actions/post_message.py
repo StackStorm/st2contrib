@@ -9,12 +9,13 @@ __all__ = [
     'PostMessageAction'
 ]
 
+
 class PostMessageAction(Action):
     def run(self, message, channel, user=None, whisper=False):
         endpoint = self.config['endpoint']
 
         if not endpoint:
-            raise valueError('Missing "endpoint" config option')
+            raise ValueError('Missing "endpoint" config option')
 
         url = urljoin(endpoint, "/hubot/st2")
 
@@ -28,7 +29,7 @@ class PostMessageAction(Action):
         if user:
             body['user'] = user
 
-        if whisper == True:
+        if whisper:
             body['whisper'] = whisper
 
         data = json.dumps(body)
