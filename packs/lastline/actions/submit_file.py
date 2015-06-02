@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SubmitFileAction(actions.BaseAction):
     def run(self, file_stream, download_ip=None, download_port=None,
             download_url=None, download_host=None, download_path=None,
@@ -31,5 +32,3 @@ class SubmitFileAction(actions.BaseAction):
                                       password, report_version)
 
         return response
-
-

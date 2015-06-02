@@ -50,7 +50,7 @@ To start the shell, invoke::
 replacing API_KEY and API_TOKEN with your API credentials.
 
 By default, the client connects to an API instance running in the Lastline cloud
-at https://analysis.lastline.com . To connect to a different instance, for 
+at https://analysis.lastline.com . To connect to a different instance, for
 example when using a Lastline On-Premise installation, please use the
 *--api-url* parameter to point to the URL of the On-Premise API. For example, to
 connect to a Lastline Analyst On-Premise running at *analyst.lastline.local*,
@@ -73,7 +73,9 @@ try:
         import IPython
 except ImportError, e:
     if __name__ == "__main__":
-        print >> sys.stderr, "A module required for running the analysis API example shell was not found:"
+        print >> sys.stderr, \
+            "A module required for running the analysis API example \
+            shell was not found:"
         print >> sys.stderr, "\t'%s'" % str(e)
         print >> sys.stderr, "Please install the missing module."
         print >> sys.stderr, "For this, you can use tools such as easy_install or pip:"
@@ -142,9 +144,8 @@ class InvalidSubApiType(Error):
         self.sub_api_type = sub_api_type
 
     def __str__(self):
-        return "Invalid sub API '%s', expecting one of (%s)" % (
-                        self.sub_api_type,
-                        ','.join(AnalysisClientBase.SUB_APIS))
+        return "Invalid sub API '%s', expecting one of (%s)" % \
+            (self.sub_api_type, ','.join(AnalysisClientBase.SUB_APIS))
 
 
 class InvalidFormat(Error):
@@ -156,9 +157,8 @@ class InvalidFormat(Error):
         self.format = requested_format
 
     def __str__(self):
-        return "Requested Invalid Format '%s', expecting one of (%s)" % (
-                         self.format,
-                         ','.join(AnalysisClientBase.FORMATS))
+        return "Requested Invalid Format '%s', expecting one of (%s)" % \
+            (self.format, ','.join(AnalysisClientBase.FORMATS))
 
 
 class CommunicationError(Error):
@@ -290,11 +290,9 @@ class FileExtractionFailedError(SubmissionInvalidError):
         SubmissionInvalidError.__init__(self, msg, error_code)
 
 
-
 #################
 # client
 #################
-
 
 __COMPLETED_TASK_FIELDS = [
     "task_uuid",
@@ -323,18 +321,18 @@ def purge_none(d):
 def parse_datetime(d):
     """
     Parse a datetime as formatted in one of the following formats:
-    
+
     date: %Y-%m-%d'
     datetime: '%Y-%m-%d %H:%M:%S'
     datetime with microseconds: '%Y-%m-%d %H:%M:%S.%f'
-    
+
     Can also handle a datetime.date or datetime.datetime object,
     (or anything that has year, month and day attributes)
     and converts it to datetime.datetime
     """
     if hasattr(d, "year") and hasattr(d, "month") and hasattr(d, "day"):
         return datetime.datetime(d.year, d.month, d.day)
-    
+
     try:
         return datetime.datetime.strptime(
             d, AnalysisClientBase.DATETIME_MSEC_FMT)
@@ -343,7 +341,7 @@ def parse_datetime(d):
     try:
         return datetime.datetime.strptime(d, AnalysisClientBase.DATETIME_FMT)
     except ValueError: pass
-    
+
     try:
         return datetime.datetime.strptime(d, AnalysisClientBase.DATE_FMT)
     except ValueError:
@@ -354,31 +352,31 @@ def parse_datetime(d):
 class TaskCompletion(object):
     """
     Helper class to get score for all completed tasks
-    
+
     :param analysis_client: analysis_apiclient.AnalysisClientBase
-    
+
     Sample usage:
-    
+
     tc = TaskCompletion(my_analysis_client)
     for completed_task in tc.get_completed(start,end):
         print completed_task.task_uuid, completed_task.score
-    
+
     """
     def __init__(self, analysis_client):
         self.__analysis_client = analysis_client
-    
+
     def get_completed(self, after, before):
         """
         Return scores of tasks completed in the specified time range.
-        
+
         This takes care of using the analysis API's pagination
         to make sure it gets all tasks.
-        
+
         :param after: datetime.datetime
         :param before: datetime.datetime
-        
+
         :yield: sequence of `CompletedTask`
-        
+
         :raise: InvalidAnalysisAPIResponse if response
             does not have the format we expect
         """
@@ -388,26 +386,26 @@ class TaskCompletion(object):
                     after=after,
                     before=before,
                     include_score=True)
-                
+
                 data = result["data"]
                 tasks = data["tasks"]
                 if not tasks:
                     break
-                
+
                 for task_uuid, score  in tasks.iteritems():
                     yield CompletedTask(task_uuid=task_uuid,
                                         score=score)
-                
+
                 more = int(data["more_results_available"])
                 if not more:
                     break
-                
+
                 last_ts = parse_datetime(data["before"])
                 if last_ts >= before:
                     break
-                
+
                 after = last_ts
-                
+
         except (KeyError, ValueError, TypeError, AttributeError):
             # attributeError needed in case iteritems is missing (not a dict)
             # let's give it the trace of the original exception, so we know

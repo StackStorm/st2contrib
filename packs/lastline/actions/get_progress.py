@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class GetProgress(actions.BaseAction):
     def run(self, uuid, raw=False):
 

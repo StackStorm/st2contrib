@@ -1,9 +1,10 @@
 from lib import actions
 
+
 class SubmitURL(actions.BaseAction):
     def run(self, url, referer=None, full_report_score=None, bypass_cache=None,
             backend=None, analysis_timeout=None, push_to_portal_account=None,
-            raw=False, verify=True, user_agent=None, report_version=None)
+            raw=False, verify=True, user_agent=None, report_version=None):
 
         client = self.client
         response = client.submit_url(url, referer, full_report_score,
@@ -12,4 +13,3 @@ class SubmitURL(actions.BaseAction):
                                      user_agent, report_version)
 
         return response
-

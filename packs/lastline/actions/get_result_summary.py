@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class GetResultSummary(actions.BaseAction):
     def run(self, uuid, raw=False, requested_format='json',
             score_only=False, verify=True):
@@ -9,4 +10,3 @@ class GetResultSummary(actions.BaseAction):
                                              score_only, verify)
 
         return response
-

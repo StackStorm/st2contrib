@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SubmitFileHashAction(actions.BaseAction):
     def run(self, md5=None, sha1=None, download_ip=None, download_port=None,
             download_url=None, download_host=None, download_path=None,
@@ -32,4 +33,3 @@ class SubmitFileHashAction(actions.BaseAction):
                                            report_version)
 
         return response
-

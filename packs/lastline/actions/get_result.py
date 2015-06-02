@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class GetResult(actions.BaseAction):
     def run(self, uuid, report_uuid=None, full_report_score=None,
             include_scoring_components=None, raw=False,
