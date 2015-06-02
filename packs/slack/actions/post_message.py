@@ -11,7 +11,8 @@ __all__ = [
 
 
 class PostMessageAction(Action):
-    def run(self, message, username=None, icon_emoji=None, channel=None):
+    def run(self, message, username=None, icon_emoji=None, channel=None,
+            disable_formatting=False):
         config = self.config['post_message_action']
         username = username if username else config['username']
         icon_emoji = icon_emoji if icon_emoji else config.get('icon_emoji', None)
@@ -27,6 +28,9 @@ class PostMessageAction(Action):
 
         if channel:
             body['channel'] = channel
+
+        if disable_formatting:
+            body['parse'] = 'none'
 
         data = 'payload=%s' % (json.dumps(body))
         response = requests.post(url=config['webhook_url'],
