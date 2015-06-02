@@ -5,9 +5,11 @@ from lib import shellhelpers as shell
 
 
 class ChefInstaller(object):
+    '''Implements chef installation on the node.
     '''
-    Implements chef installation on the node.
-    '''
+    # import installation helpers
+    from lib.omnibus import Omnibus  # noqa
+
     SUPPORTED_METHODS = ['omnibus']
 
     cmdline_options = [
@@ -20,7 +22,7 @@ class ChefInstaller(object):
     @staticmethod
     def install(install_method, options):
         exit_code = 0
-        installer = getattr(sys.modules['lib'], install_method.capitalize())(options)
+        installer = getattr(ChefInstaller, install_method.capitalize())(options)
         if not installer.chef_installed():
             exit_code = installer.install()
         else:
