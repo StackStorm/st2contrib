@@ -5,8 +5,6 @@ from lib import shellhelpers as shell
 
 
 class ChefInstaller(object):
-    #  from lib.omnibus import Omnibus
-
     '''
     Implements chef installation on the node.
     '''
