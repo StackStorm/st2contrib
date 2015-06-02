@@ -4,9 +4,7 @@ Pack that provides management/integration with Hubot
 
 ## Configuration
 
-* `host` - Location of Hubot
-* `port` - HTTP Endpoint port for Hubot (default: 8181)
-* `ssl`  - Boolean / SSL enabled for HTTP endpoint (default: false)
+* `endpoint` - Location of Hubot HTTP endpoint (default: http://127.0.0.1:8181)
 
 ## Actions
 
