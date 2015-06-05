@@ -16,9 +16,9 @@ build:
             #- for f in packs/*/requirements.txt; do pip install -r $f; done
 
 # https://scrutinizer-ci.com/docs/configuration/build_status
-build_failure_conditions:
-    - 'elements.rating(<= D).new.exists'     # No new classes/methods with a rating of D or worse
-    - 'issues.severity(>= MAJOR).new.exists' # No new issues of major or higher severity
+#build_failure_conditions:
+#    - 'elements.rating(<= D).new.exists'     # No new classes/methods with a rating of D or worse
+#    - 'issues.severity(>= MAJOR).new.exists' # No new issues of major or higher severity
 
 checks:
     python:
