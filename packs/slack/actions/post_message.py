@@ -40,5 +40,6 @@ class PostMessageAction(Action):
             self.logger.info('Message successfully posted')
         else:
             self.logger.exception('Failed to post message: %s' % (response.text))
+            raise Exception(response.text)
 
         return True
