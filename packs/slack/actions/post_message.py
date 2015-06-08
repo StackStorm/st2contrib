@@ -39,7 +39,7 @@ class PostMessageAction(Action):
         if response.status_code == httplib.OK:
             self.logger.info('Message successfully posted')
         else:
-            failure_reason = ('Failed to post message: %s (Status Code: %s)' % 
+            failure_reason = ('Failed to post message: %s (status code: %s)' %
                               (response.text, response.status_code))
             self.logger.exception(failure_reason)
             raise Exception(failure_reason)
