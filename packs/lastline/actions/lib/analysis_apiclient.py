@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#pylint: skip-file
 """
 This is a Python client for the Lastline Analyst API.
 
