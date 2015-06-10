@@ -25,6 +25,19 @@ Requires StackStorm >= `v0.8.0`
 * ``kv.set_object`` - Serialize and store object in a datastore. Note: object
   is serialized as JSON.
 
+Note: ``kv.set`` and ``kv.get`` actions support compressing value before
+storing it in a datastore and decompressing it when retrieving it from
+a datastore.
+
+If you want data to be compressed, you should pass ``compress=True``
+parameter to the ``kv.set`` action when storing a value and ``decompress=True``
+when retrieving it.
+
+Values are compressed using bzip2. Keep in mind that values are base64 encoded
+after compression which adds around 40% of overhead to the compressed value
+size. For typical large strings this should still result in a reduction of
+a total size by 40-60% on average.
+
 ## ChatOps commands
 
 By default, this pack also includes ChatOps commands (aliases) which allow you
