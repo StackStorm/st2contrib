@@ -33,7 +33,7 @@ class IMAPSensor(PollingSensor):
         self._logger = self._sensor_service.get_logger(__name__)
 
         self._max_attachment_size = self._config.get('max_attachment_size',
-                                                      DEFAULT_MAX_ATTACHMENT_SIZE)
+                                                     DEFAULT_MAX_ATTACHMENT_SIZE)
         self._attachment_datastore_ttl = self._config.get('attachment_datastore_ttl',
                                                           DEFAULT_MAX_ATTACHMENT_SIZE)
         self._mailboxes = {}
@@ -158,7 +158,8 @@ class IMAPSensor(PollingSensor):
 
             if len(content) > self._max_attachment_size:
                 self._logger.debug(('[IMAPSensor]: Skipping attachment "{}" since its bigger '
-                                    'than maximum allowed size ({})'.format(file_name, attachment_size)))
+                                    'than maximum allowed size ({})'.format(file_name,
+                                                                            attachment_size)))
                 continue
 
             datastore_key = self._get_attachment_datastore_key(message=message,
