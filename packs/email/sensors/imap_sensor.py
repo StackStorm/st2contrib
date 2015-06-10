@@ -66,13 +66,19 @@ class IMAPSensor(PollingSensor):
             if not user or not password:
                 self._logger.debug("""[IMAPSensor]: Missing
                     username/password for {0}""".format(mailbox))
-            elif not server:
+                continue
+
+            if not server:
                 self._logger.debug("""[IMAPSensor]: Missing server
                     for {0}""".format(mailbox))
-            else:
+                continue
+
+            try:
                 connection = easyimap.connect(server, user, password,
                                               folder, ssl=ssl, port=port)
-                self._mailboxes[mailbox] = connection
+            except Exception as e:
+                message = 'Failed to connect to mailbox "%s": %s' % (mailbox, str(e))
+                raise Exception(message)
 
     def _poll_for_unread_messages(self, name, mailbox):
         self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
