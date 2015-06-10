@@ -106,7 +106,7 @@ class IMAPSensor(PollingSensor):
     def _poll_for_unread_messages(self, name, mailbox, download_attachments=False):
         self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
 
-        for message in mailbox.unread():
+        for message in mailbox.unseen():
             self._process_message(uid=message.uid, mailbox=mailbox,
                                   download_attachments=download_attachments)
             return
