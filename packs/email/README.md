@@ -58,6 +58,9 @@ bellow) so you can retrieve those attachments later (e.g. inside an action).
 By default, those values have a TTL of 30 minutes which means they will be automatically remvoed
 from the datastore after 30 minutes.
 
+Keep in mind that all the attachments which contain binary (non plain-text, mime-type
+!= text/plain) data are base64 encoded before they are stored in the datastore.
+
 #### email.imap.message trigger
 
 Example trigger payload:

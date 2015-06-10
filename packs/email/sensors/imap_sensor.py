@@ -1,4 +1,5 @@
 import hashlib
+import base64
 
 import eventlet
 import easyimap
@@ -164,8 +165,11 @@ class IMAPSensor(PollingSensor):
                                                                file_name=file_name)
 
             # Store attachment in the datastore
-            # TODO: Verify with binary attachments
-            value = content
+            if content_type == 'text/plain':
+                value = content
+            else:
+                value = base64.b64encode(content)
+
             self._sensor_service.set_value(name=datastore_key, value=value,
                                            ttl=self._attachment_datastore_ttl,
                                            local=False)
