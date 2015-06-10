@@ -7,6 +7,10 @@ imap_mailboxes:
     username: ""
     password: ""
     ssl: True
+    download_attachments: True
+
+max_attachment_size: 1024
+attachment_datastore_ttl: 1800
 
 smtp_listen_ip: '127.0.0.1'
 smtp_listen_port: 25
