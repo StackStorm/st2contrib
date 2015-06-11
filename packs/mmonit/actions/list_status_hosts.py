@@ -2,7 +2,8 @@ from lib.mmonit import MmonitBaseAction
 
 
 class MmonitListStatusHost(MmonitBaseAction):
-    def run(self, host_id=None, hostgroupid=None, status=None, platform=None, machine=None, led=None):
+    def run(self, host_id=None, hostgroupid=None, status=None, platform=None, machine=None,
+            led=None):
         self.login()
         data = {}
 

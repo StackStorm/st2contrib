@@ -1,0 +1,120 @@
+---
+name: "playbook"
+description: "Run ansible playbook"
+runner_type: "local-shell-script"
+entry_point: "ansible_playbook.py"
+enabled: true
+parameters:
+  kwarg_op:
+    description: "Lock operator type to '--'"
+    type: string
+    default: "--"
+    immutable: true
+  sudo:
+    description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
+    type: boolean
+    default: true
+    immutable: true
+  cwd:
+    description: "Working directory where the command will be executed in"
+    type: string
+  timeout:
+    description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds"
+    type: integer
+    default: 900
+  playbook:
+    description: "Playbook file"
+    type: string
+    position: 0
+  background:
+    description: "Fork in Background asynchronously for X seconds [-B]"
+    type: integer
+  become:
+    description: "Run operations with become (nopasswd implied) [-b]"
+    type: boolean
+  become-method:
+    description: "Privilege escalation method to use. Valid choices: sudo, su, pbrun, pfexec, runas (default=sudo)"
+    type: string
+    enum:
+      - sudo
+      - su
+      - pbrun
+      - pfexec
+      - runas
+  become-user:
+    description: "Run operations as this user. Works only with 'become'"
+    type: string
+  check:
+    description: "Don't make any changes; instead, try to predict some of the changes that may occur [-C]"
+    type: boolean
+  connection:
+    description: "Connection type to use (default=smart) [-c]"
+    type: string
+  diff:
+    description: "when changing (small) files and templates, show the differences in those files; works great with --check [-D]"
+    type: boolean
+  extra-vars:
+    description: "Set additional variables as key=value or YAML/JSON [-e]"
+    type: string
+  flush-cache:
+    description: "Clear the fact cache"
+    type: boolean
+  force-handlers:
+    description: "Run handlers even if a task fails"
+    type: boolean
+  forks:
+    description: "Specify number of parallel processes to use (default=5) [-f]"
+    type: integer
+  help:
+    description: "Show help message and exit [-h]"
+    type: boolean
+  inventory-file:
+    description: "Inventory host file (default=/etc/ansible/hosts) [-i]"
+    type: string
+  limit:
+    description: "Further limit selected hosts to an additional pattern [-l]"
+    type: string
+  list-hosts:
+    description: "Outputs a list of matching hosts; does not execute anything else"
+    type: boolean
+  list-tags:
+    description: "List all available tags"
+    type: boolean
+  list-tasks:
+    description: "List all tasks that would be executed"
+    type: boolean
+  module-path:
+    description: "Specify path(s) to module library (default=None) [-M]"
+    type: string
+  private-key:
+    description: "Use this file to authenticate the connection"
+    type: string
+  skip-tags:
+    description: "Only run plays and tasks whose tags do not match these values"
+    type: string
+  start-at-task:
+    description: "Start the playbook at the task matching this name"
+    type: string
+  syntax-check:
+    description: "Perform a syntax check on the playbook, but do not execute it"
+    type: boolean
+  tags:
+    description: "Only run plays and tasks tagged with these values [-t]"
+    type: string
+  user:
+    description: "Connect to remote hosts as this user (default=root) [-u]"
+    type: string
+  vault-password-file:
+    description: "Vault password file"
+    type: string
+  verbose:
+    description: "Verbose mode (-vvvv to enable connection debugging)"
+    type: string
+    enum:
+      - v
+      - vv
+      - vvv
+      - vvvv
+  version:
+    description: "Show ansible version number and exit"
+    type: boolean

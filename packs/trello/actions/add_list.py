@@ -1,5 +1,6 @@
 from lib import action
 
+
 class AddListAction(action.BaseAction):
     def run(self, name, board_id, api_key=None, token=None):
         if api_key:
@@ -11,4 +12,3 @@ class AddListAction(action.BaseAction):
             return new_list.id
         else:
             return False
-

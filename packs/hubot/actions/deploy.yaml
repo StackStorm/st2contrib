@@ -1,0 +1,14 @@
+---
+name: "deploy"
+runner_type: "action-chain"
+description: "Manage Hubot installs on a per-pack basis"
+enabled: true
+entry_point: "workflows/deploy.yaml"
+parameters:
+  branch:
+    type: "string"
+    description: "Branch to deploy"
+    default: "master"
+    position: 0
+  hosts:
+    default: "127.0.0.1"

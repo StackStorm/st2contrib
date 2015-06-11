@@ -1,0 +1,7 @@
+---
+name: "st2_sensors_list"
+action_ref: "st2.sensors.list"
+description: "List available StackStorm sensors."
+formats:
+    - "st2 list sensors"
+    - "st2 list sensors from {{ pack }}"

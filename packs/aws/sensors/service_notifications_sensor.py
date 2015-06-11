@@ -43,7 +43,7 @@ SUPPORTED_SERVICES_EVENT_KEYS = [
 class ServiceNotificationsSensor(Sensor):
     def __init__(self, sensor_service, config=None):
         super(ServiceNotificationsSensor, self).__init__(sensor_service=sensor_service,
-                                                 config=config)
+                                                         config=config)
         self._config = self._config.get('service_notifications_sensor', {})
 
         self._host = self._config.get('host', 'localhost')
@@ -137,7 +137,7 @@ class ServiceNotificationsSensor(Sensor):
             return
 
         payload = {
-             # Common attributes for all the AWS services events
+            # Common attributes for all the AWS services events
             'source': source,
             'region': region,
             'name': name,

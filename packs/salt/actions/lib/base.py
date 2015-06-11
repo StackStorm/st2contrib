@@ -1,5 +1,3 @@
-from functools import partial
-
 from st2actions.runners.pythonrunner import Action
 from requests import Request
 

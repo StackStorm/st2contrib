@@ -11,4 +11,5 @@ class ImportKeysAction(BaseGPGAction):
             key_data = fp.read()
 
         import_result = self._gpg.import_keys(key_data)
+        # pylint: disable=no-member
         return import_result.count

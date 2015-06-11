@@ -3,12 +3,23 @@
 import boto.ec2
 import boto.route53
 
+
 class FieldLists():
-    ADDRESS = ['public_ip','instance_id','domain','allocation_id','association_id','network_interface_id','network_interface_owner_id','private_ip_address']
-    INSTANCE = ['id','public_dns_name','private_dns_name','state','state_code','previous_state','previous_state_code','key_name','instance_type','launch_time','image_id','placement','placement_group','placement_tenancy','kernel','ramdisk','architecture','hypervisor','virtualization_type','ami_launch_index','monitored','monitoring_state','spot_instance_request_id','subnet_id','vpc_id','private_ip_address','ip_address','platform','root_device_name','root_device_type','state_reason']
-    VOLUME = ['id','create_time','status','size','snapshot_id','zone','type','iops','encrypted']
+    ADDRESS = ['public_ip', 'instance_id', 'domain', 'allocation_id', 'association_id',
+               'network_interface_id', 'network_interface_owner_id', 'private_ip_address']
+    INSTANCE = ['id', 'public_dns_name', 'private_dns_name', 'state', 'state_code',
+                'previous_state', 'previous_state_code', 'key_name', 'instance_type',
+                'launch_time', 'image_id', 'placement', 'placement_group', 'placement_tenancy',
+                'kernel', 'ramdisk', 'architecture', 'hypervisor', 'virtualization_type',
+                'ami_launch_index', 'monitored', 'monitoring_state', 'spot_instance_request_id',
+                'subnet_id', 'vpc_id', 'private_ip_address', 'ip_address', 'platform',
+                'root_device_name', 'root_device_type', 'state_reason']
+    VOLUME = ['id', 'create_time', 'status', 'size', 'snapshot_id', 'zone', 'type', 'iops',
+              'encrypted']
     EC2ZONE = ['name', 'state', 'region_name', 'messages']
-    RECORD = [ 'alias_dns_name', 'alias_evaluate_target_health', 'alias_hosted_zone_id', 'failover', 'health_check', 'identifier', 'name', 'region', 'resource_records',  'ttl', 'type', 'weight']
+    RECORD = ['alias_dns_name', 'alias_evaluate_target_health', 'alias_hosted_zone_id', 'failover',
+              'health_check', 'identifier', 'name', 'region', 'resource_records', 'ttl', 'type',
+              'weight']
     R53ZONE = ['callerreference', 'config', 'id', 'name', 'resourcerecordsetcount']
     R53STATUS = ['comment', 'id', 'status', 'submittedat']
 
@@ -18,8 +29,7 @@ class ResultSets(object):
     def __init__(self):
         self.foo = ""
 
-    def selector(self,output):
-        formatted = []
+    def selector(self, output):
         if isinstance(output, boto.ec2.instance.Reservation):
             return self.parseReservation(output)
         elif isinstance(output, boto.ec2.instance.Instance):
@@ -39,16 +49,16 @@ class ResultSets(object):
         else:
             return output
 
-    def formatter(self,output):
+    def formatter(self, output):
         formatted = []
-        if isinstance(output,list):
+        if isinstance(output, list):
             for o in output:
                 formatted.append(self.selector(o))
         else:
             formatted.append(self.selector(output))
         return formatted
 
-    def parseReservation(self,output):
+    def parseReservation(self, output):
         instance_list = []
         for instance in output.instances:
             instance_data = self.parseInstance(instance)
@@ -56,30 +66,30 @@ class ResultSets(object):
             instance_list.append(instance_data)
         return instance_list
 
-    def parseAddress(self,output):
+    def parseAddress(self, output):
         instance_data = {field: getattr(output, field) for field in FieldLists.ADDRESS}
         return instance_data
 
-    def parseInstance(self,output):
+    def parseInstance(self, output):
         instance_data = {field: getattr(output, field) for field in FieldLists.INSTANCE}
         return instance_data
 
-    def parseVolume(self,output):
+    def parseVolume(self, output):
         volume_data = {field: getattr(output, field) for field in FieldLists.VOLUME}
         return volume_data
 
-    def parseEC2Zone(self,output):
+    def parseEC2Zone(self, output):
         zone_data = {field: getattr(output, field) for field in FieldLists.EC2ZONE}
         return zone_data
 
-    def parseRecord(self,output):
+    def parseRecord(self, output):
         record_data = {field: getattr(output, field) for field in FieldLists.RECORD}
         return record_data
 
-    def parseR53Zone(self,output):
+    def parseR53Zone(self, output):
         zone_data = {field: getattr(output, field) for field in FieldLists.R53ZONE}
         return zone_data
 
-    def parseR53Status(self,output):
+    def parseR53Status(self, output):
         status_data = {field: getattr(output, field) for field in FieldLists.R53STATUS}
         return status_data

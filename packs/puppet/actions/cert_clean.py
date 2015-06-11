@@ -8,3 +8,4 @@ __all__ = [
 class PuppetCertCleanAction(PuppetBasePythonAction):
     def run(self, environment, host):
         success = self.client.cert_clean(environment=environment, host=host)
+        return success

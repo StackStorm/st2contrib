@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class GetTemperatureAction(actions.BaseAction):
     def run(self, scale='c', structure=None, device=None):
         if structure and device:
@@ -8,4 +9,3 @@ class GetTemperatureAction(actions.BaseAction):
             nest = self._get_default_device()
 
         return self._convert_temperature(nest.temperature, scale)
-

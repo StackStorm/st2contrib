@@ -4,6 +4,7 @@ __all__ = [
     'FindLoadBalancerIdAction'
 ]
 
+
 class FindLoadBalancerIdAction(PyraxBaseAction):
     def run(self, name):
         clb = self.pyrax.cloud_loadbalancers
