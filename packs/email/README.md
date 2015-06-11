@@ -45,10 +45,10 @@ The following attachment settings can be configured:
 
 * ``download_attachments`` - True to download the attachment and store them in the
   datastore.
-* ``max_attachment_size`` - Maximum size of download attachment. If an attachment
-  excedes this size it will be skipped and not downloaded.
-* ``attachment_datastore_ttl`` - TTL for the attachment value which is stored in the
-  datastore.
+* ``max_attachment_size`` - Maximum size of download attachment bytes. If an
+  attachment exceeds this size it will be skipped and not downloaded.
+* ``attachment_datastore_ttl`` - TTL in seconds for the attachment value which is
+  stored in the datastore.
 
 If ``download_attachments`` attribute for a particular IMAP server is set to ``True``,
 attachments will be automatically downloaded and stored in the built-in datastore under
