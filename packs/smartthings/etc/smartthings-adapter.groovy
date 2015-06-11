@@ -14,49 +14,33 @@
  *
  */
 definition(
-  name: "StackStorm",
-  namespace: "st2",
+  name: "MQTT.bridge",
+  namespace: "StackStorm",
   author: "James Fryman",
-  description: "StackStorm integration with SmartThings",
+  description: "API/MQTT integration with SmartThings",
   category: "SmartThings Labs",
   iconUrl: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
   iconX2Url: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
   iconX3Url: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
-  oauth: [displayName: "SmartThings / StackStorm Integration", displayLink: ""]
+  oauth: [displayName: "API/MQTT / SmartThings Integration", displayLink: ""]
 )
 
 // SmartApp Preferences
 preferences {
-  section("Allow StackStorm to manage these devices:") {
+  section("Allow API access to manage these devices:") {
     // https://graph.api.smartthings.com/ide/doc/capabilities
-
-    input "devicesAcceleration", "capability.accelerationSensor", title: "Acceleration Sensor", multiple: true, required: false
-    input "devicesAlarm", "capability.alarm", title: "Alarms", multiple: true, required: false
-    input "devicesCO2", "capability.carbonMonoxideDetector", title: "CO2 Detectors", multiple: true, required: false
-    input "devicesEnergy", "capability.energyMeter", title: "Energy Meters", multiple: true, required: false
-    input "deviceImageCapture", "capability.imageCapture", title: "Image Capture Devices", multiple: true, required: false
-    input "devicesLock", "capability.lock", title: "Locks", multiple: true, required: false
-    input "devicesMusic", "capabilitiy.musicPlayer", title: "Music Players", multiple: true, required: false
-    input "devicesPower", "capability.powerMeter", title: "Power Measurement Devices", multiple: true, required: false
-    input "devicesPresence", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
-    input "devicesHumidity", "capability.relativeHumidityMeasurement", title: "Humidity Sensors", multiple: true, required: false
-    input "devicesRelay", "capability.relaySwitch", title: "Relays", multiple: true, required: false
-    input "devicesSleep", "capability.sleepSensor", title: "Sleep Sensors", multiple: true, required: false
-    input "devicesSmoke", "capability.smokeDetector", title: "Smoke Detectors", multiple: true, required: false
-    input "devicesSpeech", "capability.speechSynthesis", title: "Speech Synthesis Devices", multiple: true, required: false
-    input "devicesStep", "capability.stepSensor", title: "Step Sensors", multiple: true, required: false
     input "devicesSwitch", "capability.switch", title: "Switches", multiple: true, required: false
-    input "devicesThermostat", "capability.thermostat", title: "Thermostats", multiple: true, required: false
-    input "devicesTouch", "capability.touchSensor", title: "Touch Sensors", multiple: true, required: false
-    input "devicesValve", "capability.valve", title: "Valves", multiple: true, required: false
-    input "devicesWater", "capability.waterSensor", title: "Water Sensors", multiple: true, required: false
+    input "devicesMotion", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
+    input "devicesTemperature", "capability.temperatureMeasurement", title: "Temperature", multiple: true, required: false
+    input "devicesContact", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
+    input "devicesPresence", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
+    input "devicesLock", "capability.lock", title: "Locks", multiple: true, required: false
   }
-  section("StackStorm Installation Configuration") {
-    input "st2ApiUri", "text", title: "StackStorm API URI", required: false
-    input "st2AuthUri", "text", title: "Stackstorm Auth URI", required: false
-    input "st2Auth", "boolean", title: "Enable StackStorm Authentication", default: true, required: false
-    input "st2Username", "text", title: "StackStorm Auth Username", required: false
-    input "st2Password", "password", title: "StackStorm Auth Password", required: false
+  section("MQTT Server Configuration") {
+    input "mqttServer", "text", title: "MQTT Server Hostname/IP", required: false
+    input "mqttPort", "text", title: "MQTT Server Port", default: 1883, required: false
+    input "mqttUsername", "boolean", title: "MQTT Username", required: false
+    input "mqttPassword", "text", title: "MQTT Password", required: false
   }
 }
 
@@ -91,87 +75,25 @@ def updated() {
 def eventSubscribe() {
   log.debug "[eventSubscribe]: Entered eventSubscribe()"
 
-  subscribe(devicesAlarm, "alarm", eventHandler)
-  subscribe(devicesBattery, "battery", eventHandler)
-  subscribe(devicesButton, "button", eventHandler)
-  subscribe(devicesCO2, "co2", eventHandler)
-  subscribe(devicesContact, "contact", eventHandler)
-  subscribe(devicesImageCapture, "image", eventHandler)
-  subscribe(devicesLock, "lock", eventHandler)
-  subscribe(devicesMotion, "motion", eventHandler)
-  subscribe(devicesPresence, "presence", eventHandler)
-  subscribe(devicesHumidity, "humidity", eventHandler)
-  subscribe(devicesSleep, "sleep", eventHandler)
-  subscribe(devicesSmoke, "smoke", eventHandler)
   subscribe(devicesSwitch, "switch", eventHandler)
+  subscribe(devicesMotion, "motion", eventHandler)
   subscribe(devicesTemperature, "temperature", eventHandler)
-  subscribe(devicesThermostat, "thermostat", eventHandler)
-  subscribe(devicesValve, "valve", eventHandler)
-  subscribe(devicesWater, "water", eventHandler)
+  subscribe(devicesContact, "contact", eventHandler)
+  subscribe(devicesPresence, "presence", eventHandler)
+  subscribe(devicesLock, "lock", eventHandler)
 }
 
 def eventHandler(event) {
   log.debug "[eventHandler]: Received event: ${event}"
 
-  sendEventToStackStorm(event)
-}
-
-def getAuthToken() {
-  // Check to see if token is in keystore
-  // if it exists, check the token expiry date
-  //   if it's still valid, return that
-  //   otherwise, go and get a new token
-  // if not, go and get a new token
-  //
-  // http://docs.stackstorm.com/authentication.html#usage
-  def token = "yermom"
-
-  return token
-}
-
-/* sendEventToStackStorm
- *   Takes Event object and forwards to StackStorm WebHook Endpoint
- */
-def sendEventToStackStorm(event) {
-  log.debug "[sendEventToStackStorm] Sending event to StackStorm ${event}"
-
-  def uri = "${st2ApiUri}/v1/webhooks/smartthings/event"
-  def headers = [:]
-
-  if (st2Auth) {
-    headers["X-Auth-Token"] = getAuthToken()
-  }
-
-  def body = [
-    "id": event.id,
-    "name": event.name,
-    "value": event.value,
-    "device_id": event.deviceId,
-    "hub_id": event.hubId,
-    "location_id": event.locationId,
-    "state_change": event.isStateChange(),
-    "raw_description": event.description,
-    "description": event.descriptionText,
-    "date": event.date,
-    "iso_date": event.isoDate,
-  ]
-
-  def payload = [
-    uri: uri,
-    headers: headers,
-    body: body
-  ]
-
-  httpPutJson(payload) { log.debug "[sendEventToStackStorm]: payload=${payload} response=${response}" }
+  sendEventToMQTT(event)
 }
 
 // API Commands
 def apiListDevices() {
-  log.debug "[apiLisdDevices]: Received API list devices with params ${params}"
+  log.debug "[apiListDevices]: Received API list devices with params ${params}"
 
   def type = params.type
-  if (!type) { httpTypeMissing() }
-
   listDevices(type).collect { devicePayload(it, type) }
 }
 
@@ -184,61 +106,55 @@ def apiDeviceCommand() {
   def command = params.command
   def value   = params.value
   def mode    = params.mode
+  def id      = params.id
 
-  if (!type) { httpTypeMissing() }
-  if (!command) { httpCommandMissing() }
+  if (!type) { httpErrorTypeMissing() }
+  if (!command) { httpErrorCommandInvalid() }
 
-  switch(type) {
-    case ['light', 'switch']:
-      def device = getDevice(device, type)
-      return commandLight(device, command, value)
-    case 'lock':
-      def device = getDevice(device, type)
-      return commandLock(device, command, value)
-    case 'mode':
-      return commandMode(value)
-    case 'thermostat':
-      def device = getDevice(device, type)
-      return commandThermostat(device, command, value, mode)
-    default:
-      return httpCommandInvalid()
-      break
+  if (type == 'light' || type == 'switch') {
+    def device = getDevice(id, type)
+    return commandLight(device, command)
+  } else if (type == 'lock') {
+    def device = getDevice(id, type)
+    return commandLock(device, command)
+  } else if (type == 'mode') {
+    return commandMode(value)
+  } else if (type == 'thermostat') {
+    def device = getDevice(id, type)
+    return commandThermostat(device, command, value, mode)
+  } else {
+    return httpErrorCommandInvalid()
   }
 }
 
 def apiDeviceInfo() {
   log.debug "[apiDeviceInfo]: Received API device info with params ${params}"
+  def type = params.type
+  def id = params.id
+  def device = getDevice(id, type)
 
-  def device = getDevice(params.id, params.type)
-  if (!device) { httpDeviceNotFound() }
+  if (!device) { httpErrorDeviceNotFound() }
   else { devicePayload(device, type) }
+}
+
+def sendEventToMQTT(event) {
+  log.debug "[sendEventToMQTT]: Sending event ${event}"
 }
 
 // Meta
 def deviceMap() {
   [
-    alarm: devicesAlarm,
-    battery: devicesBattery,
-    button: devicesButton,
-    co2: devicesCO2,
-    contact: devicesContact,
-    image: devicesImageCapture,
-    lock: devicesLock,
-    motion: devicesMotion,
-    power: devicesPower,
-    presence: devicesPresence,
-    humidity: devicesHumidity,
-    sleep: devicesSleep,
-    step: devicesStep,
     switch: devicesSwitch,
-    thermostat: devicesThermostat,
-    valve: deviceValve,
-    water: deviceWater
+    motion: devicesMotion,
+    temperature: devicesTemperature,
+    contact: devicesContact,
+    presence: devicesPresence,
+    lock: devicesLock
   ]
 }
 
 def listDevices(type) {
-  return deviceMap[type]
+  return deviceMap()[type]
 }
 
 def getDevice(id, type) {
@@ -260,69 +176,45 @@ def devicePayload(device, type) {
     type: type,
   ]
 
-  switch(type) {
-    case "acceleration":
-      state = device.currentState("acceleration")
-      payload["acceleration"] = state.value == "active"
-    case "battery":
-      state = device.currentState("battery")
-      payload["battery"] = state.value.toFloat()
-      break
-    case "contact":
-      state = device.currentState("contact")
-      payload["contact"] = state.value == "closed"
-      break
-    case "motion":
-      state = device.currentState("motion")
-      payload["motion"] == s.value == "active"
-      break
-    case "presence":
-      state = device.currentState("presence")
-      payload["presence"] = state.value == "present"
-      break
-    case "switch":
-      state = device.currentState("switch")
-      payload["switch"] = s.value == "on"
-      break
-    case "temperature":
-      state = device.currentState("temperature")
-      payload["temperature"] = state.value.toFloat()
-      break
-    case "threeAxis":
-      state = device.currentState("threeAxis")
-      payload["x"] = state.xyzValue.x
-      payload["y"] = state.xyzValue.y
-      payload["z"] = state.xyzValue.z
-      break
-    default:
-      break
+  if (type == 'switch') {
+    state = device.currentState("switch")
+    payload["switch"] = state.value == "on"
+  } else if (type == 'motion') {
+    state = device.currentState("motion")
+    payload["motion"] == state.value == "active"
+  } else if (type == 'temperature') {
+    state = device.currentState("temperature")
+    payload["temperature"] = state.value.toFloat()
+  } else if (type == 'contact') {
+    state = device.currentState("contact")
+    payload["contact"] = state.value == "closed"
+  } else if (type == 'presence') {
+    state = device.currentState("presence")
+    payload["presence"] = state.value == "present"
+  } else if (type == 'lock') {
+    state = device.currentState("lock")
+    payload["lock"] = state.value == "locked"
   }
-  // Make sure to also add the timestamp of value
+
   payload["timestamp"] = state.isoDate
 
   return payload
 }
 
 // Commands
-def commandLight(device, command, value) {
-  log.debug "[commandLight]: Executing ${command} (value: ${value}) on ${device}"
+def commandLight(device, command) {
+  log.debug "[commandLight]: Executing ${command} (${device})"
 
-  switch(command) {
-    case "toggle":
-      if (device.currentValue("switch") == "on") {
-        device.off()
-      } else {
-        device.on()
-      }
-      break
-    case "on":
-      device.on()
-      break
-    case "off":
+  if (command == "toggle") {
+    if (device.currentValue("switch") == "on") {
       device.off()
-      break
-    default:
-      break
+    } else {
+      device.on()
+    }
+  } else if (command == "on") {
+    device.on()
+  } else if (command == "off") {
+    device.off()
   }
 
   return [status:"ok"]
@@ -335,25 +227,19 @@ def commandMode(mode) {
   return [status:"ok"]
 }
 
-def commandLock(device, command, value) {
-  log.debug "[commandLock]: executing ${command} (value: ${value} on ${device}"
+def commandLock(device, command) {
+  log.debug "[commandLock]: executing ${command} (${device})"
 
-  switch(command) {
-    case "toggle":
-      if (device.currentValue("lock") == "locked") {
-        device.unlock()
-      } else {
-        device.lock()
-      }
-      break
-    case "unlock":
+  if (command == "toggle") {
+    if (device.currentValue("lock") == "locked") {
       device.unlock()
-      break
-    case "lock":
+    } else {
       device.lock()
-      break
-    default:
-      break
+    }
+  } else if (command == "unlock") {
+    device.unlock()
+  } else if (command == "lock") {
+    device.lock()
   }
 
   return [status:"ok"]
@@ -379,6 +265,6 @@ def commandThermostat(device, command, value, mode) {
 // Helper Functions
 def getMinTemp() {getTemperatureScale() == "F" ? 45 : 7}
 def getMaxTemp() {getTemperatureScale() == "F" ? 90 : 30}
-def httpDeviceNotFound() { httpError(404, "Device not found") }
-def httpCommandInvalid() { httpError(406, "Invalid command") }
-def httpTypeMissing() { httpError(406, "Invalid type") }
+def httpErrorDeviceNotFound() { httpError(404, "Device not found") }
+def httpErrorCommandInvalid() { httpError(406, "Invalid command") }
+def httpErrorTypeMissing() { httpError(406, "Invalid type") }
