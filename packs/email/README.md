@@ -46,7 +46,7 @@ The following attachment settings can be configured:
 * ``download_attachments`` - True to download the attachment and store them in the
   datastore.
 * ``max_attachment_size`` - Maximum size of download attachment bytes. If an
-  attachment exceeds this size it will be skipped and not downloaded.
+  attachment exceeds this size the attachment won't be stored in the datastore.
 * ``attachment_datastore_ttl`` - TTL in seconds for the attachment value which is
   stored in the datastore.
 
