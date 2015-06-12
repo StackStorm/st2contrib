@@ -1,0 +1,14 @@
+name: get_builds
+runner_type: run-python
+description: Get details like build id, commit id and branch name
+enabled: true
+entry_point: get_builds.py
+parameters:
+  reponame:
+    type: string
+    description: supply name of the repository for getting build and branch information
+    required: true
+  username:
+    type: string
+    description: username whose repo's builds you want to see
+    required: true
