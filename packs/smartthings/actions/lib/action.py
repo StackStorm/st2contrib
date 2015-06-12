@@ -35,10 +35,10 @@ class BaseAction(Action):
         url = "{}{}".format(self._url(), endpoint)
         headers = self._headers()
 
-        return requests.get(url, headers=headers).text
+        return requests.get(url, headers=headers).json()
 
     def _put(self, endpoint, params):
         url = "{}{}".format(self._url(), endpoint)
         headers = self._headers()
 
-        return requests.put(url, data=params, headers=headers).text
+        return requests.put(url, data=params, headers=headers).json()
