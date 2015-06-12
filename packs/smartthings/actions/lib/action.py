@@ -32,13 +32,16 @@ class BaseAction(Action):
         return self.url
 
     def _get(self, endpoint):
-        url = "{}{}".format(self._url(), endpoint)
+        url = ''.join([self._url(), endpoint])
         headers = self._headers()
 
-        return requests.get(url, headers=headers).text
+        return requests.get(url, headers=headers).json()
 
     def _put(self, endpoint, params):
-        url = "{}{}".format(self._url(), endpoint)
+        url = ''.join([self._url(), endpoint])
         headers = self._headers()
-
-        return requests.put(url, data=params, headers=headers).text
+        result = requests.put(url, params=params, headers=headers)
+        if not result.text:
+            return {"message": "ok"}
+        else:
+            return result.json()
