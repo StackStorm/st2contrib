@@ -17,4 +17,3 @@ parameters:
     type: "string"
     default: "toggle"
     immutable: true
-
