@@ -17,4 +17,3 @@ parameters:
     type: "string"
     default: "on"
     immutable: true
-
