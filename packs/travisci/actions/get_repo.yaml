@@ -1,0 +1,10 @@
+name: get_repo
+runner_type: run-python
+description: Get details of a repo by giving its id
+enabled: true
+entry_point: get_repo.py
+parameters:
+  repo:
+    type: integer
+    description: supply id of repo for fetching its information
+    required: true
