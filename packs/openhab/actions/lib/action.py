@@ -15,9 +15,8 @@ class BaseAction(Action):
         self.url = "{}:{}/rest/items".format(self.hostname, self.port)
 
         if self.username and self.password:
-            self.auth = base64.encodestring('%s:%s'
-                              % (self.username, self.password)
-                              ).replace('\n', '')
+            self.auth = base64.encodestring(
+                '%s:%s' % (self.username, self.password)).replace('\n', '')
 
     def _headers(self):
         payload = {
