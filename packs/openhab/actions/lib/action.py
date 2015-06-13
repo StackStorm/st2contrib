@@ -29,7 +29,7 @@ class BaseAction(Action):
         return payload
 
     def _get(self, key):
-        url = "{}/{}".format(self.url, key)
+        url = "{}/{}".format(self.url, key) if key else self.url
         payload = {'type': 'json'}
         req = requests.get(url, params=payload, headers=self._headers())
         return self._parse_req(req)
