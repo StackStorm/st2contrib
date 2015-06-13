@@ -44,7 +44,7 @@ class BaseAction(Action):
         req = requests.post(url, data=value, headers=self.headers())
         return self._parse_req(req)
 
-    def _parse_req(req):
+    def _parse_req(self, req):
         if req.status_code != requests.codes.ok:
             req.raise_for_status()
         else:
