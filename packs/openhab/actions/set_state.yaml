@@ -1,13 +1,13 @@
 ---
-name: "set_status"
+name: "set_state"
 runner_type: "python-script"
-description: "Set status on an item"
+description: "Set state on an item"
 enabled: true
-entry_point: "set_status.py"
+entry_point: "set_state.py"
 parameters:
   item:
     type: "string"
-    description: "Item to send commands to"
+    description: "Item to set state on"
     required: true
   state:
     type: "string"
