@@ -16,8 +16,8 @@ class BaseAction(Action):
 
         if self.username and self.password:
             self.auth = base64.encodestring('%s:%s'
-                               %(self.username, self.password)
-                               ).replace('\n', '')
+                              % (self.username, self.password)
+                              ).replace('\n', '')
 
     def _headers(self):
         payload = {
