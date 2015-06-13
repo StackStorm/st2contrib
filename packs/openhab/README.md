@@ -4,7 +4,7 @@ This integration pack allows you to integratie with [OpenHAB](http://openhab.org
 
 ## Configuration
 
-* `host` - Hostname of OpenHAB
+* `hostname` - Hostname of OpenHAB
 * `port` - Port OpenHAB listens on (default: 8080)
 * `username` - Username to connect to OpenHAB (optional)
 * `password` - Password to connect to OpenHAB (optional)

@@ -1,6 +1,6 @@
 ### Place configuration data for your pack here.
 ---
-host: "http://localhost"
+hostname: "http://localhost"
 port: "8080"
 
 ## Optional
