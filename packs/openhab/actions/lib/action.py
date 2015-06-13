@@ -12,7 +12,7 @@ class BaseAction(Action):
         self.password = self.config.get('password', None)
         self.hostname = self.config.get('hostname', None)
         self.port = self.config.get('port', 8080)
-        self.url = "{}:{}/rest/items".format(self.username, self.password)
+        self.url = "{}:{}/rest/items".format(self.hostname, self.port)
 
         if self.username and self.password:
             self.auth = base64.encodestring('%s:%s'
