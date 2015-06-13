@@ -1,8 +1,8 @@
-name: build_repo
+name: start_build
 runner_type: run-python
 description: Restart or Cancel a Build
 enabled: true
-entry_point: build_repo.py
+entry_point: start_build.py
 parameters:
   buildid:
     type: integer
