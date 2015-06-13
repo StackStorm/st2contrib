@@ -45,10 +45,8 @@ class BaseAction(Action):
         return self._parse_req(req)
 
     def _parse_req(self, req):
-        if req.status_code != requests.codes.ok:
-            req.raise_for_status()
-        else:
-            try:
-                return req.json()
-            except:
-                return req.text
+        req.raise_for_status()
+        try:
+            return req.json()
+        except:
+            return req.text
