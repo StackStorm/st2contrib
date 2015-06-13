@@ -32,28 +32,19 @@ class BaseAction(Action):
         url = "{}/{}".format(self.url, key)
         payload = {'type': 'json'}
         req = requests.get(url, params=payload, headers=self.headers())
-        if req.status_code != requests.codes.ok:
-            req.raise_for_status()
-        else:
-            try:
-                return req.json()
-            except:
-                return req.text
+        return self._parse_req(req)
 
     def _put(self, key, value):
         url = "{}/{}/state".format(self.url, key)
         req = requests.put(url, data=value, headers=self.headers())
-        if req.status_code != requests.codes.ok:
-            req.raise_for_status()
-        else:
-            try:
-                return req.json()
-            except:
-                return req.text
+        return self._parse_req(req)
 
     def _post(self, key, value):
         url = "{}/{}".format(self.url, key)
         req = requests.post(url, data=value, headers=self.headers())
+        return self._parse_req(req)
+
+    def _parse_req(req):
         if req.status_code != requests.codes.ok:
             req.raise_for_status()
         else:
