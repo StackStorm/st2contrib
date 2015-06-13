@@ -31,17 +31,17 @@ class BaseAction(Action):
     def _get(self, key):
         url = "{}/{}".format(self.url, key)
         payload = {'type': 'json'}
-        req = requests.get(url, params=payload, headers=self.headers())
+        req = requests.get(url, params=payload, headers=self._headers())
         return self._parse_req(req)
 
     def _put(self, key, value):
         url = "{}/{}/state".format(self.url, key)
-        req = requests.put(url, data=value, headers=self.headers())
+        req = requests.put(url, data=value, headers=self._headers())
         return self._parse_req(req)
 
     def _post(self, key, value):
         url = "{}/{}".format(self.url, key)
-        req = requests.post(url, data=value, headers=self.headers())
+        req = requests.post(url, data=value, headers=self._headers())
         return self._parse_req(req)
 
     def _parse_req(self, req):
