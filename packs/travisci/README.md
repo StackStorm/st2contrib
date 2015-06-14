@@ -63,7 +63,3 @@ In order to get the git authentication with scopes, you need to go to settings t
 When you make your profile on Travis CI you will be assigned a token for Travis API. you can see that by clicking on you profile settings tab. Once you have the token replace it in config file of action so it can communicate with the Travis CI endpoints after authentication.
 
 ![Alt text] (/_images/travisci "Getting token from Travis CI")
-
-
-
-
