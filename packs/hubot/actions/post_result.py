@@ -2,7 +2,7 @@ import json
 import httplib
 import requests
 import six
-import yaml
+import pyaml
 from six.moves.urllib.parse import urljoin
 
 from st2actions.runners.pythonrunner import Action
@@ -13,7 +13,7 @@ __all__ = [
 
 
 def _serialize(data):
-    return yaml.safe_dump(data, default_flow_style=False)
+    return pyaml.dump(data)
 
 
 def format_possible_failure_result(result):
