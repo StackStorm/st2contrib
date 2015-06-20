@@ -37,10 +37,10 @@ class PublishAction(Action):
             if not self._ssl_cacert:
                 raise ValueError('Missing "ssl_cacert" config option')
 
-            if not self.self._ssl_cert:
+            if not self._ssl_cert:
                 raise ValueError('Missing "ssl_cert" config option')
 
-            if not self.self._ssl_key:
+            if not self._ssl_key:
                 raise ValueError('Missing "ssl_key" config option')
 
             self._ssl_payload = {

@@ -47,18 +47,16 @@ class MQTTSensor(Sensor):
                 raise ValueError('[mqtt_sensor]: Missing "ssl_cacert" \
                                     config option')
 
-            if not self.self._ssl_cert:
+            if not self._ssl_cert:
                 raise ValueError('[mqtt_sensor]: Missing "ssl_cert" \
                                     config option')
 
-            if not self.self._ssl_key:
+            if not self._ssl_key:
                 raise ValueError('[mqtt_sensor]: Missing "ssl_key" \
                                     config option')
 
             self._client.tls_set(self._ssl_cacert, certfile=self._ssl_cert,
-                                keyfile=self._ssl_key,
-                                cert_reqs=ssl.CERT_REQUIRED,
-                                tls_version=ssl.PROTOCOL_TLSv1, ciphers=None)
+                                keyfile=self._ssl_key)
 
         # Wire up the adapter with the appropriate callback methods
         self._client.on_connect = self._on_connect
