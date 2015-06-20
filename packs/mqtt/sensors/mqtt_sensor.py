@@ -16,18 +16,21 @@ class MQTTSensor(Sensor):
         super(MQTTSensor, self).__init__(sensor_service=sensor_service,
                                          config=config)
 
+        self._trigger = 'mqtt.message'
+        self._logger = self._sensor_service.get_logger(__name__)
+
         self._client = None
-        self._hostname = self.config.get('hostname', None)
-        self._port = self.config.get('port', 1883)
-        self._client_id = self.config.get('client_id', None)
-        self._userdata = self.config.get('userdata', None)
-        self._username = self.config.get('username', None)
-        self._password = self.config.get('password', None)
-        self._subscribe = self.config.get('subscribe', None)
-        self._ssl = self.config.get('ssl', False)
-        self._ssl_cacert = self.config.get('ssl_cacert', None)
-        self._ssl_cert = self.config.get('ssl_cert', None)
-        self._ssl_key = self.config.get('ssl_key', None)
+        self._hostname = self._config.get('hostname', None)
+        self._port = self._config.get('port', 1883)
+        self._client_id = self._config.get('client_id', None)
+        self._userdata = self._config.get('userdata', None)
+        self._username = self._config.get('username', None)
+        self._password = self._config.get('password', None)
+        self._subscribe = self._config.get('subscribe', None)
+        self._ssl = self._config.get('ssl', False)
+        self._ssl_cacert = self._config.get('ssl_cacert', None)
+        self._ssl_cert = self._config.get('ssl_cert', None)
+        self._ssl_key = self._config.get('ssl_key', None)
 
     def setup(self):
         self._client = mqtt.Client(self._client_id, clean_session=True,
