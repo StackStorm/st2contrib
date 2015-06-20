@@ -93,8 +93,10 @@ class MQTTSensor(Sensor):
                                                             str(msg.payload)))
 
         payload = {
-            'client': client,
             'userdata': userdata,
-            'message': msg,
+            'topic': msg.topic,
+            'message': str(msg.payload),
+            'retain': msg.retain,
+            'qos': msg.qos,
         }
         self._sensor_service.dispatch(trigger=self._trigger, payload=payload)

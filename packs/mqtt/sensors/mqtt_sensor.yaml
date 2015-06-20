@@ -7,6 +7,8 @@
       name: "message"
       description: "MQTT message payload"
       payload_info:
-        - client
         - userdata
         - message
+        - topic
+        - retain
+        - qos
