@@ -26,7 +26,7 @@ class PublishAction(Action):
         self._ssl_payload = None
         self._auth_payload = None
 
-    def run(self, topic, message, qos=0, retain=False):
+    def run(self, topic, message=None, qos=0, retain=False):
         if self._username:
             self._auth_payload = {
                 'username': self._username,
@@ -49,7 +49,7 @@ class PublishAction(Action):
                 'keyfile': self._ssl_key,
             }
 
-        publish.single(topic, payload=self._message, qos=qos, retain=retain,
+        publish.single(topic, payload=message, qos=qos, retain=retain,
                        hostname=self._hostname, port=self._port,
                        client_id=self._client_id, keepalive=60,
                        auth=self._auth_payload, tls=self._ssl_payload,

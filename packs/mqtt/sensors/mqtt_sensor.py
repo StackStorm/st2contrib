@@ -34,6 +34,8 @@ class MQTTSensor(Sensor):
         self._ssl_key = self._config.get('ssl_key', None)
 
     def setup(self):
+        self._logger.debug('[MQTTSensor]: setting up sensor...')
+
         self._client = mqtt.Client(self._client_id, clean_session=True,
                              userdata=self._userdata, protocol=self._protocol)
 
@@ -66,9 +68,11 @@ class MQTTSensor(Sensor):
         self._client.connect(self._hostname, port=self._port)
 
     def run(self):
+        self._logger.debug('[MQTTSensor]: entering runloop')
         self._client.loop_forever()
 
     def cleanup(self):
+        self._logger.debug('[MQTTSensor]: entering cleanup')
         self._client.disconnect()
 
     def add_trigger(self, trigger):
@@ -88,7 +92,7 @@ class MQTTSensor(Sensor):
                 self._client.subscribe(topic)
 
     def _on_message(self, client, userdata, msg):
-        self._logger.debug('[MQTTSensor] ({}) {}/{}'.format(client,
+        self._logger.debug('[MQTTSensor] Topic: {}, Msg:{}'.format(
                                                             msg.topic,
                                                             str(msg.payload)))
 
