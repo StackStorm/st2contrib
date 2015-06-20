@@ -97,4 +97,4 @@ class MQTTSensor(Sensor):
             'userdata': userdata,
             'message': msg,
         }
-        self._sensor_service.dispatch(trigger=self._trigger, payload=message)
+        self._sensor_service.dispatch(trigger=self._trigger, payload=payload)

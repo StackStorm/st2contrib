@@ -4,7 +4,7 @@
   description: "Listen for events on MQTT bus/topic"
   trigger_types:
     -
-      name: "payload"
+      name: "message"
       description: "MQTT message payload"
       payload_info:
         - client
