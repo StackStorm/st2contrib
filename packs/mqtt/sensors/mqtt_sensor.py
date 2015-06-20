@@ -38,7 +38,7 @@ class MQTTSensor(Sensor):
                              userdata=self._userdata, protocol=self._protocol)
 
         if self._username:
-            self.client.username_pw_set(self._username, password=self._password)
+            self._client.username_pw_set(self._username, password=self._password)
 
         if self._ssl:
             if not self._ssl_cacert:
@@ -53,7 +53,7 @@ class MQTTSensor(Sensor):
                 raise ValueError('[mqtt_sensor]: Missing "ssl_key" \
                                     config option')
 
-            self.client.tls_set(self._ssl_cacert, certfile=self._ssl_cert,
+            self._client.tls_set(self._ssl_cacert, certfile=self._ssl_cert,
                                 keyfile=self._ssl_key,
                                 cert_reqs=ssl.CERT_REQUIRED,
                                 tls_version=ssl.PROTOCOL_TLSv1, ciphers=None)
