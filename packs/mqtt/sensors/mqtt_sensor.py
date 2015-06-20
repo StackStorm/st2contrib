@@ -63,7 +63,7 @@ class MQTTSensor(Sensor):
         self._client.on_message = self._on_message
 
         # Must be the last thing in the chain
-        self._client.connect(self._host, port=self._port)
+        self._client.connect(self._hostname, port=self._port)
 
     def run(self):
         self._client.loop_forever()
