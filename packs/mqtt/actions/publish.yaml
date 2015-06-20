@@ -1,0 +1,15 @@
+---
+name: "publish"
+runner_type: "python-script"
+description: "Publish message to MQTT broker"
+enabled: true
+entry_point: "publish.py"
+parameters:
+  topic:
+    type: "string"
+    description: "MQTT Topic to publish message"
+    required: true
+  message:
+    type: "string"
+    description: "Message payload"
+    required: true
