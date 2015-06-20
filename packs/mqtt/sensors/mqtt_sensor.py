@@ -80,7 +80,7 @@ class MQTTSensor(Sensor):
     def remove_trigger(self, trigger):
         pass
 
-    def _on_connect(client, userdata, flags, rc):
+    def _on_connect(self, client, userdata, flags, rc):
         self._logger.debug('[MQTTSensor]: Connected with result code '+str(rc))
         if self._subscribe:
             for topic in self.subscribe:
