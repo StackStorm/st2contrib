@@ -83,10 +83,10 @@ class MQTTSensor(Sensor):
         pass
 
     def _on_connect(self, client, userdata, flags, rc):
-        self._logger.debug('[MQTTSensor]: Connected with result code '+str(rc))
+        self._logger.debug('[MQTTSensor]: Connected with code {}' + str(rc))
         if self._subscribe:
             for topic in self._subscribe:
-                self._logger.debug('[MQTTSensor]: Subscribing to '+str(topic))
+                self._logger.debug('[MQTTSensor]: Sub to ' + str(topic))
                 self._client.subscribe(topic)
 
     def _on_message(self, client, userdata, msg):
