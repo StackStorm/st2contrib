@@ -22,6 +22,7 @@ class MQTTSensor(Sensor):
         self._client = None
         self._hostname = self._config.get('hostname', None)
         self._port = self._config.get('port', 1883)
+        self._protocol = self._config.get('protocol', 'MQTTv311')
         self._client_id = self._config.get('client_id', None)
         self._userdata = self._config.get('userdata', None)
         self._username = self._config.get('username', None)
@@ -34,7 +35,7 @@ class MQTTSensor(Sensor):
 
     def setup(self):
         self._client = mqtt.Client(self._client_id, clean_session=True,
-                             userdata=self._userdata, protocol=MQTTv311)
+                             userdata=self._userdata, protocol=self._protocol)
 
         if self._username:
             self.client.username_pw_set(self._username, password=self._password)
