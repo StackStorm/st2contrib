@@ -20,4 +20,3 @@ parameters:
     type: "string"
     description: "ID of device to inspect"
     required: true
-

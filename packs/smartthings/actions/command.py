@@ -5,7 +5,7 @@ class SendCommandAction(BaseAction):
     def run(self, device_type=None, device_id=None, command=None,
                 value=None, mode=None):
         params = {}
-        url = "/{}{}".format(device_type, device_id)
+        url = "/{}/{}".format(device_type, device_id)
 
         if command:
             params['command'] = command
