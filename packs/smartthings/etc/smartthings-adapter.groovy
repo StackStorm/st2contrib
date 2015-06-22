@@ -14,15 +14,15 @@
  *
  */
 definition(
-  name: "MQTT.bridge",
+  name: "StackStorm.bridge",
   namespace: "StackStorm",
   author: "James Fryman",
-  description: "API/MQTT integration with SmartThings",
+  description: "SmartThings integration with StackStorm",
   category: "SmartThings Labs",
   iconUrl: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
   iconX2Url: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
   iconX3Url: "https://cloud.githubusercontent.com/assets/20028/6063021/ccfde732-ad19-11e4-99f6-08e55e42cf28.jpeg",
-  oauth: [displayName: "API/MQTT / SmartThings Integration", displayLink: ""]
+  oauth: [displayName: "StackStorm / SmartThings Integration", displayLink: ""]
 )
 
 // SmartApp Preferences
@@ -141,6 +141,7 @@ def sendEventToStackStorm(event) {
   def uri = st2Server
   def headers = [
     "X-API-Key": st2ApiKey,
+    "Content-Type": "application/json",
   ]
 
   def body = [
