@@ -36,11 +36,9 @@ preferences {
     input "devicesPresence", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
     input "devicesLock", "capability.lock", title: "Locks", multiple: true, required: false
   }
-  section("MQTT Server Configuration") {
-    input "mqttServer", "text", title: "MQTT Server Hostname/IP", required: false
-    input "mqttPort", "text", title: "MQTT Server Port", default: 1883, required: false
-    input "mqttUsername", "boolean", title: "MQTT Username", required: false
-    input "mqttPassword", "text", title: "MQTT Password", required: false
+  section("StackStorm Server Configuration") {
+    input "st2Server", "text", title: "FQDN to StackStorm Server", required: false
+    input "st2ApiKey", "text", title: "StackStorm / SmartThings API Key", required: false
   }
 }
 
@@ -86,7 +84,7 @@ def eventSubscribe() {
 def eventHandler(event) {
   log.debug "[eventHandler]: Received event: ${event}"
 
-  sendEventToMQTT(event)
+  sendEventToStackStorm(event)
 }
 
 // API Commands
@@ -137,8 +135,35 @@ def apiDeviceInfo() {
   else { devicePayload(device, type) }
 }
 
-def sendEventToMQTT(event) {
-  log.debug "[sendEventToMQTT]: Sending event ${event}"
+def sendEventToStackStorm(event) {
+  log.debug "[sendEventToStackStorm] Sending event to StackStorm ${event}"
+
+  def uri = st2Server
+  def headers = [
+    "X-API-Key": st2ApiKey,
+  ]
+
+  def body = [
+    "id": event.id,
+    "name": event.name,
+    "value": event.value,
+    "device_id": event.deviceId,
+    "hub_id": event.hubId,
+    "location_id": event.locationId,
+    "state_change": event.isStateChange(),
+    "raw_description": event.description,
+    "description": event.descriptionText,
+    "date": event.date,
+    "iso_date": event.isoDate,
+  ]
+
+  def payload = [
+    uri: uri,
+    headers: headers,
+    body: body
+  ]
+
+  httpPutJson(payload) { log.debug "[sendEventToStackStorm]: payload=${payload} response=${response}" }
 }
 
 // Meta
