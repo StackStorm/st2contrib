@@ -30,7 +30,7 @@ class SmartThingsSensor(Sensor):
         if not self._api_key:
             raise Exception('[smartthings_sensor]: api_key config option not set')
 
-        @self._app.route('/', methods=['POST'])
+        @self._app.route('/', methods=['PUT'])
         def process_incoming():
             if request.headers['X-Api-Key'] == self._api_key:
                 return self._process_request(request)
