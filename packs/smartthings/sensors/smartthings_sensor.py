@@ -1,6 +1,7 @@
 import eventlet
 import json
 from flask import json, Flask
+from st2reactor.sensor.base import Sensor
 
 eventlet.monkey_patch(
     os=True,
