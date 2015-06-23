@@ -1,6 +1,6 @@
 import eventlet
 import json
-from flask import request, json, Flask
+from flask import request, json, Flask, Response
 from st2reactor.sensor.base import Sensor
 
 eventlet.monkey_patch(
@@ -16,11 +16,13 @@ class SmartThingsSensor(Sensor):
         super(SmartThingsSensor, self).__init__(sensor_service=sensor_service,
                                                 config=config)
 
+        self._trigger = 'smartthings.event'
+        self._logger = self._sensor_service.get_logger(__name__)
+
         self._listen_ip = self._config.get('listen_ip', '0.0.0.0')
         self._listen_port = self._config.get('listen_port', '12000')
         self._api_key = self._config.get('api_key', None)
 
-        self._trigger = 'smartthings.event'
         self._app = Flask(__name__)
 
     def setup(self):
@@ -32,10 +34,15 @@ class SmartThingsSensor(Sensor):
 
         @self._app.route('/', methods=['PUT'])
         def process_incoming():
+            response = None
             if request.headers['X-Api-Key'] == self._api_key:
-                return self._process_request(request)
+		status = self._process_request(request)
+                response = Response(status[0], status=status[1])
             else:
-                abort(401)
+                response = Response('fail', status=401)
+
+            return response
+
 
         self._app.run(host=self._listen_ip, port=self._listen_port)
 
@@ -53,7 +60,12 @@ class SmartThingsSensor(Sensor):
 
     def _process_request(self, request):
         if request.headers['Content-Type'] == 'application/json':
-            payload = json.dumps(request.json)
+            payload = request.json
+            self._logger.debug('[smartthings_sensor]: processing request {}'.format(payload))
+
             self._sensor_service.dispatch(trigger=self._trigger, payload=payload)
+            return ('ok', 200)
         else:
-            return "415 Unsupported Media Type"
+            return ('fail', 415)
+
+
