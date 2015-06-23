@@ -1,6 +1,7 @@
 from st2actions.runners.pythonrunner import Action
 import requests
 
+
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
@@ -12,7 +13,7 @@ class BaseAction(Action):
             api_token = self.config.get('api_token', None)
 
             if not api_token:
-               raise ValueError('Missing "api_token" config option')
+                raise ValueError('Missing "api_token" config option')
             else:
                 self.headers = {
                     "Authorization": "Bearer {}".format(api_token)

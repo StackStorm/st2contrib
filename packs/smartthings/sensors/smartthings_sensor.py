@@ -32,7 +32,7 @@ class SmartThingsSensor(Sensor):
         if not self._api_key:
             raise Exception('[smartthings_sensor]: api_key config option not set')
 
-        ## Routes ##
+        # Routes
         @self._app.route('/', methods=['PUT'])
         def process_incoming():
             response = None
@@ -44,7 +44,7 @@ class SmartThingsSensor(Sensor):
 
             return response
 
-        ## Start the Flask App ##
+        # Start the Flask App
         self._app.run(host=self._listen_ip, port=self._listen_port)
 
     def cleanup(self):
