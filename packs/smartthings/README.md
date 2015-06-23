@@ -1,8 +1,7 @@
 # SmartThings IoT Integration Pack
 
-This integration pack allows you to integrate with SmartThings. Works
-by setting up an API to your device via SmartApp. Subscribing to events
-requires an MQTT bridge setup.
+This integration pack allows you to integrate with SmartThings. This works
+by sending SmartThings events to StackStorm via HTTP Sensor.
 
 The adapter is modeled heavily after [David Janes's SmartThings/MQTT](https://github.com/dpjanes/iotdb-smartthings)
 and the [SmartTiles](http://www.smarttiles.click) to setup an API that can be
@@ -10,8 +9,9 @@ called via StackStorm actions located within this pack.
 
 ## Configuration
 
-* `api_token` - API token to access SmartThings SmartApp
+* `api_token` - API token to send commands from StackStorm -> SmartThings
 * `api_endpoint` - HTTP endpoint for SmartThings SmartApp
+* `api_key` - Shared API Key to send SmartThings events -> StackStorm
 
 ## Actions
 
@@ -36,4 +36,3 @@ the file located at `etc/smartthings-adapter.groovy`.
   * https://graph.api.smartthings.com/
 * Create a new SmartApp
   * Click on "+ New SmartApp"
-  * ... eh... write something else.
