@@ -32,18 +32,19 @@ class SmartThingsSensor(Sensor):
         if not self._api_key:
             raise Exception('[smartthings_sensor]: api_key config option not set')
 
+        ## Routes ##
         @self._app.route('/', methods=['PUT'])
         def process_incoming():
             response = None
             if request.headers['X-Api-Key'] == self._api_key:
-		status = self._process_request(request)
+                status = self._process_request(request)
                 response = Response(status[0], status=status[1])
             else:
                 response = Response('fail', status=401)
 
             return response
 
-
+        ## Start the Flask App ##
         self._app.run(host=self._listen_ip, port=self._listen_port)
 
     def cleanup(self):
@@ -67,5 +68,3 @@ class SmartThingsSensor(Sensor):
             return ('ok', 200)
         else:
             return ('fail', 415)
-
-
