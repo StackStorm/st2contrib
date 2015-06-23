@@ -90,10 +90,6 @@ class MQTTSensor(Sensor):
                 self._client.subscribe(topic)
 
     def _on_message(self, client, userdata, msg):
-        self._logger.debug('[MQTTSensor] Topic: {}, Msg:{}'.format(
-                                                            msg.topic,
-                                                            str(msg.payload)))
-
         payload = {
             'userdata': userdata,
             'topic': msg.topic,
