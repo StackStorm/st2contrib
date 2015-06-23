@@ -29,10 +29,19 @@ called via StackStorm actions located within this pack.
 
 ## Installing SmartThings SmartApp
 
-This integration requires a Groovy SmartApp installed in your acount. See
+This integration requires a Groovy SmartApp installed in your SmartThings Developer acount. See
 the file located at `etc/smartthings-adapter.groovy`.
 
 * Log into SmartThings
   * https://graph.api.smartthings.com/
 * Create a new SmartApp
   * Click on "+ New SmartApp"
+  * Click on the "From Code" navigation element.
+  * Copy and paste the contents of `etc/smartthings-adapter.groovy` into the empty dialog
+  * Press "Create"
+* Once the new SmartApp is created, Click "Publish" and select "For Me"
+* In the right-hand pane, select your home location and press "Publish"
+  * Once this refreshes, select the devices that you would like to be able to send/receive from
+  * Ensure that the StackStorm FQDN and shared API key are set.
+  * Press "Install"
+* Finally, the Simulator should load. At the bottom of the right hand pane lies the `api_token` and `api_endpoint` values to be added to `config.yaml`
