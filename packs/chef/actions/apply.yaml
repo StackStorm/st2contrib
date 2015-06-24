@@ -1,30 +1,29 @@
 ---
-name: 'solo'
+name: 'apply'
 runner_type: 'run-remote-script'
-description: 'Performs chef-solo run on remote hosts.'
+description: 'Performs one-off resource converge on remote hosts.'
 enabled: true
-entry_point: 'chef_solo.py'
+entry_point: 'chef_apply.py'
 parameters:
-    environment:
-        description: 'Set the Chef Environment on the node'
-        type: 'string'
     attributes:
         description: 'Load attributes from a JSON file or URL'
         type: 'string'
-        required: True
     log_level:
         description: 'Set the log level (debug, info, warn, error, fatal)'
         type: 'string'
     why_run:
         description: "Enable whyrun mode"
         type: 'boolean'
-    override_runlist:
-        description: 'Replace current run list with specified items'
-        type: 'string'
-    recipe_url:
-        description: 'Pull down a remote gzipped tarball of recipes and untar it to the cookbook cache'
-        type: 'string'
+    execute:
+        description: "Execute resources supplied in a string"
+        type: string
+    minimal_ohai:
+        description: "Only run the bare minimum ohai plugins chef needs to function"
+        type: boolean
+    recipe_file:
+        description: "Path to the recipe file to be executed (relative to a remote host)"
+        type: string
     timeout:
-        default: 1200
+        default: 300
         description: Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds.
         type: integer
