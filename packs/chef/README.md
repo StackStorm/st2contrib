@@ -26,12 +26,13 @@ Performs remote invocation of *chef-apply*.
 
 #### parameters:
 
-* `attributes` - Specify a path on remote a node or URL to load json attributes from. *Default*: `none`. 
+* `attributes` - Specify a path on remote a node or URL to load json attributes from. *Default*: `none`.
 * `log_level` - Set the log level (debug, info, warn, error, fatal). *Default*: `none`.
 * `why_run` - Set to `true` to enable whyrun mode. *Default*: `false`.
 * `recipe_file` - Specifies the path to a recipe file to be executed (relative to the remote host). *Default*: `none`.
 * `execute` - Execute resources supplied in a string. *Default*: `none`.
 * `minimal_ohai` - Set to `true` to run with the bare minimum of ohai plugins chef needs to function". *Default*: `none`.
+  Note: This option is only available in chef >= 12.3.
 
 ### chef.solo action
 
@@ -52,7 +53,7 @@ Performs remote invocation of *chef-client*.
 
 #### parameters:
 
-Parameters *environment, attributes, log_level, why_run, override_runlist* are the same as for **chef.solo** action. 
+Parameters *environment, attributes, log_level, why_run, override_runlist* are the same as for **chef.solo** action.
 
 * `rewrite_runlist` - Specify a **string** providing rewrite run list. Permanently replaces the current run list with specified items. *Default*: `none`.
 
@@ -78,7 +79,7 @@ st2 run chef.ohai hosts=st2_agent_1
 # and the file must exist there.
 st2 run chef.apply hosts=chef_node minimal_ohai=true sudo=true recipe_file=/tmp/a.rb
 
-# Running one-off apply command, execute accepts ruby code as a string. 
+# Running one-off apply command, execute accepts ruby code as a string.
 st2 run chef.apply hosts=chef_node minimal_ohai=true sudo=true execute="package('unrar') { action :install }"
 ```
 
