@@ -1,0 +1,7 @@
+---
+name: "hubot_branch"
+action_ref: "hubot.branch"
+description: "Show the currently deployed hubot branch"
+formats:
+  - "hubot branch"
+  - "hubot branch on {{hosts}}"

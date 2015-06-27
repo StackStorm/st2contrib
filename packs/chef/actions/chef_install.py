@@ -1,26 +1,26 @@
 #!/usr/bin/env python2.7
 
 import sys
-import argparse
 from lib import shellhelpers as shell
 
-class ChefInstaller(object):
-    from lib.omnibus import Omnibus
 
+class ChefInstaller(object):
+    '''Implements chef installation on the node.
     '''
-    Implements chef installation on the node.
-    '''
-    SUPPORTED_METHODS = [ 'omnibus' ]
+    # import installation helpers
+    from lib.omnibus import Omnibus  # noqa
+
+    SUPPORTED_METHODS = ['omnibus']
 
     cmdline_options = [
-        ('-o', '--omnibus', { 'action': 'store_true' }),
-        ('-p', '--pre_release', { 'action': 'store_true' }),
+        ('-m', '--method', {}),
+        ('-p', '--pre_release', {'action': 'store_true'}),
         ('-v', '--version', {}),
         ('-d', '--download_path', {})
     ]
 
-
-    def install(self, install_method, options):
+    @staticmethod
+    def install(install_method, options):
         exit_code = 0
         installer = getattr(ChefInstaller, install_method.capitalize())(options)
         if not installer.chef_installed():
@@ -29,19 +29,19 @@ class ChefInstaller(object):
             sys.stdout.write("Chef is already installed, skipping installation...\n")
         sys.exit(exit_code)
 
-
     def execute(self):
-        self.parser = shell.CmdlineParser(self.cmdline_options)
-        options = self.parser.parse()
-        install_method = [i for i in options.keys() if i in self.SUPPORTED_METHODS ]
+        parser = shell.CmdlineParser(self.cmdline_options)
+        options = parser.parse()
+        install_method = options['method']
 
-        if len(install_method) > 1:
-            sys.stderr.write("You can't use more than one installation method!\n")
-            sys.stderr.write("Choose one of the following methods: %s\n" % ', '.join(self.SUPPORTED_METHODS))
+        if install_method not in self.SUPPORTED_METHODS:
+            error = "Chef pack doesn't support the given "\
+                    "installation method: {}\n".format(install_method)
+            sys.stderr.write(error)
             sys.exit(1)
 
-        del(options[install_method[0]])
-        self.install(install_method[0], options)
+        del options['method']
+        self.install(install_method, options)
 
 
 if __name__ == '__main__':

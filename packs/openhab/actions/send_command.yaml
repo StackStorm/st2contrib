@@ -1,0 +1,15 @@
+---
+name: "send_command"
+runner_type: "python-script"
+description: "Send a command to an item"
+enabled: true
+entry_point: "send_command.py"
+parameters:
+  item:
+    type: "string"
+    description: "Item to send commands to"
+    required: true
+  command:
+    type: "string"
+    description: "Command to send"
+    required: true

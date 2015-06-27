@@ -1,0 +1,7 @@
+---
+name: "st2_actions_list"
+action_ref: "st2.actions.list"
+description: "List available StackStorm actions."
+formats:
+    - "st2 list actions"
+    - "st2 list actions from {{ pack }}"

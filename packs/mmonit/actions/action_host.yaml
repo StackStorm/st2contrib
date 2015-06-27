@@ -1,0 +1,25 @@
+---
+name: action_host
+runner_type: run-python
+description: Performs the specified action for the selected host services.
+enabled: true
+entry_point: action_host.py
+parameters:
+  host_id:
+    type: integer
+    description: 'The host id.'
+    required: true
+  action:
+    type: string
+    description: 'The action. Possible values: "start", "stop", "restart", "monitor", "unmonitor".'
+    required: true
+    enum:
+      - start
+      - stop
+      - restart
+      - monitor
+      - unmonitor
+  service:
+    type: string
+    description: 'The service name to perform the action on.'
+    required: true

@@ -1,0 +1,16 @@
+name: recover_incident
+runner_type: run-python
+description: Recover a triggered event on victorops
+enabled: true
+entry_point: recover_incident.py
+
+parameters:
+  entity:
+    type: string
+    description: "Provide entity id, This would be used by victorops for stacking up incidents related to this entity"
+    required: true
+  message:
+    type: string
+    description: "Descriptive message about the event"
+    required: false
+

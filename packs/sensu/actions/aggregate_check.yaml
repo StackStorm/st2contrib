@@ -1,0 +1,18 @@
+---
+name: check_aggregates
+runner_type: run-local-script
+description: Get Sensu check aggregates
+enabled: true
+entry_point: aggregates.py
+parameters:
+  check:
+    type: string
+    description: The client name
+    required: true
+  age:
+    type: string
+    description: The number of seconds old an aggregate must be to be listed.
+  sudo:
+    immutable: true
+  kwarg_op:
+    immutable: true

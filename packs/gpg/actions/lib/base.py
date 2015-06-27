@@ -11,9 +11,9 @@ class BaseGPGAction(Action):
     def __init__(self, config):
         super(BaseGPGAction, self).__init__(config=config)
 
-        debug = self._config.get('debug', False)
-        gpghome = self._config.get('gpghome', None)
-        gpgbinary = self._config.get('gpgbinary', None)
+        debug = self.config.get('debug', False)
+        gpghome = self.config.get('gpghome', None)
+        gpgbinary = self.config.get('gpgbinary', None)
 
         kwargs = {
             'verbose': debug

@@ -1,0 +1,32 @@
+---
+name: "set_temperature"
+runner_type: "run-python"
+description: "Set current temperature."
+enabled: true
+entry_point: "set_temperature.py"
+parameters:
+  temp:
+    type: "integer"
+    description: "Set target temperature"
+  temp_low:
+    type: "integer"
+    description: "Set target lower temperature for range"
+  temp_high:
+    type: "integer"
+    description: "Set target upper temperature for range"
+  scale:
+    type: "string"
+    description: "Scale to use when setting temperature"
+    enum:
+      - "fahrenheit"
+      - "celsius"
+      - "c"
+      - "f"
+    default: "celsius"
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"
+  device:
+    type: "integer"
+    description: "ID of specific Nest device in a structure"
+

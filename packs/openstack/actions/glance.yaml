@@ -1,0 +1,7 @@
+---
+name: glance
+runner_type: run-local
+description: Run OpenStack Glance commands
+enabled: true
+entry_point: glance.py
+parameters: {}

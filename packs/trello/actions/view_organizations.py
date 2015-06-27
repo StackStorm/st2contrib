@@ -1,5 +1,6 @@
 from lib import action
 
+
 class ViewOrganizationsAction(action.BaseAction):
     def run(self, api_key=None, token=None):
         if api_key:
@@ -10,5 +11,3 @@ class ViewOrganizationsAction(action.BaseAction):
             orgs[org.id] = org.name
 
         return orgs
-
-

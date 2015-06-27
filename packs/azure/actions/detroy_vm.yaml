@@ -1,0 +1,20 @@
+---
+name: destroy_vm
+runner_type: run-python
+description: Destroy a VM.
+enabled: true
+entry_point: destroy_vm.py
+parameters:
+  vm_id:
+    type: string
+    description: ID of a VM to destroy.
+    required: true
+  cloud_service_name:
+    type: string
+    description: Cloud service the vm in question belongs to.
+    required: true
+  deployment_slot:
+    type: string
+    description: Deployment slot the vm in question belongs to.
+    required: false
+    default: "Production"

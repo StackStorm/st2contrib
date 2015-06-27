@@ -1,0 +1,19 @@
+---
+name: upload_file
+runner_type: run-python
+description: Upload a file to the provided container.
+enabled: true
+entry_point: upload_file.py
+parameters:
+  file_path:
+    type: string
+    description: Path to the local file to upload.
+    required: true
+  container_name:
+    type: string
+    description: Name of the container to upload the file to.
+    required: true
+  object_name:
+    type: string
+    description: Name for the uploaded object. If not provided, local file name is used.
+    required: false

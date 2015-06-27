@@ -1,0 +1,22 @@
+---
+name: "get_temperature"
+runner_type: "run-python"
+description: "Get the current temperature."
+enabled: true
+entry_point: "get_temperature.py"
+parameters:
+  scale:
+    type: "string"
+    description: "Scale to use when setting temperature"
+    enum:
+      - "fahrenheit"
+      - "celsius"
+      - "c"
+      - "f"
+    default: "celsius"
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"
+  device:
+    type: "integer"
+    description: "ID of specific Nest device in a structure"

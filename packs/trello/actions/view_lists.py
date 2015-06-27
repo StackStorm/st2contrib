@@ -1,5 +1,6 @@
 from lib import action
 
+
 class Action(action.BaseAction):
     def run(self, board_id, api_key=None, token=None):
         if api_key:
@@ -14,6 +15,3 @@ class Action(action.BaseAction):
             }
 
         return lists
-
-
-

@@ -1,0 +1,10 @@
+---
+name : elasticsearch
+description : st2 elasticsearch integration pack
+keywords:
+  - elasticsearch
+  - curator
+  - databases
+version : 0.1.2
+author : st2-dev
+email : info@stackstorm.com

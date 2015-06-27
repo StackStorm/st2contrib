@@ -1,5 +1,6 @@
 import eventlet
 import requests
+from datetime import datetime
 
 from st2reactor.sensor.base import PollingSensor
 
@@ -31,12 +32,15 @@ class DripstatAlertSensor(PollingSensor):
 
     def poll(self):
         for application in self._applications:
-            alerts = self._api_request(endpoint='/activeAlerts', params={'appId': application['id']})
+            params = {'appId': application['id']}
+            alerts = self._api_request(endpoint='/activeAlerts', params=params)
             for alert in alerts:
                 last_alert_timestamp = self._get_last_alert_timestamp(application['name'])
-                if alert['startedAt'] > last_alert_timestamp:
-                    self._set_last_alert_timestamp(application['name'], alert['startedAt'])
-                    self._dispatch_trigger_for_alert(application=application['name'], alert=alert)
+                epoch = int(alert['startedAt']) / 1000
+                if epoch > last_alert_timestamp:
+                    self._set_last_alert_timestamp(application['name'], epoch)
+                    self._dispatch_trigger_for_alert(application=application['name'], alert=alert,
+                                                     epoch=epoch)
 
     def cleanup(self):
         pass
@@ -57,12 +61,13 @@ class DripstatAlertSensor(PollingSensor):
         response = requests.get(url, params=params)
         return response.json()
 
-    def _dispatch_trigger_for_alert(self, application, alert):
+    def _dispatch_trigger_for_alert(self, application, alert, epoch):
         trigger = self._trigger_ref
         payload = {
             'app_name': application,
             'alert_type': alert['name'],
-            'started_at': alert['startedAt'],
+            'started_at': epoch,
+            'started_at_iso8601': datetime.fromtimestamp(epoch).isoformat(),
             'jvm_host': alert['jvmHost']
         }
         self._sensor_service.dispatch(trigger=trigger, payload=payload)

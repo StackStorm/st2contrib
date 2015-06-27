@@ -1,0 +1,11 @@
+---
+name: session_get
+runner_type: run-python
+description: Returns the session attribute matching the session_key argument. If no keys are specified, all stored attributes in the session are returned.
+enabled: true
+entry_point: session_get.py
+parameters:
+  session_key:
+    type: string
+    description: 'The key used to store the data in the session.'
+    required: false

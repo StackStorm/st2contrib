@@ -21,7 +21,7 @@ class CreateVMAction(PyraxBaseAction):
 
         if key_material:
             key_name = 'key-%s' % (random.randint(1, 100000))
-            key_pair = cs.keypairs.create(key_name, key_material)
+            cs.keypairs.create(key_name, key_material)
         else:
             key_name = None
 

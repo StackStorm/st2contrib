@@ -1,0 +1,17 @@
+---
+name: cert_sign
+runner_type: run-python
+description: Sign an outstanding certificate request.
+enabled: true
+entry_point: cert_sign.py
+parameters:
+  environment:
+    type: string
+    description: Environment to use.
+    required: true
+    position: 0
+  host:
+    type: string
+    description: Host to sign the certificate for
+    required: true
+    position: 1

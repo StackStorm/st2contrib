@@ -8,3 +8,7 @@ parameters:
   key:
     required: True
     type: string
+  decompress:
+    type: boolean
+    description: 'True if the value is compressed using bzip2 and should be decompressed before returning it'
+    required: False

@@ -1,0 +1,8 @@
+### Place information about your pack version here.
+---
+name: nest
+description: StackStorm integration with Nest Thermostats
+version: 0.0.1
+author: James Fryman
+email: james@stackstorm.com
+

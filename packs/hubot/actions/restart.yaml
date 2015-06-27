@@ -1,0 +1,12 @@
+---
+name: "restart"
+runner_type: "run-remote-script"
+description: "Restart hubot"
+enabled: true
+entry_point: "restart.sh"
+parameters:
+  sudo:
+    default: true
+    immutable: true
+  hosts:
+    default: "127.0.0.1"

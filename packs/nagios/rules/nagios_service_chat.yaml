@@ -1,0 +1,16 @@
+---
+name: nagios.service.chat
+description: Post to chat when nagios service state changes
+enabled: true
+trigger:
+  type: nagios.service.state_change
+criteria:
+  trigger.attempt:
+    pattern: 2
+    type: gt
+action:
+  ref: hubot.post_message
+  parameters:
+    message: NAGIOS {{trigger.service}} ID:{{trigger.event_id}} STATE:{{trigger.state}}/{{trigger.state_type}}
+      {{trigger.msg}}
+    channel: '#general'

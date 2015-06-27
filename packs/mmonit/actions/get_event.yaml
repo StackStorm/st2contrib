@@ -1,0 +1,12 @@
+---
+name: get_event
+runner_type: run-python
+description: Returns details for a specific event.
+enabled: true
+entry_point: get_event.py
+parameters:
+  event_id:
+    type: integer
+    description: 'ID of the event'
+    required: true
+    position: 1

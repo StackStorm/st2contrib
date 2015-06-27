@@ -1,3 +1,4 @@
+# pylint: disable=super-on-old-class
 import time
 import random
 
@@ -81,10 +82,10 @@ class IRCSensor(Sensor):
                                         logger=self._logger)
 
     def run(self):
-        self._bot.start()
+        self._bot.start()  # pylint: disable=no-member
 
     def cleanup(self):
-        self._bot.disconnect(msg='Disconnecting')
+        self._bot.disconnect(msg='Disconnecting')  # pylint: disable=no-member
 
     def add_trigger(self, trigger):
         pass

@@ -1,0 +1,11 @@
+---
+name: get_status_host
+runner_type: run-python
+description: Returns detailed status of the given host.
+enabled: true
+entry_point: get_status_host.py
+parameters:
+  host_id:
+    type: integer
+    description: 'ID of the host'
+    required: true

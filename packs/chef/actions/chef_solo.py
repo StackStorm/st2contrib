@@ -2,19 +2,20 @@
 
 from lib.chef_runner import ChefRunner
 
+
 class ChefSoloRunner(ChefRunner):
     '''
     ChefRunner type implementation.
     Invokes chef-solo binary with given arguments.
     '''
-
-    chef_binary = 'chef-solo'
     cmdline_options = [
         ('-r', '--recipe_url', {})
     ]
 
     def __init__(self):
+        super(ChefSoloRunner, self).__init__()
         self.cmdline_options += ChefRunner.cmdline_options
+        self.chef_binary = 'chef-solo'
 
 
 if __name__ == '__main__':

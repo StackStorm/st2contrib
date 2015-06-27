@@ -1,0 +1,30 @@
+---
+name: test_connection_to_host
+runner_type: run-python
+description: Checks that M/Monit can connect to the host with the given network settings.
+enabled: true
+entry_point: test_connection_to_host.py
+parameters:
+  ipaddr:
+    type: string
+    description: 'The Monit http interface IP-Address or hostname.'
+    required: true
+  port:
+    type: integer
+    description: 'The Monit http interface port number.'
+    required: true
+  ssl:
+    type: integer
+    description: 'The SSL flag. Possible values: 0=disable, 1=enable.'
+    required: true
+    enum:
+      - 0
+      - 1
+  monituser:
+    type: string
+    description: 'The Monit http interface username.'
+    required: true
+  monitpassword:
+    type: string
+    description: 'The Monit http interface password.'
+    required: true

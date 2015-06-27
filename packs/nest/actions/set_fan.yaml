@@ -1,0 +1,22 @@
+---
+name: "set_fan"
+runner_type: "run-python"
+description: "Manage fan state"
+enabled: true
+entry_point: "set_fan.py"
+parameters:
+  state:
+    type: "string"
+    description: "State to set the fan"
+    enum:
+      - "on"
+      - "auto"
+    default: "auto"
+    required: true
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"
+  device:
+    type: "integer"
+    description: "ID of specific Nest device in a structure"
+

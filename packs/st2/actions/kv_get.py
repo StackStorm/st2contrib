@@ -1,14 +1,24 @@
+import bz2
+import base64
+
 from lib.action import St2BaseAction
 
 __all__ = [
     'St2KVPGetAction'
 ]
 
+
 class St2KVPGetAction(St2BaseAction):
-    def run(self, key):
+    def run(self, key, decompress=False):
         _key = self.client.keys.get_by_name(key)
 
-        if _key:
-            return _key.value
+        if not _key:
+            return None
+
+        if decompress:
+            value = base64.b64decode(_key.value)
+            value = bz2.decompress(value)
         else:
-            return False
+            value = _key.value
+
+        return value

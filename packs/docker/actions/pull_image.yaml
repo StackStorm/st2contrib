@@ -1,0 +1,24 @@
+---
+name: pull_image
+runner_type: run-python
+description: Pull docker image action. Equivalent to docker pull.
+enabled: true
+entry_point: pull_image.py
+parameters:
+  repo:
+    type: string
+    description: Repository to pull the image from.
+    required: true
+  tag:
+    type: string
+    description: Tag to use for this image (optional).
+  insecure_registry:
+    type: boolean
+    description: Allow image to be pushed to insecure registry (http vs https).
+    default: False
+  auth_username_override:
+    type: string
+    description: Username to use for registry.
+  auth_password_override:
+    type: string
+    description: Password to use for registry.

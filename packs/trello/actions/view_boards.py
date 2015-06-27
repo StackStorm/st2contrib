@@ -1,5 +1,6 @@
 from lib import action
 
+
 class ViewBoardsAction(action.BaseAction):
     def run(self, api_key=None, token=None):
         if api_key:
@@ -17,4 +18,3 @@ class ViewBoardsAction(action.BaseAction):
                 }
 
         return boards
-
