@@ -1,7 +1,7 @@
 import json
 from requests import Session
 
-from lib.base import SaltAction
+from lib.base import SaltAction, logging
 
 
 class SaltLocal(SaltAction):
