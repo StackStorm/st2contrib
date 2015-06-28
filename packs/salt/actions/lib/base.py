@@ -1,5 +1,9 @@
 from st2actions.runners.pythonrunner import Action
 from requests import Request
+import logging
+from utils import sanitize_payload
+
+logger = logging.getLogger(__name__)
 
 
 class SaltPackage(object):

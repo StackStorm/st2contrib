@@ -28,3 +28,9 @@ def generate_action(module_type, action):
     fh.write('---\n')
     fh.write(yaml.dump(manifest, default_flow_style=False))
     fh.close()
+
+
+def sanitize_payload(keys_to_sanitize, payload):
+    data = payload.copy()
+    map(lambda key: data.update({key: "*"*len(payload[key])}), keys_to_sanitize)
+    return data
