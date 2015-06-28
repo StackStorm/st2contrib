@@ -7,7 +7,7 @@ class ListRepoEventsAction(BitBucket):
         """
         List events performed on a repository
         """
-        url = self.config['Host']+'repositories/' + \
+        url = self.config['Host'] + 'repositories/' + \
             self.config['username'] + '/' + repo + '/events/'
         response = self._perform_request(url)
         data = yaml.load(response.content)

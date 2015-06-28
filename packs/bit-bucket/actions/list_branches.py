@@ -7,7 +7,7 @@ class ListBrachesAction(BitBucket):
         """
         List Braches of Repository with author names and message
         """
-        url = self.config['Host']+'repositories/' + \
+        url = self.config['Host'] + 'repositories/' + \
             self.config['username'] + '/' + repo + '/branches/'
         response = self._perform_request(url)
         data = yaml.load(response.content)
