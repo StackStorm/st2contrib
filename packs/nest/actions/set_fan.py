@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SetFanAction(actions.BaseAction):
     def run(self, state, structure=None, device=None):
         target_state = True if state == 'on' else False

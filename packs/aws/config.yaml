@@ -5,3 +5,8 @@ setup:
   aws_secret_access_key: ""
 interval: 20
 st2_user_data: "/opt/stackstorm/packs/aws/actions/scripts/bootstrap_user.sh"
+
+service_notifications_sensor:
+  host: "localhost"
+  port: 12345
+  path: "/my-path"

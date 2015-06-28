@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class ToggleAwayAction(actions.BaseAction):
     def run(self, structure=None):
         if structure:

@@ -23,7 +23,7 @@ Pack which allows integration with [Slack](https://slack.com/) service.
 ### Obtaining a Webhook URL
 
 To configure a webhook and obtain a URL, go to
-https://<your company>.slack.com/services/new/incoming-webhook, select a
+https://[your company].slack.com/services/new/incoming-webhook, select a
 channel you would like the messages to be posted to and click on "Add
 Incoming WebHooks Integration" button.
 

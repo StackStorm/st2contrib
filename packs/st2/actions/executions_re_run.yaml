@@ -1,0 +1,15 @@
+---
+name: "executions.re_run"
+enabled: true
+description: "Re-run an action execution."
+runner_type: run-python
+entry_point: executions_re_run.py
+parameters:
+  id:
+    type: "string"
+    description: "ID of execution to re-run"
+    required: true
+  parameters:
+    type: "object"
+    description: "Parameter overrides"
+    required: false

@@ -1,0 +1,22 @@
+---
+  name: "post_message"
+  runner_type: "run-python"
+  description: "Post a message to Hubot"
+  enabled: true
+  entry_point: "post_message.py"
+  parameters:
+    user:
+      type: "string"
+      description: "Explicitly notify a user"
+    whisper:
+      type: "boolean"
+      description: "Send a private message to user"
+      default: false
+    message:
+      type: "string"
+      description: "Message to send."
+      required: true
+    channel:
+      type: "string"
+      description: "Channel to post to"
+      required: true

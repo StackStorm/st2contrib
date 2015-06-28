@@ -1,0 +1,16 @@
+---
+name: "sensors.list"
+enabled: true
+description: "Retrieve a list of available StackStorm sensors."
+runner_type: run-python
+entry_point: sensors_list.py
+parameters:
+  pack:
+    type: "string"
+    description: "Optional pack to filter on"
+    required: false
+  limit:
+    type: "integer"
+    description: "Maximum number of rules to return"
+    default: 10
+    required: false

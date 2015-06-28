@@ -7,7 +7,6 @@ __all__ = [
 ]
 
 
-
 class PuppetBaseAction(object):
     PUPPET_BINARY = 'puppet'
 

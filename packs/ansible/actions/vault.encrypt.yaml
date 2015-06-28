@@ -1,0 +1,44 @@
+---
+name: "vault.encrypt"
+description: "Encrypt ansible data files"
+runner_type: "local-shell-script"
+entry_point: "ansible_vault.py"
+enabled: true
+parameters:
+  kwarg_op:
+    description: "Lock operator type to '--'"
+    type: string
+    default: "--"
+    immutable: true
+  sudo:
+    description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
+    type: boolean
+    default: true
+    immutable: true
+  timeout:
+    description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds. Lock as uneeded"
+    type: integer
+    default: 60
+    immutable: true
+  action:
+    description: "Action to use against playbook file(s)"
+    type: string
+    position: 0
+    default: encrypt
+    immutable: true
+  files:
+    description: "Data file(s) to encrypt (separated by space). Note that original file(s) will be modified"
+    type: string
+    position: 1
+    required: true
+  vault-password-file:
+    description: "Vault file with password"
+    type: string
+    required: true
+  cwd:
+    description: "Working directory where the command will be executed in"
+    type: string
+  debug:
+    description: "Enable debug mode"
+    type: boolean
+    default: false

@@ -4,6 +4,7 @@ __all__ = [
     'St2KVPGrepAction'
 ]
 
+
 class St2KVPGrepAction(St2BaseAction):
     def run(self, query):
         _keys = self.client.keys.get_all()

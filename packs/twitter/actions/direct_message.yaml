@@ -1,0 +1,15 @@
+---
+  name: "direct_message"
+  runner_type: "run-python"
+  description: "Direct message a user."
+  enabled: true
+  entry_point: "direct_message.py"
+  parameters:
+    screen_name:
+      type: "string"
+      description: "screen name of the user to direct message."
+      required: true
+    message:
+      type: "string"
+      description: "The message to send."
+      required: true

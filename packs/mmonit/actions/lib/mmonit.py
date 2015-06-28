@@ -1,5 +1,3 @@
-from libcloud.compute.providers import Provider
-from libcloud.compute.providers import get_driver
 from st2actions.runners.pythonrunner import Action
 import requests
 
@@ -14,9 +12,11 @@ class MmonitBaseAction(Action):
 
     def login(self):
         self.session.get(self.url)
-        login = self.session.get("{}/z_security_check".format(self.url), data={"z_csrf_protection": "off",
-                                                                               "z_username": self.user,
-                                                                               "z_password": self.password})
+        data = {"z_csrf_protection": "off",
+                "z_username": self.user,
+                "z_password": self.password}
+        login = self.session.get("{}/z_security_check".format(self.url), data=data)
+
         if login.status_code != 200:
             raise Exception("Could not login to mmonit {}.".format(login.reason))
 
@@ -25,4 +25,5 @@ class MmonitBaseAction(Action):
         self.session.close()
 
     def run(self, **kwargs):
+        # pylint: disable=notimplemented-raised
         raise NotImplemented("You need to override this in your class.")

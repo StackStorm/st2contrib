@@ -1,0 +1,39 @@
+---
+name: "galaxy.remove"
+description: "Remove an installed from ansible galaxy role"
+runner_type: "local-shell-script"
+entry_point: "ansible_galaxy.py"
+enabled: true
+parameters:
+  kwarg_op:
+    description: "Lock operator type to '--'"
+    type: string
+    default: "--"
+    immutable: true
+  sudo:
+    description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
+    type: boolean
+    default: true
+    immutable: true
+  timeout:
+    description: "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds. Lock as uneeded"
+    type: integer
+    default: 120
+    immutable: true
+  cwd:
+    description: "Working directory where the command will be executed in"
+    type: string
+  action:
+    description: "Action to use"
+    type: string
+    position: 0
+    default: remove
+    immutable: true
+  roles:
+    description: "Role(s) to remove (separated by space)"
+    type: string
+    position: 1
+    default: ""
+  roles-path:
+    description: "The path to the directory containing your roles. The default is the roles_path configured in your ansible.cfg file (/etc/ansible/roles if not configured) [-p]"
+    type: string

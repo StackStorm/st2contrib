@@ -4,6 +4,7 @@ __all__ = [
     'St2KVPDeleteAction'
 ]
 
+
 class St2KVPDeleteAction(St2BaseAction):
     def run(self, key):
         _key = self.client.keys.get_by_name(key)

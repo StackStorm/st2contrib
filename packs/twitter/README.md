@@ -2,6 +2,9 @@
 
 Pack which allows integration with Twitter.
 
+## Use cases
+* [HOWTO: Broadcast Twitter mentions about your Company to Slack channel](http://stackstorm.com/2014/12/22/monitor-twitter-and-fire-automations-based-on-twitter-keywords-using-stackstorm/)
+
 ## Configuration
 
 * ``consumer_key`` - Twitter API consumer key.
@@ -40,11 +43,13 @@ to use a token with a "Read and Write" access.
 ### TwitterSearchSensor
 
 This sensor searches Twitter for recent tweets matching the criteria defined in
-the config. When a matching Tweet is found, a trigger is dispatcher.
+the config. When a matching Tweet is found, a trigger is dispatched.
 
 ## Actions
 
 * ``update_status`` - Action which updates your status / posts a new tweet.
+* ``direct_message`` - Action to direct message a user.
+* ``follow`` - Action to follow a user.
 
 ## Rules
 

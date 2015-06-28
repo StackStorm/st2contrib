@@ -13,6 +13,8 @@ Requires StackStorm >= `v0.8.0`
 
 ## Actions
 
+### Datastore
+
 * ``kv.get`` - Retrieve string value from a datastore.
 * ``kv.set`` - Store string value in a datastore.
 * ``kv.grep`` - Find datastore items which name matches the provided query.
@@ -22,3 +24,32 @@ Requires StackStorm >= `v0.8.0`
   datastore.
 * ``kv.set_object`` - Serialize and store object in a datastore. Note: object
   is serialized as JSON.
+
+Note: ``kv.set`` and ``kv.get`` actions support compressing value before
+storing it in a datastore and decompressing it when retrieving it from
+a datastore.
+
+If you want data to be compressed, you should pass ``compress=True``
+parameter to the ``kv.set`` action when storing a value and ``decompress=True``
+when retrieving it.
+
+Values are compressed using bzip2. Keep in mind that values are base64 encoded
+after compression which adds around 40% of overhead to the compressed value
+size. For typical large strings this should still result in a reduction of
+a total size by 40-60% on average.
+
+## ChatOps commands
+
+By default, this pack also includes ChatOps commands (aliases) which allow you
+to query your StackStorm installation for things such as available actions,
+sensors and more.
+
+* ``!st2 list actions [pack=<pack name>]`` - List available StackStorm actions.
+* ``!st2 list rules`` - List available StackStorm rules.
+* ``!st2 list sensors [pack=<pack name>]`` - List available StackStorm sensors.
+* ``!st2 list executions [action=<action name>] [status=<status>]`` - View a
+  history of action executions.
+* ``!st2 executions get <execution id>`` - View details for a particular
+  action execution.
+* ``!st2 executions re-run <execution id>`` - Re-run a particular action
+  execution.

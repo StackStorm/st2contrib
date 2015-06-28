@@ -8,3 +8,4 @@ __all__ = [
 class PuppetCertSignAction(PuppetBasePythonAction):
     def run(self, environment, host):
         success = self.client.cert_sign(environment=environment, host=host)
+        return success

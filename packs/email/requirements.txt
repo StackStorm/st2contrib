@@ -1,0 +1,2 @@
+flanker>=0.4.28
+easyimap>=0.6.1

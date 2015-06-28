@@ -15,3 +15,7 @@ parameters:
     type: integer
     description: 'Optional TTL for the provided value'
     required: False
+  compress:
+    type: boolean
+    description: 'True to compress the value before storing it in a datastore'
+    required: False

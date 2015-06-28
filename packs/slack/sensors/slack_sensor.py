@@ -119,7 +119,8 @@ class SlackSensor(PollingSensor):
             item_type = item['type']
             item_timestamp = int(float(item.get('ts', 0)))
 
-            if existing_last_message_timestamp and item_timestamp <= existing_last_message_timestamp:
+            if (existing_last_message_timestamp and
+                    item_timestamp <= existing_last_message_timestamp):
                 # We have already seen this message, skip it
                 continue
 

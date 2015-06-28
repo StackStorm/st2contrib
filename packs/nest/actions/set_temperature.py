@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class SetTemperatureAction(actions.BaseAction):
     def run(self, scale, structure=None, device=None, temp=None, temp_low=None, temp_high=None):
         temperature = None

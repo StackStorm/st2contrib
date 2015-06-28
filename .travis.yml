@@ -3,13 +3,21 @@ python: 2.7
 sudo: false
 os:
   - linux
-
+env:
+  global:
+    - "PIP_DOWNLOAD_CACHE=$HOME/.pip-cache"
+  matrix:
+    - "TASK=flake8"
+    - "TASK=pylint"
+    - "TASK=configs-check"
+    - "TASK=metadata-check"
+cache:
+  directories:
+    - $HOME/.pip-cache/
 install:
-  - pip install -r requirements-dev.txt
-
+  - pip install --upgrade pip
 script:
-  - make all
-
+  - ./scripts/travis.sh
 notifications:
   email:
     - eng@stackstorm.com
