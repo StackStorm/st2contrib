@@ -49,6 +49,10 @@ class SaltAction(Action):
         if client is 'local':
             self.data['tgt'] = kwargs.get('target', '*')
             self.data['expr_form'] = kwargs.get('expr_form', 'glob')
+        if kwargs['data'] is not None:
+            d = dict()
+            d['kwarg'] = kwargs['data']['kwargs']
+            self.data.update(d)
 
     def generate_request(self):
         req = Request('POST',
