@@ -53,10 +53,8 @@ class SaltAction(Action):
         if client is 'local':
             self.data['tgt'] = kwargs.get('target', '*')
             self.data['expr_form'] = kwargs.get('expr_form', 'glob')
-        if kwargs['data'] is not None:
-            d = dict()
-            d['kwarg'] = kwargs['data']['kwargs']
-            self.data.update(d)
+        if kwargs['kwargs'] is not None:
+            self.data['kwarg'] = kwargs['kwargs']['kwargs']
         logger.info("Sending To Salt API: {0}".format(sanitize_payload(('username', 'password'), self.data)))
 
     def generate_request(self):

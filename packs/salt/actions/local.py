@@ -19,14 +19,14 @@ class SaltLocal(SaltAction):
         'status'
     ]
 
-    def run(self, module, target, expr_form, **kwargs):
+    def run(self, module, target, expr_form, *args, **kwargs):
         '''
         CLI Examples:
 
             st2 run salt.local module=test.ping matches='web*'
             st2 run salt.local module=test.ping expr_form=grain target='os:Ubuntu'
         '''
-        self.generate_package('local', cmd=module, target=target, expr_form=expr_form, data=kwargs)
+        self.generate_package('local', cmd=module, target=target, expr_form=expr_form, args=args, data=kwargs)
         request = self.generate_request()
         request.prepare_body(json.dumps(self.data), None)
         resp = Session().send(request, verify=True)

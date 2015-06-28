@@ -19,6 +19,10 @@ parameters:
         type: 'string'
         required: false
         default: 'glob'
+    args:
+        description: 'Positional arguments to pass to the module'
+        type: array
+        required: false
     kwargs:
         description: 'Key Pair arguments to pass to the module'
         type: object
