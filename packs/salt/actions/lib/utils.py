@@ -32,5 +32,5 @@ def generate_action(module_type, action):
 
 def sanitize_payload(keys_to_sanitize, payload):
     data = payload.copy()
-    map(lambda key: data.update({key: "*"*len(payload[key])}), keys_to_sanitize)
+    map(lambda k: data.update({k: "*"*len(payload[k])}), keys_to_sanitize)
     return data

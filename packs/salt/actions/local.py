@@ -1,7 +1,7 @@
 import json
 from requests import Session
 
-from lib.base import SaltAction, logging
+from lib.base import SaltAction, logger
 
 
 class SaltLocal(SaltAction):
@@ -26,8 +26,14 @@ class SaltLocal(SaltAction):
             st2 run salt.local module=test.ping matches='web*'
             st2 run salt.local module=test.ping expr_form=grain target='os:Ubuntu'
         '''
-        self.generate_package('local', cmd=module, target=target, expr_form=expr_form, args=args, data=kwargs)
+        self.generate_package('local',
+                              cmd=module,
+                              target=target,
+                              expr_form=expr_form,
+                              args=args, data=kwargs)
         request = self.generate_request()
+        logger.info('[salt] Request generated')
         request.prepare_body(json.dumps(self.data), None)
+        logger.info('[salt] Preparing to send')
         resp = Session().send(request, verify=True)
         return resp.json()
