@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from st2actions.runners.pythonrunner import Action
 from requests import Request
 import logging
@@ -57,7 +59,6 @@ class SaltAction(Action):
             self.data['kwarg'] = kwargs['kwargs']['kwargs']
         clean_payload = sanitize_payload(('username', 'password'), self.data)
         logger.info("[salt] Payload to be sent: {0}".format(clean_payload))
-
 
     def generate_request(self):
         req = Request('POST',
