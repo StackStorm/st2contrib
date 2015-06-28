@@ -57,7 +57,7 @@ class SaltAction(Action):
             d = dict()
             d['kwarg'] = kwargs['data']['kwargs']
             self.data.update(d)
-        logging.info("Sending To Salt API: {0}".format(sanitize_payload(('username', 'password'), self.data)))
+        logger.info("Sending To Salt API: {0}".format(sanitize_payload(('username', 'password'), self.data)))
 
     def generate_request(self):
         req = Request('POST',
