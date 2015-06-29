@@ -6,9 +6,9 @@ class ListReposAction(BitBucket):
     def run(self):
         """
         Listing repositories for a user, just execute it.
-        It assumes that you have already places the name
+        It assumes that you have already placed the name
         and password in config file. It returns repo's
-        name, its state, its state, scm and private status.
+        name, it's state, scm and private status(True/False).
         """
         url = self.config['Host'] + 'user/repositories/'
         response = self._perform_request(url)
