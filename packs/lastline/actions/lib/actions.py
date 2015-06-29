@@ -1,10 +1,10 @@
-import analysis_apiclient
+import analysis_apiclient  # noqa
 from st2actions.runners.pythonrunner import Action
 
 
 class BaseAction(Action):
     def __init__(self, config):
-        super(LastlineAction, self).__init__(config)
+        super(BaseAction, self).__init__(config)
         self.client = self._init_client()
 
     def _init_client(self):
@@ -17,4 +17,4 @@ class BaseAction(Action):
         if not api_token:
             return ValueError('Missing "api_token" config option')
 
-        return analysys_apiclient.AnalysisClient(url, key, api_token)
+        return analysys_apiclient.AnalysisClient(url, key, api_token)  # noqa
