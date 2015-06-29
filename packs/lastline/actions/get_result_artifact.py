@@ -1,5 +1,6 @@
 from lib import actions
 
+
 class GetResultArtifact(actions.BaseAction):
     def run(self, uuid, report_uuid, artifact_name, raw=False, verify=True):
 

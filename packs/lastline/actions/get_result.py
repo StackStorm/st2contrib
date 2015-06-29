@@ -12,4 +12,3 @@ class GetResult(actions.BaseAction):
                                           report_version)
 
         return response
-
