@@ -116,7 +116,7 @@ class ServiceNotificationsSensor(Sensor):
         trigger = 'aws.service_notification'
 
         timestamp_datetime = isotime.parse(record['eventTime'])
-        timestamp = int(timestamp_datetime.strftime('%s'))
+        timestamp = int(timestamp_datetime.strftime('%s'))  # pylint: disable=no-member
 
         source = record.get('eventSource', 'unknown')
         region = record.get('awsRegion', 'unknown')

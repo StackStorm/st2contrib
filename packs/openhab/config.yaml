@@ -1,0 +1,8 @@
+### Place configuration data for your pack here.
+---
+hostname: "http://localhost"
+port: "8080"
+
+## Optional
+# username: ""
+# password: ""

@@ -13,6 +13,8 @@ After [pack installation](http://docs.stackstorm.com/packs.html#getting-a-pack) 
 * `galaxy.remove` - Remove the role installed from Ansible Galaxy (`ansible-galaxy` executable).
 
 ## Examples
+See [StackStorm with Ansible on Vagrant demo](https://github.com/StackStorm/st2-ansible-vagrant) for more examples
+
 #### `ansible.command` examples
 ```sh
 # run ansible command with optional verbose parameter

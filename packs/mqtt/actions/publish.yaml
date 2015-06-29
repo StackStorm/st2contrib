@@ -1,0 +1,22 @@
+---
+name: "publish"
+runner_type: "python-script"
+description: "Publish message to MQTT broker"
+enabled: true
+entry_point: "publish.py"
+parameters:
+  topic:
+    type: "string"
+    description: "MQTT Topic to publish message"
+    required: true
+  message:
+    type: "string"
+    description: "Message payload"
+  qos:
+    type: "integer"
+    description: "Quality of Service to use for the message"
+    default: 0
+  retain:
+    type: "boolean"
+    description: "set the message to be retained (True) or not (False)."
+    default: false

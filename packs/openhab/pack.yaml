@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: openhab
+description: Integraition with OpenHAB
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com

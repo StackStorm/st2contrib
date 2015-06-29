@@ -1,0 +1,10 @@
+---
+name: "get_status"
+runner_type: "python-script"
+description: "Get status on an item"
+enabled: true
+entry_point: "get_status.py"
+parameters:
+  item:
+    type: "string"
+    description: "Item to get status of"
