@@ -1,0 +1,19 @@
+---
+name: "turn_on_switch"
+runner_type: "python-script"
+description: "Turn on a switch"
+enabled: true
+entry_point: "command.py"
+parameters:
+  device_type:
+    type: "string"
+    default: "switch"
+    immutable: true
+  device_id:
+    type: "string"
+    description: "ID of switch"
+    required: true
+  command:
+    type: "string"
+    default: "on"
+    immutable: true

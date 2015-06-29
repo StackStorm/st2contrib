@@ -1,0 +1,20 @@
+---
+  class_name: "SmartThingsSensor"
+  entry_point: "smartthings_sensor.py"
+  description: "Sensor listening for HTTP events from SmartThings"
+  trigger_types:
+    -
+      name: "event"
+      description: "SmartThings Device Event"
+      payload_info:
+        - "id"
+        - "name"
+        - "value"
+        - "device_id"
+        - "hub_id"
+        - "location_id"
+        - "state_change"
+        - "raw_description"
+        - "description"
+        - "date"
+        - "iso_date"

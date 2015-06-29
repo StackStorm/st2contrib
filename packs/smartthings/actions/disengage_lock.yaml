@@ -1,0 +1,19 @@
+---
+name: "disengage_lock"
+runner_type: "python-script"
+description: "Disengage (lock) a device that can be locked"
+enabled: true
+entry_point: "command.py"
+parameters:
+  device_type:
+    type: "string"
+    default: "lock"
+    immutable: true
+  device_id:
+    type: "string"
+    description: "ID of switch"
+    required: true
+  command:
+    type: "string"
+    default: "unlock"
+    immutable: true

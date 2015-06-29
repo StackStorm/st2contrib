@@ -1,0 +1,22 @@
+---
+name: "get_device_info"
+runner_type: "python-script"
+description: "Get information on a specific device"
+enabled: true
+entry_point: "get_device_info.py"
+parameters:
+  device_type:
+    type: "string"
+    description: "Device type"
+    required: true
+    enum:
+      - "switch"
+      - "motion"
+      - "temperature"
+      - "contact"
+      - "presence"
+      - "lock"
+  device_id:
+    type: "string"
+    description: "ID of device to inspect"
+    required: true

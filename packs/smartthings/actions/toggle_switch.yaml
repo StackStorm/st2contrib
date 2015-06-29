@@ -1,0 +1,19 @@
+---
+name: "toggle_switch"
+runner_type: "python-script"
+description: "Toggle a switch"
+enabled: true
+entry_point: "command.py"
+parameters:
+  device_type:
+    type: "string"
+    default: "switch"
+    immutable: true
+  device_id:
+    type: "string"
+    description: "ID of switch"
+    required: true
+  command:
+    type: "string"
+    default: "toggle"
+    immutable: true

@@ -1,0 +1,32 @@
+---
+name: "set_temperature"
+runner_type: "run-python"
+description: "Set current temperature."
+enabled: true
+entry_point: "command.py"
+parameters:
+  device_type:
+    type: "string"
+    description: "Device type"
+    required: true
+    enum:
+      - "switch"
+      - "motion"
+      - "temperature"
+      - "contact"
+      - "presence"
+      - "lock"
+  device_id:
+    type: "string"
+    description: "ID of device"
+    required: true
+  value:
+    type: "integer"
+    description: "Temperature to set the thermostat to"
+    required: true
+  mode:
+    type: "string"
+    description: "Mode of the thermostat to be set to"
+    enum:
+      - "heat"
+      - "cool"
