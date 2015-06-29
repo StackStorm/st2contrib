@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # flake8: noqa
+# pylint: skip-file
 """
 This is a Python client for the Lastline Analyst API.
 
