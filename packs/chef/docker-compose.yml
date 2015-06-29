@@ -1,0 +1,16 @@
+st2:
+  image: st2
+  links:
+   - chef
+  ports:
+   - "8080:8080"
+   - "9100:9100"
+   - "9101:9101"
+  command: >
+          /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get install sshpass;
+          sshpass -pstanley ssh-copy-id -i /home/stanley/.ssh/stanley_rsa -oStrictHostKeyChecking=no stanley@chef;
+          /root/st2/start.sh; sleep infinity"
+  volumes:
+   - ./:/opt/stackstorm/packs/chef
+chef:
+  build: ./etc

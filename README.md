@@ -2,7 +2,7 @@
 
 [![StackStorm](https://github.com/stackstorm/st2/raw/master/stackstorm_logo.png)](http://www.stackstorm.com)
 
-[![Build Status](https://travis-ci.org/StackStorm/st2contrib.svg?branch=master)](https://travis-ci.org/StackStorm/st2contrib)  [![IRC](https://img.shields.io/irc/%23stackstorm.png)](http://webchat.freenode.net/?channels=stackstorm)
+[![Build Status](https://travis-ci.org/StackStorm/st2contrib.svg?branch=master)](https://travis-ci.org/StackStorm/st2contrib)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/StackStorm/st2contrib/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/StackStorm/st2contrib/?branch=master)  [![IRC](https://img.shields.io/irc/%23stackstorm.png)](http://webchat.freenode.net/?channels=stackstorm)
 
 Contents of this repository are comprise of integrations and automations that
 are consumed by the [StackStorm automation platform](http://www.stackstorm.com/product/).
@@ -38,14 +38,16 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
-| [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
+| [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
+| [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.1.2 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
 | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
+| [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
 | [hue](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | Philips Hue Pack | hue, philips, iot | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#hue-pack)
 | [irc](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | st2 content pack containing irc integrations | irc, internet relay chat | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#irc-pack)
 | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | issues, ticket management, project management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jira-pack)
@@ -54,9 +56,11 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
 | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
 | [mmonit](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | st2 content pack containing mmonit integrations | monitoring, mmonit | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mmonit-pack)
+| [mqtt](https://github.com/StackStorm/st2contrib/tree/master/packs/mqtt) | MQTT Integration for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#mqtt-pack)
 | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 | [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
 | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
+| [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integraition with OpenHAB |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
 | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
 | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
 | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
@@ -318,6 +322,7 @@ sendtoaddresss | Send some BTC to supplied address.
 
 Name | Description
 ---- | -----------
+apply | Performs one-off resource converge on remote hosts.
 client | Performs chef-client run on remote hosts.
 install | Performs installation of chef-client on remote nodes
 ohai | Performs chef-solo run on remote hosts.
@@ -346,6 +351,27 @@ push_image | Push docker image action. Equivalent to docker push.
 Name | Description
 ---- | -----------
 DripstatAlertSensor | Sensor which monitors Dripstat API for active alerts
+
+### elasticsearch pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+indices.alias | Index Aliasing
+indices.allocation | Index Allocation
+indices.bloom | Disable bloom filter cache
+indices.close | Close indices
+indices.delete | Delete indices
+indices.open | Open indices
+indices.optimize | Optimize indices
+indices.replicas | Replica Count Per-shard
+indices.show | Show indices
+indices.snapshot | Create snapshot of indices
+search.body | Search query (full body)
+search.q | Search query (lucene syntax)
+snapshots.delete | Delete snapshots
+snapshots.show | Show snapshots
 
 ### email pack
 
@@ -408,6 +434,19 @@ decrypt_file | Decrypt asymmetrically encrypted GPG file.
 encrypt_file | Encrypt a file using asymmetric encryption for the provided recipients.
 import_keys | Import keys into the keyring.
 list_keys | List all keys in the keyring.
+
+### hubot pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+branch | Determine which branch Hubot is currently running
+deploy | Manage Hubot installs on a per-pack basis
+post_message | Post a message to Hubot
+post_result | Post an execution result to Hubot
+restart | Restart hubot
+update_ref | Manage Hubot installs on a per-pack basis
 
 ### hue pack
 
@@ -538,6 +577,20 @@ summary_status | Returns a status summary of all hosts.
 test_connection_to_host | Checks that M/Monit can connect to the host with the given network settings.
 update_host | Updates the host settings in the M/Monit database.
 
+### mqtt pack
+
+#### Sensors
+
+Name | Description
+---- | -----------
+MQTTSensor | Listen for events on MQTT bus/topic
+
+#### Actions
+
+Name | Description
+---- | -----------
+publish | Publish message to MQTT broker
+
 ### nest pack
 
 #### Actions
@@ -570,6 +623,16 @@ Name | Description
 ---- | -----------
 get_alerts | Get alerts for app.
 get_metric_data | Get metric data for metric.
+
+### openhab pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_status | Get status on an item
+send_command | Send a command to an item
+set_state | Set state on an item
 
 ### openstack pack
 
@@ -753,7 +816,6 @@ executions.get | Retrieve details of a single execution.
 executions.list | Retrieve a list of executions.
 executions.re_run | Re-run an action execution.
 kv.delete | Delete value from datastore
-kv.get | Get value from datastore
 kv.get | Get value from datastore
 kv.get_object | Deserialize and retrieve JSON serialized object from a datastore
 kv.grep | Grep for values in datastore
