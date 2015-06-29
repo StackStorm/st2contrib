@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# flake8: noqa
 """
 This is a Python client for the Lastline Analyst API.
 
