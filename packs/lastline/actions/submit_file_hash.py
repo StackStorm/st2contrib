@@ -14,22 +14,26 @@ class SubmitFileHashAction(actions.BaseAction):
             client_ip=None, client_port=None, is_download=True,
             protocol='http', apk_package_name=None, report_version=None):
 
-        client = self.client
-        response = client.submit_file_hash(md5, sha1, download_ip,
-                                           download_port, download_url,
-                                           download_host, download_path,
-                                           download_agent, download_referer,
-                                           download_request, full_report_score,
-                                           bypass_cache, backend,
-                                           require_file_analysis, mime_type,
-                                           analysis_timeout, analysis_env,
-                                           allow_network_traffic, filename,
-                                           keep_file_dumps, keep_memory_dumps,
-                                           keep_behavior_log,
-                                           push_to_portal_account, raw, verify,
-                                           server_ip, server_port, server_host,
-                                           client_ip, client_port, is_download,
-                                           protocol, apk_package_name,
-                                           report_version)
+        response = self.client.submit_file_hash(md5, sha1, download_ip,
+                                                download_port, download_url,
+                                                download_host, download_path,
+                                                download_agent,
+                                                download_referer,
+                                                download_request,
+                                                full_report_score,
+                                                bypass_cache, backend,
+                                                require_file_analysis,
+                                                mime_type,
+                                                analysis_timeout, analysis_env,
+                                                allow_network_traffic, filename,
+                                                keep_file_dumps,
+                                                keep_memory_dumps,
+                                                keep_behavior_log,
+                                                push_to_portal_account, raw,
+                                                verify, server_ip, server_port,
+                                                server_host, client_ip,
+                                                client_port, is_download,
+                                                protocol, apk_package_name,
+                                                report_version)
 
         return response

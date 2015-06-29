@@ -15,8 +15,7 @@ class SubmitFileAction(actions.BaseAction):
             is_download=True, protocol='http', apk_package_name=None,
             password=None, report_version=None):
 
-        client = self.client
-        response = client.submit_file(file_stream, download_ip, download_port,
+        response = self.client.submit_file(file_stream, download_ip, download_port,
                                       download_url, download_host,
                                       download_path, download_agent,
                                       download_referer, download_request,

@@ -6,10 +6,10 @@ class GetResult(actions.BaseAction):
             include_scoring_components=None, raw=False,
             requested_format='json', verify=True, report_version=None):
 
-        client = self.client
-        response = client.get_result(uuid, report_uuid, full_report_score,
-                                     include_scoring_components, raw,
-                                     requested_format, verify, report_version)
+        response = self.client.get_result(uuid, report_uuid, full_report_score,
+                                          include_scoring_components, raw,
+                                          requested_format, verify,
+                                          report_version)
 
         return response
 
