@@ -1,4 +1,4 @@
-from analysis_apiclient import AnalysisClient # noqa
+from analysis_apiclient import AnalysisClient  # noqa
 from st2actions.runners.pythonrunner import Action
 
 
