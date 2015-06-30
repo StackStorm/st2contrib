@@ -1,0 +1,21 @@
+---
+name: "get_result_summary"
+runner_type: "python-script"
+description: "Get result summary for a previously submitted analysis task."
+enabled: true
+entry_point: "get_result_summary.py"
+parameters:
+  uuid:
+    type: "string"
+    description: "the unique identifier of the submitted task, as returned in the task_uuid field of submit methods."
+    required: true
+  raw:
+    type: "boolean"
+    description: "if True, return the raw JSON results of the API query"
+  requested_format:
+    type: "string"
+    description: "JSON, XML, PDF, or RTF. If format is not JSON, this implies raw."
+    default: "json"
+  score_only:
+    type: "boolean"
+    description: "if True, return even less data (only score and threat/threat-class classification)."
