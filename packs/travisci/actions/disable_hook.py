@@ -7,7 +7,7 @@ class DisableHookAction(TravisCI):
         """
         Disable a hook to monitor through Travis
         """
-        uri = self.config["uri"]+'/hooks/'+str(hookid)
+        uri = self.config["uri"] + '/hooks/' + str(hookid)
         json_req = {
             "hook": {
                 "active": "false"}

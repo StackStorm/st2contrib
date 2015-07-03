@@ -6,6 +6,6 @@ class BuildRepo(TravisCI):
         """
         Restart a build or Cancel a build by providing it's id
         """
-        uri = self.config["uri"]+'/builds/'+str(buildid)+'/'+action
+        uri = self.config["uri"] + '/builds/' + str(buildid) + '/' + action
         response = self._perform_request(uri, method="POST")
         return response.content
