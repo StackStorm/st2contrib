@@ -1,5 +1,4 @@
 from lib.action import TravisCI
-import requests
 import yaml
 
 
@@ -13,5 +12,5 @@ class ListBranchesAction(TravisCI):
         data = yaml.load(response.content)
         branches = []
         for arg in data['commits']:
-            branches.append(arg['branch'])   
+            branches.append(arg['branch'])
         return branches

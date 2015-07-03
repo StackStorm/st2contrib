@@ -9,8 +9,8 @@ class EnableHookAction(TravisCI):
         """
         uri = self.config["uri"]+'/hooks/'+str(hookid)
         json_req = {
-                    "hook": {
-                          "active": "true"}
+            "hook": {
+                "active": "true"}
         }
         json_req = json.dumps(json_req)
         response = self._perform_request(uri, data=json_req, method="PUT")

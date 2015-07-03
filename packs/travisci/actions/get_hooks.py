@@ -1,5 +1,4 @@
 from lib.action import TravisCI
-import requests
 import yaml
 
 

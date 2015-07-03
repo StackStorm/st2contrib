@@ -1,5 +1,4 @@
 from lib.action import TravisCI
-import requests
 import yaml
 
 
@@ -14,9 +13,10 @@ class ListBuildsAction(TravisCI):
         data = yaml.load(response.content)
         builds = []
         for arg in data['builds']:
-            builds.append({'build_id': arg['id'], 'commit_id':arg['commit_id']})
+            builds.append({'build_id': arg['id'],
+                          'commit_id': arg['commit_id']})
         for i in data['commits']:
             for b in builds:
-                if b['commit_id']  == i['id']:
-                    b['branch_name'] = i['branch']
+                if b['commit_id'] == i['id']:
+                    b['branch_name'] = 'branch'
         return builds
