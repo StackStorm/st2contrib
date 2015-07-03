@@ -1,0 +1,17 @@
+---
+description: Run Salt Execution modules through Salt API
+enabled: true
+entry_point: local.py
+name: local_useradd.delete
+parameters:
+  action:
+    default: useradd.delete
+    immutable: true
+    type: string
+  args:
+    required: false
+    type: array
+  kwargs:
+    required: false
+    type: object
+runner_type: run-python

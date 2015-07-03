@@ -1,0 +1,17 @@
+---
+description: Run Salt Execution modules through Salt API
+enabled: true
+entry_point: local.py
+name: local_shadow.set_expire
+parameters:
+  action:
+    default: shadow.set_expire
+    immutable: true
+    type: string
+  args:
+    required: false
+    type: array
+  kwargs:
+    required: false
+    type: object
+runner_type: run-python
