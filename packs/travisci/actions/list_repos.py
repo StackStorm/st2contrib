@@ -8,10 +8,8 @@ class GetRepos(TravisCI):
         """
         Listing all Repos for a give user
         """
-        _HEADERS = self.travis
-        _HEADERS['Authorization'] = self.config["Authorization"]
-        uri = self.config["uri"] + '/repos?owner_name=' + username
-        response = requests.get(uri, headers=_HEADERS)
+        uri = self.config["uri"]+'/repos?owner_name='+username
+        response = self._perform_request(uri, method="GET")
         data = yaml.load(response.content)
         repos = {}
         for arg in data['repos']:

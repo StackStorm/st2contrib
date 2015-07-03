@@ -3,16 +3,13 @@ import requests
 import yaml
 
 
-class GetHooks(TravisCI):
+class ListHooksAction(TravisCI):
     def run(self):
         """
         Getting Hooks for user, returns id,name and state of hook
         """
-        _HEADERS = self.travis
-        _HEADERS['Authorization'] = self.config["Authorization"]
-        _HEADERS['Content-Type'] = self.config["Content-Type"]
-        uri = self.config["uri"] + '/hooks'
-        response = requests.get(uri, headers=_HEADERS)
+        uri = self.config["uri"]+'/hooks'
+        response = self._perform_request(uri, method="GET", requires_auth=True)
         data = yaml.load(response.content)
         hooks = {}
         for hook in data['hooks']:
