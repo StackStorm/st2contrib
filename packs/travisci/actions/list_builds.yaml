@@ -1,8 +1,8 @@
-name: get_builds
+name: list_builds
 runner_type: run-python
 description: List details of all the available builds.
 enabled: true
-entry_point: get_builds.py
+entry_point: list_builds.py
 parameters:
   reponame:
     type: string
