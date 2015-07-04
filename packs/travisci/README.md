@@ -82,7 +82,6 @@ Replace your git authentication key and Travis CI token in the config file and
 you are all set to use the actions
 
 ```yaml
-git_auth_key: Your Git Authentication Key
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.travis-ci.2+json
 Host: api.travis-ci.org
