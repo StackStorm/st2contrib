@@ -1,0 +1,9 @@
+name: list_repos
+runner_type: run-python
+description: listing repos againsta a supplied user
+enabled: true
+entry_point: list_repos.py
+parameters:
+  username:
+    type: string
+    description: account to fetch repositories of 
