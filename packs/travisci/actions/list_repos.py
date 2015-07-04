@@ -9,8 +9,8 @@ class GetRepos(TravisCI):
         """
         path = '/repos?owner_name=' + username
         response = self._perform_request(path, method="GET")
-        data = yaml.load(response.content)
+        data = response.json()
         repos = {}
-        for arg in data['repos']:
-            repos[arg['id']] = arg['slug']
+        for repo in data:
+            repos[repo['id']] = repo
         return repos

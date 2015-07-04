@@ -7,3 +7,4 @@ parameters:
   username:
     type: string
     description: User to retrieve the repositories for.
+    required: true
