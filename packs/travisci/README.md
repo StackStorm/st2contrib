@@ -25,7 +25,7 @@ Usage:
 
 ```bash
 st2 run travisci.get_builds username="<username>" reponame="<reponame>"
-
+```
 
 ### Start, Restart, Canel Build
 
@@ -33,6 +33,8 @@ The action used to kick off / cancel a build against a build id. You can supply
 any build id to kick-off/cancel a build for a speofic branch or a repo.
 
 Usage: st2 run travisci.start_build buildid = <build_id> action = "restart/cancel"
+
+Usage:
 
 ```bash
 st2 run travisci.start_build buildid=<build_id>
@@ -44,6 +46,8 @@ st2 run travisci.cancel_build buildid=<build_id>
 
 The action used to Get a list of branches for a particular repository.
 
+Usage:
+
 ```bash
 st2 run travisci.get_branches repoid = "<repoid>"
 ```
@@ -54,6 +58,8 @@ The action used to Get hooks for a user's repositories. It returns all the
 repositories enabled for Travis CI. It automatically includes Travis CI token
 from the config file.
 
+Usage:
+
 ```bash
 st2 run travisci.get_hooks
 ```
@@ -61,6 +67,8 @@ st2 run travisci.get_hooks
 ### Get Branches
 
 The action used to Get branches for a given Repository
+
+Usage:
 
 ```bash
 st2 run travisci.get_branches repo_id=<repo_id>
@@ -70,6 +78,8 @@ st2 run travisci.get_branches repo_id=<repo_id>
 
 The action used to enable/disable hook for Travis CI tests. It requires one
 argument - hookid.
+
+Usage:
 
 ```bash
 st2 run travisci.enable_hook hookid=<repo_id>
@@ -82,7 +92,7 @@ Replace your git authentication key and Travis CI token in the config file and
 you are all set to use the actions
 
 ```yaml
-Authorization: token Your Travis CI token
+token: Your Travis CI token
 ```
 
 ### Getting Git Authentication Key

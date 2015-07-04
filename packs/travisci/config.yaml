@@ -1,2 +1,1 @@
-Authorization: token Your Travis CI token
-Content-Type: application/json
+token: 

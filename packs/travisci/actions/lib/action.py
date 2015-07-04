@@ -5,15 +5,20 @@ import requests
 from st2actions.runners.pythonrunner import Action
 
 API_URL = 'https://api.travis-ci.org'
-HEADERS_ACCEPT = 'application/vnd.travis-ci.2+json'
-CONTENT_TYPE = 'application/json'
+HEADER_ACCEPT = 'application/vnd.travis-ci.2+json'
+HEADER_CONTENT_TYPE = 'application/json'
 
 
 class TravisCI(Action):
-    def _get_auth_headers(self):
+    def _get_base_headers(self):
         headers = {}
-        headers['Authorization'] = self.config['Authorization']
-        headers['Content-Type'] = self.config['Content-Type']
+        headers['Content-Type'] = HEADER_CONTENT_TYPE
+        headers['Accept'] = HEADER_ACCEPT
+        return headers
+
+    def _get_auth_headers(self):
+        headers = self._get_base_headers()
+        headers['Authorization'] = 'token: "%s"' % (self.config['token'])
         return headers
 
     def _perform_request(self, path, method, data=None, requires_auth=False):
