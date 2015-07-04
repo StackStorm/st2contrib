@@ -1,38 +1,33 @@
-from st2actions.runners.pythonrunner import Action
 import requests
+
+from st2actions.runners.pythonrunner import Action
+
+API_URL = 'https://api.travis-ci.org'
+HEADERS_ACCEPT = 'application/vnd.travis-ci.2+json'
+HEADERS_HOST = ''
 
 
 class TravisCI(Action):
     def __init__(self, config):
         super(TravisCI, self).__init__(config)
 
-    def _init_header(self):
-        travis_header = {
-            'User_Agent': self.config['User-Agent'],
-            'Accept': self.config['Accept'],
-            'Host': self.config['Host'],
-        }
-        return travis_header
-
-    def _auth_header(self):
-        _HEADERS = self._init_header()
-        _HEADERS['Authorization'] = self.config["Authorization"]
-        _HEADERS['Content-Type'] = self.config["Content-Type"]
-        return _HEADERS
+    def _get_auth_headers(self):
+        headers = {}
+        headers['Authorization'] = self.config["Authorization"]
+        headers['Content-Type'] = self.config["Content-Type"]
+        return headers
 
     def _perform_request(self, uri, method, data=None, requires_auth=False):
         if method == "GET":
             if requires_auth:
-                _HEADERS = self._auth_header()
+                headers = self._get_auth_headers()
             else:
-                _HEADERS = self._init_header()
-            response = requests.get(uri, headers=_HEADERS)
-        elif method == "POST":
-            _HEADERS = self._auth_header
-            response = requests.post(uri, headers=_HEADERS)
-        elif method == "PUT":
-            _HEADERS = self._auth_header()
-            _HEADERS['Authorization'] = self.config["Authorization"]
-            _HEADERS['Content-Type'] = self.config["Content-Type"]
-            response = requests.put(uri, data=data, headers=_HEADERS)
+                headers = {}
+            response = requests.get(uri, headers=headers)
+        elif method == 'POST':
+            headers = self._get_auth_headers()
+            response = requests.post(uri, headers=headers)
+        elif method == 'PUT':
+            headers = self._get_auth_headers()
+            response = requests.put(uri, data=data, headers=headers)
         return response
