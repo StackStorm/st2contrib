@@ -1,3 +1,5 @@
+import httplib
+
 import requests
 
 from st2actions.runners.pythonrunner import Action
@@ -29,5 +31,10 @@ class TravisCI(Action):
         elif method == 'PUT':
             headers = self._get_auth_headers()
             response = requests.put(url, data=data, headers=headers)
+
+        if response.status_code in [httplib.FORBIDDEN, httplib.UNAUTHORIZED]:
+            msg = ('Invalid or missing Travis CI auth token. Make sure you have'
+                   'specified valid token in the config file')
+            raise Exception(msg)
 
         return response
