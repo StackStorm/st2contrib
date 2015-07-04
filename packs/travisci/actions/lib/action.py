@@ -4,30 +4,30 @@ from st2actions.runners.pythonrunner import Action
 
 API_URL = 'https://api.travis-ci.org'
 HEADERS_ACCEPT = 'application/vnd.travis-ci.2+json'
-HEADERS_HOST = ''
+CONTENT_TYPE = 'application/json'
 
 
 class TravisCI(Action):
-    def __init__(self, config):
-        super(TravisCI, self).__init__(config)
-
     def _get_auth_headers(self):
         headers = {}
-        headers['Authorization'] = self.config["Authorization"]
-        headers['Content-Type'] = self.config["Content-Type"]
+        headers['Authorization'] = self.config['Authorization']
+        headers['Content-Type'] = self.config['Content-Type']
         return headers
 
-    def _perform_request(self, uri, method, data=None, requires_auth=False):
+    def _perform_request(self, path, method, data=None, requires_auth=False):
+        url = API_URL + path
+
         if method == "GET":
             if requires_auth:
                 headers = self._get_auth_headers()
             else:
                 headers = {}
-            response = requests.get(uri, headers=headers)
+            response = requests.get(url, headers=headers)
         elif method == 'POST':
             headers = self._get_auth_headers()
-            response = requests.post(uri, headers=headers)
+            response = requests.post(url, headers=headers)
         elif method == 'PUT':
             headers = self._get_auth_headers()
-            response = requests.put(uri, data=data, headers=headers)
+            response = requests.put(url, data=data, headers=headers)
+
         return response

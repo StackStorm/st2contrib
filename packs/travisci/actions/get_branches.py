@@ -7,8 +7,8 @@ class ListBranchesAction(TravisCI):
         """
         Listing branches for a give Repository
         """
-        uri = self.config["uri"] + '/repos/' + str(repo_id) + '/branches'
-        response = self._perform_request(uri, method="GET")
+        path = '/repos/' + str(repo_id) + '/branches'
+        response = self._perform_request(path, method="GET")
         data = yaml.load(response.content)
         branches = []
         for arg in data['commits']:

@@ -6,5 +6,5 @@ entry_point: restart_build.py
 parameters:
   buildid:
     type: integer
-    description: id of the build to perform action on
+    description: ID of the build to restart.
     required: true

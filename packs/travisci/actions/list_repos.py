@@ -5,10 +5,10 @@ import yaml
 class GetRepos(TravisCI):
     def run(self, username):
         """
-        Listing all Repos for a give user
+        Listing all Repos for a given user
         """
-        uri = self.config["uri"] + '/repos?owner_name=' + username
-        response = self._perform_request(uri, method="GET")
+        path = '/repos?owner_name=' + username
+        response = self._perform_request(path, method="GET")
         data = yaml.load(response.content)
         repos = {}
         for arg in data['repos']:

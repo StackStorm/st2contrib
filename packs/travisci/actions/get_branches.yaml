@@ -1,10 +1,10 @@
 name: get_branches
 runner_type: run-python
-description: List all branches for a given repository
+description: List all branches for a given repository.
 enabled: true
 entry_point: get_branches.py
 parameters:
   repo_id:
     type: integer
-    description: supply id of the repository for listing its branches
+    description: ID of a repository to list the branches for.
     required: true

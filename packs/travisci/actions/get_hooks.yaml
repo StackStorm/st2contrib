@@ -1,5 +1,5 @@
 name: get_hooks
 runner_type: run-python
-description: getting hooks for a user
+description: List available hooks for a user.
 enabled: true
 entry_point: get_hooks.py

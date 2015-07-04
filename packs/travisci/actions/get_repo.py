@@ -7,8 +7,8 @@ class GetRepoDetails(TravisCI):
         """
         Returns Details of given Repository
         """
-        uri = self.config['uri'] + '/repos/' + str(repo)
-        response = self._perform_request(uri, method="GET")
+        path = '/repos/' + str(repo)
+        response = self._perform_request(path, method="GET")
         data = yaml.load(response.content)
         res = {}
         res = {

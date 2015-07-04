@@ -1,10 +1,10 @@
 name: cancel_build
 runner_type: run-python
-description: Cancel a Build
+description: Cancel a build.
 enabled: true
 entry_point: cancel_build.py
 parameters:
   buildid:
     type: integer
-    description: id of the build to perform action on
+    description: id of the build to cancel.
     required: true

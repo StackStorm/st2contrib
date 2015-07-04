@@ -1,10 +1,10 @@
 name: enable_hook
 runner_type: run-python
-description: enable or disable hooks for git repos
+description: Enable hook for a git repo.
 enabled: true
 entry_point: enable_hook.py
 parameters:
   hookid:
     type: integer
-    description: id of the hook
+    description: id of the hook to enable.
     required: true

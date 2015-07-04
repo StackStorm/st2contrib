@@ -7,9 +7,8 @@ class ListBuildsAction(TravisCI):
         """
         Listing builds for a give Repository
         """
-        uri = self.config['uri'] + '/repos/' + username + '/' + \
-            reponame + '/builds'
-        response = self._perform_request(uri, method="GET")
+        path = '/repos/' + username + '/' + reponame + '/builds'
+        response = self._perform_request(path, method="GET")
         data = yaml.load(response.content)
         builds = []
         for arg in data['builds']:
