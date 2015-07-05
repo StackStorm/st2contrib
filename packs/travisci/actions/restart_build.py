@@ -7,5 +7,5 @@ class RestartBuildAction(TravisCI):
         Restart a build by providing it's id
         """
         path = '/builds/' + str(buildid) + '/restart'
-        response = self._perform_request(path, method="POST")
+        response = self._perform_request(path, method='POST')
         return response.content

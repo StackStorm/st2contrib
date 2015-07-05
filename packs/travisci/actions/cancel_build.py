@@ -7,5 +7,5 @@ class CancelBuildAction(TravisCI):
         Cancel a build by providing it's id
         """
         path = '/builds/' + str(buildid) + '/cancel'
-        response = self._perform_request(path, method="POST")
+        response = self._perform_request(path, method='POST')
         return response.content

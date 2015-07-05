@@ -1,5 +1,6 @@
-from lib.action import TravisCI
 import json
+
+from lib.action import TravisCI
 
 
 class DisableHookAction(TravisCI):

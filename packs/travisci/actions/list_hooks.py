@@ -1,5 +1,4 @@
 from lib.action import TravisCI
-import yaml
 
 
 class ListHooksAction(TravisCI):
@@ -9,7 +8,7 @@ class ListHooksAction(TravisCI):
         """
         path = '/hooks'
         response = self._perform_request(path, method="GET", requires_auth=True)
-        data = yaml.load(response.content)
+        data = response.json()
         hooks = {}
         for hook in data['hooks']:
             hooks[hook['id']] = [hook['active'], hook['name']]
