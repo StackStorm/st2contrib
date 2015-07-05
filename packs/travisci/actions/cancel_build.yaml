@@ -4,7 +4,7 @@ description: Cancel a build.
 enabled: true
 entry_point: cancel_build.py
 parameters:
-  buildid:
+  build_id:
     type: integer
     description: id of the build to cancel.
     required: true

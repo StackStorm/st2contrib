@@ -4,11 +4,11 @@ from lib.action import TravisCI
 
 
 class DisableHookAction(TravisCI):
-    def run(self, hookid):
+    def run(self, hook_id):
         """
         Disable a hook to monitor through Travis
         """
-        path = '/hooks/' + str(hookid)
+        path = '/hooks/' + str(hook_id)
         json_req = {
             'hook': {
                 'active': 'false'

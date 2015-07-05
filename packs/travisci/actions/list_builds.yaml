@@ -4,7 +4,7 @@ description: List details of all the available builds.
 enabled: true
 entry_point: list_builds.py
 parameters:
-  reponame:
+  repo_name:
     type: string
     description: Name of the repository for getting build and branch information.
     required: true
