@@ -1,0 +1,10 @@
+name: get_repo
+runner_type: run-python
+description: Retrieve details for a provided repository.
+enabled: true
+entry_point: get_repo.py
+parameters:
+  repo:
+    type: integer
+    description: ID of the repository to retrieve the information for.
+    required: true

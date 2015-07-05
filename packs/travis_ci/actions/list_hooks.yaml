@@ -1,0 +1,5 @@
+name: list_hooks
+runner_type: run-python
+description: List available hooks for the authenticated user.
+enabled: true
+entry_point: list_hooks.py

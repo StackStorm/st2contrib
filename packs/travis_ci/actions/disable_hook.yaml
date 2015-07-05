@@ -1,0 +1,10 @@
+name: disable_hook
+runner_type: run-python
+description: Disable hooks for a git repo.
+enabled: true
+entry_point: disable_hook.py
+parameters:
+  hook_id:
+    type: integer
+    description: ID of the hook to disable.
+    required: true

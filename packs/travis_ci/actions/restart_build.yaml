@@ -1,0 +1,10 @@
+name: restart_build
+runner_type: run-python
+description: Restart a Build
+enabled: true
+entry_point: restart_build.py
+parameters:
+  buildid:
+    type: integer
+    description: ID of the build to restart.
+    required: true
