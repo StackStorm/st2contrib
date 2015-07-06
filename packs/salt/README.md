@@ -47,7 +47,7 @@ One can also use the generic "runner" action to execute arbitrary runners.
 
 ### Actions
 
-Saltstack runner/execution module function calls are represented as Stackstorm actions. Considering Saltstack's [`test` execution module](http://docs.saltstack.com/en/2014.7/ref/modules/all/salt.modules.archive.html#module-salt.modules.archive), every function would be exposed as an Stackstorm action.
+Saltstack runner/execution module function calls are represented as Stackstorm actions. Considering Saltstack's [`archive` execution module](http://docs.saltstack.com/en/2014.7/ref/modules/all/salt.modules.archive.html#module-salt.modules.archive), every function would be exposed as an Stackstorm action.
 
 Stackstorm actions for this pack are namespaced relative to their Saltstack NetAPI client name and module name. Thus having the form:
 
