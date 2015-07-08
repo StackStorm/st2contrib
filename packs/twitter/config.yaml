@@ -5,6 +5,7 @@ consumer_secret:
 access_token:
 access_token_secret:
 
-query: "StackStorm OR @Stack_Storm"
+query:
+  - "StackStorm OR @Stack_Storm"
 count: 30
 language: en
