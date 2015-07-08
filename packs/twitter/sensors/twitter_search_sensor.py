@@ -28,7 +28,8 @@ class TwitterSearchSensor(PollingSensor):
         self._last_id = None
 
         if type(self._config['query']) is not list:
-            self._logger.exception('Polling sensor failed. Cannot start. "query" config value is not a list')
+            self._logger.exception('Twitter sensor failed. "query" config \
+                                    value is not a list')
             raise ValueError('[TwitterSearchSensor]: "query" is not a list')
 
     def poll(self):
