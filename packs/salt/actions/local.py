@@ -32,8 +32,8 @@ class SaltLocal(SaltAction):
                               expr_form=expr_form,
                               args=args, data=kwargs)
         request = self.generate_request()
-        logger.info('[salt] Request generated')
+        self.logger.info('[salt] Request generated')
         request.prepare_body(json.dumps(self.data), None)
-        logger.info('[salt] Preparing to send')
+        self.logger.info('[salt] Preparing to send')
         resp = Session().send(request, verify=True)
         return resp.json()
