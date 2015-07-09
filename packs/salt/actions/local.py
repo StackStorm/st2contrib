@@ -5,20 +5,35 @@ from lib.base import SaltAction
 
 
 class SaltLocal(SaltAction):
+    __explicit__ = [
+        'cmdmod',
+        'event',
+        'file',
+        'grains',
+        'pillar',
+        'pkg',
+        'saltcloudmod',
+        'schedule',
+        'service',
+        'state',
+        'status'
+    ]
 
-    def run(self, **kwargs):
+    def run(self, module, target, expr_form, *args, **kwargs):
         '''
         CLI Examples:
 
-            st2 run salt.runner matches='web*' module=test.ping
-            st2 run salt.client module=pkg.install \
-                    kwargs='{"pkgs":["git","httpd"]}'
+            st2 run salt.local module=test.ping matches='web*'
+            st2 run salt.local module=test.ping expr_form=grain target='os:Ubuntu'
         '''
-        # TODO: This is broken, fix it. I temporary disabled it to avoid pylint
-        # failure.
-        # Also "args" and "kwargs" action parameters are unused?
-        # self.generate_package(cmd=cmd)
+        self.generate_package('local',
+                              cmd=module,
+                              target=target,
+                              expr_form=expr_form,
+                              args=args, data=kwargs)
         request = self.generate_request()
+        self.logger.info('[salt] Request generated')
         request.prepare_body(json.dumps(self.data), None)
+        self.logger.info('[salt] Preparing to send')
         resp = Session().send(request, verify=True)
         return resp.json()
