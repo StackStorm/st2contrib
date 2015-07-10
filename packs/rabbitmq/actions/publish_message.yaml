@@ -1,0 +1,65 @@
+---
+  name: "publish_message"
+  runner_type: "python-script"
+  description: "Publish a message in RabbitMQ"
+  enabled: true
+  entry_point: "publish_message.py"
+  parameters:
+    host:
+      type: "string"
+      description: "Hostname or IP Address to connect to"
+      position: 0
+      required: true
+    port:
+      type: "integer"
+      description: "TCP port to connect to"
+      position: 1
+      required: true
+      default: 5672
+    username:
+      type: "string"
+      description: "The username to connect with"
+      position: 2
+      required: true
+      default: "guest"
+    password:
+      type: "string"
+      description: "The password to authenticate with"
+      position: 3
+      required: true
+      default: "guest"
+    virtual_host:
+      type: "string"
+      description: "RabbitMQ virtual host to use"
+      position: 4
+      required: true
+      default: "/"
+    exchange:
+      type: "string"
+      description: "The exchange to publish the message on"
+      position: 5
+      required: true
+      default: ""
+    exchange_type:
+      type: "string"
+      description: "The type of exchange"
+      default: "direct"
+      position: 6
+      required: true
+    exchange_durable:
+      type: "boolean"
+      description: "Whether or not the exchange is durable"
+      position: 7
+      required: true
+      default: false
+    routing_key:
+      type: "string"
+      description: "The routing key for the message"
+      position: 8
+      required: true
+      default: ""
+    message:
+      type: "string"
+      description: "The message"
+      position: 9
+      required: true
