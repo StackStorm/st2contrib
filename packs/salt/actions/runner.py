@@ -23,7 +23,7 @@ class SaltRunner(SaltAction):
             st2 run salt.runner_jobs.list_jobs
         '''
         self.generate_package('runner', cmd=_cmd)
-        if kwargs['kwargs'] is not None:
+        if kwargs.get('kwargs', None) is not None:
             self.data.update(kwargs['kwargs'])
         request = self.generate_request()
         request.prepare_body(json.dumps(self.data), None)
