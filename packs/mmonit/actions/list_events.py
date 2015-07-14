@@ -4,7 +4,7 @@ from lib.mmonit import MmonitBaseAction
 class MmonitListEvents(MmonitBaseAction):
     def run(self, active=None, hostid=None, hostgroupid=None, servicenameid=None,
             servicegroupid=None, servicetype=None, eventtype=None, state=None, datefrom=None,
-            results=None, startindex=None, sort_key=None, sort_dir=None):
+            results=None, startindex=None, sort_key=None, sort_dir=None, dateto=None):
         self.login()
         data = {}
 
@@ -34,6 +34,8 @@ class MmonitListEvents(MmonitBaseAction):
             data['sort'] = sort_key
         if sort_dir is not None:
             data['dir'] = sort_dir
+        if dateto is not None:
+            data['dateto'] = dateto
 
         req = self.session.post("{}/reports/events/list".format(self.url), data=data)
 
