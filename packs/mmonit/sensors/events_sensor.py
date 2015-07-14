@@ -10,7 +10,7 @@ class MmonitEventsSensor(PollingSensor):
 
     def setup(self):
         self.url = self._config["shared_sensors_config"]["host"].strip("/")
-        self.user = self._config["shared_sensors_config"]["user"]
+        self.user = self._config["shared_sensors_config"]["username"]
         self.password = self._config["shared_sensors_config"]["password"]
         self.session = requests.session()
         self._login()
