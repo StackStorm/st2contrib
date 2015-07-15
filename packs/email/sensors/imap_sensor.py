@@ -41,17 +41,19 @@ class IMAPSensor(PollingSensor):
     def setup(self):
         self._logger.debug('[IMAPSensor]: entering setup')
 
-        if 'imap_mailboxes' in self._config:
-            self._parse_mailboxes(self._config['imap_mailboxes'])
 
     def poll(self):
         self._logger.debug('[IMAPSensor]: entering poll')
+
+        if 'imap_mailboxes' in self._config:
+            self._parse_mailboxes(self._config['imap_mailboxes'])
 
         for name, values in self._mailboxes.items():
             mailbox = values['connection']
             download_attachments = values['download_attachments']
             self._poll_for_unread_messages(name=name, mailbox=mailbox,
                                            download_attachments=download_attachments)
+            mailbox.quit()
 
     def cleanup(self):
         self._logger.debug('[IMAPSensor]: entering cleanup')
