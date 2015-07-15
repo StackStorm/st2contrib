@@ -1,16 +1,11 @@
-### Place configuration data for your pack here.
 ---
 imap_mailboxes:
-  default:
-    server: ""
+  steve_main:
+    server: imap.kolabnow.com
     port: 993
-    username: ""
-    password: ""
-    ssl: True
-    download_attachments: True
-
+    username: steve@fryman.io
+    password: bsKpcHdoYQTAmnozhABJWipLxDdmYULXg9stDhti4jPKZdvLih
+    ssl: true
 max_attachment_size: 1024
 attachment_datastore_ttl: 1800
 
-smtp_listen_ip: '127.0.0.1'
-smtp_listen_port: 25
