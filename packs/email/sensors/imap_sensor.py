@@ -41,7 +41,6 @@ class IMAPSensor(PollingSensor):
     def setup(self):
         self._logger.debug('[IMAPSensor]: entering setup')
 
-
     def poll(self):
         self._logger.debug('[IMAPSensor]: entering poll')
 
