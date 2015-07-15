@@ -57,7 +57,8 @@ class MmonitEventsSensor(PollingSensor):
         active_events = [str(item['id']) for item in events['records']]
         for k in self._sensor_service.list_values():
             if str(k.value) not in active_events:
-                self._logger.debug('Event {} is no longer active, deleting from the datastore'.format(k.value))
+                self._logger.debug('Event {} is no longer active, '
+                                   'deleting from the datastore'.format(k.value))
                 self._sensor_service.delete_value(k.value)
 
     def _clear_list(self, events):
@@ -68,7 +69,8 @@ class MmonitEventsSensor(PollingSensor):
         new_list = []
         for item in events['records']:
             if str(item['id']) in triggered_events:
-                self._logger.debug('Event {} was already triggered, not triggering it anymore.'.format(item['id']))
+                self._logger.debug('Event {} was already triggered, '
+                                   'not triggering it anymore.'.format(item['id']))
             elif str(item['eventtype']) not in self.event_types:
                 self._logger.debug('Event {} was filtered by the configuration.'.format(item['id']))
             else:
