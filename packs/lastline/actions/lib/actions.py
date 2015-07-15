@@ -5,16 +5,17 @@ from st2actions.runners.pythonrunner import Action
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
+
+        self._url = self.config.get('url', 'https://analysis.lastline.com')
+        self._key = self.config.get('key')
+        self._api_token = self.config.get('api_token')
+
         self.client = self._init_client()
 
     def _init_client(self):
-        url = self.config.get('url', 'https://analysis.lastline.com')
-        key = self.config.get('key')
-        api_token = self.config.get('api_token')
-
-        if not key:
+        if not self._key:
             return ValueError('Missing "key" config option')
-        if not api_token:
+        if not self._api_token:
             return ValueError('Missing "api_token" config option')
 
-        return AnalysisClient(url, key, api_token)  # noqa
+        return AnalysisClient(self._url, self._key, self._api_token)  # noqa
