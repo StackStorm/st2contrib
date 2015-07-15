@@ -1,0 +1,71 @@
+---
+name: "get_alert_query"
+runner_type: "run-python"
+description: "Request existing alert profiles with optional filters"
+enabled: true
+entry_point: "get_alert_query.py"
+parameters:
+  duration:
+    type: "string"
+    description: "Specifies the interval to search"
+    enum:
+      - "1_hour"
+      - "2_hours"
+      - "6_hours"
+      - "12_hours"
+      - "24_hours"
+      - "48_hours"
+  start_time:
+    type: "string"
+    description: "Start time of the query. Format: (YYYY-MM-DDTHH:mm:ss.sss-OH:om,
+      example: (2013-01-24T16:30:00.000-07:00"
+  end_time:
+    type: "string"
+    description: "End time of the query. Format: (YYYY-MM-DDTHH:mm:ss.sss-OH:om,
+      example: (2013-01-24T16:30:00.000-07:00"
+  src_ip:
+    type: "string"
+    description: "The source IPv4 or IPv6 address related to the malware alert"
+  dst_ip:
+    type: "string"
+    description: "The destination IPv4 or IPv6 address related to the malware alert"
+  malware_name:
+    type: "string"
+    description: "The name of the malware object"
+  malware_type:
+    type: "string"
+    description: "The type of the malware object"
+    enum:
+      - "domain_match"
+      - "malware_callback"
+      - "malware_object"
+      - "web_infection"
+      - "infection_match"
+  sender_email:
+    type: "string"
+    description: "The email address of the malware object sender"
+  recipient_email:
+    type: "string"
+    description: "The email address of the malware object receiver"
+  file_name:
+    type: "string"
+    description: "The name of the malware file"
+  file_type:
+    type: "string"
+    description: "The malware file type"
+  url:
+    type: "string"
+    description: "The malware file type"
+  md5:
+    type: "string"
+    description: "Searches for alerts that include a specific MD5 hash"
+  callback_domain:
+    type: "string"
+    description: "Searches for alerts that include callbacks to the specified domain"
+  info_level:
+    type: "string"
+    description: "Specifies the level of information to be returned. Default: concise"
+    enum:
+      - "concise"
+      - "normal"
+      - "extended"
