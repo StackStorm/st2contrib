@@ -5,7 +5,7 @@ StackStorm integration with Lastline Security Breach Detection devices
 ## Configuration
 
 * `url` - URL of Lastline Endpoint. By default: uses Lastline Cloud.
-* `api_key` - Lastline API Key
+* `key` - Lastline API Key
 * `api_token` - Lastline API token
 
 ## Actions

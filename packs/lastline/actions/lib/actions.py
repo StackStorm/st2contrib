@@ -17,4 +17,5 @@ class BaseAction(Action):
         if not api_token:
             return ValueError('Missing "api_token" config option')
 
-        return AnalysisClient(url, key, api_token)  # noqa
+        client = AnalysisClient(url, key, api_token)  # noqa
+        return client

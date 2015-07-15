@@ -1,5 +1,5 @@
 ### Place configuration data for your pack here.
 ---
 url: "https://analysis.lastline.com"
-api_key: ""
+key: ""
 api_token: ""
