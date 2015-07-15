@@ -33,7 +33,8 @@ class MmonitEventsSensor(PollingSensor):
         if test_login.status_code != 200:
             self._login()
 
-        events_list = self.session.get('{}/reports/events/list'.format(self.url), params={'active': self.active}).json()
+        events_list = self.session.get('{}/reports/events/list'.format(self.url),
+                                       params={'active': self.active}).json()
         events = self._clear_list(events_list)
         self._clear_datastore(events_list)
         for event in events:
@@ -48,8 +49,10 @@ class MmonitEventsSensor(PollingSensor):
         self.session.close()
 
     def _clear_datastore(self, events):
-        """As we store the triggered events in the datastore, this checks if the actual standing alerts
-        from monit are in the datastore, and if they are not then we remove them so they can be triggered again
+        """As we store the triggered events in the datastore,
+        this checks if the actual standing alerts
+        from monit are in the datastore, and if they are not
+        then we remove them so they can be triggered again
         in case the alert arises again"""
         active_events = [str(item['id']) for item in events['records']]
         for k in self._sensor_service.list_values():
@@ -58,8 +61,9 @@ class MmonitEventsSensor(PollingSensor):
                 self._sensor_service.delete_value(k.value)
 
     def _clear_list(self, events):
-        """Removes already triggered events from the events list. This makes long standing alerts
-        that had already been triggered, not get triggered again. So no spam for any rules/workflow"""
+        """Removes already triggered events from the events list.
+        This makes long standing alerts
+        that had already been triggered, not get triggered again."""
         triggered_events = [str(kvp.value) for kvp in self._sensor_service.list_values()]
         new_list = []
         for item in events['records']:
