@@ -2,7 +2,6 @@ import json
 import httplib
 import requests
 import six
-import pyaml
 from six.moves.urllib.parse import urljoin
 
 from st2actions.runners.pythonrunner import Action
@@ -13,7 +12,9 @@ __all__ = [
 
 
 def _serialize(data):
-    return pyaml.dump(data)
+    if isinstance(data, dict):
+        return '\n'.join(['%s : %s' % (k, v) for k, v in six.iteritems(data)])
+    return data
 
 
 def format_possible_failure_result(result):
