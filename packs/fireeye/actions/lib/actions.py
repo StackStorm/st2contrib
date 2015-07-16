@@ -33,3 +33,16 @@ class BaseAction(Action):
         }
         return headers
 
+    def _api_get(endpoint, params=None):
+        url = "/".join([self._api_root, endpoint])
+        r = requests.get(url=url, params=params, headers=self._headers)
+        r.raise_for_status()
+        return r.text
+
+    def _api_post(endpoint, files=None):
+        url = "/".join([self._api_root, endpoint])
+        r = requests.post(url=url, headers=self._headers, files=files)
+        r.raise_for_status()
+        return r.to_json()
+
+
