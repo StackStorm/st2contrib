@@ -44,5 +44,3 @@ class BaseAction(Action):
         r = requests.post(url=url, headers=self._headers, files=files)
         r.raise_for_status()
         return r.to_json()
-
-
