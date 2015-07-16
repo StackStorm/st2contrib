@@ -1,5 +1,5 @@
 ---
-name: view_ax_config
+name: "view_ax_config"
 runner_type: "run-python"
 description: "Returns a list of guest image profiles and applications than are on each AX"
 enabled: true

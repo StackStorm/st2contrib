@@ -1,5 +1,5 @@
 ### Place configuration data for your pack here.
 ---
-hostname: ""
-username: ""
-password: ""
+api_url: "https://sometest.com"
+username: "someuser"
+password: "somepassword"

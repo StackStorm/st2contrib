@@ -11,14 +11,14 @@ class BaseAction(Action):
         self._username = self.config.get('username')
         self._password = self.config.get('password')
         self._headers = self._get_auth_token()
-        self._uri = '/'.join[self._cmaddress, 'wsapis' 'v1.0.0']
+        self._api_root = '/'.join([self._cmaddress, 'wsapis' 'v1.0.0'])
 
     def _get_auth_token(self):
         if not self._cmaddress or not self._username or not self._password:
             raise ValueError('Must define: "api_url", "username", and \
                               "password" config options')
 
-        url = "/".join[self._cmaddress, self._api_root, 'auth', 'login']
+        url = "/".join([self._cmaddress, self._api_root, 'auth', 'login'])
         auth_header = base64.b64encode('{}:{}'.format(self._username,
                                                       self._password))
         headers = {
