@@ -10,8 +10,8 @@ class BaseAction(Action):
         self._cmaddress = self.config.get('api_url')
         self._username = self.config.get('username')
         self._password = self.config.get('password')
-        self._headers = self._get_auth_token()
         self._api_root = '/'.join([self._cmaddress, 'wsapis' 'v1.0.0'])
+        self._headers = self._get_auth_token()
 
     def _get_auth_token(self):
         if not self._cmaddress or not self._username or not self._password:
