@@ -55,7 +55,7 @@ def _create_trigger_type():
         if ST2_AUTH_TOKEN:
             headers['X-Auth-Token'] = ST2_AUTH_TOKEN
 
-        post_resp = requests.post(url, data=json.dumps(payload), heades=headers)
+        post_resp = requests.post(url, data=json.dumps(payload), headers=headers)
     except:
         sys.stderr.write('Unable to register trigger type with st2.')
         raise
