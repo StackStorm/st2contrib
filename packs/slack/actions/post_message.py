@@ -1,6 +1,11 @@
 import json
 import httplib
 
+try:
+    from six.moves.urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
+
 import requests
 
 from st2actions.runners.pythonrunner import Action
@@ -32,7 +37,8 @@ class PostMessageAction(Action):
         if disable_formatting:
             body['parse'] = 'none'
 
-        data = 'payload=%s' % (json.dumps(body))
+        data = {'payload': json.dumps(body)}
+        data = urlencode(data)
         response = requests.post(url=config['webhook_url'],
                                  headers=headers, data=data)
 
