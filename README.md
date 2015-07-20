@@ -52,6 +52,7 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [irc](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | st2 content pack containing irc integrations | irc, internet relay chat | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#irc-pack)
 | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | issues, ticket management, project management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jira-pack)
 | [jmx](https://github.com/StackStorm/st2contrib/tree/master/packs/jmx) | st2 content pack containing Java JMX integrations | jmx, javajmx, java management extensions, mbean | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jmx-pack)
+| [lastline](https://github.com/StackStorm/st2contrib/tree/master/packs/lastline) | Lastline Security Breach Detection Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#lastline-pack)
 | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | libcloud, cloud, dns, dnsaas, lbaas, load balancers, aws, amazon, s3, ec2, rackspace, cloudstack, openstack, cloudsigma, gce, google compute engine | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#libcloud-pack)
 | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
 | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
@@ -66,11 +67,13 @@ Name | Description | Keywords | Author | Latest Version | Available Resources
 | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:jfryman@FryBook) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
-| [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [gtmanfred](mailto:danielwallace@gtmanfred.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
+| [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
+| [SmartThings](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | Integration with SmartThings |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#SmartThings-pack)
 | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+| [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
@@ -505,6 +508,21 @@ Name | Description
 ---- | -----------
 invoke_method | Invoke a provided MBean method exposed over JMX.
 
+### lastline pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_completed | Get artifact generated by an analysis result for a previously submitted analysis task.
+get_progress | Get a progress estimate for a previously submitted analysis task.
+get_result | Get results for a previously submitted analysis task.
+get_result_artifact | Get artifact generated by an analysis result for a previously submitted analysis task.
+get_result_summary | Get result summary for a previously submitted analysis task.
+submit_file | Submit a file to Lastline for analysis
+submit_file_hash | Submit a file hash to Lastline for analysis
+submit_url | Submit a URL for analysis to Lastline
+
 ### libcloud pack
 
 #### Actions
@@ -685,6 +703,7 @@ Name | Description
 ---- | -----------
 list_exchanges | List RabbitMQ exchanges
 list_queues | List RabbitMQ queues
+publish_message | Publish a message in RabbitMQ
 
 ### rackspace pack
 
@@ -728,6 +747,139 @@ Name | Description
 bootstrap | Bootstrap servers with salt.cloud runner
 client | Run salt LocalClient functions
 local | Run Salt Exection Modules through Salt API
+local_archive.gunzip | Run Salt Execution modules through Salt API
+local_archive.gzip | Run Salt Execution modules through Salt API
+local_archive.rar | Run Salt Execution modules through Salt API
+local_archive.tar | Run Salt Execution modules through Salt API
+local_archive.unrar | Run Salt Execution modules through Salt API
+local_archive.unzip | Run Salt Execution modules through Salt API
+local_archive.zip_ | Run Salt Execution modules through Salt API
+local_cloud.action | Run Salt Execution modules through Salt API
+local_cloud.create | Run Salt Execution modules through Salt API
+local_cloud.destroy | Run Salt Execution modules through Salt API
+local_cloud.network_create | Run Salt Execution modules through Salt API
+local_cloud.profile_ | Run Salt Execution modules through Salt API
+local_cloud.virtual_interface_create | Run Salt Execution modules through Salt API
+local_cloud.volume_attach | Run Salt Execution modules through Salt API
+local_cloud.volume_create | Run Salt Execution modules through Salt API
+local_cloud.volume_delete | Run Salt Execution modules through Salt API
+local_cloud.volume_detach | Run Salt Execution modules through Salt API
+local_cmdmod.run | Run Salt Execution modules through Salt API
+local_cmdmod.run_chroot | Run Salt Execution modules through Salt API
+local_cmdmod.script | Run Salt Execution modules through Salt API
+local_cp.get_file | Run Salt Execution modules through Salt API
+local_cp.get_url | Run Salt Execution modules through Salt API
+local_cp.push | Run Salt Execution modules through Salt API
+local_cp.push_dir | Run Salt Execution modules through Salt API
+local_cron.ls | Run Salt Execution modules through Salt API
+local_cron.rm_env | Run Salt Execution modules through Salt API
+local_cron.rm_job | Run Salt Execution modules through Salt API
+local_cron.set_env | Run Salt Execution modules through Salt API
+local_cron.set_job | Run Salt Execution modules through Salt API
+local_data.cas | Run Salt Execution modules through Salt API
+local_data.dump | Run Salt Execution modules through Salt API
+local_data.getval | Run Salt Execution modules through Salt API
+local_data.update | Run Salt Execution modules through Salt API
+local_event.fire | Run Salt Execution modules through Salt API
+local_event.fire_master | Run Salt Execution modules through Salt API
+local_event.send | Run Salt Execution modules through Salt API
+local_file.access | Run Salt Execution modules through Salt API
+local_file.chgrp | Run Salt Execution modules through Salt API
+local_file.chown | Run Salt Execution modules through Salt API
+local_file.directory_exists | Run Salt Execution modules through Salt API
+local_file.file_exists | Run Salt Execution modules through Salt API
+local_file.find | Run Salt Execution modules through Salt API
+local_file.manage_file | Run Salt Execution modules through Salt API
+local_file.mkdir | Run Salt Execution modules through Salt API
+local_file.remove | Run Salt Execution modules through Salt API
+local_file.replace | Run Salt Execution modules through Salt API
+local_file.search | Run Salt Execution modules through Salt API
+local_file.symlink | Run Salt Execution modules through Salt API
+local_file.touch | Run Salt Execution modules through Salt API
+local_file.truncate | Run Salt Execution modules through Salt API
+local_grains.append | Run Salt Execution modules through Salt API
+local_grains.delval | Run Salt Execution modules through Salt API
+local_grains.get | Run Salt Execution modules through Salt API
+local_grains.remove | Run Salt Execution modules through Salt API
+local_grains.setval | Run Salt Execution modules through Salt API
+local_hosts.add_hosts | Run Salt Execution modules through Salt API
+local_hosts.get_alias | Run Salt Execution modules through Salt API
+local_hosts.get_ip | Run Salt Execution modules through Salt API
+local_hosts.rm_host | Run Salt Execution modules through Salt API
+local_hosts.set_host | Run Salt Execution modules through Salt API
+local_htpasswd.useradd | Run Salt Execution modules through Salt API
+local_htpasswd.userdel | Run Salt Execution modules through Salt API
+local_mine.delete | Run Salt Execution modules through Salt API
+local_mine.get | Run Salt Execution modules through Salt API
+local_mine.send | Run Salt Execution modules through Salt API
+local_mine.update | Run Salt Execution modules through Salt API
+local_network.connect | Run Salt Execution modules through Salt API
+local_network.interface_ip | Run Salt Execution modules through Salt API
+local_network.ipaddrs | Run Salt Execution modules through Salt API
+local_network.ping | Run Salt Execution modules through Salt API
+local_network.subnets | Run Salt Execution modules through Salt API
+local_pillar.get | Run Salt Execution modules through Salt API
+local_pip.freeze | Run Salt Execution modules through Salt API
+local_pip.install | Run Salt Execution modules through Salt API
+local_pip.uninstall | Run Salt Execution modules through Salt API
+local_pkg.install | Run Salt Execution modules through Salt API
+local_pkg.refresh_db | Run Salt Execution modules through Salt API
+local_pkg.remove | Run Salt Execution modules through Salt API
+local_puppet.disable | Run Salt Execution modules through Salt API
+local_puppet.enable | Run Salt Execution modules through Salt API
+local_puppet.fact | Run Salt Execution modules through Salt API
+local_puppet.noop | Run Salt Execution modules through Salt API
+local_puppet.run | Run Salt Execution modules through Salt API
+local_puppet.status | Run Salt Execution modules through Salt API
+local_puppet.summary | Run Salt Execution modules through Salt API
+local_ret.get_fun | Run Salt Execution modules through Salt API
+local_ret.get_jid | Run Salt Execution modules through Salt API
+local_ret.get_jids | Run Salt Execution modules through Salt API
+local_ret.get_minions | Run Salt Execution modules through Salt API
+local_saltutil.sync_all | Run Salt Execution modules through Salt API
+local_saltutil.sync_grains | Run Salt Execution modules through Salt API
+local_saltutil.sync_modules | Run Salt Execution modules through Salt API
+local_saltutil.sync_outputters | Run Salt Execution modules through Salt API
+local_saltutil.sync_renderers | Run Salt Execution modules through Salt API
+local_saltutil.sync_returners | Run Salt Execution modules through Salt API
+local_saltutil.sync_states | Run Salt Execution modules through Salt API
+local_saltutil.sync_utils | Run Salt Execution modules through Salt API
+local_schedule.add | Run Salt Execution modules through Salt API
+local_schedule.delete | Run Salt Execution modules through Salt API
+local_schedule.disable_job | Run Salt Execution modules through Salt API
+local_schedule.enable_job | Run Salt Execution modules through Salt API
+local_schedule.run_job | Run Salt Execution modules through Salt API
+local_service.available | Run Salt Execution modules through Salt API
+local_service.restart | Run Salt Execution modules through Salt API
+local_service.start | Run Salt Execution modules through Salt API
+local_service.status | Run Salt Execution modules through Salt API
+local_service.stop | Run Salt Execution modules through Salt API
+local_shadow.del_password | Run Salt Execution modules through Salt API
+local_shadow.gen_password | Run Salt Execution modules through Salt API
+local_shadow.set_expire | Run Salt Execution modules through Salt API
+local_state.highstate | Run Salt Execution modules through Salt API
+local_state.single | Run Salt Execution modules through Salt API
+local_state.sls | Run Salt Execution modules through Salt API
+local_supervisord.add | Run Salt Execution modules through Salt API
+local_supervisord.custom | Run Salt Execution modules through Salt API
+local_supervisord.remove | Run Salt Execution modules through Salt API
+local_supervisord.reread | Run Salt Execution modules through Salt API
+local_supervisord.restart | Run Salt Execution modules through Salt API
+local_supervisord.start | Run Salt Execution modules through Salt API
+local_supervisord.stop | Run Salt Execution modules through Salt API
+local_systemd.available | Run Salt Execution modules through Salt API
+local_systemd.disable | Run Salt Execution modules through Salt API
+local_systemd.enable | Run Salt Execution modules through Salt API
+local_systemd.restart | Run Salt Execution modules through Salt API
+local_systemd.start | Run Salt Execution modules through Salt API
+local_systemd.stop | Run Salt Execution modules through Salt API
+local_systemd.systemctl_reload | Run Salt Execution modules through Salt API
+local_test.cross_test | Run Salt Execution modules through Salt API
+local_test.echo | Run Salt Execution modules through Salt API
+local_test.ping | Run Salt Execution modules through Salt API
+local_useradd.add | Run Salt Execution modules through Salt API
+local_useradd.chshell | Run Salt Execution modules through Salt API
+local_useradd.delete | Run Salt Execution modules through Salt API
 runner | Run Salt Runner functions through Salt API
 runner_cache.clear_all | Run Salt Runner functions through Salt API
 runner_cache.clear_grains | Run Salt Runner functions through Salt API
@@ -794,6 +946,31 @@ Name | Description
 ---- | -----------
 post_message | Post a message to the Slack channel.
 
+### smartthings pack
+
+#### Sensors
+
+Name | Description
+---- | -----------
+SmartThingsSensor | Sensor listening for HTTP events from SmartThings
+
+#### Actions
+
+Name | Description
+---- | -----------
+command | Send a generic command to a device
+disengage_lock | Disengage (lock) a device that can be locked
+engage_lock | Engage (lock) a device that can be locked
+find_id_by_name | Lookup a specific device ID based on its name/type
+get_device_info | Get information on a specific device
+list_devices | List devices of a specific type from SmartThings
+set_mode | Set current temperature.
+set_temperature | Set current temperature.
+toggle_lock | Toggle a lock
+toggle_switch | Toggle a switch
+turn_off_switch | Turn off a light
+turn_on_switch | Turn on a switch
+
 ### softlayer pack
 
 #### Actions
@@ -823,6 +1000,22 @@ kv.set | Set value in datastore
 kv.set_object | Serialize and store object in a datastore
 rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
+
+### travis_ci pack
+
+#### Actions
+
+Name | Description
+---- | -----------
+cancel_build | Cancel a build.
+disable_hook | Disable hooks for a git repo.
+enable_hook | Enable hook for a git repo.
+get_repo | Retrieve details for a provided repository.
+list_branches | List all branches for a given repository.
+list_builds | List details of all the available builds.
+list_hooks | List available hooks for the authenticated user.
+list_repos | List repositories for the provided user.
+restart_build | Restart a Build
 
 ### trello pack
 
