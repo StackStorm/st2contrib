@@ -1,10 +1,10 @@
 ---
 imap_mailboxes:
-  steve_main:
-    server: imap.kolabnow.com
+  main:
+    server: 
     port: 993
-    username: steve@fryman.io
-    password: bsKpcHdoYQTAmnozhABJWipLxDdmYULXg9stDhti4jPKZdvLih
+    username: 
+    password:
     ssl: true
 max_attachment_size: 1024
 attachment_datastore_ttl: 1800
