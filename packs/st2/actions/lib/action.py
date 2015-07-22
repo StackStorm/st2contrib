@@ -1,5 +1,4 @@
 import os
-from six.moves import urllib_parse
 
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
