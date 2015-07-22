@@ -1,4 +1,5 @@
 import os
+from six.moves import urllib_parse
 
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
@@ -20,20 +21,21 @@ class St2BaseAction(Action):
         self.client = self._get_client()
 
     def _get_client(self):
-        base_url = self._get_base_url()
+        base_url, api_url = self._get_st2_urls()
         token = self._get_auth_token()
-        return self._client(base_url=base_url, token=token)
+        return self._client(base_url=base_url, api_url=api_url, token=token)
 
-    def _get_base_url(self):
+    def _get_st2_urls(self):
         # First try to use base_url from config.
         base_url = self.config.get('base_url', None)
+        api_url = None
 
         # not found look up from env vars. Assuming the pack is
         # configuered to work with current StackStorm instance.
         if not base_url:
-            base_url = os.environ.get('ST2_ACTION_API_URL', None)
+            api_url = os.environ.get('ST2_ACTION_API_URL', None)
 
-        return base_url
+        return base_url, api_url
 
     def _get_auth_token(self):
         # First try to use auth_token from config.
