@@ -1,3 +1,5 @@
+import os
+
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
 from st2client.models.keyvalue import KeyValuePair  # pylint: disable=no-name-in-module
@@ -16,6 +18,9 @@ class St2BaseAction(Action):
         self._client = Client
         self._kvp = KeyValuePair
         self.client = self._get_client()
+        # pick up auth token from the environment. This is ofcourse assuming
+        # that base_url provided in config is configuered to match.
+        self.auth_token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
 
     def _get_client(self):
         host = self.config['base_url']
@@ -43,6 +48,8 @@ class St2BaseAction(Action):
         # Filter out parameters with string value of "None"
         # This is a work around since the default values can only be strings
         method_kwargs = filter_none_values(method_kwargs)
+        if self.auth_token:
+            method_kwargs['token'] = self.auth_token
         method_name = method.__name__
         self.logger.debug('Calling client method "%s" with kwargs "%s"' % (method_name,
                                                                            method_kwargs))
