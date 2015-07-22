@@ -18,15 +18,11 @@ class St2BaseAction(Action):
         self._client = Client
         self._kvp = KeyValuePair
         self.client = self._get_client()
-        self.auth_token = self._get_auth_token()
 
     def _get_client(self):
-        host = self._get_base_url()
-
-        try:
-            return self._client(base_url=host)
-        except Exception as e:
-            return e
+        base_url = self._get_base_url()
+        token = self._get_auth_token()
+        return self._client(base_url=base_url, token=token)
 
     def _get_base_url(self):
         # First try to use base_url from config.
@@ -50,7 +46,6 @@ class St2BaseAction(Action):
 
         return token
 
-
     def _run_client_method(self, method, method_kwargs, format_func):
         """
         Run the provided client method and format the result.
@@ -69,8 +64,6 @@ class St2BaseAction(Action):
         # Filter out parameters with string value of "None"
         # This is a work around since the default values can only be strings
         method_kwargs = filter_none_values(method_kwargs)
-        if self.auth_token:
-            method_kwargs['token'] = self.auth_token
         method_name = method.__name__
         self.logger.debug('Calling client method "%s" with kwargs "%s"' % (method_name,
                                                                            method_kwargs))
