@@ -18,9 +18,7 @@ class St2BaseAction(Action):
         self._client = Client
         self._kvp = KeyValuePair
         self.client = self._get_client()
-        # pick up auth token from the environment. This is ofcourse assuming
-        # that base_url provided in config is configuered to match.
-        self.auth_token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
+        self.auth_token = self._get_auth_token()
 
     def _get_client(self):
         host = self.config['base_url']
@@ -29,6 +27,16 @@ class St2BaseAction(Action):
             return self._client(base_url=host)
         except Exception as e:
             return e
+
+    def _get_auth_token(self):
+        # First try to use auth_token from config.
+        token = self.config.get('auth_token', None)
+
+        if not token:
+            token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
+
+        return token
+
 
     def _run_client_method(self, method, method_kwargs, format_func):
         """

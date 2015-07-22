@@ -1,2 +1,5 @@
 ---
   base_url: "http://localhost"
+  # auth_token will expire per token_ttl specifed in stackstorm
+  # configuration and will require a refresh.
+  auth_token: ""
