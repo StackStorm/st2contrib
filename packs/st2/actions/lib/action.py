@@ -21,17 +21,30 @@ class St2BaseAction(Action):
         self.auth_token = self._get_auth_token()
 
     def _get_client(self):
-        host = self.config['base_url']
+        host = self._get_base_url()
 
         try:
             return self._client(base_url=host)
         except Exception as e:
             return e
 
+    def _get_base_url(self):
+        # First try to use base_url from config.
+        base_url = self.config.get('base_url', None)
+
+        # not found look up from env vars. Assuming the pack is
+        # configuered to work with current StackStorm instance.
+        if not base_url:
+            base_url = os.environ.get('ST2_ACTION_API_URL', None)
+
+        return base_url
+
     def _get_auth_token(self):
         # First try to use auth_token from config.
         token = self.config.get('auth_token', None)
 
+        # not found look up from env vars. Assuming the pack is
+        # configuered to work with current StackStorm instance.
         if not token:
             token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
 
