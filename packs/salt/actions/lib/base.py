@@ -41,6 +41,7 @@ class SaltAction(Action):
         self.eauth = self.config.get('eauth', None)
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
+        self.verify_ssl = self.config.get('verify_ssl', True)
 
     def generate_package(self, client='local', cmd=None, **kwargs):
         self.data = SaltPackage(client).data
@@ -61,5 +62,6 @@ class SaltAction(Action):
         req = Request('POST',
                       "{0}/run".format(self.url),
                       headers={'content-type': 'application/json',
-                               'charset': 'utf-8'})
+                               'charset': 'utf-8'},
+                      verify=self.verify_ssl)
         return req.prepare()
