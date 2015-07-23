@@ -20,6 +20,7 @@ class SaltLocal(SaltAction):
     ]
 
     def run(self, module, target, expr_form, *args, **kwargs):
+        self.verify_ssl = self.config.get('verify_ssl', True)
         '''
         CLI Examples:
 
@@ -35,5 +36,5 @@ class SaltLocal(SaltAction):
         self.logger.info('[salt] Request generated')
         request.prepare_body(json.dumps(self.data), None)
         self.logger.info('[salt] Preparing to send')
-        resp = Session().send(request, verify=True)
+        resp = Session().send(request, verify=self.verify_ssl)
         return resp.json()
