@@ -1,3 +1,5 @@
+import os
+
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
 from st2client.models.keyvalue import KeyValuePair  # pylint: disable=no-name-in-module
@@ -18,12 +20,32 @@ class St2BaseAction(Action):
         self.client = self._get_client()
 
     def _get_client(self):
-        host = self.config['base_url']
+        base_url, api_url = self._get_st2_urls()
+        token = self._get_auth_token()
+        return self._client(base_url=base_url, api_url=api_url, token=token)
 
-        try:
-            return self._client(base_url=host)
-        except Exception as e:
-            return e
+    def _get_st2_urls(self):
+        # First try to use base_url from config.
+        base_url = self.config.get('base_url', None)
+        api_url = None
+
+        # not found look up from env vars. Assuming the pack is
+        # configuered to work with current StackStorm instance.
+        if not base_url:
+            api_url = os.environ.get('ST2_ACTION_API_URL', None)
+
+        return base_url, api_url
+
+    def _get_auth_token(self):
+        # First try to use auth_token from config.
+        token = self.config.get('auth_token', None)
+
+        # not found look up from env vars. Assuming the pack is
+        # configuered to work with current StackStorm instance.
+        if not token:
+            token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
+
+        return token
 
     def _run_client_method(self, method, method_kwargs, format_func):
         """

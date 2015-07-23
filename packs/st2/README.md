@@ -9,7 +9,14 @@ Requires StackStorm >= `v0.8.0`
 * `base_url` - Base URL for the StackStorm API server endpoints (i.e.
   ``http://localhost``). If only the base URL is provided, the client will
   assume default ports for the API servers are used. If any of the API server
-  URL is provided, it will override the base URL and default port.
+  URL is provided, it will override the base URL and default port. If no value
+  is provided will assume the pack is expected to work with current StackStorm
+  instance and pick up appropriate values from the actions environment. See
+  http://docs.stackstorm.com/actions.html#common-environment-variables-available-to-the-actions
+* `auth_token` - A negotiated auth token for the StackStorm endpoint specified
+  in base_url. Note that this value will expire per the `token_ttl` specified
+  in StackStorm configuration. See http://docs.stackstorm.com/authentication.html#usage
+  on help to generate a token.
 
 ## Actions
 
