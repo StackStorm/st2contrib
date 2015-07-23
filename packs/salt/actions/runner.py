@@ -15,6 +15,7 @@ class SaltRunner(SaltAction):
     ]
 
     def run(self, module, **kwargs):
+        self.verify_ssl = self.config.get('verify_ssl', True)
         _cmd = module
         '''
         CLI Examples:
@@ -27,5 +28,5 @@ class SaltRunner(SaltAction):
             self.data.update(kwargs['kwargs'])
         request = self.generate_request()
         request.prepare_body(json.dumps(self.data), None)
-        resp = Session().send(request, verify=True)
+        resp = Session().send(request, verify=self.verify_ssl)
         return resp.json()
