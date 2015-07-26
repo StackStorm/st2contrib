@@ -1,0 +1,14 @@
+---
+name: push
+runner_type: python-script
+description: Push a template to Hashicorp Atlas
+enabled: true
+entry_point: 'push.py'
+parameters:
+  packerfile:
+    type: string
+    description: Packer template file
+    required: true
+  cwd:
+    type: string
+    description: Working directory for Packer installation
