@@ -6,7 +6,7 @@ import os
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
-        self._exec = self.config.get('exec_path', '/opt/packer/bin/packer')
+        self._exec_path = self.config.get('exec_path', '/opt/packer/bin/packer')
         self._atlas_token = self.config.get('atlas_token', None)
         self._packer = self._get_client()
 
