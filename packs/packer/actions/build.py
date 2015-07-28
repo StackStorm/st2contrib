@@ -9,7 +9,6 @@ class BuildAction(BaseAction):
         if cwd:
             os.chdir(cwd)
 
-        p = self._packer(packerfile, exc=exclude, only=only, vars=variables,
-                         vars_file=variables_file, exec_path=self._exec_path)
+        p = self._packer(packerfile, exc=exclude, only=only, vars=variables, vars_file=variables_file, exec_path=self._exec_path)
 
         return p.build(parallel=parallel, debug=debug, force=force)
