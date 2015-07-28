@@ -11,7 +11,7 @@ class BaseAction(Action):
         self._packer = self._get_client()
 
     def _get_client(self):
-        if os.path.isfile(self._exec):
+        if os.path.isfile(self._exec_path):
             return packer.Packer
         else:
             Exception("Missing packer binary at {}".format(self._exec))
