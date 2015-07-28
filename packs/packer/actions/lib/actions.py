@@ -14,4 +14,4 @@ class BaseAction(Action):
         if os.path.isfile(self._exec_path):
             return packer.Packer
         else:
-            throw Exception("Missing packer binary at {}".format(self._exec_path))
+            raise Exception("Missing packer binary at {}".format(self._exec_path))
