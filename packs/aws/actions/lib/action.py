@@ -1,5 +1,5 @@
 import re
-import time
+import eventlet
 import importlib
 
 import boto.ec2
@@ -45,16 +45,27 @@ class BaseAction(Action):
                 tag_dict[k] = v
         return tag_dict
 
-    def wait_for_state(self, instance_id, state):
+    def wait_for_state(self, instance_id, state, timeout=10, retries=3):
         state_list = {}
         obj = self.ec2_connect()
-        time.sleep(10)
-        for instance in obj.get_only_instances([instance_id, ]):
+        eventlet.sleep(timeout)
+        instance_list = []
+
+        for _ in range(retries + 1):
+            try:
+                instance_list = obj.get_only_instances([instance_id, ])
+            except Exception:
+                self.logger.info("Waiting for instance to become available")
+                eventlet.sleep(timeout)
+
+        for instance in instance_list:
             try:
                 current_state = instance.update()
             except Exception, e:
-                self.logger.info("Instance (%s) not listed. Error: %s" % (instance_id, e))
-                time.sleep(3)
+                self.logger.info("Instance (%s) not listed. Error: %s" %
+                                 (instance_id, e))
+                eventlet.sleep(timeout)
+
             while current_state != state:
                 current_state = instance.update()
             state_list[instance_id] = current_state
