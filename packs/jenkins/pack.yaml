@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: jenkins
+description: Jenkins CI Integration Pack
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com
