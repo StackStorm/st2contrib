@@ -7,7 +7,7 @@ StackStorm. Examples of rules can be found in the `rules` directory.
 
 ## Configuration
 
-* `url` - FQDN to Jenkins API endpoint
+* `url` - FQDN to Jenkins API endpoint (e.x.: http://jenkins.mycompany.org:8080)
 * `username` - Jenkins Username (if auth is enabled)
 * `password` - Jenkins Password (if auth is enabled)
 
