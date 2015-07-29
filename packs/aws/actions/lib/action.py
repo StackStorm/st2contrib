@@ -49,6 +49,8 @@ class BaseAction(Action):
         state_list = {}
         obj = self.ec2_connect()
         eventlet.sleep(timeout)
+        instance_list = []
+
         for _ in range(retries + 1):
             try:
                 instance_list = obj.get_only_instances([instance_id, ])
