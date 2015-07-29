@@ -1,7 +1,6 @@
 from st2actions.runners.pythonrunner import Action
-
-# https://python-jenkins.readthedocs.org/en/latest/api.html
 import jenkins
+
 
 class JenkinsBaseAction(Action):
 
