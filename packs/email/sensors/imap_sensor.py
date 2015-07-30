@@ -127,6 +127,9 @@ class IMAPSensor(PollingSensor):
         headers = mime_msg.headers.items()
         has_attachments = bool(message.attachments)
 
+        # Flatten the headers so they can be unpickled
+        headers = [list(header) for header in headers]
+
         payload = {
             'uid': uid,
             'from': sent_from,
