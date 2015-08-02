@@ -1,22 +1,21 @@
-from lib.action import BitBucket
-import yaml
+from lib.action import BitBucketAction
 
 
-class ListReposAction(BitBucket):
+class GetRepos(BitBucketAction):
     def run(self):
         """
-        Listing repositories for a user, just execute it.
-        It assumes that you have already places the name
-        and password in config file. It returns repo's
-        name, its state, its state, scm and private status.
+        Listing repositories for a user.It assumes
+        that you have already places the name and
+        password in config file. It returns repo's
+        name, its state and private status(returns
+        True if its private, False otherwise)
         """
-        url = self.config['Host'] + 'user/repositories/'
-        response = self._perform_request(url)
-        data = yaml.load(response.content)
-        repos = {}
-        for arg in data:
-            repos[arg['name']] = {'is_private':
-                                  arg['is_private'],
-                                  'state': arg['state'],
-                                  'scm': arg['scm']}
-        return repos
+        repository = []
+        bb = self.perform_request()
+        success, repos = bb.repository.all()
+        for repo in sorted(repos):
+            repository.append(
+                {repo['name']: {'state': repo['state'],
+                                'last_updated_at': repo['last_updated'],
+                                'is_private': repo['is_private']}})
+        return repository
