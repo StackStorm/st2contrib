@@ -2,6 +2,13 @@
 
 Integrates StackStorm with Wit.ai
 
+## Pre-requisites
+
+Please ensure that you have:
+
+* libsox and development libraries
+* libcurl and development libraries
+
 ## Configuration
 
 wit.ai can be configured with any number of applications. As such, when querying
