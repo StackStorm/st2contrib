@@ -1,11 +1,14 @@
 from st2actions.runners.pythonrunner import Action
-import requests
+from bitbucket.bitbucket import Bitbucket
 
 
-class BitBucket(Action):
+class BitBucketAction(Action):
     def __init__(self, config):
-        super(BitBucket, self).__init__(config)
+        super(BitBucketAction, self).__init__(config)
 
-    def _perform_request(self, url, method=None, query_params=None):
-        return requests.get(url, auth=(self.config['useremail'],
-                                       self.config['password']))
+    def perform_request(self, repo=''):
+        if repo:
+            bb = Bitbucket(username=self.config['username'], password=self.config['password'], repo_name_or_slug=repo)
+        else:
+            bb = Bitbucket(username=self.config['useremail'], password=self.config['password'])
+        return bb
