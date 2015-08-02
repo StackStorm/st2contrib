@@ -8,10 +8,10 @@ class BitBucketAction(Action):
 
     def perform_request(self, repo=''):
         if repo:
-            bb = Bitbucket(username=self.config['username'], 
-                           password=self.config['password'], 
+            bb = Bitbucket(username=self.config['username'],
+                           password=self.config['password'],
                            repo_name_or_slug=repo)
         else:
-            bb = Bitbucket(username=self.config['useremail'], 
+            bb = Bitbucket(username=self.config['useremail'],
                            password=self.config['password'])
         return bb
