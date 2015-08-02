@@ -1,3 +1,5 @@
 ### Place configuration data for your pack here.
 ---
-access_token: ""
+applications:
+  # steve: XXXXXX
+default_application: ""
