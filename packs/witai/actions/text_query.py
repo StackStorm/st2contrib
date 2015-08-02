@@ -1,5 +1,6 @@
 from st2actions.runners.pythonrunner import Action
 import wit
+import json
 
 
 class TextQueryAction(Action):
@@ -25,4 +26,4 @@ class TextQueryAction(Action):
         response = wit.text_query(text, access_token)
         wit.close()
 
-        return response
+        return json.loads(response)
