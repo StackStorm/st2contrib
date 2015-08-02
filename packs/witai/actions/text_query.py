@@ -12,7 +12,7 @@ class TextQueryAction(Action):
     def run(self, text, application=None):
         if not application and self._default_application:
             app = self._default_application
-        else if application:
+        elif application:
             app = application
         else:
             raise Exception('Unknown application: %s' % application)
