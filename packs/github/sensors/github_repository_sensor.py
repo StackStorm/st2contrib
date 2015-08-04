@@ -34,7 +34,8 @@ class GithubRepositorySensor(PollingSensor):
         self._last_event_ids = {}
 
     def setup(self):
-        self._client = Github(self._config.get('token', None))
+        # Empty string '' is not ok but None is fine. (Sigh)
+        self._client = Github(self._config.get('token', None) or None)
 
         repository_sensor = self._config.get('repository_sensor', None)
         if repository_sensor is None:
