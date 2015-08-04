@@ -18,8 +18,9 @@ class GithubRepositorySensor(PollingSensor):
         'IssuesEvent',  # Triggered when an issue is assigned, unassigned, labeled, unlabeled,
                         # opened, closed, or reopened
         'IssueCommentEvent',  # Triggered when an issue comment is created
-        'ForkEvent',  # Triggered when a user forks a repository,
-        'WatchEvent'  # Triggered when a user stars a repository
+        'ForkEvent',    # Triggered when a user forks a repository,
+        'WatchEvent',   # Triggered when a user stars a repository
+        'ReleaseEvent', # Triggered when new release is available
     ]
 
     def __init__(self, sensor_service, config=None, poll_interval=None):
