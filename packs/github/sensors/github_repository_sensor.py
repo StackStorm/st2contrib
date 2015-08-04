@@ -34,7 +34,7 @@ class GithubRepositorySensor(PollingSensor):
         self._last_event_ids = {}
 
     def setup(self):
-        self._client = Github(self._config['token'])
+        self._client = Github(self._config['token'] or None)
 
         for repository_dict in self._config['repository_sensor']['repositories']:
             user = self._client.get_user(repository_dict['user'])
