@@ -2,6 +2,8 @@
   class_name: "GithubRepositorySensor"
   entry_point: "github_repository_sensor.py"
   description: "Sensor which monitors Github repository for activity"
+  # requires authentication because of GitHub rate limiting
+  # use default with auth or increase poll interval
   poll_interval: 30
   trigger_types:
     -
