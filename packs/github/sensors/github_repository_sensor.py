@@ -41,7 +41,11 @@ class GithubRepositorySensor(PollingSensor):
         if repository_sensor is None:
             raise ValueError('"repository_sensor" config value is required.')
 
-        for repository_dict in repository_sensor.get('repositories', []):
+        repositories = repository_sensor.get('repositories', None)
+        if not repositories:
+            raise ValueError('GithubRepositorySensor should have atleast 1 repository.')
+
+        for repository_dict in repositories:
             user = self._client.get_user(repository_dict['user'])
             repository = user.get_repo(repository_dict['name'])
             self._repositories.append((repository_dict['name'], repository))
