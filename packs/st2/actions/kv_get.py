@@ -13,7 +13,7 @@ class St2KVPGetAction(St2BaseAction):
         _key = self.client.keys.get_by_name(key)
 
         if not _key:
-            return None
+            raise Exception("Key does not exist")
 
         if decompress:
             value = base64.b64decode(_key.value)

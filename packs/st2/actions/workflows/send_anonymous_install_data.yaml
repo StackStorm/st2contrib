@@ -19,17 +19,19 @@
       ref: "core.local"
       params:
         cmd: "st2-submit-debug-info --exclude-configs --exclude-logs --exclude-content --review"
+      publish:
+        tarball_logline: "{{generate_anonymous_data.stdout}}"
       on-success: "get_tarball_location"
     -
       name: "get_tarball_location"
       ref: "core.local"
       params:
-        cmd: "echo {{generate_anonymous_data.result.stdout}} | awk '{print $(NF)}'"
+        cmd: "echo '{{tarball_logline}}' | grep tmp | awk '{print $(NF)}'"
       publish:
-        tarball: "{{get_tarball_location.result.stdout}}"
+        tarball: "{{get_tarball_location.stdout}}"
       on-success: "upload_to_s3"
     -
       name: "upload_to_s3"
-      ref: "core.local"
+      ref: "core.local_sudo"
       params:
-        cmd: "/opt/stackstorm/virtualenvs/st2/bin/s3 -c /opt/stackstorm/packs/st2/config.yaml -b st2express-install put {{tarball}} {{server_uuid}}.tar.gz"
+        cmd: "/opt/stackstorm/virtualenvs/st2/bin/s3 -c /opt/stackstorm/packs/st2/config.yaml -b st2express-install put {{tarball}}"
