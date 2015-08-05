@@ -35,9 +35,18 @@ class GithubRepositorySensor(PollingSensor):
         self._last_event_ids = {}
 
     def setup(self):
-        self._client = Github(self._config['token'] or None)
+        # Empty string '' is not ok but None is fine. (Sigh)
+        self._client = Github(self._config.get('token', None) or None)
 
-        for repository_dict in self._config['repository_sensor']['repositories']:
+        repository_sensor = self._config.get('repository_sensor', None)
+        if repository_sensor is None:
+            raise ValueError('"repository_sensor" config value is required.')
+
+        repositories = repository_sensor.get('repositories', None)
+        if not repositories:
+            raise ValueError('GithubRepositorySensor should have atleast 1 repository.')
+
+        for repository_dict in repositories:
             user = self._client.get_user(repository_dict['user'])
             repository = user.get_repo(repository_dict['name'])
             self._repositories.append((repository_dict['name'], repository))
@@ -62,7 +71,9 @@ class GithubRepositorySensor(PollingSensor):
         """
         assert(isinstance(name, basestring))
 
-        count = self._config['repository_sensor']['count']
+        # Assume a default value of 30. Better for teh sensor to operate with some
+        # default value in this case rather than raise an exception.
+        count = self._config['repository_sensor'].get('count', 30)
 
         events = repository.get_events()[:count]
         events = list(reversed(list(events)))
