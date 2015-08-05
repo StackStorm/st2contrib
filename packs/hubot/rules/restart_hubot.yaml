@@ -2,8 +2,7 @@
 action:
   parameters:
     cmd: service hubot restart
-    sudo: true
-  ref: core.local
+  ref: core.local_sudo
 criteria: {}
 description: Restart local hubot instance.
 enabled: false
