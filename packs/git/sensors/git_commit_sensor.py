@@ -52,7 +52,10 @@ class GitCommitSensor(PollingSensor):
         # Fetch new commits
         try:
             pulled = self._remote.pull()
-            self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
+            if pulled:
+                self._logger.debug('Pulled info from remote repo. %s', pulled[0].commit)
+            else:
+                self._logger.debug('Nothing pulled from remote repo.')
         except:
             self._logger.exception('Failed git pull from remote repo.')
 
