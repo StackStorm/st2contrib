@@ -1,4 +1,5 @@
 import os
+import s3
 
 from st2actions.runners.pythonrunner import Action
 from st2client.client import Client
@@ -18,6 +19,7 @@ class St2BaseAction(Action):
         self._client = Client
         self._kvp = KeyValuePair
         self.client = self._get_client()
+        self._s3_config = self.config.get('s3', None)
 
     def _get_client(self):
         base_url, api_url = self._get_st2_urls()
@@ -72,3 +74,8 @@ class St2BaseAction(Action):
         result = method(**method_kwargs)
         result = format_func(result)
         return result
+
+    def _get_s3_client(self):
+        if self._s3_config:
+            connection = s3.S3Connection(self._s3_config)
+            storage = s3.Storage(connection)
