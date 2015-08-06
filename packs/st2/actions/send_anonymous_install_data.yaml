@@ -1,7 +1,0 @@
----
-name: "send_anonymous_install_data"
-enabled: true
-description: "Sends anonymous data about running system to StackStorm write-only S3 dropbox"
-runner_type: "action-chain"
-entry_point: "workflows/send_anonymous_install_data.yaml"
-parameters: {}

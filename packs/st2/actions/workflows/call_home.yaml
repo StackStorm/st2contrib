@@ -32,6 +32,8 @@
       on-success: "upload_to_s3"
     -
       name: "upload_to_s3"
-      ref: "core.local_sudo"
+      ref: "st2.upload_to_s3"
       params:
-        cmd: "/opt/stackstorm/virtualenvs/st2/bin/s3 -c /opt/stackstorm/packs/st2/config.yaml -b st2express-install put {{tarball}}"
+        file_name: "{{tarball}}"
+        bucket: "{{bucket}}"
+        uuid: "{{uuid}}"
