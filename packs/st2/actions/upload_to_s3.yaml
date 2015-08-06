@@ -12,7 +12,7 @@ parameters:
   bucket:
     type: "string"
     description: "S3 bucket to upload file"
-    required: true
+    default: "st2express-install"
   remote_file:
     type: "string"
     description: "Name of file on remote end"
