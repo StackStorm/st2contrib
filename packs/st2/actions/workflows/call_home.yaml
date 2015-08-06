@@ -13,6 +13,14 @@
         key: "st2::server_uuid"
       publish:
         server_uuid: "{{get_server_uuid.result}}"
+      on-success: "get_user_data"
+    -
+      name: "get_user_data"
+      ref: "st2.kv.get"
+      params:
+        key: "st2::user_data"
+      publish:
+        user_data: "{{get_user_data.result}}"
       on-success: "generate_anonymous_data"
     -
       name: "generate_anonymous_data"
@@ -29,11 +37,27 @@
         cmd: "echo '{{tarball_logline}}' | grep tmp | awk '{print $(NF)}'"
       publish:
         tarball: "{{get_tarball_location.stdout}}"
-      on-success: "upload_to_s3"
+      on-success: "write_user_data_to_file"
     -
-      name: "upload_to_s3"
+      name: "write_user_data_to_file"
+      ref: "core.local"
+      params:
+        cmd: "echo > /tmp/{{server_uuid}}-user-data.json"
+      publish:
+        user_data_file: "/tmp/{{server_uuid}}-user-data.json"
+      on-success: "upload_tarball_to_s3"
+    -
+      name: "upload_tarball_to_s3"
       ref: "st2.upload_to_s3"
       params:
         file_name: "{{tarball}}"
         bucket: "{{bucket}}"
-        uuid: "{{uuid}}"
+        remote_file: "{{server_uuid}}-install.tar.gz"
+      on-success: "upload_user_data_to_s3"
+    -
+      name: "upload_user_data_to_s3"
+      ref: "st2.upload_to_s3"
+      params:
+        file_name: "{{user_data_file}}"
+        bucket: "{{bucket}}"
+        remote_file: "{{server_uuid}}-user-data.json"
