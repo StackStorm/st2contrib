@@ -5,7 +5,7 @@ description: "Sends collected data to write-only StackStorm S3 bucket"
 runner_type: "run-python"
 entry_point: "upload_to_s3.py"
 parameters:
-  file:
+  file_name:
     type: "string"
     description: "Full pathname of file to upload on filesystem"
     required: true
