@@ -1,0 +1,66 @@
+---
+  vars:
+    bucket: "st2express-install"
+
+  chain:
+    -
+      name: "check_for_permission_to_send_anonymous_data"
+      ref: "st2.kv.get"
+      params:
+        key: "st2::collect_anonymous_data"
+      on-success: "get_server_uuid"
+    -
+      name: "get_server_uuid"
+      ref: "st2.kv.get"
+      params:
+        key: "st2::server_uuid"
+      publish:
+        server_uuid: "{{get_server_uuid.result}}"
+      on-success: "get_user_data"
+    -
+      name: "get_user_data"
+      ref: "st2.kv.get"
+      params:
+        key: "st2::user_data"
+      publish:
+        user_data: "{{get_user_data.result}}"
+      on-success: "generate_anonymous_data"
+    -
+      name: "generate_anonymous_data"
+      ref: "core.local"
+      params:
+        cmd: "st2-submit-debug-info --exclude-configs --exclude-logs --exclude-content --review --yes"
+      publish:
+        tarball_logline: "{{generate_anonymous_data.stdout}}"
+      on-success: "get_tarball_location"
+    -
+      name: "get_tarball_location"
+      ref: "core.local"
+      params:
+        cmd: "echo '{{tarball_logline}}' | grep tmp | awk '{print $(NF)}'"
+      publish:
+        tarball: "{{get_tarball_location.stdout}}"
+      on-success: "write_user_data_to_file"
+    -
+      name: "write_user_data_to_file"
+      ref: "core.local"
+      params:
+        cmd: "echo > /tmp/{{server_uuid}}-user-data.json"
+      publish:
+        user_data_file: "/tmp/{{server_uuid}}-user-data.json"
+      on-success: "upload_tarball_to_s3"
+    -
+      name: "upload_tarball_to_s3"
+      ref: "st2.upload_to_s3"
+      params:
+        file_name: "{{tarball}}"
+        bucket: "{{bucket}}"
+        remote_file: "{{server_uuid}}-install.tar.gz"
+      on-success: "upload_user_data_to_s3"
+    -
+      name: "upload_user_data_to_s3"
+      ref: "st2.upload_to_s3"
+      params:
+        file_name: "{{user_data_file}}"
+        bucket: "{{bucket}}"
+        remote_file: "{{server_uuid}}-user-data.json"
