@@ -1,4 +1,7 @@
 ---
+  vars:
+    bucket: "st2express-install"
+
   chain:
     -
       name: "check_for_permission_to_send_anonymous_data"
