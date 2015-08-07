@@ -29,7 +29,7 @@
       name: "generate_anonymous_data"
       ref: "core.local"
       params:
-        cmd: "st2-submit-debug-info --exclude-configs --exclude-logs --exclude-content --review"
+        cmd: "st2-submit-debug-info --exclude-configs --exclude-logs --exclude-content --review --yes"
       publish:
         tarball_logline: "{{generate_anonymous_data.stdout}}"
       on-success: "get_tarball_location"
