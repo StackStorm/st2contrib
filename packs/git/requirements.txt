@@ -1,1 +1,1 @@
-gitpython==0.3.2RC1
+gitpython==1.0.1
