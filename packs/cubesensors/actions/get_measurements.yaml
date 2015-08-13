@@ -1,0 +1,10 @@
+name: get_measurements
+runner_type: run-python
+description: Retrieve current measurements for a particular device (cube).
+enabled: true
+entry_point: get_measurements.py
+parameters:
+  device_uid:
+    type: string
+    description: UID of a device to retrieve the measurements for.
+    required: true

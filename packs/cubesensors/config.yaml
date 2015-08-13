@@ -1,0 +1,9 @@
+---
+    consumer_key: <your consumer key>
+    consumer_secret: <your consumer secret>
+    access_token: <retrieved access token>
+    access_token_secret: <retrieved access secret>
+    sensor:
+        device_uids:
+            - 0000AAAAAAAAAAA
+            - 0000BBBBBBBBBBB

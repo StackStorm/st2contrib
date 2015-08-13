@@ -1,0 +1,5 @@
+name: list_devices
+runner_type: run-python
+description: List information about all the available devices (cubes).
+enabled: true
+entry_point: list_devices.py

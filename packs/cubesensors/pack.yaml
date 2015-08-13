@@ -1,0 +1,13 @@
+---
+name : libcloud
+description : st2 content pack containing CubeSensors integrations
+keywords:
+  - cubesensors
+  - iot
+  - smart home
+  - sensors
+  - probes
+  - home automation
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
