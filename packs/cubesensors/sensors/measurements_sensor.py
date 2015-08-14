@@ -62,9 +62,11 @@ class CubeSensorsMeasurementsSensor(PollingSensor):
         pass
 
     def _handle_result(self, device_uid, result):
-        existing_last_measurement_timestamp = self._get_last_measurement_timestamp(device_uid=device_uid)
+        existing_last_measurement_timestamp = self._get_last_measurement_timestamp(
+            device_uid=device_uid)
         new_last_measurement_timestamp = isotime.parse(result['time'])
-        new_last_measurement_timestamp = int(time.mktime(new_last_measurement_timestamp.timetuple()))
+        new_last_measurement_timestamp = int(time.mktime(
+            new_last_measurement_timestamp.timetuple()))
 
         if (existing_last_measurement_timestamp and
                 new_last_measurement_timestamp <= existing_last_measurement_timestamp):
@@ -77,8 +79,8 @@ class CubeSensorsMeasurementsSensor(PollingSensor):
         self._dispatch_trigger(device_uid=device_uid, result=result)
 
         # Store last measurement timestamp
-        self._set_last_measurement_timestamp(device_uid=device_uid,
-                                             last_measurement_timestamp=new_last_measurement_timestamp)
+        self._set_last_measurement_timestamp(
+            device_uid=device_uid, last_measurement_timestamp=new_last_measurement_timestamp)
 
     def _get_last_measurement_timestamp(self, device_uid):
         """
