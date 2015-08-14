@@ -1,0 +1,20 @@
+---
+  name: "cubesensors_device_low_charge_notification"
+  description: "Rule which send an email alert when a device charge drops bellow 10%."
+  enabled: true
+
+  trigger:
+    type: "cubesensors.measurements"
+    parameters: {}
+    criteria:
+        trigger.measurements.battery:
+            pattern: 10
+            type: "lessthan"
+
+  action:
+    ref: "core.sendmail"
+    parameters:
+        to: "<your name>@<your domain>"
+        subject: "Device charge alert for cube \"{{ trigger.device_name }}\" ({{ trigger.device_uid }})"
+        content_type: "text/html"
+        body: "Charge for the device <strong>{{ trigger.device_name }}</strong> dropped bellow 10% (<strong>{{ trigger.measurements.battery }}%</strong>)."
