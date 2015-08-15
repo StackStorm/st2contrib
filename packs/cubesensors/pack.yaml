@@ -1,5 +1,5 @@
 ---
-name : libcloud
+name : cubesensors
 description : st2 content pack containing CubeSensors integrations
 keywords:
   - cubesensors
