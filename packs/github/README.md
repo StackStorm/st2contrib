@@ -27,6 +27,7 @@ page.
 
 This sensor monitors Github repository for activity and dispatches a trigger
 for each repository event.
+> Note that current default poll interval requires authentication because of GitHub [rate limiting](https://developer.github.com/v3/#rate-limiting) for unauthenticated requests.
 
 Currently supported event types:
 
@@ -35,6 +36,7 @@ Currently supported event types:
 * ``IssueCommentEvent`` - Triggered when an issue comment is created.
 * ``ForkEvent`` - Triggered when a user forks a repository.
 * ``WatchEvent`` - Triggered when a user stars a repository.
+* ``ReleaseEvent`` - Triggered when new release is available. 
 
 #### github.repository_event trigger
 

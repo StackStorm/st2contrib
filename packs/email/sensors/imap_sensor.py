@@ -1,6 +1,7 @@
 import hashlib
 import base64
 
+import six
 import eventlet
 import easyimap
 from flanker import mime
@@ -127,6 +128,9 @@ class IMAPSensor(PollingSensor):
         headers = mime_msg.headers.items()
         has_attachments = bool(message.attachments)
 
+        # Flatten the headers so they can be unpickled
+        headers = self._flattern_headers(headers=headers)
+
         payload = {
             'uid': uid,
             'from': sent_from,
@@ -190,3 +194,19 @@ class IMAPSensor(PollingSensor):
         key = '%s-%s' % (message.uid, file_name)
         key = 'attachments-%s' % (hashlib.md5(key).hexdigest())
         return key
+
+    def _flattern_headers(self, headers):
+        # Flattern headers and make sure they only contain simple types so they
+        # can be serialized in a trigger
+        result = []
+
+        for pair in headers:
+            name = pair[0]
+            value = pair[1]
+
+            if not isinstance(value, six.string_types):
+                value = str(value)
+
+            result.append([name, value])
+
+        return result

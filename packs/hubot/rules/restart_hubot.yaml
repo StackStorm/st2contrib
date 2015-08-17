@@ -1,0 +1,17 @@
+---
+action:
+  parameters:
+    cmd: service hubot restart
+  ref: core.local_sudo
+criteria: {}
+description: Restart local hubot instance.
+enabled: false
+name: restart_hubot
+pack: hubot
+trigger:
+  parameters:
+    timezone: UTC
+    hour: 1
+    minute: 0
+    second: 0
+  type: core.st2.CronTimer

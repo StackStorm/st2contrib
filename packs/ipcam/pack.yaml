@@ -1,0 +1,13 @@
+---
+name : ipcam
+description : st2 content pack containing integration for various home IP cams
+keywords:
+  - ipcam
+  - ip cam
+  - ip camera
+  - camera
+  - smart home
+  - home automation
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
