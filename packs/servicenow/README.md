@@ -4,7 +4,7 @@ This integration allows bi-directional communication between StackStorm and Serv
 
 # Overview
 
-This action provides the basic REST primitaves necessary to allow communication between StackStorm and ServiceNow. Ideally, this integration will be consumed in a site-specific integration pack that defines actions to specific ServiceNow specific business logic.
+This action provides the basic REST primitives necessary to allow communication between StackStorm and ServiceNow. Ideally, this integration will be consumed in a site-specific integration pack that defines actions to specific ServiceNow specific business logic.
 
 ServiceNow provides two videos to demonstrate how to setup Inbound and Outbound Web Service integrations.
 
