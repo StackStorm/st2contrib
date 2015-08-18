@@ -10,4 +10,4 @@ criteria: {}
 action:
   ref: "acme.post_action"
   parameters:
-    correlation_id: "{{trigger.body.correlationID}}
+    correlation_id: "{{trigger.body.correlationID}}"
