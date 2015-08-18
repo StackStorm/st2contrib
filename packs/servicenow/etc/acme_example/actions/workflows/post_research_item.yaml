@@ -1,0 +1,10 @@
+---
+  chain:
+    -
+      name: "post_to_servicenow"
+      ref: "servicenow.insert"
+      params:
+        payload:
+          assigned_to: "Estee Tew"
+          comment: "This is a site to research about REST"
+          url: "https://en.wikipedia.org/wiki/Representational_state_transfer"
