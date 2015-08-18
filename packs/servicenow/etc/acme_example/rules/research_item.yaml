@@ -1,0 +1,13 @@
+---
+name: 'acme.research_item'
+description: "Incoming webhook integration for Acme research"
+enabled: true
+trigger:
+  type: "core.st2.webhook"
+  parameters:
+    url: "acme/research_item"
+criteria: {}
+action:
+  ref: "acme.post_action"
+  parameters:
+    correlation_id: "{{trigger.body.correlationID}}

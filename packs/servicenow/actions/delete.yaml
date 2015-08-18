@@ -1,0 +1,15 @@
+---
+name: "delete"
+runner_type: "python-script"
+description: "Delete an entry from a ServiceNow Table"
+enabled: true
+entry_point: "delete.py"
+parameters:
+  table:
+    type: "string"
+    description: "Table to take action on"
+    required: true
+  sysid:
+    type: "string"
+    description: "ID of record"
+    required: true
