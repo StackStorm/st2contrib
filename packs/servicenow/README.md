@@ -16,9 +16,21 @@ An example pack has been included in this pack to show the integration of Servic
 # Setup
 ## Configuration
 
+### Outgoing Integration
+
 * `instance_name` - Upstream Instance Name (e.x.: stackstorm)
 * `username` - Username of service account
 * `password` - Password of service account
+
+### Incoming Integration
+
+In your ServiceNow Outbound integration, REST endpoints accept JSON payloads. In addition, you must specify the following headers in your payload request:
+
+```
+Accept: application/json
+Content-Type: application/json
+```
+
 
 ## Actions
 
