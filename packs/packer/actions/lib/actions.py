@@ -35,11 +35,8 @@ class BaseAction(Action):
         os.chdir(directory)
 
     def packer(self, packerfile, exc=None, only=None, vars=None, vars_file=None):
-        if os.path.isfile(self._exec_path):
-            return packer.Packer
-        else:
-            raise Exception("Missing packer binary [{}]".format(self._exec_path))
-
-        return packer.Packer(packerfile, exe=exc, only=only,
+        # Cast as string from unicode to appease upstream module
+        _packerfile = str(packerfile)
+        return packer.Packer(_packerfile, exc=exc, only=only,
                              vars=self._get_vars(vars), vars_file=vars_file,
                              exec_path=self._exec_path)
