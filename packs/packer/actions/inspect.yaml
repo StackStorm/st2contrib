@@ -1,14 +1,14 @@
 ---
-name: inspect
-runner_type: python-script
-description: Takes a template and outputs the various components a template defines
+name: "inspect"
+runner_type: "python-script"
+description: "Takes a template and outputs the various components a template defines"
 enabled: true
-entry_point: 'inspect.py'
+entry_point: "inspect.py"
 parameters:
   packerfile:
-    type: string
-    description: Packer template file
+    type: "string"
+    description: "Packer template file"
     required: true
   cwd:
     type: string
-    description: Working directory for Packer installation
+    description: "Working directory for Packer installation"

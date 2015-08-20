@@ -1,12 +1,16 @@
 from lib.actions import BaseAction
-import os
 
 
 class PushAction(BaseAction):
-    def run(self, packerfile, cwd):
-
+    def run(self, packerfile, name, cwd=None, exclude=None, only=None, variables=None,
+            variables_file=None):
         if cwd:
-            os.chdir(cwd)
+            self.set_dir(cwd)
+        if self.atlas_token:
+            return p.push(create=True, atlas_token=self.atlas_token)
+        else:
+            raise ValueError("Missing 'atlas_token' in config.yaml for packer")
 
-        p = self._packer(packerfile, exec_path=self._exec_path)
-        return p.push(create=True, atlas_token=self._atlas_token)
+        p = self.packer(packerfile, exc=exclude, only=only, vars=variables,
+                        vars_file=variables_file)
+        return p.push(name)

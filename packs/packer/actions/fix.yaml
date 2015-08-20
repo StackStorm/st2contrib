@@ -1,18 +1,18 @@
 ---
-name: fix
-runner_type: python-script
-description: Takes a template and finds backwards incompatible parts of it and brings it up to date so it can be used with the latest version of Packer
+name: "fix"
+runner_type: "python-script"
+description: "Takes a template and finds backwards incompatible parts of it and brings it up to date so it can be used with the latest version of Packer"
 enabled: true
-entry_point: 'fix.py'
+entry_point: "fix.py"
 parameters:
   packerfile:
-    type: string
-    description: Packer template file
+    type: "string"
+    description: "Packer template file"
     required: true
   outputfile:
-    type: string
-    description: Fixed Packer template output path
+    type: "string"
+    description: "Fixed Packer template output path"
     required: true
   cwd:
-    type: string
-    description: Working directory for Packer installation
+    type: "string"
+    description: "Working directory for Packer installation"

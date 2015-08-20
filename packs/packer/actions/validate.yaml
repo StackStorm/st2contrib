@@ -1,14 +1,14 @@
 ---
-name: validate
-runner_type: python-script
-description: Validate a packer template
+name: "validate"
+runner_type: "python-script"
+description: "Validate a packer template"
 enabled: true
-entry_point: 'validate.py'
+entry_point: "validate.py"
 parameters:
   packerfile:
-    type: string
-    description: Packer template file
+    type: "string"
+    description: "Packer template file"
     required: true
   cwd:
-    type: string
-    description: Working directory for Packer installation
+    type: "string"
+    description: "Working directory for Packer installation"
