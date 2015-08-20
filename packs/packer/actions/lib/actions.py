@@ -18,18 +18,10 @@ class BaseAction(Action):
         else:
             return variables
 
-    # Grabbed from http://stackoverflow.com/a/7205672
     def _mergedicts(dict1, dict2):
-        for k in set(dict1.keys()).union(dict2.keys()):
-            if k in dict1 and k in dict2:
-                if isinstance(dict1[k], dict) and isinstance(dict2[k], dict):
-                    yield (k, dict(self._mergedicts(dict1[k], dict2[k])))
-                else:
-                    yield (k, dict2[k])
-            elif k in dict1:
-                yield (k, dict1[k])
-            else:
-                yield (k, dict2[k])
+        merged_dict = dict1.copy()
+        merged_dict.update(dict2)
+        return merged_dict
 
     def set_dir(self, directory):
         os.chdir(directory)
