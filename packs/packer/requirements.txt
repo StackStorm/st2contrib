@@ -1,1 +1,1 @@
-python-packer
+git+https://github.com/jfryman/python-packer@0.8.5-support
