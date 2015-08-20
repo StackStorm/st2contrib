@@ -12,6 +12,10 @@ parameters:
   name:
     type: "string"
     description: "Atlas project name to push to."
+    required: true
+  message:
+    type: "string"
+    description: "A message to identify the purpose or changes in this Packer template much like a VCS commit message"
   cwd:
     type: string
     description: "Working directory for Packer definition"
