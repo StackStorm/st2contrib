@@ -10,7 +10,7 @@ class PushAction(BaseAction):
         p = self.packer(packerfile, exc=exclude, only=only, vars=variables,
                         vars_file=variables_file)
         if self.atlas_token:
-            return p.push(self, name, message=message,
+            return p.push(name, message=message,
                           atlas_token=self.atlas_token)
         else:
             raise ValueError("Missing 'atlas_token' in config.yaml for packer")

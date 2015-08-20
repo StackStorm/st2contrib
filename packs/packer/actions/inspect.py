@@ -7,5 +7,5 @@ class InspectAction(BaseAction):
             self.set_dir()cwd)
 
         p = self.packer(packerfile)
-        result = p.inspect(self, mrf=True)
+        result = p.inspect(mrf=True)
         return result.parsed_output
