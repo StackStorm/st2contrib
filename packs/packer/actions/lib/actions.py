@@ -7,7 +7,7 @@ class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
         self.atlas_token = self.config.get('atlas_token', None)
-        self._exec_path = self.config.get('exec_path', None)
+        self._exec_path = self.config.get('exec_path', '/usr/local/bin/packer')
         self._global_vars = self.config.get('variables', None)
 
     def _get_vars(self, variables):

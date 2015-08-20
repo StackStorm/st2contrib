@@ -9,7 +9,7 @@ additional details.
 
 ## Configuration
 
-* `exec_path` - full path to packer binary (default: /opt/packer/bin/packer)
+* `exec_path` - full path to packer binary (default: /usr/local/bin/packer)
 * `atlas_token` - Hashicorp Atlas token, needed for `push` action.
 
 ## Actions
