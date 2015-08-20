@@ -9,4 +9,4 @@ class BuildAction(BaseAction):
 
         p = self.packer(packerfile, exc=exclude, only=only, vars=variables,
                         vars_file=variables_file)
-        return p.build(parallel=parallel, debug=debug, force=force)
+        return p.build(self, parallel=parallel, debug=debug, force=force)

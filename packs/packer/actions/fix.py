@@ -7,4 +7,4 @@ class FixAction(BaseAction):
             self.set_dir(cwd)
 
         p = self.packer(packerfile)
-        return p.fix(outputfile)
+        return p.fix(self, outputfile)
