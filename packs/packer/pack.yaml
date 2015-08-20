@@ -5,4 +5,8 @@ description: Hashicorp Packer builder integration
 version: 0.1.0
 author: James Fryman
 email: james@stackstorm.com
-
+keywords:
+  - packer
+  - provisioning
+  - pipeline
+  - hashicorp
