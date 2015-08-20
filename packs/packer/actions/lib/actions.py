@@ -9,7 +9,6 @@ class BaseAction(Action):
         self.atlas_token = self.config.get('atlas_token', None)
         self._exec_path = self.config.get('exec_path', None)
         self._global_vars = self.config.get('variables', None)
-        self._packer = self._get_client()
 
     def _get_vars(self, variables):
         if self._global_vars and variables:
@@ -41,5 +40,6 @@ class BaseAction(Action):
         else:
             raise Exception("Missing packer binary [{}]".format(self._exec_path))
 
-        return packer.Packer(packerfile, exe=exc, only=only, vars=self._get_vars,
-                             vars_file=vars_file, exec_path=self._exec_path)
+        return packer.Packer(packerfile, exe=exc, only=only,
+                             vars=self._get_vars(vars), vars_file=vars_file,
+                             exec_path=self._exec_path)
