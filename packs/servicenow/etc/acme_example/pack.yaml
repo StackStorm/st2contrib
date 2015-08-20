@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: acme_example
+description: Example ServiceNow integration
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com

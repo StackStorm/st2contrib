@@ -1,0 +1,23 @@
+---
+name: "update"
+runner_type: "python-script"
+description: "Update an entry in a ServiceNow Table"
+enabled: true
+entry_point: "update.py"
+parameters:
+  table:
+    type: "string"
+    description: "Table to take action on"
+    required: true
+  query:
+    type: "object"
+    description: "Structured query for SN data"
+    required: true
+  payload:
+    type: "object"
+    description: "Data to upload to ServiceNow"
+    required: true
+  sysid:
+    type: "string"
+    description: "ID of record"
+    required: true
