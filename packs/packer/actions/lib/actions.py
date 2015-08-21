@@ -12,16 +12,13 @@ class BaseAction(Action):
 
     def _get_vars(self, variables):
         if self._global_vars and variables:
-            return self._mergedicts(self._global_vars, variables)
+            merged_dict = self._global_vars.copy()
+            merged_dict.update(variables)
+            return merged_dict
         if self._global_vars and not variables:
             return self._global_vars
         else:
             return variables
-
-    def _mergedicts(dict1, dict2):
-        merged_dict = dict1.copy()
-        merged_dict.update(dict2)
-        return merged_dict
 
     def set_dir(self, directory):
         os.chdir(directory)
