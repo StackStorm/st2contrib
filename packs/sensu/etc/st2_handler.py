@@ -82,7 +82,7 @@ def _get_auth_token():
         raise Exception('Cannot get auth token from st2. Will try unauthed.')
     else:
         if resp.status_code not in OK_CODES:
-            raise Exception("Cannot authorize: %s\n" % resp.text)
+            raise Exception("Cannot authenticate: %s\n" % resp.text)
 
         ST2_AUTH_TOKEN = resp.json()['token']
 
