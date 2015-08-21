@@ -15,4 +15,4 @@ class St2KVPGetObjectAction(St2BaseAction):
             deserialized_value = json.loads(_key.value)
             return deserialized_value
         else:
-            return False
+            raise Exception("Key does not exist")

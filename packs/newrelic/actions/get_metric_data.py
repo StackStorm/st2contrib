@@ -15,6 +15,7 @@ class GetMetricDataAction(Action):
         self.metrics_url = '/metrics/data.xml'
         self.url = None
         self.headers = {
+            'User-Agent': 'StackStorm-New-Relic-Sensor/1.0.0 python-requests/2.7.0',
             'content-type': 'application/x-www-form-urlencoded',
         }
         self.headers['X-Api-Key'] = self.config['api_key']

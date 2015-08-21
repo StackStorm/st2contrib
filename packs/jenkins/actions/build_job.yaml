@@ -1,0 +1,13 @@
+name: build_job
+runner_type: run-python
+description: "Kick off Jenkins Build Jobs"
+enabled: true
+entry_point: "build_job.py"
+parameters:
+    project:
+        type: string
+        description: "Project to build in Jenkins"
+        required: true
+    branch:
+        type: string
+        description: "Git branch to build in Jenkins"

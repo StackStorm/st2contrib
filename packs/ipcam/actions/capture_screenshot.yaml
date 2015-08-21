@@ -1,0 +1,28 @@
+name: capture_screenshot
+runner_type: run-python
+description: Capture a screenshot of the camera's FOV.
+enabled: true
+entry_point: capture_screenshot.py
+parameters:
+  model:
+    type: string
+    description: IP camera model.
+    enum:
+        - "easyn"
+    required: true
+  url:
+    type: string
+    description: "Base URL to the camera web interface (e.g. https://192.168.1.101/)"
+    required: true
+  username:
+    type: string
+    description: "Username used to authenticate."
+    required: false
+  password:
+    type: string
+    description: "Password used to authenticate."
+    required: false
+  resolution:
+    type: string
+    description: "Optional capture resolution (e.g. 640*480). If not provided, camera's default value is used."
+    required: false

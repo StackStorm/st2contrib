@@ -1,0 +1,7 @@
+---
+name: "view_ax_config"
+runner_type: "run-python"
+description: "Returns a list of profiles and applications on AX devices"
+enabled: true
+entry_point: "view_ax_config.py"
+parameters: {}

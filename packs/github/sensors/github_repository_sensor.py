@@ -15,11 +15,12 @@ DATE_FORMAT_STRING = '%Y-%m-%d %H:%M:%S'
 
 class GithubRepositorySensor(PollingSensor):
     EVENT_TYPE_WHITELIST = [
-        'IssuesEvent',  # Triggered when an issue is assigned, unassigned, labeled, unlabeled,
-                        # opened, closed, or reopened
+        'IssuesEvent',   # Triggered when an issue is assigned, unassigned, labeled, unlabeled,
+                         # opened, closed, or reopened
         'IssueCommentEvent',  # Triggered when an issue comment is created
-        'ForkEvent',  # Triggered when a user forks a repository,
-        'WatchEvent'  # Triggered when a user stars a repository
+        'ForkEvent',     # Triggered when a user forks a repository,
+        'WatchEvent',    # Triggered when a user stars a repository
+        'ReleaseEvent',  # Triggered when new release is available
     ]
 
     def __init__(self, sensor_service, config=None, poll_interval=None):
@@ -34,9 +35,18 @@ class GithubRepositorySensor(PollingSensor):
         self._last_event_ids = {}
 
     def setup(self):
-        self._client = Github(self._config['token'])
+        # Empty string '' is not ok but None is fine. (Sigh)
+        self._client = Github(self._config.get('token', None) or None)
 
-        for repository_dict in self._config['repository_sensor']['repositories']:
+        repository_sensor = self._config.get('repository_sensor', None)
+        if repository_sensor is None:
+            raise ValueError('"repository_sensor" config value is required.')
+
+        repositories = repository_sensor.get('repositories', None)
+        if not repositories:
+            raise ValueError('GithubRepositorySensor should have atleast 1 repository.')
+
+        for repository_dict in repositories:
             user = self._client.get_user(repository_dict['user'])
             repository = user.get_repo(repository_dict['name'])
             self._repositories.append((repository_dict['name'], repository))
@@ -61,7 +71,9 @@ class GithubRepositorySensor(PollingSensor):
         """
         assert(isinstance(name, basestring))
 
-        count = self._config['repository_sensor']['count']
+        # Assume a default value of 30. Better for teh sensor to operate with some
+        # default value in this case rather than raise an exception.
+        count = self._config['repository_sensor'].get('count', 30)
 
         events = repository.get_events()[:count]
         events = list(reversed(list(events)))

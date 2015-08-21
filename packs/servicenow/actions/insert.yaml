@@ -1,0 +1,15 @@
+---
+name: "insert"
+runner_type: "python-script"
+description: "Insert an entry to a ServiceNow Table"
+enabled: true
+entry_point: "insert.py"
+parameters:
+  table:
+    type: "string"
+    description: "Table to take action on"
+    required: true
+  payload:
+    type: "object"
+    description: "Data to upload to ServiceNow"
+    required: true

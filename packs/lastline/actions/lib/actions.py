@@ -14,8 +14,8 @@ class BaseAction(Action):
 
     def _init_client(self):
         if not self._key:
-            return ValueError('Missing "key" config option')
+            raise ValueError('Missing "key" config option')
         if not self._api_token:
-            return ValueError('Missing "api_token" config option')
+            raise ValueError('Missing "api_token" config option')
 
         return AnalysisClient(self._url, self._key, self._api_token)  # noqa

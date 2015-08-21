@@ -1,0 +1,10 @@
+name: get_device
+runner_type: run-python
+description: Retrieve details for a particular device (cube).
+enabled: true
+entry_point: get_device.py
+parameters:
+  device_uid:
+    type: string
+    description: UID of a device to retrieve the details for.
+    required: true

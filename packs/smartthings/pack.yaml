@@ -2,6 +2,11 @@
 ---
 name: SmartThings
 description: Integration with SmartThings
+keywords:
+  - smartthings
+  - iot
+  - smart home
+  - home automation
 version: 0.1.0
 author: James Fryman
 email: james@stackstorm.com

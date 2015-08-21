@@ -1,0 +1,26 @@
+---
+name: "post_research_item"
+runner_type: "action-chain"
+description: "Post a research item to Acme queue via ServiceNow"
+enabled: true
+entry_point: "workflows/post_research_item.yaml"
+parameters:
+  assigned_to:
+    type: "string"
+    description: "Assign to user"
+    required: true
+  comment:
+    type: "string"
+    description: "Note to add to researcher"
+    required: true
+  source:
+    type: "string"
+    description: "Source of research item"
+  text:
+    type: "string"
+    description: "Information around research item"
+    required: true
+  url:
+    type: "string"
+    description: "URL to research"
+    required: true
