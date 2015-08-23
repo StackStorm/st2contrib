@@ -1,1 +1,1 @@
-requests>=2.6.0
+bitbucket-api-0.5.0

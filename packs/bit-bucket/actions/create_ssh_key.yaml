@@ -1,0 +1,18 @@
+name: create_ssh_key
+runner_type: run-python
+description: Create SSH key
+enabled: true
+entry_point: create_ssh_key.py
+parameters:
+  repo:
+    type: string
+    description: Requires repo name
+    required: true
+  ssh_key:
+    type: string
+    description: Generated ssh-key
+    required: true
+  label:
+    type: string
+    description: Label for ssh key
+    required: true
