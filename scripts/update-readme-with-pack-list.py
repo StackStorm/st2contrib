@@ -114,7 +114,7 @@ def generate_pack_list_table(packs):
         values['base_packs_url'] = BASE_PACKS_URL
         values['base_repo_url'] = BASE_REPO_URL
         values['keywords'] = ', '.join(metadata.get('keywords', []))
-        line = '![%(name)s icon](%(icon_url)s) | [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | %(keywords)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
+        line = '[![%(name)s icon](%(icon_url)s)](%(base_packs_url)s/%(name)s) | [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | %(keywords)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
         lines.append(line)
 
     result = '\n'.join(lines)
