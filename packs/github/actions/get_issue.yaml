@@ -14,6 +14,6 @@ parameters:
     description: "Repository name."
     required: true
   issue_id:
-    type: integer
+    type: "string"
     description: Issue id
     required: true
