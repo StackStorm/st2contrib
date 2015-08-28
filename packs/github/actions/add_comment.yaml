@@ -14,7 +14,7 @@
       description: "Repository name."
       required: true
     issue:
-      type: "integer"
+      type: "string"
       description: "Issue / pull request number"
       required: true
     body:
