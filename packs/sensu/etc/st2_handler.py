@@ -79,7 +79,7 @@ def _get_auth_token():
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
                              auth=(ST2_USERNAME, ST2_PASSWORD))
     except:
-        raise Exception('Cannot get auth token from st2. Will try unauthed.')
+        sys.stderr.write('Cannot get auth token from st2. Trying unauthed.')
     else:
         if resp.status_code not in OK_CODES:
             raise Exception("Cannot authenticate: %s\n" % resp.text)
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     else:
         sys.stderr.write('Error: config file missing.\n')
         sys.stderr.write('Usage: %s ST2_CONFIG_FILE\n' % sys.argv[0])
-        exit(-1)
+        sys.exit(2)
 
     try:
         if not os.path.exists(st2_config_file):
@@ -172,5 +172,7 @@ if __name__ == '__main__':
     except Exception as e:
         sys.stderr.write(
             'Failed registering with st2. Won\'t post event.\n%s' % e)
+        import traceback
+        traceback.print_exc()
     else:
         main(sys.argv)
