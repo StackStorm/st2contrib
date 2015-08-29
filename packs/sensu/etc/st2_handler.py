@@ -20,7 +20,6 @@ except ImportError:
     raise ImportError('Missing dependency "pyyaml". Do ``pip install pyyaml``.')
 
 # ST2 configuration
-ST2_CONFIG_FILE = './config.yaml'
 
 ST2_API_BASE_URL = 'http://localhost:9101/v1'
 ST2_AUTH_BASE_URL = 'http://localhost:9100'
@@ -80,8 +79,11 @@ def _get_auth_token():
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
                              auth=(ST2_USERNAME, ST2_PASSWORD))
     except:
-        raise Exception('Cannot get auth token from st2. Will try unauthed.')
+        sys.stderr.write('Cannot get auth token from st2. Trying unauthed.')
     else:
+        if resp.status_code not in OK_CODES:
+            raise Exception("Cannot authenticate: %s\n" % resp.text)
+
         ST2_AUTH_TOKEN = resp.json()['token']
 
 
@@ -140,20 +142,25 @@ def _post_event_to_st2(url, body):
 
 
 def main(args):
-
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
     body['payload'] = json.loads(sys.stdin.read().strip())
     _post_event_to_st2(_get_st2_webhooks_url(), body)
 
-
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        st2_config_file = sys.argv[1]
+    else:
+        sys.stderr.write('Error: config file missing.\n')
+        sys.stderr.write('Usage: %s ST2_CONFIG_FILE\n' % sys.argv[0])
+        sys.exit(2)
+
     try:
-        if not os.path.exists(ST2_CONFIG_FILE):
+        if not os.path.exists(st2_config_file):
             sys.stderr.write('Configuration file not found. Exiting.\n')
             sys.exit(1)
 
-        with open(ST2_CONFIG_FILE) as f:
+        with open(st2_config_file) as f:
             config = yaml.safe_load(f)
             ST2_USERNAME = config['st2_username']
             ST2_PASSWORD = config['st2_password']
@@ -162,7 +169,10 @@ if __name__ == '__main__':
 
         if not REGISTERED_WITH_ST2:
             _register_with_st2()
-    except:
-        sys.stderr.write('Failed registering with st2. Won\'t post event.\n')
+    except Exception as e:
+        sys.stderr.write(
+            'Failed registering with st2. Won\'t post event.\n%s' % e)
+        import traceback
+        traceback.print_exc()
     else:
         main(sys.argv)
