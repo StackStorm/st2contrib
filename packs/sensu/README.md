@@ -28,7 +28,7 @@ Sensu and StackStorm, up and running. See installation for [Sensu](http://sensua
 
 StackStorm Sensu handler `st2_handler.py` is installed on Sensu and sends all **relevant** events to StackStorm. Use Sensu configuration to define **relevant** events.
 
-On StackStorm side, Sensu events will fire a Sensu trigger on each received event. The `sensu.event_handler` trigger type is auto-registered by the handler; you can run the `st2_handler.py` manually to get the trigger created. Once created, you can see the trigger(http://docs.stackstorm.com/rules.html#trigger) with `st2 trigger list --pack=sensu`. It now can be is used in StackStorm [Rules](http://docs.stackstorm.com/rules.html) to define what actions to take on which events, based on supplied criteria.
+On StackStorm side, Sensu events will fire a Sensu trigger on each received event. The `sensu.event_handler` trigger type is auto-registered by the handler; you can run the `st2_handler.py` manually to get the trigger created. Once created, you can see the trigger(http://docs.stackstorm.com/rules.html#trigger) with `st2 trigger list --pack=sensu`. It now can be used in StackStorm [Rules](http://docs.stackstorm.com/rules.html) to define what actions to take on which events, based on supplied criteria.
 
 Here are step-by-step instructions:
 
@@ -56,11 +56,6 @@ Here are step-by-step instructions:
 
     ```
     st2 trigger list --pack=sensu
-    ```
-    **HINT:** If you need to remove `sensu.event_handler` from StackStorm:
-    
-    ```
-    curl -X DELETE -H "x-auth-token:<ST2_AUTH_TOKEN>" http://localhost:9101/v1/triggertypes/sensu.event_handler
     ```
         
 5. Create and configure Sensu StackStorm handler - call it `st2` - for sending Sensu events to StackStorm:
