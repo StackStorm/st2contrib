@@ -1,0 +1,18 @@
+name: update_service
+runner_type: run-python
+description: Update hook/service for a given repository
+enabled: true
+entry_point: update_service.py
+parameters:
+  repo:
+    type: string
+    description: provide repositroy name
+    required: true
+  id:
+    type: integer
+    description: ID of the service
+    required: true
+  url:
+    type: string
+    description: provide URL to udpate
+    required: true             

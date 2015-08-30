@@ -1,0 +1,10 @@
+name: archive_repo
+runner_type: run-python
+description: Download a repository as an archive
+enabled: true
+entry_point: archive_repo.py
+parameters:
+  repo:
+    type: string
+    description: provide repositroy name for downloading as archive
+    required: true

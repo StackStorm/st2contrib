@@ -1,0 +1,10 @@
+name: list_service
+runner_type: run-python
+description: List all services for a given repository
+enabled: true
+entry_point: list_service.py
+parameters:
+  repo:
+    type: string
+    description: provide repositroy name for listing the branches
+    required: true
