@@ -84,7 +84,7 @@ Here are step-by-step instructions:
           "subscribers": [
             "test"
           ],
-          "handlers": [default, st2]
+          "handlers": ["default", "st2"]
         }
       }
     }
