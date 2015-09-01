@@ -1,3 +1,5 @@
+from libcloud.loadbalancer.base import Algorithm
+
 from lib.actions import BaseAction
 
 __all__ = [
@@ -16,7 +18,9 @@ class CreateBalancerAction(BaseAction):
         driver = self._get_driver_for_credentials(credentials=credentials)
         record = driver.create_balancer(name=name,
                                         port=port,
-                                        protocol=protocol)
+                                        protocol=protocol,
+                                        algorithm=Algorithm.ROUND_ROBIN,
+                                        members=None)
 
         result = []
 
