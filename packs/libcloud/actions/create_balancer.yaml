@@ -21,3 +21,7 @@ parameters:
     type: string
     description: The protocol of the balancer
     required: true
+  algorithm:
+    type: string
+    description: The algorithm of the balancer, defaults to ROUND_ROBIN
+    required: false
