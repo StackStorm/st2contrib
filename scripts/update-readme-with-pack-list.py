@@ -144,7 +144,8 @@ def generate_pack_resources_table(pack_name, metadata, resources):
     if not resources['sensors'] and not resources['actions']:
         return None
 
-    lines.append('### ![%s icon](%s) %s pack' % (pack_name, metadata['icon_url'], pack_name))
+    lines.append('### %s pack' % (pack_name))
+    lines.append('![%s icon](%s)' % (pack_name, metadata['icon_url']))
     lines.append('')
 
     if resources['sensors']:
