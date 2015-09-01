@@ -37,9 +37,9 @@ def format_possible_failure_result(result):
 
 def format_default_result(result):
     try:
-        output = json.loads(result)
+        output = json.loads(result) if isinstance(result, six.string_types) else result
         return _serialize(output)
-    except ValueError:
+    except (ValueError, TypeError):
         return result
 
 
