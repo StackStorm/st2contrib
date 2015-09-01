@@ -1,0 +1,15 @@
+---
+name: balancer_list_members
+runner_type: run-python
+description: List members of a load balancer
+enabled: true
+entry_point: balancer_list_members.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
+  balancer_id:
+    type: string
+    description: ID of the load balancer
+    required: true
