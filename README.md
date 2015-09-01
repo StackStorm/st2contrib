@@ -87,7 +87,8 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
-### ![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png) ansible pack
+### ansible pack
+![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)
 
 #### Actions
 
@@ -102,7 +103,8 @@ playbook | Run ansible playbook
 vault.decrypt | Decrypt ansible data files
 vault.encrypt | Encrypt ansible data files
 
-### ![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png) aws pack
+### aws pack
+![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)
 
 #### Sensors
 
@@ -298,7 +300,8 @@ r53_zone_update_mx |
 r53_zone_update_record | 
 set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
 
-### ![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png) azure pack
+### azure pack
+![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)
 
 #### Actions
 
@@ -315,7 +318,8 @@ list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
 upload_file | Upload a file to the provided container.
 
-### ![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png) bitcoin pack
+### bitcoin pack
+![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)
 
 #### Actions
 
@@ -325,7 +329,8 @@ getaccountaddress | Retrieves address of local wallet.
 getwalletinfo | Information of the local wallet.
 sendtoaddresss | Send some BTC to supplied address.
 
-### ![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png) chef pack
+### chef pack
+![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)
 
 #### Actions
 
@@ -337,7 +342,8 @@ install | Performs installation of chef-client on remote nodes
 ohai | Performs chef-solo run on remote hosts.
 solo | Performs chef-solo run on remote hosts.
 
-### ![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png) cubesensors pack
+### cubesensors pack
+![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)
 
 #### Sensors
 
@@ -353,7 +359,8 @@ get_device | Retrieve details for a particular device (cube).
 get_measurements | Retrieve current measurements for a particular device (cube).
 list_devices | List information about all the available devices (cubes).
 
-### ![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png) docker pack
+### docker pack
+![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)
 
 #### Sensors
 
@@ -369,7 +376,8 @@ build_image | Build docker image action. Equivalent to docker build.
 pull_image | Pull docker image action. Equivalent to docker pull.
 push_image | Push docker image action. Equivalent to docker push.
 
-### ![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png) dripstat pack
+### dripstat pack
+![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)
 
 #### Sensors
 
@@ -377,7 +385,8 @@ Name | Description
 ---- | -----------
 DripstatAlertSensor | Sensor which monitors Dripstat API for active alerts
 
-### ![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png) elasticsearch pack
+### elasticsearch pack
+![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)
 
 #### Actions
 
@@ -398,7 +407,8 @@ search.q | Search query (lucene syntax)
 snapshots.delete | Delete snapshots
 snapshots.show | Show snapshots
 
-### ![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png) email pack
+### email pack
+![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)
 
 #### Sensors
 
@@ -407,7 +417,8 @@ Name | Description
 IMAPSensor | Sensor that emits triggers when e-mail message is received via IMAP
 SMTPSensor | Sensor that emits triggers when e-mail message is received via SMTP
 
-### ![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png) fireeye pack
+### fireeye pack
+![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)
 
 #### Actions
 
@@ -419,7 +430,8 @@ get_submission_status | Query status of running job
 submit_malware | Submit a Malware object to FireEye AX appliance
 view_ax_config | Returns a list of profiles and applications on AX devices
 
-### ![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png) git pack
+### git pack
+![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)
 
 #### Sensors
 
@@ -435,7 +447,8 @@ clone | Clone a repository
 get_local_repo_latest_commit | Retrieve SHA of the latest commit for the provided branch in a local repository.
 get_remote_repo_latest_commit | Retrieve SHA of the latest commit for the provided branch in a remote repository.
 
-### ![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png) github pack
+### github pack
+![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)
 
 #### Sensors
 
@@ -453,7 +466,8 @@ get_clone_stats | Retrieve clone statistics for a given repository
 get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
 
-### ![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png) google pack
+### google pack
+![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)
 
 #### Actions
 
@@ -461,7 +475,8 @@ Name | Description
 ---- | -----------
 get_search_results | Retrieve Google search results for the provided query.
 
-### ![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png) gpg pack
+### gpg pack
+![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)
 
 #### Actions
 
@@ -472,7 +487,8 @@ encrypt_file | Encrypt a file using asymmetric encryption for the provided recip
 import_keys | Import keys into the keyring.
 list_keys | List all keys in the keyring.
 
-### ![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png) hubot pack
+### hubot pack
+![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)
 
 #### Actions
 
@@ -485,7 +501,8 @@ post_result | Post an execution result to Hubot
 restart | Restart hubot
 update_ref | Manage Hubot installs on a per-pack basis
 
-### ![hue icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hue/icon.png) hue pack
+### hue pack
+![hue icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hue/icon.png)
 
 #### Actions
 
@@ -505,7 +522,8 @@ set_state | Send manual state to bulb
 toggle | Toggle on/off state of a bulb
 xy | Change bulb color based on CIE color space values
 
-### ![ipcam icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ipcam/icon.png) ipcam pack
+### ipcam pack
+![ipcam icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ipcam/icon.png)
 
 #### Actions
 
@@ -513,7 +531,8 @@ Name | Description
 ---- | -----------
 capture_screenshot | Capture a screenshot of the camera's FOV.
 
-### ![irc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/irc/icon.png) irc pack
+### irc pack
+![irc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/irc/icon.png)
 
 #### Sensors
 
@@ -527,7 +546,8 @@ Name | Description
 ---- | -----------
 post_message | Send a message to an IRC channel.
 
-### ![jenkins icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jenkins/icon.png) jenkins pack
+### jenkins pack
+![jenkins icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jenkins/icon.png)
 
 #### Actions
 
@@ -536,7 +556,8 @@ Name | Description
 build_job | Kick off Jenkins Build Jobs
 list_running_jobs | List currently running Jenkins jobs
 
-### ![jira icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jira/icon.png) jira pack
+### jira pack
+![jira icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jira/icon.png)
 
 #### Sensors
 
@@ -552,7 +573,8 @@ create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
 post_issue_details | 
 
-### ![jmx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jmx/icon.png) jmx pack
+### jmx pack
+![jmx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jmx/icon.png)
 
 #### Sensors
 
@@ -566,7 +588,8 @@ Name | Description
 ---- | -----------
 invoke_method | Invoke a provided MBean method exposed over JMX.
 
-### ![lastline icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/lastline/icon.png) lastline pack
+### lastline pack
+![lastline icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/lastline/icon.png)
 
 #### Actions
 
@@ -581,7 +604,8 @@ submit_file | Submit a file to Lastline for analysis
 submit_file_hash | Submit a file hash to Lastline for analysis
 submit_url | Submit a URL for analysis to Lastline
 
-### ![libcloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/libcloud/icon.png) libcloud pack
+### libcloud pack
+![libcloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/libcloud/icon.png)
 
 #### Actions
 
@@ -603,7 +627,8 @@ start_vm | Start a new VM.
 stop_vm | Stop a running VM.
 upload_file | Upload a file to the provided container
 
-### ![mailgun icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mailgun/icon.png) mailgun pack
+### mailgun pack
+![mailgun icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mailgun/icon.png)
 
 #### Actions
 
@@ -611,7 +636,8 @@ Name | Description
 ---- | -----------
 send_email | Send email via Mailgun HTTP API.
 
-### ![mistral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mistral/icon.png) mistral pack
+### mistral pack
+![mistral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mistral/icon.png)
 
 #### Actions
 
@@ -622,7 +648,8 @@ get_workbook_definition | Get the definition of the mistral workbook.
 get_workflow_results | Get results of mistral workflow.
 kill_workflow | Kill a running mistral workflow.
 
-### ![mmonit icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mmonit/icon.png) mmonit pack
+### mmonit pack
+![mmonit icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mmonit/icon.png)
 
 #### Sensors
 
@@ -653,7 +680,8 @@ summary_status | Returns a status summary of all hosts.
 test_connection_to_host | Checks that M/Monit can connect to the host with the given network settings.
 update_host | Updates the host settings in the M/Monit database.
 
-### ![mqtt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mqtt/icon.png) mqtt pack
+### mqtt pack
+![mqtt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mqtt/icon.png)
 
 #### Sensors
 
@@ -667,7 +695,8 @@ Name | Description
 ---- | -----------
 publish | Publish message to MQTT broker
 
-### ![nest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nest/icon.png) nest pack
+### nest pack
+![nest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nest/icon.png)
 
 #### Actions
 
@@ -685,7 +714,8 @@ set_temperature | Set current temperature.
 show | Show current Nest information
 toggle_away | Toggle current Home/Away status
 
-### ![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png) newrelic pack
+### newrelic pack
+![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)
 
 #### Sensors
 
@@ -700,7 +730,8 @@ Name | Description
 get_alerts | Get alerts for app.
 get_metric_data | Get metric data for metric.
 
-### ![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png) openhab pack
+### openhab pack
+![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)
 
 #### Actions
 
@@ -710,7 +741,8 @@ get_status | Get status on an item
 send_command | Send a command to an item
 set_state | Set state on an item
 
-### ![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png) openstack pack
+### openstack pack
+![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)
 
 #### Actions
 
@@ -724,7 +756,8 @@ nova_confirm | Confirms a resize or migrate
 nova_instances | Returns a list of instances by hypervisor
 nova_migrate_server | Evacuate guests from compute node
 
-### ![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png) pagerduty pack
+### pagerduty pack
+![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)
 
 #### Actions
 
@@ -735,7 +768,8 @@ get_open_incidents | Retrive list of open incidents from PagerDuty
 launch_incident | Launch an incident on PagerDuty
 resolve_incident | Resolve an incident whose key is provided
 
-### ![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png) puppet pack
+### puppet pack
+![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)
 
 #### Actions
 
@@ -747,7 +781,8 @@ cert_revoke | Revoke the certificate of a client.
 cert_sign | Sign an outstanding certificate request.
 run_agent | Run puppet agent.
 
-### ![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png) rabbitmq pack
+### rabbitmq pack
+![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)
 
 #### Sensors
 
@@ -763,7 +798,8 @@ list_exchanges | List RabbitMQ exchanges
 list_queues | List RabbitMQ queues
 publish_message | Publish a message in RabbitMQ
 
-### ![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png) rackspace pack
+### rackspace pack
+![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)
 
 #### Actions
 
@@ -796,7 +832,8 @@ list_vms | List all the available vms. Optionally filter on the metadata values.
 set_vm_metadata | Set metadata values for the provided VM.
 set_vm_metadata_item | Set a value of a metadata item for a provided VM.
 
-### ![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png) salt pack
+### salt pack
+![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)
 
 #### Actions
 
@@ -965,7 +1002,8 @@ runner_pillar.show_pillar | Run Salt Runner functions through Salt API
 runner_pillar.show_top | Run Salt Runner functions through Salt API
 runner_thin.generate | Run Salt Runner functions through Salt API
 
-### ![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png) sensu pack
+### sensu pack
+![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)
 
 #### Actions
 
@@ -990,7 +1028,8 @@ event_list | List Sensu events
 health | Sensu System Health
 info | Sensu System Info
 
-### ![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png) servicenow pack
+### servicenow pack
+![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)
 
 #### Actions
 
@@ -1001,7 +1040,8 @@ get | Get an entry from a ServiceNow Table
 insert | Insert an entry to a ServiceNow Table
 update | Update an entry in a ServiceNow Table
 
-### ![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png) slack pack
+### slack pack
+![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)
 
 #### Sensors
 
@@ -1015,7 +1055,8 @@ Name | Description
 ---- | -----------
 post_message | Post a message to the Slack channel.
 
-### ![smartthings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png) smartthings pack
+### smartthings pack
+![smartthings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png)
 
 #### Sensors
 
@@ -1040,7 +1081,8 @@ toggle_switch | Toggle a switch
 turn_off_switch | Turn off a light
 turn_on_switch | Turn on a switch
 
-### ![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png) softlayer pack
+### softlayer pack
+![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)
 
 #### Actions
 
@@ -1051,7 +1093,8 @@ create_keypair | Creates a keypair by name
 delete_keypair | Deletes a keypair by name. If there are mutiple keys with the same name it will only delete the first
 destroy_instance | Destroys an instance
 
-### ![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png) st2 pack
+### st2 pack
+![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)
 
 #### Actions
 
@@ -1072,7 +1115,8 @@ rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
 upload_to_s3 | Sends collected data to write-only StackStorm S3 bucket
 
-### ![travis_ci icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png) travis_ci pack
+### travis_ci pack
+![travis_ci icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)
 
 #### Actions
 
@@ -1088,7 +1132,8 @@ list_hooks | List available hooks for the authenticated user.
 list_repos | List repositories for the provided user.
 restart_build | Restart a Build
 
-### ![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png) trello pack
+### trello pack
+![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)
 
 #### Actions
 
@@ -1109,7 +1154,8 @@ view_cards | View all cards on a board
 view_lists | View all lists belonging to a board
 view_organizations | List all organizations for user
 
-### ![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png) twilio pack
+### twilio pack
+![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png)
 
 #### Actions
 
@@ -1117,7 +1163,8 @@ Name | Description
 ---- | -----------
 send_sms | This sends a SMS using twilio.
 
-### ![twitter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twitter/icon.png) twitter pack
+### twitter pack
+![twitter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twitter/icon.png)
 
 #### Sensors
 
@@ -1133,7 +1180,8 @@ direct_message | Direct message a user.
 follow | Follow a user.
 update_status | Update your status (post a new tweet).
 
-### ![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png) urbandict pack
+### urbandict pack
+![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)
 
 #### Actions
 
@@ -1141,7 +1189,8 @@ Name | Description
 ---- | -----------
 get_definitions | Retrieve definitions from urbandict for the provided term.
 
-### ![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png) victorops pack
+### victorops pack
+![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)
 
 #### Actions
 
@@ -1151,7 +1200,8 @@ ack_incident | Acknowledge a triggered event on victorops
 open_incident | Triggers the event on VictorOps with the given parameters
 recover_incident | Recover a triggered event on victorops
 
-### ![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png) webpagetest pack
+### webpagetest pack
+![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)
 
 #### Actions
 
@@ -1161,7 +1211,8 @@ list_locations | List available testing locations.
 random_test | Test a domain on WebPageTest from a random location.
 request_test | Test a domain on WebPageTest.
 
-### ![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png) windows pack
+### windows pack
+![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)
 
 #### Actions
 
@@ -1169,7 +1220,8 @@ Name | Description
 ---- | -----------
 wmi_query | Run a WMI query on a particular Windows host.
 
-### ![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png) witai pack
+### witai pack
+![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)
 
 #### Actions
 
