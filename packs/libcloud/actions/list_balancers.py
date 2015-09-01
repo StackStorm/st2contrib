@@ -1,24 +1,25 @@
 from lib.actions import BaseAction
 
 __all__ = [
-    'BalancerListMembersAction'
+    'ListBalancersAction'
 ]
 
 RECORD_ATTRIBUTES = [
     'id',
+    'name',
+    'state',
     'ip',
     'port',
-    'extra',
+    'extra'
 ]
 
 
-class BalancerListMembersAction(BaseAction):
+class ListBalancersAction(BaseAction):
     api_type = 'loadbalancer'
 
-    def run(self, credentials, balancer_id):
+    def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
-        balancer = driver.get_balancer(balancer_id)
-        members = driver.balancer_list_members(balancer=balancer)
+        members = driver.list_balancers()
         result = []
 
         for record in members:
