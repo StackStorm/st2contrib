@@ -1,24 +1,25 @@
 ---
-  name: "sensu.loadavg_diag"
+  name: "sample.loadavg_diag"
+  pack: "sensu"
   description: "Run diagnostic checks when receiving a high load alert"
-  trigger: 
+  trigger:
     type: "sensu.event_handler"
     parameters: {}
-  criteria: 
-    trigger.check.name: 
+  criteria:
+    trigger.check.name:
       pattern: "check_load"
       type: "equals"
-    trigger.check.output: 
+    trigger.check.output:
       pattern: ".*CRITICAL.*"
       type: "matchregex"
-    trigger.occurrences: 
+    trigger.occurrences:
       pattern: 1
       type: "gt"
-    trigger.action: 
+    trigger.action:
       pattern: "create"
       type: "matchregex"
-  action: 
+  action:
     ref: "linux.diag_loadavg"
-    parameters: 
-      hostname: "{{trigger.client.name}}"
+    parameters:
+      hostname: "{{trigger.client.address}}"
   enabled: true
