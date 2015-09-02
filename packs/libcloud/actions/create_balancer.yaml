@@ -23,5 +23,6 @@ parameters:
     required: true
   algorithm:
     type: string
-    description: The algorithm of the balancer, defaults to ROUND_ROBIN
+    description: The algorithm of the balancer, choice of LEAST_CONNECTIONS, ROUND_ROBIN, SHORTEST_RESPONSE, PERSISTENT_IP
     required: false
+    default: "ROUND_ROBIN"
