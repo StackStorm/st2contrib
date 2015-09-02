@@ -9,6 +9,9 @@ parameters:
     type: string
     description: Name of the new card
     required: true
+  description:
+    type: string
+    description: Card contents
   board_id:
     type: string
     description: Board ID to assign the card to
