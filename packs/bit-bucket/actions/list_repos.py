@@ -1,7 +1,7 @@
 from lib.action import BitBucketAction
 
 
-class GetRepos(BitBucketAction):
+class ListReposAction(BitBucketAction):
     def run(self):
         """
         Listing repositories for a user.It assumes
