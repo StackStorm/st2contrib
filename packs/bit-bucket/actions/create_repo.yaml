@@ -6,5 +6,5 @@ entry_point: create_repo.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name you want to create
+    description: provide repository name you want to create
     required: true
