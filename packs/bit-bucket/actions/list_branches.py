@@ -6,7 +6,7 @@ class ListBrachesAction(BitBucketAction):
         """
         List Braches of Repository with author names and message
         """
-        bb = self.perform_request(repo=repo)
+        bb = self._get_client(repo=repo)
         success, result = bb.get_branches()
         branches = {}
         for key, value in result.iteritems():

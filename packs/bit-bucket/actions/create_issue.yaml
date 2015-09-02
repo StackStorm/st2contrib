@@ -18,9 +18,21 @@ parameters:
     required: true
   status:
     type: string
-    description: status of the issue, for example, bug, enahancement, proposal
+    description: status of the issue
     required: true
+    enum:
+      - "new"
+      - "open"
+      - "resolved"
+      - "on hold"
+      - "invalid"
+      - "duplicate"
+      - "wontfix"
   kind:
     type: string
-    description: kind of the issue, for example, new, open, resolved, on hold, invalid, duplicate or wontfix.
+    description: kind of the issue
     required: true
+    enum:
+      - "bug"
+      - "enhancement"
+      - "proposal"

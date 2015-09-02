@@ -6,11 +6,11 @@ entry_point: create_service.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name for listing the branches
+    description: provide repository name
     required: true
   url:
     type: string
-    description: provide repositroy name for listing the branches
+    description: Provide URL for the service
     required: true
   service:
     type: string

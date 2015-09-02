@@ -2,13 +2,13 @@ from lib.action import BitBucketAction
 
 
 class UpdateIssueAction(BitBucketAction):
-    def run(self, **kwargs):
+    def run(self, repo, id, desc):
         """
         Update an issue
         """
-        bb = self.perform_request(repo=kwargs['repo'])
+        bb = self._get_client(repo=repo)
         success, result = bb.issue.update(
-            issue_id=kwargs['id'],
-            content=[kwargs['desc']]
+            issue_id=id,
+            content=desc
         )
         return result

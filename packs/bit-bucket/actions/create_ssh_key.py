@@ -6,6 +6,6 @@ class CreteSshKeyAction(BitBucketAction):
         """
         Creat a SSH keys in bitbucket account
         """
-        bb = self.perform_request(repo=repo)
+        bb = self._get_client(repo=repo)
         success, result = bb.ssh.create(key=ssh_key, label=label)
         return success, result

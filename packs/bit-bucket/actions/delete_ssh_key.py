@@ -6,6 +6,6 @@ class DeleteSshKeyAction(BitBucketAction):
         """
         Delete SSH key from BitBucket account
         """
-        bb = self.perform_request(repo=repo)
+        bb = self._get_client(repo=repo)
         succ, res = bb.ssh.delete(key_id=key_id)
         return succ, res

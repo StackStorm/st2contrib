@@ -2,13 +2,13 @@ from lib.action import BitBucketAction
 
 
 class UpdateServiceAction(BitBucketAction):
-    def run(self, **kwargs):
+    def run(self, repo, id, url):
         """
         Update a service/hook
         """
-        bb = self.perform_request(repo=kwargs['repo'])
+        bb = self._get_client(repo=repo)
         success, result = bb.service.update(
-            service_id=kwargs['id'],
-            URL=[kwargs['url']]
+            service_id=id,
+            URL=url
         )
         return result

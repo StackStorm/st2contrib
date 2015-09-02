@@ -1,0 +1,10 @@
+name: list_repo_events
+runner_type: run-python
+description: List all events for a given repository
+enabled: true
+entry_point: list_repo_events.py
+parameters:
+  repo:
+    type: string
+    description: provide repositroy name for listing events on repository
+    required: true

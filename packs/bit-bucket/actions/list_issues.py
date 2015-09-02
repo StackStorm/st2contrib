@@ -7,7 +7,7 @@ class ListIssuesAction(BitBucketAction):
         List Issues of Repository with title
         of the issue its status and reporter
         """
-        bb = self.perform_request(repo=repo)
+        bb = self._get_client(repo=repo)
         success, result = bb.issue.all()
         issues = {}
         for i in range(result['count']):

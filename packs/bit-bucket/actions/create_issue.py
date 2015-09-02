@@ -2,16 +2,17 @@ from lib.action import BitBucketAction
 
 
 class CreateIssueAction(BitBucketAction):
-    def run(self, **kwargs):
+    def run(self, repo, title, desc, status, kind):
         """
         Create an issue
         """
-        bb = self.perform_request(repo=kwargs['repo'])
+        bb = self._get_client(repo=repo)
+        print bb.username
         success, result = bb.issue.create(
-            title=kwargs['title'],
-            content=kwargs['desc'],
+            title=title,
+            content=desc,
             responsible=bb.username,
-            status=kwargs['status'],
-            kind=kwargs['kind']
+            status=status,
+            kind=kind
         )
         return result

@@ -3,8 +3,3 @@ runner_type: run-python
 description: List all SSH keys for a user
 enabled: true
 entry_point: list_ssh_keys.py
-parameters:
-  repo:
-    type: string
-    description: requires repo name
-    required: true

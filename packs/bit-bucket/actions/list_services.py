@@ -6,6 +6,6 @@ class ListServicesAction(BitBucketAction):
         """
         List Services associated with Repository
         """
-        bb = self.perform_request(repo=repo)
+        bb = self._get_client(repo=repo)
         success, result = bb.service.all()
         return result
