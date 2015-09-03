@@ -10,7 +10,6 @@ class ListReposAction(BitBucketAction):
         name, its state and private status(returns
         True if its private, False otherwise)
         """
-        repository = []
         bb = self._get_client()
         success, repos = bb.repository.all()
         return repos
