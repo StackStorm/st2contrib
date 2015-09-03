@@ -9,4 +9,3 @@ parameters:
     type: string
     description: ID of the project in Octopus
     required: true
-    position: 0

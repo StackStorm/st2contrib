@@ -9,9 +9,7 @@ parameters:
     type: string
     description: ID of the release in Octopus
     required: true
-    position: 0
   environment_id:
     type: string
     description: ID of the environment in Octopus
     required: true
-    position: 1
