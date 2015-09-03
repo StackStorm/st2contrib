@@ -8,6 +8,6 @@ __all__ = [
 class CreateReleaseAction(OctopusDeployAction):
     def run(self, project_id, version):
         result = self.make_post_request(action="releases",
-                                        payload={"ProjectId" : project_id,
-                                                 "Version" : version})
+                                        payload={"ProjectId": project_id,
+                                                 "Version": version})
         return result

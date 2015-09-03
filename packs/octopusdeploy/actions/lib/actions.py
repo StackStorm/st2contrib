@@ -37,16 +37,17 @@ class OctopusDeployAction(Action):
         return start + self.client.host + ":" + str(self.client.port) + "/api/"
 
     def make_post_request(self, action, payload):
-        response = requests.post(self._build_uri()+ action,
+        response = requests.post(self._build_uri() + action,
                                  data=json.dumps(payload), verify=False,
                                  headers=self.client.headers)
         return response.json()
 
     def make_get_request(self, action):
-        response = requests.get(self._build_uri()+ action,
+        response = requests.get(self._build_uri() + action,
                                 verify=False,
                                 headers=self.client.headers)
         return response.json()
+
 
 class OctopusDeployClient(object):
     def __init__(self, api_key, host, port):
@@ -56,4 +57,3 @@ class OctopusDeployClient(object):
         self.headers = {'X-Octopus-ApiKey': self.api_key,
                         'Content-type': 'application/json',
                         'Accept': 'text/plain'}
-
