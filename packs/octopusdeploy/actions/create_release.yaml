@@ -10,3 +10,8 @@ parameters:
     description: ID of the project in Octopus
     required: true
     position: 0
+  version:
+    type: string
+    description: The version number to create
+    required: true
+    position: 1

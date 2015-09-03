@@ -5,6 +5,12 @@ except ImportError:
                'pip install requests')
     raise ImportError(message)
 
+try:
+    import json
+except ImportError:
+    message = ('Missing "json", please install it using pip:\n'
+               'pip install requests')
+    raise ImportError(message)
 
 from st2actions.runners.pythonrunner import Action
 
@@ -28,11 +34,11 @@ class OctopusDeployAction(Action):
         # big assumption but it'll cover 99% case,
         # as octopus runs https by default
         start = "http://" if self.client.port is 80 else "https://"
-        return start + self.client.host + ":" + self.client.port + "/api/"
+        return start + self.client.host + ":" + str(self.client.port) + "/api/"
 
     def make_post_request(self, action, payload):
         response = requests.post(self._build_uri()+ action,
-                                 data=payload, verify=False,
+                                 data=json.dumps(payload), verify=False,
                                  headers=self.client.headers)
         return response.json()
 
@@ -47,5 +53,7 @@ class OctopusDeployClient(object):
         self.api_key = api_key
         self.host = host
         self.port = port
-        self.headers = {'X-Octopus-ApiKey': self.api_key}
+        self.headers = {'X-Octopus-ApiKey': self.api_key,
+                        'Content-type': 'application/json',
+                        'Accept': 'text/plain'}
 
