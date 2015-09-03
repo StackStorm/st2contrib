@@ -11,4 +11,4 @@ Currently, the following actions listed bellow are supported:
 
 * Create a new release - `create_release`
 * Deploy a release to an environment - `deploy_release`
-
+* Get a list of releases for a project - `get_releases`
