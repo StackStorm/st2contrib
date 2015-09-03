@@ -7,7 +7,7 @@ class PushAction(BaseAction):
         if cwd:
             self.set_dir(cwd)
 
-        p = self.packer(packerfile, exc=exclude, only=only, vars=variables,
+        p = self.packer(packerfile, exc=exclude, only=only, variables=variables,
                         vars_file=variables_file)
         if self.atlas_token:
             return p.push(name, message=message, token=self.atlas_token)

@@ -23,9 +23,9 @@ class BaseAction(Action):
     def set_dir(self, directory):
         os.chdir(directory)
 
-    def packer(self, packerfile, exc=None, only=None, vars=None, vars_file=None):
+    def packer(self, packerfile, exc=None, only=None, variables=None, vars_file=None):
         # Cast as string from unicode to appease upstream module
         _packerfile = str(packerfile)
         return packer.Packer(_packerfile, exc=exc, only=only,
-                             vars=self._get_vars(vars), vars_file=vars_file,
+                             vars=self._get_vars(variables), vars_file=vars_file,
                              exec_path=self._exec_path)
