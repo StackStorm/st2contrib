@@ -13,9 +13,4 @@ class ListReposAction(BitBucketAction):
         repository = []
         bb = self._get_client()
         success, repos = bb.repository.all()
-        for repo in sorted(repos):
-            repository.append(
-                {repo['name']: {'state': repo['state'],
-                                'last_updated_at': repo['last_updated'],
-                                'is_private': repo['is_private']}})
-        return repository
+        return repos

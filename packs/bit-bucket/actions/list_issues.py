@@ -9,11 +9,4 @@ class ListIssuesAction(BitBucketAction):
         """
         bb = self._get_client(repo=repo)
         success, result = bb.issue.all()
-        issues = {}
-        for i in range(result['count']):
-            issues[result['issues'][i]['title']] = {
-                'status': result['issues'][i]['status'],
-                'reporter': result['issues'][i]['reported_by']['username'],
-                'issue_id': result['issues'][i]['local_id']
-            }
-        return issues
+        return result

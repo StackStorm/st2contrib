@@ -7,8 +7,5 @@ class ListSshKeyAction(BitBucketAction):
         List all the SSH keys in bitbucket account
         """
         bb = self._get_client()
-        succ, res = bb.ssh.all()
-        data = {}
-        for i in range(len(res)):
-            data[res[i]['pk']] = res[i]['label']
-        return data
+        succ, result = bb.ssh.all()
+        return result
