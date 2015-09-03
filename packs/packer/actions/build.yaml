@@ -1,6 +1,6 @@
 ---
 name: "build"
-runner_type: "python-script"
+runner_type: "run-python"
 description: "Build images from a packer template"
 enabled: true
 entry_point: "build.py"

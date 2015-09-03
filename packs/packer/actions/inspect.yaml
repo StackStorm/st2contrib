@@ -1,6 +1,6 @@
 ---
 name: "inspect"
-runner_type: "python-script"
+runner_type: "run-python"
 description: "Takes a template and outputs the various components a template defines"
 enabled: true
 entry_point: "inspect.py"

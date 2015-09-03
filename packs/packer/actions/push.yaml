@@ -1,6 +1,6 @@
 ---
 name: "push"
-runner_type: "python-script"
+runner_type: "run-python"
 description: "Push a template to Hashicorp Atlas"
 enabled: true
 entry_point: "push.py"

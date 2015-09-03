@@ -1,6 +1,6 @@
 ---
 name: "validate"
-runner_type: "python-script"
+runner_type: "run-python"
 description: "Validate a packer template"
 enabled: true
 entry_point: "validate.py"

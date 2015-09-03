@@ -1,6 +1,6 @@
 ---
 name: "fix"
-runner_type: "python-script"
+runner_type: "run-python"
 description: "Takes a template and finds backwards incompatible parts of it and brings it up to date so it can be used with the latest version of Packer"
 enabled: true
 entry_point: "fix.py"
