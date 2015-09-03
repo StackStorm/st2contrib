@@ -11,7 +11,7 @@ class ListReposAction(BitBucketAction):
         True if its private, False otherwise)
         """
         repository = []
-        bb = self.perform_request()
+        bb = self._get_client()
         success, repos = bb.repository.all()
         for repo in sorted(repos):
             repository.append(
