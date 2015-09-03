@@ -1,0 +1,9 @@
+---
+name : octopusdeploy
+description : st2 content pack containing octopusdeploy integrations
+keywords:
+  - octopus
+  - octopusdeploy
+version : 0.1
+author : Anthony Shaw
+email : anthony.shaw@dimensiondata.com
