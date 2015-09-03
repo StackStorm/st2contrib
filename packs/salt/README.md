@@ -2,6 +2,17 @@
 
 Pack which allows integration with SaltStack.
 
+## Requirements
+
+This pack depends on the salt Python library which requires the following
+dependencies to be installed:
+
+* SSL development headers and libraries (``libssl-dev`` package on Ubuntu)
+* Swig (``swig`` package on Ubuntu)
+
+Those requirements need to be installed on the server where the actions will
+be running on and where you run ``packs.install``.
+
 ## Usage Options
 
 ### Scenario 1: ST2 Installed on a Salt Master

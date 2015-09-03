@@ -2,7 +2,7 @@
 ---
 name: trello
 description: Integration with Trello, Web based Project Management
-version: 0.0.1
+version: 0.1.1
 author: James Fryman
 email: james@stackstorm.com
 keywords:
@@ -10,4 +10,3 @@ keywords:
   - kanban
   - productivity
   - collaboration
-

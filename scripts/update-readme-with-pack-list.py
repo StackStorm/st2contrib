@@ -24,6 +24,8 @@ PARSER_FUNCS = {
 
 BASE_REPO_URL = 'https://github.com/StackStorm/st2contrib'
 BASE_PACKS_URL = 'https://github.com/StackStorm/st2contrib/tree/master/packs'
+PACK_ICON_URL = 'https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/%(name)s/icon.png'
+NO_PACK_ICON_URL = 'https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png'
 
 
 def get_pack_list():
@@ -38,7 +40,15 @@ def get_pack_metadata(pack):
         content = fp.read()
 
     metadata = yaml.safe_load(content)
+
+    icon_path = os.path.join(PACKS_DIR, pack, 'icon.png')
+    if os.path.exists(icon_path):
+        metadata['icon_url'] = PACK_ICON_URL % {'name': pack}
+    else:
+        metadata['icon_url'] = NO_PACK_ICON_URL
+
     return metadata
+
 
 def get_pack_resources(pack):
     sensors_path = os.path.join(PACKS_DIR, pack, 'sensors/')
@@ -96,15 +106,15 @@ def get_pack_resources(pack):
 def generate_pack_list_table(packs):
     lines = []
 
-    lines.append('Name | Description | Keywords | Author | Latest Version | Available Resources')
-    lines.append('---- | ----------- | -------- | ------ | -------------- | -------------------')
+    lines.append('Icon | Name | Description | Keywords | Author | Latest Version | Available Resources')
+    lines.append('---- | ---- | ----------- | -------- | ------ | -------------- | -------------------')
 
     for pack_name, metadata in packs:
         values = copy.deepcopy(metadata)
         values['base_packs_url'] = BASE_PACKS_URL
         values['base_repo_url'] = BASE_REPO_URL
         values['keywords'] = ', '.join(metadata.get('keywords', []))
-        line = '| [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | %(keywords)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
+        line = '[![%(name)s icon](%(icon_url)s)](%(base_packs_url)s/%(name)s) | [%(name)s](%(base_packs_url)s/%(name)s) | %(description)s | %(keywords)s | [%(author)s](mailto:%(email)s) | %(version)s | [click](%(base_repo_url)s#%(name)s-pack)' % (values)
         lines.append(line)
 
     result = '\n'.join(lines)
@@ -114,9 +124,10 @@ def generate_pack_list_table(packs):
 def generate_pack_resources_tables(packs):
     lines = []
 
-    for pack_name, _ in packs:
+    for pack_name, metadata in packs:
         pack_resources = get_pack_resources(pack=pack_name)
         table = generate_pack_resources_table(pack_name=pack_name,
+                                              metadata=metadata,
                                               resources=pack_resources)
         if not table:
             continue
@@ -127,13 +138,14 @@ def generate_pack_resources_tables(packs):
     return result
 
 
-def generate_pack_resources_table(pack_name, resources):
+def generate_pack_resources_table(pack_name, metadata, resources):
     lines = []
 
     if not resources['sensors'] and not resources['actions']:
         return None
 
     lines.append('### %s pack' % (pack_name))
+    lines.append('![%s icon](%s)' % (pack_name, metadata['icon_url']))
     lines.append('')
 
     if resources['sensors']:

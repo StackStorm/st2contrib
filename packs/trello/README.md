@@ -46,3 +46,63 @@ To obtain an oAuth token, refer to the documentation at https://trello.com/docs/
 | trello.view_organizations | trello | view_organizations | List all organizations for user                      |
 +---------------------------+--------+--------------------+------------------------------------------------------+
 ```
+
+## Examples
+> Note that every action has structurised output, meaning you can use returned results in action chains.
+
+#### `trello.view_lists` of the board
+```sh
+# st2 run trello.view_lists board_id=c39TEFLt
+
+id: 55e74fea9c993817796d3f89
+status: succeeded
+result:
+{
+    "stdout": "",
+    "result": {
+        "55e7456df81e21e9b4aea429": {
+            "name": "test-list",
+            "closed": false
+        }
+    },
+    "stderr": "",
+    "exit_code": 0
+}
+```
+
+#### `trello.add_card` to the board list
+```sh
+# st2 run trello.add_card name='New Task' description='Refactor software' board_id=c39TEFLt list_id=55e7456df81e21e9b4aea429
+
+id: 55e750599c993817796d3f8c
+status: succeeded
+result:
+{
+    "stdout": "",
+    "result": "55e7505d97a7ad01d49d6eaa",
+    "stderr": "",
+    "exit_code": 0
+}
+```
+
+#### `trello.view_cards` of the board list
+```sh
+# st2 run trello.view_cards board_id=c39TEFLt list_id=55e7456df81e21e9b4aea429
+
+id: 55e750b19c993817796d3f8f
+status: succeeded
+result:
+{
+    "stdout": "",
+    "result": {
+        "55e7505d97a7ad01d49d6eaa": {
+            "url": "https://trello.com/c/LCaJeIc6/5-new-task",
+            "name": "New Task",
+            "closed": false,
+            "description": "Refactor software"
+        }
+    },
+    "stderr": "",
+    "exit_code": 0
+}
+```

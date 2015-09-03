@@ -1,1 +1,1 @@
-git+git://github.com/sarumont/py-trello#3dfaa8c8500e644d7a36a8fed9fae537f2eab697
+py-trello>=0.4.3,<0.5

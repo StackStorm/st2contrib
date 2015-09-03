@@ -1,0 +1,18 @@
+---
+  name: sample.on_actoin_runner_check
+  description: Sample rule that dogfoods st2.
+  pack: sensu
+  trigger:
+    type: sensu.event_handler
+  criteria:
+    trigger.check.name:
+      pattern: "st2actionrunner_check"
+      type: "equals"
+    trigger.check.output:
+      pattern: "CheckProcs CRITICAL*"
+      type: "matchregex"
+  action:
+    ref: "core.local"
+    parameters:
+      cmd: "echo \"{{trigger}}\" >> /tmp/sensu-sample.out"
+  enabled: true

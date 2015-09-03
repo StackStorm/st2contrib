@@ -1,0 +1,15 @@
+---
+name: create_release
+runner_type: python-script
+description: Create a new release in Octopus.
+enabled: true
+entry_point: create_release.py
+parameters:
+  project_id:
+    type: string
+    description: ID of the project in Octopus
+    required: true
+  version:
+    type: string
+    description: The version number to create
+    required: true
