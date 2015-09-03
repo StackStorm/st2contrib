@@ -1,6 +1,6 @@
 ---
 name: deploy_release
-runner_type: run-python
+runner_type: python-script
 description: Deploy a release in Octopus.
 enabled: true
 entry_point: deploy_release.py
