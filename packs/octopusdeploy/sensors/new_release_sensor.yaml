@@ -1,0 +1,15 @@
+---
+  class_name: "NewReleaseSensor"
+  entry_point: "new_release_sensor.py"
+  description: "A sensor for new releases."
+  trigger_types:
+    -
+      name: "event"
+      description: "A release has been created."
+      payload_schema:
+        type: "object"
+        properties:
+          executed_at:
+            type: "string"
+            format: "date-time"
+            default: "2014-07-30 05:04:24.578325"
