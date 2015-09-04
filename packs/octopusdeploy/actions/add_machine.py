@@ -7,12 +7,11 @@ __all__ = [
 
 class AddMachineAction(OctopusDeployAction):
     def run(self, environment_id, name, uri, thumbprint, roles):
-        role_list = roles.replace(' ', '').split(',')
         payload = {
             'Name': name,
             'Thumbprint': thumbprint,
             'Uri': uri,
-            'Roles': role_list,
+            'Roles': roles,
             'IsDisabled': False,
             'EnvironmentIds': {environment_id}
         }
