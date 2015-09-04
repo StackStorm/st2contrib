@@ -39,15 +39,13 @@ class NewReleaseSensor(OctopusDeploySensor):
 
         last_release = releases[0]
 
-        last_assembled_date = time.strptime(last_release.assembled)
+        last_assembled_date = self._to_date(last_release['assembled'])
 
         # What is the last indexed release date? If none, index and exit
-        index_date_str = self._get_last_date()
-        if index_date_str is None:
-            self._set_last_date(last_release.assembled)
+        index_date = self._get_last_date()
+        if index_date is None:
+            self._set_last_date(last_release['assembled'])
             return
-
-        index_date = time.strptime(index_date_str)
 
         # If there have been new releases, trigger them each
         if last_assembled_date > index_date:
@@ -55,7 +53,7 @@ class NewReleaseSensor(OctopusDeploySensor):
             # They are in date order so once you get one behind the index
             # break out of the loop
             for release in releases:
-                if time.strptime(release.assembled) > index_date:
+                if self._to_date(release['assembled']) > index_date:
                     self._dispatch_trigger_for_release(release)
                 else:
                     break
@@ -74,9 +72,13 @@ class NewReleaseSensor(OctopusDeploySensor):
         pass
 
     def _get_releases(self):
-        result = self.make_get_request("projects/releases")
+        result = self.make_get_request("releases")
         releases = self._to_triggers(result['Items'])
         return releases
+
+    def _to_date(self, date_string):
+        date_string = date_string.split('.')[0]
+        return time.strptime(date_string, '%Y-%m-%dT%H:%M:%S')
 
     def _get_last_release(self):
         releases = self._get_releases()
@@ -87,10 +89,10 @@ class NewReleaseSensor(OctopusDeploySensor):
         return releases[0]
 
     def _get_last_date(self):
-        if not self._last_id and hasattr(self._sensor_service, 'get_value'):
-            self._last_id = self._sensor_service.get_value(name='last_id')
+        if not self._last_date and hasattr(self._sensor_service, 'get_value'):
+            self._last_date = self._sensor_service.get_value(name=self._release_key)
 
-        return self._last_id
+        return self._last_date
 
     def _set_last_date(self, last_date):
         self._last_date = last_date
