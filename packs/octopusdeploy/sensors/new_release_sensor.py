@@ -29,12 +29,15 @@ class NewReleaseSensor(OctopusDeploySensor):
         pass
 
     def poll(self):
+        self._logger.debug('Requesting list of releases')
         releases = self._get_releases()
 
         # Make sure there are releases
         if releases is None:
+            self._logger.debug('No releases found')
             return
         if len(releases) is 0:
+            self._logger.debug('Empty list of releases')
             return
 
         last_release = releases[0]
@@ -44,11 +47,13 @@ class NewReleaseSensor(OctopusDeploySensor):
         # What is the last indexed release date? If none, index and exit
         index_date = self._get_last_date()
         if index_date is None:
-            self._set_last_date(last_release['assembled'])
-            return
+            self._logger.debug('Initializing index')
+            self._set_last_date(last_assembled_date)
+            index_date = self._get_last_date()
 
         # If there have been new releases, trigger them each
         if last_assembled_date > index_date:
+            self._logger.debug('Found releases to trigger')
             # Get releases since the last update time
             # They are in date order so once you get one behind the index
             # break out of the loop
