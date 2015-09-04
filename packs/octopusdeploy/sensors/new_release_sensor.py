@@ -64,6 +64,15 @@ class NewReleaseSensor(OctopusDeploySensor):
     def cleanup(self):
         pass
 
+    def add_trigger(self, trigger):
+        pass
+
+    def update_trigger(self, trigger):
+        pass
+
+    def remove_trigger(self, trigger):
+        pass
+
     def _get_releases(self):
         result = self.make_get_request("projects/releases")
         releases = self._to_triggers(result['Items'])
