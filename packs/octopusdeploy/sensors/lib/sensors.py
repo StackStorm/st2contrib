@@ -20,8 +20,13 @@ __all__ = [
 
 
 class OctopusDeploySensor(PollingSensor):
-    def __init__(self, config):
-        super(OctopusDeploySensor, self).__init__(config)
+    def __init__(self,
+                 sensor_service,
+                 config,
+                 poll_interval):
+        super(OctopusDeploySensor, self).__init__(sensor_service=sensor_service,
+                                                  config=config,
+                                                  poll_interval=poll_interval)
         self.client = self._init_client()
 
     def _init_client(self):
