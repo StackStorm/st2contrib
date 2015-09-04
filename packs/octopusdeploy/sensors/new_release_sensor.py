@@ -31,6 +31,7 @@ class NewReleaseSensor(OctopusDeploySensor):
     def poll(self):
         releases = self._get_releases()
 
+        # Make sure there are releases
         if releases is None:
             return
         if len(releases) is 0:
@@ -39,8 +40,16 @@ class NewReleaseSensor(OctopusDeploySensor):
         last_release = releases[0]
 
         last_assembled_date = time.strptime(last_release.assembled)
-        index_date = time.strptime(self._get_last_date())
 
+        # What is the last indexed release date? If none, index and exit
+        index_date_str = self._get_last_date()
+        if index_date_str is None:
+            self._set_last_date(last_release.assembled)
+            return
+
+        index_date = time.strptime(index_date_str)
+
+        # If there have been new releases, trigger them each
         if last_assembled_date > index_date:
             # Get releases since the last update time
             # They are in date order so once you get one behind the index
@@ -56,7 +65,7 @@ class NewReleaseSensor(OctopusDeploySensor):
         pass
 
     def _get_releases(self):
-        result = self.make_get_request("projects/%s/releases")
+        result = self.make_get_request("projects/releases")
         releases = self._to_triggers(result['Items'])
         return releases
 
@@ -67,18 +76,6 @@ class NewReleaseSensor(OctopusDeploySensor):
         if len(releases) is not 1:
             return None
         return releases[0]
-
-    def add_trigger(self, trigger):
-        # Baseline the last release date otherwise
-        # it will raise a trigger for every release ever.
-        last_release = self._get_last_release()
-        self._set_last_date(last_release.assembled)
-
-    def update_trigger(self, trigger):
-        pass
-
-    def remove_trigger(self, trigger):
-        self._sensor_service.delete_value(name=self._release_key)
 
     def _get_last_date(self):
         if not self._last_id and hasattr(self._sensor_service, 'get_value'):
