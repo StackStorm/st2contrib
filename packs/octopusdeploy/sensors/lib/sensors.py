@@ -5,6 +5,8 @@ except ImportError:
                'pip install requests')
     raise ImportError(message)
 
+import json
+
 from st2reactor.sensor.base import PollingSensor
 
 __all__ = [
