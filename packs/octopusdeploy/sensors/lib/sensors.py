@@ -30,9 +30,9 @@ class OctopusDeploySensor(PollingSensor):
         self.client = self._init_client()
 
     def _init_client(self):
-        api_key = self.config['api_key']
-        host = self.config['host']
-        port = self.config['port']
+        api_key = self._config['api_key']
+        host = self._config['host']
+        port = self._config['port']
         return OctopusDeployClient(api_key=api_key, host=host, port=port)
 
     def _build_uri(self):
