@@ -9,7 +9,17 @@
       payload_schema:
         type: "object"
         properties:
-          executed_at:
+          assembled:
             type: "string"
             format: "date-time"
             default: "2014-07-30 05:04:24.578325"
+          id:
+            type: "string"
+          release_notes:
+            type: "string"
+          version:
+            type: "string"
+          author:
+            type: "string"
+          project_id:
+            type: "string"
