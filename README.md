@@ -46,7 +46,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
 [![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
-[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#github-pack)
+[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 [![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
 [![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
@@ -68,6 +68,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | [octopusdeploy](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | st2 content pack containing octopusdeploy integrations | octopus, octopusdeploy, deployment, continous deployment, continous integration | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#octopusdeploy-pack)
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
 [![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
+[![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
@@ -463,6 +464,7 @@ Name | Description
 ---- | -----------
 add_comment | Add a comment to the provided issue / pull request.
 add_status | Add a commit status for a provided ref.
+create_issue | Create a Github issue.
 get_clone_stats | Retrieve clone statistics for a given repository
 get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
@@ -771,6 +773,19 @@ nova | Run OpenStack Nova commands
 nova_confirm | Confirms a resize or migrate
 nova_instances | Returns a list of instances by hypervisor
 nova_migrate_server | Evacuate guests from compute node
+
+### packer pack
+![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+build | Build images from a packer template
+fix | Takes a template and finds backwards incompatible parts of it and brings it up to date so it can be used with the latest version of Packer
+inspect | Takes a template and outputs the various components a template defines
+push | Push a template to Hashicorp Atlas
+validate | Validate a packer template
 
 ### pagerduty pack
 ![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)
