@@ -12,6 +12,6 @@ class BitBucketAction(Action):
                            password=self.config['password'],
                            repo_name_or_slug=repo)
         else:
-            bb = Bitbucket(username=self.config['useremail'],
+            bb = Bitbucket(username=self.config['email'],
                            password=self.config['password'])
         return bb
