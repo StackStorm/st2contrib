@@ -6,13 +6,13 @@ entry_point: update_issue.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name
+    description: Repository name.
     required: true
   id:
     type: integer
-    description: ID of the issue to update
+    description: ID of the issue to update.
     required: true
   desc:
     type: string
-    description: description of the issue
+    description: Issue description.
     required: true

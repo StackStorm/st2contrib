@@ -6,5 +6,5 @@ entry_point: list_branches.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name for listing the branches
+    description: Name of the repository to list the branches for.
     required: true

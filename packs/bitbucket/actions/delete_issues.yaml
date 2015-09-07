@@ -10,5 +10,5 @@ parameters:
     required: true
   ids:
     type: array
-    description: ID/IDs of the issue/issues to delete
+    description: IDs of the issues to delete.
     required: true

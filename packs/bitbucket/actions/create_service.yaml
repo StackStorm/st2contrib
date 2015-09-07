@@ -6,13 +6,13 @@ entry_point: create_service.py
 parameters:
   repo:
     type: string
-    description: provide repository name
+    description: Name of the repository to create a server / hook for.
     required: true
   url:
     type: string
-    description: Provide URL for the service
+    description: Provide URL for the service.
     required: true
   service:
     type: string
-    description: service to hook, for example, POST, issues, Jenkins, ReadtheDocs etc
+    description: Service type. For example, POST, issues, Jenkins, ReadtheDocs, etc.
     required: true

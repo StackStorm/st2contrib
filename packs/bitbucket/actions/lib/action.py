@@ -6,7 +6,7 @@ class BitBucketAction(Action):
     def __init__(self, config):
         super(BitBucketAction, self).__init__(config)
 
-    def _get_client(self, repo=''):
+    def _get_client(self, repo=None):
         if repo:
             bb = Bitbucket(username=self.config['username'],
                            password=self.config['password'],

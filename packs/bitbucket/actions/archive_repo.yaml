@@ -6,5 +6,5 @@ entry_point: archive_repo.py
 parameters:
   repo:
     type: string
-    description: provide repository name
+    description: Name of the repository to archive.
     required: true

@@ -10,5 +10,5 @@ parameters:
     required: true
   key_id:
     type: integer
-    description: id of ssh key
+    description: ID of a SSH key to delete.
     required: true

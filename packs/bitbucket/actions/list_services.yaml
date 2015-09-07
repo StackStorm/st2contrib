@@ -6,5 +6,5 @@ entry_point: list_services.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name
+    description: Name of the repository to list the services for.
     required: true

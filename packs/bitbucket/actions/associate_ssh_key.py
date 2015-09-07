@@ -1,7 +1,7 @@
 from lib.action import BitBucketAction
 
 
-class CreteSshKeyAction(BitBucketAction):
+class CreteSSHKeyAction(BitBucketAction):
     def run(self, ssh_key, label):
         """
         Creat a SSH keys in bitbucket account

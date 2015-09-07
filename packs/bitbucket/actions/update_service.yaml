@@ -6,13 +6,13 @@ entry_point: update_service.py
 parameters:
   repo:
     type: string
-    description: provide repositroy name
+    description: Repository name.
     required: true
   id:
     type: integer
-    description: ID of the service
+    description: ID of the service.
     required: true
   url:
     type: string
-    description: provide URL to udpate
-    required: true             
+    description: New service URL.
+    required: true

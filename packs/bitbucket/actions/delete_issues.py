@@ -1,7 +1,7 @@
 from lib.action import BitBucketAction
 
 
-class DeleteIssueAction(BitBucketAction):
+class DeleteIssuesAction(BitBucketAction):
     def run(self, repo, ids):
         """
         Delete an issue

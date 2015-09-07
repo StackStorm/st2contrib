@@ -1,7 +1,7 @@
 from lib.action import BitBucketAction
 
 
-class DeleteServiceAction(BitBucketAction):
+class DeleteServicesAction(BitBucketAction):
     def run(self, repo, ids):
         """
         Delete a service
