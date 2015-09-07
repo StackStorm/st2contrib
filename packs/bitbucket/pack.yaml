@@ -1,7 +1,11 @@
-name: BitBucket
-description: Pack which allows integration with BitBucket.
+name: bitbucket
+description: Pack which allows integration with Bitbucket.
 keywords:
- - Bitbucket
+  - bitbucket
+  - vcs
+  - mercuriral
+  - git
+  - source control
 version: 0.1.0
 author: Aamir
 email: raza.aamir01@gmail.com
