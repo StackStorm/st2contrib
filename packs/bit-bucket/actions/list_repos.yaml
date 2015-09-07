@@ -1,0 +1,5 @@
+name: list_repos
+runner_type: run-python
+description: List details of repositories for a user
+enabled: true
+entry_point: list_repos.py

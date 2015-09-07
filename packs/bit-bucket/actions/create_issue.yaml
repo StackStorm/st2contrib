@@ -1,0 +1,38 @@
+name: create_issue
+runner_type: run-python
+description: Create an issue
+enabled: true
+entry_point: create_issue.py
+parameters:
+  repo:
+    type: string
+    description: Name of the repo
+    required: true
+  title:
+    type: string
+    description: Title of the issue to create
+    required: true
+  desc:
+    type: string
+    description: Description of the issue to create
+    required: true
+  status:
+    type: string
+    description: status of the issue
+    required: true
+    enum:
+      - "new"
+      - "open"
+      - "resolved"
+      - "on hold"
+      - "invalid"
+      - "duplicate"
+      - "wontfix"
+  kind:
+    type: string
+    description: kind of the issue
+    required: true
+    enum:
+      - "bug"
+      - "enhancement"
+      - "proposal"
