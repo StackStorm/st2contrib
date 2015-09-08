@@ -7,7 +7,7 @@ trigger:
   pack: "chatops"
   type: "core.st2.generic.notifytrigger"
 criteria:
-  trigger.channel:
+  trigger.route:
     pattern: "hubot"
     type: "equals"
 action:
