@@ -1,0 +1,35 @@
+---
+name: create_dns_record
+runner_type: run-python
+description: Create a new DNS record.
+enabled: true
+entry_point: create_dns_record.py
+parameters:
+  zone_id:
+    type: string
+    description: ID of a zone you want to create a record in.
+    required: true
+  name:
+    type: string
+    description: Full record name including a domain (e.g. myrecord.mydomain.com)
+    required: true
+  data:
+    type: string
+    description: Record data (e.g. 1.2.3.4)
+    required: true
+  type:
+    type: string
+    description: Record type (e.g. A, AAAA, TXT, MX, etc.)
+    required: true
+  priority:
+    type: string
+    description: Optional priority. Only required for MX records.
+    required: false
+  ttl:
+    type: integer
+    description: Optional record TTL. Default is 3600 and minimum is 300.
+    required: false
+  comment:
+    type: string
+    description: Optional comment to associate with a record.
+    required: false

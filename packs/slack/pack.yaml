@@ -1,6 +1,11 @@
 ---
 name : slack
 description : st2 content pack containing slack integrations
-version : 0.1
+keywords:
+  - slack
+  - chat
+  - messaging
+  - instant messaging
+version : 0.1.1
 author : st2-dev
 email : info@stackstorm.com

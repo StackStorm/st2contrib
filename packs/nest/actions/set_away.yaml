@@ -1,0 +1,10 @@
+---
+name: "set_away"
+runner_type: "run-python"
+description: "Set nest to away mode"
+enabled: true
+entry_point: "set_away.py"
+parameters:
+  structure:
+    type: "integer"
+    description: "ID of Nest Home name"

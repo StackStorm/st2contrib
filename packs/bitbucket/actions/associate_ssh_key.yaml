@@ -1,0 +1,14 @@
+name: associate_ssh_key
+runner_type: run-python
+description: Associate a SSH key with your account
+enabled: true
+entry_point: associate_ssh_key.py
+parameters:
+  ssh_key:
+    type: string
+    description: Public SSH key to associate with your account.
+    required: true
+  label:
+    type: string
+    description: Label for the SSH key.
+    required: true

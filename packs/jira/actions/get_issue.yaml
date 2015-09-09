@@ -1,0 +1,11 @@
+---
+name: get_issue
+runner_type: run-python
+description: Retrieve information about a particular JIRA issue.
+enabled: true
+entry_point: get_issue.py
+parameters:
+  issue_key:
+    type: string
+    description: Issue key (e.g. PROJECT-1000).
+    required: true

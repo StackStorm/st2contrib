@@ -1,0 +1,23 @@
+---
+  name: cicd.jenkins.incoming.success
+  enabled: true
+  description: Webhook listening for job successes from Jenkins
+  trigger:
+    type: core.st2.webhook
+    parameters:
+      url: cicd/jenkins
+  criteria:
+    trigger.body.build.phase:
+      pattern: FINALIZED
+      type: equals
+    trigger.body.build.status:
+      pattern: SUCCESS
+      type: equals
+  action:
+    ref: cicd.ci_success
+    parameters:
+      project: "{{trigger.body.name}}"
+      repo_url: "{{trigger.body.build.scm.url}}"
+      branch: "{{trigger.body.build.scm.branch}}"
+      commit: "{{trigger.body.build.scm.commit}}"
+      details_url: "{{trigger.body.build.url}}"

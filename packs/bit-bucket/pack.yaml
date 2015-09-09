@@ -1,7 +1,0 @@
-name: BitBucket
-description: Pack which allows integration with BitBucket.
-keywords:
- - Bitbucket
-version: 0.1.0
-author: Aamir
-email: raza.aamir01@gmail.com

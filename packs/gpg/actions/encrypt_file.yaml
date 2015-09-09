@@ -1,0 +1,19 @@
+---
+  name: "encrypt_file"
+  runner_type: "run-python"
+  description: "Encrypt a file using asymmetric encryption for the provided recipients."
+  enabled: true
+  entry_point: "encrypt_file.py"
+  parameters:
+    file_path:
+      type: "string"
+      description: "Path to the file to encrypt."
+      required: true
+    recipients:
+      type: "array"
+      description: "A list of fingerprints or ids of the recipient keys."
+      required: True
+    output_path:
+      type: "string"
+      description: "Path where the encrypted file will be saved."
+      required: True

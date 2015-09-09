@@ -1,0 +1,11 @@
+---
+  name: find_loadbalancer_id
+  runner_type: run-python
+  description: Find a loadbalancer id based on name
+  enabled: true
+  entry_point: find_loadbalancer_id.py
+  parameters:
+    name:
+      type: string
+      description: Name of loadbalancer to find ID of
+      required: true

@@ -1,0 +1,6 @@
+---
+  name: "list_keys"
+  runner_type: "run-python"
+  description: "List all keys in the keyring."
+  enabled: true
+  entry_point: "list_keys.py"

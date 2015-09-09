@@ -10,10 +10,13 @@ __all__ = [
 
 BASE_URL = 'https://github.com'
 
+
 class BaseGithubAction(Action):
     def __init__(self, config):
         super(BaseGithubAction, self).__init__(config=config)
-        self._client = Github(self.config['token'])
+        token = self.config.get('token', None)
+        token = token or None
+        self._client = Github(token)
 
     def _web_session(self):
         '''Returns a requests session to scrape off the web'''
@@ -33,7 +36,7 @@ class BaseGithubAction(Action):
         }
 
         session_url = BASE_URL + session_path
-        session.post(session_url, data = login_data)
+        session.post(session_url, data=login_data)
         return session
 
     def _get_analytics(self, category, repo):

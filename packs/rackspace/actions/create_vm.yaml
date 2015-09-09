@@ -1,0 +1,31 @@
+---
+name: create_vm
+runner_type: run-python
+description: Create a new VM / cloud server
+enabled: true
+entry_point: create_vm.py
+parameters:
+  name:
+    type: string
+    description: Name for the created server
+    required: true
+  image_id:
+    type: string
+    description: ID of an image to use
+    required: true
+  flavor_id:
+    type: string
+    description: ID of the flavor to use
+    required: true
+  key_material:
+    type: string
+    description: Optional public SSH key material
+    required: false
+  metadata:
+    type: object
+    description: Optional metadata to associate with the server (key/value pairs).
+    required: false
+  region:
+    type: string
+    description: Optional region name. Defaults to region specified in the config.
+    required: false

@@ -1,0 +1,22 @@
+---
+name: create_loadbalancer
+runner_type: run-python
+description: Create a new loadbalancer.
+enabled: true
+entry_point: create_loadbalancer.py
+parameters:
+  name:
+    type: string
+    description: Name of the new loadbalancer
+    required: true
+    position: 1
+  port:
+    type: integer
+    description: Port the loadbalancer should listen on.
+    default: 80
+    position: 2
+  protocol:
+    type: string
+    description: Loadbalancer protocol
+    default: HTTP
+    position: 3

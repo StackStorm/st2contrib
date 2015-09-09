@@ -1,0 +1,12 @@
+### Place information about your pack version here.
+---
+name: openhab
+description: Integration with OpenHAB
+keywords:
+  - openhab
+  - iot
+  - smart home
+  - home automation
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com

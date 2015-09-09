@@ -1,0 +1,17 @@
+---
+description: Run Salt Execution modules through Salt API
+enabled: true
+entry_point: local.py
+name: local_hosts.add_hosts
+parameters:
+  action:
+    default: hosts.add_hosts
+    immutable: true
+    type: string
+  args:
+    required: false
+    type: array
+  kwargs:
+    required: false
+    type: object
+runner_type: run-python

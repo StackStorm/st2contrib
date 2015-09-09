@@ -1,0 +1,11 @@
+---
+name: session_delete
+runner_type: run-python
+description: Delete session attributes matching key. If no keys were specified, delete all stored attributes.
+enabled: true
+entry_point: session_delete.py
+parameters:
+  session_key:
+    type: integer
+    description: 'The key of the session attribute to delete'
+    required: false

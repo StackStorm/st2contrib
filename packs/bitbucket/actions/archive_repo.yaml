@@ -1,0 +1,10 @@
+name: archive_repo
+runner_type: run-python
+description: Retruns a path to the downloaded archived repository
+enabled: true
+entry_point: archive_repo.py
+parameters:
+  repo:
+    type: string
+    description: Name of the repository to archive.
+    required: true

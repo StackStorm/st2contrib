@@ -1,0 +1,19 @@
+---
+name: push_image
+runner_type: run-python
+description: Push docker image action. Equivalent to docker push.
+enabled: true
+entry_point: push_image.py
+parameters:
+  repo:
+    type: string
+    description: Repository to push the image to.
+    required: true
+  tag:
+    type: string
+    description: Tag to use for this image (optional).
+  insecure_registry:
+    type: boolean
+    description: Allow image to be pushed to insecure registry (http vs https).
+    default: False
+

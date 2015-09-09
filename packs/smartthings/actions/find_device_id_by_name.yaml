@@ -1,0 +1,22 @@
+---
+name: "find_id_by_name"
+runner_type: "python-script"
+description: "Lookup a specific device ID based on its name/type"
+enabled: true
+entry_point: "lookup.py"
+parameters:
+  name:
+    type: "string"
+    description: "Name of device"
+    required: true
+  device_type:
+    type: "string"
+    description: "Device type"
+    required: true
+    enum:
+      - "switch"
+      - "motion"
+      - "temperature"
+      - "contact"
+      - "presence"
+      - "lock"

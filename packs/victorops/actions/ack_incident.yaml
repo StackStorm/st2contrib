@@ -1,0 +1,15 @@
+name: ack_incident
+runner_type: run-python
+description: Acknowledge a triggered event on victorops
+enabled: true
+entry_point: ack_incident.py
+
+parameters:
+  entity:
+    type: string
+    description: "Provide entity id, This would be used by victorops for stacking up incidents related to this entity"
+    required: true
+  message:
+    type: string
+    description: "Descriptive message about the event"
+    required: false

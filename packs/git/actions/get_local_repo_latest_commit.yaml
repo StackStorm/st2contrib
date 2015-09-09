@@ -1,0 +1,19 @@
+---
+name: get_local_repo_latest_commit
+runner_type: run-remote
+description: "Retrieve SHA of the latest commit for the provided branch in a local repository."
+enabled: true
+entry_point: ""
+parameters:
+  repo_path:
+    type: string
+    description: Path to the directory containg the git repository.
+    required: true
+  branch:
+    type: string
+    description: Branch / ref to retrieve the latest commit for.
+    default: master
+    required: true
+  cmd:
+    default: "cd {{ repo_path }} && git rev-parse {{ branch }}"
+    immutable: true

@@ -1,2 +1,4 @@
 jira
 pyyaml
+cryptography
+pyjwt

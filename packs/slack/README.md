@@ -12,13 +12,18 @@ Pack which allows integration with [Slack](https://slack.com/) service.
   messages will be posted. This setting can be overridden on per action basis.
 * ``post_message_action.icon_emoji`` - Default icon of the user under which the
   messages will be posted. This setting can be overridden on per action basis.
+  If not provided, default value which is selected when configuring a webhook
+  is used.
 * ``sensor.token`` - Authentication token used to authenticate against Real
   Time Messaging API.
+* ``sensor.strip_formatting`` - By default, Slack automatically parses URLs, images,
+  channels, and usernames. This option removes formatting and only returns the raw
+  data from the client (URL only today)
 
 ### Obtaining a Webhook URL
 
 To configure a webhook and obtain a URL, go to
-https://<your company>.slack.com/services/new/incoming-webhook, select a
+https://[your company].slack.com/services/new/incoming-webhook, select a
 channel you would like the messages to be posted to and click on "Add
 Incoming WebHooks Integration" button.
 

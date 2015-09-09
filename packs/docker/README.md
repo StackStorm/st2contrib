@@ -10,6 +10,14 @@ This action builds a docker image given a path to Dockerfile (could be
 directory containing Dockerfile or path to Dockerfile or remote URL containing
 Dockerfile) and a tag to use for the image.
 
+### Pull docker image
+
+This action pulls a docker image from docker registry. Image is identified by repository and tag.
+
+### Push docker image
+
+This action pushes an image to a docker registry. Image is identified by repository and tag.
+
 ## Sensors
 
 ### Docker container spun up/shut down
@@ -42,3 +50,10 @@ YMMV if you use versions not listed here.
 If you are connecting to the Docker daemon via the Unix socket, you need to
 make sure that this socket is accessible to the system user under which
 StackStorm processes are running.
+
+For example, if `stanley` is the name of the system user, he should be added to `docker` group like so:
+
+* sudo usermod -a -G docker stanley
+* sudo service docker restart
+
+(If you are currently logged on as the user you are trying to add, you will have to logout/log back in.)

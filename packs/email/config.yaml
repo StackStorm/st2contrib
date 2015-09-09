@@ -1,0 +1,11 @@
+---
+imap_mailboxes:
+  main:
+    server: 
+    port: 993
+    username: 
+    password:
+    ssl: true
+max_attachment_size: 1024
+attachment_datastore_ttl: 1800
+

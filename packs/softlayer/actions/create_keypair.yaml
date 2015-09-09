@@ -1,0 +1,15 @@
+description: 'Creates a keypair by name'
+enabled: true
+entry_point: create_keypair.py
+name: create_keypair
+parameters:
+  name:
+    required: true
+    type: string
+    description: Name of the keypair.
+  size:
+    required: false
+    type: integer
+    description: Key length for the keypair. Must be a multiple of 256, and no smaller than 1024.
+    default: 4096
+runner_type: run-python

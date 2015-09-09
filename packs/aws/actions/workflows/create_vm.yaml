@@ -1,0 +1,69 @@
+---
+  chain:
+    -
+      name: "run_instance"
+      ref: "aws.ec2_run_instances"
+      params:
+        image_id: "{{image_id}}"
+        instance_type: "{{instance_type}}"
+        subnet_id: "{{subnet_id}}"
+        key_name: "{{key_name}}"
+      on-success: "wait_for_instance"
+    -
+      name: "wait_for_instance"
+      ref: "aws.ec2_wait_for_state"
+      params:
+        instance_id: "{{run_instance.result[0][0].id}}"
+        state: "running"
+      on-success: "wait_for_ssh"
+    -
+      name: "wait_for_ssh"
+      ref: "linux.wait_for_ssh"
+      params:
+        hostname: "{{run_instance.result[0][0].private_ip_address}}"
+        username: "stanley"
+        keyfile: "{{keyfile}}"
+        timeout: 20
+        retries: 30
+      on-success: "add_name_tag"
+    -
+      name: "add_name_tag"
+      ref: "aws.ec2_create_tags"
+      params:
+        resource_ids: "{{run_instance.result[0][0].id}}"
+        tags: "Name={{hostname}}"
+      on-success: "add_cname"
+    -
+      name: "add_cname"
+      ref: "aws.r53_zone_add_cname"
+      params:
+        name: "{{hostname}}.{{dns_zone}}"
+        value: "{{run_instance.result[0][0].private_dns_name}}"
+        zone: "{{dns_zone}}"
+      on-success: "set_hostname"
+    -
+      name: "set_hostname"
+      ref: "aws.set_hostname_cloud"
+      params:
+        hosts: "{{run_instance.result[0][0].private_ip_address}}"
+        hostname: "{{hostname}}.{{dns_zone}}"
+      on-success: "reboot"
+    -
+      name: "reboot"
+      ref: "core.remote_sudo"
+      params:
+        hosts: "{{run_instance.result[0][0].private_ip_address}}"
+        sudo: true
+        cmd: "reboot"
+      on-success: "wait_for_ssh_post_reboot"
+    -
+      name: "wait_for_ssh_post_reboot"
+      ref: "linux.wait_for_ssh"
+      params:
+        hostname: "{{run_instance.result[0][0].private_ip_address}}"
+        username: "stanley"
+        keyfile: "{{keyfile}}"
+        timeout: 30
+        retries: 10
+
+  default: "run_instance"

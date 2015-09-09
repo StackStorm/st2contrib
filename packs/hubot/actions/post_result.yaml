@@ -1,0 +1,23 @@
+---
+  name: "post_result"
+  pack: hubot
+  runner_type: "run-python"
+  description: "Post an execution result to Hubot"
+  enabled: true
+  entry_point: "post_result.py"
+  parameters:
+    user:
+      type: "string"
+      description: "Explicitly notify a user"
+    whisper:
+      type: "boolean"
+      description: "Send a private message to user"
+      default: false
+    result:
+      type: "object"
+      description: "Result to send."
+      required: true
+    channel:
+      type: "string"
+      description: "Channel to post to"
+      required: true

@@ -1,5 +1,6 @@
 try:
     import libcloud
+    libcloud
 except ImportError:
     message = ('Missing "apache-libcloud", please install it using pip:\n'
                'pip install apache-libcloud')
@@ -8,6 +9,7 @@ except ImportError:
 from libcloud.compute.providers import get_driver as get_compute_driver
 from libcloud.storage.providers import get_driver as get_storage_driver
 from libcloud.dns.providers import get_driver as get_dns_driver
+from libcloud.loadbalancer.providers import get_driver as get_lb_driver
 from libcloud.compute.base import Node
 
 from st2actions.runners.pythonrunner import Action
@@ -42,6 +44,8 @@ class BaseAction(Action):
             get_driver = get_storage_driver
         elif provider_type == 'dns':
             get_driver = get_dns_driver
+        elif provider_type == 'loadbalancer':
+            get_driver = get_lb_driver
         else:
             raise ValueError('Unsupported type: %s' % (provider_type))
 

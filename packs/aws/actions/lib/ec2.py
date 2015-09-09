@@ -1,5 +1,5 @@
+# pylint: disable=no-member
 import logging
-import time
 import boto.ec2
 
 
@@ -20,6 +20,5 @@ class EC2(object):
                                           aws_access_key_id=self._access_key_id,
                                           aws_secret_access_key=self._secret_access_key)
 
-    def get_object(self,action):
-        return getattr(boto.ec2.connection.EC2Connection,action)
-
+    def get_object(self, action):
+        return getattr(boto.ec2.connection.EC2Connection, action)

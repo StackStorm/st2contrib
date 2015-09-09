@@ -1,0 +1,28 @@
+---
+name: create_balancer
+runner_type: run-python
+description: Create a load balancer
+enabled: true
+entry_point: create_balancer.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
+  name:
+    type: string
+    description: The name of the balancer
+    required: true
+  port:
+    type: string
+    description: The TCP/UDP port of the balancer
+    required: true
+  protocol:
+    type: string
+    description: The protocol of the balancer
+    required: true
+  algorithm:
+    type: string
+    description: The algorithm of the balancer, choice of LEAST_CONNECTIONS, ROUND_ROBIN, SHORTEST_RESPONSE, PERSISTENT_IP
+    required: false
+    default: "ROUND_ROBIN"

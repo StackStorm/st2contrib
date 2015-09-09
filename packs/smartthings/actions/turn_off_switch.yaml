@@ -1,0 +1,19 @@
+---
+name: "turn_off_switch"
+runner_type: "python-script"
+description: "Turn off a light"
+enabled: true
+entry_point: "command.py"
+parameters:
+  device_type:
+    type: "string"
+    default: "switch"
+    immutable: true
+  device_id:
+    type: "string"
+    description: "ID of switch"
+    required: true
+  command:
+    type: "string"
+    default: "off"
+    immutable: true

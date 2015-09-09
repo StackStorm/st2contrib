@@ -1,0 +1,10 @@
+name: create_repo
+runner_type: run-python
+description: Create a Repository
+enabled: true
+entry_point: create_repo.py
+parameters:
+  repo:
+    type: string
+    description: Name of the repository to to create.
+    required: true

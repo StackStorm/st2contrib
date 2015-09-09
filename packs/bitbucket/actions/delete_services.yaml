@@ -1,0 +1,14 @@
+name: delete_services
+runner_type: run-python
+description: Delete services for a given repository.
+enabled: true
+entry_point: delete_services.py
+parameters:
+  repo:
+    type: string
+    description: Repository name.
+    required: true
+  ids:
+    type: array
+    description: IDs of the services to delete.
+    required: true

@@ -1,0 +1,10 @@
+name: list_issues
+runner_type: run-python
+description: List all issues for a given repository
+enabled: true
+entry_point: list_issues.py
+parameters:
+  repo:
+    type: string
+    description: Name of the repository to list the issues for.
+    required: true

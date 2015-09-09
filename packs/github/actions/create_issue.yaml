@@ -1,0 +1,27 @@
+---
+name: create_issue
+runner_type: run-python
+description: Create a Github issue.
+enabled: true
+entry_point: create_issue.py
+parameters:
+  user:
+    type: "string"
+    description: "User / organization name."
+    required: true
+  repo:
+    type: "string"
+    description: "Repository name."
+    required: true
+  title:
+    type: "string"
+    description: Title
+    required: true
+  description:
+    type: "string"
+    description: Description
+    required: false
+  assignee:
+    type: "string"
+    description: Assignee
+    required: false

@@ -1,0 +1,11 @@
+---
+name: delete_container
+runner_type: run-python
+description: Delete a storage container.
+enabled: true
+entry_point: delete_container.py
+parameters:
+  name:
+    type: string
+    description: Name of the container to delete.
+    required: true

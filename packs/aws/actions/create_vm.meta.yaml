@@ -1,0 +1,39 @@
+---
+  name: "create_vm"
+  runner_type: "action-chain"
+  description: "Create a VM, add DNS to Route53"
+  enabled: true
+  entry_point: "workflows/create_vm.yaml"
+  parameters:
+    image_id:
+      type: "string"
+      description: "AWS image id to create instance from"
+      required: true
+    instance_type:
+      type: "string"
+      description: "Flavor to use for instance creation"
+      default: "t2.medium"
+    key_name:
+      type: "string"
+      description: "SSH key to use during intial instance creation"
+      required: true
+    base_user:
+      type: "string"
+      description: "Username for initial ssh test"
+      default: "ubuntu"
+    keyfile:
+      type: "string"
+      description: "Path to local private key that corresponds to {{key_name}}"
+      required: true
+    dns_zone:
+      type: "string"
+      description: "Route53 DNS Zone to add host to"
+      required: true
+    hostname:
+      type: "string"
+      description: "Short hostname"
+      required: true
+    subnet_id:
+      type: "string"
+      description: "AWS Subnet ID"
+      required: true

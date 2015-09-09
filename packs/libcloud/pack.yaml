@@ -1,6 +1,23 @@
 ---
 name : libcloud
 description : st2 content pack containing libcloud integrations
+keywords:
+  - libcloud
+  - cloud
+  - dns
+  - dnsaas
+  - lbaas
+  - load balancers
+  - aws
+  - amazon
+  - s3
+  - ec2
+  - rackspace
+  - cloudstack
+  - openstack
+  - cloudsigma
+  - gce
+  - google compute engine
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

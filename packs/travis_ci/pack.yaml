@@ -1,0 +1,10 @@
+name: Travis CI
+description: Pack which allows integration with Travis CI.
+keywords:
+ - travis
+ - travis ci
+ - continous integration
+ - ci
+version: 0.1.0
+author: Aamir
+email: raza.aamir01@gmail.com

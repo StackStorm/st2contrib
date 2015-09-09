@@ -1,0 +1,15 @@
+### Place configuration data for your pack here.
+---
+hostname: ''
+subscribe:
+  - ""
+
+## Optional Parameters
+# client_id: ""
+# port: 1833
+# username: ""
+# password: ""
+# ssl: true
+# ssl_cacert: ""
+# ssl_cert: ""
+# ssl_key: ""

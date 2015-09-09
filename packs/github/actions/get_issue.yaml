@@ -1,0 +1,19 @@
+---
+name: get_issue
+runner_type: run-python
+description: Retrieve information about a particular Github issue.
+enabled: true
+entry_point: get_issue.py
+parameters:
+  user:
+    type: "string"
+    description: "User / organization name."
+    required: true
+  repo:
+    type: "string"
+    description: "Repository name."
+    required: true
+  issue_id:
+    type: "string"
+    description: Issue id
+    required: true

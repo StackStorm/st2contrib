@@ -1,0 +1,21 @@
+---
+name: 'bootstrap'
+runner_type: 'run-python'
+description: 'Bootstrap servers with salt.cloud runner'
+enabled: True
+entry_point: 'salt_bootstrap.py'
+parameters:
+    instance_id:
+        description: 'Instance id of the server'
+        type: 'string'
+        required: True
+
+    provider:
+        description: 'Provider for the server'
+        type: 'string'
+        required: True
+
+    name:
+        description: 'Name of the server'
+        type: 'string'
+        required: True

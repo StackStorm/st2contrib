@@ -1,0 +1,11 @@
+---
+name: create_container
+runner_type: run-python
+description: Create a new storage container.
+enabled: true
+entry_point: create_container.py
+parameters:
+  name:
+    type: string
+    description: Container name.
+    required: true

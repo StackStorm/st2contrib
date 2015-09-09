@@ -11,3 +11,4 @@
     ref: "slack.post_message"
     parameters:
         message: "@{{trigger.user.screen_name}} tweeted on {{trigger.created_at}}: {{trigger.text}} - {{trigger.url}}"
+        channel: "#twitter-relay"

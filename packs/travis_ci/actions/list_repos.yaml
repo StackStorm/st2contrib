@@ -1,0 +1,10 @@
+name: list_repos
+runner_type: run-python
+description: List repositories for the provided user.
+enabled: true
+entry_point: list_repos.py
+parameters:
+  username:
+    type: string
+    description: User to retrieve the repositories for.
+    required: true

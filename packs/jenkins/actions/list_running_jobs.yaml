@@ -1,0 +1,6 @@
+---
+name: list_running_jobs
+runner_type: run-python
+description: "List currently running Jenkins jobs"
+enabled: true
+entry_point: "list_running_jobs.py"

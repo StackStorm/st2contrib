@@ -1,0 +1,14 @@
+---
+name : chef
+description : st2 chef integration pack
+keywords:
+  - chef
+  - chef-client
+  - chef-solo
+  - chef-apply
+  - cfg management
+  - configuration management
+  - opscode
+version : 0.1.1
+author : st2-dev
+email : info@stackstorm.com

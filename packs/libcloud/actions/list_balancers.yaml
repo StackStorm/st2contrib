@@ -1,0 +1,11 @@
+---
+name: list_balancers
+runner_type: run-python
+description: List load balancers
+enabled: true
+entry_point: list_balancers.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true

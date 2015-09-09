@@ -1,0 +1,94 @@
+---
+description: Optimize indices
+enabled: true
+entry_point: curator_runner.py
+name: indices.optimize
+parameters:
+  action:
+    default: indices.optimize
+    immutable: true
+    type: string
+  all_indices:
+    description: Do not filter indices.  Act on all indices.
+    type: boolean
+  delay:
+    default: 0
+    description: Pause *n* seconds after optimizing an index.
+    type: integer
+  dry_run:
+    default: false
+    description: Do not perform any changes.
+    type: boolean
+  exclude:
+    description: Index list to exclude from the operation.
+    items:
+      type: string
+    type: array
+  host:
+    description: Elasticsearch host.
+    required: true
+    type: string
+  http_auth:
+    description: 'Use Basic Authentication ex: user:pass'
+    type: string
+  index:
+    description: Index list to operate on.
+    items:
+      type: string
+    type: array
+  log_level:
+    default: warn
+    description: Log level [critical|error|warning|info|debug].
+    type: string
+  master_only:
+    default: false
+    description: Only operate on elected master node.
+    type: boolean
+  max_num_segments:
+    default: 2
+    description: Merge to this number of segments per shard.
+    type: integer
+  newer_than:
+    description: Include only indices newer than n time_units.
+    type: integer
+  older_than:
+    description: Include only indices older than n  time_units.
+    type: integer
+  operation_timeout:
+    default: '{{timeout}}'
+    description: Elasticsearch operation timeout in seconds. (It's equal to action
+      timeout).
+    immutable: true
+    type: string
+  port:
+    description: Elasticsearch port.
+    type: string
+  prefix:
+    description: Include only indices beginning with prefix.
+    type: string
+  regex:
+    description: Provide your own regex, e.g '^prefix-.*-suffix$'.
+    type: string
+  suffix:
+    description: Include only indices ending with suffix.
+    type: string
+  time_unit:
+    default: days
+    description: Unit of time to reckon by [hours|days|weeks|months].
+    type: string
+  timeout:
+    default: 21600
+    description: Don't wait for action completion more then the specified timeout.
+    type: integer
+  timestring:
+    description: Python strftime string to match your index definition, e.g. 2015.07.15
+      would be %Y.%m.%d.
+    type: string
+  url_prefix:
+    description: Elasticsearch http url prefix.
+    type: string
+  use_ssl:
+    default: false
+    description: Connect to Elasticsearch through SSL.
+    type: boolean
+runner_type: run-python

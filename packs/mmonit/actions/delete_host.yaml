@@ -1,0 +1,12 @@
+---
+name: delete_host
+runner_type: run-python
+description: Returns details for the given host id.
+enabled: true
+entry_point: delete_host.py
+parameters:
+  host_id:
+    type: integer
+    description: 'The id of the host to delete.'
+    required: true
+    position: 1

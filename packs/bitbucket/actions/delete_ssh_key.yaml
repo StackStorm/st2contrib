@@ -1,0 +1,10 @@
+name: delete_ssh_key
+runner_type: run-python
+description: Delete SSH key
+enabled: true
+entry_point: delete_ssh_key.py
+parameters:
+  key_id:
+    type: integer
+    description: ID of a SSH key to delete.
+    required: true

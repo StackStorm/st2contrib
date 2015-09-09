@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: mqtt
+description: MQTT Integration for StackStorm
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com

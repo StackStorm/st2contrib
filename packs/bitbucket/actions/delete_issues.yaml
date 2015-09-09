@@ -1,0 +1,14 @@
+name: delete_issues
+runner_type: run-python
+description: Delete issue for a given repository
+enabled: true
+entry_point: delete_issues.py
+parameters:
+  repo:
+    type: string
+    description: provide repositroy name
+    required: true
+  ids:
+    type: array
+    description: IDs of the issues to delete.
+    required: true

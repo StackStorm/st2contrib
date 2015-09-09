@@ -1,0 +1,11 @@
+---
+name: delete_loadbalancer
+runner_type: run-python
+description: Delete a loadbalancer
+enabled: true
+entry_point: delete_loadbalancer.py
+parameters:
+  loadbalancer_id:
+    type: string
+    description: ID of a Load Balancer to delete
+    required: true

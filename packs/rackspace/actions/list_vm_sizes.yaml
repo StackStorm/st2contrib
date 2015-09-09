@@ -1,0 +1,6 @@
+---
+name: list_vm_sizes
+runner_type: run-python
+description: List all the available VM sizes
+enabled: true
+entry_point: list_vm_sizes.py

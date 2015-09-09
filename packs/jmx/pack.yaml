@@ -1,0 +1,11 @@
+---
+name: jmx
+description: st2 content pack containing Java JMX integrations
+keywords:
+  - jmx
+  - javajmx
+  - java management extensions
+  - mbean
+version: 0.1
+author: st2-dev
+email: info@stackstorm.com

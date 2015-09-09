@@ -1,0 +1,10 @@
+---
+username: ""
+password: ""
+host: ""
+shared_sensors_config:
+  host:
+  username:
+  password:
+  event_types: 1,2
+  active: 1

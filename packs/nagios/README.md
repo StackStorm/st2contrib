@@ -1,6 +1,6 @@
 ## Nagios integration
 
-To integrate Nagios with st2, we will need to add a nagios event handler which POSTs a HTTP webbhook to st2. 
+To integrate Nagios with st2, we will need to add a nagios event handler which POSTs a HTTP webbhook to st2.
 
 ## Nagios event handler
 
@@ -8,20 +8,9 @@ The event handler script is available in [etc/st2service_handler.py](etc/st2serv
 
 ## Configuring the event handler
 
-The event handler needs to know the host and webhook port of st2 HTTP server. 
-ST2_HOST and ST2_WEBHOOKS_PORT are the parameters that need to be changed.
-
-```
-# ST2 configuration
-ST2_HOST = '172.31.39.97'
-ST2_WEBHOOKS_PORT = '6000'
-```
-
-If st2 API service is configured differently than default, change the ST2_API_PORT to appropriate setting. 
-
 The event handler tries to register a trigger type first before sending any
 notifications to st2. This trigger type is then referenced in st2 rules. See
-[rules/](rules/) for examples. 
+[rules/](rules/) for examples.
 
 ## Installing the event handler
 
@@ -36,6 +25,8 @@ notifications to st2. This trigger type is then referenced in st2 rules. See
     ```
     chmod +x /usr/local/nagios/libexec/st2service_handler.py
     ```
+4. Handlers require a configuration file (See [etc/config.yaml](etc/config.yaml)) containing
+st2 credentials, st2 API URL and st2 auth URL.
 
 
 

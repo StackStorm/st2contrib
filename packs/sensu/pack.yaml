@@ -1,6 +1,10 @@
 ---
 name : sensu
 description : st2 content pack containing sensu integrations
+keywords:
+  - sensu
+  - monitoring
+  - alerting
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

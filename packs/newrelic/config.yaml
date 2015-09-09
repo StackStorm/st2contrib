@@ -1,2 +1,8 @@
 ---
+api_url: "https://api.newrelic.com/v2/"
 api_key: ""
+sensor_config:
+    host: "0.0.0.0"
+    port: 10001
+    url: "/st2/nrhook/"
+    normal_report_delay: 300

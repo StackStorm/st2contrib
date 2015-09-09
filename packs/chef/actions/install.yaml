@@ -1,0 +1,25 @@
+---
+name: 'install'
+runner_type: 'run-remote-script'
+description: 'Performs installation of chef-client on remote nodes'
+enabled: true
+entry_point: 'chef_install.py'
+parameters:
+    method:
+        description: "Specify the method to install chef. (Omnibus is enabled by default, since it's the only supported way)."
+        type: 'string'
+        default: omnibus
+    pre_release:
+        description: 'Install a pre-release version. Requires that version is also specified.'
+        type: 'boolean'
+        default: False
+    version:
+        description: 'The version of the chef-client to be installed. If no version is specified the latest version will be installed.'
+        type: 'string'
+    download_path:
+        description: 'Use to specify the directory into which a package is downloaded.'
+        type: 'string'
+    timeout:
+        default: 300
+        description: Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds.
+        type: integer

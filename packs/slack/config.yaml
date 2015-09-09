@@ -8,3 +8,4 @@ post_message_action:
 # Used for Slack sensor
 sensor:
   token: ""
+  strip_formatting: false

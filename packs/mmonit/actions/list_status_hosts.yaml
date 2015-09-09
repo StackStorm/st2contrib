@@ -1,0 +1,40 @@
+---
+name: list_status_hosts
+runner_type: run-python
+description: Returns the current status of all hosts registered in M/Monit.
+enabled: true
+entry_point: list_status_hosts.py
+parameters:
+  host_id:
+    type: integer
+    description: 'Show only hosts with matching host id.'
+    required: false
+  hostgroupid:
+    type: integer
+    description: 'Show only hosts which are member of the given hostgroupid'
+    required: false
+  platform:
+    type: string
+    description: 'Show only hosts with matching platform.'
+    required: false
+  machine:
+    type: string
+    description: 'Show only hosts with matching machine.'
+    required: false
+  status:
+    type: integer
+    description: 'Show only hosts with matching status. Possible values: 0=active, 1=inactive, 2=ignored.'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+  led:
+    type: integer
+    description: 'Show only hosts with matching led. Possible values: 0=red, 1=orange, 2=green, 3=gray.'
+    required: false
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3

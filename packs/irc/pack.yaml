@@ -1,6 +1,12 @@
 ---
 name : irc
 description : st2 content pack containing irc integrations
+keywords:
+  - irc
+  - internet relay chat
+  - chat
+  - messaging
+  - instant messaging
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

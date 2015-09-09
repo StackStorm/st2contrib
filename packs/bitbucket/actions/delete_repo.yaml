@@ -1,0 +1,10 @@
+name: delete_repo
+runner_type: run-python
+description: Delete a Repository
+enabled: true
+entry_point: delete_repo.py
+parameters:
+  repo:
+    type: string
+    description: Name of the repository to delete.
+    required: true

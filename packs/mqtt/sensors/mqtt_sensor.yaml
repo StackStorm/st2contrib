@@ -1,0 +1,14 @@
+---
+  class_name: "MQTTSensor"
+  entry_point: "mqtt_sensor.py"
+  description: "Listen for events on MQTT bus/topic"
+  trigger_types:
+    -
+      name: "message"
+      description: "MQTT message payload"
+      payload_info:
+        - userdata
+        - message
+        - topic
+        - retain
+        - qos

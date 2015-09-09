@@ -1,0 +1,10 @@
+---
+name: kv.delete
+enabled: true
+description: 'Delete value from datastore'
+runner_type: run-python
+entry_point: kv_delete.py
+parameters:
+  key:
+    required: True
+    type: string

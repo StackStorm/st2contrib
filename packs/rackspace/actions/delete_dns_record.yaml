@@ -1,0 +1,15 @@
+---
+name: delete_dns_record
+runner_type: run-python
+description: Delete a DNS record.
+enabled: true
+entry_point: delete_dns_record.py
+parameters:
+  zone_id:
+    type: string
+    description: ID of a DNS zone record belongs to.
+    required: true
+  record_id:
+    type: string
+    description: ID of a DNS record to delete.
+    required: true

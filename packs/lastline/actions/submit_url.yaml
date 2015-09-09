@@ -1,0 +1,38 @@
+---
+name: "submit_url"
+runner_type: "python-script"
+description: "Submit a URL for analysis to Lastline"
+enabled: true
+entry_point: "submit_url.py"
+parameters:
+  url:
+    type: "string"
+    description: "url to analyze"
+    required: true
+  referer:
+    type: "string"
+    description: "referer header to use for analysis"
+  analysis_timeout:
+    type: "integer"
+    description: "timeout in seconds after which to terminate analysis. The analysis engine might decide to extend this timeout if necessary. If all analysis subjects terminate before this timeout analysis might be shorter"
+  push_to_portal_account:
+    type: "boolean"
+    description: "if set, a successful submission will be pushed to the web-portal using the specified username"
+  verify:
+    type: "boolean"
+    description: "if False, disable SSL-certificate verification"
+    default: true
+  raw:
+    type: "boolean"
+    description: "if True, return the raw JSON results of the API query"
+    default: false
+  report_version:
+    type: "string"
+    description: "Version name of the Report that will be returned (optional)"
+  user_agent:
+    type: "string"
+    description: "user agent header to use for analysis"
+  verify:
+    type: "boolean"
+    description: "if False, disable SSL-certificate verification"
+    default: true

@@ -1,0 +1,7 @@
+---
+name: current_state
+runner_type: "run-python"
+description: Get current state of bridge
+enabled: true
+entry_point: "current_state.py"
+parameters: {}

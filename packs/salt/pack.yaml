@@ -1,0 +1,10 @@
+---
+name : salt
+description : st2 salt integration pack
+keywords:
+  - salt
+  - cfg management
+  - configuration management
+version : 0.3.1
+author : jcockhren
+email : jurnell@sophicware.com

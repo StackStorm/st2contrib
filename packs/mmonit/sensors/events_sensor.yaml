@@ -1,0 +1,22 @@
+---
+  class_name: "MmonitEventsSensor"
+  entry_point: "events_sensor.py"
+  description: "Sensor which monitors mmonit for events"
+  poll_interval: 10
+  trigger_types:
+    -
+      name: "new_event"
+      description: "Trigger which indicates that a new event has arrived at mmonit"
+      payload_schema:
+        type: "object"
+        properties:
+          host:
+            type: "string"
+          id:
+            type: "integer"
+          event:
+            type: "string"
+          servicename:
+            type: "string"
+          full_data:
+            type: "object"

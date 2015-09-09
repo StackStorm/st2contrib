@@ -1,0 +1,100 @@
+---
+description: Search query (lucene syntax)
+enabled: true
+entry_point: search.py
+name: search.q
+parameters:
+  action:
+    default: search.q
+    immutable: true
+    type: string
+  q:
+    description: Query in the Lucene query string syntax.
+    type: string
+    required: true
+  df:
+    description: The default field to use when no field prefix is defined within the query.
+    type: string
+  default_operator:
+    description: The default operator to be used, can be AND or OR. Defaults to OR.
+    type: string
+  from:
+    description: The starting from index of the hits to return. Defaults to 0.
+    type: integer
+    default: 0
+  size:
+    description: The number of hits to return. Defaults to 10.
+    type: integer
+    default: 10
+  pretty:
+    description: Pretty print JSON response.
+    type: boolean
+    default: False
+
+  # indices selection parameters
+  all_indices:
+    description: Do not filter indices.  Act on all indices.
+    type: boolean
+  exclude:
+    description: Index list to exclude from the operation.
+    items:
+      type: string
+    type: array
+  host:
+    description: Elasticsearch host.
+    required: true
+    type: string
+  http_auth:
+    description: 'Use Basic Authentication ex: user:pass'
+    type: string
+  index:
+    description: Index list to operate on.
+    items:
+      type: string
+    type: array
+  log_level:
+    default: warn
+    description: Log level [critical|error|warning|info|debug].
+    type: string
+  master_only:
+    default: false
+    description: Only operate on elected master node.
+    type: boolean
+  newer_than:
+    description: Include only indices newer than n time_units.
+    type: integer
+  older_than:
+    description: Include only indices older than n  time_units.
+    type: integer
+  port:
+    description: Elasticsearch port.
+    type: string
+  prefix:
+    description: Include only indices beginning with prefix.
+    type: string
+  regex:
+    description: Provide your own regex, e.g '^prefix-.*-suffix$'.
+    type: string
+  suffix:
+    description: Include only indices ending with suffix.
+    type: string
+  time_unit:
+    default: days
+    description: Unit of time to reckon by [hours|days|weeks|months].
+    type: string
+  timeout:
+    default: 60
+    description: Elasticsearch operation timeout in seconds.
+    type: integer
+  timestring:
+    description: Python strftime string to match your index definition, e.g. 2015.07.15
+      would be %Y.%m.%d.
+    type: string
+  url_prefix:
+    description: Elasticsearch http url prefix.
+    type: string
+  use_ssl:
+    default: false
+    description: Connect to Elasticsearch through SSL.
+    type: boolean
+runner_type: run-python

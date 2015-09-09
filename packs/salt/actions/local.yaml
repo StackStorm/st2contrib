@@ -1,0 +1,29 @@
+---
+name: 'local'
+runner_type: 'run-python'
+description: 'Run Salt Exection Modules through Salt API'
+enabled: true
+entry_point: 'local.py'
+parameters:
+    module:
+        description: 'The module to call'
+        type: 'string'
+        required: true
+    target:
+        description: 'Pattern used to match minons'
+        type: 'string'
+        required: false
+        default: '*'
+    expr_form:
+        description: 'Criteria used for matching minions'
+        type: 'string'
+        required: false
+        default: 'glob'
+    args:
+        description: 'Positional arguments to pass to the module'
+        type: array
+        required: false
+    kwargs:
+        description: 'Key Pair arguments to pass to the module'
+        type: object
+        required: false

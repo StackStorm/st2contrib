@@ -1,0 +1,45 @@
+---
+  class_name: "NewRelicHookSensor"
+  entry_point: "newrelic_application_sensor.py"
+  description: "Sensor which watches for alerts from NewRelic."
+  trigger_types:
+    -
+      name: "WebAppAlertTrigger"
+      description: ""
+      payload_schema:
+        type: "object"
+        properties:
+          headers:
+            type: "object"
+          alert:
+            type: "object"
+    -
+      name: "WebAppNormalTrigger"
+      description: ""
+      payload_schema:
+        type: "object"
+        properties:
+          headers:
+            type: "object"
+          alert:
+            type: "object"
+    -
+      name: "ServerAlertTrigger"
+      description: ""
+      payload_schema:
+        type: "object"
+        properties:
+          headers:
+            type: "object"
+          alert:
+            type: "object"
+    -
+      name: "ServerNormalTrigger"
+      description: ""
+      payload_schema:
+        type: "object"
+        properties:
+          headers:
+            type: "object"
+          alert:
+            type: "object"

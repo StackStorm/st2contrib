@@ -1,0 +1,10 @@
+name: ack_incident
+runner_type: run-python
+description: ACK an incident on PagerDuty
+enabled: true
+entry_point: ack_incident.py
+parameters:
+  event_keys:
+    type: array
+    description: Key for event to be acknowledged, You can also Provide comma separated keys 
+

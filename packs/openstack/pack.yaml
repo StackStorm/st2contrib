@@ -1,6 +1,11 @@
 ---
 name : openstack
 description : st2 content pack containing openstack integrations
+keywords:
+  - cloud
+  - nova
+  - glance
+  - neutron
 version : 0.1
 author : st2-dev
 email : info@stackstorm.com

@@ -1,0 +1,11 @@
+---
+name: "executions.get"
+enabled: true
+description: "Retrieve details of a single execution."
+runner_type: run-python
+entry_point: executions_get.py
+parameters:
+  id:
+    type: "string"
+    description: "ID of execution to retrieve the details for"
+    required: true
