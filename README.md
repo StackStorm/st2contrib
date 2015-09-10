@@ -1125,6 +1125,8 @@ event_info | Get Sensu event info
 event_list | List Sensu events
 health | Sensu System Health
 info | Sensu System Info
+silence | Silence a Sensu client or check
+unsilence | Unsilence a Sensu client or check
 
 ### servicenow pack
 
