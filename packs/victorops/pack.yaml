@@ -1,4 +1,4 @@
-name: Victorops
+name: victorops
 description: Packs which allows integration with Victorops events.
 keywords:
   - victorps integration
