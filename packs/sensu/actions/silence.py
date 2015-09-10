@@ -2,9 +2,6 @@
 
 from lib import sensu
 import argparse
-import sys
-import time
-import json
 
 parser = argparse.ArgumentParser(description='Sensu Silence Actions')
 
