@@ -179,7 +179,7 @@ class Stashes(object):
         url = "%s/%s" % (self.url, stash)
         return parseOutput(requests.get(url=url, headers=self.headers))
 
-    def delete(self,stash):
+    def delete(self, stash):
         url = "%s/%s" % (self.url, stash)
         return parseOutput(requests.delete(url=url, headers=self.headers))
 
