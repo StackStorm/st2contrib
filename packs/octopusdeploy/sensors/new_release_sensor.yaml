@@ -1,0 +1,16 @@
+---
+  class_name: "NewReleaseSensor"
+  entry_point: "new_release_sensor.py"
+  description: "A sensor for new releases."
+  poll_interval: 30
+  trigger_types:
+    -
+      name: "new_release"
+      description: "A release has been created."
+      payload_info:
+        - "id"
+        - "assembled"
+        - "release_notes"
+        - "version"
+        - "author"
+        - "project_id"

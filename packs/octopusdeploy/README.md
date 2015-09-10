@@ -14,6 +14,15 @@ Currently, the following actions listed bellow are supported:
 * Deploy a release to an environment - `deploy_release`
 * Get a list of releases for a project - `get_releases`
 
+### Machines (tentacles)
+
+* Add a new machine to an environment(s) - `add_machine`
+
+## Sensors
+
+* Detect a new release being created - `new_release_sensor`
+* Detect a new deployment being created - `new_deployment_sensor`
+
 ## Configuration
 
 Update config.yaml to setup the connection to Octopus.
