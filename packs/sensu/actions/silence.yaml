@@ -1,0 +1,24 @@
+---
+name: silence
+runner_type: run-local-script
+description: Silence a Sensu client or check
+enabled: true
+entry_point: silence.py
+parameters:
+  check:
+    type: string
+    description: The check to silence
+  client:
+    type: string
+    description: The client to silence
+    required: true
+  expiration:
+    type: integer
+    description: Expiration date for silence stash
+  message:
+    type: string
+    description: Message to post with the silence stash
+  sudo:
+    immutable: true
+  kwarg_op:
+    immutable: true
