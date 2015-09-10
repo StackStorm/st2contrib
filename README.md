@@ -790,10 +790,18 @@ get_metric_data | Get metric data for metric.
 
 ![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)
 
+#### Sensors
+
+Name | Description
+---- | -----------
+NewDeploymentSensor | A sensor for new deployments.
+NewReleaseSensor | A sensor for new releases.
+
 #### Actions
 
 Name | Description
 ---- | -----------
+add_machine | Add a new machine (tentacle) to an Octopus Environment
 create_release | Create a new release in Octopus.
 deploy_release | Deploy a release in Octopus.
 get_releases | Get a list of releases for a project in Octopus.
