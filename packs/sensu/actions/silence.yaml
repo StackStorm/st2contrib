@@ -7,7 +7,7 @@ entry_point: silence.py
 parameters:
   check:
     type: string
-    description: The check silence
+    description: The check to silence
   client:
     type: string
     description: The client to silence
