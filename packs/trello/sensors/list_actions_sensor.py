@@ -1,3 +1,4 @@
+# pylint: disable=unexpected-keyword-arg
 import dateutil.parser
 from types import MethodType
 from trello import TrelloClient
@@ -61,7 +62,7 @@ class TrelloListSensor(PollingSensor):
         """
         _list = self._client.get_board(self._board_id).get_list(self._list_id)
         monkey_patch_trello(_list)
-        _list._fetch_actions(
+        _list.fetch_actions(
             action_filter=self._config['list_actions_sensor'].get('filter') or None,
             filter_since=self._sensor_service.get_value(self.key_name)
         )
@@ -98,7 +99,7 @@ class TrelloListSensor(PollingSensor):
 
 def monkey_patch_trello(trello_list):
     """
-    Function to add method to existing Trello List object.
+    Function to overwrite existing method in Trello List object.
 
     :param trello_list: Input Trello List object to monkey-patch.
     :type trello_list: :class:`trello.List`
@@ -129,7 +130,7 @@ def monkey_patch_trello(trello_list):
         self.actions = json_obj
         return self.actions
 
-    trello_list._fetch_actions = MethodType(_fetch_actions, trello_list)
+    trello_list.fetch_actions = MethodType(_fetch_actions, trello_list)
 
 
 def is_date(string):
