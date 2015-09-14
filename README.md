@@ -1242,6 +1242,12 @@ restart_build | Restart a Build
 
 ![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)
 
+#### Sensors
+
+Name | Description
+---- | -----------
+TrelloListSensor | Sensor which monitors Trello list for a new actions (events)
+
 #### Actions
 
 Name | Description
