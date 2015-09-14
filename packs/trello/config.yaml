@@ -1,3 +1,9 @@
 ---
   api_key: ""
   token: ""
+
+  list_actions_sensor:
+    board_id: c39TEFLt
+    list_id: 55e7456df81e21e9b4aea429
+    filter:
+      - createCard
