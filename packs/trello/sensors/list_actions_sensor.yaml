@@ -1,0 +1,22 @@
+---
+class_name: TrelloListSensor
+entry_point: list_actions_sensor.py
+description: "Sensor which monitors Trello list for a new actions (events)"
+poll_interval: 15
+trigger_types:
+  - name: new_action
+    description: "Trigger which indicates that a new action (event) occurred in specified Trello list"
+    payload_schema:
+      type: object
+      properties:
+        data:
+          type: object
+        idMemberCreator:
+          type: string
+        memberCreator:
+          type: object
+        date:
+          type: string
+          #format: 2015-09-02T18:53:30.900Z
+        id:
+          type: string
