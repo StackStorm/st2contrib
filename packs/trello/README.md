@@ -47,6 +47,24 @@ To obtain an oAuth token, refer to the documentation at https://trello.com/docs/
 +---------------------------+--------+--------------------+------------------------------------------------------+
 ```
 
+## Sensors
+### TrelloListSensor
+Listens for the new Actions in Trello List, which is specified via [config](config.yaml), and dispatches trigger for each new event occurred.
+
+Optionally you can specify in config which actions to listen via `filter` parameter.
+For list of available filters see [Trello API docs](https://trello.com/docs/api/list/index.html#get-1-lists-idlist-actions).
+
+When receives new data, Sensor emits:
+* trigger: `trello.new_action`
+* returns data:
+  * `payload.id` - Action ID (string)
+  * `payload.data` - Main data returned, specific for action, depends on action type (object)
+  * `payload.date` - When action occurred (string)
+  * `payload.idMemberCreator` - User ID who initiated the action (string)
+  * `payload.type` - Action type (ex: createCard) (string)
+  * `payload.memberCreator` - Extended info about user who initiated action (object)
+
+
 ## Examples
 > Note that every action has structurised output, meaning you can use returned results in action chains.
 
