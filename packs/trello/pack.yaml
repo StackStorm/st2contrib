@@ -1,8 +1,7 @@
-### Place information about your pack version here.
 ---
 name: trello
 description: Integration with Trello, Web based Project Management
-version: 0.1.1
+version: 0.2.0
 author: James Fryman
 email: james@stackstorm.com
 keywords:

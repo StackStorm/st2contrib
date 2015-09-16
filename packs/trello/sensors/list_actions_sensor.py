@@ -1,6 +1,4 @@
-# pylint: disable=unexpected-keyword-arg
 import dateutil.parser
-from types import MethodType
 from trello import TrelloClient
 from st2reactor.sensor.base import PollingSensor
 
@@ -25,52 +23,65 @@ class TrelloListSensor(PollingSensor):
         if not list_actions_sensor:
             raise ValueError('[TrelloListSensor]: "list_sensor" config value is required!')
 
-        self._board_id = list_actions_sensor.get('board_id')
-        if not self._board_id:
-            raise ValueError('[TrelloListSensor]: "list_sensor.board_id" config value is required!')
-        assert isinstance(self._board_id, basestring)
-
-        self._list_id = list_actions_sensor.get('list_id')
-        if not self._list_id:
-            raise ValueError('[TrelloListSensor]: "list_sensor.list_id" config value is required!')
-        assert isinstance(self._list_id, basestring)
-
-        self._client = None
-
-    @property
-    def key_name(self):
-        """
-        Generate unique key name for built-in storage based on config values.
-
-        :rtype: ``str``
-        """
-        return '{}.{}.date'.format(self._board_id, self._list_id)
+        self._lists = list_actions_sensor.get('lists', [])
+        if not self._lists:
+            raise ValueError('[TrelloListSensor]'
+                             '"lists" config value should have at least one entry!')
 
     def setup(self):
         """
-        Initiate connection to Trello API.
+        Run the sensor initialization / setup code (if any).
         """
-        self._client = TrelloClient(api_key=self._config.get('api_key'),
-                                   token=self._config.get('token') or None)
+        pass
 
     def poll(self):
         """
-        Fetch latest actions for Trello List, filter by type.
+        Iterate through all Trello lists from sensor config.
+        Fetch latest actions for each Trello List, filter by type.
         Start reading feed where we stopped last time
         by passing `since` date parameter to Trello API.
-        Save latest event `date` in st2 key-value storage.
+        Save latest event `date` in st2 key-value storage for each Trello list.
         """
-        _list = self._client.get_board(self._board_id).get_list(self._list_id)
-        monkey_patch_trello(_list)
-        _list.fetch_actions(
-            action_filter=self._config['list_actions_sensor'].get('filter') or None,
-            filter_since=self._sensor_service.get_value(self.key_name)
-        )
+        self._logger.debug('[TrelloListSensor]: Entering into listen mode ...')
+        for trello_list_config in self._lists:
+            self._update_credentials_by_precedence(trello_list_config)
 
-        for action in reversed(_list.actions):
-            self._sensor_service.dispatch(trigger=self.TRIGGER, payload=action)
-            if is_date(action.get('date')):
-                self._sensor_service.set_value(self.key_name, action.get('date'))
+            l = TrelloList(**trello_list_config)
+            self._logger.debug("[TrelloListSensor]: Processing queue for Trello list: '%s'"
+                           % l.list_id)
+
+            actions = l.fetch_actions(
+                filter=trello_list_config.get('filter') or None,
+                since=self._sensor_service.get_value(l.key_name)
+            )
+
+            for action in reversed(actions):
+                self._logger.debug("[TrelloListSensor]: Found new action for Trello list: '%r'"
+                           % action)
+                self._sensor_service.dispatch(trigger=self.TRIGGER, payload=action)
+                if is_date(action.get('date')):
+                    self._sensor_service.set_value(l.key_name, action.get('date'))
+
+    def _update_credentials_by_precedence(self, trello_list_config):
+        """
+        Find Trello API credentials (`api_token` and `token`) from config.
+        Precedence:
+            1. First try to find `api_key` (list config)
+            2. If not found - go to parent level (config for all lists)
+            3. If not found - go to parent level (global config)
+        It means that every Trello list can have its own unique API credentials to login.
+
+        :param trello_list_config: Configuration for single Trello list
+        :type trello_list_config: ``dict``
+
+        :rtype: ``None``
+        """
+        if not trello_list_config.get('api_key'):
+            found_credentials = self._config['list_actions_sensor']\
+                if self._config['list_actions_sensor'].get('api_key') else self._config
+
+            trello_list_config['api_key'] = found_credentials.get('api_key')
+            trello_list_config['token'] = found_credentials.get('token')
 
     def cleanup(self):
         """
@@ -97,40 +108,88 @@ class TrelloListSensor(PollingSensor):
         pass
 
 
-def monkey_patch_trello(trello_list):
+class TrelloList(object):
     """
-    Function to overwrite existing method in Trello List object.
+    Sugar class to work with Trello Lists.
+    """
+    def __init__(self, board_id, list_id, api_key, token=None, **kwargs):
+        """
+        Validate inputs and connect to Trello API.
+        Exception is thrown if input details are not correct.
 
-    :param trello_list: Input Trello List object to monkey-patch.
-    :type trello_list: :class:`trello.List`
-    """
-    def _fetch_actions(self, action_filter=None, filter_since=None):
+        :param board_id: Trello board ID where the List is located
+        :type board_id: ``str``
+
+        :param list_id: Trello List ID itself
+        :type list_id: ``str``
+
+        :param api_key: Trello API key
+        :type api_key: ``str``
+
+        :param token: Trello API token
+        :type token: ``str``
+        """
+        self.board_id = board_id
+        self.list_id = list_id
+        self.api_key = api_key
+        # assume empty string '' as None
+        self.token = token or None
+
+        self.validate()
+
+        self._client = TrelloClient(api_key=self.api_key, token=self.token)
+        self._list = self._client.get_board(self.board_id).get_list(self.list_id)
+
+    def validate(self):
+        """
+        Ensure that Trello list details are correct.
+        Raise an exception if validation failed.
+        """
+        if not self.api_key:
+            raise ValueError('[TrelloListSensor] "api_key" config value is required!')
+        assert isinstance(self.api_key, basestring)
+
+        if self.token:
+            assert isinstance(self.token, basestring)
+
+        if not self.board_id:
+            raise ValueError('[TrelloListSensor]: "board_id" config value is required!')
+        assert isinstance(self.board_id, basestring)
+
+        if not self.list_id:
+            raise ValueError('[TrelloListSensor]: "list_id" config value is required!')
+        assert isinstance(self.list_id, basestring)
+
+    @property
+    def key_name(self):
+        """
+        Generate unique key name for built-in storage based on config values.
+
+        :rtype: ``str``
+        """
+        return '{}.{}.date'.format(self.board_id, self.list_id)
+
+    def fetch_actions(self, filter=None, since=None):
         """
         Fetch actions for Trello List with possibility to specify filters.
         Example API request:
         https://api.trello.com/1/lists/{list_id}/actions?filter=createCard&since=2015-09-14T21:45:56.850Z&key={key_id}&token={token_id}
 
-        :type self: :class:`trello.List`
+        :param filter: Action types to filter, separated by comma or as a sequence.
+        :type filter: ``str`` or ``list``
 
-        :param action_filter: Action types to filter, separated by comma or as a sequence.
-        :type action_filter: ``str`` or ``list``
-
-        :param filter_since: Filter actions since specified date.
-        :type filter_since: ``str``
+        :param since: Filter actions since specified date.
+        :type since: ``str``
 
         :return: Events occurred in Trello list.
-        :rtype: ``list`` of ``object``
+        :rtype: ``list`` of ``dict``
         """
-        json_obj = self.client.fetch_json(
-            '/lists/' + self.id + '/actions',
+        return self._client.fetch_json(
+            '/lists/' + self._list.id + '/actions',
             query_params={
-                'filter': action_filter,
-                'since': filter_since,
+                'filter': filter,
+                'since': since,
             })
-        self.actions = json_obj
-        return self.actions
-
-    trello_list.fetch_actions = MethodType(_fetch_actions, trello_list)
 
 
 def is_date(string):

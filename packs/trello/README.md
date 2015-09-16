@@ -49,20 +49,35 @@ To obtain an oAuth token, refer to the documentation at https://trello.com/docs/
 
 ## Sensors
 ### TrelloListSensor
-Listens for the new Actions in Trello List, which is specified via [config](config.yaml), and dispatches trigger for each new event occurred.
+Listens for the new Actions (changes) in Trello List(s) and dispatches trigger for each new event occurred.
 
-Optionally you can specify in config which actions to listen via `filter` parameter.
+#### Config
+Parameters in `list_actions_sensor` for every trello list:
+* `list_id` - Trello List ID we monitor for new actions (required)
+* `board_id` - Board ID where Trello List is located (required)
+* `api_key` - Trello API key (optional)
+* `token` - Trello API token (optional)
+* `filter` - Filter actions by type(s) (eg. createCard, deleteCard) (optional)
+
 For list of available filters see [Trello API docs](https://trello.com/docs/api/list/index.html#get-1-lists-idlist-actions).
 
-When receives new data, Sensor emits:
+> API credentials work at any level with lower priority for top-level config credentials:
+`list config` > `lists config` > `global config`.
+It means that every Trello list can have its own unique credentials to work with different accounts.
+
+See [config](config.yaml) for more examples.
+Keep in mind, that Sensor with invalid config (bad credentials) will die after 3 connection retries.
+
+#### Output
+When `TrelloListSensor` receives new data, it emits:
 * trigger: `trello.new_action`
-* returns data:
-  * `payload.id` - Action ID (string)
-  * `payload.data` - Main data returned, specific for action, depends on action type (object)
-  * `payload.date` - When action occurred (string)
-  * `payload.idMemberCreator` - User ID who initiated the action (string)
-  * `payload.type` - Action type (ex: createCard) (string)
-  * `payload.memberCreator` - Extended info about user who initiated action (object)
+* and returns data:
+  * `trigger.id` - Action ID (string)
+  * `trigger.data` - Main data returned, specific for action, depends on action type (object)
+  * `trigger.date` - When action occurred (string)
+  * `trigger.idMemberCreator` - User ID who initiated the action (string)
+  * `trigger.type` - Action type (ex: createCard) (string)
+  * `trigger.memberCreator` - Extended info about user who initiated action (object)
 
 
 ## Examples
