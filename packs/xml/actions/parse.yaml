@@ -1,0 +1,11 @@
+---
+name: parse
+runner_type: run-python
+description: Parse XML string and return JSON object.
+enabled: true
+entry_point: parse_xml.py
+parameters:
+  data:
+    type: string
+    description: XML string to parse.
+    required: true
