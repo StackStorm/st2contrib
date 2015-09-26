@@ -1,0 +1,21 @@
+---
+name: parse
+runner_type: run-python
+description: Parse CSV string and return JSON object.
+enabled: true
+entry_point: parse_csv.py
+parameters:
+  data:
+    type: string
+    description: CSV string to parse.
+    required: true
+  delimiter:
+    type: string
+    description: String delimiter character.
+    required: false
+    default: ","
+  quote_char:
+    type: string
+    description: Character used to quote the strings.
+    required: false
+    default: "\""
