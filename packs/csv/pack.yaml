@@ -1,8 +1,8 @@
 ---
-name : xml
-description : st2 content pack containing XML integrations
+name : csv
+description : st2 content pack containing CSV integrations
 keywords:
-  - xml
+  - csv
   - serialization
   - deserialization
   - text processing
