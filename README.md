@@ -40,6 +40,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
 [![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
+[![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 [![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
@@ -90,7 +91,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
-[![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
+[![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
 ### ansible pack
 
 ![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)
@@ -375,6 +376,16 @@ client | Performs chef-client run on remote hosts.
 install | Performs installation of chef-client on remote nodes
 ohai | Performs chef-solo run on remote hosts.
 solo | Performs chef-solo run on remote hosts.
+
+### csv pack
+
+![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+parse | Parse CSV string and return JSON object.
 
 ### cubesensors pack
 
