@@ -1,0 +1,8 @@
+---
+name: splunk
+description: Splunk integration pack
+keywords:
+  - splunk
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
