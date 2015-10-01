@@ -1,0 +1,10 @@
+---
+name: search
+runner_type: run-python
+description: Splunk one-shot search
+entry_point: search.py
+parameters:
+  query:
+    type: string
+    description: Search query (e.g. 'search * | head 10')
+    required: true
