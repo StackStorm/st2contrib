@@ -19,8 +19,8 @@ class OneShotSearch(Action):
             password=self.config.get('password'),
             scheme=self.config.get('scheme'))
 
-    def run(self, search_query):
+    def run(self, query):
         kwargs_oneshot = {"output_mode": "json"}
-        result = self.service.jobs.oneshot(search_query, **kwargs_oneshot)
+        result = self.service.jobs.oneshot(query, **kwargs_oneshot)
 
         return result
