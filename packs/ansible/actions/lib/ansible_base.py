@@ -21,6 +21,19 @@ class AnsibleBaseRunner(object):
         :type args: ``list``
         """
         self.args = args[1:]
+        self._prepend_venv_path()
+
+    @staticmethod
+    def _prepend_venv_path():
+        """
+        Modify PATH env variable by prepending virtualenv path with ansible binaries.
+        This way venv ansible has precedence over globally installed ansible.
+        """
+        venv_path = '/opt/stackstorm/virtualenvs/ansible/bin'
+        old_path = os.environ.get('PATH', '').split(':')
+        new_path = [venv_path] + old_path
+
+        os.environ['PATH'] = ':'.join(new_path)
 
     def execute(self):
         """
@@ -47,7 +60,7 @@ class AnsibleBaseRunner(object):
     @property
     def binary(self):
         """
-        Get full path to executable binary located in pack virtualenv.
+        Get full path to executable binary.
 
         :return: Full path to executable binary.
         :rtype: ``str``
@@ -55,9 +68,13 @@ class AnsibleBaseRunner(object):
         if not self.BINARY_NAME:
             sys.stderr.write('Ansible binary file name was not specified')
             sys.exit(1)
-        path = os.path.join('/opt/stackstorm/virtualenvs/ansible/bin', self.BINARY_NAME)
-        if not os.path.isfile(path):
+
+        for path in os.environ.get('PATH', '').split(':'):
+            binary_path = os.path.join(path, self.BINARY_NAME)
+            if os.path.isfile(binary_path):
+                break
+        else:
             sys.stderr.write('Ansible binary doesnt exist. Is it installed?')
             sys.exit(1)
 
-        return path
+        return binary_path
