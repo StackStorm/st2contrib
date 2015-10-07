@@ -1,0 +1,11 @@
+---
+name: list_deployments
+runner_type: python-script
+description: Get a list of deployments for a project
+enabled: true
+entry_point: list_deployments.py
+parameters:
+  project_id:
+    type: string
+    description: ID of the project in Octopus
+    required: true

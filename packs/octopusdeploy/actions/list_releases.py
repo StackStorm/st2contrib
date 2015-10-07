@@ -1,12 +1,12 @@
 from lib.actions import OctopusDeployAction
 
 __all__ = [
-    'GetReleasesAction'
+    'ListReleasesAction'
 ]
 
 
-class GetReleasesAction(OctopusDeployAction):
+class ListReleasesAction(OctopusDeployAction):
     def run(self, project_id):
         result = self.make_get_request(action="projects/%s/releases"
                                        % project_id)
-        return result['Items']
+        return result.get('Items', [])

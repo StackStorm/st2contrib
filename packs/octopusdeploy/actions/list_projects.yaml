@@ -1,0 +1,6 @@
+---
+name: list_projects
+runner_type: python-script
+description: Get a list of projects in Octopus.
+enabled: true
+entry_point: list_projects.py

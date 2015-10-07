@@ -8,11 +8,16 @@ deployment automation system for .NET applications.
 
 Currently, the following actions listed bellow are supported:
 
+### Projects
+
+* Get Projects - `list_projects`
+* Get Deployments - `list_deployments`
+
 ### Releases
 
 * Create a new release - `create_release`
 * Deploy a release to an environment - `deploy_release`
-* Get a list of releases for a project - `get_releases`
+* Get a list of releases for a project - `list_releases`
 
 ### Machines (tentacles)
 
@@ -28,5 +33,7 @@ Currently, the following actions listed bellow are supported:
 Update config.yaml to setup the connection to Octopus.
 
 * `api_key` - an API key generated in Octopus for your user http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key 
-* `host` - the hostname of your Octopus server e.g. octopus.mydomain.com
+* `host` - the host name of your Octopus server e.g. octopus.mydomain.com
 * `port` - the port your API service is running on, 443 by default
+
+a tutorial on this pack https://stackstorm.com/2015/10/01/octopusdeploy-integration-with-stackstorm/
