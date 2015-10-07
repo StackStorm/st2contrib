@@ -10,14 +10,14 @@ Currently, the following actions listed bellow are supported:
 
 ### Projects
 
-* Get Projects - `get_projects`
-* Get Deployments - `get_deployments`
+* Get Projects - `list_projects`
+* Get Deployments - `list_deployments`
 
 ### Releases
 
 * Create a new release - `create_release`
 * Deploy a release to an environment - `deploy_release`
-* Get a list of releases for a project - `get_releases`
+* Get a list of releases for a project - `list_releases`
 
 ### Machines (tentacles)
 

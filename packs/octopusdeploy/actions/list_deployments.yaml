@@ -1,9 +1,9 @@
 ---
-name: get_releases
+name: list_deployments
 runner_type: python-script
-description: Get a list of releases for a project in Octopus.
+description: Get a list of deployments for a project
 enabled: true
-entry_point: get_releases.py
+entry_point: list_deployments.py
 parameters:
   project_id:
     type: string

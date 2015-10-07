@@ -1,6 +1,6 @@
 ---
-name: get_projects
+name: list_projects
 runner_type: python-script
 description: Get a list of projects in Octopus.
 enabled: true
-entry_point: get_projects.py
+entry_point: list_projects.py

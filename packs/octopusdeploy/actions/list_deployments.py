@@ -1,11 +1,11 @@
 from lib.actions import OctopusDeployAction
 
 __all__ = [
-    'GetDeploymentsAction'
+    'ListDeploymentsAction'
 ]
 
 
-class GetDeploymentsAction(OctopusDeployAction):
+class ListDeploymentsAction(OctopusDeployAction):
     def run(self, project_id):
         result = self.make_get_request(action="deployments",
                                        params={
