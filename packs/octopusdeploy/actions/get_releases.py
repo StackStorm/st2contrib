@@ -9,4 +9,4 @@ class GetReleasesAction(OctopusDeployAction):
     def run(self, project_id):
         result = self.make_get_request(action="projects/%s/releases"
                                        % project_id)
-        return result['Items']
+        return result.get('Items', None)

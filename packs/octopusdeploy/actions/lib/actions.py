@@ -9,9 +9,10 @@ try:
     import json
 except ImportError:
     message = ('Missing "json", please install it using pip:\n'
-               'pip install requests')
+               'pip install json')
     raise ImportError(message)
 
+from octopus_error import OctopusError
 from st2actions.runners.pythonrunner import Action
 
 __all__ = [
@@ -40,12 +41,17 @@ class OctopusDeployAction(Action):
         response = requests.post(self._build_uri() + action,
                                  data=json.dumps(payload), verify=False,
                                  headers=self.client.headers)
+        if response.status_code != 200:
+            raise OctopusError(response.text, response.status_code)
         return response.json()
 
-    def make_get_request(self, action):
+    def make_get_request(self, action, params=None):
         response = requests.get(self._build_uri() + action,
                                 verify=False,
+                                params=params,
                                 headers=self.client.headers)
+        if response.status_code != 200:
+            raise OctopusError(response.text, response.status_code)
         return response.json()
 
 

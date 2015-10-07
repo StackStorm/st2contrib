@@ -8,4 +8,4 @@ __all__ = [
 class GetProjectsAction(OctopusDeployAction):
     def run(self):
         result = self.make_get_request(action="projects/all")
-        return result['Items']
+        return result.get('Items', None)
