@@ -9,14 +9,38 @@ trigger_types:
     payload_schema:
       type: object
       properties:
-        data:
-          type: object
-        idMemberCreator:
+        id:
+          description: "Unique action ID"
           type: string
-        memberCreator:
+        data:
+          description: "Structurized data returned for action, depends on action type"
           type: object
         date:
+          description: "When action occurred"
           type: string
-          #format: 2015-09-02T18:53:30.900Z
-        id:
+          format: date-time
+        idMemberCreator:
+          description: "User ID who initiated the action"
           type: string
+        type:
+          description: "Action type (ex: createCard)"
+          type: string
+        memberCreator:
+          description: "Additional info about user who initiated action"
+          type: object
+          properties:
+            id:
+              description: "User ID"
+              type: string
+            avatarHash:
+              description: "Avatar hash (md5)"
+              type: string
+            fullName:
+              description: "User's full name"
+              type: string
+            initials:
+              description: "User's initials"
+              type: string
+            username:
+              description: "Username"
+              type: string
