@@ -79,6 +79,35 @@ When `TrelloListSensor` receives new data, it emits:
   * `trigger.type` - Action type (ex: createCard) (string)
   * `trigger.memberCreator` - Extended info about user who initiated action (object)
 
+Example:
+```json
+{
+    "id": "4efe3147c72846af4e00006d",
+    "data": {
+        "list": {
+            "id": "4eea4ffc91e31d174600004a",
+            "name": "To Do Later"
+        },
+        "board": {
+            "id": "4eea4ffc91e31d1746000046",
+            "name": "Example Board"
+        },
+        "old": {
+            "name": "To Do Eventually"
+        }
+    },
+    "date": "2011-12-30T21:46:47.843Z",
+    "idMemberCreator": "4ee7deffe582acdec80000ac",
+    "type": "updateList",
+    "memberCreator": {
+        "id": "4ee7deffe582acdec80000ac",
+        "avatarHash": null,
+        "fullName": "Joe Tester",
+        "initials": "JT",
+        "username": "joetester"
+    }
+}
+```
 
 ## Examples
 > Note that every action has structurised output, meaning you can use returned results in action chains.
