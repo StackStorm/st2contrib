@@ -7,7 +7,7 @@ runner_type: run-python
 entry_point: check_permissions_anon_data.py
 parameters:
     collect_anonymous_data:
-      type: "boolean"
-      description: "Whether to call_home or not."
+      type: "string"
+      description: "Whether to call_home or not. All forms of true are acceptable."
       required: false
-      default: "{{system.st2::collect_anonymous_data}}"
+      default: "false"
