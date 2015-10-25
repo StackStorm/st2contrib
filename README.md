@@ -1232,6 +1232,7 @@ Name | Description
 ---- | -----------
 actions.list | Retrieve a list of available StackStorm actions.
 call_home | Sends anonymous data install data to a StackStorm write-only S3 dropbox
+check_permissions_anon_data | Check if sending anonymous data is allowed.
 executions.get | Retrieve details of a single execution.
 executions.list | Retrieve a list of executions.
 executions.re_run | Re-run an action execution.
