@@ -1,0 +1,13 @@
+---
+name: "check_permissions_anon_data"
+pack: "st2"
+enabled: true
+description: "Check if sending anonymous data is allowed."
+runner_type: run-python
+entry_point: check_permissions_anon_data.py
+parameters:
+    collect_anonymous_data:
+      type: "string"
+      description: "Whether to call_home or not. All forms of true are acceptable."
+      required: false
+      default: "false"
