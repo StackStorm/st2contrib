@@ -5,9 +5,8 @@
   chain:
     -
       name: "check_for_permission_to_send_anonymous_data"
-      ref: "st2.kv.get"
-      params:
-        key: "st2::collect_anonymous_data"
+      ref: "st2.check_permissions_anon_data"
+      params: {}
       on-success: "get_server_uuid"
     -
       name: "get_server_uuid"
