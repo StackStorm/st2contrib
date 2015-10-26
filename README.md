@@ -468,6 +468,12 @@ Name | Description
 IMAPSensor | Sensor that emits triggers when e-mail message is received via IMAP
 SMTPSensor | Sensor that emits triggers when e-mail message is received via SMTP
 
+#### Actions
+
+Name | Description
+---- | -----------
+send_email | Send an email.
+
 ### fireeye pack
 
 ![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)
