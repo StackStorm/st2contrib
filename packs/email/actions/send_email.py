@@ -3,6 +3,7 @@ from smtplib import SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
 class SendEmail(Action):
     def run(self, email_from, email_to, subject, message, account):
         accounts = self.config.get('imap_mailboxes', None)
