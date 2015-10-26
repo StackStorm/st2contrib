@@ -1,0 +1,27 @@
+---
+  name: "send_email"
+  runner_type: "run-python"
+  description: "Send an email."
+  enabled: true
+  entry_point: "send_email.py"
+  parameters:
+    email_from:
+      type: "string"
+      description: "Email to use as FROM."
+      required: true
+    email_to:
+      type: "string"
+      description: "Email to send TO."
+      required: true
+    subject:
+      type: "string"
+      description: "Subject of the email"
+      required: true
+    message:
+      type: "string"
+      description: "Message to send on the email"
+      required: true
+    account:
+      type: "string"
+      description: "Account to use. Must be configured in the email pack config.yaml"
+      required: true
