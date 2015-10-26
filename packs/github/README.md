@@ -12,6 +12,7 @@ Pack which allows integration with [Github](https://github.com/).
   item needs to contain the following keys: ``user`` - user or organization the
   repository you want to monitor belongs to and ``name`` - name of the
   repository you want to monitor.
+* ``repository_sensor.event_type_whitelist`` - List of whitelisted events to listen for.
 * ``user`` - GitHub Username (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
 * ``password`` - GitHub Password (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
 
@@ -36,7 +37,8 @@ Currently supported event types:
 * ``IssueCommentEvent`` - Triggered when an issue comment is created.
 * ``ForkEvent`` - Triggered when a user forks a repository.
 * ``WatchEvent`` - Triggered when a user stars a repository.
-* ``ReleaseEvent`` - Triggered when new release is available. 
+* ``ReleaseEvent`` - Triggered when new release is available.
+* ``PushEvent`` - Triggered when a repository branch is pushed to. In addition to branch pushes, webhook push events are also triggered when repository tags are pushed.
 
 #### github.repository_event trigger
 
