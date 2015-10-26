@@ -24,8 +24,8 @@ class SendEmail(Action):
         msg.attach(MIMEText(message, 'plain'))
 
         s = SMTP(account_data['server'], account_data['port'], timeout=20)
-        s.starttls()
         s.ehlo()
+        s.starttls()
         s.login(account_data['server'], account_data['server'])
         s.sendmail(email_from, email_to, msg.as_string())
         s.quit()
