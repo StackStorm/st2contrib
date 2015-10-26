@@ -14,15 +14,6 @@ DATE_FORMAT_STRING = '%Y-%m-%d %H:%M:%S'
 
 
 class GithubRepositorySensor(PollingSensor):
-    EVENT_TYPE_WHITELIST = [
-        'IssuesEvent',   # Triggered when an issue is assigned, unassigned, labeled, unlabeled,
-                         # opened, closed, or reopened
-        'IssueCommentEvent',  # Triggered when an issue comment is created
-        'ForkEvent',     # Triggered when a user forks a repository,
-        'WatchEvent',    # Triggered when a user stars a repository
-        'ReleaseEvent',  # Triggered when new release is available
-    ]
-
     def __init__(self, sensor_service, config=None, poll_interval=None):
         super(GithubRepositorySensor, self).__init__(sensor_service=sensor_service,
                                                      config=config,
@@ -33,6 +24,7 @@ class GithubRepositorySensor(PollingSensor):
         self._client = None
         self._repositories = []
         self._last_event_ids = {}
+        self.EVENT_TYPE_WHITELIST = []
 
     def setup(self):
         # Empty string '' is not ok but None is fine. (Sigh)
@@ -41,6 +33,8 @@ class GithubRepositorySensor(PollingSensor):
         repository_sensor = self._config.get('repository_sensor', None)
         if repository_sensor is None:
             raise ValueError('"repository_sensor" config value is required.')
+
+        self.EVENT_TYPE_WHITELIST = repository_sensor.get('event_type_whitelist', [])
 
         repositories = repository_sensor.get('repositories', None)
         if not repositories:
@@ -71,7 +65,7 @@ class GithubRepositorySensor(PollingSensor):
         """
         assert(isinstance(name, basestring))
 
-        # Assume a default value of 30. Better for teh sensor to operate with some
+        # Assume a default value of 30. Better for the sensor to operate with some
         # default value in this case rather than raise an exception.
         count = self._config['repository_sensor'].get('count', 30)
 

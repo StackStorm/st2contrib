@@ -4,6 +4,14 @@ user: ""
 password: ""
 
 repository_sensor:
+  event_type_whitelist:
+    - "IssuesEvent"
+    - "IssueCommentEvent"
+    - "ForkEvent"
+    - "WatchEvent"
+    - "ReleaseEvent"
+    - "PushEvent"
+
   repositories:
     -
       user: "StackStorm"
