@@ -81,8 +81,8 @@ class BaseAction(Action):
             del kwargs['zone']
             obj = self.get_r53zone(zone)
         else:
-            if cls == 'Route53Connection':
-                del self.setup['region']
+        #elif cls == 'Route53Connection' or cls == 'IAMConnection' or cls == 'S3Connection':
+            del self.setup['region']
             obj = getattr(module, cls)(**self.setup)
         resultset = getattr(obj, action)(**kwargs)
         return self.resultsets.formatter(resultset)

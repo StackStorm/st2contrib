@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 
-import boto.ec2
-import boto.route53
-
+import boto
+#import boto.ec2
+#import boto.route53
+#import boto.s3
+#import boto.vpc
 
 class FieldLists():
     ADDRESS = ['public_ip', 'instance_id', 'domain', 'allocation_id', 'association_id',
                'network_interface_id', 'network_interface_owner_id', 'private_ip_address']
+    BUCKET = ["LoggingGroup", "connection", "creation_date", "name"]
     INSTANCE = ['id', 'public_dns_name', 'private_dns_name', 'state', 'state_code',
                 'previous_state', 'previous_state_code', 'key_name', 'instance_type',
                 'launch_time', 'image_id', 'placement', 'placement_group', 'placement_tenancy',
@@ -46,6 +49,8 @@ class ResultSets(object):
             return self.parseR53Zone(output)
         elif isinstance(output, boto.route53.status.Status):
             return self.parseR53Status(output)
+        #elif isinstance(output, boto.s3.bucket.Bucket):
+        #    return self.parseBucket(output)
         else:
             return output
 
@@ -93,3 +98,7 @@ class ResultSets(object):
     def parseR53Status(self, output):
         status_data = {field: getattr(output, field) for field in FieldLists.R53STATUS}
         return status_data
+
+    def parseBucket(self, output):
+        bucket_data = {field: getattr(output, field) for field in FieldLists.BUCKET}
+        return bucket_data
