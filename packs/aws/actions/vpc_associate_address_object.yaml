@@ -1,0 +1,34 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_associate_address_object
+parameters:
+  action:
+    default: associate_address_object
+    immutable: true
+    type: string
+  allocation_id:
+    type: string
+  allow_reassociation:
+    default: false
+    type: boolean
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  instance_id:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  network_interface_id:
+    type: string
+  private_ip_address:
+    type: string
+  public_ip:
+    type: string
+runner_type: run-python

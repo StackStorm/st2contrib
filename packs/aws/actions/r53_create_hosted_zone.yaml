@@ -23,4 +23,11 @@ parameters:
     default: boto.route53.connection
     immutable: true
     type: string
+  private_zone:
+    default: false
+    type: boolean
+  vpc_id:
+    type: string
+  vpc_region:
+    type: string
 runner_type: run-python

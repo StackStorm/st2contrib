@@ -1,0 +1,46 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_register_image
+parameters:
+  action:
+    default: register_image
+    immutable: true
+    type: string
+  architecture:
+    type: string
+  block_device_map:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  delete_root_volume_on_termination:
+    default: false
+    type: boolean
+  description:
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  image_location:
+    type: string
+  kernel_id:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  name:
+    type: string
+  ramdisk_id:
+    type: string
+  root_device_name:
+    type: string
+  snapshot_id:
+    type: string
+  sriov_net_support:
+    type: string
+  virtualization_type:
+    type: string
+runner_type: run-python

@@ -1,0 +1,30 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_assign_private_ip_addresses
+parameters:
+  action:
+    default: assign_private_ip_addresses
+    immutable: true
+    type: string
+  allow_reassignment:
+    default: false
+    type: boolean
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  network_interface_id:
+    type: string
+  private_ip_addresses:
+    type: string
+  secondary_private_ip_address_count:
+    type: string
+runner_type: run-python

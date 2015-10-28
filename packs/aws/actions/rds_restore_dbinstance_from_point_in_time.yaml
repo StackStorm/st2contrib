@@ -1,0 +1,37 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_restore_dbinstance_from_point_in_time
+parameters:
+  action:
+    default: restore_dbinstance_from_point_in_time
+    immutable: true
+    type: string
+  availability_zone:
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  db_subnet_group_name:
+    type: string
+  dbinstance_class:
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  port:
+    type: string
+  restore_time:
+    type: string
+  source_instance_id:
+    required: true
+    type: string
+  target_instance_id:
+    required: true
+    type: string
+  use_latest:
+    default: false
+    type: boolean
+runner_type: run-python

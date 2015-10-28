@@ -1,0 +1,26 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_create_vpc
+parameters:
+  action:
+    default: create_vpc
+    immutable: true
+    type: string
+  cidr_block:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  instance_tenancy:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

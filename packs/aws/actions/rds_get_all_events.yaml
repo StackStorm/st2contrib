@@ -1,0 +1,30 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_get_all_events
+parameters:
+  action:
+    default: get_all_events
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  end_time:
+    type: string
+  marker:
+    type: string
+  max_records:
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  source_identifier:
+    type: string
+  source_type:
+    type: string
+  start_time:
+    type: string
+runner_type: run-python

@@ -1,0 +1,18 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: r53_get_checker_ip_ranges
+parameters:
+  action:
+    default: get_checker_ip_ranges
+    immutable: true
+    type: string
+  cls:
+    default: Route53Connection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.route53.connection
+    immutable: true
+    type: string
+runner_type: run-python

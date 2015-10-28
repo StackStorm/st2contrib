@@ -1,0 +1,32 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_all_instance_status
+parameters:
+  action:
+    default: get_all_instance_status
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  filters:
+    type: string
+  include_all_instances:
+    default: false
+    type: boolean
+  instance_ids:
+    type: string
+  max_results:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  next_token:
+    type: string
+runner_type: run-python

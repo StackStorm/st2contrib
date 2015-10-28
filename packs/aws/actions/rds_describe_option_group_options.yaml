@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_describe_option_group_options
+parameters:
+  action:
+    default: describe_option_group_options
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  engine_name:
+    type: string
+  major_engine_version:
+    type: string
+  marker:
+    type: string
+  max_records:
+    default: 100
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+runner_type: run-python

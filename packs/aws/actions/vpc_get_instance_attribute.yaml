@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_instance_attribute
+parameters:
+  action:
+    default: get_instance_attribute
+    immutable: true
+    type: string
+  attribute:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  instance_id:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,21 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_skip_proxy
+parameters:
+  action:
+    default: skip_proxy
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  host:
+    required: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+runner_type: run-python

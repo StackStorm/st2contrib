@@ -1,0 +1,21 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_delete_account_alias
+parameters:
+  action:
+    default: delete_account_alias
+    immutable: true
+    type: string
+  alias:
+    required: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+runner_type: run-python

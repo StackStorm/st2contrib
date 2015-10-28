@@ -1,0 +1,21 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_get_path
+parameters:
+  action:
+    default: get_path
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  path:
+    default: /
+    type: string
+runner_type: run-python

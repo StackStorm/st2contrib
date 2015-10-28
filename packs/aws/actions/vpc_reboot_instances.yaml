@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_reboot_instances
+parameters:
+  action:
+    default: reboot_instances
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  instance_ids:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

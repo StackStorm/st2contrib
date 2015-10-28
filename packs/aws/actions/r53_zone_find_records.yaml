@@ -16,7 +16,7 @@ parameters:
     type: string
   desired:
     default: 1
-    type: integer
+    type: string
   identifier:
     type: string
   module_path:

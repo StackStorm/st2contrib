@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_cancel_spot_instance_requests
+parameters:
+  action:
+    default: cancel_spot_instance_requests
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  request_ids:
+    required: true
+    type: string
+runner_type: run-python

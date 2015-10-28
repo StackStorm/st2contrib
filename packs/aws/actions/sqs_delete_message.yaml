@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_delete_message
+parameters:
+  action:
+    default: delete_message
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  message:
+    required: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  queue:
+    required: true
+    type: string
+runner_type: run-python

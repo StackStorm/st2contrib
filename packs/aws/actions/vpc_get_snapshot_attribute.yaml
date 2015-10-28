@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_snapshot_attribute
+parameters:
+  action:
+    default: get_snapshot_attribute
+    immutable: true
+    type: string
+  attribute:
+    default: createVolumePermission
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  snapshot_id:
+    required: true
+    type: string
+runner_type: run-python

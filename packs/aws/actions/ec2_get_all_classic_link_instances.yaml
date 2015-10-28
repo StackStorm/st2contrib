@@ -1,0 +1,29 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: ec2_get_all_classic_link_instances
+parameters:
+  action:
+    default: get_all_classic_link_instances
+    immutable: true
+    type: string
+  cls:
+    default: EC2Connection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  filters:
+    type: string
+  instance_ids:
+    type: string
+  max_results:
+    type: string
+  module_path:
+    default: boto.ec2.connection
+    immutable: true
+    type: string
+  next_token:
+    type: string
+runner_type: run-python

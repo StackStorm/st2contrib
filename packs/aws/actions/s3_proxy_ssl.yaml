@@ -1,0 +1,22 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_proxy_ssl
+parameters:
+  action:
+    default: proxy_ssl
+    immutable: true
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  host:
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+  port:
+    type: string
+runner_type: run-python

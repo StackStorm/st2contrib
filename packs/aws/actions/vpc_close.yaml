@@ -1,0 +1,18 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_close
+parameters:
+  action:
+    default: close
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

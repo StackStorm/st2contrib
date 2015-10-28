@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_build_post_policy
+parameters:
+  action:
+    default: build_post_policy
+    immutable: true
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  conditions:
+    required: true
+    type: string
+  expiration_time:
+    required: true
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+runner_type: run-python

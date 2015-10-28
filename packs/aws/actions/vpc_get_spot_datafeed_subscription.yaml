@@ -1,0 +1,21 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_spot_datafeed_subscription
+parameters:
+  action:
+    default: get_spot_datafeed_subscription
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

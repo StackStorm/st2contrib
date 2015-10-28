@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_update_login_profile
+parameters:
+  action:
+    default: update_login_profile
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  password:
+    required: true
+    type: string
+  user_name:
+    required: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,29 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_create_option_group
+parameters:
+  action:
+    default: create_option_group
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  description:
+    type: string
+  engine_name:
+    required: true
+    type: string
+  major_engine_version:
+    required: true
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+runner_type: run-python

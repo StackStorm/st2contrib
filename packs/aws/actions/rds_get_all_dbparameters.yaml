@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_get_all_dbparameters
+parameters:
+  action:
+    default: get_all_dbparameters
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  groupname:
+    required: true
+    type: string
+  marker:
+    type: string
+  max_records:
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  source:
+    type: string
+runner_type: run-python

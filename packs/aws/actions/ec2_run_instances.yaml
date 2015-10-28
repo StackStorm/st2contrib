@@ -38,7 +38,7 @@ parameters:
   instance_profile_name:
     type: string
   instance_type:
-    default: t2.medium
+    default: m1.small
     type: string
   kernel_id:
     type: string
@@ -46,10 +46,10 @@ parameters:
     type: string
   max_count:
     default: 1
-    type: integer
+    type: string
   min_count:
     default: 1
-    type: integer
+    type: string
   module_path:
     default: boto.ec2.connection
     immutable: true

@@ -1,0 +1,22 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_proxy_ssl
+parameters:
+  action:
+    default: proxy_ssl
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  host:
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  port:
+    type: string
+runner_type: run-python

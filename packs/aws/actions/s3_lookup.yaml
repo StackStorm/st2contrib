@@ -1,0 +1,26 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_lookup
+parameters:
+  action:
+    default: lookup
+    immutable: true
+    type: string
+  bucket_name:
+    required: true
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  headers:
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+  validate:
+    default: true
+    type: boolean
+runner_type: run-python

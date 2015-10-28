@@ -1,0 +1,30 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_handle_proxy
+parameters:
+  action:
+    default: handle_proxy
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  proxy:
+    required: true
+    type: string
+  proxy_pass:
+    required: true
+    type: string
+  proxy_port:
+    required: true
+    type: string
+  proxy_user:
+    required: true
+    type: string
+runner_type: run-python

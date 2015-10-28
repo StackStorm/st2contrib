@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_key_pair
+parameters:
+  action:
+    default: get_key_pair
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  keyname:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

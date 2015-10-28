@@ -1,0 +1,25 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_list_server_certs
+parameters:
+  action:
+    default: list_server_certs
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  marker:
+    type: string
+  max_items:
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  path_prefix:
+    default: /
+    type: string
+runner_type: run-python

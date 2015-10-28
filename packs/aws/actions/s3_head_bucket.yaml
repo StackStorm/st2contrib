@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_head_bucket
+parameters:
+  action:
+    default: head_bucket
+    immutable: true
+    type: string
+  bucket_name:
+    required: true
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  headers:
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+runner_type: run-python

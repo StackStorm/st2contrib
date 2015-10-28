@@ -1,0 +1,34 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_create_image
+parameters:
+  action:
+    default: create_image
+    immutable: true
+    type: string
+  block_device_mapping:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  description:
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  instance_id:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+  no_reboot:
+    default: false
+    type: boolean
+runner_type: run-python

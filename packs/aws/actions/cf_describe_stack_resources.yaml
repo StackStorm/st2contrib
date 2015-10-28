@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: cf_describe_stack_resources
+parameters:
+  action:
+    default: describe_stack_resources
+    immutable: true
+    type: string
+  cls:
+    default: CloudFormationConnection
+    immutable: true
+    type: string
+  logical_resource_id:
+    type: string
+  module_path:
+    default: boto.cloudformation.connection
+    immutable: true
+    type: string
+  physical_resource_id:
+    type: string
+  stack_name_or_id:
+    type: string
+runner_type: run-python

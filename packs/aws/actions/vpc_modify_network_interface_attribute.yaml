@@ -1,0 +1,32 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_modify_network_interface_attribute
+parameters:
+  action:
+    default: modify_network_interface_attribute
+    immutable: true
+    type: string
+  attachment_id:
+    type: string
+  attr:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  interface_id:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  value:
+    required: true
+    type: string
+runner_type: run-python

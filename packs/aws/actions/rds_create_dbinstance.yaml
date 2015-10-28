@@ -1,0 +1,73 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_create_dbinstance
+parameters:
+  action:
+    default: create_dbinstance
+    immutable: true
+    type: string
+  allocated_storage:
+    required: true
+    type: string
+  auto_minor_version_upgrade:
+    default: true
+    type: boolean
+  availability_zone:
+    type: string
+  backup_retention_period:
+    type: string
+  character_set_name:
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  db_name:
+    type: string
+  db_subnet_group_name:
+    type: string
+  engine:
+    default: MySQL5.1
+    type: string
+  engine_version:
+    type: string
+  id:
+    required: true
+    type: string
+  instance_class:
+    required: true
+    type: string
+  iops:
+    type: string
+  license_model:
+    type: string
+  master_password:
+    required: true
+    type: string
+  master_username:
+    required: true
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  multi_az:
+    default: false
+    type: boolean
+  option_group_name:
+    type: string
+  param_group:
+    type: string
+  port:
+    default: 3306
+    type: string
+  preferred_backup_window:
+    type: string
+  preferred_maintenance_window:
+    type: string
+  security_groups:
+    type: string
+  vpc_security_groups:
+    type: string
+runner_type: run-python

@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_revoke_security_group
+parameters:
+  action:
+    default: revoke_security_group
+    immutable: true
+    type: string
+  cidr_ip:
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  ec2_security_group_name:
+    type: string
+  ec2_security_group_owner_id:
+    type: string
+  group_name:
+    required: true
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+runner_type: run-python
