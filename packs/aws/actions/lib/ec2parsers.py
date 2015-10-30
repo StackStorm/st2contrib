@@ -49,6 +49,8 @@ class ResultSets(object):
             return self.parseR53Zone(output)
         elif isinstance(output, boto.route53.status.Status):
             return self.parseR53Status(output)
+        elif isinstance(output, boto.ec2.ec2object.EC2Object):
+            return self.parseEC2Object(output)
         #elif isinstance(output, boto.s3.bucket.Bucket):
         #    return self.parseBucket(output)
         else:
@@ -102,3 +104,12 @@ class ResultSets(object):
     def parseBucket(self, output):
         bucket_data = {field: getattr(output, field) for field in FieldLists.BUCKET}
         return bucket_data
+
+    def parseEC2Object(self, output):
+        # Looks like everything that is an EC2Object pretty much only has these extra
+        # 'unparseable' properties so handle region and connection specially.
+        output = vars(output)
+        del output['connection']
+        region = output.get('region', None)
+        output['region'] = region.name if region else ''
+        return output
