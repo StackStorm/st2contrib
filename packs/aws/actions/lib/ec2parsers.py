@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import boto
+import six
 #import boto.ec2
 #import boto.route53
 #import boto.s3
@@ -110,6 +111,23 @@ class ResultSets(object):
         # 'unparseable' properties so handle region and connection specially.
         output = vars(output)
         del output['connection']
+        # special handling for region since name here is better than id.
         region = output.get('region', None)
         output['region'] = region.name if region else ''
+        # now anything that is an EC2Object get some special marshalling care.
+        for k, v in six.iteritems(output):
+            if isinstance(v, boto.ec2.ec2object.EC2Object):
+                # Better not to assume each EC2Object has an id. If not found
+                # resort to the str of the object which should have something meaningful.
+                output[k] = getattr(v, 'id', str(v))
+            # Generally unmarshallable object might be hiding in list so better to
+            if isinstance(v, list):
+                v_list = []
+                for item in v:
+                    # avoid touching the basic types.
+                    if isinstance(item, (basestring, bool, int, long, float)):
+                        v_list.append(v)
+                    else:
+                        v_list.append(str(item))
+                output[k] = v_list
         return output
