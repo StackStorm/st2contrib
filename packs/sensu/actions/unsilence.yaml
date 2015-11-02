@@ -7,10 +7,10 @@ entry_point: unsilence.py
 parameters:
   check:
     type: string
-    description: The check to unsilence
+    description: Optional check to unsilence.
   client:
     type: string
-    description: The client to unsilence
+    description: The client to unsilence.
     required: true
   sudo:
     immutable: true
