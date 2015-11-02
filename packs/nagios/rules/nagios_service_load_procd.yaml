@@ -1,5 +1,6 @@
 ---
-name: nagios.service.check_load_procd
+name: check_load_procd
+pack: nagios
 description: Check D state procs on host when load is high
 enabled: true
 trigger:

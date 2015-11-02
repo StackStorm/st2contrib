@@ -1,5 +1,5 @@
 ---
-  name: "sample.loadavg_diag"
+  name: "loadavg_check"
   pack: "sensu"
   description: "Run diagnostic checks when receiving a high load alert"
   trigger:

@@ -1,5 +1,6 @@
 ---
-  name: sample.on_actoin_runner_check
+  name: "on_action_runner_check"
+  pack: "sensu"
   description: Sample rule that dogfoods st2.
   pack: sensu
   trigger:
