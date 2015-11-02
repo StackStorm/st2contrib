@@ -1,5 +1,6 @@
 ---
-name: nagios.service.mail
+name: send_mail
+pack: nagios
 description: Send mail when nagios service state changes
 enabled: true
 trigger:

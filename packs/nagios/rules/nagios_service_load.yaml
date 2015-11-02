@@ -1,5 +1,6 @@
 ---
-name: nagios.service.check_load
+name: check_load
+pack: nagios
 description: Check cpu load on host
 enabled: true
 trigger:

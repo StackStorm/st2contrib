@@ -1,5 +1,6 @@
 ---
-name: nagios.service.check_load_procr
+name: check_load_procs
+pack: nagios
 description: Check running procs on host when load is high
 enabled: true
 trigger:

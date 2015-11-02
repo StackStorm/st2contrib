@@ -1,5 +1,6 @@
 ---
-name: nagios.service.check_proc
+name: check_proc
+pack: nagios
 description: Check process state on host
 enabled: true
 trigger:
