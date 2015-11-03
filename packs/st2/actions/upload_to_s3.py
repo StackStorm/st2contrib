@@ -30,7 +30,7 @@ class UploadToS3(St2BaseAction):
 
         # Note: Requests library performs streaming and chunked upload
         files = {'file': open(file_name, 'rb')}
-        response = requests.put(url=url, files=files, verify=False)
+        response = requests.put(url=url, files=files)
 
         if response.status_code in [httplib.OK, httplib.CREATED]:
             status = 'ok'
