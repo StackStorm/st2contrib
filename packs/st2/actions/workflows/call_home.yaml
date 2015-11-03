@@ -9,12 +9,14 @@
       params:
         key: "st2::collect_anonymous_data"
       on-success: "check_for_permission_to_send_anonymous_data"
+      on-failure: "exit_data_collection_disabled"
     -
       name: "check_for_permission_to_send_anonymous_data"
       ref: "st2.check_permissions_anon_data"
       params:
         collect_anonymous_data: "{{ get_collect_anonymous_data_value.result }}"
       on-success: "get_server_uuid"
+      on-failure: "exit_data_collection_disabled"
     -
       name: "get_server_uuid"
       ref: "st2.kv.get"
@@ -70,3 +72,8 @@
         file_name: "{{user_data_file}}"
         bucket: "{{bucket}}"
         remote_file: "{{server_uuid}}-user-data.json"
+    -
+      name: "exit_data_collection_disabled"
+      ref: "core.local"
+      params:
+        cmd: "echo 'Exiting because anonymous data collection is disabled' ; exit 0"
