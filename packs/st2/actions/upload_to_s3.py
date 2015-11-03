@@ -20,7 +20,7 @@ class UploadToS3(St2BaseAction):
 
     def run(self, bucket, file_name, remote_file=None):
         if not remote_file:
-            remote_file = os.path.basename(remote_file)
+            remote_file = os.path.basename(file_name)
 
         if not os.path.isfile(file_name):
             raise ValueError('Local file "%s" doesn\'t exist' % (file_name))
