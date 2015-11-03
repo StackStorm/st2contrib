@@ -14,7 +14,7 @@ S3_BUCKET_URL = 'https://%(bucket)s.s3.amazonaws.com/'
 
 class UploadToS3(St2BaseAction):
     """
-    Note: The destination bucket me be configured so everyone can write to it,
+    Note: The destination bucket must be configured so everyone can write to it,
     but only we can read from it.
     """
 
