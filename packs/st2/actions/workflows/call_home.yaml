@@ -73,6 +73,8 @@
         bucket: "{{bucket}}"
         remote_file: "{{server_uuid}}-user-data.json"
     -
+      # no-op task where we go if data collection is disabled. We do that so the workflow still
+      # succeedes if the collection is disabled.
       name: "exit_data_collection_disabled"
       ref: "core.local"
       params:
