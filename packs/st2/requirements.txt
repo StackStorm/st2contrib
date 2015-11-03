@@ -1,3 +1,2 @@
 st2client>=0.7
 PrettyTable>=0.7.2,<0.8
-s3==3.0.0

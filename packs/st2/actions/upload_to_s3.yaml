@@ -11,8 +11,8 @@ parameters:
     required: true
   remote_file:
     type: "string"
-    description: "Name of file on remote end"
-    required: true
+    description: "Name of file on remote end. If not provided it defaults to the local file name"
+    required: false
   bucket:
     type: "string"
     description: "S3 bucket to upload file"

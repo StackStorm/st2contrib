@@ -3,12 +3,3 @@ base_url: ""
 # auth_token will expire per token_ttl specifed in stackstorm
 # configuration and will require a refresh.
 auth_token: ""
-
-### StackStorm S3 Information
-##  These settings are for a write-only S3 account used
-##  when sending information to StackStorm for troubleshooting/analytics
-s3:
-  access_key_id: "AKIAIDM5AFYIL6QTZUIQ"
-  secret_access_key: "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"
-  endpoint: "s3-us-west-2.amazonaws.com"
-  region: "us-west-2"
