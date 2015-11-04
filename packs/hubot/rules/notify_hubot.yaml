@@ -1,11 +1,11 @@
 # notify_hubot.yaml
 ---
 name: "notify_hubot"
-pack: "chatops"
+pack: "hubot"
 enabled: true
 description: "Notification rule to send messages to Hubot"
 trigger:
-  pack: "chatops"
+  pack: "hubot"
   type: "core.st2.generic.notifytrigger"
 criteria:
   trigger.route:
