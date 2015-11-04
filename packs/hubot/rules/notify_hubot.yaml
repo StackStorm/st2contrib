@@ -5,7 +5,6 @@ pack: "hubot"
 enabled: true
 description: "Notification rule to send messages to Hubot"
 trigger:
-  pack: "hubot"
   type: "core.st2.generic.notifytrigger"
 criteria:
   trigger.route:
