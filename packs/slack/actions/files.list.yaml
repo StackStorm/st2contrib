@@ -1,0 +1,37 @@
+description: This method returns a list of files within the team. It can be filtered
+  and sliced in various ways.
+enabled: true
+entry_point: run.py
+name: files.list
+parameters:
+  count:
+    default: '100'
+    required: false
+    type: string
+  end_point:
+    default: files.list
+    immutable: true
+    type: string
+  page:
+    default: '1'
+    required: false
+    type: string
+  token:
+    required: false
+    type: string
+  ts_from:
+    default: '0'
+    required: false
+    type: string
+  ts_to:
+    default: now
+    required: false
+    type: string
+  types:
+    default: all
+    required: false
+    type: string
+  user:
+    required: false
+    type: string
+runner_type: run-python

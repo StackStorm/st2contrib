@@ -1,0 +1,14 @@
+description: This method lets the slack messaging server know that the authenticated
+  user is currently active. Consult the presence documentation for more details.
+enabled: true
+entry_point: run.py
+name: users.setActive
+parameters:
+  end_point:
+    default: users.setActive
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

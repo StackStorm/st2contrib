@@ -1,0 +1,46 @@
+description: This method posts a message to a channel.
+enabled: true
+entry_point: run.py
+name: chat.postMessage
+parameters:
+  as_user:
+    required: false
+    type: string
+  attachments:
+    required: false
+    type: string
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: chat.postMessage
+    immutable: true
+    type: string
+  icon_emoji:
+    required: false
+    type: string
+  icon_url:
+    required: false
+    type: string
+  link_names:
+    required: false
+    type: string
+  parse:
+    required: false
+    type: string
+  text:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+  unfurl_links:
+    required: false
+    type: string
+  unfurl_media:
+    required: false
+    type: string
+  username:
+    required: false
+    type: string
+runner_type: run-python

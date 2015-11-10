@@ -1,0 +1,16 @@
+description: This method is used to leave a channel.
+enabled: true
+entry_point: run.py
+name: channels.leave
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.leave
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

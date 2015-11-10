@@ -1,0 +1,16 @@
+description: This method opens a private group.
+enabled: true
+entry_point: run.py
+name: groups.open
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: groups.open
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

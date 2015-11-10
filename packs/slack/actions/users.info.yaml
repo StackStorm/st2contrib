@@ -1,0 +1,16 @@
+description: This method returns information about a team member.
+enabled: true
+entry_point: run.py
+name: users.info
+parameters:
+  end_point:
+    default: users.info
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  user:
+    required: true
+    type: string
+runner_type: run-python

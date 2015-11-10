@@ -1,0 +1,20 @@
+description: This method is used to change the topic of a channel. The calling user
+  must be a member of the channel.
+enabled: true
+entry_point: run.py
+name: channels.setTopic
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.setTopic
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  topic:
+    required: true
+    type: string
+runner_type: run-python

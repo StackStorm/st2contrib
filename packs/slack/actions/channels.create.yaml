@@ -1,0 +1,16 @@
+description: This method is used to create a channel.
+enabled: true
+entry_point: run.py
+name: channels.create
+parameters:
+  end_point:
+    default: channels.create
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

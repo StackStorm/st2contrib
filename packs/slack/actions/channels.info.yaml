@@ -1,0 +1,16 @@
+description: This method returns information about a team channel.
+enabled: true
+entry_point: run.py
+name: channels.info
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.info
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

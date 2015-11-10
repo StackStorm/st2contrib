@@ -1,0 +1,26 @@
+---
+  name: "users.admin.invite"
+  runner_type: "run-python"
+  description: "Send an invitation to join a Slack Org"
+  enabled: true
+  entry_point: "send_invite.py"
+  parameters:
+    email:
+      type: "string"
+      description: "Email address to send invitation to."
+      required: true
+    first_name:
+      type: "string"
+      description: "Users first name"
+    channels:
+      type: "string"
+      description: "Channels to auto join."
+    token:
+      type: "string"
+      description: "Slack API token."
+    set_active:
+      type: "boolean"
+      description: "Should the user be active."
+    attempts:
+      type: "integer"
+      description: ""
