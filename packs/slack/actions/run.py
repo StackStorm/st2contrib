@@ -9,7 +9,6 @@ BASE_URL = 'https://slack.com/api/'
 
 class SlackAction(Action):
 
-    
     def run(self, **kwargs):
         if kwargs['token'] is None:
             kwargs['token'] = self.config['action_token']

@@ -56,7 +56,7 @@ for method in method_dict:
                            'type': 'string',
                            'immutable': True,
                            'default': method}
-                       }
+                   }
                    }
 
     for param in method_dict[method]['params']:
