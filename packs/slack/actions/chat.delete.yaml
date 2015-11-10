@@ -1,0 +1,19 @@
+description: This method deletes a message from a channel.
+enabled: true
+entry_point: run.py
+name: chat.delete
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: chat.delete
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  ts:
+    required: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,35 @@
+description: This method returns files matching a search query.
+enabled: true
+entry_point: run.py
+name: search.files
+parameters:
+  count:
+    default: '100'
+    required: false
+    type: string
+  end_point:
+    default: search.files
+    immutable: true
+    type: string
+  highlight:
+    required: false
+    type: string
+  page:
+    default: '1'
+    required: false
+    type: string
+  query:
+    required: true
+    type: string
+  sort:
+    default: score
+    required: false
+    type: string
+  sort_dir:
+    default: desc
+    required: false
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

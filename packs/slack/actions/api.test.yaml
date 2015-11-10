@@ -1,0 +1,16 @@
+description: This method helps you test your calling code.
+enabled: true
+entry_point: run.py
+name: api.test
+parameters:
+  end_point:
+    default: api.test
+    immutable: true
+    type: string
+  error:
+    required: false
+    type: string
+  foo:
+    required: false
+    type: string
+runner_type: run-python

@@ -1,0 +1,34 @@
+description: This method allows you to create or upload an existing file.
+enabled: true
+entry_point: run.py
+name: files.upload
+parameters:
+  channels:
+    required: false
+    type: string
+  content:
+    required: false
+    type: string
+  end_point:
+    default: files.upload
+    immutable: true
+    type: string
+  file:
+    required: false
+    type: string
+  filename:
+    required: false
+    type: string
+  filetype:
+    required: false
+    type: string
+  initial_comment:
+    required: false
+    type: string
+  title:
+    required: false
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

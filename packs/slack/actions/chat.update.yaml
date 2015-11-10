@@ -1,0 +1,22 @@
+description: This method updates a message in a channel.
+enabled: true
+entry_point: run.py
+name: chat.update
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: chat.update
+    immutable: true
+    type: string
+  text:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+  ts:
+    required: true
+    type: string
+runner_type: run-python

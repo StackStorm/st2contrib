@@ -1,0 +1,17 @@
+description: 'This method takes an existing private group and performs the following
+  steps:'
+enabled: true
+entry_point: run.py
+name: groups.createChild
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: groups.createChild
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

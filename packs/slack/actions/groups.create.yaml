@@ -1,0 +1,16 @@
+description: This method creates a private group.
+enabled: true
+entry_point: run.py
+name: groups.create
+parameters:
+  end_point:
+    default: groups.create
+    immutable: true
+    type: string
+  name:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

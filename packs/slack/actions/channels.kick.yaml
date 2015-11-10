@@ -1,0 +1,19 @@
+description: This method allows a user to remove another member from a team channel.
+enabled: true
+entry_point: run.py
+name: channels.kick
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.kick
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  user:
+    required: true
+    type: string
+runner_type: run-python

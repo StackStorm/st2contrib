@@ -1,0 +1,19 @@
+description: This method moves the read cursor in a channel.
+enabled: true
+entry_point: run.py
+name: channels.mark
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.mark
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  ts:
+    required: true
+    type: string
+runner_type: run-python
