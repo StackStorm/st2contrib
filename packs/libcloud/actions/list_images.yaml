@@ -1,0 +1,11 @@
+---
+name: list_images
+runner_type: run-python
+description: List available node images.
+enabled: true
+entry_point: list_images.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true

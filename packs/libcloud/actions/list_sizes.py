@@ -1,15 +1,14 @@
 from lib.actions import BaseAction
 
 __all__ = [
-    'ListVMsAction'
+    'ListSizesAction'
 ]
 
 
-class ListVMsAction(BaseAction):
+class ListSizesAction(BaseAction):
     api_type = 'compute'
 
     def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
-        vms = driver.list_nodes()
-
-        return self.resultsets.formatter(vms)
+        sizes = driver.list_sizes()
+        return self.resultsets.formatter(sizes)

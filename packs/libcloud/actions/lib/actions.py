@@ -12,6 +12,8 @@ from libcloud.dns.providers import get_driver as get_dns_driver
 from libcloud.loadbalancer.providers import get_driver as get_lb_driver
 from libcloud.compute.base import Node
 
+from libcloud_parsers import ResultSets
+
 from st2actions.runners.pythonrunner import Action
 
 __all__ = [
@@ -22,6 +24,10 @@ __all__ = [
 
 class BaseAction(Action):
     api_type = None
+
+    def __init__(self, config):
+        super(BaseAction, self).__init__(config)
+        self.resultsets = ResultSets()
 
     def _get_driver_for_credentials(self, credentials):
         """
