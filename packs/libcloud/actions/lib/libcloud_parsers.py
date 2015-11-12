@@ -16,7 +16,6 @@ class FieldLists():
     NODE_KEY = ['pubkey']
     NODE_PASSWORD = ['password', 'generated']
     STORAGE_VOLUME = ['id', 'name', 'size', 'state']
-    STORAGE_VOLUME_STATE = ['']
     VOLUME_SNAPSHOT = ['id', 'size', 'state']
     ZONE = ['id', 'domain', 'type', 'ttl']
     RECORD = ['id', 'name', 'type', 'data', 'zone']
