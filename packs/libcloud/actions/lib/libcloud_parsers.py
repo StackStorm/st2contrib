@@ -39,8 +39,6 @@ class ResultSets(object):
             return self.parse(output, FieldLists.NODE_KEY)
         elif isinstance(output, compute_base.NodeAuthPassword):
             return self.parse(output, FieldLists.NODE_PASSWORD)
-        elif isinstance(output, compute_base.NodeDriver):
-            return self.parse(output, FieldLists.NODE_DRIVER)
         elif isinstance(output, compute_base.StorageVolume):
             return self.parse(output, FieldLists.STORAGE_VOLUME)
         elif isinstance(output, compute_base.VolumeSnapshot):
