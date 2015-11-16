@@ -78,11 +78,11 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 [![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
-[![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
+[![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 [![SmartThings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | [SmartThings](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | Integration with SmartThings | smartthings, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#SmartThings-pack)
 [![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 [![splunk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/splunk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | [splunk](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | Splunk integration pack | splunk | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#splunk-pack)
-[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
 [![Travis CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 [![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
@@ -1176,7 +1176,66 @@ SlackSensor | Sensor which monitors Slack for activity
 
 Name | Description
 ---- | -----------
+api.test | This method helps you test your calling code.
+auth.test | This method checks authentication and tells you who you are.
+channels.archive | This method archives a channel.
+channels.create | This method is used to create a channel.
+channels.history | This method returns a portion of messages/events from the specified channel. To read the entire history for a channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+channels.info | This method returns information about a team channel.
+channels.invite | This method is used to invite a user to a channel. The calling user must be a member of the channel.
+channels.join | This method is used to join a channel. If the channel does not exist, it is created.
+channels.kick | This method allows a user to remove another member from a team channel.
+channels.leave | This method is used to leave a channel.
+channels.list | This method returns a list of all channels in the team. This includes channels the caller is in, channels they are not currently in, and archived channels. The number of (non-deactivated) members in each channel is also returned.
+channels.mark | This method moves the read cursor in a channel.
+channels.rename | This method renames a team channel.
+channels.setPurpose | This method is used to change the purpose of a channel. The calling user must be a member of the channel.
+channels.setTopic | This method is used to change the topic of a channel. The calling user must be a member of the channel.
+channels.unarchive | This method unarchives a channel. The calling user is added to the channel.
+chat.delete | This method deletes a message from a channel.
+chat.postMessage | This method posts a message to a channel.
+chat.update | This method updates a message in a channel.
+emoji.list | This method lists the custom emoji for a team.
+files.delete | This method deletes a file from your team.
+files.info | This method returns information about a file in your team.
+files.list | This method returns a list of files within the team. It can be filtered and sliced in various ways.
+files.upload | This method allows you to create or upload an existing file.
+groups.archive | This method archives a private group.
+groups.close | This method closes a private group.
+groups.create | This method creates a private group.
+groups.createChild | This method takes an existing private group and performs the following steps:
+groups.history | This method returns a portion of messages/events from the specified private group. To read the entire history for a group, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+groups.info | This method returns information about a private group.
+groups.invite | This method is used to invite a user to a private group. The calling user must be a member of the group.
+groups.kick | This method allows a user to remove another member from a private group.
+groups.leave | This method is used to leave a private group.
+groups.list | This method returns a list of groups in the team that the caller is in and archived groups that the caller was in. The list of (non-deactivated) members in each group is also returned.
+groups.mark | This method moves the read cursor in a private group.
+groups.open | This method opens a private group.
+groups.rename | This method renames a private group.
+groups.setPurpose | This method is used to change the purpose of a private group. The calling user must be a member of the private group.
+groups.setTopic | This method is used to change the topic of a private group. The calling user must be a member of the private group.
+groups.unarchive | This method unarchives a private group.
+im.close | This method closes a direct message channel.
+im.history | This method returns a portion of messages/events from the specified direct message channel. To read the entire history for a direct message channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+im.list | This method returns a list of all im channels that the user has.
+im.mark | This method moves the read cursor in a direct message channel.
+im.open | This method opens a direct message channel with another member of your Slack team.
+oauth.access | This method allows you to exchange a temporary OAuth code for an API access token. This is used as part of the OAuth authentication flow.
 post_message | Post a message to the Slack channel.
+rtm.start | This method starts a Real Time Messaging API session. Refer to the RTM API documentation for full details on how to use the RTM API.
+search.all | This method allows to to search both messages and files in a single call.
+search.files | This method returns files matching a search query.
+search.messages | This method returns messages matching a search query.
+stars.list | This method lists the items starred by a user.
+team.accessLogs | This method is used to get the access logs for users on a team.
+team.info | This method provides information about your team.
+users.admin.invite | Send an invitation to join a Slack Org
+users.getPresence | This method lets you find out information about a user's presence. Consult the presence documentation for more details.
+users.info | This method returns information about a team member.
+users.list | This method returns a list of all users in the team. This includes deleted/deactivated users.
+users.setActive | This method lets the slack messaging server know that the authenticated user is currently active. Consult the presence documentation for more details.
+users.setPresence | This method lets you set the calling user's manual presence. Consult the presence documentation for more details.
 
 ### smartthings pack
 
