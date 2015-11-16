@@ -9,3 +9,12 @@ parameters:
     type: "string"
     description: "ID of execution to retrieve the details for"
     required: true
+  exclude:
+    type: "array"
+    description: "List of attributes to exclude"
+    default:
+      - trigger
+      - trigger_type
+      - trigger_instance
+      - liveaction
+      - context

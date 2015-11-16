@@ -47,7 +47,7 @@ class St2BaseAction(Action):
 
         return token
 
-    def _run_client_method(self, method, method_kwargs, format_func):
+    def _run_client_method(self, method, method_kwargs, format_func, format_kwargs=None):
         """
         Run the provided client method and format the result.
 
@@ -70,5 +70,5 @@ class St2BaseAction(Action):
                                                                            method_kwargs))
 
         result = method(**method_kwargs)
-        result = format_func(result)
+        result = format_func(result, **format_kwargs or {})
         return result
