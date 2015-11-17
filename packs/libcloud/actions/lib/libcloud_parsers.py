@@ -4,8 +4,13 @@ import libcloud.compute.base as compute_base
 import libcloud.dns.base as dns_base
 import libcloud.loadbalancer.base as lb_base
 
+__all__ = [
+    'FieldLists',
+    'ResultSets'
+]
 
-class FieldLists():
+
+class FieldLists(object):
     """
     The lists of fields we want to return for each class
     """
