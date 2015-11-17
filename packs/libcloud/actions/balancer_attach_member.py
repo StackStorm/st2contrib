@@ -6,10 +6,6 @@ __all__ = [
     'BalancerAttachMemberAction'
 ]
 
-RECORD_ATTRIBUTES = [
-    'id'
-]
-
 
 class BalancerAttachMemberAction(BaseAction):
     api_type = 'loadbalancer'
@@ -20,11 +16,4 @@ class BalancerAttachMemberAction(BaseAction):
         member = Member(id=None, ip=member_ip, port=member_port)
         record = driver.balancer_attach_member(balancer=balancer,
                                                member=member)
-        result = []
-
-        values = record.__dict__
-        item = dict([(k, v) for k, v in values.items()
-                     if k in RECORD_ATTRIBUTES])
-        result.append(item)
-
-        return result
+        return self.resultsets.formatter(record)

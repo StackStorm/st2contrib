@@ -6,10 +6,6 @@ __all__ = [
     'CreateBalancerAction'
 ]
 
-RECORD_ATTRIBUTES = [
-    'id'
-]
-
 
 class CreateBalancerAction(BaseAction):
     api_type = 'loadbalancer'
@@ -34,12 +30,4 @@ class CreateBalancerAction(BaseAction):
                                         protocol=protocol,
                                         algorithm=algorithm,
                                         members=None)
-
-        result = []
-
-        values = record.__dict__
-        item = dict([(k, v) for k, v in values.items()
-                     if k in RECORD_ATTRIBUTES])
-        result.append(item)
-
-        return result
+        return self.resultsets.formatter(record)

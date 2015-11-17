@@ -1,15 +1,14 @@
 from lib.actions import BaseAction
 
 __all__ = [
-    'ListVMsAction'
+    'ListImagesAction'
 ]
 
 
-class ListVMsAction(BaseAction):
+class ListImagesAction(BaseAction):
     api_type = 'compute'
 
     def run(self, credentials):
         driver = self._get_driver_for_credentials(credentials=credentials)
-        vms = driver.list_nodes()
-
-        return self.resultsets.formatter(vms)
+        images = driver.list_images()
+        return self.resultsets.formatter(images)
