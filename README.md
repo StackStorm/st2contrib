@@ -690,6 +690,8 @@ import_public_ssh_key | Import an existing public SSH key.
 list_balancers | List load balancers
 list_dns_records | List available DNS records for a particular zone.
 list_dns_zones | List available zones.
+list_images | List available node images.
+list_sizes | List available node sizes.
 list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
 start_vm | Start a new VM.
