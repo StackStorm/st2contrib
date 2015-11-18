@@ -1,0 +1,6 @@
+---
+name: list_messages_my_feed
+runner_type: python-script
+description: List all messages from my feed for the authenticated user
+enabled: true
+entry_point: list_messages_my_feed.py

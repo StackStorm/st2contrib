@@ -1,0 +1,6 @@
+---
+name: list_messages
+runner_type: python-script
+description: List all messages globally for the authenticated user
+enabled: true
+entry_point: list_messages.py
