@@ -28,4 +28,3 @@ class YammerAction(Action):
     def authenticate(self):
         access_token = self.authenticator.fetch_access_token(self.access_code)
         return yampy.Yammer(access_token=access_token)
-
