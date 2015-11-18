@@ -6,8 +6,9 @@ __all__ = [
 
 
 class PostMessageAction(YammerAction):
-    def run(self, message, group_id, topics, replied_to_id):
+    def run(self, message, group_id, topics, replied_to_id, direct_to_id):
         yammer = self.authenticate()
         return yammer.messages.create(
             message, group_id=group_id,
-            topics=topics, replied_to_id=replied_to_id)
+            topics=topics, replied_to_id=replied_to_id,
+            direct_to_id=direct_to_id)
