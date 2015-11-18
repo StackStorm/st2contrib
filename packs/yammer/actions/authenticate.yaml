@@ -1,0 +1,6 @@
+---
+name: authenticate
+runner_type: python-script
+description: Requests a OAuth authorization URL from the Yammer API, use this URL to authenticate your app
+enabled: true
+entry_point: authenticate.py
