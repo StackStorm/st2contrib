@@ -18,8 +18,9 @@ class YammerAction(Action):
         self.client_id = self.config['client_id']
         self.client_secret = self.config['client_secret']
         self.expected_redirect = self.config['expected_redirect']
-        self.authenticator = yampy.Authenticator(client_id=self.client_id,
-                                                 client_secret=self.client_secret)
+        self.authenticator = yampy.Authenticator(
+            client_id=self.client_id,
+            client_secret=self.client_secret)
         self.access_code = self.config['access_code']
         self.user_info = None
         self.network_info = None

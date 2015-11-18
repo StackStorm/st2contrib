@@ -1,0 +1,27 @@
+---
+name: post_message
+runner_type: python-script
+description: List all messages from my feed for the authenticated user
+enabled: true
+entry_point: post_message.py
+parameters:
+  message:
+    type: string
+    description: The message
+    required: true
+  group_id:
+    type: string
+    description: The ID of the group to post the message to
+    required: true
+  topics:
+    type: array
+    description: A list of topics for the message
+    required: false
+  replied_to_id:
+    type: string
+    description: The message ID this is in response to
+    required: false
+  direct_to_id:
+    type: string
+    description: Sends the message as a private message to the user ID specified
+    required: false
