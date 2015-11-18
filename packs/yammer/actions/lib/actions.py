@@ -26,9 +26,6 @@ class YammerAction(Action):
         self.network_info = None
 
     def authenticate(self):
-        access_data = self.authenticator.fetch_access_data(self.access_code)
-        access_token = access_data.access_token.token
-        self.user_info = access_data.user
-        self.network_info = access_data.network
+        access_token = self.authenticator.fetch_access_token(self.access_code)
         return yampy.Yammer(access_token=access_token)
 
