@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import base64
 import httplib
 try:
     import simplejson as json
@@ -38,6 +39,28 @@ REGISTERED_WITH_ST2 = False
 
 OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
 
+def _get_headers():
+    b64auth = base64.b64encode(
+        "%s:%s" %
+        (SENSU_USER, SENSU_PASS))
+    auth_header = "BASIC %s" % b64auth
+    content_header = "application/json"
+    return {"Authorization": auth_header, "Content-Type": content_header}
+
+def _check_stash(client, check):
+    sensu_api = "http://%s:%i" % (SENSU_HOST, SENSU_PORT)
+    endpoints = [
+        "silence/%s" % client,
+        "silence/%s/%s" % (client, check),
+        "silence/all/%s" % check ]
+
+    for endpoint in endpoints:
+        url = "%s/stashes/%s" % (sensu_api,endpoint)
+        response = requests.get(url, headers=_get_headers())
+        #print "%s %s" % (url, str(response.status_code))
+        if response.status_code == 200:
+            print "Check or client is stashed"
+            sys.exit(0)
 
 def _create_trigger_type():
     try:
@@ -79,11 +102,11 @@ def _get_auth_token():
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
                              auth=(ST2_USERNAME, ST2_PASSWORD))
     except:
-        sys.stderr.write('Cannot get auth token from st2. Trying unauthed.')
+        sys.stderr.write('Cannot get auth token from st2. Will try unauthed.')
     else:
         if resp.status_code not in OK_CODES:
-            raise Exception("Cannot authenticate: %s\n" % resp.text)
-
+            sys.stderr.write("Cannot authenticate. Will try unauthed.")
+            return
         ST2_AUTH_TOKEN = resp.json()['token']
 
 
@@ -91,7 +114,7 @@ def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
         url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
-        # sys.stdout.write('GET: %s\n' % url)
+        #sys.stdout.write('GET: %s\n' % url)
         if not ST2_AUTH_TOKEN:
             _get_auth_token()
 
@@ -129,7 +152,7 @@ def _post_event_to_st2(url, body):
     if ST2_AUTH_TOKEN:
         headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
-        sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
+        #sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
         r = requests.post(url, data=json.dumps(body), headers=headers)
     except:
         sys.stderr.write('Cannot connect to st2 endpoint.')
@@ -145,7 +168,10 @@ def main(args):
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
     body['payload'] = json.loads(sys.stdin.read().strip())
-    _post_event_to_st2(_get_st2_webhooks_url(), body)
+    client = body['payload']['client']['name']
+    check = body['payload']['check']['name']
+    if not _check_stash(client, check):
+        _post_event_to_st2(_get_st2_webhooks_url(), body)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -153,7 +179,7 @@ if __name__ == '__main__':
     else:
         sys.stderr.write('Error: config file missing.\n')
         sys.stderr.write('Usage: %s ST2_CONFIG_FILE\n' % sys.argv[0])
-        sys.exit(2)
+        exit(-1)
 
     try:
         if not os.path.exists(st2_config_file):
@@ -166,13 +192,16 @@ if __name__ == '__main__':
             ST2_PASSWORD = config['st2_password']
             ST2_API_BASE_URL = config['st2_api_base_url']
             ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+            SENSU_HOST = config.get('sensu_host', 'localhost')
+            SENSU_PORT = config.get('sensu_port', '4567')
+            SENSU_USER = config.get('sensu_user', None)
+            SENSU_PASS = config.get('sensu_pass', None)
+
 
         if not REGISTERED_WITH_ST2:
             _register_with_st2()
     except Exception as e:
         sys.stderr.write(
             'Failed registering with st2. Won\'t post event.\n%s' % e)
-        import traceback
-        traceback.print_exc()
     else:
         main(sys.argv)
