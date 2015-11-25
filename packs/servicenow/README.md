@@ -34,7 +34,8 @@ Content-Type: application/json
 
 ## Actions
 
-* `servicenow.get` - Get an entry from a ServiceNow Table
+* `servicenow.get` - Get an entry using a dictionary query from a ServiceNow Table
+* `servicenow.get_non_structured` - Get an entry using a string query from a ServiceNow Table
 * `servicenow.update` - Update an entry in a ServiceNow Table
 * `servicenow.insert` - Insert an entry to a ServiceNow Table
 * `servicenow.delete` - Delete an entry from a ServiceNow Table
