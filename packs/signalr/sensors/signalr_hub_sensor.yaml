@@ -1,0 +1,10 @@
+---
+  class_name: "SignalRHubSensor"
+  entry_point: "signalr_hub_sensor.py"
+  description: "Sensor which listens for push notifications raise by signalr"
+  trigger_types:
+    -
+      name: "message"
+      description: "A message received in the hub"
+      payload_info:
+        - "message"
