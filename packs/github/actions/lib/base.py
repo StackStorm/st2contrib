@@ -40,7 +40,7 @@ class BaseGithubAction(Action):
         return session
 
     def _get_analytics(self, category, repo):
-        url = 'https://github.com/' + repo + '/graphs/' + category
+        url = 'https://github.com/' + repo + '/graphs/' + category + '.json'
         s = self._web_session()
         response = s.get(url)
         return response.json()
