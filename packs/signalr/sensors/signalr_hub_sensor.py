@@ -20,13 +20,13 @@ class SignalRHubSensor(Sensor):
 
     def setup(self):
         self.connection = Connection(self.url, self.session)
-        #start a connection
+        # start a connection
         self.connection.start()
-        #add a handler to process notifications to the connection
+        # add a handler to process notifications to the connection
         self.connection.handlers += \
             lambda data: self._logger.log(
                 'Connection: new notification - %s' % data)
-        #get hub
+        # get hub
         self._hub = self.connection.hub(self.hub_name)
 
     def message_recieved(self, message):
@@ -38,6 +38,6 @@ class SignalRHubSensor(Sensor):
         self._hub.client.on('message_received', SignalRHubSensor.message_received)
 
     def cleanup(self):
-        #do not receive new messages
+        # do not receive new messages
         self._hub.client.off('message_received', self.message_received)
         self.connection.close()

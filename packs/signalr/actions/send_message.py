@@ -15,7 +15,7 @@ class SignalRSendMessageAction(Action):
     def run(self, hub, message):
         connection = Connection(self.url, self.session)
         connection.start()
-        #get hub
+        # get hub
         _hub = self.connection.hub(hub)
         _hub.server.invoke('send_message', message)
         connection.close()
