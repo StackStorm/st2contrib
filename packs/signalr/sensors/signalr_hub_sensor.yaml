@@ -4,7 +4,7 @@
   description: "Sensor which listens for push notifications raise by signalr"
   trigger_types:
     -
-      name: "message"
+      name: "message_received"
       description: "A message received in the hub"
       payload_info:
         - "message"
