@@ -253,7 +253,6 @@ class NewRelicHookSensor(Sensor):
 
     # newrelic API methods
     def _get_application(self, app_id):
-        params = None
         url = urllib_parse.urljoin(self._api_url+'applications/', str(app_id)+'.json')
         resp = requests.get(url, headers=self._headers).json()
         if 'application' in resp:
