@@ -16,7 +16,6 @@
 
 import six
 import sys
-import json
 
 import eventlet
 import requests
@@ -47,6 +46,7 @@ NORMAL_REPORT_DELAY_KEY = 'normal_report_delay'
 
 
 class NewRelicHookSensor(Sensor):
+
     """
     Sensor class that starts up a flask webapp that listens to alert hooks from NewRelic.
     It translates hooks into appropriate triggers using the following mapping -
@@ -103,27 +103,19 @@ class NewRelicHookSensor(Sensor):
         def handle_nrhook():
 
             # hooks are sent for alerts and deployments. Only care about alerts so ignoring
-            # deployments. Body expected to be of the form -
-            #
-            # alert : {...}
-            #      OR
-            # deployment : {...}
-            #
-            # JSON inside form encoded data, seriously?
-            data = request.form
-            alert_body = data.get('alert', None)
-
-            if not alert_body:
-                self._log.info('Request doesn\'t contain "alert" attribute, ignoring...')
-                return 'IGNORED'
+            # deployments.
+            # alert body is based on the example documentation
+            # https://docs.newrelic.com/docs/alerts/new-relic-alerts-beta/managing-notification-channels/customize-your-webhook-payload
 
             try:
-                alert_body = json.loads(alert_body)
+                data = request.get_json()
+                alert_body = data
+                self._log.info('Webhook data  %s' % (alert_body))
             except Exception:
                 self._log.exception('Failed to parse request body: %s' % (alert_body))
                 return 'IGNORED'
 
-            if alert_body.get('severity', None) not in ['critical', 'downtime']:
+            if alert_body.get('severity', None) not in ['CRITICAL', 'WARN']:
                 self._log.debug('Ignoring alert %s as it is not severe enough.', alert_body)
                 return 'ACCEPTED'
 
@@ -131,7 +123,7 @@ class NewRelicHookSensor(Sensor):
             hook_handler = self._get_hook_handler(alert_body, hook_headers)
 
             # all handling based off 'docs' found in this documentation -
-            # https://docs.newrelic.com/docs/alerts/alert-policies/examples/webhook-examples
+            # https://docs.newrelic.com/docs/alerts/new-relic-alerts-beta/managing-notification-channels/customize-your-webhook-payload#webhook-format-examples
 
             try:
                 if hook_handler:
@@ -146,23 +138,21 @@ class NewRelicHookSensor(Sensor):
     def _get_hook_handler(self, alert_body, hook_headers):
         if not alert_body:
             return None
+        try:
+            if 'Server' in alert_body.get('targets')[0].get('type'):
+                return self._server_hook_handler
+            elif 'Application' in alert_body.get('targets')[0].get('type'):
+                return self._app_hook_handler
 
-        if 'servers' in alert_body:
-            return self._server_hook_handler
+        except Exception:
+            return None
+        self._log.info('No application or server found for alert %s. Will Ignore.', alert_body)
 
-        # For now everything else is web app hook. Hooks for key transaction, mobile app or plugin
-        # alert all would be rolled up the application level.
-        return self._app_hook_handler
+        return
 
     def _app_hook_handler(self, alert_body, hook_headers):
-        if not alert_body['application_name']:
-            self._log.info('No application found for alert %s. Will Ignore.', alert_body)
-            return
 
-        long_description = alert_body['long_description']
-
-        if self._is_alert_opened(long_description) or \
-           self._is_escalated_downtime(long_description):
+        if alert_body['current_state'] == 'open':
 
             # handled opened and escalation to downtime immediately.
             payload = {
@@ -171,8 +161,7 @@ class NewRelicHookSensor(Sensor):
             }
             self._dispatch_trigger(WEB_APP_ALERT_TRIGGER_REF, payload)
 
-        elif (self._is_alert_closed(long_description) or
-                self._is_downtime_recovered(long_description)):
+        elif alert_body['current_state'] == 'closed':
 
             # handled closed and recovered after a delay.
             payload = {
@@ -183,11 +172,10 @@ class NewRelicHookSensor(Sensor):
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_application_normal,
                                  payload)
 
-        elif (self._is_alert_canceled(long_description) or
-                self._is_alert_acknowledged(long_description)):
+        elif alert_body['current_state'] == 'acknowledged':
 
             # ignore canceled or acknowledged
-            self._log.info('Ignored alert : %s.', alert_body)
+            self._log.info('Ignored alert or alert acknowledged : %s.', alert_body)
 
     def _dispatch_application_normal(self, payload, attempt_no=0):
         '''
@@ -198,7 +186,7 @@ class NewRelicHookSensor(Sensor):
             self._log.warning('Abandoning WEB_APP_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
             return
         try:
-            application = self._get_application(payload['alert']['application_name'])
+            application = self._get_application(payload['alert']['targets'][0]['id'])
             if application['health_status'] in ['green']:
                 self._dispatch_trigger(WEB_APP_NORMAL_TRIGGER_REF, payload)
             else:
@@ -210,9 +198,7 @@ class NewRelicHookSensor(Sensor):
             self._log.exception('Failed delay dispatch. Payload %s.', payload)
 
     def _server_hook_handler(self, alert_body, hook_headers):
-        long_description = alert_body['long_description']
-        if self._is_alert_opened(long_description) or \
-           self._is_escalated_downtime(long_description):
+        if alert_body['current_state'] == 'open':
 
             payload = {
                 'alert': alert_body,
@@ -220,8 +206,7 @@ class NewRelicHookSensor(Sensor):
             }
             self._dispatch_trigger(SERVER_ALERT_TRIGGER_REF, payload)
 
-        elif (self._is_alert_closed(long_description) or
-                self._is_downtime_recovered(long_description)):
+        elif alert_body['current_state'] == 'closed':
 
             payload = {
                 'alert': alert_body,
@@ -231,9 +216,8 @@ class NewRelicHookSensor(Sensor):
             eventlet.spawn_after(self._normal_report_delay, self._dispatch_server_normal,
                                  payload)
 
-        elif (self._is_alert_canceled(long_description) or
-                self._is_alert_acknowledged(long_description)):
-            self._log.info('Ignored alert : %s.', alert_body)
+        elif alert_body['current_state'] == 'acknowledged':
+            self._log.info('Alert is acknowledged : %s.', alert_body)
 
     def _dispatch_server_normal(self, payload, attempt_no=0):
         '''
@@ -244,7 +228,7 @@ class NewRelicHookSensor(Sensor):
             self._log.warning('Abandoning SERVER_NORMAL_TRIGGER_REF dispatch. Payload %s', payload)
             return
         try:
-            servers = self._get_servers(payload['alert']['servers'])
+            servers = self._get_servers([i['name'] for i in payload['alert']['targets']])
             # make sure all servers are ok.
             all_servers_ok = True
             for name, server in six.iteritems(servers):
@@ -267,35 +251,13 @@ class NewRelicHookSensor(Sensor):
         self._sensor_service.dispatch(trigger, payload)
         self._log.info('Dispatched %s with payload %s.', trigger, payload)
 
-    # alert test methods
-    def _is_alert_opened(self, long_description):
-        return long_description and long_description.startswith('Alert opened')
-
-    def _is_alert_closed(self, long_description):
-        return long_description and long_description.startswith('Alert ended')
-
-    def _is_alert_canceled(self, long_description):
-        return long_description and long_description.startswith('Alert canceled')
-
-    def _is_alert_acknowledged(self, long_description):
-        return long_description and long_description.startswith('Alert acknowledged')
-
-    def _is_escalated_downtime(self, long_description):
-        return long_description and long_description.startswith('Alert escalated to downtime')
-
-    def _is_downtime_recovered(self, long_description):
-        return long_description and long_description.startswith('Alert downtime recovered')
-
     # newrelic API methods
-    def _get_application(self, app_name):
-        params = None
-        if app_name:
-            params = {'filter[name]': app_name}
-        url = urllib_parse.urljoin(self._api_url, 'applications.json')
-        resp = requests.get(url, headers=self._headers, params=params).json()
-        if 'applications' in resp:
+    def _get_application(self, app_id):
+        url = urllib_parse.urljoin(self._api_url + 'applications/', str(app_id) + '.json')
+        resp = requests.get(url, headers=self._headers).json()
+        if 'application' in resp:
             # pick 1st application
-            return resp['applications'][0] if resp['applications'] else None
+            return resp['application'] if resp['application'] else None
         return None
 
     def _get_servers(self, server_names):
