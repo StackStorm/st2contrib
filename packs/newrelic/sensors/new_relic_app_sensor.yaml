@@ -2,6 +2,7 @@
   class_name: "NewRelicHookSensor"
   entry_point: "new_relic_app_sensor.py"
   description: "Sensor which watches for alerts from NewRelic API."
+  enabled: true
   trigger_types:
     -
       name: "WebAppAlertTrigger"
