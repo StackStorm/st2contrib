@@ -800,7 +800,8 @@ toggle_away | Toggle current Home/Away status
 
 Name | Description
 ---- | -----------
-NewRelicHookSensor | Sensor which watches for alerts from NewRelic.
+NewRelicHookSensor | Sensor which watches for alerts from the NewRelic legacy API.
+NewRelicHookSensor | Sensor which watches for alerts from NewRelic API.
 
 #### Actions
 
