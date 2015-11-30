@@ -1,0 +1,19 @@
+---
+name: "article_search"
+runner_type: "python-script"
+description: "This action searches through articles that may be related to a user query"
+enabled: true
+entry_point: "article_search.py"
+parameters:
+  query:
+    type: "string"
+    description: "Query string to send to article search"
+    required: true
+  include_body:
+    type: "boolean"
+    description: "Flag to determine whether to include the entire KB article in the return"
+    default: false
+  limit:
+    type: "integer"
+    description: "The number of results returned"
+    default: 5
