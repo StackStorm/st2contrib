@@ -1,0 +1,2 @@
+requests==2.8.1
+dotted==0.1.8
