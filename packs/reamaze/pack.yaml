@@ -1,8 +1,8 @@
 ### Place information about your pack version here.
 ---
 name: reamaze
-description: reamaze
-version: 0.0.1
-author: jfryman
-email: jfryman@ip-10-255-0-3.us-west-2.compute.internal
+description: re:Amaze Integration Pack
+version: 0.1.0
+author: James Fryman
+email: james@stackstorm.com
 
