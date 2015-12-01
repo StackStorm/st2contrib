@@ -28,7 +28,10 @@ if [ ! -d ${PACK_PATH} ]; then
     exit 2
 fi
 
-source ./scripts/common.sh
+SCRIPT_PATH=$(readlink -f $0)
+DIRECTORY_PATH=$(dirname ${SCRIPT_PATH})
+
+source ${DIRECTORY_PATH}/common.sh
 
 PACK_NAME=$(basename ${PACK_PATH})
 PACK_TESTS_PATH="${PACK_PATH}/tests/"
