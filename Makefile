@@ -13,8 +13,8 @@ lint: requirements flake8 pylint configs-check metadata-check
 .PHONY: pylint
 pylint: requirements .clone_st2_repo .pylint
 
-.PHONY: pack-tests
-pack-tests: .clone_st2_repo .pack-tests
+.PHONY: packs-tests
+packs-tests: .clone_st2_repo .packs-tests
 
 .PHONY: .pylint
 .pylint:
@@ -45,8 +45,8 @@ metadata-check: requirements
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh
 
-.PHONY: .pack-tests
-.pack-tests:
+.PHONY: .packs-tests
+.packs-tests:
 	@echo
 	@echo "==================== pylint ===================="
 	@echo

@@ -11,6 +11,7 @@ env:
     - "TASK=pylint"
     - "TASK=configs-check"
     - "TASK=metadata-check"
+    - "TASK=packs-tests"
 cache:
   directories:
     - $HOME/.pip-cache/
