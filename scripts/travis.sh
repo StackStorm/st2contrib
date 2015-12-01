@@ -15,7 +15,7 @@ elif [ ${TASK} == "configs-check" ]; then
 elif [ ${TASK} == "metadata-check" ]; then
   make metadata-check
 elif [ ${TASK} == "packs-tests" ]; then
-  make packs-check
+  make packs-tests
 else
   echo "Invalid task: ${TASK}"
   exit 2
