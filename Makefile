@@ -14,7 +14,7 @@ lint: requirements flake8 pylint configs-check metadata-check
 pylint: requirements .clone_st2_repo .pylint
 
 .PHONY: packs-tests
-packs-tests: .clone_st2_repo .packs-tests
+packs-tests: requirements .clone_st2_repo .packs-tests
 
 .PHONY: .pylint
 .pylint:
