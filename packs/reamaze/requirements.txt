@@ -1,4 +1,1 @@
 requests==2.8.1
-dotted==0.1.8
-fuzzywuzzy==0.8.0
-python-Levenshtein==0.12.0
