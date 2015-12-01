@@ -9,11 +9,3 @@ parameters:
     type: "string"
     description: "Query string to send to article search"
     required: true
-  include_body:
-    type: "boolean"
-    description: "Flag to determine whether to include the entire KB article in the return"
-    default: false
-  limit:
-    type: "integer"
-    description: "The number of results returned"
-    default: 5
