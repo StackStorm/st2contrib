@@ -18,8 +18,9 @@ if [[ ${PYTHON_BINARY} != *"virtualenv/bin/python" ]]; then
     exit 2
 fi
 
-COMPONENTS=$(find /tmp/st2/* -maxdepth 1 -name "st2*" -type d)
-PACK_PYTHONPATH=$(join ":" ${COMPONENTS})
+ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 1 -name "st2*" -type d)
+PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 echo "Running pylint on pack: ${PACK_NAME}"
 
