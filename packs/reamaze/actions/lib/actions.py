@@ -8,7 +8,8 @@ class BaseAction(Action):
 
         self._email    = self.config.get('email')
         self._token    = self.config.get('api_token')
-        self._api_root = '/api/v1'
+        self._brand    = self.config.get('brand')
+        self._api_root = 'https://{}.reamaze.com/api/v1'.format(self._brand)
         self._headers  = {'Accept': 'application/json'}
 
     def _api_get(self, endpoint, headers={}, params=None):
