@@ -12,6 +12,13 @@ class BaseAction(Action):
         self._api_root = 'https://{}.reamaze.com/api/v1'.format(self._brand)
         self._headers  = {'Accept': 'application/json'}
 
+        if not self._email:
+            raise ValueError('Missing "email" config option')
+        if not self._brand:
+            raise ValueError('Missing "brand" config option')
+        if not self._token:
+            raise ValueError('Missing "api_token" config option')
+
     def _api_get(self, endpoint, headers={}, params=None):
         _url = self._api_root + endpoint
         _headers = self._headers.update(headers)
