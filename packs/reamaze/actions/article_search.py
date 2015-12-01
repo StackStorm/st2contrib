@@ -2,7 +2,7 @@ from lib.actions import BaseAction
 
 
 class ArticleSearch(BaseAction):
-    def run(self, query, include_body=False, limit=5):
+    def run(self, query):
         params = {
             'q': query,
         }
