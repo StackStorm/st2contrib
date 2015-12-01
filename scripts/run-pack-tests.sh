@@ -52,6 +52,7 @@ PACK_PYTHONPATH="$(join ":" ${ST2_COMPONENTS}):${SENSORS_PATH}:${ACTIONS_PATH}"
 
 # Install st2 dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
+pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/test-requirements.txt
 
 # Install test dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
