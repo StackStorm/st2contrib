@@ -1,7 +1,6 @@
-import unittest2
 import mock
 
-from st2tests.mocks.sensor import MockSensorService
+from st2tests.base import BaseSensorTestCase
 
 from docker_container_sensor import DockerSensor
 
@@ -18,11 +17,10 @@ MOCK_CONTAINER_DATA = {
 }
 
 
-class DockerSensorTestCase(unittest2.TestCase):
+class DockerSensorTestCase(BaseSensorTestCase):
     def test_poll(self):
         # TODO: Move to base test class
-        sensor_service = MockSensorService(sensor_wrapper=None)
-        sensor = DockerSensor(sensor_service=sensor_service)
+        sensor = DockerSensor(sensor_service=self.sensor_service)
 
         # No existing and no running containers (e.g. after initial sensor poll)
         sensor._running_containers = {}
@@ -30,19 +28,19 @@ class DockerSensorTestCase(unittest2.TestCase):
         sensor._get_active_containers.return_value = {}
 
         sensor.poll()
-        self.assertEqual(sensor_service._dispatched_triggers, [])
+        self.assertEqual(self.get_dispatched_triggers(), [])
 
-        # One new container
+        # One container started
         sensor._get_active_containers.return_value = {'1': MOCK_CONTAINER_DATA}
 
         sensor.poll()
-        self.assertEqual(len(sensor_service._dispatched_triggers), 1)
-        sensor_service.assertTriggerDispatched(trigger='docker.container_tracker.started',
-                                               payload={'container_info': MOCK_CONTAINER_DATA})
+        self.assertEqual(len(self.get_dispatched_triggers()), 1)
+        self.assertTriggerDispatched(trigger='docker.container_tracker.started',
+                                     payload={'container_info': MOCK_CONTAINER_DATA})
 
         # One container stopped
         sensor._get_active_containers.return_value = {}
         sensor.poll()
-        self.assertEqual(len(sensor_service._dispatched_triggers), 2)
-        sensor_service.assertTriggerDispatched(trigger='docker.container_tracker.stopped',
-                                               payload={'container_info': MOCK_CONTAINER_DATA})
+        self.assertEqual(len(self.get_dispatched_triggers()), 2)
+        self.assertTriggerDispatched(trigger='docker.container_tracker.stopped',
+                                     payload={'container_info': MOCK_CONTAINER_DATA})
