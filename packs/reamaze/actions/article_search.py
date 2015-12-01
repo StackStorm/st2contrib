@@ -9,3 +9,5 @@ class ArticleSearch(BaseAction):
 
         response = self._api_get('/articles', params=params)
         articles = response['articles']
+
+        return articles
