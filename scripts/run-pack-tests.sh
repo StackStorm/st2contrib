@@ -47,6 +47,7 @@ ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
 ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
 
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
+PACK_TESTS_REQUIREMENTS_FILE="${PACK_PATH}/requirements-tests.txt"
 PACK_PYTHONPATH="$(join ":" ${ST2_COMPONENTS}):${SENSORS_PATH}:${ACTIONS_PATH}"
 
 # Install st2 dependencies
@@ -60,6 +61,11 @@ if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
     pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
 fi
 
+# Install pack test dependencies (if any)
+if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
+fi
+
 # Set PYTHONPATH, make sure it contains st2 components in PATH
 export PYTHONPATH="${PYTHONPATH}:${PACK_PYTHONPATH}"
 
@@ -67,4 +73,6 @@ echo "Running tests for pack: ${PACK_NAME}"
 
 if [ -d ${PACK_TESTS_PATH} ]; then
     nosetests -s -v ${PACK_TESTS_PATH} || exit 1
+else:
+    echo "No tests found."
 fi
