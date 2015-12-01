@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Script which runs tests for a particular pack
+# Script which prepares the environment and runs tests for a particular pack
 
 PACK_PATH=$1
 
@@ -28,8 +28,32 @@ if [ ! -d ${PACK_PATH} ]; then
     exit 2
 fi
 
+source ./scripts/common.sh
+
 PACK_NAME=$(basename ${PACK_PATH})
 PACK_TESTS_PATH="${PACK_PATH}/tests/"
+
+###################
+# Environment setup
+###################
+
+ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 1 -name "st2*" -type d)
+
+PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
+PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
+
+# Install test dependencies
+pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
+
+# Install pack dependencies
+if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
+fi
+
+# Set PYTHONPATH, make sure it contains st2 components in PATH
+#export PYTHONPATH=${PYTHONPATH}:${PACK_PYTHONPATH}
+echo ${PYTHONPATH}
 
 echo "Running tests for pack: ${PACK_NAME}"
 
