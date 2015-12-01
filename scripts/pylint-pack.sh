@@ -4,6 +4,7 @@ PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
 
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
+PACK_TESTS_REQUIREMENTS_FILE="${PACK_PATH}/requirements-tests.txt"
 PYTHON_BINARY=`which python`
 
 SCRIPT_PATH=$(readlink -f $0)
@@ -37,12 +38,19 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
 fi
 
 # Install per-pack dependencies
-# Install base dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-dev.txt
+
+# Install test dependencies
+pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
 
 # Install pack dependencies
 if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
     pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
+fi
+
+# Install pack test dependencies (if any)
+if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
 fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
