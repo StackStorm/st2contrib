@@ -36,15 +36,21 @@ source ${DIRECTORY_PATH}/common.sh
 PACK_NAME=$(basename ${PACK_PATH})
 PACK_TESTS_PATH="${PACK_PATH}/tests/"
 
+SENSORS_PATH="${PACK_PATH}/sensors/"
+ACTIONS_PATH="${PACK_PATH}/actions/"
+
 ###################
 # Environment setup
 ###################
 
 ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
-ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 1 -name "st2*" -type d)
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
 
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
-PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
+PACK_PYTHONPATH="$(join ":" ${ST2_COMPONENTS}):${SENSORS_PATH}:${ACTIONS_PATH}"
+
+# Install st2 dependencies
+pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
 
 # Install test dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
@@ -55,8 +61,7 @@ if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
 fi
 
 # Set PYTHONPATH, make sure it contains st2 components in PATH
-#export PYTHONPATH=${PYTHONPATH}:${PACK_PYTHONPATH}
-echo ${PYTHONPATH}
+export PYTHONPATH="${PYTHONPATH}:${PACK_PYTHONPATH}"
 
 echo "Running tests for pack: ${PACK_NAME}"
 
