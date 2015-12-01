@@ -6,7 +6,10 @@ PACK_NAME=$(basename ${PACK_PATH})
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PYTHON_BINARY=`which python`
 
-function join { local IFS="$1"; shift; echo "$*"; }
+SCRIPT_PATH=$(readlink -f $0)
+DIRECTORY_PATH=$(dirname ${SCRIPT_PATH})
+
+source ./scripts/common.sh
 
 # Note: We assume this script is running inside a virtual environment into which we install the
 # the pack dependencies. This way pylint can also correctly instrospect all the dependency,
