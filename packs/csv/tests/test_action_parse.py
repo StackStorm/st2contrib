@@ -11,6 +11,7 @@ first,last,year
 name1,surename1,1990
 """.strip()
 
+
 class ParseCSVActionTestCase(unittest2.TestCase):
     def test_run(self):
         result = ParseCSVAction().run(data=MOCK_DATA, delimiter=',')
