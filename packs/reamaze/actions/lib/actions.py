@@ -6,11 +6,11 @@ class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
 
-        self._email    = self.config.get('email')
-        self._token    = self.config.get('api_token')
-        self._brand    = self.config.get('brand')
+        self._email = self.config.get('email')
+        self._token = self.config.get('api_token')
+        self._brand = self.config.get('brand')
         self._api_root = 'https://{}.reamaze.com/api/v1'.format(self._brand)
-        self._headers  = {'Accept': 'application/json'}
+        self._headers = {'Accept': 'application/json'}
 
         if not self._email:
             raise ValueError('Missing "email" config option')
