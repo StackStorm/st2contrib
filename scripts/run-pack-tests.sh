@@ -73,6 +73,6 @@ echo "Running tests for pack: ${PACK_NAME}"
 
 if [ -d ${PACK_TESTS_PATH} ]; then
     nosetests -s -v ${PACK_TESTS_PATH} || exit 1
-else:
+else
     echo "No tests found."
 fi
