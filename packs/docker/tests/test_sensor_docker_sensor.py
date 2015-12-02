@@ -18,15 +18,17 @@ MOCK_CONTAINER_DATA = {
 
 
 class DockerSensorTestCase(BaseSensorTestCase):
+    sensor_cls = DockerSensor
+
     def test_poll(self):
-        # TODO: Move to base test class
-        sensor = DockerSensor(sensor_service=self.sensor_service)
+        sensor = self.get_sensor_instance()
 
         # No existing and no running containers (e.g. after initial sensor poll)
         sensor._running_containers = {}
         sensor._get_active_containers = mock.Mock()
         sensor._get_active_containers.return_value = {}
 
+        # Initial poll, no containers
         sensor.poll()
         self.assertEqual(self.get_dispatched_triggers(), [])
 
