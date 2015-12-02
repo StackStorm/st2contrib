@@ -1,5 +1,6 @@
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 VIRTUALENV_DIR ?= virtualenv
+ST2_REPO_BRANCH ?= master
 
 # All components are prefixed by st2
 COMPONENTS := $(wildcard /tmp/st2/st2*)
@@ -58,7 +59,7 @@ metadata-check: requirements
 	@echo "==================== cloning st2 repo ===================="
 	@echo
 	@rm -rf /tmp/st2
-	@git clone --depth=1 https://github.com/StackStorm/st2.git /tmp/st2
+	@git clone https://github.com/StackStorm/st2.git --depth 1 --single-branch --branch $(ST2_REPO_BRANCH) /tmp/st2
 
 .PHONY: requirements
 requirements: virtualenv
