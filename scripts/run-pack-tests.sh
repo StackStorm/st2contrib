@@ -39,6 +39,14 @@ PACK_TESTS_PATH="${PACK_PATH}/tests/"
 SENSORS_PATH="${PACK_PATH}/sensors/"
 ACTIONS_PATH="${PACK_PATH}/actions/"
 
+# Bail early if no tests are found, this way we don't need to wait for
+# environment set up.
+if [  ! -d ${PACK_TESTS_PATH} ]; then
+    echo "Running tests for pack: ${PACK_NAME}"
+    echo "No tests found."
+    exit 0
+fi
+
 ###################
 # Environment setup
 ###################
@@ -71,9 +79,4 @@ fi
 export PYTHONPATH="${PYTHONPATH}:${PACK_PYTHONPATH}"
 
 echo "Running tests for pack: ${PACK_NAME}"
-
-if [ -d ${PACK_TESTS_PATH} ]; then
-    nosetests -s -v ${PACK_TESTS_PATH} || exit 1
-else
-    echo "No tests found."
-fi
+nosetests -s -v ${PACK_TESTS_PATH} || exit 1
