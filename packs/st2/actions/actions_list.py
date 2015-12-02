@@ -5,24 +5,25 @@ __all__ = [
     'St2ActionsListAction'
 ]
 
-EXCLUDE_ATTRIBUTES = [
-    'parameters'
-]
 
-
-def format_result(result):
-    return format_client_list_result(result=result, exclude_attributes=EXCLUDE_ATTRIBUTES)
+def format_result(result, exclude_attributes):
+    return format_client_list_result(result=result, exclude_attributes=exclude_attributes)
 
 
 class St2ActionsListAction(St2BaseAction):
-    def run(self, pack=None, limit=10):
+    def run(self, pack=None, limit=None, exclude=None):
         kwargs = {}
-        kwargs['limit'] = limit
+
+        if limit:
+            kwargs['limit'] = limit
 
         if pack:
             kwargs['pack'] = pack
 
         result = self._run_client_method(method=self.client.actions.get_all,
                                          method_kwargs=kwargs,
-                                         format_func=format_result)
+                                         format_func=format_result,
+                                         format_kwargs={
+                                             'exclude_attributes': exclude
+                                         })
         return result

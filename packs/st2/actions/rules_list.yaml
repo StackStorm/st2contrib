@@ -14,3 +14,10 @@ parameters:
     description: "Maximum number of rules to return"
     default: 10
     required: false
+  exclude:
+    type: "array"
+    description: "List of attributes to exclude"
+    default:
+      - trigger
+      - criteria
+      - action
