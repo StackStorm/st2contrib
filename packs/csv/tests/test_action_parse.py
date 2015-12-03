@@ -1,4 +1,4 @@
-import unittest2
+from st2tests.base import BaseActionTestCase
 
 from parse_csv import ParseCSVAction
 
@@ -17,7 +17,7 @@ name1|surename1|1990
 """.strip()
 
 
-class ParseCSVActionTestCase(unittest2.TestCase):
+class ParseCSVActionTestCase(BaseActionTestCase):
     def test_run_comma_delimiter(self):
         result = ParseCSVAction().run(data=MOCK_DATA_1, delimiter=',')
         expected = [

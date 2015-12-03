@@ -1,4 +1,4 @@
-import unittest2
+from st2tests.base import BaseActionTestCase
 
 from parse_xml import ParseXMLAction
 
@@ -16,7 +16,7 @@ MOCK_DATA_1 = """
 """.strip()
 
 
-class ParseXMLActionTestCase(unittest2.TestCase):
+class ParseXMLActionTestCase(BaseActionTestCase):
     def test_run(self):
         result = ParseXMLAction().run(data=MOCK_DATA_1)
         expected = {
