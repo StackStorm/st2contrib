@@ -52,7 +52,7 @@ metadata-check: requirements
 .PHONY: .packs-tests
 .packs-tests:
 	@echo
-	@echo "==================== pylint ===================="
+	@echo "==================== packs-tests ===================="
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p FILENAME
 
