@@ -1,6 +1,9 @@
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 VIRTUALENV_DIR ?= virtualenv
+ST2_REPO_PATH ?= /tmp/st2
 ST2_REPO_BRANCH ?= master
+
+export ST2_REPO_PATH
 
 # All components are prefixed by st2
 COMPONENTS := $(wildcard /tmp/st2/st2*)
@@ -51,7 +54,7 @@ metadata-check: requirements
 	@echo
 	@echo "==================== pylint ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/run-pack-tests.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p FILENAME
 
 .PHONY: .clone_st2_repo
 .clone_st2_repo:
