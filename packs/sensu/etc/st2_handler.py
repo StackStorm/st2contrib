@@ -13,12 +13,14 @@ from urlparse import urljoin
 try:
     import requests
 except ImportError:
-    raise ImportError('Missing dependency "requests". Do ``pip install requests``.')
+    raise ImportError('Missing dependency "requests". \
+        Do ``pip install requests``.')
 
 try:
     import yaml
 except ImportError:
-    raise ImportError('Missing dependency "pyyaml". Do ``pip install pyyaml``.')
+    raise ImportError('Missing dependency "pyyaml". \
+        Do ``pip install pyyaml``.')
 
 # ST2 configuration
 
@@ -39,6 +41,7 @@ REGISTERED_WITH_ST2 = False
 
 OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
 
+
 def _get_headers():
     b64auth = base64.b64encode(
         "%s:%s" %
@@ -47,20 +50,22 @@ def _get_headers():
     content_header = "application/json"
     return {"Authorization": auth_header, "Content-Type": content_header}
 
+
 def _check_stash(client, check):
     sensu_api = "http://%s:%i" % (SENSU_HOST, SENSU_PORT)
     endpoints = [
         "silence/%s" % client,
         "silence/%s/%s" % (client, check),
-        "silence/all/%s" % check ]
+        "silence/all/%s" % check]
 
     for endpoint in endpoints:
-        url = "%s/stashes/%s" % (sensu_api,endpoint)
+        url = "%s/stashes/%s" % (sensu_api, endpoint)
         response = requests.get(url, headers=_get_headers())
-        #print "%s %s" % (url, str(response.status_code))
+        # print "%s %s" % (url, str(response.status_code))
         if response.status_code == 200:
             print "Check or client is stashed"
             sys.exit(0)
+
 
 def _create_trigger_type():
     try:
@@ -77,14 +82,16 @@ def _create_trigger_type():
         if ST2_AUTH_TOKEN:
             headers['X-Auth-Token'] = ST2_AUTH_TOKEN
 
-        post_resp = requests.post(url, data=json.dumps(payload), headers=headers)
+        post_resp = requests.post(url, data=json.dumps(payload),
+                                  headers=headers)
     except:
         sys.stderr.write('Unable to register trigger type with st2.')
         raise
     else:
         status = post_resp.status_code
         if status not in OK_CODES:
-            sys.stderr.write('Failed to register trigger type with st2. HTTP_CODE: %d\n' %
+            sys.stderr.write('Failed to register trigger type with st2. \
+                HTTP_CODE: %d\n' %
                              status)
             raise
         else:
@@ -114,12 +121,13 @@ def _register_with_st2():
     global REGISTERED_WITH_ST2
     try:
         url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
-        #sys.stdout.write('GET: %s\n' % url)
+        # sys.stdout.write('GET: %s\n' % url)
         if not ST2_AUTH_TOKEN:
             _get_auth_token()
 
         if ST2_AUTH_TOKEN:
-            get_resp = requests.get(url, headers={'X-Auth-Token': ST2_AUTH_TOKEN})
+            get_resp = requests.get(url, headers={'X-Auth-Token':
+                                                  ST2_AUTH_TOKEN})
         else:
             get_resp = requests.get(url)
 
@@ -152,16 +160,18 @@ def _post_event_to_st2(url, body):
     if ST2_AUTH_TOKEN:
         headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
-        #sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
+        # sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
         r = requests.post(url, data=json.dumps(body), headers=headers)
     except:
         sys.stderr.write('Cannot connect to st2 endpoint.')
     else:
         status = r.status_code
         if status not in OK_CODES:
-            sys.stderr.write('Failed posting sensu event to st2. HTTP_CODE: %d\n' % status)
+            sys.stderr.write('Failed posting sensu event to st2. HTTP_CODE: \
+                %d\n' % status)
         else:
-            sys.stdout.write('Sent sensu event to st2. HTTP_CODE: %d\n' % status)
+            sys.stdout.write('Sent sensu event to st2. HTTP_CODE: \
+                %d\n' % status)
 
 
 def main(args):
@@ -196,7 +206,6 @@ if __name__ == '__main__':
             SENSU_PORT = config.get('sensu_port', '4567')
             SENSU_USER = config.get('sensu_user', None)
             SENSU_PASS = config.get('sensu_pass', None)
-
 
         if not REGISTERED_WITH_ST2:
             _register_with_st2()
