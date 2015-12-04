@@ -4,9 +4,13 @@ PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
 
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
+PACK_TESTS_REQUIREMENTS_FILE="${PACK_PATH}/requirements-tests.txt"
 PYTHON_BINARY=`which python`
 
-function join { local IFS="$1"; shift; echo "$*"; }
+SCRIPT_PATH=$(readlink -f $0)
+DIRECTORY_PATH=$(dirname ${SCRIPT_PATH})
+
+source ./scripts/common.sh
 
 # Note: We assume this script is running inside a virtual environment into which we install the
 # the pack dependencies. This way pylint can also correctly instrospect all the dependency,
@@ -15,12 +19,13 @@ if [[ ${PYTHON_BINARY} != *"virtualenv/bin/python" ]]; then
     exit 2
 fi
 
-COMPONENTS=$(find /tmp/st2/* -maxdepth 1 -name "st2*" -type d)
-PACK_PYTHONPATH=$(join ":" ${COMPONENTS})
+ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 1 -name "st2*" -type d)
+PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 echo "Running pylint on pack: ${PACK_NAME}"
 
-if [ ! -d "${pack_path}/actions" -a ! -d "${pack_path}/sensors" -a ! -d "${pack_path}/etc" ]; then
+if [ ! -d "${PACK_PATH}/actions" -a ! -d "${PACK_PATH}/sensors" -a ! -d "${PACK_PATH}/etc" ]; then
     echo "skipping pack without any actions and sensors"
     exit 0
 fi
@@ -33,12 +38,19 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
 fi
 
 # Install per-pack dependencies
-# Install base dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-dev.txt
+
+# Install test dependencies
+pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
 
 # Install pack dependencies
 if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
     pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
+fi
+
+# Install pack test dependencies (if any)
+if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
 fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
