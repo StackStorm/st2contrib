@@ -19,3 +19,4 @@ parameters:
     description: "List of attributes to exclude"
     default:
       - parameters
+      - notify
