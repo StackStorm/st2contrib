@@ -20,7 +20,7 @@ class CreateMessage(BaseAction):
         }
 
         if suppress_notification:
-            params['suppress_notificiaton'] = True
+            payload['suppress_notificiaton'] = True
 
         endpoint = '/conversations/{}/messages'.format(slug)
         response = self._api_post(endpoint, json=payload)
