@@ -1,7 +1,6 @@
 # From https://www.reamaze.com/api/post_messages
 
 from lib.actions import BaseAction
-import json
 
 
 class CreateMessage(BaseAction):
