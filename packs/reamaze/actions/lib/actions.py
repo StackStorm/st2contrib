@@ -28,3 +28,13 @@ class BaseAction(Action):
 
         r.raise_for_status()
         return r.json()
+
+    def _api_post(self, endpoint, headers={}, data=None, json=None):
+        _url = self._api_root + endpoint
+        _headers = self._headers.update(headers)
+
+        r = requests.post(url=_url, auth=(self._email, self._token),
+                         data=data, headers=_headers, json=json)
+
+        r.raise_for_status()
+        return r.json()
