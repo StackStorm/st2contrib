@@ -964,6 +964,7 @@ set_vm_metadata_item | Set a value of a metadata item for a provided VM.
 Name | Description
 ---- | -----------
 article_search | This action searches through articles that may be related to a user query
+create_message | Create a new message under a specific conversation
 
 ### salt pack
 
