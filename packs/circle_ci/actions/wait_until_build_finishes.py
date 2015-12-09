@@ -20,11 +20,11 @@ class WaitUntilBuildFinishes(CircleCI):
             )
 
             if response.status_code != httplib.OK:
-                msg = ('Build number %s for project ' +
-                       '%s not found.' % (project, build_number))
+                msg = ('Build number %s for project ' % build_number +
+                       '%s not found.' % project)
                 raise Exception(msg)
 
-            response = response.json
+            response = response.json()
 
             if response['lifecycle'] == 'finished':
                 return True

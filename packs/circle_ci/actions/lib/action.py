@@ -31,6 +31,7 @@ class CircleCI(Action):
     def _perform_request(self, path, method, data=None, requires_auth=True,
                          extra_headers=None):
         url = API_URL + path
+        self.logger.info('URL: %s', url)
 
         headers = self._get_base_headers()
         if requires_auth:

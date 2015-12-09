@@ -19,6 +19,10 @@ class GetBuildNumberAction(CircleCI):
         if response.status_code != httplib.OK:
             raise Exception('Project %s not found.' % project)
 
-        for build in response.json:
+        for build in response.json():
             if build['vcs_revision'] == vcs_revision:
-                return build['build_number']
+                build_num = build.get('build_num', None)
+                if not build_num:
+                    raise Exception(
+                        'API must have changed. build_num not found.')
+                return build_num
