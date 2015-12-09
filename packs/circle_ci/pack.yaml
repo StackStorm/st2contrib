@@ -1,0 +1,10 @@
+name: Circle CI
+description: Pack which allows integration with Circle CI.
+keywords:
+ - circle
+ - circle ci
+ - continous integration
+ - ci
+version: 0.1.0
+author: StackStorm dev
+email: support@stackstorm.com

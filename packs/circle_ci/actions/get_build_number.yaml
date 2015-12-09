@@ -1,0 +1,19 @@
+name: get_build_number
+runner_type: run-python
+description: Get build number for given SHA.
+enabled: true
+entry_point: get_build_number.py
+parameters:
+  vcs_revision:
+    type: string
+    description: Commit SHA/revision (usually github SHA).
+    required: true
+  project:
+    type: string
+    description: Name of project in circle ci.
+    required: true
+  search_limit:
+    type: number
+    description: Number of previous builds to search.
+    required: false
+    default: 10
