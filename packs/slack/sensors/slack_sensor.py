@@ -180,6 +180,7 @@ class SlackSensor(PollingSensor):
                 'is_group': channel_info.get('is_group', False),
             },
             'timestamp': int(float(data['ts'])),
+            'timestamp_raw': data['ts'],
             'text': text
         }
 

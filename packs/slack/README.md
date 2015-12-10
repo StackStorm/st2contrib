@@ -81,6 +81,7 @@ Example trigger payload:
         "name": "test"
     },
     "timestamp": 1419164091,
+    "timestamp_raw": "1419164091.00005",
     "text": "This is a test message."
 }
 ```
