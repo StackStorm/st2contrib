@@ -18,3 +18,5 @@
             type: "string"
           timestamp:
             type: "integer"
+          timestamp_raw:
+            type: "string"
