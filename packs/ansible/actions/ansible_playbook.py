@@ -15,10 +15,10 @@ class AnsiblePlaybookRunner(AnsibleBaseRunner):
     """
     BINARY_NAME = 'ansible-playbook'
     REPLACEMENT_RULES = {
-        '--verbose=v': '-v',
-        '--verbose=vv': '-vv',
-        '--verbose=vvv': '-vvv',
         '--verbose=vvvv': '-vvvv',
+        '--verbose=vvv': '-vvv',
+        '--verbose=vv': '-vv',
+        '--verbose=v': '-v',
         '--become_method': '--become-method',
         '--become_user': '--become-user',
         '--extra_vars': '--extra-vars',
