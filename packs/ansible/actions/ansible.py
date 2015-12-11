@@ -20,6 +20,16 @@ class AnsibleRunner(AnsibleBaseRunner):
         '--verbose=vv': '-vv',
         '--verbose=vvv': '-vvv',
         '--verbose=vvvv': '-vvvv',
+        '--become_method': '--become-method',
+        '--become_user': '--become-user',
+        '--extra_vars': '--extra-vars',
+        '--inventory_file': '--inventory-file',
+        '--list_hosts': '--list-hosts',
+        '--module_path': '--module-path',
+        '--module_name': '--module-name',
+        '--one_line': '--one-line',
+        '--private_key': '--private-key',
+        '--vault_password_file': '--vault-password-file',
     }
 
 if __name__ == '__main__':

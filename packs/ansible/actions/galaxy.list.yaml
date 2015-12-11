@@ -29,6 +29,6 @@ parameters:
     position: 0
     default: list
     immutable: true
-  roles-path:
+  roles_path:
     description: "The path to the directory containing your roles. The default is the roles_path configured in your ansible.cfg file (/etc/ansible/roles if not configured) [-p]"
     type: string
