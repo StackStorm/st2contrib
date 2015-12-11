@@ -34,7 +34,13 @@ class BaseAction(Action):
         _headers = self._headers.update(headers)
 
         r = requests.post(url=_url, auth=(self._email, self._token),
-                         data=data, headers=_headers, json=json)
+                          data=data, headers=_headers, json=json)
 
         r.raise_for_status()
         return r.json()
+
+    def _convert_slug(self, slug_name):
+        if not slug_name:
+            return None
+
+        return slug_name.lower().replace(' ', '-')
