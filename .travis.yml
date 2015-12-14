@@ -19,6 +19,10 @@ services:
   # Note: MongoDB and RabbitMQ is needed for packs-resource-register check
   - mongodb
   - rabbitmq
+addons:
+  apt:
+    packages:
+      - libsox-dev  # needed by witai pack
 cache:
   directories:
     - $HOME/.pip-cache/
