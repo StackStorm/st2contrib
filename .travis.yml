@@ -15,6 +15,9 @@ env:
     - "TASK=metadata-check"
     - "TASK=packs-resource-register"
     - "TASK=packs-tests"
+services:
+  # Note: MongoDB is needed for packs-resource-register check
+  - mongodb
 cache:
   directories:
     - $HOME/.pip-cache/
