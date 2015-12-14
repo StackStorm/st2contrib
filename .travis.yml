@@ -13,6 +13,7 @@ env:
     - "TASK=pylint"
     - "TASK=configs-check"
     - "TASK=metadata-check"
+    - "TASK=packs-register-resources"
     - "TASK=packs-tests"
 cache:
   directories:

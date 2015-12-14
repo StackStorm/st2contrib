@@ -14,6 +14,8 @@ elif [ ${TASK} == "configs-check" ]; then
   make configs-check
 elif [ ${TASK} == "metadata-check" ]; then
   make metadata-check
+elif [ ${TASK} == "pack-register-resources" ]; then
+  make packs-register-resources
 elif [ ${TASK} == "packs-tests" ]; then
   make packs-tests
 else
