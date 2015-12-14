@@ -38,7 +38,7 @@ if [[ ${PYTHON_BINARY} != *"virtualenv/bin/python" ]]; then
 fi
 
 ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
-ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 1 -name "st2*" -type d)
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
 PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 echo "Running pylint on pack: ${PACK_NAME}"
