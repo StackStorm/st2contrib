@@ -23,11 +23,30 @@ Related tools that help make it easier to integrate and consume StackStorm conte
 
 ## Tests and Automated Checks
 
-To run tests and all the other automated checks which run on Travis CI, run the following
-command:
+By default, Travis CI runs the following checks (makefiles tasks):
+
+* ``flake8`` - Runs ``flake8`` on all the Python files.
+* ``pylint`` - Runs ``pylint`` on all the Python files.
+* ``configs-check`` - Makes sure that all the JSON and YAML resource metadata
+  files contain correct syntax.
+* ``metadata-check`` - Verifies that each pack contains pack metadata file
+  (``pack.yaml``).
+* ``packs-resource-register`` - Registers resources from all the packs and
+  makes sure the registration succeeds.
+* ``packs-tests`` - Runs tests for all the packs.
+
+To run all those checks locally, you can use the following command:
 
 ```bash
 make all
+```
+
+By default, this command will only perform checks on changed files and packs. If you want
+to run checks on all the files and packs (regardless if they changed or not), you can do
+that by specifying ``FORCE_CHECK_ALL_FILES=true`` environment variable as show below.
+
+```bash
+FORCE_CHECK_ALL_FILES=true make all
 ```
 
 ## Available Packs

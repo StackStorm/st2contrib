@@ -18,19 +18,14 @@
 # Script which validates that a pack contains metaata file (pack.yaml).
 #
 
-FILE=$1
+PACK_DIR=$1
+PACK_NAME=$(basename $PACK_DIR)
 
-for pack in packs/*; do
-    pack=$(basename "${pack}")
+if [ ${PACK_NAME} = "linux" ]; then
+    exit 0
+fi
 
-    if [ ${pack} == "linux" ]; then
-        continue
-    fi
-
-    if [ ! -e "packs/${pack}/pack.yaml" ]; then
-        echo "Pack "${pack}" is missing pack.yaml file"
-        exit 1;
-    fi
-done
-
-exit 0
+if [ ! -e "${PACK_DIR}/pack.yaml" ]; then
+    echo "Pack "${pack}" is missing pack.yaml file"
+    exit 1
+fi

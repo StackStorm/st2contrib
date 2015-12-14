@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+ROOT_DIR=$(git rev-parse --show-toplevel)
+METHOD=$1
+
+case $METHOD in
+  files|directories|packs|py|yaml|json)
+    $ROOT_DIR/scripts/utils/git-changes-$METHOD $ROOT_DIR
+    ;;
+  *)
+    echo "Unknown type. Use files, directories, or packs"
+    ;;
+esac
