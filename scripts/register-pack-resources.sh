@@ -22,10 +22,20 @@
 PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
 
+source ./scripts/common.sh
+
 ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
+ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
+PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 REGISTER_SCRIPT_PATH="${ST2_REPO_PATH}/st2common/bin/st2-register-content"
 REGISTER_SCRIPT_FLAGS="-v --register-fail-on-failure --config-file=${ST2_REPO_PATH}/conf/st2.tests.conf --register-all"
+
+# Install st2 dependencies
+pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
+
+# Set PYTHONPATH to include st2 components
+export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
 echo "Registering all content from pack ${PACK_NAME}"
 ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_FLAGS} --register-pack=${PACK_PATH}
