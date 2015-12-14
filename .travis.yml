@@ -16,8 +16,9 @@ env:
     - "TASK=packs-resource-register"
     - "TASK=packs-tests"
 services:
-  # Note: MongoDB is needed for packs-resource-register check
+  # Note: MongoDB and RabbitMQ is needed for packs-resource-register check
   - mongodb
+  - rabbitmq
 cache:
   directories:
     - $HOME/.pip-cache/
