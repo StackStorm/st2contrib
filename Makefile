@@ -57,8 +57,7 @@ metadata-check: requirements
 	@echo
 	@echo "==================== packs-resource-register ===================="
 	@echo
-	# Note: We skip sensu,nagios packs since rule requires trigger to be registered using the handler script
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d \( ! -iname "sensu" ! -name "nagios" \)  -print0 | xargs -0 -I FILENAME scripts/register-pack-resources.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/register-pack-resources.sh FILENAME
 
 .PHONY: .packs-tests
 .packs-tests:

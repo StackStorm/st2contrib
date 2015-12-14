@@ -29,7 +29,15 @@ ST2_COMPONENTS=$(get_st2_components)
 PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 REGISTER_SCRIPT_PATH="${ST2_REPO_PATH}/st2common/bin/st2-register-content"
-REGISTER_SCRIPT_FLAGS="-v --register-fail-on-failure --config-file=scripts/st2.tests.conf --register-all"
+REGISTER_SCRIPT_COMMON_FLAGS="-v --register-fail-on-failure --config-file=scripts/st2.tests.conf"
+
+# Note: Rules in some packs rely on triggers which are created lazily later on
+# so we can't test rule registration for those packs.
+if [ ${PACK_NAME} = "sensu" ] || [ ${PACK_NAME} = "nagios" ]  || [ ${PACK_NAME} = "hubot" ]; then
+    REGISTER_SCRIPT_REGISTER_FLAGS="--register-sensors --register-actions --register-aliases --register-policies"
+else
+    REGISTER_SCRIPT_REGISTER_FLAGS="--register-all"
+fi
 
 # Install st2 dependencies
 pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
@@ -37,8 +45,8 @@ pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.t
 # Set PYTHONPATH to include st2 components
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
-echo "Registering all content from pack ${PACK_NAME}"
-${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_FLAGS} --register-pack=${PACK_PATH}
+echo "Registering content from pack ${PACK_NAME}"
+${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_PATH}
 EXIT_CODE=$?
 
 if [ ${EXIT_CODE} -ne 0 ]; then
