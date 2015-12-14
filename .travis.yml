@@ -22,6 +22,7 @@ services:
 addons:
   apt:
     packages:
+      - git  # needed by git-changes scripts
       - libsox-dev  # needed by witai pack
 cache:
   directories:

@@ -1,9 +1,15 @@
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+CHANGED_FILES := $(shell $(ROOT_DIR)/scripts/utils/git-changes files)
+CHANGED_DIRECTORIES := $(shell $(ROOT_DIR)/scripts/utils/git-changes directories)
+CHANGED_PACKS := $(shell $(ROOT_DIR)/scripts/utils/git-changes packs)
+CHANGED_PY := $(shell ${ROOT_DIR}/scripts/utils/git-changes py)
+CHANGED_YAML := $(shell $(ROOT_DIR)/scripts/utils/git-changes yaml)
+CHANGED_JSON := $(shell $(ROOT_DIR)/scripts/utils/git-changes json)
 VIRTUALENV_DIR ?= virtualenv
 ST2_REPO_PATH ?= /tmp/st2
 ST2_REPO_BRANCH ?= register_content_fail_on_failure_flag
 
-export ST2_REPO_PATH
+export ST2_REPO_PATH ROOT_DIR
 
 # All components are prefixed by st2
 COMPONENTS := $(wildcard /tmp/st2/st2*)
@@ -28,22 +34,22 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	@echo "==================== pylint ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/pylint-pack.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/pylint-pack.sh $$pack; fi; done
 
 .PHONY: flake8
 flake8: requirements
 	@echo
 	@echo "==================== flake8 ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.py" -print0 | xargs -0 flake8 --config ./.flake8
+	. $(VIRTUALENV_DIR)/bin/activate; for file in ${CHANGED_PY}; do if [ -n "$$file" ]; then flake8 --config ./.flake8 $$file; fi; done
 
 .PHONY: configs-check
 configs-check: requirements
 	@echo
 	@echo "==================== configs-check ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.json" -print0 | xargs -0 -I FILENAME ./scripts/validate-json-file.sh FILENAME
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -name "*.yaml" -print0 | xargs -0 -I FILENAME ./scripts/validate-yaml-file.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; for file in $(CHANGED_YAML); do if [ -n "$$file" ]; then ./scripts/validate-yaml-file.sh $$file; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; for file in $(CHANGED_JSON); do if [ -n "$$file" ]; then ./scripts/validate-json-file.sh $$file; fi; done
 
 .PHONY: metadata-check
 metadata-check: requirements
@@ -57,14 +63,14 @@ metadata-check: requirements
 	@echo
 	@echo "==================== packs-resource-register ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME scripts/register-pack-resources.sh FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/register-pack-resources.sh $$pack; fi; done
 
 .PHONY: .packs-tests
 .packs-tests:
 	@echo
 	@echo "==================== packs-tests ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d -print0 | xargs -0 -I FILENAME $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p FILENAME
+	. $(VIRTUALENV_DIR)/bin/activate; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p $$pack; fi; done
 
 .PHONY: .clone_st2_repo
 .clone_st2_repo:

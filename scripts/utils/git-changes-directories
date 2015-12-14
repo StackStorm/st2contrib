@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+GIT_DIRECTORY=$1
+
+cd $GIT_DIRECTORY
+echo $(git diff --name-only master | xargs -I FILENAME dirname FILENAME | awk '/^\./ {next} /.*/{print "./"$1}')
