@@ -22,6 +22,7 @@ class TextQueryAction(Action):
         if not access_token:
             raise Exception('Missing API key for application %s' % application)
 
+        # pylint: disable=no-member
         wit.init()
         response = wit.text_query(text, access_token)
         wit.close()
