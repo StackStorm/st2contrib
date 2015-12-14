@@ -17,8 +17,8 @@ lint: requirements flake8 pylint configs-check metadata-check
 .PHONY: pylint
 pylint: requirements .clone_st2_repo .pylint
 
-.PHONY: resource-register
-resource-register: requirements .clone_st2_repo .resource-register
+.PHONY: packs-resource-register
+packs-resource-register: requirements .clone_st2_repo .packs-resource-register
 
 .PHONY: packs-tests
 packs-tests: requirements .clone_st2_repo .packs-tests
@@ -52,10 +52,10 @@ metadata-check: requirements
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh
 
-.PHONY: .resource-register
-.resource-register:
+.PHONY: .packs-resource-register
+.packs-resource-register:
 	@echo
-	@echo "==================== resource-register ===================="
+	@echo "==================== packs-resource-register ===================="
 	@echo
 	# Note: We skip sensu,nagios packs since rule requires trigger to be registered using the handler script
 	. $(VIRTUALENV_DIR)/bin/activate; find ${ROOT_DIR}/packs/* -maxdepth 0 -type d \( ! -iname "sensu" ! -name "nagios" \)  -print0 | xargs -0 -I FILENAME scripts/register-pack-resources.sh FILENAME
