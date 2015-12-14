@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
 if [ -z ${TASK} ]; then
   echo "No task provided"
   exit 2
+fi
+
+# When running on master branch we want to run checks on all the files / packs
+# not only on changes ones.
+if [ "${GIT_BRANCH}" = "master" ]; then
+    export FORCE_CHECK_ALL_FILES=true
 fi
 
 if [ ${TASK} == "flake8" ]; then
