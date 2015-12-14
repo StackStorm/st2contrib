@@ -66,7 +66,7 @@ class CubeSensorsMeasurementsSensor(PollingSensor):
             device_uid=device_uid)
         new_last_measurement_timestamp = isotime.parse(result['time'])
         new_last_measurement_timestamp = int(time.mktime(
-            new_last_measurement_timestamp.timetuple()))
+            new_last_measurement_timestamp.timetuple()))  # pylint: disable=no-member
 
         if (existing_last_measurement_timestamp and
                 new_last_measurement_timestamp <= existing_last_measurement_timestamp):
