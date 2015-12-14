@@ -15,7 +15,7 @@ export ST2_REPO_PATH ROOT_DIR
 COMPONENTS := $(wildcard /tmp/st2/st2*)
 
 .PHONY: all
-all: requirements lint
+all: requirements lint packs-resource-register packs-tests
 
 .PHONY: lint
 lint: requirements flake8 pylint configs-check metadata-check
