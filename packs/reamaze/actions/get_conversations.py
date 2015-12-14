@@ -37,7 +37,7 @@ class GetConversations(BaseAction):
 
     @staticmethod
     def filter_conversation(conversation):
-        filtered_channel = GetConversations.CHANNEL[conversation["channel"]]
+        filtered_channel = GetConversations.CHANNEL[conversation["category"]["channel"]]
         filtered_status = GetConversations.STATUS[conversation["status"]]
         conversation["channel_name"] = filtered_channel
         conversation["status_name"] = filtered_status

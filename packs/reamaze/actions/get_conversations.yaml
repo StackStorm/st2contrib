@@ -16,7 +16,7 @@ parameters:
       - "all"
   sort:
     type: "string"
-    description:
+    description: "Sort results based on last activity or creation"
     default: "create_at"
     enum:
       - "updated"
