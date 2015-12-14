@@ -39,4 +39,10 @@ export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
 echo "Registering all content from pack ${PACK_NAME}"
 ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_FLAGS} --register-pack=${PACK_PATH}
-exit $?
+EXIT_CODE=$?
+
+if [ ${EXIT_CODE} -ne 0 ]; then
+    echo "Registering resources for pack ${PACK_NAME} failed"
+fi
+
+exit ${EXIT_CODE}
