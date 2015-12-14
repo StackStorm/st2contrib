@@ -16,4 +16,12 @@
 
 # File containing common utility functions
 
-function join { local IFS="$1"; shift; echo "$*"; }
+function join()
+{
+    local IFS="$1"; shift; echo "$*";
+}
+
+function get_st2_components() {
+    local ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
+    echo "${ST2_COMPONENTS}"
+}
