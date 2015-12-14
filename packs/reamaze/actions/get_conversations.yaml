@@ -1,0 +1,32 @@
+---
+name: "get_conversations"
+runner_type: "python-script"
+description: "This action looks through open re:amaze issues and reports back status"
+enabled: true
+entry_point: "get_conversations.py"
+parameters:
+  filter_issues:
+    type: "string"
+    description: "Filter conversations based on status"
+    default: "all"
+    enum:
+      - "archived"
+      - "open"
+      - "unassigned"
+      - "all"
+  sort:
+    type: "string"
+    description:
+    default: "create_at"
+    enum:
+      - "updated"
+      - "create_at"
+  email:
+    type: "string"
+    description: "Filter conversations based on user email"
+  tag:
+    type: "string"
+    description: "Will return conversations matching specific tags"
+  data:
+    type: "object"
+    description: "An object of key/value pairs `data[key]=value will return conversations matching data pairs"
