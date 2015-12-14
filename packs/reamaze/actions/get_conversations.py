@@ -32,13 +32,13 @@ class GetConversations(BaseAction):
         response = self._api_get('/conversations', params=params)
         conversations = response['conversations']
 
-        filtered_conversations = map(filter_conversation, conversations)
+        filtered_conversations = map(self.filter_conversation, conversations)
         return filtered_conversations
 
     @staticmethod
     def filter_conversation(conversation):
-        filtered_channel = GetConversation.CHANNEL[conversation["channel"]]
-        filtered_status = GetConversation.STATUS[conversation["status"]]
+        filtered_channel = GetConversations.CHANNEL[conversation["channel"]]
+        filtered_status = GetConversations.STATUS[conversation["status"]]
         conversation["channel_name"] = filtered_channel
         conversation["status_name"] = filtered_status
 
