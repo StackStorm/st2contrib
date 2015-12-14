@@ -18,6 +18,6 @@ class StartVMAction(SingleVMAction):
         if status is True:
             self.logger.info('Successfully started node "%s"' % (node))
         else:
-            self.logger.rror('Failed to start node "%s"' % (node))
+            self.logger.error('Failed to start node "%s"' % (node))
 
         return status
