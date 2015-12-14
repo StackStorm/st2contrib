@@ -56,7 +56,7 @@ metadata-check: requirements
 	@echo
 	@echo "==================== metadata-check ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh
+	. $(VIRTUALENV_DIR)/bin/activate; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh $$pack; fi; done
 
 .PHONY: .packs-resource-register
 .packs-resource-register:

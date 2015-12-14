@@ -21,7 +21,7 @@
 PACK_DIR=$1
 PACK_NAME=$(basename $PACK_DIR)
 
-if [ ${PACK_NAME} == "linux" ]; then
+if [ ${PACK_NAME} = "linux" ]; then
     exit 0
 fi
 
