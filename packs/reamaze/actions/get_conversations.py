@@ -2,7 +2,22 @@ from lib.actions import BaseAction
 
 
 class GetConversations(BaseAction):
-    def run(self, filter_issues='all', sort='create_at', email=None, tag=None, data=None):
+    CHANNEL = {
+        1: 'email',
+        2: 'twitter',
+        3: 'facebook',
+        6: 'chat',
+    }
+
+    STATUS = {
+        0: 'unresolved',
+        1: 'pending',
+        2: 'resolved',
+        3: 'spam',
+        4: 'archived',
+    }
+
+    def run(self, filter_issues='open', sort='create_at', email=None, tag=None, data=None):
         params = {
             'filter': filter_issues,
             'sort': sort,
@@ -17,4 +32,14 @@ class GetConversations(BaseAction):
         response = self._api_get('/conversations', params=params)
         conversations = response['conversations']
 
-        return conversations
+        filtered_conversations = map(filter_conversation, conversations)
+        return filtered_conversations
+
+    @staticmethod
+    def filter_conversation(conversation):
+        filtered_channel = GetConversation.CHANNEL[conversation["channel"]]
+        filtered_status = GetConversation.STATUS[conversation["status"]]
+        conversation["channel_name"] = filtered_channel
+        conversation["status_name"] = filtered_status
+
+        return conversation

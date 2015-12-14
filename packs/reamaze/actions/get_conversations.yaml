@@ -8,7 +8,7 @@ parameters:
   filter_issues:
     type: "string"
     description: "Filter conversations based on status"
-    default: "all"
+    default: "open"
     enum:
       - "archived"
       - "open"
