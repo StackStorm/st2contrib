@@ -984,6 +984,7 @@ Name | Description
 ---- | -----------
 article_search | This action searches through articles that may be related to a user query
 create_message | Create a new message under a specific conversation
+get_conversations | This action looks through open re:amaze issues and reports back status
 
 ### salt pack
 
