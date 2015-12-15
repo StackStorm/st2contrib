@@ -1,5 +1,5 @@
 ### Place configuration data for your pack here.
 ---
-brand: ""
-email: ""
-api_token: ""
+brand: "stackstorm"
+email: "lakshmi@stackstorm.com"
+api_token: "aa8d5772cc58a38e6498b38d7466031103b079cc3e76562c7fa4ba07d3c2ad5e"

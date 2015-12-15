@@ -6,6 +6,4 @@ class ArticleGet(BaseAction):
         slug = self._convert_slug(slug)
         path = '/articles/%s' % slug
         response = self._api_get(path)
-        article = response['articles']
-
-        return article
+        return response

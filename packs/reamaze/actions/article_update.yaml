@@ -1,0 +1,21 @@
+---
+name: "article_update"
+runner_type: "python-script"
+description: "This action updates a specific article given article name (called 'slug' in reamaze)."
+enabled: true
+entry_point: "article_update.py"
+parameters:
+  slug:
+    type: "string"
+    description: "Article name. It's better to use slug naming convention here. E.g.: installation-failed-kb."
+    required: true
+  title:
+    type: "string"
+    description: "Title for the article. This should be human readable string."
+    required: true
+  body:
+    type: "string"
+    description: "Body of the article. This should be human readable string."
+    required: true
+
+

@@ -1,7 +1,8 @@
 ---
 name: "article_create"
 runner_type: "python-script"
-description: "This action gets a specific article given article name (called 'slug' in reamaze)."
+description: "This action creates a specific article given article name (called 'slug' in reamaze).
+             You can optionally provide a topic to place article under."
 enabled: true
 entry_point: "article_create.py"
 parameters:
