@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH=$(git symbolic-ref HEAD | sed -e "s/^refs\/heads\///")
 
 if [ -z ${TASK} ]; then
   echo "No task provided"
