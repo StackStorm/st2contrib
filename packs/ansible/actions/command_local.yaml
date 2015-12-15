@@ -37,7 +37,7 @@ parameters:
   become:
     description: "Run operations with become (nopasswd implied) [-b]"
     type: boolean
-  become-method:
+  become_method:
     description: "Privilege escalation method to use. Valid choices: sudo, su, pbrun, pfexec, runas (default=sudo)"
     type: string
     enum:
@@ -46,7 +46,7 @@ parameters:
       - pbrun
       - pfexec
       - runas
-  become-user:
+  become_user:
     description: "Run operations as this user. Works only with 'become'"
     type: string
   check:
@@ -57,7 +57,7 @@ parameters:
     type: string
     default: local
     immutable: true
-  extra-vars:
+  extra_vars:
     description: "Set additional variables as key=value or YAML/JSON [-e]"
     type: string
   forks:
@@ -66,7 +66,7 @@ parameters:
   help:
     description: "Show help message and exit [-h]"
     type: boolean
-  inventory-file:
+  inventory_file:
     description: "Inventory host file (default=/etc/ansible/hosts) [-i]. Locked to run the command locally"
     type: string
     default: "127.0.0.1,"
@@ -74,16 +74,16 @@ parameters:
   limit:
     description: "Further limit selected hosts to an additional pattern [-l]"
     type: string
-  list-hosts:
+  list_hosts:
     description: "Outputs a list of matching hosts; does not execute anything else"
     type: boolean
-  module-name:
+  module_name:
     description: "Module name to execute (default=command) [-m]"
     type: string
-  module-path:
+  module_path:
     description: "Specify path(s) to module library (default=None) [-M]"
     type: string
-  one-line:
+  one_line:
     description: "Condense output [-o]"
     type: boolean
   poll:
@@ -92,7 +92,7 @@ parameters:
   tree:
     description: "Log output to this directory [-t]"
     type: string
-  vault-password-file:
+  vault_password_file:
     description: "Vault password file"
     type: string
   verbose:
