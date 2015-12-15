@@ -9,8 +9,10 @@ fi
 
 # When running on master branch we want to run checks on all the files / packs
 # not only on changes ones.
+echo "Running on branch: ${GIT_BRANCH}"
 if [ "${GIT_BRANCH}" = "master" ]; then
-    export FORCE_CHECK_ALL_FILES=true
+    echo "Running on master branch, forcing check of all files"
+    export FORCE_CHECK_ALL_FILES="true"
 fi
 
 if [ ${TASK} == "flake8" ]; then
