@@ -17,5 +17,3 @@ parameters:
     type: "string"
     description: "Body of the article. This should be human readable string."
     required: true
-
-

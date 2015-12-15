@@ -9,4 +9,3 @@ parameters:
     type: "string"
     description: "Article name. You can specify name with spaces. E.g.: Installation failure due to SSL."
     required: true
-
