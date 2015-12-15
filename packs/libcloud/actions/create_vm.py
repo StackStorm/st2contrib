@@ -1,5 +1,4 @@
 from libcloud.compute.base import NodeSize
-from libcloud.compute.base import NodeImage
 from libcloud.compute.base import NodeLocation
 
 from lib.actions import BaseAction
