@@ -1,5 +1,7 @@
-from st2actions.runners.pythonrunner import Action
+import httplib
 import requests
+
+from st2actions.runners.pythonrunner import Action
 
 
 class BaseAction(Action):
@@ -26,6 +28,10 @@ class BaseAction(Action):
         r = requests.get(url=_url, auth=(self._email, self._token),
                          params=params, headers=_headers)
 
+        if r.status_code not in [httplib.OK]:
+            self.logger.error('GET failed. HTTP status: %s, Body: %s.',
+                              r.status_code, r.text)
+
         r.raise_for_status()
         return r.json()
 
@@ -35,6 +41,23 @@ class BaseAction(Action):
 
         r = requests.post(url=_url, auth=(self._email, self._token),
                           data=data, headers=_headers, json=json)
+
+        if r.status_code not in [httplib.OK, httplib.CREATED]:
+            self.logger.error('POST failed. HTTP status: %s, Body: %s.',
+                              r.status_code, r.text)
+
+        return r.json()
+
+    def _api_put(self, endpoint, headers={}, data=None, json=None):
+        _url = self._api_root + endpoint
+        _headers = self._headers.update(headers)
+
+        r = requests.put(url=_url, auth=(self._email, self._token),
+                         data=data, headers=_headers, json=json)
+
+        if r.status_code not in [httplib.OK]:
+            self.logger.error('PUT failed. HTTP status: %s, Body: %s.',
+                              r.status_code, r.text)
 
         r.raise_for_status()
         return r.json()
