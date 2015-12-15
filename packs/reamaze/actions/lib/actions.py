@@ -55,7 +55,7 @@ class BaseAction(Action):
         r = requests.put(url=_url, auth=(self._email, self._token),
                          data=data, headers=_headers, json=json)
 
-        if r.status_code not in [httplib.OK]:
+        if r.status_code not in [httplib.OK, httplib.ACCEPTED]:
             self.logger.error('PUT failed. HTTP status: %s, Body: %s.',
                               r.status_code, r.text)
 
