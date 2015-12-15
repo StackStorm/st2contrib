@@ -6,8 +6,6 @@ os:
 env:
   global:
     - "PIP_DOWNLOAD_CACHE=$HOME/.pip-cache"
-    # Temporary to get PR tests to pass
-    - "ST2_REPO_BRANCH=register_content_fail_on_failure_flag"
   matrix:
     - "TASK=flake8"
     - "TASK=pylint"
