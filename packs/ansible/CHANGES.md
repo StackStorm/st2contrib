@@ -2,7 +2,7 @@
 
 ## v0.2
 
-* Replaced dashes in parameters with underscores to adhere to the spec. If you followed a tutorial or pasted an action/alias from somewhere, and it doesn't work, please make sure you replace any dashes there as well.
+* Breaking Change: Replaced all dashes in parameter names with underscores (adhere to the spec of Jinja/Python variables)
 
 ## v0.1.1
 
@@ -10,4 +10,12 @@
 
 ## v0.1.0
 
-* Initial release
+* Initial release with actions included:
+ * `ansible.playbook`
+ * `ansible.command`
+ * `ansible.command_local`
+ * `ansible.galaxy.install`
+ * `ansible.galaxy.list`
+ * `ansible.galaxy.remove`
+ * `ansible.vault.encrypt`
+ * `ansible.vault.decrypt`

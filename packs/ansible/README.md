@@ -6,8 +6,8 @@ After [pack installation](http://docs.stackstorm.com/packs.html#getting-a-pack) 
 * `command` - Run single [Ad-Hoc command](http://docs.ansible.com/intro_adhoc.html). It has all the regular parameters of `ansible` executable.
 * `command_local` - Perform single ansible Ad-Hoc command (module) locally.
 * `playbook` - Action to run [Ansible Playbook](http://docs.ansible.com/playbooks.html) (`ansible-playbook` executable).
-* `vault.encrypt` - Encrypt ansible data files (playbooks, vars, roles, etc) with password (`vault` executable).
-* `vault.decrypt` - Decrypt ansible data files (playbooks, vars, roles, etc) with password (`vault` executable).
+* `vault.encrypt` - Encrypt ansible data files (playbooks, vars, roles, etc) with password (`ansible-vault` executable).
+* `vault.decrypt` - Decrypt ansible data files (playbooks, vars, roles, etc) with password (`ansible-vault` executable).
 * `galaxy.install` - Install role from [Ansible Galaxy](http://docs.ansible.com/galaxy.html) - hub of [community developed roles](https://galaxy.ansible.com/) (`ansible-galaxy`).
 * `galaxy.list` - List installed from Ansible Galaxy roles (`ansible-galaxy` executable).
 * `galaxy.remove` - Remove the role installed from Ansible Galaxy (`ansible-galaxy` executable).
@@ -29,7 +29,7 @@ st2 run ansible.command connection=local inventory_file='127.0.0.1,' hosts=all a
 which is equivalent of ansible commands:
 ```sh
 ansible all -c local -i '127.0.0.1,' -a 'echo $TERM'
-ansible all --connection=local --inventory_file='127.0.0.1,' --args='echo $TERM'
+ansible all --connection=local --inventory-file='127.0.0.1,' --args='echo $TERM'
 ```
 
 #### `ansible.playbook` examples
