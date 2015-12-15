@@ -21,14 +21,30 @@ all: requirements lint packs-resource-register packs-tests
 .PHONY: lint
 lint: requirements flake8 pylint configs-check metadata-check
 
+.PHONY: flake8
+flake8: requirements .flake8
+
 .PHONY: pylint
 pylint: requirements .clone_st2_repo .pylint
+
+.PHONY: configs-check
+configs-check: requirements .configs-check
+
+.PHONY: metadata-check
+metadata-check: requirements .metadata-check
 
 .PHONY: packs-resource-register
 packs-resource-register: requirements .clone_st2_repo .packs-resource-register
 
 .PHONY: packs-tests
 packs-tests: requirements .clone_st2_repo .packs-tests
+
+.PHONY: .flake8
+.flake8:
+	@echo
+	@echo "==================== flake8 ===================="
+	@echo
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PY}" ]; then echo No files have changed, skipping run...; fi; for file in ${CHANGED_PY}; do if [ -n "$$file" ]; then flake8 --config ./.flake8 $$file; fi; done
 
 .PHONY: .pylint
 .pylint:
@@ -37,23 +53,16 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/pylint-pack.sh $$pack; fi; done
 
-.PHONY: flake8
-flake8: requirements
-	@echo
-	@echo "==================== flake8 ===================="
-	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PY}" ]; then echo No files have changed, skipping run...; fi; for file in ${CHANGED_PY}; do if [ -n "$$file" ]; then flake8 --config ./.flake8 $$file; fi; done
-
-.PHONY: configs-check
-configs-check: requirements
+.PHONY: .configs-check
+.configs-check:
 	@echo
 	@echo "==================== configs-check ===================="
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_YAML}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_YAML); do if [ -n "$$file" ]; then ./scripts/validate-yaml-file.sh $$file; fi; done
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_JSON}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_JSON); do if [ -n "$$file" ]; then ./scripts/validate-json-file.sh $$file; fi; done
 
-.PHONY: metadata-check
-metadata-check: requirements
+.PHONY: .metadata-check
+.metadata-check:
 	@echo
 	@echo "==================== metadata-check ===================="
 	@echo
