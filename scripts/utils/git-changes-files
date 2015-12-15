@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 GIT_DIRECTORY=$1
+BASE_BRANCH="origin/master"
 
 cd $GIT_DIRECTORY
-echo $(git diff --name-only master)
+echo $(git diff --name-only ${BASE_BRANCH})

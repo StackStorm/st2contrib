@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GIT_DIRECTORY=$1
+BASE_BRANCH="origin/master"
 
 # If this environment variable if specified we will return all the files so the
 # checks run on all the files not only changed ones.
@@ -10,4 +11,4 @@ if [ "${FORCE_CHECK_ALL_FILES}" = "true" ]; then
 fi
 
 cd $GIT_DIRECTORY
-echo $(git diff --name-only master -- 'packs/*' | xargs -I FILENAME dirname FILENAME | awk -F'/' '/^\./ {next} /^[^\/]+$/ {next} /^scripts/ {next} /.*/{print $1"/"$2"/"}' | uniq) 
+echo $(git diff --name-only ${BASE_BRANCH} -- 'packs/*' | xargs -I FILENAME dirname FILENAME | awk -F'/' '/^\./ {next} /^[^\/]+$/ {next} /^scripts/ {next} /.*/{print $1"/"$2"/"}' | uniq) 

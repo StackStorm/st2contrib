@@ -15,6 +15,13 @@ if [ "${GIT_BRANCH}" = "master" ]; then
     export FORCE_CHECK_ALL_FILES="true"
 fi
 
+# Note: Travis performs a shallow clone of a single branch which means we end up
+# in a detached head state where git-changes-* scripts won't work since master
+# branch is not available.
+# We fix this by pulling down master branch.
+git config remote.origin.fetch refs/heads/*:refs/remotes/origin/*
+git fetch origin master
+
 if [ ${TASK} == "flake8" ]; then
   make flake8
 elif [ ${TASK} == "pylint" ]; then
