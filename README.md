@@ -41,9 +41,10 @@ To run all those checks locally, you can use the following command:
 make all
 ```
 
-By default, this command will only perform checks on changed files and packs. If you want
-to run checks on all the files and packs (regardless if they changed or not), you can do
-that by specifying ``FORCE_CHECK_ALL_FILES=true`` environment variable as show below.
+By default when running this command on a non-master branch, it will only
+perform checks on changed files and packs. If you want to run checks on all the
+files and packs (regardless if they changed or not), you can do that by
+specifying ``FORCE_CHECK_ALL_FILES=true`` environment variable as show below.
 
 ```bash
 FORCE_CHECK_ALL_FILES=true make all
