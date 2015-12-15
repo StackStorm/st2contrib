@@ -32,4 +32,5 @@ class WaitUntilBuildFinishes(CircleCI):
             time.sleep(10)
             done = (time.time() - start_time) > wait_timeout
 
-        return False
+        raise Exception('Build did not complete within %s seconds.' %
+                        wait_timeout)
