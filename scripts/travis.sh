@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GIT_BRANCH=$(git symbolic-ref HEAD | sed -e "s/^refs\/heads\///")
+GIT_BRANCH=$(git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$(git rev-parse HEAD)/ {print \$2}")
 
 if [ -z ${TASK} ]; then
   echo "No task provided"
