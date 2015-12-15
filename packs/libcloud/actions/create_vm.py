@@ -46,4 +46,4 @@ class CreateVMAction(BaseAction):
         node = driver.create_node(**kwargs)
 
         self.logger.info('Node successfully created: %s' % (node))
-        return node
+        return self.resultsets.formatter(node)
