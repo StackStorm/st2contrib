@@ -1,3 +1,5 @@
+from st2common.util import isotime
+
 __all__ = [
     'issue_to_dict',
     'label_to_dict'
@@ -43,8 +45,20 @@ def issue_to_dict(issue):
         labels = []
 
     result['labels'] = labels
-    result['created_at'] = issue.created_at
-    result['closed_at'] = issue.closed_at
+
+    # Note: We convert it to a serialize type (string)
+    if issue.created_at:
+        created_at = isotime.format(issue.created_at)
+    else:
+        created_at = None
+
+    if issue.closed_at:
+        closed_at = isotime.format(issue.closed_at)
+    else:
+        closed_at = None
+
+    result['created_at'] = created_at
+    result['closed_at'] = closed_at
     result['closed_by'] = closed_by
     return result
 
