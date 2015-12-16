@@ -1,0 +1,11 @@
+---
+name: get_week_boundaries
+runner_type: run-python
+description: Retrieve week boundary timestamps (week start and end) for the provided date.
+enabled: true
+entry_point: get_week_boundaries.py
+parameters:
+  date:
+    type: "string"
+    description: "Date string to retrieve the boundaries for. If not provided it defaults to the current date."
+    required: false

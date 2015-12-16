@@ -1,0 +1,9 @@
+---
+name: time
+description: st2 content pack containing different date and time related functionality
+keywords:
+  - date
+  - time
+version: 0.1
+author: st2-dev
+email: info@stackstorm.com
