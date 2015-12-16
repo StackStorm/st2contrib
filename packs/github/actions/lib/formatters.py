@@ -12,8 +12,20 @@ def issue_to_dict(issue):
     else:
         closed_by = None
 
+    if issue.user:
+        author = issue.user.name
+    else:
+        author = None
+
+    if issue.assignee:
+        assignee = issue.assigne.name
+    else:
+        assignee = None
+
     result['id'] = issue.id
     result['repository'] = issue.repository.name
+    result['author'] = author
+    result['assign'] = assignee
     result['title'] = issue.title
     result['body'] = issue.body
     result['url'] = issue.html_url
