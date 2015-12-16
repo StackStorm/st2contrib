@@ -13,15 +13,15 @@ class ParseDateStringActionTestCase(BaseActionTestCase):
 
         result = action.run(date_string='now')
         expected = arrow.utcnow().timestamp
-        self.assertTrue(result in [expected, (expected + 1), (expected - 1)])
+        self.assertTimestampMatches(result, expected)
 
         result = action.run(date_string='1 hour ago')
         expected = arrow.utcnow().replace(hours=-1).timestamp
-        self.assertEqual(result, expected)
+        self.assertTimestampMatches(result, expected)
 
         result = action.run(date_string='3 days ago')
         expected = arrow.utcnow().replace(days=-3).timestamp
-        self.assertEqual(result, expected)
+        self.assertTimestampMatches(result, expected)
 
         result = action.run(date_string='2013-05-12')
         expected = datetime.datetime(2013, 5, 12)
@@ -31,3 +31,10 @@ class ParseDateStringActionTestCase(BaseActionTestCase):
     def test_run_invalid_date_string(self):
         action = ParseDateStringAction()
         self.assertRaises(ValueError, action.run, date_string='some invalid string')
+
+    def assertTimestampMatches(self, actual_ts, expected_ts):
+        """
+        Custom assert function which allows actual result to drift from the expected one
+        for +/- 1 second (this is to account for the time between the function runs).
+        """
+        self.assertTrue(actual_ts in [expected_ts, (expected_ts + 1), (expected_ts - 1)])
