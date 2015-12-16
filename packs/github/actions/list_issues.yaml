@@ -1,0 +1,40 @@
+---
+name: list_issues
+runner_type: run-python
+description: Retrieve a list of issues (including pull requests) for a particular repository.
+enabled: true
+entry_point: list_issues.py
+parameters:
+  user:
+    type: "string"
+    description: "User / organization name."
+    required: true
+  repo:
+    type: "string"
+    description: "Repository name."
+    required: true
+  filter:
+    type: "string"
+    description: "Filter string."
+    required: false
+  state:
+    type: "string"
+    description: "State to filter on."
+    required: false
+  sort:
+    type: "string"
+    description: "Field to sort on."
+    required: false
+  direction:
+    type: "string"
+    description: "Sort direction (e.g. asc / desc)."
+    required: false
+  since:
+    type: "number"
+    description: "Only returns issues newer than this timestamp."
+    required: false
+  limit:
+    type: "number"
+    description: "Maximum number of issues to return."
+    required: false
+    default: 20
