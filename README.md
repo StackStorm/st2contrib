@@ -105,6 +105,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 [![splunk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/splunk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | [splunk](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | Splunk integration pack | splunk | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#splunk-pack)
 [![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | [time](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | st2 content pack containing different date and time related functionality | date, time | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#time-pack)
 [![Travis CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 [![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
@@ -1366,6 +1367,17 @@ kv.set_object | Serialize and store object in a datastore
 rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
 upload_to_s3 | Sends collected data to write-only StackStorm S3 bucket
+
+### time pack
+
+![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_week_boundaries | Retrieve week boundary timestamps (week start and end) for the provided date.
+parse_date_string | Parse the (human readable) date string and return timestamp.
 
 ### travis_ci pack
 
