@@ -22,6 +22,11 @@ def issue_to_dict(issue):
     else:
         assignee = None
 
+    if issue.pull_request:
+        is_pull_request = True
+    else:
+        is_pull_request = False
+
     result['id'] = issue.id
     result['repository'] = issue.repository.name
     result['author'] = author
@@ -30,6 +35,7 @@ def issue_to_dict(issue):
     result['body'] = issue.body
     result['url'] = issue.html_url
     result['state'] = issue.state
+    result['is_pull_request'] = is_pull_request
 
     if issue.labels:
         labels = [label_to_dict(label) for label in issue.labels]
