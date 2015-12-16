@@ -549,6 +549,7 @@ create_issue | Create a Github issue.
 get_clone_stats | Retrieve clone statistics for a given repository
 get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
+list_issues | Retrieve a list of issues (including pull requests) for a particular repository.
 
 ### google pack
 
