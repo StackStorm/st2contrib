@@ -1,7 +1,7 @@
 ---
 name: list_issues
 runner_type: run-python
-description: Retrieve a list of issues for a particular repository.
+description: Retrieve a list of issues (including pull requests) for a particular repository.
 enabled: true
 entry_point: list_issues.py
 parameters:
