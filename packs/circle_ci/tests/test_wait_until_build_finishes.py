@@ -44,7 +44,7 @@ class WaitUntilBuildFinishesActionTestCase(BaseActionTestCase):
         try:
             action.run(build_number=373, project='area51',
                        wait_timeout=TEST_TIMEOUT)
-            self.assertFail('Action should have failed.')
+            self.fail('Action should have failed.')
         except Exception as e:
             expected_msg = ('Build did not complete within %s seconds.' %
                             TEST_TIMEOUT)
