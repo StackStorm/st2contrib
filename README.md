@@ -985,7 +985,10 @@ set_vm_metadata_item | Set a value of a metadata item for a provided VM.
 
 Name | Description
 ---- | -----------
+article_create | This action creates a specific article given article name (called 'slug' in reamaze). You can optionally provide a topic to place article under.
+article_get | This action gets a specific article given article name (called 'slug' in reamaze).
 article_search | This action searches through articles that may be related to a user query
+article_update | This action updates a specific article given article name (called 'slug' in reamaze).
 create_message | Create a new message under a specific conversation
 get_conversations | This action looks through open re:amaze issues and reports back status
 
