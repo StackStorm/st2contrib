@@ -20,7 +20,7 @@ def issue_to_dict(issue):
         author = None
 
     if issue.assignee:
-        assignee = issue.assigne.name
+        assignee = issue.assignee.name
     else:
         assignee = None
 
