@@ -2,27 +2,17 @@ from st2common.util import isotime
 
 __all__ = [
     'issue_to_dict',
-    'label_to_dict'
+    'label_to_dict',
+    'user_to_dict'
 ]
 
 
 def issue_to_dict(issue):
     result = {}
 
-    if issue.closed_by:
-        closed_by = issue.closed_by.name
-    else:
-        closed_by = None
-
-    if issue.user:
-        author = issue.user.name
-    else:
-        author = None
-
-    if issue.assignee:
-        assignee = issue.assignee.name
-    else:
-        assignee = None
+    author = user_to_dict(issue.user)
+    assignee = user_to_dict(issue.assignee)
+    closed_by = user_to_dict(issue.closed_by)
 
     if issue.pull_request:
         is_pull_request = True
@@ -70,4 +60,14 @@ def label_to_dict(label):
     result['color'] = label.color
     result['url'] = label.url
 
+    return result
+
+
+def user_to_dict(user):
+    if not user:
+        return None
+
+    result = {}
+    result['name'] = user.name
+    result['login'] = user.login
     return result
