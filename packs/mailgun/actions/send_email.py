@@ -12,16 +12,21 @@ SEND_EMAIL_API_URL = 'https://api.mailgun.net/v2/%(domain)s/messages'
 
 
 class SendEmailAction(Action):
-    def run(self, sender, recipient, subject, text, html=None):
+    def run(self, sender, recipient, subject, text=None, html=None):
+        if not text and not html:
+            raise ValueError('Either "text" or "html" or both arguments need to be provided')
+
         domain = self.config['domain']
         api_key = self.config['api_key']
 
         data = {
             'from': sender,
             'to': recipient,
-            'subject': subject,
-            'text': text
+            'subject': subject
         }
+
+        if text:
+            data['text'] = text
 
         if html:
             data['html'] = html

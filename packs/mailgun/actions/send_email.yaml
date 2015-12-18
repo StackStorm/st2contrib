@@ -19,8 +19,8 @@
       required: true
     text:
       type: "string"
-      description: "Email body (text version)"
-      required: true
+      description: "Email body (plain text version)"
+      required: false
     html:
       type: "string"
       description: "Email body (html version)"
