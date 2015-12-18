@@ -1,0 +1,11 @@
+---
+name: "article_get"
+runner_type: "python-script"
+description: "This action gets a specific article given article name (called 'slug' in reamaze)."
+enabled: true
+entry_point: "article_get.py"
+parameters:
+  slug:
+    type: "string"
+    description: "Article name. You can specify name with spaces. E.g.: Installation failure due to SSL."
+    required: true

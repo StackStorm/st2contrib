@@ -25,7 +25,11 @@ PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PACK_TESTS_REQUIREMENTS_FILE="${PACK_PATH}/requirements-tests.txt"
 PYTHON_BINARY=`which python`
 
-SCRIPT_PATH=$(readlink -f $0)
+if hash greadlink 2>/dev/null; then
+    SCRIPT_PATH=$( dirname "$(greadlink -f "$0")" )
+else
+    SCRIPT_PATH=$( dirname "$(readlink -f "$0")" )
+fi
 DIRECTORY_PATH=$(dirname ${SCRIPT_PATH})
 
 source ./scripts/common.sh
