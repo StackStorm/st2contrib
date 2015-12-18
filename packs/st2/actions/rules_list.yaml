@@ -17,7 +17,4 @@ parameters:
   exclude:
     type: "array"
     description: "List of attributes to exclude"
-    default:
-      - trigger
-      - criteria
-      - action
+    default: []
