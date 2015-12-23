@@ -115,7 +115,8 @@ class IMAPSensor(PollingSensor):
             }
             self._mailboxes[mailbox] = item
 
-    def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata, download_attachments=False):
+    def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata,
+                                  download_attachments=False):
         self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
 
         messages = mailbox.unseen()
@@ -126,7 +127,8 @@ class IMAPSensor(PollingSensor):
                                   download_attachments=download_attachments,
                                   mailbox_metadata=mailbox_metadata)
 
-    def _process_message(self, uid, mailbox, mailbox_metadata, download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
+    def _process_message(self, uid, mailbox, mailbox_metadata,
+                         download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
         message = mailbox.mail(uid, include_raw=True)
         mime_msg = mime.from_string(message.raw)
 
