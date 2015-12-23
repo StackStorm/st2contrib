@@ -184,7 +184,7 @@ Example trigger payload:
     "mailbox_metadata": {
         "server": "email.stackstorm.com",
         "port": 993,
-        "username": "kami@stackstorm.com",
+        "user": "kami@stackstorm.com",
         "folder": "Process",
         "ssl": true
     }
