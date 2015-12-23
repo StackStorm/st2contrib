@@ -180,6 +180,13 @@ Example trigger payload:
             "datastore_key": "attachments-0d61eabdb749789c96853dcbbd933884",
             "content_type": "text/plain"
         }
-    ]
+    ],
+    "mailbox_metadata": {
+        "server": "email.stackstorm.com",
+        "port": 993,
+        "username": "kami@stackstorm.com",
+        "folder": "Process",
+        "ssl": true
+    }
 }
 ```
