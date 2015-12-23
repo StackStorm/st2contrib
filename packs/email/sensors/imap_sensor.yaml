@@ -16,3 +16,4 @@ trigger_types:
       - message_id
       - body
       - attachments
+      - mailbox_metadata
