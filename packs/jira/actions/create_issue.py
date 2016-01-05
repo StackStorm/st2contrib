@@ -7,9 +7,8 @@ __all__ = [
 
 
 class CreateJiraIssueAction(BaseJiraAction):
-    def run(self, summary, type, description=None):
-        project = self.config['project']
-
+    def run(self, summary, type, description=None, project=None):
+        project = project or self.config['project']
         data = {
             'project': {'key': project},
             'summary': summary,

@@ -23,3 +23,7 @@ parameters:
     type: string
     description: Issue description.
     required: false
+  project:
+    type: string
+    description: destination Project in Jira.
+    required: false
