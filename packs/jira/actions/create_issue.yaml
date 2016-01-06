@@ -27,3 +27,7 @@ parameters:
     type: string
     description: destination Project in Jira.
     required: false
+  extra_fields:
+    type: object
+    description: extra fields like priority. example: {"priority": {"name": "P1"}, "customfield_10250": {"value": "General"}}'
+    required: false
