@@ -21,8 +21,7 @@ class CreateJiraIssueAction(BaseJiraAction):
             data['description'] = description
 
         if extra_fields:
-            for field in extra_fields.keys():
-                data[field] = extra_fields[field]
+            data.update(extra_fields)
 
         issue = self._client.create_issue(fields=data)
         result = to_issue_dict(issue)
