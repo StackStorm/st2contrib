@@ -5,7 +5,7 @@ description: Comment on a JIRA issue / ticket.
 enabled: true
 entry_point: comment_issue.py
 parameters:
-  text:
+  comment_text:
     type: string
     description: the comment itself.
     required: true

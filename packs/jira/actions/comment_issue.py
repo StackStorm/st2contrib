@@ -8,7 +8,7 @@ __all__ = [
 
 class CommentJiraIssueAction(BaseJiraAction):
 
-    def run(self, issue_key, text):
-        comment = self._client.add_comment(issue_key, text)
+    def run(self, issue_key, comment_text):
+        comment = self._client.add_comment(issue_key, comment_text)
         result = to_comment_dict(comment)
         return result
