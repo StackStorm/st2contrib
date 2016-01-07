@@ -11,12 +11,7 @@ parameters:
     required: true
   type:
     type: string
-    description: Issue type.
-    enum:
-      - Task
-      - Story
-      - Epic
-      - Bug
+    description: "Issue type. Typical issues type include Task, Story, Epic, Bug. You can also specify a custom issue type."
     default: Task
     required: true
   description:
