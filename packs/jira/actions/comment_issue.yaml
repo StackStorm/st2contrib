@@ -1,0 +1,15 @@
+---
+name: comment_issue
+runner_type: run-python
+description: Comment on a JIRA issue / ticket.
+enabled: true
+entry_point: comment_issue.py
+parameters:
+  comment_text:
+    type: string
+    description: the comment itself.
+    required: true
+  issue_key:
+    type: string
+    description: Issue key (e.g. PROJECT-1000).
+    required: true
