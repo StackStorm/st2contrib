@@ -669,6 +669,7 @@ JIRASensor | Sensor which monitors JIRA for new tickets
 
 Name | Description
 ---- | -----------
+comment_issue | Comment on a JIRA issue / ticket.
 create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
 
