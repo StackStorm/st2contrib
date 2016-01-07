@@ -1,5 +1,6 @@
 __all__ = [
-    'to_issue_dict'
+    'to_issue_dict',
+    'to_comment_dict'
 ]
 
 
@@ -39,5 +40,16 @@ def to_issue_dict(issue):
         'created_at': issue.fields.created,
         'updated_at': issue.fields.updated,
         'resolved_at': issue.fields.resolutiondate
+    }
+    return result
+
+
+def to_comment_dict(comment):
+    """
+    :rtype: ``dict``
+    """
+    result = {
+        'id': comment.id,
+        'body': comment.body
     }
     return result
