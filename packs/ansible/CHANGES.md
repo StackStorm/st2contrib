@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3
+
+* Removed immutable flag for `sudo:` parameters for all actions. Default is `true`, which means that ansible commands are run with sudo (as root). Good thing is you can change it to `false` when required.
+
 ## v0.2
 
 * Breaking Change: Replaced all dashes in parameter names with underscores (adhere to the spec of Jinja/Python variables)
