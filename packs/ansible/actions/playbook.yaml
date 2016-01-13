@@ -14,7 +14,6 @@ parameters:
     description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
     type: boolean
     default: true
-    immutable: true
   cwd:
     description: "Working directory where the command will be executed in"
     type: string
