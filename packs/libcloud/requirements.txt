@@ -1,1 +1,1 @@
-apache-libcloud>=0.15.1
+-e git+https://github.com/DimensionDataCBUSydney/libcloud@LIBCLOUD-781_containers#egg=apache-libcloud

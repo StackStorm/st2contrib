@@ -1,0 +1,35 @@
+---
+name: deploy_container
+runner_type: run-python
+description: Deploy a container
+enabled: true
+entry_point: deploy_container.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
+  name:
+    type: string
+    description: The name of the container
+    required: true
+  repository_name:
+    type: string
+    description: The repository name in docker hub
+    required: true
+  tag:
+    type: string
+    description: The tag e.g. latest
+    required: true
+  start:
+    type: boolean
+    description: Start the container on deployment
+    default: true
+  cluster_id:
+    type: string
+    required: false
+    description: The Cluster ID to deploy to
+  parameters:
+    type: string
+    required: false
+    description: The boot parameters for the image
