@@ -8,10 +8,12 @@ except ImportError:
     import json
 import os
 import sys
+import traceback
 from urlparse import urljoin
 
 try:
     import requests
+    requests.packages.urllib3.disable_warnings()
 except ImportError:
     raise ImportError('Missing dependency "requests". \
         Do ``pip install requests``.')
@@ -30,9 +32,9 @@ ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_AUTH_TOKEN = None
 
-ST2_AUTH_PATH = 'tokens'
-ST2_WEBHOOKS_PATH = 'webhooks/st2/'
-ST2_TRIGGERS_PATH = 'triggertypes/'
+ST2_AUTH_PATH = 'auth/tokens'
+ST2_WEBHOOKS_PATH = 'api/webhooks/st2/'
+ST2_TRIGGERS_PATH = 'api/triggertypes/'
 ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
@@ -83,7 +85,7 @@ def _create_trigger_type():
             headers['X-Auth-Token'] = ST2_AUTH_TOKEN
 
         post_resp = requests.post(url, data=json.dumps(payload),
-                                  headers=headers)
+                                  headers=headers, verify=False)
     except:
         sys.stderr.write('Unable to register trigger type with st2.')
         raise
@@ -107,7 +109,7 @@ def _get_auth_token():
     auth_url = _get_auth_url()
     try:
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
-                             auth=(ST2_USERNAME, ST2_PASSWORD))
+                             auth=(ST2_USERNAME, ST2_PASSWORD), verify=False)
     except:
         sys.stderr.write('Cannot get auth token from st2. Will try unauthed.')
     else:
@@ -127,9 +129,9 @@ def _register_with_st2():
 
         if ST2_AUTH_TOKEN:
             get_resp = requests.get(url, headers={'X-Auth-Token':
-                                                  ST2_AUTH_TOKEN})
+                                                  ST2_AUTH_TOKEN}, verify=False)
         else:
-            get_resp = requests.get(url)
+            get_resp = requests.get(url, verify=False)
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type()
@@ -161,7 +163,7 @@ def _post_event_to_st2(url, body):
         headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
         # sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
-        r = requests.post(url, data=json.dumps(body), headers=headers)
+        r = requests.post(url, data=json.dumps(body), headers=headers, verify=False)
     except:
         sys.stderr.write('Cannot connect to st2 endpoint.')
     else:
@@ -211,6 +213,7 @@ if __name__ == '__main__':
             _register_with_st2()
     except Exception as e:
         sys.stderr.write(
-            'Failed registering with st2. Won\'t post event.\n%s' % e)
+            'Failed registering with st2. Won\'t post event.\n')
+        sys.stderr.write(traceback.format_exc())
     else:
         main(sys.argv)
