@@ -158,6 +158,7 @@ def _get_st2_webhooks_url():
 def _post_event_to_st2(url, body):
     headers = {}
     headers['X-ST2-Integration'] = 'sensu.'
+    headers['St2-Trace-Tag'] = body['payload']['id']
     headers['Content-Type'] = 'application/json; charset=utf-8'
     if ST2_AUTH_TOKEN:
         headers['X-Auth-Token'] = ST2_AUTH_TOKEN
