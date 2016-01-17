@@ -13,7 +13,7 @@ class StartVMAction(SingleVMAction):
         node = self._get_node_for_id(node_id=vm_id, driver=driver)
 
         self.logger.info('Starting node: %s' % (node))
-        status = driver.ex_stop_node(node=node)
+        status = driver.ex_start_node(node=node)
 
         if status is True:
             self.logger.info('Successfully started node "%s"' % (node))
