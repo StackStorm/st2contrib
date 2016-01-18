@@ -10,15 +10,11 @@ following values in datastore:
     - aws.region
 """
 
-import time
-
-import boto3
 from boto3.session import Session
 from botocore.exceptions import ClientError
 
-import json
-
 from st2reactor.sensor.base import PollingSensor
+
 
 class AWSSQSSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=5):
