@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_prefix_proxy_to_path
+parameters:
+  action:
+    default: prefix_proxy_to_path
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  host:
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  path:
+    required: true
+    type: string
+runner_type: run-python

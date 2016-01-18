@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_lookup
+parameters:
+  action:
+    default: lookup
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  owner_acct_id:
+    type: string
+  queue_name:
+    required: true
+    type: string
+runner_type: run-python

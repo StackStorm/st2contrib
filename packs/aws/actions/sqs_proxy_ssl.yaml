@@ -1,0 +1,22 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_proxy_ssl
+parameters:
+  action:
+    default: proxy_ssl
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  host:
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  port:
+    type: string
+runner_type: run-python

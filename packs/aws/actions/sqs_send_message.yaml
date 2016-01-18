@@ -1,0 +1,28 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_send_message
+parameters:
+  action:
+    default: send_message
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  delay_seconds:
+    type: string
+  message_attributes:
+    type: string
+  message_content:
+    required: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  queue:
+    required: true
+    type: string
+runner_type: run-python

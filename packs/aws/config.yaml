@@ -10,3 +10,6 @@ service_notifications_sensor:
   host: "localhost"
   port: 12345
   path: "/my-path"
+
+sqs_sensor:
+  input_queue: ""
