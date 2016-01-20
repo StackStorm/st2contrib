@@ -1,6 +1,6 @@
 """
 This is generic SQS Sensor using boto3 api to fetch messages from sqs queue.
-After receiving a messge it's content is passed as payload to a trigger 'aws.sqs_new_message'
+After receiving a message it's content is passed as payload to a trigger 'aws.sqs_new_message'
 
 This sensor can be configured either by using config.yaml withing a pack or by creating
 following values in datastore:
@@ -8,6 +8,16 @@ following values in datastore:
     - aws.aws_access_key_id
     - aws.aws_secret_access_key
     - aws.region
+
+For configuration in config.yaml with config like this
+    setup:
+      aws_access_key_id:
+      aws_access_key_id:
+      region:
+    sqs_sensor:
+      input_queue:
+
+If any value exist in datastore it will be taken instead of any value in config.yaml
 """
 
 from boto3.session import Session
@@ -22,18 +32,18 @@ class AWSSQSSensor(PollingSensor):
                                            poll_interval=poll_interval)
 
     def setup(self):
-        self.input_queue = self._GetConfigEntry(key='input_queue', prefix='sqs_sensor')
-        self.aws_access_key = self._GetConfigEntry('aws_access_key_id')
-        self.aws_secret_key = self._GetConfigEntry('aws_secret_access_key')
-        self.aws_region = self._GetConfigEntry('region')
+        self.input_queue = self._get_config_entry(key='keys ', prefix='sqs_sensor')
+        self.aws_access_key = self._get_config_entry('aws_access_key_id')
+        self.aws_secret_key = self._get_config_entry('aws_access_key_id')
+        self.aws_region = self._get_config_entry('region')
 
         self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
 
         self.session = None
         self.sqs_res = None
 
-        self._SetupSqs()
-        self.queue = self._GetQueueByName(self.input_queue)
+        self._setup_sqs()
+        self.queue = self._get_queue_by_name(self.input_queue)
 
     def poll(self):
         msg = self._receive_messages(queue=self.queue)
@@ -56,7 +66,7 @@ class AWSSQSSensor(PollingSensor):
     def remove_trigger(self, trigger):
         pass
 
-    def _GetConfigEntry(self, key, prefix='setup'):
+    def _get_config_entry(self, key, prefix='setup'):
         ''' Get configuration values either from Datastore or config file. '''
         config = self._config.get(prefix, None)
 
@@ -66,7 +76,7 @@ class AWSSQSSensor(PollingSensor):
 
         return value
 
-    def _SetupSqs(self):
+    def _setup_sqs(self):
         ''' Setup Boto3 structures '''
         self._logger.debug('Setting up SQS resources')
         self.session = Session(aws_access_key_id=self.aws_access_key,
@@ -75,7 +85,7 @@ class AWSSQSSensor(PollingSensor):
 
         self.sqs_res = self.session.resource('sqs')
 
-    def _GetQueueByName(self, queueName):
+    def _get_queue_by_name(self, queueName):
         ''' Fetch QUEUE by it's name create new one if queue doesn't exist '''
         try:
             queue = self.sqs_res.get_queue_by_name(QueueName=queueName)
