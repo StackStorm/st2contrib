@@ -1,0 +1,31 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_get_list
+parameters:
+  action:
+    required: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  markers:
+    required: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  params:
+    required: true
+    type: string
+  parent:
+    type: string
+  path:
+    default: /
+    type: string
+  verb:
+    default: GET
+    type: string
+runner_type: run-python

@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: sqs_create_queue
+parameters:
+  action:
+    default: create_queue
+    immutable: true
+    type: string
+  cls:
+    default: SQSConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.sqs.connection
+    immutable: true
+    type: string
+  queue_name:
+    required: true
+    type: string
+  visibility_timeout:
+    type: string
+runner_type: run-python
