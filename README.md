@@ -55,7 +55,7 @@ FORCE_CHECK_ALL_FILES=true make all
 Icon | Name | Description | Keywords | Author | Latest Version | Available Resources
 ---- | ---- | ----------- | -------- | ------ | -------------- | -------------------
 [![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
-[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
+[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
@@ -143,6 +143,7 @@ vault.encrypt | Encrypt ansible data files
 
 Name | Description
 ---- | -----------
+AWSSQSSensor | Sensor which monitors a SQS queue for new messages
 ServiceNotificationsSensor | Sensor which exposes an HTTP interface and listens for AWS service notifications delivered via AWS SNS
 
 #### Actions
@@ -332,6 +333,47 @@ r53_zone_update_cname |
 r53_zone_update_mx | 
 r53_zone_update_record | 
 set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
+sqs_add_permission | 
+sqs_build_base_http_request | 
+sqs_build_complex_list_params | 
+sqs_build_list_params | 
+sqs_change_message_visibility | 
+sqs_change_message_visibility_batch | 
+sqs_close | 
+sqs_create_queue | 
+sqs_delete_message | 
+sqs_delete_message_batch | 
+sqs_delete_message_from_handle | 
+sqs_delete_queue | 
+sqs_get_all_queues | 
+sqs_get_dead_letter_source_queues | 
+sqs_get_http_connection | 
+sqs_get_list | 
+sqs_get_object | 
+sqs_get_path | 
+sqs_get_proxy_auth_header | 
+sqs_get_proxy_url_with_auth | 
+sqs_get_queue | 
+sqs_get_queue_attributes | 
+sqs_get_status | 
+sqs_get_utf8_value | 
+sqs_handle_proxy | 
+sqs_lookup | 
+sqs_make_request | 
+sqs_new_http_connection | 
+sqs_prefix_proxy_to_path | 
+sqs_proxy_ssl | 
+sqs_purge_queue | 
+sqs_put_http_connection | 
+sqs_receive_message | 
+sqs_remove_permission | 
+sqs_send_message | 
+sqs_send_message_batch | 
+sqs_server_name | 
+sqs_set_host_header | 
+sqs_set_queue_attribute | 
+sqs_set_request_hook | 
+sqs_skip_proxy | 
 
 ### azure pack
 
