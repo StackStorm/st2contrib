@@ -2,9 +2,9 @@
 This is generic SQS Sensor using boto3 api to fetch messages from sqs queue.
 After receiving a message it's content is passed as payload to a trigger 'aws.sqs_new_message'
 
-This sensor can be configured either by using config.yaml withing a pack or by creating
+This sensor can be configured either by using config.yaml within a pack or by creating
 following values in datastore:
-    - aws.input_queues (list queues as comma separrated string: first_queue,second_queue)
+    - aws.input_queues (list queues as comma separated string: first_queue,second_queue)
     - aws.aws_access_key_id
     - aws.aws_secret_access_key
     - aws.region
