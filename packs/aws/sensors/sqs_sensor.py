@@ -22,6 +22,7 @@ For configuration in config.yaml with config like this
 If any value exist in datastore it will be taken instead of any value in config.yaml
 """
 
+import six
 from boto3.session import Session
 from botocore.exceptions import ClientError
 
@@ -38,8 +39,8 @@ class AWSSQSSensor(PollingSensor):
 
         # XXX: This is a hack as from datastore we can only receive a string while
         # from config.yaml we can receive a list
-        if type(queues) is str:
-            self.input_queues = queues.split(', ')
+        if isinstance(queues, six.string_types):
+            self.input_queues = [x.strip() for x in queues.split(',')]
         else:
             self.input_queues = queues
 
