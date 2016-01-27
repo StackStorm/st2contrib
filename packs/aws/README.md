@@ -86,7 +86,7 @@ Example trigger payload:
         "s3SchemaVersion": "1.0"
     }
 }
-````
+```
 
 ``source``, ``region``, ``name`` and ``timestamp`` attributes are included with
 all the events, but the format and values inside the ``payload`` attribute
@@ -94,6 +94,45 @@ different across different services and event types.
 
 For a list of supported S3 event types see
 http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#supported-notification-event-types
+
+### AWS SQS sensor
+
+This is generic *SQS* Sensor using boto3 api to fetch messages from *SQS* queue.
+After receiving a message it's content is passed as payload to a trigger 'aws.sqs_new_message'
+
+This sensor can be configured either by using config.yaml within a pack or by creating
+following values in datastore:
+
+- aws.input_queues (list queues as comma separated string: first_queue,second_queue)
+- aws.aws_access_key_id
+- aws.aws_secret_access_key
+- aws.region
+
+For configuration in ``config.yaml`` with config like this
+
+```yaml
+    setup:
+      aws_access_key_id:
+      aws_access_key_id:
+      region:
+    sqs_sensor:
+      input_queues:
+        - first_queue
+        - second_queue
+```
+
+If any value exist in datastore it will be taken instead of any value in config.yaml
+
+#### aws.sqs\_new\_message
+
+This trigger is emitted when a single message is received from a queue.
+
+```json
+{
+  "queue": "first_sqs_queue",
+  "body": "example message body"
+}
+```
 
 ## Actions
 
@@ -282,3 +321,47 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#supported-
 * ec2\_unmonitor\_instance
 * ec2\_unmonitor\_instances
 * ec2\_wait\_for\_state
+
+### SQS Actions
+
+* sqs\_add\_permission.yaml
+* sqs\_build\_base\_http\_request.yaml
+* sqs\_build\_complex\_list\_params.yaml
+* sqs\_build\_list\_params.yaml
+* sqs\_change\_message\_visibility.yaml
+* sqs\_change\_message\_visibility\_batch.yaml
+* sqs\_close.yaml
+* sqs\_create\_queue.yaml
+* sqs\_delete\_message.yaml
+* sqs\_delete\_message\_batch.yaml
+* sqs\_delete\_message\_from\_handle.yaml
+* sqs\_delete\_queue.yaml
+* sqs\_get\_all\_queues.yaml
+* sqs\_get\_dead\_letter\_source\_queues.yaml
+* sqs\_get\_http\_connection.yaml
+* sqs\_get\_list.yaml
+* sqs\_get\_object.yaml
+* sqs\_get\_path.yaml
+* sqs\_get\_proxy\_auth\_header.yaml
+* sqs\_get\_proxy\_url\_with\_auth.yaml
+* sqs\_get\_queue.yaml
+* sqs\_get\_queue\_attributes.yaml
+* sqs\_get\_status.yaml
+* sqs\_get\_utf8\_value.yaml
+* sqs\_handle\_proxy.yaml
+* sqs\_lookup.yaml
+* sqs\_make\_request.yaml
+* sqs\_new\_http\_connection.yaml
+* sqs\_prefix\_proxy\_to\_path.yaml
+* sqs\_proxy\_ssl.yaml
+* sqs\_purge\_queue.yaml
+* sqs\_put\_http\_connection.yaml
+* sqs\_receive\_message.yaml
+* sqs\_remove\_permission.yaml
+* sqs\_send\_message.yaml
+* sqs\_send\_message\_batch.yaml
+* sqs\_server\_name.yaml
+* sqs\_set\_host\_header.yaml
+* sqs\_set\_queue\_attribute.yaml
+* sqs\_set\_request\_hook.yaml
+* sqs\_skip\_proxy.yaml

@@ -12,4 +12,4 @@ service_notifications_sensor:
   path: "/my-path"
 
 sqs_sensor:
-  input_queue: ""
+  input_queues:

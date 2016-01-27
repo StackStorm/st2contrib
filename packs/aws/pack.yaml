@@ -11,6 +11,6 @@ keywords:
   - route53
   - cloud
 
-version : 0.3
+version : 0.4.0
 author : st2-dev
 email : info@stackstorm.com
