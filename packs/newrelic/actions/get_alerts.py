@@ -8,7 +8,7 @@ class GetAppHealthStatusAction(Action):
     Get health status of new relic application(s).
     """
     def __init__(self, *args, **kwargs):
-        super(GetAppHealthStatusAction, Action).__init__(*args, **kwargs)
+        super(GetAppHealthStatusAction, self).__init__(*args, **kwargs)
         self.url = 'https://api.newrelic.com/v2/applications.json'
         self.headers = {
             'User-Agent': 'StackStorm-New-Relic-Sensor/1.0.0 python-requests/2.7.0',
