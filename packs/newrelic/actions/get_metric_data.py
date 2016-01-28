@@ -8,7 +8,7 @@ class GetMetricDataAction(Action):
     Get data for an application metric given time range.
     """
     def __init__(self, *args, **kwargs):
-        super(GetMetricDataAction, Action).__init__(*args, **kwargs)
+        super(GetMetricDataAction, self).__init__(*args, **kwargs)
         self.base_url = 'https://api.newrelic.com/v2/applications/'
         # XXX: New Relic v2 APIs are supposed to be JSON but doc says XML.
         # https://docs.newrelic.com/docs/apm/apis/api-v2-examples/average-response-time-examples-api-v2
