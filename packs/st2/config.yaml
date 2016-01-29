@@ -1,5 +1,6 @@
 ---
-base_url: ""
+api_url: ""
+auth_url: ""
 # auth_token will expire per token_ttl specifed in stackstorm
 # configuration and will require a refresh.
 auth_token: ""
