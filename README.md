@@ -759,22 +759,30 @@ Name | Description
 balancer_attach_member | Attach a member to a load balancer
 balancer_list_members | List members of a load balancer
 create_balancer | Create a load balancer
+create_container_cluster | Create a cluster container
 create_dns_record | Create a new DNS record.
 create_vm | Create a new VM.
 delete_dns_record | Delete an existing DNS record.
+deploy_container | Deploy a container
+destroy_container | Destroy a Container
 destroy_vm | Destroy a VM.
 enable_cdn_for_container | Enable CDN for container and return the CDN URL
 get_container_cdn_url | Retrieve CDN URL for existing CDN enabled container
 get_object_cdn_url | Retrieve CDN URL for an object which is stored in a CDN enable container
 import_public_ssh_key | Import an existing public SSH key.
 list_balancers | List load balancers
+list_container_clusters | List container clusters
+list_containers | List containers
 list_dns_records | List available DNS records for a particular zone.
 list_dns_zones | List available zones.
 list_images | List available node images.
 list_sizes | List available node sizes.
 list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
+restart_container | Restart a container.
+start_container | Start a container.
 start_vm | Start a new VM.
+stop_container | Stop a container.
 stop_vm | Stop a running VM.
 upload_file | Upload a file to the provided container
 
