@@ -14,6 +14,6 @@ parameters:
     description: "Organization the team belongs to"
     required: true
   team:
-    type: "string"
+    type: "integer"
     description: "Team ID."
     required: true
