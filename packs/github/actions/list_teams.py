@@ -2,7 +2,7 @@ from lib.base import BaseGithubAction
 from lib.formatters import team_to_dict
 
 __all__ = [
-    ListTeamsAction'
+    'ListTeamsAction'
 ]
 
 
@@ -11,7 +11,7 @@ class ListTeamsAction(BaseGithubAction):
         organization = self._client.get_organization(organization)
         teams = organization.get_teams()
         result = []
-        for team in enumerate(teams):
+        for team in teams:
             team = team_to_dict(team=team)
             result.append(team)
 
