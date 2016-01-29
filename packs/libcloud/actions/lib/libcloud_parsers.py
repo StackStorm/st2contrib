@@ -3,6 +3,7 @@
 import libcloud.compute.base as compute_base
 import libcloud.dns.base as dns_base
 import libcloud.loadbalancer.base as lb_base
+import libcloud.container.base as container_base
 
 __all__ = [
     'FieldLists',
@@ -26,6 +27,9 @@ class FieldLists(object):
     RECORD = ['id', 'name', 'type', 'data', 'zone']
     MEMBER = ['id', 'ip', 'port', 'balancer']
     BALANCER = ['id', 'name', 'state', 'port']
+    CONTAINER = ['id', 'name', 'state']
+    CONTAINER_IMAGE = ['id', 'name', 'path', 'version']
+    CONTAINER_CLUSTER = ['id', 'name']
 
 
 class ResultSets(object):
@@ -55,6 +59,12 @@ class ResultSets(object):
             return self.parse(output, FieldLists.MEMBER)
         elif isinstance(output, lb_base.LoadBalancer):
             return self.parse(output, FieldLists.BALANCER)
+        elif isinstance(output, container_base.Container):
+            return self.parse(output, FieldLists.CONTAINER)
+        elif isinstance(output, container_base.ContainerImage):
+            return self.parse(output, FieldLists.CONTAINER_IMAGE)
+        elif isinstance(output, container_base.ContainerCluster):
+            return self.parse(output, FieldLists.CONTAINER_CLUSTER)
         else:
             return output
 

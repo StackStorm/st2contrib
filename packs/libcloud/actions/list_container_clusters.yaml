@@ -1,0 +1,11 @@
+---
+name: list_container_clusters
+runner_type: run-python
+description: List container clusters
+enabled: true
+entry_point: list_container_clusters.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true

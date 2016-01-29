@@ -27,3 +27,15 @@
       api_secret: "password"
       type: "compute"
       provider: "exoscale"
+    aws_ecs:
+      api_key: "username"
+      api_secret: "blah blah"
+      type: "container"
+      provider: "ecs"
+      region: "us-east-1"
+    kubernetes:
+      api_key: "username"
+      api_secret: "blah blah"
+      type: "container"
+      provider: "kubernetes"
+      host: "12.34.56.67"
