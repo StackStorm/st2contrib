@@ -13,6 +13,8 @@ Requires StackStorm >= `v0.8.0`
   is provided will assume the pack is expected to work with current StackStorm
   instance and pick up appropriate values from the actions environment. See
   http://docs.stackstorm.com/actions.html#common-environment-variables-available-to-the-actions
+* `api_url' - Base API url for the StackStorm API Server endpoint. (e.g.: https://localhost/api)
+* `auth_url' - Base AUTH url for the StackStorm Auth Server endpoint. (e.g.: https://localhost/auth)
 * `auth_token` - A negotiated auth token for the StackStorm endpoint specified
   in base_url. Note that this value will expire per the `token_ttl` specified
   in StackStorm configuration. See http://docs.stackstorm.com/authentication.html#usage
