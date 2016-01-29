@@ -5,6 +5,10 @@ base_url: ""
 # configuration and will require a refresh.
 auth_token: ""
 
-# Path to the CA cert file (bundle) used when verifying client cert.
+# If this setting is provided, server cert validation will be performed.
+# By default, client assumes self-signed cert and doesn't perform cert
+# validation.
+# This value can either contain path to the CA_BUNDLE file with
+# certificates of trusted CAs or "True" to use CAs from system storage.
 # If not provided, no validation will be performed
 cacert: ""
