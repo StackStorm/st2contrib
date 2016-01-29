@@ -1,5 +1,10 @@
 ---
 base_url: ""
+
 # auth_token will expire per token_ttl specifed in stackstorm
 # configuration and will require a refresh.
 auth_token: ""
+
+# Path to the CA cert file (bundle) used when verifying client cert.
+# If not provided, no validation will be performed
+cacert: ""
