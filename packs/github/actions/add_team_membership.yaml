@@ -9,6 +9,10 @@ parameters:
     type: "string"
     description: "User to invite"
     required: true
+  organization:
+    type: "string"
+    description: "Organization the team belongs to"
+    required: true
   team:
     type: "string"
     description: "Team ID."
