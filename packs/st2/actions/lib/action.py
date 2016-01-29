@@ -28,8 +28,8 @@ class St2BaseAction(Action):
     def _get_st2_urls(self):
         # First try to use base_url from config.
         base_url = self.config.get('base_url', None)
-        api_url = None
-        auth_url = None
+        api_url = self.config.get('api_url', None)
+        auth_url = self.config.get('auth_url', None)
 
         # not found look up from env vars. Assuming the pack is
         # configuered to work with current StackStorm instance.
