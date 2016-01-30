@@ -17,17 +17,17 @@ class SendInviteAction(Action):
         auto_join_channels = self.config['admin']['auto_join_channels']
         url = "https://%s.slack.com/api/users.admin.invite" % \
             self.config['admin']['organization']
-
         headers = {}
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         body = {
             'email': email.encode('utf-8'),
             'channels': " ".join(auto_join_channels),
-            'first_name': first_name.encode('utf-8'),
             'token': token,
             'set_active': set_active,
             '_attempts': attempts
         }
+        if first_name is not None:
+            body['first_name'] = first_name.encode('utf-8')
 
         data = urllib.urlencode(body)
         response = requests.get(url=url,

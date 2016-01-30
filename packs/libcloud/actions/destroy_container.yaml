@@ -1,0 +1,15 @@
+---
+name: destroy_container
+runner_type: run-python
+description: Destroy a Container
+enabled: true
+entry_point: destroy_container.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
+  container_id:
+    type: string
+    description: ID of a container to destroy.
+    required: true
