@@ -7,10 +7,10 @@ __all__ = [
 
 
 class AddTeamMembershipAction(BaseGithubAction):
-    def run(self, organization, team, user):
+    def run(self, organization, team_id, user):
         user = self._client.get_user(user)
         organization = self._client.get_organization(organization)
-        team = organization.get_team(int(team))
+        team = organization.get_team(team_id)
         team.add_membership(member=user)
         result = user_to_dict(user=user)
         return result
