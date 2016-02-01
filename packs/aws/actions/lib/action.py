@@ -89,7 +89,6 @@ class BaseAction(Action):
             del kwargs['zone']
             obj = self.get_r53zone(zone)
         else:
-        #elif cls == 'Route53Connection' or cls == 'IAMConnection' or cls == 'S3Connection':
             del self.setup['region']
             obj = getattr(module, cls)(**self.setup)
         resultset = getattr(obj, action)(**kwargs)

@@ -1,11 +1,6 @@
-#!/usr/bin/env python
-
 import boto
 import six
-#import boto.ec2
-#import boto.route53
-#import boto.s3
-#import boto.vpc
+
 
 class FieldLists():
     ADDRESS = ['public_ip', 'instance_id', 'domain', 'allocation_id', 'association_id',
@@ -52,8 +47,6 @@ class ResultSets(object):
             return self.parseR53Status(output)
         elif isinstance(output, boto.ec2.ec2object.EC2Object):
             return self.parseEC2Object(output)
-        #elif isinstance(output, boto.s3.bucket.Bucket):
-        #    return self.parseBucket(output)
         else:
             return output
 
