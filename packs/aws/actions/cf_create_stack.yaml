@@ -1,0 +1,43 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: cf_create_stack
+parameters:
+  action:
+    default: create_stack
+    immutable: true
+    type: string
+  capabilities:
+    type: string
+  cls:
+    default: CloudFormationConnection
+    immutable: true
+    type: string
+  disable_rollback:
+    type: string
+  module_path:
+    default: boto.cloudformation.connection
+    immutable: true
+    type: string
+  notification_arns:
+    type: string
+  on_failure:
+    type: string
+  parameters:
+    type: string
+  stack_name:
+    required: true
+    type: string
+  stack_policy_body:
+    type: string
+  stack_policy_url:
+    type: string
+  tags:
+    type: string
+  template_body:
+    type: string
+  template_url:
+    type: string
+  timeout_in_minutes:
+    type: string
+runner_type: run-python

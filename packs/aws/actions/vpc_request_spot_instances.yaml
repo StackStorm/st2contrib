@@ -1,0 +1,78 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_request_spot_instances
+parameters:
+  action:
+    default: request_spot_instances
+    immutable: true
+    type: string
+  addressing_type:
+    type: string
+  availability_zone_group:
+    type: string
+  block_device_map:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  count:
+    default: 1
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  ebs_optimized:
+    default: false
+    type: boolean
+  image_id:
+    required: true
+    type: string
+  instance_profile_arn:
+    type: string
+  instance_profile_name:
+    type: string
+  instance_type:
+    default: m1.small
+    type: string
+  kernel_id:
+    type: string
+  key_name:
+    type: string
+  launch_group:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  monitoring_enabled:
+    default: false
+    type: boolean
+  network_interfaces:
+    type: string
+  placement:
+    type: string
+  placement_group:
+    type: string
+  price:
+    required: true
+    type: string
+  ramdisk_id:
+    type: string
+  security_group_ids:
+    type: string
+  security_groups:
+    type: string
+  subnet_id:
+    type: string
+  type:
+    default: one-time
+    type: string
+  user_data:
+    type: string
+  valid_from:
+    type: string
+  valid_until:
+    type: string
+runner_type: run-python

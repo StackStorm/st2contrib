@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_associate_dhcp_options
+parameters:
+  action:
+    default: associate_dhcp_options
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dhcp_options_id:
+    required: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  vpc_id:
+    required: true
+    type: string
+runner_type: run-python

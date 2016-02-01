@@ -1,0 +1,30 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_create_customer_gateway
+parameters:
+  action:
+    default: create_customer_gateway
+    immutable: true
+    type: string
+  bgp_asn:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  ip_address:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  type:
+    required: true
+    type: string
+runner_type: run-python

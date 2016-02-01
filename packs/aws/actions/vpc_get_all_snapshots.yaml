@@ -1,0 +1,29 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_all_snapshots
+parameters:
+  action:
+    default: get_all_snapshots
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  filters:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  owner:
+    type: string
+  restorable_by:
+    type: string
+  snapshot_ids:
+    type: string
+runner_type: run-python

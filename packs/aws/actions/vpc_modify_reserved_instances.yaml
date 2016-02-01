@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_modify_reserved_instances
+parameters:
+  action:
+    default: modify_reserved_instances
+    immutable: true
+    type: string
+  client_token:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  reserved_instance_ids:
+    required: true
+    type: string
+  target_configurations:
+    required: true
+    type: string
+runner_type: run-python

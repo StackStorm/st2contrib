@@ -1,0 +1,45 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_generate_url
+parameters:
+  action:
+    default: generate_url
+    immutable: true
+    type: string
+  bucket:
+    default: ''
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  expires_in:
+    required: true
+    type: string
+  expires_in_absolute:
+    default: false
+    type: boolean
+  force_http:
+    default: false
+    type: boolean
+  headers:
+    type: string
+  key:
+    default: ''
+    type: string
+  method:
+    required: true
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+  query_auth:
+    default: true
+    type: boolean
+  response_headers:
+    type: string
+  version_id:
+    type: string
+runner_type: run-python

@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_create_dbsnapshot
+parameters:
+  action:
+    default: create_dbsnapshot
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  dbinstance_id:
+    required: true
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  snapshot_id:
+    required: true
+    type: string
+runner_type: run-python

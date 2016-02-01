@@ -1,0 +1,25 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_make_request
+parameters:
+  action:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  params:
+    type: string
+  path:
+    default: /
+    type: string
+  verb:
+    default: GET
+    type: string
+runner_type: run-python

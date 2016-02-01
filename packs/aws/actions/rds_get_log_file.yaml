@@ -1,0 +1,30 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_get_log_file
+parameters:
+  action:
+    default: get_log_file
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  dbinstance_id:
+    required: true
+    type: string
+  log_file_name:
+    required: true
+    type: string
+  marker:
+    type: string
+  max_records:
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  number_of_lines:
+    type: string
+runner_type: run-python

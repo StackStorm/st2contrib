@@ -1,0 +1,25 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_list_instance_profiles_for_role
+parameters:
+  action:
+    default: list_instance_profiles_for_role
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  marker:
+    type: string
+  max_items:
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  role_name:
+    required: true
+    type: string
+runner_type: run-python

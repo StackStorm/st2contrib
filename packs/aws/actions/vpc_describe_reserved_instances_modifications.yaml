@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_describe_reserved_instances_modifications
+parameters:
+  action:
+    default: describe_reserved_instances_modifications
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  filters:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  next_token:
+    type: string
+  reserved_instances_modification_ids:
+    type: string
+runner_type: run-python

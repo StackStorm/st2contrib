@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_delete_role_policy
+parameters:
+  action:
+    default: delete_role_policy
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  policy_name:
+    required: true
+    type: string
+  role_name:
+    required: true
+    type: string
+runner_type: run-python

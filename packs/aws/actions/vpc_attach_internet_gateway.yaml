@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_attach_internet_gateway
+parameters:
+  action:
+    default: attach_internet_gateway
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  internet_gateway_id:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  vpc_id:
+    required: true
+    type: string
+runner_type: run-python

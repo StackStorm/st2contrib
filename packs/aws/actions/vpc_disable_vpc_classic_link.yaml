@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_disable_vpc_classic_link
+parameters:
+  action:
+    default: disable_vpc_classic_link
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  vpc_id:
+    required: true
+    type: string
+runner_type: run-python

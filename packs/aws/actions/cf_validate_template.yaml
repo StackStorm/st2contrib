@@ -1,0 +1,22 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: cf_validate_template
+parameters:
+  action:
+    default: validate_template
+    immutable: true
+    type: string
+  cls:
+    default: CloudFormationConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.cloudformation.connection
+    immutable: true
+    type: string
+  template_body:
+    type: string
+  template_url:
+    type: string
+runner_type: run-python

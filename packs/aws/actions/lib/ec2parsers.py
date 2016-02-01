@@ -1,12 +1,11 @@
-#!/usr/bin/env python
-
-import boto.ec2
-import boto.route53
+import boto
+import six
 
 
 class FieldLists():
     ADDRESS = ['public_ip', 'instance_id', 'domain', 'allocation_id', 'association_id',
                'network_interface_id', 'network_interface_owner_id', 'private_ip_address']
+    BUCKET = ["LoggingGroup", "connection", "creation_date", "name"]
     INSTANCE = ['id', 'public_dns_name', 'private_dns_name', 'state', 'state_code',
                 'previous_state', 'previous_state_code', 'key_name', 'instance_type',
                 'launch_time', 'image_id', 'placement', 'placement_group', 'placement_tenancy',
@@ -46,6 +45,8 @@ class ResultSets(object):
             return self.parseR53Zone(output)
         elif isinstance(output, boto.route53.status.Status):
             return self.parseR53Status(output)
+        elif isinstance(output, boto.ec2.ec2object.EC2Object):
+            return self.parseEC2Object(output)
         else:
             return output
 
@@ -93,3 +94,33 @@ class ResultSets(object):
     def parseR53Status(self, output):
         status_data = {field: getattr(output, field) for field in FieldLists.R53STATUS}
         return status_data
+
+    def parseBucket(self, output):
+        bucket_data = {field: getattr(output, field) for field in FieldLists.BUCKET}
+        return bucket_data
+
+    def parseEC2Object(self, output):
+        # Looks like everything that is an EC2Object pretty much only has these extra
+        # 'unparseable' properties so handle region and connection specially.
+        output = vars(output)
+        del output['connection']
+        # special handling for region since name here is better than id.
+        region = output.get('region', None)
+        output['region'] = region.name if region else ''
+        # now anything that is an EC2Object get some special marshalling care.
+        for k, v in six.iteritems(output):
+            if isinstance(v, boto.ec2.ec2object.EC2Object):
+                # Better not to assume each EC2Object has an id. If not found
+                # resort to the str of the object which should have something meaningful.
+                output[k] = getattr(v, 'id', str(v))
+            # Generally unmarshallable object might be hiding in list so better to
+            if isinstance(v, list):
+                v_list = []
+                for item in v:
+                    # avoid touching the basic types.
+                    if isinstance(item, (basestring, bool, int, long, float)):
+                        v_list.append(v)
+                    else:
+                        v_list.append(str(item))
+                output[k] = v_list
+        return output

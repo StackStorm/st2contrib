@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_associate_network_acl
+parameters:
+  action:
+    default: associate_network_acl
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  network_acl_id:
+    required: true
+    type: string
+  subnet_id:
+    required: true
+    type: string
+runner_type: run-python

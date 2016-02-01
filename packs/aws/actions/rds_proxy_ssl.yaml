@@ -1,0 +1,22 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_proxy_ssl
+parameters:
+  action:
+    default: proxy_ssl
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  host:
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  port:
+    type: string
+runner_type: run-python

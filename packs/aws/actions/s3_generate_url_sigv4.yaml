@@ -1,0 +1,41 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_generate_url_sigv4
+parameters:
+  action:
+    default: generate_url_sigv4
+    immutable: true
+    type: string
+  bucket:
+    default: ''
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  expires_in:
+    required: true
+    type: string
+  force_http:
+    default: false
+    type: boolean
+  headers:
+    type: string
+  iso_date:
+    type: string
+  key:
+    default: ''
+    type: string
+  method:
+    required: true
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+  response_headers:
+    type: string
+  version_id:
+    type: string
+runner_type: run-python

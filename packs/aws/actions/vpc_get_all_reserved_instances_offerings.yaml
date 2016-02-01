@@ -1,0 +1,47 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_get_all_reserved_instances_offerings
+parameters:
+  action:
+    default: get_all_reserved_instances_offerings
+    immutable: true
+    type: string
+  availability_zone:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  filters:
+    type: string
+  include_marketplace:
+    type: string
+  instance_tenancy:
+    type: string
+  instance_type:
+    type: string
+  max_duration:
+    type: string
+  max_instance_count:
+    type: string
+  max_results:
+    type: string
+  min_duration:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  next_token:
+    type: string
+  offering_type:
+    type: string
+  product_description:
+    type: string
+  reserved_instances_offering_ids:
+    type: string
+runner_type: run-python

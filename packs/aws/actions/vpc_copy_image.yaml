@@ -1,0 +1,33 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_copy_image
+parameters:
+  action:
+    default: copy_image
+    immutable: true
+    type: string
+  client_token:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  description:
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  name:
+    type: string
+  source_image_id:
+    required: true
+    type: string
+  source_region:
+    required: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,23 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_delete_access_key
+parameters:
+  access_key_id:
+    required: true
+    type: string
+  action:
+    default: delete_access_key
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  user_name:
+    type: string
+runner_type: run-python

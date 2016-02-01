@@ -1,0 +1,28 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_create_bucket
+parameters:
+  action:
+    default: create_bucket
+    immutable: true
+    type: string
+  bucket_name:
+    required: true
+    type: string
+  cls:
+    default: S3Connection
+    immutable: true
+    type: string
+  headers:
+    type: string
+  location:
+    default: ''
+    type: string
+  module_path:
+    default: boto.s3.connection
+    immutable: true
+    type: string
+  policy:
+    type: string
+runner_type: run-python

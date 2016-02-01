@@ -1,0 +1,20 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: rds_server_name
+parameters:
+  action:
+    default: server_name
+    immutable: true
+    type: string
+  cls:
+    default: RDSConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.rds
+    immutable: true
+    type: string
+  port:
+    type: string
+runner_type: run-python

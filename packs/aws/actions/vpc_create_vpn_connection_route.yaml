@@ -1,0 +1,27 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_create_vpn_connection_route
+parameters:
+  action:
+    default: create_vpn_connection_route
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  destination_cidr_block:
+    required: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  vpn_connection_id:
+    required: true
+    type: string
+runner_type: run-python

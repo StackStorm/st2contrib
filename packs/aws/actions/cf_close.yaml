@@ -1,0 +1,18 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: cf_close
+parameters:
+  action:
+    default: close
+    immutable: true
+    type: string
+  cls:
+    default: CloudFormationConnection
+    immutable: true
+    type: string
+  module_path:
+    default: boto.cloudformation.connection
+    immutable: true
+    type: string
+runner_type: run-python

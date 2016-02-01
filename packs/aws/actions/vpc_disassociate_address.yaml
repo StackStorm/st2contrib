@@ -1,0 +1,25 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_disassociate_address
+parameters:
+  action:
+    default: disassociate_address
+    immutable: true
+    type: string
+  association_id:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  public_ip:
+    type: string
+runner_type: run-python

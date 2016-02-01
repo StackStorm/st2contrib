@@ -4,6 +4,7 @@ import importlib
 
 import boto.ec2
 import boto.route53
+import boto.vpc
 
 from st2actions.runners.pythonrunner import Action
 from ec2parsers import ResultSets
@@ -24,6 +25,11 @@ class BaseAction(Action):
         region = self.setup['region']
         del self.setup['region']
         return boto.ec2.connect_to_region(region, **self.setup)
+
+    def vpc_connect(self):
+        region = self.setup['region']
+        del self.setup['region']
+        return boto.vpc.connect_to_region(region, **self.setup)
 
     def r53_connect(self):
         del self.setup['region']
@@ -76,13 +82,14 @@ class BaseAction(Action):
         # hack to connect to correct region
         if cls == 'EC2Connection':
             obj = self.ec2_connect()
+        elif cls == 'VPCConnection':
+            obj = self.vpc_connect()
         elif module_path == 'boto.route53.zone' and cls == 'Zone':
             zone = kwargs['zone']
             del kwargs['zone']
             obj = self.get_r53zone(zone)
         else:
-            if cls == 'Route53Connection':
-                del self.setup['region']
+            del self.setup['region']
             obj = getattr(module, cls)(**self.setup)
         resultset = getattr(obj, action)(**kwargs)
         return self.resultsets.formatter(resultset)

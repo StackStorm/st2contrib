@@ -1,0 +1,25 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: iam_get_all_user_policies
+parameters:
+  action:
+    default: get_all_user_policies
+    immutable: true
+    type: string
+  cls:
+    default: IAMConnection
+    immutable: true
+    type: string
+  marker:
+    type: string
+  max_items:
+    type: string
+  module_path:
+    default: boto.iam.connection
+    immutable: true
+    type: string
+  user_name:
+    required: true
+    type: string
+runner_type: run-python

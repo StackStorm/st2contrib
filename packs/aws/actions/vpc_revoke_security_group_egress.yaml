@@ -1,0 +1,35 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_revoke_security_group_egress
+parameters:
+  action:
+    default: revoke_security_group_egress
+    immutable: true
+    type: string
+  cidr_ip:
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  from_port:
+    type: string
+  group_id:
+    required: true
+    type: string
+  ip_protocol:
+    required: true
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  src_group_id:
+    type: string
+  to_port:
+    type: string
+runner_type: run-python

@@ -1,0 +1,24 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_cancel_bundle_task
+parameters:
+  action:
+    default: cancel_bundle_task
+    immutable: true
+    type: string
+  bundle_id:
+    required: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+runner_type: run-python

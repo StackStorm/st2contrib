@@ -1,0 +1,36 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: vpc_create_volume
+parameters:
+  action:
+    default: create_volume
+    immutable: true
+    type: string
+  cls:
+    default: VPCConnection
+    immutable: true
+    type: string
+  dry_run:
+    default: false
+    type: boolean
+  encrypted:
+    default: false
+    type: boolean
+  iops:
+    type: string
+  module_path:
+    default: boto.vpc
+    immutable: true
+    type: string
+  size:
+    required: true
+    type: string
+  snapshot:
+    type: string
+  volume_type:
+    type: string
+  zone:
+    required: true
+    type: string
+runner_type: run-python
