@@ -10,7 +10,13 @@ keywords:
   - sns
   - route53
   - cloud
+  - iam
+  - vpc
+  - s3
+  - CloudFormation
+  - RDS
+  - SQS
 
-version : 0.4.0
+version : 0.5.0
 author : st2-dev
 email : info@stackstorm.com
