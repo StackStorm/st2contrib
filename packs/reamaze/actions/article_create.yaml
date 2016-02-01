@@ -1,0 +1,29 @@
+---
+name: "article_create"
+runner_type: "python-script"
+description: "This action creates a specific article given article name (called 'slug' in reamaze).
+             You can optionally provide a topic to place article under."
+enabled: true
+entry_point: "article_create.py"
+parameters:
+  topic:
+    type: "string"
+    description: "Article bucket (confusingly also called 'slug').
+                  This is there to group articles. If unspecified,
+                  article won't be categorized."
+    required: false
+  status:
+    type: "number"
+    description: "Indicate whether you want article to be published(0), draft(1), internal(4)."
+    required: true
+    default: 0
+  title:
+    type: "string"
+    description: "Title for the article. This should be human readable string."
+    required: true
+  body:
+    type: "string"
+    description: "Body of the article. This should be human readable string."
+    required: true
+
+

@@ -1,0 +1,17 @@
+description: This method lets you set the calling user's manual presence. Consult
+  the presence documentation for more details.
+enabled: true
+entry_point: run.py
+name: users.setPresence
+parameters:
+  end_point:
+    default: users.setPresence
+    immutable: true
+    type: string
+  presence:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

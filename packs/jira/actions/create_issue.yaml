@@ -23,3 +23,11 @@ parameters:
     type: string
     description: Issue description.
     required: false
+  project:
+    type: string
+    description: destination Project in Jira.
+    required: false
+  extra_fields:
+    type: object
+    description: "extra fields like priority, labels, custom fields, etc"
+    required: false

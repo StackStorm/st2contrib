@@ -1,0 +1,34 @@
+description: This method returns a portion of messages/events from the specified channel.
+  To read the entire history for a channel, call the method with no latest or oldest
+  arguments, and then continue paging using the instructions below.
+enabled: true
+entry_point: run.py
+name: channels.history
+parameters:
+  channel:
+    required: true
+    type: string
+  count:
+    default: '100'
+    required: false
+    type: string
+  end_point:
+    default: channels.history
+    immutable: true
+    type: string
+  inclusive:
+    default: '0'
+    required: false
+    type: string
+  latest:
+    default: now
+    required: false
+    type: string
+  oldest:
+    default: '0'
+    required: false
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

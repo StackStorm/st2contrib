@@ -1,0 +1,20 @@
+description: This method is used to change the purpose of a private group. The calling
+  user must be a member of the private group.
+enabled: true
+entry_point: run.py
+name: groups.setPurpose
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: groups.setPurpose
+    immutable: true
+    type: string
+  purpose:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

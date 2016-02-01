@@ -140,7 +140,7 @@ def sendEventToStackStorm(event) {
 
   def uri = st2Server
   def headers = [
-    "X-API-Key": st2ApiKey,
+    "St2-Api-Key": st2ApiKey,
     "Content-Type": "application/json",
   ]
 

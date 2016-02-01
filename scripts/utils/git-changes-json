@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+ROOT_DIRECTORY=$1
+BASE_BRANCH="origin/master"
+
+# If this environment variable if specified we will return all the files so the
+# checks run on all the files not only changed ones.
+if [ "${FORCE_CHECK_ALL_FILES}" = "true" ]; then
+    echo $(find ${ROOT_DIRECTORY}/packs/* -name "*.json")
+    exit 0
+fi
+
+cd ${ROOT_DIRECTORY}
+echo $(git diff --name-only ${BASE_BRANCH} -- '*.json')

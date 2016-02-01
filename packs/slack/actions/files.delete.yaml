@@ -1,0 +1,16 @@
+description: This method deletes a file from your team.
+enabled: true
+entry_point: run.py
+name: files.delete
+parameters:
+  end_point:
+    default: files.delete
+    immutable: true
+    type: string
+  file:
+    required: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

@@ -1,0 +1,17 @@
+description: This method lets you find out information about a user's presence. Consult
+  the presence documentation for more details.
+enabled: true
+entry_point: run.py
+name: users.getPresence
+parameters:
+  end_point:
+    default: users.getPresence
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  user:
+    required: true
+    type: string
+runner_type: run-python

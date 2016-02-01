@@ -23,32 +23,53 @@ Related tools that help make it easier to integrate and consume StackStorm conte
 
 ## Tests and Automated Checks
 
-To run tests and all the other automated checks which run on Travis CI, run the following
-command:
+By default, Travis CI runs the following checks (makefiles tasks):
+
+* ``flake8`` - Runs ``flake8`` on all the Python files.
+* ``pylint`` - Runs ``pylint`` on all the Python files.
+* ``configs-check`` - Makes sure that all the JSON and YAML resource metadata
+  files contain correct syntax.
+* ``metadata-check`` - Verifies that each pack contains pack metadata file
+  (``pack.yaml``).
+* ``packs-resource-register`` - Registers resources from all the packs and
+  makes sure the registration succeeds.
+* ``packs-tests`` - Runs tests for all the packs.
+
+To run all those checks locally, you can use the following command:
 
 ```bash
 make all
+```
+
+By default when running this command on a non-master branch, it will only
+perform checks on changed files and packs. If you want to run checks on all the
+files and packs (regardless if they changed or not), you can do that by
+specifying ``FORCE_CHECK_ALL_FILES=true`` environment variable as show below.
+
+```bash
+FORCE_CHECK_ALL_FILES=true make all
 ```
 
 ## Available Packs
 
 Icon | Name | Description | Keywords | Author | Latest Version | Available Resources
 ---- | ---- | ----------- | -------- | ------ | -------------- | -------------------
-[![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
-[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
+[![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
+[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud | [st2-dev](mailto:info@stackstorm.com) | 0.4.0 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
 [![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
+[![Circle CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | [Circle CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | Pack which allows integration with Circle CI. | circle, circle ci, continous integration, ci | [StackStorm dev](mailto:support@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Circle CI-pack)
 [![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 [![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
-[![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.1.2 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
+[![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
 [![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
-[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#github-pack)
+[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 [![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
 [![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
@@ -75,14 +96,17 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 [![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
+[![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
 [![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 [![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
-[![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
+[![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
+[![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.2.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 [![SmartThings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | [SmartThings](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | Integration with SmartThings | smartthings, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#SmartThings-pack)
 [![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 [![splunk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/splunk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | [splunk](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | Splunk integration pack | splunk | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#splunk-pack)
-[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | [time](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | st2 content pack containing different date and time related functionality | date, time | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#time-pack)
 [![Travis CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 [![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
@@ -93,6 +117,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
 [![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
+[![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
 ### ansible pack
 
 ![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)
@@ -118,6 +143,7 @@ vault.encrypt | Encrypt ansible data files
 
 Name | Description
 ---- | -----------
+AWSSQSSensor | Sensor which monitors a SQS queue for new messages
 ServiceNotificationsSensor | Sensor which exposes an HTTP interface and listens for AWS service notifications delivered via AWS SNS
 
 #### Actions
@@ -307,6 +333,47 @@ r53_zone_update_cname |
 r53_zone_update_mx | 
 r53_zone_update_record | 
 set_hostname_cloud | Set the hostname on a VM and update cloud.cfg
+sqs_add_permission | 
+sqs_build_base_http_request | 
+sqs_build_complex_list_params | 
+sqs_build_list_params | 
+sqs_change_message_visibility | 
+sqs_change_message_visibility_batch | 
+sqs_close | 
+sqs_create_queue | 
+sqs_delete_message | 
+sqs_delete_message_batch | 
+sqs_delete_message_from_handle | 
+sqs_delete_queue | 
+sqs_get_all_queues | 
+sqs_get_dead_letter_source_queues | 
+sqs_get_http_connection | 
+sqs_get_list | 
+sqs_get_object | 
+sqs_get_path | 
+sqs_get_proxy_auth_header | 
+sqs_get_proxy_url_with_auth | 
+sqs_get_queue | 
+sqs_get_queue_attributes | 
+sqs_get_status | 
+sqs_get_utf8_value | 
+sqs_handle_proxy | 
+sqs_lookup | 
+sqs_make_request | 
+sqs_new_http_connection | 
+sqs_prefix_proxy_to_path | 
+sqs_proxy_ssl | 
+sqs_purge_queue | 
+sqs_put_http_connection | 
+sqs_receive_message | 
+sqs_remove_permission | 
+sqs_send_message | 
+sqs_send_message_batch | 
+sqs_server_name | 
+sqs_set_host_header | 
+sqs_set_queue_attribute | 
+sqs_set_request_hook | 
+sqs_skip_proxy | 
 
 ### azure pack
 
@@ -377,6 +444,17 @@ client | Performs chef-client run on remote hosts.
 install | Performs installation of chef-client on remote nodes
 ohai | Performs chef-solo run on remote hosts.
 solo | Performs chef-solo run on remote hosts.
+
+### circle_ci pack
+
+![circle_ci icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_build_number | Get build number for given SHA.
+wait_until_build_finishes | Wait until build finishes.
 
 ### csv pack
 
@@ -526,6 +604,7 @@ create_issue | Create a Github issue.
 get_clone_stats | Retrieve clone statistics for a given repository
 get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
+list_issues | Retrieve a list of issues (including pull requests) for a particular repository.
 
 ### google pack
 
@@ -632,6 +711,7 @@ JIRASensor | Sensor which monitors JIRA for new tickets
 
 Name | Description
 ---- | -----------
+comment_issue | Comment on a JIRA issue / ticket.
 create_issue | Create a new JIRA issue / ticket.
 get_issue | Retrieve information about a particular JIRA issue.
 
@@ -679,20 +759,30 @@ Name | Description
 balancer_attach_member | Attach a member to a load balancer
 balancer_list_members | List members of a load balancer
 create_balancer | Create a load balancer
+create_container_cluster | Create a cluster container
 create_dns_record | Create a new DNS record.
 create_vm | Create a new VM.
 delete_dns_record | Delete an existing DNS record.
+deploy_container | Deploy a container
+destroy_container | Destroy a Container
 destroy_vm | Destroy a VM.
 enable_cdn_for_container | Enable CDN for container and return the CDN URL
 get_container_cdn_url | Retrieve CDN URL for existing CDN enabled container
 get_object_cdn_url | Retrieve CDN URL for an object which is stored in a CDN enable container
 import_public_ssh_key | Import an existing public SSH key.
 list_balancers | List load balancers
+list_container_clusters | List container clusters
+list_containers | List containers
 list_dns_records | List available DNS records for a particular zone.
 list_dns_zones | List available zones.
+list_images | List available node images.
+list_sizes | List available node sizes.
 list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
+restart_container | Restart a container.
+start_container | Start a container.
 start_vm | Start a new VM.
+stop_container | Stop a container.
 stop_vm | Stop a running VM.
 upload_file | Upload a file to the provided container
 
@@ -796,7 +886,8 @@ toggle_away | Toggle current Home/Away status
 
 Name | Description
 ---- | -----------
-NewRelicHookSensor | Sensor which watches for alerts from NewRelic.
+NewRelicHookSensor | Sensor which watches for alerts from the NewRelic legacy API.
+NewRelicHookSensor | Sensor which watches for alerts from NewRelic API.
 
 #### Actions
 
@@ -948,6 +1039,21 @@ list_vm_sizes | List all the available VM sizes
 list_vms | List all the available vms. Optionally filter on the metadata values.
 set_vm_metadata | Set metadata values for the provided VM.
 set_vm_metadata_item | Set a value of a metadata item for a provided VM.
+
+### reamaze pack
+
+![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+article_create | This action creates a specific article given article name (called 'slug' in reamaze). You can optionally provide a topic to place article under.
+article_get | This action gets a specific article given article name (called 'slug' in reamaze).
+article_search | This action searches through articles that may be related to a user query
+article_update | This action updates a specific article given article name (called 'slug' in reamaze).
+create_message | Create a new message under a specific conversation
+get_conversations | This action looks through open re:amaze issues and reports back status
 
 ### salt pack
 
@@ -1159,8 +1265,25 @@ Name | Description
 ---- | -----------
 delete | Delete an entry from a ServiceNow Table
 get | Get an entry from a ServiceNow Table
+get_non_structured | Run a string GET query on the ServiceNow API
 insert | Insert an entry to a ServiceNow Table
 update | Update an entry in a ServiceNow Table
+
+### signalr pack
+
+![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+SignalRHubSensor | Sensor which listens for push notifications raise by signalr
+
+#### Actions
+
+Name | Description
+---- | -----------
+send_message | Send a message to a SignalR Hub
 
 ### slack pack
 
@@ -1176,7 +1299,66 @@ SlackSensor | Sensor which monitors Slack for activity
 
 Name | Description
 ---- | -----------
+api.test | This method helps you test your calling code.
+auth.test | This method checks authentication and tells you who you are.
+channels.archive | This method archives a channel.
+channels.create | This method is used to create a channel.
+channels.history | This method returns a portion of messages/events from the specified channel. To read the entire history for a channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+channels.info | This method returns information about a team channel.
+channels.invite | This method is used to invite a user to a channel. The calling user must be a member of the channel.
+channels.join | This method is used to join a channel. If the channel does not exist, it is created.
+channels.kick | This method allows a user to remove another member from a team channel.
+channels.leave | This method is used to leave a channel.
+channels.list | This method returns a list of all channels in the team. This includes channels the caller is in, channels they are not currently in, and archived channels. The number of (non-deactivated) members in each channel is also returned.
+channels.mark | This method moves the read cursor in a channel.
+channels.rename | This method renames a team channel.
+channels.setPurpose | This method is used to change the purpose of a channel. The calling user must be a member of the channel.
+channels.setTopic | This method is used to change the topic of a channel. The calling user must be a member of the channel.
+channels.unarchive | This method unarchives a channel. The calling user is added to the channel.
+chat.delete | This method deletes a message from a channel.
+chat.postMessage | This method posts a message to a channel.
+chat.update | This method updates a message in a channel.
+emoji.list | This method lists the custom emoji for a team.
+files.delete | This method deletes a file from your team.
+files.info | This method returns information about a file in your team.
+files.list | This method returns a list of files within the team. It can be filtered and sliced in various ways.
+files.upload | This method allows you to create or upload an existing file.
+groups.archive | This method archives a private group.
+groups.close | This method closes a private group.
+groups.create | This method creates a private group.
+groups.createChild | This method takes an existing private group and performs the following steps:
+groups.history | This method returns a portion of messages/events from the specified private group. To read the entire history for a group, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+groups.info | This method returns information about a private group.
+groups.invite | This method is used to invite a user to a private group. The calling user must be a member of the group.
+groups.kick | This method allows a user to remove another member from a private group.
+groups.leave | This method is used to leave a private group.
+groups.list | This method returns a list of groups in the team that the caller is in and archived groups that the caller was in. The list of (non-deactivated) members in each group is also returned.
+groups.mark | This method moves the read cursor in a private group.
+groups.open | This method opens a private group.
+groups.rename | This method renames a private group.
+groups.setPurpose | This method is used to change the purpose of a private group. The calling user must be a member of the private group.
+groups.setTopic | This method is used to change the topic of a private group. The calling user must be a member of the private group.
+groups.unarchive | This method unarchives a private group.
+im.close | This method closes a direct message channel.
+im.history | This method returns a portion of messages/events from the specified direct message channel. To read the entire history for a direct message channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+im.list | This method returns a list of all im channels that the user has.
+im.mark | This method moves the read cursor in a direct message channel.
+im.open | This method opens a direct message channel with another member of your Slack team.
+oauth.access | This method allows you to exchange a temporary OAuth code for an API access token. This is used as part of the OAuth authentication flow.
 post_message | Post a message to the Slack channel.
+rtm.start | This method starts a Real Time Messaging API session. Refer to the RTM API documentation for full details on how to use the RTM API.
+search.all | This method allows to to search both messages and files in a single call.
+search.files | This method returns files matching a search query.
+search.messages | This method returns messages matching a search query.
+stars.list | This method lists the items starred by a user.
+team.accessLogs | This method is used to get the access logs for users on a team.
+team.info | This method provides information about your team.
+users.admin.invite | Send an invitation to join a Slack Org
+users.getPresence | This method lets you find out information about a user's presence. Consult the presence documentation for more details.
+users.info | This method returns information about a team member.
+users.list | This method returns a list of all users in the team. This includes deleted/deactivated users.
+users.setActive | This method lets the slack messaging server know that the authenticated user is currently active. Consult the presence documentation for more details.
+users.setPresence | This method lets you set the calling user's manual presence. Consult the presence documentation for more details.
 
 ### smartthings pack
 
@@ -1251,6 +1433,17 @@ kv.set_object | Serialize and store object in a datastore
 rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
 upload_to_s3 | Sends collected data to write-only StackStorm S3 bucket
+
+### time pack
+
+![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_week_boundaries | Retrieve week boundary timestamps (week start and end) for the provided date.
+parse_date_string | Parse the (human readable) date string and return timestamp.
 
 ### travis_ci pack
 
@@ -1390,6 +1583,21 @@ text_query | Send a text query to Wit.ai API
 Name | Description
 ---- | -----------
 parse | Parse XML string and return JSON object.
+
+### yammer pack
+
+![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+authenticate | Requests a OAuth authorization URL from the Yammer API, use this URL to authenticate your app in a browser, use the code in config.yaml
+like_message | Like a particular message
+list_messages | List all messages globally for the authenticated user
+list_messages_from_user | List all messages from my feed for the authenticated user
+list_messages_my_feed | List all messages from my feed for the authenticated user
+post_message | List all messages from my feed for the authenticated user
 
 ## License, and Contributors Agreement
 

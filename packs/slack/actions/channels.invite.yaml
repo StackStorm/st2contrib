@@ -1,0 +1,20 @@
+description: This method is used to invite a user to a channel. The calling user must
+  be a member of the channel.
+enabled: true
+entry_point: run.py
+name: channels.invite
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.invite
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  user:
+    required: true
+    type: string
+runner_type: run-python

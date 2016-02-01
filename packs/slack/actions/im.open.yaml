@@ -1,0 +1,17 @@
+description: This method opens a direct message channel with another member of your
+  Slack team.
+enabled: true
+entry_point: run.py
+name: im.open
+parameters:
+  end_point:
+    default: im.open
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+  user:
+    required: true
+    type: string
+runner_type: run-python

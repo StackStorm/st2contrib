@@ -1,1 +1,1 @@
-apache-libcloud>=0.15.1
+apache-libcloud==1.0.0-pre1

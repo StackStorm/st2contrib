@@ -17,9 +17,14 @@ def replace_args(attribute=None):
     def _replace_args(f):
         @functools.wraps(f)
         def _wrapper(self, *args):
+            def _replace(arg):
+                for rule in rules:
+                    if arg.startswith(rule):
+                        return arg.replace(rule, rules[rule])
+                return arg
             rules = getattr(self, attribute)
             if not rules:
                 return f(self, *args)
-            return map(lambda a: rules[a] if a in rules else a, f(self, *args))
+            return map(_replace, f(self, *args))
         return _wrapper
     return _replace_args

@@ -20,21 +20,24 @@ class St2BaseAction(Action):
         self.client = self._get_client()
 
     def _get_client(self):
-        base_url, api_url = self._get_st2_urls()
+        base_url, api_url, auth_url = self._get_st2_urls()
         token = self._get_auth_token()
-        return self._client(base_url=base_url, api_url=api_url, token=token)
+        return self._client(base_url=base_url, api_url=api_url,
+                            auth_url=auth_url, token=token)
 
     def _get_st2_urls(self):
         # First try to use base_url from config.
         base_url = self.config.get('base_url', None)
-        api_url = None
+        api_url = self.config.get('api_url', None)
+        auth_url = self.config.get('auth_url', None)
 
         # not found look up from env vars. Assuming the pack is
         # configuered to work with current StackStorm instance.
         if not base_url:
             api_url = os.environ.get('ST2_ACTION_API_URL', None)
+            auth_url = os.environ.get('ST2_ACTION_AUTH_URL', None)
 
-        return base_url, api_url
+        return base_url, api_url, auth_url
 
     def _get_auth_token(self):
         # First try to use auth_token from config.
@@ -47,7 +50,7 @@ class St2BaseAction(Action):
 
         return token
 
-    def _run_client_method(self, method, method_kwargs, format_func):
+    def _run_client_method(self, method, method_kwargs, format_func, format_kwargs=None):
         """
         Run the provided client method and format the result.
 
@@ -70,5 +73,5 @@ class St2BaseAction(Action):
                                                                            method_kwargs))
 
         result = method(**method_kwargs)
-        result = format_func(result)
+        result = format_func(result, **format_kwargs or {})
         return result

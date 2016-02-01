@@ -14,7 +14,6 @@ parameters:
     description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
     type: boolean
     default: true
-    immutable: true
   cwd:
     description: "Working directory where the command will be executed in"
     type: string
@@ -35,7 +34,7 @@ parameters:
   become:
     description: "Run operations with become (nopasswd implied) [-b]"
     type: boolean
-  become-method:
+  become_method:
     description: "Privilege escalation method to use. Valid choices: sudo, su, pbrun, pfexec, runas (default=sudo)"
     type: string
     enum:
@@ -44,7 +43,7 @@ parameters:
       - pbrun
       - pfexec
       - runas
-  become-user:
+  become_user:
     description: "Run operations as this user. Works only with 'become'"
     type: string
   check:
@@ -53,7 +52,7 @@ parameters:
   connection:
     description: "Connection type to use (default=smart) [-c]"
     type: string
-  extra-vars:
+  extra_vars:
     description: "Set additional variables as key=value or YAML/JSON [-e]"
     type: string
   forks:
@@ -62,28 +61,28 @@ parameters:
   help:
     description: "Show help message and exit [-h]"
     type: boolean
-  inventory-file:
+  inventory_file:
     description: "Inventory host file (default=/etc/ansible/hosts) [-i]"
     type: string
   limit:
     description: "Further limit selected hosts to an additional pattern [-l]"
     type: string
-  list-hosts:
+  list_hosts:
     description: "Outputs a list of matching hosts; does not execute anything else"
     type: boolean
-  module-name:
+  module_name:
     description: "Module name to execute (default=command) [-m]"
     type: string
-  module-path:
+  module_path:
     description: "Specify path(s) to module library (default=None) [-M]"
     type: string
-  one-line:
+  one_line:
     description: "Condense output [-o]"
     type: boolean
   poll:
     description: "Set the poll interval if using -B (default=15) [-P]"
     type: integer
-  private-key:
+  private_key:
     description: "Use this file to authenticate the connection"
     type: string
   tree:
@@ -92,7 +91,7 @@ parameters:
   user:
     description: "Connect to remote hosts as this user (default=root) [-u]"
     type: string
-  vault-password-file:
+  vault_password_file:
     description: "Vault password file"
     type: string
   verbose:

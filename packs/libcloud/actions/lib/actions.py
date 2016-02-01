@@ -10,7 +10,10 @@ from libcloud.compute.providers import get_driver as get_compute_driver
 from libcloud.storage.providers import get_driver as get_storage_driver
 from libcloud.dns.providers import get_driver as get_dns_driver
 from libcloud.loadbalancer.providers import get_driver as get_lb_driver
+from libcloud.container.providers import get_driver as get_container_driver
 from libcloud.compute.base import Node
+
+from libcloud_parsers import ResultSets
 
 from st2actions.runners.pythonrunner import Action
 
@@ -22,6 +25,10 @@ __all__ = [
 
 class BaseAction(Action):
     api_type = None
+
+    def __init__(self, config):
+        super(BaseAction, self).__init__(config)
+        self.resultsets = ResultSets()
 
     def _get_driver_for_credentials(self, credentials):
         """
@@ -46,6 +53,8 @@ class BaseAction(Action):
             get_driver = get_dns_driver
         elif provider_type == 'loadbalancer':
             get_driver = get_lb_driver
+        elif provider_type == 'container':
+            get_driver = get_container_driver
         else:
             raise ValueError('Unsupported type: %s' % (provider_type))
 

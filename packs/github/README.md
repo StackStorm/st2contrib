@@ -16,6 +16,10 @@ Pack which allows integration with [Github](https://github.com/).
 * ``user`` - GitHub Username (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
 * ``password`` - GitHub Password (only for use with ``get_traffic_stats`` and ``get_clone_stats`` actions).
 
+Keep in mind that even thought actions which operate on public repositories
+don't require authentication token you are still encouraged to supply one
+because unauthenticated requests have a very low rate limit.
+
 ## Obtaining Authentication Token
 
 To obtain authentication token, follow the instructions on the [Creating an
@@ -28,7 +32,10 @@ page.
 
 This sensor monitors Github repository for activity and dispatches a trigger
 for each repository event.
-> Note that current default poll interval requires authentication because of GitHub [rate limiting](https://developer.github.com/v3/#rate-limiting) for unauthenticated requests.
+
+> Note that current default poll interval requires authentication because of
+GitHub [rate limiting](https://developer.github.com/v3/#rate-limiting) for
+unauthenticated requests.
 
 Currently supported event types:
 
@@ -79,6 +86,8 @@ StackStorm webhook handler.
 * ``add_comment`` - Add comment to the provided issue / pull request.
 * ``add_status`` - Add commit status to the provided commit.
 * ``create_issue`` - Create a new issue.
+* ``list_issues`` - List all the issues for a particular repo (includes pull
+  requests since pull requests are just a special type of issues).
 * ``get_issue`` - Retrieve information about a particular issue. Note: You
   only need to specify authentication token in the config if you use this
   action with a private repository.

@@ -14,6 +14,12 @@ class AnsibleGalaxyRunner(AnsibleBaseRunner):
     See: http://docs.ansible.com/galaxy.html
     """
     BINARY_NAME = 'ansible-galaxy'
+    REPLACEMENT_RULES = {
+        '--roles_path': '--roles-path',
+        '--ignore_errors': '--ignore-errors',
+        '--no_deps': '--no-deps',
+        '--role_file': '--role-file',
+    }
 
 if __name__ == '__main__':
     AnsibleGalaxyRunner(sys.argv).execute()

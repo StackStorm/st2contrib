@@ -1,0 +1,15 @@
+---
+name: restart_container
+runner_type: run-python
+description: Restart a container.
+enabled: true
+entry_point: restart_container.py
+parameters:
+  credentials:
+    type: string
+    description: Name of the credentials set (as defined in the config) to use.
+    required: true
+  container_id:
+    type: string
+    description: ID of a container to restart.
+    required: true

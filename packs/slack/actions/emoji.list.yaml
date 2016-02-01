@@ -1,0 +1,13 @@
+description: This method lists the custom emoji for a team.
+enabled: true
+entry_point: run.py
+name: emoji.list
+parameters:
+  end_point:
+    default: emoji.list
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

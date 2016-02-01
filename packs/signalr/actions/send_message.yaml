@@ -1,0 +1,15 @@
+---
+name: "send_message"
+runner_type: "python-script"
+description: "Send a message to a SignalR Hub"
+enabled: true
+entry_point: "send_message.py"
+parameters:
+  hub:
+    type: "string"
+    description: "The hub name"
+    required: true
+  message:
+    type: "string"
+    description: "The message to send"
+    required: true

@@ -162,6 +162,15 @@ st2 run elasticsearch.search.body host=elk body='{"query":{"match_all":{}}}' pre
 st2 run elasticsearch.search.q host=elk q='message:my_log_event' prefix=logstash
 ```
 
+## Changelog
+
+2016-01-08  pixelrebel  <github@pixelrebel.com>
+
+  - The pack seems to work with elasticsearch v2.1.1 (and curator v3.4.0).
+    So the pack now allows elasticsearch > v1.0.0 and < v2.2.0.
+    Please update python module elasticsearch-curator==3.4.0 before
+    upgrading this pack.
+  - Updated pack version to 0.2.0.
 
 ## License and Authors
 

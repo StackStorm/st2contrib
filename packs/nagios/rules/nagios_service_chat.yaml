@@ -1,5 +1,6 @@
 ---
-name: nagios.service.chat
+name: notify_chat
+pack: nagios
 description: Post to chat when nagios service state changes
 enabled: true
 trigger:

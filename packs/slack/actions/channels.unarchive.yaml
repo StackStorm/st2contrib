@@ -1,0 +1,16 @@
+description: This method unarchives a channel. The calling user is added to the channel.
+enabled: true
+entry_point: run.py
+name: channels.unarchive
+parameters:
+  channel:
+    required: true
+    type: string
+  end_point:
+    default: channels.unarchive
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

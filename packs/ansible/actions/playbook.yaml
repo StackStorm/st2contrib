@@ -14,7 +14,6 @@ parameters:
     description: "Lock sudo, the behavior is controlled by ansible 'become_' options"
     type: boolean
     default: true
-    immutable: true
   cwd:
     description: "Working directory where the command will be executed in"
     type: string
@@ -32,7 +31,7 @@ parameters:
   become:
     description: "Run operations with become (nopasswd implied) [-b]"
     type: boolean
-  become-method:
+  become_method:
     description: "Privilege escalation method to use. Valid choices: sudo, su, pbrun, pfexec, runas (default=sudo)"
     type: string
     enum:
@@ -41,7 +40,7 @@ parameters:
       - pbrun
       - pfexec
       - runas
-  become-user:
+  become_user:
     description: "Run operations as this user. Works only with 'become'"
     type: string
   check:
@@ -53,13 +52,13 @@ parameters:
   diff:
     description: "when changing (small) files and templates, show the differences in those files; works great with --check [-D]"
     type: boolean
-  extra-vars:
+  extra_vars:
     description: "Set additional variables as key=value or YAML/JSON [-e]"
     type: string
-  flush-cache:
+  flush_cache:
     description: "Clear the fact cache"
     type: boolean
-  force-handlers:
+  force_handlers:
     description: "Run handlers even if a task fails"
     type: boolean
   forks:
@@ -68,34 +67,34 @@ parameters:
   help:
     description: "Show help message and exit [-h]"
     type: boolean
-  inventory-file:
+  inventory_file:
     description: "Inventory host file (default=/etc/ansible/hosts) [-i]"
     type: string
   limit:
     description: "Further limit selected hosts to an additional pattern [-l]"
     type: string
-  list-hosts:
+  list_hosts:
     description: "Outputs a list of matching hosts; does not execute anything else"
     type: boolean
-  list-tags:
+  list_tags:
     description: "List all available tags"
     type: boolean
-  list-tasks:
+  list_tasks:
     description: "List all tasks that would be executed"
     type: boolean
-  module-path:
+  module_path:
     description: "Specify path(s) to module library (default=None) [-M]"
     type: string
-  private-key:
+  private_key:
     description: "Use this file to authenticate the connection"
     type: string
-  skip-tags:
+  skip_tags:
     description: "Only run plays and tasks whose tags do not match these values"
     type: string
-  start-at-task:
+  start_at_task:
     description: "Start the playbook at the task matching this name"
     type: string
-  syntax-check:
+  syntax_check:
     description: "Perform a syntax check on the playbook, but do not execute it"
     type: boolean
   tags:
@@ -104,7 +103,7 @@ parameters:
   user:
     description: "Connect to remote hosts as this user (default=root) [-u]"
     type: string
-  vault-password-file:
+  vault_password_file:
     description: "Vault password file"
     type: string
   verbose:

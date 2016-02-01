@@ -1,0 +1,19 @@
+name: wait_until_build_finishes
+runner_type: run-python
+description: Wait until build finishes.
+enabled: true
+entry_point: wait_until_build_finishes.py
+parameters:
+  build_number:
+    type: string
+    description: Circle CI build number.
+    required: true
+  project:
+    type: string
+    description: Name of project in circle ci.
+    required: true
+  wait_timeout:
+    type: number
+    description: How long to wait before quits (in seconds).
+    required: false
+    default: 600

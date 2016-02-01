@@ -1,5 +1,4 @@
 from libcloud.compute.base import NodeSize
-from libcloud.compute.base import NodeImage
 from libcloud.compute.base import NodeLocation
 
 from lib.actions import BaseAction
@@ -32,11 +31,10 @@ class CreateVMAction(BaseAction):
             size = [s for s in driver.list_sizes() if size_name in s.name][0]
 
         if image_id is not None:
-            image = NodeImage(id=image_id, name=None,
-                              driver=driver)
+            image = [i for i in driver.list_images() if image_id == i.id][0]
         elif image_name is not None:
             image = [i for i in driver.list_images() if
-                     image_name in i['extra'].get('displaytext', image.name)][0]
+                     image_name in i.extra.get('displaytext', i.name)][0]
 
         kwargs = {'name': name, 'size': size, 'image': image}
 
@@ -48,4 +46,4 @@ class CreateVMAction(BaseAction):
         node = driver.create_node(**kwargs)
 
         self.logger.info('Node successfully created: %s' % (node))
-        return node
+        return self.resultsets.formatter(node)

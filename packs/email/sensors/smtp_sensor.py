@@ -37,7 +37,7 @@ class SMTPSensor(Sensor):
 
     def run(self):
         self._logger.debug('[SMTPSensor]: entering run')
-        asyncore.loop()
+        asyncore.loop()  # pylint: disable=no-member
 
     def cleanup(self):
         self._logger.debug('[SMTPSensor]: entering cleanup')

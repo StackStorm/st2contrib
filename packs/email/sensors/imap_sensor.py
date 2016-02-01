@@ -51,8 +51,11 @@ class IMAPSensor(PollingSensor):
         for name, values in self._mailboxes.items():
             mailbox = values['connection']
             download_attachments = values['download_attachments']
+            mailbox_metadata = values['mailbox_metadata']
+
             self._poll_for_unread_messages(name=name, mailbox=mailbox,
-                                           download_attachments=download_attachments)
+                                           download_attachments=download_attachments,
+                                           mailbox_metadata=mailbox_metadata)
             mailbox.quit()
 
     def cleanup(self):
@@ -101,11 +104,19 @@ class IMAPSensor(PollingSensor):
 
             item = {
                 'connection': connection,
-                'download_attachments': download_attachments
+                'download_attachments': download_attachments,
+                'mailbox_metadata': {
+                    'server': server,
+                    'port': port,
+                    'user': user,
+                    'folder': folder,
+                    'ssl': ssl
+                }
             }
             self._mailboxes[mailbox] = item
 
-    def _poll_for_unread_messages(self, name, mailbox, download_attachments=False):
+    def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata,
+                                  download_attachments=False):
         self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
 
         messages = mailbox.unseen()
@@ -113,9 +124,11 @@ class IMAPSensor(PollingSensor):
         self._logger.debug('[IMAPSensor]: Processing {0} new messages'.format(len(messages)))
         for message in messages:
             self._process_message(uid=message.uid, mailbox=mailbox,
-                                  download_attachments=download_attachments)
+                                  download_attachments=download_attachments,
+                                  mailbox_metadata=mailbox_metadata)
 
-    def _process_message(self, uid, mailbox, download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
+    def _process_message(self, uid, mailbox, mailbox_metadata,
+                         download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
         message = mailbox.mail(uid, include_raw=True)
         mime_msg = mime.from_string(message.raw)
 
@@ -141,7 +154,8 @@ class IMAPSensor(PollingSensor):
             'message_id': message_id,
             'body': body,
             'has_attachments': has_attachments,
-            'attachments': []
+            'attachments': [],
+            'mailbox_metadata': mailbox_metadata
         }
 
         if has_attachments and download_attachments:
