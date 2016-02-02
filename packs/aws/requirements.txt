@@ -2,4 +2,3 @@ six
 boto
 # Note: boto3 is used by the SQS sensor
 boto3
-six
