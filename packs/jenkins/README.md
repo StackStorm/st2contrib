@@ -5,6 +5,7 @@ This pack creates a basic integration with Jenkins
 To trigger events from Jenkins, use Jenkins to send a webhook to
 StackStorm. Examples of rules can be found in the `rules` directory.
 
+Ensure your jenkins jobs are parameterised to avoid errors 
 ## Configuration
 
 * `url` - FQDN to Jenkins API endpoint (e.x.: http://jenkins.mycompany.org:8080)
