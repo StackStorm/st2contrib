@@ -92,7 +92,8 @@ class BaseAction(Action):
             del self.setup['region']
             obj = getattr(module, cls)(**self.setup)
         resultset = getattr(obj, action)(**kwargs)
-        return self.resultsets.formatter(resultset)
+        formatted = self.resultsets.formatter(resultset)
+        return formatted if isinstance(formatted, list) else [formatted]
 
     def do_function(self, module_path, action, **kwargs):
         module = __import__(module_path)
