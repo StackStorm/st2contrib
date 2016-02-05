@@ -14,6 +14,19 @@ class FieldLists():
         'public_ip'
     ]
 
+    BLOCK_DEVICE_TYPE = [
+        'attach_time',
+        'delete_on_termination',
+        'encrypted',
+        'ephemeral_name',
+        'iops',
+        'size',
+        'snapshot_id',
+        'status',
+        'volume_id',
+        'volume_type'
+    ]
+
     BUCKET = [
         'connection',
         'creation_date',
@@ -117,6 +130,8 @@ class ResultSets(object):
             return self.parseInstance(output)
         elif isinstance(output, boto.ec2.volume.Volume):
             return self.parseVolume(output)
+        elif isinstance(output, boto.ec2.blockdevicemapping.BlockDeviceType):
+            return self.parseBlockDeviceType(output)
         elif isinstance(output, boto.ec2.zone.Zone):
             return self.parseEC2Zone(output)
         elif isinstance(output, boto.ec2.address.Address):
@@ -160,6 +175,10 @@ class ResultSets(object):
     def parseVolume(self, output):
         volume_data = {field: getattr(output, field) for field in FieldLists.VOLUME}
         return volume_data
+
+    def parseBlockDeviceType(self, output):
+        data = {field: getattr(output, field) for field in FieldLists.BLOCK_DEVICE_TYPE}
+        return data
 
     def parseEC2Zone(self, output):
         zone_data = {field: getattr(output, field) for field in FieldLists.EC2ZONE}
