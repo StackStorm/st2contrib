@@ -3,30 +3,112 @@ import six
 
 
 class FieldLists():
-    ADDRESS = ['public_ip', 'instance_id', 'domain', 'allocation_id', 'association_id',
-               'network_interface_id', 'network_interface_owner_id', 'private_ip_address']
-    BUCKET = ["LoggingGroup", "connection", "creation_date", "name"]
-    INSTANCE = ['id', 'public_dns_name', 'private_dns_name', 'state', 'state_code',
-                'previous_state', 'previous_state_code', 'key_name', 'instance_type',
-                'launch_time', 'image_id', 'placement', 'placement_group', 'placement_tenancy',
-                'kernel', 'ramdisk', 'architecture', 'hypervisor', 'virtualization_type',
-                'ami_launch_index', 'monitored', 'monitoring_state', 'spot_instance_request_id',
-                'subnet_id', 'vpc_id', 'private_ip_address', 'ip_address', 'platform',
-                'root_device_name', 'root_device_type', 'state_reason']
-    VOLUME = ['id', 'create_time', 'status', 'size', 'snapshot_id', 'zone', 'type', 'iops',
-              'encrypted']
-    EC2ZONE = ['name', 'state', 'region_name', 'messages']
-    RECORD = ['alias_dns_name', 'alias_evaluate_target_health', 'alias_hosted_zone_id', 'failover',
-              'health_check', 'identifier', 'name', 'region', 'resource_records', 'ttl', 'type',
-              'weight']
-    R53ZONE = ['callerreference', 'config', 'id', 'name', 'resourcerecordsetcount']
-    R53STATUS = ['comment', 'id', 'status', 'submittedat']
+    ADDRESS = [
+        'allocation_id',
+        'association_id',
+        'domain',
+        'instance_id',
+        'network_interface_id',
+        'network_interface_owner_id',
+        'private_ip_address',
+        'public_ip'
+    ]
+
+    BUCKET = [
+        'connection',
+        'creation_date',
+        'LoggingGroup',
+        'name'
+    ]
+
+    EC2ZONE = [
+        'messages',
+        'name',
+        'region_name',
+        'state'
+    ]
+
+    INSTANCE = [
+        'ami_launch_index',
+        'architecture',
+        'hypervisor',
+        'id',
+        'image_id',
+        'instance_type',
+        'ip_address',
+        'kernel',
+        'key_name',
+        'launch_time',
+        'monitored',
+        'monitoring_state',
+        'placement',
+        'placement_group',
+        'placement_tenancy',
+        'platform',
+        'previous_state',
+        'previous_state_code',
+        'private_dns_name',
+        'private_ip_address',
+        'public_dns_name',
+        'ramdisk',
+        'root_device_name',
+        'root_device_type',
+        'spot_instance_request_id',
+        'state',
+        'state_code',
+        'state_reason',
+        'subnet_id',
+        'virtualization_type',
+        'vpc_id',
+    ]
+
+    RECORD = [
+        'alias_dns_name',
+        'alias_evaluate_target_health',
+        'alias_hosted_zone_id',
+        'failover',
+        'health_check',
+        'identifier',
+        'name',
+        'region',
+        'resource_records',
+        'ttl',
+        'type',
+        'weight'
+    ]
+
+    R53ZONE = [
+        'callerreference',
+        'config',
+        'id',
+        'name',
+        'resourcerecordsetcount'
+    ]
+
+    R53STATUS = [
+        'comment',
+        'id',
+        'status',
+        'submittedat'
+    ]
+
+    VOLUME = [
+        'create_time',
+        'encrypted',
+        'id',
+        'iops',
+        'size',
+        'snapshot_id',
+        'status',
+        'type',
+        'zone'
+    ]
 
 
 class ResultSets(object):
 
     def __init__(self):
-        self.foo = ""
+        self.foo = ''
 
     def selector(self, output):
         if isinstance(output, boto.ec2.instance.Reservation):
