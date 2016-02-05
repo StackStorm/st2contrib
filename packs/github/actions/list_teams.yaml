@@ -1,0 +1,11 @@
+---
+name: list_teams
+runner_type: run-python
+description: List teams in organization
+enabled: true
+entry_point: list_teams.py
+parameters:
+  organization:
+    type: string
+    description: "The organization to list teams for"
+    required: true

@@ -1,0 +1,11 @@
+---
+name: get_user
+runner_type: run-python
+description: Get a user from the Github user database
+enabled: true
+entry_point: get_user.py
+parameters:
+  user:
+    type: string
+    description: "The username"
+    required: true

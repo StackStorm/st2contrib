@@ -71,3 +71,13 @@ def user_to_dict(user):
     result['name'] = user.name
     result['login'] = user.login
     return result
+
+def team_to_dict(team):
+    if not team:
+        return None
+
+    result = {}
+    result['id'] = team.id
+    result['name'] = team.name
+    result['members_count'] = team.members_count
+    return result

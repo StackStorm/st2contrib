@@ -1,0 +1,19 @@
+---
+name: add_team_membership
+runner_type: run-python
+description: Add (and invite if not a member) a user to a team
+enabled: true
+entry_point: add_team_membership.py
+parameters:
+  user:
+    type: "string"
+    description: "User to invite"
+    required: true
+  organization:
+    type: "string"
+    description: "Organization the team belongs to"
+    required: true
+  team_id:
+    type: "integer"
+    description: "Team ID."
+    required: true
