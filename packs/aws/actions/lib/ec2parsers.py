@@ -148,12 +148,13 @@ class ResultSets(object):
             return output
 
     def formatter(self, output):
+        formatted = []
         if isinstance(output, list):
-            return [self.formatter(item) for item in output]
-        elif isinstance(output, dict):
-            return {key: self.formatter(value) for key, value in six.iteritems(output)}
+            for o in output:
+                formatted.append(self.selector(o))
         else:
-            return self.selector(output)
+            formatted.append(self.selector(output))
+        return formatted
 
     def parseReservation(self, output):
         instance_list = []
