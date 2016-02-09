@@ -46,10 +46,10 @@ parameters:
     type: string
   max_count:
     default: 1
-    type: string
+    type: integer
   min_count:
     default: 1
-    type: string
+    type: integer
   module_path:
     default: boto.ec2.connection
     immutable: true
