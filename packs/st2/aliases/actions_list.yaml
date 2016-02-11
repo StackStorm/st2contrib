@@ -11,5 +11,5 @@ result:
     format: |
         Found {{ execution.result.result | length }} actions:{~}
         {% for action in execution.result.result -%}
-            - {{ action.ref }}{{ action.description and ' - ' + action.description }}
+            • {{ action.ref }}{{ action.description and ' - ' + action.description }}
         {%+ endfor %}
