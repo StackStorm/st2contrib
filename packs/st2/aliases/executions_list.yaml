@@ -11,6 +11,6 @@ ack:
 result:
     format: |
         Found {{ execution.result.result | length }} executions:{~}
-        {% for execution in execution.result.result -%}
-            • {{ rule.id }} ({{ rule.action.ref }}): {{ rule.status }}, started at {{ rule.start_timestamp[:19]|replace("T", " ") }}{% if rule.end_timestamp %}, finished at {{ rule.start_timestamp[:19]|replace("T", " ") }} {% endif %}.
+        {% for exe in execution.result.result -%}
+            • {{ exe.id }} ({{ exe.action.ref }}): {{ exe.status }}, started at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% if exe.end_timestamp %}, finished at {{ exe.start_timestamp[:19]|replace("T", " ") }} {% endif %}.
         {%+ endfor %}
