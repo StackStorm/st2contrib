@@ -14,3 +14,9 @@ parameters:
     description: "Maximum number of actions to return"
     default: 10
     required: false
+  exclude:
+    type: "array"
+    description: "List of attributes to exclude"
+    default:
+      - parameters
+      - notify

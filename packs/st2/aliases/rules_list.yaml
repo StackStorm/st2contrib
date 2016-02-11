@@ -3,5 +3,13 @@ name: "st2_rules_list"
 action_ref: "st2.rules.list"
 description: "List available StackStorm rules."
 formats:
-    - "st2 list rules"
-    - "st2 list rules from {{ pack }}"
+    - "st2 list {{ limit=10 }} rules"
+    - "st2 list {{ limit=10 }} rules from {{ pack }}"
+ack:
+    format: "Give me just a moment to find the rules for you..."
+result:
+    format: |
+        Found {{ execution.result.result | length }} rules:{~}
+        {% for rule in execution.result.result -%}
+            • {{ rule.ref }} ({{ rule.trigger.ref }} -> {{ rule.action.ref }}){{ rule.description and ' - ' + rule.description }}
+        {%+ endfor %}

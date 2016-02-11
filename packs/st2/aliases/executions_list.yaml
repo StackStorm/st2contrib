@@ -3,6 +3,14 @@ name: "st2_executions_list"
 action_ref: "st2.executions.list"
 description: "List available StackStorm executions."
 formats:
-    - "st2 list executions"
-    - "st2 list executions with status {{ status }}"
-    - "st2 list executions for action {{ action }}"
+    - "st2 list {{ limit=10 }} executions"
+    - "st2 list {{ limit=10 }} executions with status {{ status }}"
+    - "st2 list {{ limit=10 }} executions for action {{ action }}"
+ack:
+    format: "Give me just a moment to find the executions for you..."
+result:
+    format: |
+        Found {{ execution.result.result | length }} executions:{~}
+        {% for exe in execution.result.result -%}
+            • `{{ exe.id }}` for `{{ exe.action.ref }}`: {{ exe.status }}, started at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% if exe.end_timestamp %}, finished at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% endif %}.
+        {%+ endfor %}

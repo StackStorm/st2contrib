@@ -3,5 +3,13 @@ name: "st2_actions_list"
 action_ref: "st2.actions.list"
 description: "List available StackStorm actions."
 formats:
-    - "st2 list actions"
-    - "st2 list actions from {{ pack }}"
+    - "st2 list {{ limit=10 }} actions"
+    - "st2 list {{ limit=10 }} actions from {{ pack }}"
+ack:
+    format: "Give me just a moment to find the actions for you..."
+result:
+    format: |
+        Found {{ execution.result.result | length }} actions:{~}
+        {% for action in execution.result.result -%}
+            • {{ action.ref }}{{ action.description and ' - ' + action.description }}
+        {%+ endfor %}
