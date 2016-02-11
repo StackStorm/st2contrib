@@ -12,5 +12,5 @@ result:
     format: |
         Found {{ execution.result.result | length }} executions:{~}
         {% for execution in execution.result.result -%}
-            • {{ rule.id }} ({{ rule.action.ref }}): {{ rule.status }}, started at {{ rule.start_timestamp[:19]|replace("T", " ") }} {% if rule.end_timestamp %} finished at {{ rule.start_timestamp[:19]|replace("T", " ") }} {% endif %}
+            • {{ rule.id }} ({{ rule.action.ref }}): {{ rule.status }}, started at {{ rule.start_timestamp[:19]|replace("T", " ") }}{% if rule.end_timestamp %}, finished at {{ rule.start_timestamp[:19]|replace("T", " ") }} {% endif %}.
         {%+ endfor %}
