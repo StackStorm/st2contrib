@@ -16,5 +16,5 @@ parameters:
   limit:
     type: "integer"
     description: "Maximum number of executions to return"
-    default: 5
+    default: 10
     required: false
