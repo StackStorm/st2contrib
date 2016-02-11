@@ -3,8 +3,8 @@ name: "st2_actions_list"
 action_ref: "st2.actions.list"
 description: "List available StackStorm actions."
 formats:
-    - "st2 list {{ limit=0 }} actions"
-    - "st2 list {{ limit=0 }} actions from {{ pack }}"
+    - "st2 list {{ limit=10 }} actions"
+    - "st2 list {{ limit=10 }} actions from {{ pack }}"
 ack:
     format: "Give me just a moment to find this actions for you..."
 result:

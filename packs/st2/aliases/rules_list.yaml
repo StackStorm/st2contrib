@@ -3,8 +3,8 @@ name: "st2_rules_list"
 action_ref: "st2.rules.list"
 description: "List available StackStorm rules."
 formats:
-    - "st2 list {{ limit=0 }} rules"
-    - "st2 list {{ limit=0 }} rules from {{ pack }}"
+    - "st2 list {{ limit=10 }} rules"
+    - "st2 list {{ limit=10 }} rules from {{ pack }}"
 ack:
     format: "Give me just a moment to find this rules for you..."
 result:
