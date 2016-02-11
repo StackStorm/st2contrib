@@ -6,7 +6,7 @@ formats:
     - "st2 list {{ limit=10 }} rules"
     - "st2 list {{ limit=10 }} rules from {{ pack }}"
 ack:
-    format: "Give me just a moment to find this rules for you..."
+    format: "Give me just a moment to find the rules for you..."
 result:
     format: |
         Found {{ execution.result.result | length }} rules:{~}
