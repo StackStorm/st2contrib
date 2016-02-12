@@ -1,0 +1,11 @@
+---
+  name: "db_delete_chain"
+  runner_type: "action-chain"
+  description: "RDS Delete Action Chain Workflow"
+  enabled: true
+  entry_point: "workflows/db_delete_chain.yaml"
+  pack: "kubernetes"
+  parameters:
+    payload:
+      type: "object"
+      description: "payload from kubernetes sensor"

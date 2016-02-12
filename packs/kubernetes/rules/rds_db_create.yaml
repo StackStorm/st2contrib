@@ -1,0 +1,22 @@
+---
+name: "kubernetes_rds_create"
+pack: "kubernetes"
+description: "Check for rds events to manage from kubernetes thirdpartyresource sensor"
+enabled: true
+
+trigger:
+  type: "kubernetes.thirdpartyobject"
+  parameters: {}
+
+criteria:
+  trigger.resource:
+    type: "contains"
+    pattern: "ADDED"
+  trigger.labels.object:
+    type: "equals"
+    pattern: "mysql"
+
+action:
+  ref: "kubernetes.db_create_chain"
+  parameters:
+    payload: "{{trigger}}"

@@ -1,0 +1,9 @@
+---
+  name: "db_rds_spec"
+  entry_point: "db_rds_spec.py"
+  pack: "kubernetes"
+  description: "Munge Kubernetes data so we can create a database."
+  runner_type: run-python
+  parameters:
+    payload:
+      type: object
