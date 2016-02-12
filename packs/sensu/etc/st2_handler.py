@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import base64
 import httplib
 try:
@@ -26,8 +27,7 @@ except ImportError:
 
 # ST2 configuration
 
-ST2_API_BASE_URL = 'http://localhost:9101/v1'
-ST2_AUTH_BASE_URL = 'http://localhost:9100'
+ST2_API_BASE_URL = 'https://localhost/v1/'
 ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_AUTH_TOKEN = None
@@ -39,9 +39,18 @@ ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
 
+# Sensu configuration
+
+SENSU_HOST = 'localhost'
+SENSU_PORT = 4567
+SENSU_USER = ''
+SENSU_PASS = ''
+
 REGISTERED_WITH_ST2 = False
+UNAUTHED = False
 
 OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
+UNREACHABLE_CODES = [httplib.NOT_FOUND]
 
 
 def _get_headers():
@@ -69,7 +78,7 @@ def _check_stash(client, check):
             sys.exit(0)
 
 
-def _create_trigger_type():
+def _create_trigger_type(verbose=False):
     try:
         url = _get_st2_triggers_url()
         payload = {
@@ -77,71 +86,114 @@ def _create_trigger_type():
             'pack': ST2_TRIGGERTYPE_PACK,
             'description': 'Trigger type for sensu event handler.'
         }
-        # sys.stdout.write('POST: %s: Body: %s\n' % (url, payload))
+
         headers = {}
         headers['Content-Type'] = 'application/json; charset=utf-8'
 
         if ST2_AUTH_TOKEN:
             headers['X-Auth-Token'] = ST2_AUTH_TOKEN
 
+        if verbose:
+            print('POST to URL %s for registering trigger. Body = %s, headers = %s.' %
+                  (url, payload, headers))
         post_resp = requests.post(url, data=json.dumps(payload),
                                   headers=headers, verify=False)
     except:
-        sys.stderr.write('Unable to register trigger type with st2.')
-        raise
+        traceback.print_exc(limit=20)
+        raise Exception('Unable to connect to st2 endpoint %s.' % url)
     else:
         status = post_resp.status_code
+        if status in UNREACHABLE_CODES:
+            msg = 'Got response %s. Invalid triggers endpoint %s. Check configuration!' % (
+                status,
+                url
+            )
+            raise Exception(msg)
+
         if status not in OK_CODES:
-            sys.stderr.write('Failed to register trigger type with st2. \
-                HTTP_CODE: %d\n' %
-                             status)
-            raise
+            msg = 'Failed to register trigger type %s.%s with st2. HTTP_CODE: %s' % (
+                ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME, status
+            )
+            raise Exception(msg)
         else:
-            sys.stdout.write('Registered trigger type with st2.\n')
+            print('Registered trigger type with st2.')
 
 
 def _get_auth_url():
-    return urljoin(ST2_AUTH_BASE_URL, ST2_AUTH_PATH)
+    return urljoin(ST2_API_BASE_URL, ST2_AUTH_PATH)
 
 
-def _get_auth_token():
-    global ST2_AUTH_TOKEN
+def _get_auth_token(verbose=False):
     auth_url = _get_auth_url()
+
+    if verbose:
+        print('Will POST to URL %s to get auth token.' % auth_url)
+
     try:
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
                              auth=(ST2_USERNAME, ST2_PASSWORD), verify=False)
     except:
-        sys.stderr.write('Cannot get auth token from st2. Will try unauthed.')
+        traceback.print_exc(limit=20)
+        raise Exception('Unable to connect to st2 endpoint %s.' % auth_url)
     else:
+        if resp.status_code in UNREACHABLE_CODES:
+            msg = 'Got response %s. Invalid auth endpoint %s. Check configuration!' % (
+                resp.status_code,
+                auth_url
+            )
+            raise Exception(msg)
         if resp.status_code not in OK_CODES:
-            sys.stderr.write("Cannot authenticate. Will try unauthed.")
-            return
-        ST2_AUTH_TOKEN = resp.json()['token']
+            msg = 'Cannot get a valid auth token from %s. HTTP_CODE: %s' % (
+                auth_url,
+                resp.status_code
+            )
+            raise Exception(msg)
+        return resp.json()['token']
 
 
-def _register_with_st2():
+def _register_trigger_with_st2(verbose=False):
     global REGISTERED_WITH_ST2
+    global ST2_AUTH_TOKEN
+    triggers_url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
+
+    if verbose:
+        print('Unauthed? : %s' % UNAUTHED)
+
+    if not UNAUTHED:
+        try:
+            if not ST2_AUTH_TOKEN:
+                if verbose:
+                    print('No auth token found. Let\'s get one from StackStorm!')
+                ST2_AUTH_TOKEN = _get_auth_token(verbose=verbose)
+        except:
+            raise Exception('Unable to negotiate an auth token. Exiting!')
+
     try:
-        url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
-        # sys.stdout.write('GET: %s\n' % url)
-        if not ST2_AUTH_TOKEN:
-            _get_auth_token()
+        if verbose:
+            print('Will GET from URL %s for detecting trigger %s.' % (
+                  triggers_url, ST2_TRIGGERTYPE_REF))
 
         if ST2_AUTH_TOKEN:
-            get_resp = requests.get(url, headers={'X-Auth-Token':
-                                                  ST2_AUTH_TOKEN}, verify=False)
+            get_resp = requests.get(triggers_url, headers={'X-Auth-Token':
+                                    ST2_AUTH_TOKEN}, verify=False)
         else:
-            get_resp = requests.get(url, verify=False)
+            if verbose:
+                print('Resorting to unauthed requests to register trigger type.')
+            get_resp = requests.get(triggers_url, verify=False)
 
         if get_resp.status_code != httplib.OK:
-            _create_trigger_type()
+            _create_trigger_type(verbose=verbose)
         else:
             body = json.loads(get_resp.text)
             if len(body) == 0:
-                _create_trigger_type()
+                _create_trigger_type(verbose=verbose)
     except:
-        raise
+        traceback.print_exc(limit=20)
+        raise Exception('Unable to connect to st2 endpoint %s.' % triggers_url)
     else:
+        if verbose:
+            print('Successfully registered trigger %s with st2.' % ST2_TRIGGERTYPE_REF)
+
         REGISTERED_WITH_ST2 = True
 
 
@@ -155,7 +207,7 @@ def _get_st2_webhooks_url():
     return url
 
 
-def _post_event_to_st2(url, body):
+def _post_webhook(url, body, verbose):
     headers = {}
     headers['X-ST2-Integration'] = 'sensu.'
     headers['St2-Trace-Tag'] = body['payload']['id']
@@ -163,12 +215,19 @@ def _post_event_to_st2(url, body):
     if ST2_AUTH_TOKEN:
         headers['X-Auth-Token'] = ST2_AUTH_TOKEN
     try:
-        # sys.stdout.write('POST: url: %s, body: %s\n' % (url, body))
+        if verbose:
+            print('Webhook POST: url: %s, body: %s\n' % (url, body))
         r = requests.post(url, data=json.dumps(body), headers=headers, verify=False)
     except:
-        sys.stderr.write('Cannot connect to st2 endpoint.')
+        raise Exception('Cannot connect to st2 endpoint %s.' % url)
     else:
         status = r.status_code
+
+        if status in UNREACHABLE_CODES:
+            msg = 'Webhook URL %s does not exist. Check if you have a rule registered for ' + \
+                  'trigger with st2. st2 rule list --trigger=%s' % ST2_TRIGGERTYPE_REF
+            raise Exception(msg)
+
         if status not in OK_CODES:
             sys.stderr.write('Failed posting sensu event to st2. HTTP_CODE: \
                 %d\n' % status)
@@ -177,44 +236,91 @@ def _post_event_to_st2(url, body):
                 %d\n' % status)
 
 
-def main(args):
+def _post_event_to_st2(payload, verbose=False):
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
-    body['payload'] = json.loads(sys.stdin.read().strip())
-    client = body['payload']['client']['name']
-    check = body['payload']['check']['name']
-    if not _check_stash(client, check):
-        _post_event_to_st2(_get_st2_webhooks_url(), body)
-
-if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        st2_config_file = sys.argv[1]
-    else:
-        sys.stderr.write('Error: config file missing.\n')
-        sys.stderr.write('Usage: %s ST2_CONFIG_FILE\n' % sys.argv[0])
-        exit(-1)
 
     try:
-        if not os.path.exists(st2_config_file):
-            sys.stderr.write('Configuration file not found. Exiting.\n')
-            sys.exit(1)
+        body['payload'] = json.loads(payload.strip())
+    except:
+        print('Invalid JSON payload %s.' % payload)
+        sys.exit(3)
 
-        with open(st2_config_file) as f:
-            config = yaml.safe_load(f)
-            ST2_USERNAME = config['st2_username']
-            ST2_PASSWORD = config['st2_password']
-            ST2_API_BASE_URL = config['st2_api_base_url']
-            ST2_AUTH_BASE_URL = config['st2_auth_base_url']
-            SENSU_HOST = config.get('sensu_host', 'localhost')
-            SENSU_PORT = config.get('sensu_port', '4567')
-            SENSU_USER = config.get('sensu_user', None)
-            SENSU_PASS = config.get('sensu_pass', None)
+    try:
+        client = body['payload']['client']['name']
+        check = body['payload']['check']['name']
+    except KeyError:
+        print('Invalid payload spec %s.' % payload)
 
+    if not _check_stash(client, check):
+        try:
+            _post_event_to_st2(_get_st2_webhooks_url(), body, verbose=verbose)
+        except:
+            traceback.print_exc(limit=20)
+            print('Cannot send event to st2.')
+            sys.exit(4)
+
+
+def _register_with_st2(verbose=False):
+    try:
         if not REGISTERED_WITH_ST2:
-            _register_with_st2()
-    except Exception as e:
+            if verbose:
+                print('Checking if trigger %s registered with st2.' % ST2_TRIGGERTYPE_REF)
+            _register_trigger_with_st2(verbose=verbose)
+    except:
+        traceback.print_exc(limit=20)
         sys.stderr.write(
             'Failed registering with st2. Won\'t post event.\n')
-        sys.stderr.write(traceback.format_exc())
-    else:
-        main(sys.argv)
+        sys.exit(2)
+
+
+def _set_config_opts(config_file, verbose=False, unauthed=False):
+    global ST2_USERNAME
+    global ST2_PASSWORD
+    global ST2_API_BASE_URL
+    global SENSU_HOST
+    global SENSU_PORT
+    global SENSU_USER
+    global SENSU_PASS
+    global UNAUTHED
+
+    UNAUTHED = unauthed
+
+    if not os.path.exists(config_file):
+        print('Configuration file %s not found. Exiting!!!' % config_file)
+        sys.exit(1)
+
+    with open(config_file) as f:
+        config = yaml.safe_load(f)
+
+        if verbose:
+            print('Contents of config file: %s' % config)
+
+        ST2_USERNAME = config['st2_username']
+        ST2_PASSWORD = config['st2_password']
+        ST2_API_BASE_URL = config['st2_api_base_url']
+        SENSU_HOST = config.get('sensu_host', 'localhost')
+        SENSU_PORT = config.get('sensu_port', '4567')
+        SENSU_USER = config.get('sensu_user', None)
+        SENSU_PASS = config.get('sensu_pass', None)
+
+
+def main(config_file, payload, verbose=False, unauthed=False):
+    _set_config_opts(config_file=config_file, unauthed=unauthed, verbose=verbose)
+    _register_with_st2(verbose=verbose)
+    _post_event_to_st2()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='StackStorm sensu event handler.')
+    parser.add_argument('config_path',
+                        help='Exchange to listen on')
+    parser.add_argument('--verbose', '-v', required=False, action='store_true',
+                        help='Verbose mode.')
+    parser.add_argument('--unauthed', '-u', required=False, action='store_true',
+                        help='Allow to post to unauthed st2. E.g. when auth is disabled ' +
+                        'server side.')
+    args = parser.parse_args()
+    payload = sys.stdin.read().strip()
+    main(config_file=args.config_path, payload=payload, verbose=args.verbose,
+         unauthed=args.unauthed)
