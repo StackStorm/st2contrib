@@ -1,18 +1,14 @@
-import base64
-import json
-import yaml
-import os, sys
 import re
-import pprint
 import uuid
 from st2actions.runners.pythonrunner import Action
+
 
 class DatabaseRdsSpec(Action):
     def run(self, payload):
         # For dbidentifier
         db_name = re.sub('[^0-9a-zA-Z]+', '-', payload['name']) + "-" + payload['namespace']
 
-        #Lets get a username generated
+        # Lets get a username generated
         user_name = self._user_name(uid=payload['uid'])
         # Lets get a password randomly generated
         pw = self._id_generator()
