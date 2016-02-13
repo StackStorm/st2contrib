@@ -62,7 +62,7 @@ def _get_headers():
     return {"Authorization": auth_header, "Content-Type": content_header}
 
 
-def _check_stash(client, check):
+def _check_stash(client, check, verbose=False):
     sensu_api = "http://%s:%i" % (SENSU_HOST, SENSU_PORT)
     endpoints = [
         "silence/%s" % client,
@@ -71,8 +71,22 @@ def _check_stash(client, check):
 
     for endpoint in endpoints:
         url = "%s/stashes/%s" % (sensu_api, endpoint)
-        response = requests.get(url, headers=_get_headers())
-        # print "%s %s" % (url, str(response.status_code))
+
+        if verbose:
+            print('Getting sensu stash info from URL: %s' % url)
+
+        try:
+            response = requests.get(url, headers=_get_headers())
+        except requests.exceptions.ConnectionError:
+            traceback.print_exc(limit=20)
+            msg = 'Couldn\'t connect to sensu to get stash info. Is sensu running on %s:%s?' % (
+                SENSU_HOST, SENSU_PORT
+            )
+            raise Exception(msg)
+
+        if verbose:
+            print('Sensu response code: %s.' % response.status_code)
+
         if response.status_code == 200:
             print "Check or client is stashed"
             sys.exit(0)
@@ -207,7 +221,7 @@ def _get_st2_webhooks_url():
     return url
 
 
-def _post_webhook(url, body, verbose):
+def _post_webhook(url, body, verbose=False):
     headers = {}
     headers['X-ST2-Integration'] = 'sensu.'
     headers['St2-Trace-Tag'] = body['payload']['id']
@@ -224,8 +238,7 @@ def _post_webhook(url, body, verbose):
         status = r.status_code
 
         if status in UNREACHABLE_CODES:
-            msg = 'Webhook URL %s does not exist. Check if you have a rule registered for ' + \
-                  'trigger with st2. st2 rule list --trigger=%s' % ST2_TRIGGERTYPE_REF
+            msg = 'Webhook URL %s does not exist. Check StackStorm installation!'
             raise Exception(msg)
 
         if status not in OK_CODES:
@@ -241,7 +254,7 @@ def _post_event_to_st2(payload, verbose=False):
     body['trigger'] = ST2_TRIGGERTYPE_REF
 
     try:
-        body['payload'] = json.loads(payload.strip())
+        body['payload'] = json.loads(payload)
     except:
         print('Invalid JSON payload %s.' % payload)
         sys.exit(3)
@@ -252,9 +265,9 @@ def _post_event_to_st2(payload, verbose=False):
     except KeyError:
         print('Invalid payload spec %s.' % payload)
 
-    if not _check_stash(client, check):
+    if not _check_stash(client, check, verbose=verbose):
         try:
-            _post_event_to_st2(_get_st2_webhooks_url(), body, verbose=verbose)
+            _post_webhook(url=_get_st2_webhooks_url(), body=body, verbose=verbose)
         except:
             traceback.print_exc(limit=20)
             print('Cannot send event to st2.')
@@ -308,7 +321,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
 def main(config_file, payload, verbose=False, unauthed=False):
     _set_config_opts(config_file=config_file, unauthed=unauthed, verbose=verbose)
     _register_with_st2(verbose=verbose)
-    _post_event_to_st2()
+    _post_event_to_st2(payload, verbose=verbose)
 
 
 if __name__ == '__main__':
