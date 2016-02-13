@@ -1,14 +1,8 @@
 #!/usr/bin/env python
-import base64
 import json
 import requests
 from requests.auth import HTTPBasicAuth
-import yaml
-import re
-import os, sys
-import pprint
 import ast
-import uuid
 # from git@github.com:mward29/python-k8sclient.git
 
 from st2reactor.sensor.base import Sensor
@@ -17,7 +11,7 @@ from st2reactor.sensor.base import Sensor
 class ThirdPartyResource(Sensor):
     def __init__(self, sensor_service, config=None):
         super(ThirdPartyResource, self).__init__(sensor_service=sensor_service,
-                                                  config=config)
+                                                 config=config)
 #        self._labels = self._config['labels'].get('thirdpartyresource', [])\
 
     def setup(self):
@@ -27,7 +21,8 @@ class ThirdPartyResource(Sensor):
         KUBERNETES_API_URL = self._config['kubernetes_api_url'] + extension
         user = self._config['user']
         password = self._config['password']
-        self.client = requests.get(KUBERNETES_API_URL, auth=HTTPBasicAuth(user, password), verify=False, stream=True)
+        self.client = requests.get(KUBERNETES_API_URL, auth=HTTPBasicAuth(user, password),
+                                   verify=False, stream=True)
         pass
 
     def run(self):
@@ -36,7 +31,7 @@ class ThirdPartyResource(Sensor):
         r = self.client
         lines = r.iter_lines()
         # Save the first line for later or just skip it
-        first_line = next(lines)
+#        first_line = next(lines)
         for line in lines:
             io = json.dumps(line)
             n = json.loads(io)
@@ -49,16 +44,17 @@ class ThirdPartyResource(Sensor):
         # Define some variables
         resource_type = d_list['type']
         object_kind = d_list['object']['kind']
-        api_version = d_list['object']['apiVersion']
         name = d_list['object']['metadata']['name']
         namespace = d_list['object']['metadata']['namespace']
         uid = d_list['object']['metadata']['uid']
         # Now lets see if labels exist, if so build a trigger
         if 'labels' in d_list['object']['metadata']:
             labels_data = d_list['object']['metadata']['labels']
-            self._build_a_trigger(resource_type=resource_type, name=name, labels=labels_data, namespace=namespace, object_kind=object_kind, uid=uid)
+            self._build_a_trigger(resource_type=resource_type, name=name, labels=labels_data,
+                                  namespace=namespace, object_kind=object_kind, uid=uid)
         else:
-            print("No Labels for the resource below. Tough to proceed without knowing how to work with this object.")
+            print("No Labels for the resource below. Tough to proceed without knowing how \
+                  to work with this object.")
             print(name, namespace, uid)
         pass
 
@@ -82,7 +78,7 @@ class ThirdPartyResource(Sensor):
     def cleanup(self):
         pass
 
-    def add_trigger(self,  trigger):
+    def add_trigger(self, trigger):
         pass
 
     def update_trigger(self, trigger):
