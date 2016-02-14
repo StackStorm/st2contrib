@@ -10,15 +10,18 @@ __all__ = [
 
 
 class PuppetRunAgentAction(PuppetBaseAction):
-    def run(self, server=None, certname=None, daemonize=False, onetime=True,
-            debug=None):
+    def run(self, server=None, certname=None, environment=None,
+            daemonize=False, onetime=True, debug=None):
         args = ['agent']
 
         if server:
             args += ['--server=%s' % (server)]
 
         if certname:
-            args += ['--certname=%s' % (server)]
+            args += ['--certname=%s' % (certname)]
+
+        if environment:
+            args += ['--environment=%s' % (environment)]
 
         if daemonize:
             args += ['--daemonize']
@@ -41,6 +44,7 @@ if __name__ == '__main__':
                         required=False)
     parser.add_argument('--certname', help='Certname (unique ID) of the client',
                         required=False)
+    parser.add_argument('--environment', help='Environment to use in puppet run'),
     parser.add_argument('--daemonize', help='Send the process into the background',
                         action='store_true', default=False, required=False)
     parser.add_argument('--onetime', help='Use one time run mode',

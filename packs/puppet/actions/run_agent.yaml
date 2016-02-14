@@ -11,6 +11,9 @@ parameters:
   certname:
     type: string
     description: Certname (unique ID) of the client.
+  environment:
+    type: string
+    description: Environment to use in puppet run.
   daemonize:
     type: boolean
     description: Send the process into the background.
