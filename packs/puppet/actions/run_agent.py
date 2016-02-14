@@ -18,7 +18,7 @@ class PuppetRunAgentAction(PuppetBaseAction):
             args += ['--server=%s' % (server)]
 
         if certname:
-            args += ['--certname=%s' % (server)]
+            args += ['--certname=%s' % (certname)]
 
         if daemonize:
             args += ['--daemonize']
