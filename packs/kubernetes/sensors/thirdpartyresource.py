@@ -21,8 +21,9 @@ class ThirdPartyResource(Sensor):
         KUBERNETES_API_URL = self._config['kubernetes_api_url'] + extension
         user = self._config['user']
         password = self._config['password']
+        verify = self._config['verify']
         self.client = requests.get(KUBERNETES_API_URL, auth=HTTPBasicAuth(user, password),
-                                   verify=False, stream=True)
+                                   verify=verify, stream=True)
         pass
 
     def run(self):
