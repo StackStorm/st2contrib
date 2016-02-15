@@ -30,6 +30,7 @@ except ImportError:
 ST2_API_BASE_URL = 'https://localhost/v1/'
 ST2_USERNAME = None
 ST2_PASSWORD = None
+ST2_API_KEY = None
 ST2_AUTH_TOKEN = None
 
 ST2_AUTH_PATH = 'auth/tokens'
@@ -48,12 +49,16 @@ SENSU_PASS = ''
 
 REGISTERED_WITH_ST2 = False
 UNAUTHED = False
+IS_API_KEY_AUTH = False
 
 OK_CODES = [httplib.OK, httplib.CREATED, httplib.ACCEPTED, httplib.CONFLICT]
 UNREACHABLE_CODES = [httplib.NOT_FOUND]
 
+TOKEN_AUTH_HEADER = 'X-Auth-Token'
+API_KEY_AUTH_HEADER = 'St2-Api-Key'
 
-def _get_headers():
+
+def _get_sensu_request_headers():
     b64auth = base64.b64encode(
         "%s:%s" %
         (SENSU_USER, SENSU_PASS))
@@ -76,7 +81,7 @@ def _check_stash(client, check, verbose=False):
             print('Getting sensu stash info from URL: %s' % url)
 
         try:
-            response = requests.get(url, headers=_get_headers())
+            response = requests.get(url, headers=_get_sensu_request_headers())
         except requests.exceptions.ConnectionError:
             traceback.print_exc(limit=20)
             msg = 'Couldn\'t connect to sensu to get stash info. Is sensu running on %s:%s?' % (
@@ -92,6 +97,21 @@ def _check_stash(client, check, verbose=False):
             sys.exit(0)
 
 
+def _get_st2_request_headers():
+    headers = {}
+
+    if not UNAUTHED:
+        if IS_API_KEY_AUTH:
+            headers[API_KEY_AUTH_HEADER] = ST2_API_KEY
+        else:
+            if ST2_AUTH_TOKEN:
+                headers[TOKEN_AUTH_HEADER] = ST2_AUTH_TOKEN
+            else:
+                pass
+
+    return headers
+
+
 def _create_trigger_type(verbose=False):
     try:
         url = _get_st2_triggers_url()
@@ -101,11 +121,8 @@ def _create_trigger_type(verbose=False):
             'description': 'Trigger type for sensu event handler.'
         }
 
-        headers = {}
+        headers = _get_st2_request_headers()
         headers['Content-Type'] = 'application/json; charset=utf-8'
-
-        if ST2_AUTH_TOKEN:
-            headers['X-Auth-Token'] = ST2_AUTH_TOKEN
 
         if verbose:
             print('POST to URL %s for registering trigger. Body = %s, headers = %s.' %
@@ -166,34 +183,15 @@ def _get_auth_token(verbose=False):
 
 
 def _register_trigger_with_st2(verbose=False):
-    global REGISTERED_WITH_ST2
-    global ST2_AUTH_TOKEN
     triggers_url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
 
-    if verbose:
-        print('Unauthed? : %s' % UNAUTHED)
-
-    if not UNAUTHED:
-        try:
-            if not ST2_AUTH_TOKEN:
-                if verbose:
-                    print('No auth token found. Let\'s get one from StackStorm!')
-                ST2_AUTH_TOKEN = _get_auth_token(verbose=verbose)
-        except:
-            raise Exception('Unable to negotiate an auth token. Exiting!')
-
     try:
+        headers = _get_st2_request_headers()
         if verbose:
             print('Will GET from URL %s for detecting trigger %s.' % (
                   triggers_url, ST2_TRIGGERTYPE_REF))
-
-        if ST2_AUTH_TOKEN:
-            get_resp = requests.get(triggers_url, headers={'X-Auth-Token':
-                                    ST2_AUTH_TOKEN}, verify=False)
-        else:
-            if verbose:
-                print('Resorting to unauthed requests to register trigger type.')
-            get_resp = requests.get(triggers_url, verify=False)
+            print('Request headers: %s' % headers)
+        get_resp = requests.get(triggers_url, headers=headers, verify=False)
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type(verbose=verbose)
@@ -208,8 +206,6 @@ def _register_trigger_with_st2(verbose=False):
         if verbose:
             print('Successfully registered trigger %s with st2.' % ST2_TRIGGERTYPE_REF)
 
-        REGISTERED_WITH_ST2 = True
-
 
 def _get_st2_triggers_url():
     url = urljoin(ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
@@ -222,15 +218,14 @@ def _get_st2_webhooks_url():
 
 
 def _post_webhook(url, body, verbose=False):
-    headers = {}
+    headers = _get_st2_request_headers()
     headers['X-ST2-Integration'] = 'sensu.'
     headers['St2-Trace-Tag'] = body['payload']['id']
     headers['Content-Type'] = 'application/json; charset=utf-8'
-    if ST2_AUTH_TOKEN:
-        headers['X-Auth-Token'] = ST2_AUTH_TOKEN
+
     try:
         if verbose:
-            print('Webhook POST: url: %s, body: %s\n' % (url, body))
+            print('Webhook POST: url: %s, headers: %s, body: %s\n' % (url, headers, body))
         r = requests.post(url, data=json.dumps(body), headers=headers, verify=False)
     except:
         raise Exception('Cannot connect to st2 endpoint %s.' % url)
@@ -275,11 +270,13 @@ def _post_event_to_st2(payload, verbose=False):
 
 
 def _register_with_st2(verbose=False):
+    global REGISTERED_WITH_ST2
     try:
         if not REGISTERED_WITH_ST2:
             if verbose:
                 print('Checking if trigger %s registered with st2.' % ST2_TRIGGERTYPE_REF)
             _register_trigger_with_st2(verbose=verbose)
+            REGISTERED_WITH_ST2 = True
     except:
         traceback.print_exc(limit=20)
         sys.stderr.write(
@@ -290,12 +287,15 @@ def _register_with_st2(verbose=False):
 def _set_config_opts(config_file, verbose=False, unauthed=False):
     global ST2_USERNAME
     global ST2_PASSWORD
+    global ST2_API_KEY
+    global ST2_AUTH_TOKEN
     global ST2_API_BASE_URL
     global SENSU_HOST
     global SENSU_PORT
     global SENSU_USER
     global SENSU_PASS
     global UNAUTHED
+    global IS_API_KEY_AUTH
 
     UNAUTHED = unauthed
 
@@ -311,11 +311,28 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
 
         ST2_USERNAME = config['st2_username']
         ST2_PASSWORD = config['st2_password']
+        ST2_API_KEY = config['st2_api_key']
         ST2_API_BASE_URL = config['st2_api_base_url']
         SENSU_HOST = config.get('sensu_host', 'localhost')
         SENSU_PORT = config.get('sensu_port', '4567')
         SENSU_USER = config.get('sensu_user', None)
         SENSU_PASS = config.get('sensu_pass', None)
+
+    if ST2_API_KEY:
+        IS_API_KEY_AUTH = True
+
+    if verbose:
+        print('Unauthed? : %s' % UNAUTHED)
+        print('API key auth?: %s' % IS_API_KEY_AUTH)
+
+    if not UNAUTHED and not IS_API_KEY_AUTH:
+        try:
+            if not ST2_AUTH_TOKEN:
+                if verbose:
+                    print('No auth token found. Let\'s get one from StackStorm!')
+                ST2_AUTH_TOKEN = _get_auth_token(verbose=verbose)
+        except:
+            raise Exception('Unable to negotiate an auth token. Exiting!')
 
 
 def main(config_file, payload, verbose=False, unauthed=False):
