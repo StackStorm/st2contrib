@@ -1,5 +1,6 @@
 import re
 import uuid
+
 from st2actions.runners.pythonrunner import Action
 
 
@@ -12,10 +13,26 @@ class DatabaseRdsSpec(Action):
         user_name = self._user_name(uid=payload['uid'])
         # Lets get a password randomly generated
         pw = self._id_generator()
-        instance_class = 'db.m3.xlarge'
-        port = '3306'
-        rds_engine = 'mysql'
-        allocated_storage = '50'
+
+        if payload['labels']['size']:
+            instance_class = payload['labels']['size']
+        else:
+            instance_class = 'db.m3.xlarge'
+
+        if payload['labels']['port']:
+            port = payload['labels']['port']
+        else:
+            port = '3306'
+
+        if payload['labels']['object']:
+            rds_engine = payload['labels']['object']
+        else:
+            rds_engine = 'mysql'
+
+        if payload['labels']['storage']:
+            allocated_storage = payload['labels']['storage']
+        else:
+            allocated_storage = '50'
 
         payload = {
             'db_name': db_name,
@@ -32,8 +49,6 @@ class DatabaseRdsSpec(Action):
     def _user_name(self, uid):
         short_uid = uid[0:7]
         return "db_" + short_uid
-        pass
 
     def _id_generator(self):
         return uuid.uuid4().hex
-        pass

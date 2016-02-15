@@ -3,4 +3,3 @@
     password: ""
     kubernetes_api_url: "https://kube_api_url"
     extension_url: "/apis/extensions/v1beta1/watch/thirdpartyresources"
-    verify: "true"
