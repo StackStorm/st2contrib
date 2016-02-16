@@ -4,10 +4,6 @@ description: Delete SSH key
 enabled: true
 entry_point: delete_ssh_key.py
 parameters:
-  repo:
-    type: string
-    description: requires repo name
-    required: true
   key_id:
     type: integer
     description: ID of a SSH key to delete.
