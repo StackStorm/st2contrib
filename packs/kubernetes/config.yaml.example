@@ -3,3 +3,12 @@
     password: ""
     kubernetes_api_url: "https://kube_api_url"
     extension_url: "/apis/extensions/v1beta1/watch/thirdpartyresources"
+    verify: "true"
+
+# These are the available labels that can be applied to a third party resource and have st2 understand how to use them
+# Simply remove any labels you don't intend to use
+    rds:
+      instance_class: "db.m3.xlarge"
+      port: "3306"
+      engine: "mysql"
+      allocated_storage: "100"

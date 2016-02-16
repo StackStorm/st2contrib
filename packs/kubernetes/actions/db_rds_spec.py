@@ -47,8 +47,6 @@ class DatabaseRdsSpec(Action):
     def _user_name(self, uid):
         short_uid = uid[0:7]
         return "db_" + short_uid
-        pass
 
     def _id_generator(self):
         return uuid.uuid4().hex
-        pass

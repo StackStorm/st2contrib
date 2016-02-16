@@ -53,9 +53,9 @@ class ThirdPartyResource(Sensor):
             self._build_a_trigger(resource_type=resource_type, name=name, labels=labels_data,
                                   namespace=namespace, object_kind=object_kind, uid=uid)
         else:
-            print("No Labels for the resource below. Tough to proceed without knowing how \
+            self.logger.debug("No Labels for the resource below. Tough to proceed without knowing how \
                   to work with this object.")
-            print(name, namespace, uid)
+            self.logger.debug(name, namespace, uid)
 
     def _build_a_trigger(self, resource_type, name, labels, namespace, object_kind, uid):
         trigger = 'kubernetes.thirdpartyobject'
