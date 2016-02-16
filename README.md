@@ -111,6 +111,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
 [![twilio icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twilio/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | [twilio](https://github.com/StackStorm/st2contrib/tree/master/packs/twilio) | st2 content pack containing twilio integrations |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twilio-pack)
 [![twitter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twitter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
+[![typeform icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/typeform/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | [typeform](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | Typeform service integration pack |  | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#typeform-pack)
 [![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
 [![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | [victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#victorops-pack)
 [![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
@@ -1936,6 +1937,22 @@ Name | Description
 direct_message | Direct message a user.
 follow | Follow a user.
 update_status | Update your status (post a new tweet).
+
+### typeform pack
+
+![typeform icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/typeform/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+TypeformRegistrationSensor | Sensor which monitors for new Typeform registrations
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_results | Get Typeform registration results
 
 ### urbandict pack
 
