@@ -1,0 +1,18 @@
+---
+  name: "get_results"
+  runner_type: "run-python"
+  description: "Get Typeform registration results"
+  enabled: true
+  entry_point: "get_results.py"
+  parameters:
+    form_id:
+      type: "string"
+      description: "Get results for this form ID"
+      required: true
+    api_key:
+      type: "string"
+      description: "Typeform API key if not specified in config.yaml"
+    completed:
+      type: "boolean"
+      description: "Only retrieve completed forms"
+      default: true
