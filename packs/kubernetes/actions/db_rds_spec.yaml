@@ -7,3 +7,5 @@
   parameters:
     payload:
       type: object
+    config:
+      type: object

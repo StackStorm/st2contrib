@@ -12,7 +12,7 @@ criteria:
   trigger.resource:
     type: "contains"
     pattern: "ADDED"
-  trigger.labels.object:
+  trigger.labels.engine:
     type: "equals"
     pattern: "mysql"
 
