@@ -1,0 +1,4 @@
+ndg-httpsclient
+pyasn1
+PyOpenSSL
+MySQL-python

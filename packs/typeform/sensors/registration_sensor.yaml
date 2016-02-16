@@ -1,0 +1,29 @@
+---
+  class_name: "TypeformRegistrationSensor"
+  entry_point: "registration_sensor.py"
+  description: "Sensor which monitors for new Typeform registrations"
+  poll_interval: 60
+  trigger_types:
+    -
+      name: "registration"
+      description: "Trigger which indicates a new registration"
+      payload_schema:
+        type: "object"
+        properties:
+          email:
+            type: "string"
+            required: true
+          first_name:
+            type: "string"
+          last_name:
+            type: "string"
+          source:
+            type: "string"
+          newsletter:
+            type: "string"
+          referer:
+            type: "string"
+          date_land:
+            type: "string"
+          date_submit:
+            type: "string"

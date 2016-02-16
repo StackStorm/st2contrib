@@ -1,0 +1,15 @@
+# form_submission.yaml
+---
+name: "form_submission"
+enabled: true
+description: "Post to slack on new user submission"
+trigger:
+  pack: "typeform"
+  type: "typeform.registration"
+criteria: {}
+action:
+  ref: mysql.insert
+  parameters:
+    db: "community"
+    table: "user_registration"
+    data: "{{trigger}}"

@@ -1,0 +1,13 @@
+---
+api_key: ""
+form_id: ""
+completed: ""
+sensor:
+  retries: 3
+  retry_delay: 30
+  timeout: 20
+mysql:
+  host: ""
+  user: ""
+  pass: ""
+  name: ""
