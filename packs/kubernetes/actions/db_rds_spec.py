@@ -9,7 +9,10 @@ class DatabaseRdsSpec(Action):
     def run(self, payload, config):
         # take the payload name and replace any non-alphanumerical characters with "-"
         # to create a name for the database
-        db_name = re.sub('[^0-9a-zA-Z]+', '-', payload['name']) + "-" + payload['namespace']
+        try:
+            db_name = re.sub('[^0-9a-zA-Z]+', '-', payload['name']) + "-" + payload['namespace']
+        except:
+            sys.exit()
         # Lets get a username generated
         try:
             user_name = self._user_name(uid=payload['uid'])

@@ -12,7 +12,7 @@ criteria:
   trigger.resource:
     type: "contains"
     pattern: "DELETED"
-  trigger.labels.object:
+  trigger.labels.engine:
     type: "equals"
     pattern: "mysql"
 
