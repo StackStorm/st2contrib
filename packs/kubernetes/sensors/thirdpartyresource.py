@@ -11,8 +11,8 @@ from st2reactor.sensor.base import Sensor
 
 class ThirdPartyResource(Sensor):
     def setup(self):
-        self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
-        self._logger.debug('Connecting to Kubernetes via api_client')
+        self._log = self._sensor_service.get_logger(__name__)
+        self._log.debug('Connecting to Kubernetes via api_client')
         extension = self._config['extension_url']
         KUBERNETES_API_URL = self._config['kubernetes_api_url'] + extension
         user = self._config['user']
@@ -22,8 +22,7 @@ class ThirdPartyResource(Sensor):
                                    verify=False, stream=True)
 
     def run(self):
-        self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
-        self._logger.debug('Watch Kubernetes for thirdpartyresource information')
+        self._log.debug('Watch Kubernetes for thirdpartyresource information')
         r = self.client
         lines = r.iter_lines()
         # Save the first line for later or just skip it
@@ -44,7 +43,7 @@ class ThirdPartyResource(Sensor):
             namespace = d_list['object']['metadata']['namespace']
             uid = d_list['object']['metadata']['uid']
         except:
-            self.logger.debug("type, kind, name, namespace or uid do not exist in the object.\
+            self.log.debug("type, kind, name, namespace or uid do not exist in the object.\
                               must exit")
             sys.exit()
         # Now lets see if labels exist, if so build a trigger
@@ -53,9 +52,9 @@ class ThirdPartyResource(Sensor):
             self._build_a_trigger(resource_type=resource_type, name=name, labels=labels_data,
                                   namespace=namespace, object_kind=object_kind, uid=uid)
         else:
-            self.logger.debug("No Labels for the resource below. Tough to proceed without knowing how \
+            self._log.debug("No Labels for the resource below. Tough to proceed without knowing how \
                   to work with this object.")
-            self.logger.debug(name, namespace, uid)
+            self._log.debug(name, namespace, uid)
 
     def _build_a_trigger(self, resource_type, name, labels, namespace, object_kind, uid):
         trigger = 'kubernetes.thirdpartyobject'
@@ -67,8 +66,8 @@ class ThirdPartyResource(Sensor):
             'object_kind': object_kind,
             'uid': uid
         }
-        self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
-        self._logger.debug('Triggering Dispatch Now')
+
+        self._log.debug('Triggering Dispatch Now')
 
         # Create dispatch trigger
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
