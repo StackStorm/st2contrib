@@ -1,7 +1,7 @@
 from lib.action import BitBucketAction
 
 
-class DeleteSshKeyAction(BitBucketAction):
+class DeleteSSHKeyAction(BitBucketAction):
     def run(self, key_id):
         """
         Delete SSH key from BitBucket account
