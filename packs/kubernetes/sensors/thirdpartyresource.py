@@ -43,7 +43,7 @@ class ThirdPartyResource(Sensor):
             namespace = d_list['object']['metadata']['namespace']
             uid = d_list['object']['metadata']['uid']
         except:
-            self.log.debug("type, kind, name, namespace or uid do not exist in the object.\
+            self._log.debug("type, kind, name, namespace or uid do not exist in the object.\
                               must exit")
             sys.exit()
         # Now lets see if labels exist, if so build a trigger
