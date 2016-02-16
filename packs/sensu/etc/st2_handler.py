@@ -33,11 +33,11 @@ ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_API_KEY = None
 ST2_AUTH_TOKEN = None
-ST2_SSL_VERFIFY = False
+ST2_SSL_VERIFY = False
 
 ST2_AUTH_PATH = 'tokens'
 ST2_WEBHOOKS_PATH = 'webhooks/st2'
-ST2_TRIGGERS_PATH = 'triggertypes/'
+ST2_TRIGGERS_PATH = 'triggertypes'
 ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
@@ -95,7 +95,7 @@ def _check_stash(client, check, verbose=False):
             print('Sensu response code: %s.' % response.status_code)
 
         if response.status_code == 200:
-            print "Check or client is stashed"
+            print("Check or client is stashed")
             sys.exit(0)
 
 
@@ -116,7 +116,7 @@ def _get_st2_request_headers():
 
 def _create_trigger_type(verbose=False):
     try:
-        url = _get_st2_triggers_url()
+        url = _get_st2_triggers_base_url()
         payload = {
             'name': ST2_TRIGGERTYPE_NAME,
             'pack': ST2_TRIGGERTYPE_PACK,
@@ -130,7 +130,7 @@ def _create_trigger_type(verbose=False):
             print('POST to URL %s for registering trigger. Body = %s, headers = %s.' %
                   (url, payload, headers))
         post_resp = requests.post(url, data=json.dumps(payload),
-                                  headers=headers, verify=ST2_SSL_VERFIFY)
+                                  headers=headers, verify=ST2_SSL_VERIFY)
     except:
         traceback.print_exc(limit=20)
         raise Exception('Unable to connect to st2 endpoint %s.' % url)
@@ -164,7 +164,7 @@ def _get_auth_token(verbose=False):
 
     try:
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
-                             auth=(ST2_USERNAME, ST2_PASSWORD), verify=ST2_SSL_VERFIFY)
+                             auth=(ST2_USERNAME, ST2_PASSWORD), verify=ST2_SSL_VERIFY)
     except:
         traceback.print_exc(limit=20)
         raise Exception('Unable to connect to st2 endpoint %s.' % auth_url)
@@ -185,7 +185,7 @@ def _get_auth_token(verbose=False):
 
 
 def _register_trigger_with_st2(verbose=False):
-    triggers_url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
+    triggers_url = _get_st2_triggers_url()
 
     try:
         headers = _get_st2_request_headers()
@@ -193,7 +193,7 @@ def _register_trigger_with_st2(verbose=False):
             print('Will GET from URL %s for detecting trigger %s.' % (
                   triggers_url, ST2_TRIGGERTYPE_REF))
             print('Request headers: %s' % headers)
-        get_resp = requests.get(triggers_url, headers=headers, verify=ST2_SSL_VERFIFY)
+        get_resp = requests.get(triggers_url, headers=headers, verify=ST2_SSL_VERIFY)
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type(verbose=verbose)
@@ -209,8 +209,13 @@ def _register_trigger_with_st2(verbose=False):
             print('Successfully registered trigger %s with st2.' % ST2_TRIGGERTYPE_REF)
 
 
-def _get_st2_triggers_url():
+def _get_st2_triggers_base_url():
     url = urljoin(ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
+    return url
+
+
+def _get_st2_triggers_url():
+    url = urljoin(_get_st2_triggers_base_url() + '/', ST2_TRIGGERTYPE_REF)
     return url
 
 
@@ -265,10 +270,12 @@ def _post_event_to_st2(payload, verbose=False):
     if not _check_stash(client, check, verbose=verbose):
         try:
             _post_webhook(url=_get_st2_webhooks_url(), body=body, verbose=verbose)
+            return True
         except:
             traceback.print_exc(limit=20)
             print('Cannot send event to st2.')
             sys.exit(4)
+    return False
 
 
 def _register_with_st2(verbose=False):
@@ -294,7 +301,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
     global ST2_API_BASE_URL
     global ST2_API_BASE_URL
     global ST2_AUTH_BASE_URL
-    global ST2_SSL_VERFIFY
+    global ST2_SSL_VERIFY
     global SENSU_HOST
     global SENSU_PORT
     global SENSU_USER
@@ -303,7 +310,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
     global IS_API_KEY_AUTH
 
     UNAUTHED = unauthed
-    ST2_SSL_VERFIFY = ssl_verify
+    ST2_SSL_VERIFY = ssl_verify
 
     if not os.path.exists(config_file):
         print('Configuration file %s not found. Exiting!!!' % config_file)
@@ -335,7 +342,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
     if verbose:
         print('Unauthed? : %s' % UNAUTHED)
         print('API key auth?: %s' % IS_API_KEY_AUTH)
-        print('SSL_VERIFY? : %s' % ST2_SSL_VERFIFY)
+        print('SSL_VERIFY? : %s' % ST2_SSL_VERIFY)
 
     if not UNAUTHED and not IS_API_KEY_AUTH:
         try:
