@@ -22,8 +22,15 @@ class St2BaseAction(Action):
     def _get_client(self):
         base_url, api_url, auth_url = self._get_st2_urls()
         token = self._get_auth_token()
+        cacert = self._get_cacert()
+
+        client_kwargs = {}
+        if cacert:
+            client_kwargs['cacert'] = cacert
+
         return self._client(base_url=base_url, api_url=api_url,
-                            auth_url=auth_url, token=token)
+                            auth_url=auth_url, token=token,
+                            **client_kwargs)
 
     def _get_st2_urls(self):
         # First try to use base_url from config.
@@ -49,6 +56,10 @@ class St2BaseAction(Action):
             token = os.environ.get('ST2_ACTION_AUTH_TOKEN', None)
 
         return token
+
+    def _get_cacert(self):
+        cacert = self.config.get('cacert', None)
+        return cacert
 
     def _run_client_method(self, method, method_kwargs, format_func, format_kwargs=None):
         """

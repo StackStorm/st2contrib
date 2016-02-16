@@ -1,6 +1,15 @@
 ---
 api_url: ""
 auth_url: ""
+
 # auth_token will expire per token_ttl specifed in stackstorm
 # configuration and will require a refresh.
 auth_token: ""
+
+# If this setting is provided, server certertificate validation is performed.
+# By default, client assumes self-signed cert and doesn't perform certificate
+# validation.
+# This value can either contain path to the CA_BUNDLE file with certificates
+# of trusted CAs or "True" to use CAs from the system trust store. If not
+# provided, no validation is performed.
+cacert: ""
