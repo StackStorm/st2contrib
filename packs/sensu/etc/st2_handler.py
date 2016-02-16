@@ -27,15 +27,17 @@ except ImportError:
 
 # ST2 configuration
 
-ST2_API_BASE_URL = 'https://localhost/v1/'
+ST2_API_BASE_URL = 'https://localhost/api/v1/'
+ST2_AUTH_BASE_URL = 'https://localhost/auth/v1/'
 ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_API_KEY = None
 ST2_AUTH_TOKEN = None
+ST2_SSL_VERFIFY = False
 
-ST2_AUTH_PATH = 'auth/tokens'
-ST2_WEBHOOKS_PATH = 'api/webhooks/st2/'
-ST2_TRIGGERS_PATH = 'api/triggertypes/'
+ST2_AUTH_PATH = 'tokens'
+ST2_WEBHOOKS_PATH = 'webhooks/st2'
+ST2_TRIGGERS_PATH = 'triggertypes/'
 ST2_TRIGGERTYPE_PACK = 'sensu'
 ST2_TRIGGERTYPE_NAME = 'event_handler'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
@@ -128,7 +130,7 @@ def _create_trigger_type(verbose=False):
             print('POST to URL %s for registering trigger. Body = %s, headers = %s.' %
                   (url, payload, headers))
         post_resp = requests.post(url, data=json.dumps(payload),
-                                  headers=headers, verify=False)
+                                  headers=headers, verify=ST2_SSL_VERFIFY)
     except:
         traceback.print_exc(limit=20)
         raise Exception('Unable to connect to st2 endpoint %s.' % url)
@@ -151,7 +153,7 @@ def _create_trigger_type(verbose=False):
 
 
 def _get_auth_url():
-    return urljoin(ST2_API_BASE_URL, ST2_AUTH_PATH)
+    return urljoin(ST2_AUTH_BASE_URL, ST2_AUTH_PATH)
 
 
 def _get_auth_token(verbose=False):
@@ -162,7 +164,7 @@ def _get_auth_token(verbose=False):
 
     try:
         resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
-                             auth=(ST2_USERNAME, ST2_PASSWORD), verify=False)
+                             auth=(ST2_USERNAME, ST2_PASSWORD), verify=ST2_SSL_VERFIFY)
     except:
         traceback.print_exc(limit=20)
         raise Exception('Unable to connect to st2 endpoint %s.' % auth_url)
@@ -191,7 +193,7 @@ def _register_trigger_with_st2(verbose=False):
             print('Will GET from URL %s for detecting trigger %s.' % (
                   triggers_url, ST2_TRIGGERTYPE_REF))
             print('Request headers: %s' % headers)
-        get_resp = requests.get(triggers_url, headers=headers, verify=False)
+        get_resp = requests.get(triggers_url, headers=headers, verify=ST2_SSL_VERFIFY)
 
         if get_resp.status_code != httplib.OK:
             _create_trigger_type(verbose=verbose)
@@ -284,12 +286,15 @@ def _register_with_st2(verbose=False):
         sys.exit(2)
 
 
-def _set_config_opts(config_file, verbose=False, unauthed=False):
+def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=False):
     global ST2_USERNAME
     global ST2_PASSWORD
     global ST2_API_KEY
     global ST2_AUTH_TOKEN
     global ST2_API_BASE_URL
+    global ST2_API_BASE_URL
+    global ST2_AUTH_BASE_URL
+    global ST2_SSL_VERFIFY
     global SENSU_HOST
     global SENSU_PORT
     global SENSU_USER
@@ -298,6 +303,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
     global IS_API_KEY_AUTH
 
     UNAUTHED = unauthed
+    ST2_SSL_VERFIFY = ssl_verify
 
     if not os.path.exists(config_file):
         print('Configuration file %s not found. Exiting!!!' % config_file)
@@ -313,6 +319,11 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
         ST2_PASSWORD = config['st2_password']
         ST2_API_KEY = config['st2_api_key']
         ST2_API_BASE_URL = config['st2_api_base_url']
+        if not ST2_API_BASE_URL.endswith('/'):
+            ST2_API_BASE_URL += '/'
+        ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+        if not ST2_AUTH_BASE_URL.endswith('/'):
+            ST2_AUTH_BASE_URL += '/'
         SENSU_HOST = config.get('sensu_host', 'localhost')
         SENSU_PORT = config.get('sensu_port', '4567')
         SENSU_USER = config.get('sensu_user', None)
@@ -324,6 +335,7 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
     if verbose:
         print('Unauthed? : %s' % UNAUTHED)
         print('API key auth?: %s' % IS_API_KEY_AUTH)
+        print('SSL_VERIFY? : %s' % ST2_SSL_VERFIFY)
 
     if not UNAUTHED and not IS_API_KEY_AUTH:
         try:
@@ -332,11 +344,14 @@ def _set_config_opts(config_file, verbose=False, unauthed=False):
                     print('No auth token found. Let\'s get one from StackStorm!')
                 ST2_AUTH_TOKEN = _get_auth_token(verbose=verbose)
         except:
-            raise Exception('Unable to negotiate an auth token. Exiting!')
+            traceback.print_exc(limit=20)
+            print('Unable to negotiate an auth token. Exiting!')
+            sys.exit(1)
 
 
-def main(config_file, payload, verbose=False, unauthed=False):
-    _set_config_opts(config_file=config_file, unauthed=unauthed, verbose=verbose)
+def main(config_file, payload, verbose=False, unauthed=False, ssl_verify=False):
+    _set_config_opts(config_file=config_file, unauthed=unauthed, verbose=verbose,
+                     ssl_verify=ssl_verify)
     _register_with_st2(verbose=verbose)
     _post_event_to_st2(payload, verbose=verbose)
 
@@ -350,7 +365,9 @@ if __name__ == '__main__':
     parser.add_argument('--unauthed', '-u', required=False, action='store_true',
                         help='Allow to post to unauthed st2. E.g. when auth is disabled ' +
                         'server side.')
+    parser.add_argument('--ssl-verify', '-k', required=False, action='store_true',
+                        help='Turn on SSL verification for st2 APIs.')
     args = parser.parse_args()
     payload = sys.stdin.read().strip()
     main(config_file=args.config_path, payload=payload, verbose=args.verbose,
-         unauthed=args.unauthed)
+         unauthed=args.unauthed, ssl_verify=args.ssl_verify)
