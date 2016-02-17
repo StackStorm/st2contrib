@@ -1,6 +1,5 @@
 import re
 import uuid
-import sys
 
 from st2actions.runners.pythonrunner import Action
 
@@ -12,15 +11,19 @@ class DatabaseRdsSpec(Action):
         try:
             db_name = re.sub('[^0-9a-zA-Z]+', '-', payload['name']) + "-" + payload['namespace']
         except:
-            sys.exit()
-        # Lets get a username generated
-        try:
-            user_name = self._user_name(uid=payload['uid'])
-        except:
-            self.logger.info("No name or namespace in payload")
-            sys.exit()
+            self.logger.exception('Cannot create valid name for database!')
+            raise
 
-        l = dict(self.config['rds'])
+        # Lets get a username generated
+        uid = payload.get('uid', None)
+        if not uid:
+            msg = 'No name or namespace in payload.'
+            self.logger.error(msg)
+            raise Exception(msg)
+
+        user_name = self._user_name(uid=uid)
+
+        l = dict(self.config.get('rds', {}))
         pw = self._id_generator()
 
         newpayload = {
