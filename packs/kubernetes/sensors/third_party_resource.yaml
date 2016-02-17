@@ -1,6 +1,6 @@
 ---
   class_name: "ThirdPartyResource"
-  entry_point: "thirdpartyresource.py"
+  entry_point: "third_party_resource.py"
   description: "Sensor which watches Kubernetes API for new thirdpartyresource."
   trigger_types:
     -
