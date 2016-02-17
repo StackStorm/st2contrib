@@ -79,6 +79,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![jenkins icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jenkins/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/jenkins) | [jenkins](https://github.com/StackStorm/st2contrib/tree/master/packs/jenkins) | Jenkins CI Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#jenkins-pack)
 [![jira icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jira/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | [jira](https://github.com/StackStorm/st2contrib/tree/master/packs/jira) | st2 content pack containing jira integrations | issues, ticket management, project management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#jira-pack)
 [![jmx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jmx/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/jmx) | [jmx](https://github.com/StackStorm/st2contrib/tree/master/packs/jmx) | st2 content pack containing Java JMX integrations | jmx, javajmx, java management extensions, mbean | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#jmx-pack)
+[![kubernetes icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/kubernetes/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/kubernetes) | [kubernetes](https://github.com/StackStorm/st2contrib/tree/master/packs/kubernetes) | st2 content pack containing Kubernetes sensors | kubenetes, sensors, thirdpartyresource | [Michael Ward](mailto:mward29@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#kubernetes-pack)
 [![lastline icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/lastline/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/lastline) | [lastline](https://github.com/StackStorm/st2contrib/tree/master/packs/lastline) | Lastline Security Breach Detection Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#lastline-pack)
 [![libcloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/libcloud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | libcloud, cloud, dns, dnsaas, lbaas, load balancers, aws, amazon, s3, ec2, rackspace, cloudstack, openstack, cloudsigma, gce, google compute engine | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#libcloud-pack)
 [![mailgun icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mailgun/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
@@ -1148,6 +1149,24 @@ JMXSensor | Sensor which monitors Java application for attributes / metrics expo
 Name | Description
 ---- | -----------
 invoke_method | Invoke a provided MBean method exposed over JMX.
+
+### kubernetes pack
+
+![kubernetes icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/kubernetes/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+ThirdPartyResource | Sensor which watches Kubernetes API for new thirdpartyresource.
+
+#### Actions
+
+Name | Description
+---- | -----------
+db_create_chain | RDS Create Action Chain Workflow
+db_delete_chain | RDS Delete Action Chain Workflow
+db_rds_spec | Munge Kubernetes data so we can create a database.
 
 ### lastline pack
 
