@@ -62,8 +62,10 @@ class ThirdPartyResource(Sensor):
         # Now lets see if labels exist, if so build a trigger else exit
         if 'labels' in line['object']['metadata']:
             labels_data = line['object']['metadata']['labels']
-            self._build_a_trigger(resource_type=resource_type, name=name, labels=labels_data,
-                                  namespace=namespace, object_kind=object_kind, uid=uid)
+            payload = self._build_a_trigger(resource_type=resource_type, name=name,
+                                            labels=labels_data, namespace=namespace,
+                                            object_kind=object_kind, uid=uid)
+            return payload
         else:
             self._log.debug("No Labels for the resource below. Tough to proceed without knowing how \
                   to work with this object.")
@@ -71,7 +73,6 @@ class ThirdPartyResource(Sensor):
             sys.exit(1)
 
     def _build_a_trigger(self, resource_type, name, labels, namespace, object_kind, uid):
-        trigger = 'kubernetes.thirdpartyobject'
         payload = {
             'resource': resource_type,
             'name': name,
@@ -82,9 +83,7 @@ class ThirdPartyResource(Sensor):
         }
 
         self._log.debug('Triggering Dispatch Now')
-
-        # Create dispatch trigger
-        self._sensor_service.dispatch(trigger=trigger, payload=payload)
+        return payload
 
     def cleanup(self):
         pass
