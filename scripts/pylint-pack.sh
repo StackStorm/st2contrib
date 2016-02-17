@@ -80,5 +80,14 @@ export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 #echo "PYTHONPATH=${PYTHONPATH}"
 #echo "PYTHON_BINARY=${PYTHON_BINARY}"
 
-find ${PACK_PATH}/* -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc && echo "No pylint issues found."
-exit $?
+if [ -d ${PACK_PATH}/actions ]; then
+    find ${PACK_PATH}/actions -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc && echo "--> No pylint issues found in actions." || exit $?
+fi
+
+if [  -d ${PACK_PATH}/sensors ]; then
+    find ${PACK_PATH}/sensors -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc && echo "--> No pylint issues found in sensors." || exit $?
+fi
+
+if [ -d ${PACK_PATH}/etc ]; then
+    find ${PACK_PATH}/etc -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./.pylintrc && echo "--> No pylint issues found in etc." || exit $?
+fi

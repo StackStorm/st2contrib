@@ -43,21 +43,20 @@ Here are step-by-step instructions:
 
 2. Set up StackStorm endpoints and credentials in [`st2_handler.conf`](etc/st2_handler.conf).
 
-3. Test the handler manually. 
+3. Test the handler manually.
 
     ```
     cd /etc/sensu/handlers/
-    echo '{"foo":"bar"}' | ./st2_handler.py ./st2_handler.conf
-    Registered trigger type with st2.
-    POST: url: http://localhost:9101/webhooks/st2/, body: {'trigger': 'sensu.event_handler', 'payload': {'foo': 'bar'}}
+    echo '{"client": {"name": 1}, "check":{"name": 2}, "id": "12345"}' | ./st2_handler.py ./st2_handler.conf --verbose
+    # You'd see something like the following if the test succeeds.
     Sent sensu event to st2. HTTP_CODE: 202
     ```
-4. Note that handler invocation auto-creates Sensu trigger type on StackStorm side. Ensure that the Sensu trigger is created on StackStorm: 
+4. Note that handler invocation auto-creates Sensu trigger type on StackStorm side. Ensure that the Sensu trigger is created on StackStorm:
 
     ```
     st2 trigger list --pack=sensu
     ```
-        
+
 5. Create and configure Sensu StackStorm handler - call it `st2` - for sending Sensu events to StackStorm:
 
     ```json
@@ -75,7 +74,7 @@ Here are step-by-step instructions:
 6. Add `st2` handler to `handlers` field of desired sensu checks to route events to StackStorm. Here is how to add st2 handler to Sensu memory check:
 
     ```json
-    cat /etc/sensu/conf.d/check_memory.json 
+    cat /etc/sensu/conf.d/check_memory.json
     {
       "checks": {
         "memory": {
@@ -95,11 +94,33 @@ Here are step-by-step instructions:
 
 6. Profit. At this point, StackStorm will receive sensu events and fire sensu triggers. Use them in Rules to fire an action, or a workflow of actions, on Sensu event.
 
-### Example 
-Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch for StackStorm action runners, `st2actionrunners`, fire an event when it's less then 10. StackStorm will catch the event and trigger an action. A simple action that dumps the event payload to the file will suffice as example; in production the action will be a troubleshooting or remediation workflow. 
+### Handler options
+
+1. The handler supports unauthed st2 endpoints (server side authentication turned off). Though
+   this is not recommended, you can use this for local testing.
+
+   ```
+   echo '{"client": {"name": 1}, "check":{"name": 2}, "id": "12345"}' | ./st2_handler.py ./st2_handler.conf --unauthed
+   ```
+2. The handler also supports turning on/off ssl verification for all API requests to st2. By
+   default, SSL verification is turned off as evaluation versions of st2 ship with self-signed
+   certs. To turn on ssl verify, use ```--ssl-verify``` option.
+
+   ```
+   echo '{"client": {"name": 1}, "check":{"name": 2}, "id": "12345"}' | ./st2_handler.py ./st2_handler.conf --ssl-verify
+   ```
+
+3. If for whatever reason, you've to debug the handler, you can use the --verbose option.
+
+   ```
+   echo '{"client": {"name": 1}, "check":{"name": 2}, "id": "12345"}' | ./st2_handler.py ./st2_handler.conf --verbose
+   ```
+
+### Example
+Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch for StackStorm action runners, `st2actionrunners`, fire an event when it's less then 10. StackStorm will catch the event and trigger an action. A simple action that dumps the event payload to the file will suffice as example; in production the action will be a troubleshooting or remediation workflow.
 
 1. If Sensu `check_procs.rb` check plugin is not yet installed, install it now (look up Sensu [docs here](https://sensuapp.org/docs/0.20/getting-started-with-checks#install-dependencies) for CentOS/RHEL version):
-    
+
     ```
     sudo apt-get update
     sudo apt-get install ruby ruby-dev
@@ -134,16 +155,16 @@ Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch
         "address": "localhost",
         "subscriptions": [ "test" ]
       }
-    }    
+    }
     ```
     Restart Sensu server and client to pick up the changes:
-    
-    ```    
+
+    ```
     sudo service sensu-server restart
     sudo service sensu-client restart
     ```
     At this point sensu should be
-    
+
 3. Now back to StackStorm. Create StackStorm rule definition (This sample is a part of the pack, [`rules/sample.on_action_runner_check.yaml`](rules/sample.on_action_runner_check.yaml)):
 
     ```yaml
@@ -168,15 +189,15 @@ Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch
       enabled: true
     ```
 
-    and load the rule: 
-    
+    and load the rule:
+
     ```
     cd /opt/stackstorm/packs/sensu
-    st2 rule create rules/sample.on_action_runner_check.yaml 
+    st2 rule create rules/sample.on_action_runner_check.yaml
     ```
-    StackStorm is now waiting for Sensu event. 
-    
-4. Fire it up: create a Sensu event by Killing an st2actionrunner process. 
+    StackStorm is now waiting for Sensu event.
+
+4. Fire it up: create a Sensu event by Killing an st2actionrunner process.
 
     ```
     ps auxww | grep st2actionrunner
@@ -186,14 +207,14 @@ Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch
     ```
     tail -f /var/log/sensu/sensu-server.log | grep --line-buffered st2actionrunner
     ```
-    
+
     Watch the action triggered in StackStorm: `st2 execution list`.  and verify the result by ckecking the file created by the action:
-    
+
     ```
     cat /tmp/sensu-sample.out
     {'client': {'timestamp': 1440745086, 'version': '0.20.3', 'name': 'test', 'address':
      'localhost', 'subscriptions': ['test']}, 'occurrences': 17, 'action': 'create',
-     'timestamp': 1440745095, 'check': {'status': 2, 'executed': 1440745095, 
+     'timestamp': 1440745095, 'check': {'status': 2, 'executed': 1440745095,
      'total_state_change': 4, 'handlers': ['default', 'st2'], 'issued': 1440745095,
      'interval': 60, 'command': '/etc/sensu/plugins/check-procs.rb -p st2actionrunner
      -C 10 ', 'subscribers': ['test'], 'duration': 0.057, 'output': 'CheckProcs CRITICAL:
@@ -202,9 +223,9 @@ Let's take monitoring StackStorm itself for end-to-end example. Sensu will watch
      '2'], 'name': 'st2actionrunner_check'}, 'id':'a1723d77-6afe-4555-8bae-7a8423e8a26d'}
     ...
     ```
-    
+
     You can also see that the rule triggered an action in StackStorm UI, under History tab.
-    
+
 5. In this simple example, StackStorm just dumped the content of the check output to the file. In a real auto-remediation, a workflow of actions will get StackStorm runners back to normal. For now, just do that manually:
 
     ```
