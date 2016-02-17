@@ -15,6 +15,7 @@ __all__ = [
     'SensuHandlerTestCase'
 ]
 
+
 class FakeResponse(object):
 
     def __init__(self, text, status_code, reason):
@@ -27,6 +28,7 @@ class FakeResponse(object):
 
     def raise_for_status(self):
         raise Exception(self.reason)
+
 
 class SensuHandlerTestCase(unittest2.TestCase):
 
@@ -133,11 +135,13 @@ class SensuHandlerTestCase(unittest2.TestCase):
         sensu_handler.ST2_SSL_VERIFY = True
         sensu_handler._create_trigger_type()
         requests.post.assert_called_with('https://localhost/api/v1/triggertypes',
-            data='{"description": "Trigger type for sensu event handler.", "name": "event_handler", "pack": "sensu"}',
-            headers={'Content-Type': 'application/json; charset=utf-8'}, verify=True)
+            data='{"description": "Trigger type for sensu event handler.", ' +
+                 '"name": "event_handler", "pack": "sensu"}',
+            headers={'Content-Type': 'application/json; charset=utf-8'}, verify=True
+        )
 
     @responses.activate
-    def test_post_event_to_st2_bad_payload(self):
+    def test_post_event_to_st2_good_payload(self):
         sensu_handler.ST2_API_BASE_URL = 'https://localhost/api/v1/'
         responses.add(
             responses.POST, 'https://localhost/api/v1/webhooks/st2',
@@ -190,4 +194,3 @@ class SensuHandlerTestCase(unittest2.TestCase):
         with self.assertRaises(SystemExit) as cm:
             sensu_handler._post_event_to_st2(json.dumps(trigger_payload))
         self.assertEqual(cm.exception.code, 0)
-
