@@ -1,0 +1,19 @@
+---
+  chain:
+    -
+      name: "db_rds_spec"
+      ref: "kubernetes.db_rds_spec"
+      params:
+        payload: "{{payload}}"
+      on-success: "rds_create_database"
+    -
+      name: "rds_create_database"
+      ref: "aws.rds_create_dbinstance"
+      params:
+        master_username: "{{db_rds_spec.result.user_name}}"
+        master_password: "{{db_rds_spec.result.pw}}"
+        id: "{{db_rds_spec.result.db_name}}"
+        engine: "{{db_rds_spec.result.engine}}"
+        instance_class: "{{db_rds_spec.result.instance_class}}"
+        port: "{{db_rds_spec.result.port}}"
+        allocated_storage: "{{db_rds_spec.result.allocated_storage}}"

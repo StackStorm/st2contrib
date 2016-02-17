@@ -1,0 +1,22 @@
+---
+name: "kubernetes_rds_delete"
+pack: "kubernetes"
+description: "Check for rds instances to delete using kubernetes thirdpartyresource sensor"
+enabled: true
+
+trigger:
+  type: "kubernetes.thirdpartyobject"
+  parameters: {}
+
+criteria:
+  trigger.resource:
+    type: "contains"
+    pattern: "DELETED"
+  trigger.labels.engine:
+    type: "equals"
+    pattern: "mysql"
+
+action:
+  ref: "kubernetes.db_delete_chain"
+  parameters:
+    payload: "{{trigger}}"

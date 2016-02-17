@@ -1,0 +1,14 @@
+---
+  chain:
+    -
+      name: "db_rds_spec"
+      ref: "kubernetes.db_rds_spec"
+      params:
+        payload: "{{payload}}"
+      on-success: "rds_delete_database"
+    -
+      name: "rds_delete_database"
+      ref: "aws.rds_delete_dbinstance"
+      params:
+        id: "{{db_rds_spec.result.db_name}}"
+        skip_final_snapshot: "true"

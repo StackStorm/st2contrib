@@ -1,0 +1,21 @@
+---
+  class_name: "ThirdPartyResource"
+  entry_point: "thirdpartyresource.py"
+  description: "Sensor which watches Kubernetes API for new thirdpartyresource."
+  trigger_types:
+    -
+      name: "thirdpartyobject"
+      description: "Trigger which contains metadata for thirdpartyobject dispatch."
+      payload_schema:
+        type: "object"
+        properties:
+          resource:
+            type: "obj"
+          name:
+            type: "obj"
+          labels:
+            type: "obj"
+          object_kind:
+            type: "obj"
+          namespace:
+            type: "obj"
