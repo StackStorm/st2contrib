@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-import json
-import requests
-import sys
-from requests.auth import HTTPBasicAuth
 import ast
-# from git@github.com:mward29/python-k8sclient.git
+import json
+import sys
+
+import requests
+from requests.auth import HTTPBasicAuth
 
 from st2reactor.sensor.base import Sensor
 
