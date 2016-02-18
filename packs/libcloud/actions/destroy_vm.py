@@ -12,7 +12,7 @@ class DestroyVMAction(SingleVMAction):
         driver = self._get_driver_for_credentials(credentials=credentials)
         node = self._get_node_for_id(node_id=vm_id, driver=driver)
 
-        self.logger('Destroying node: %s...' % (node))
+        self.logger.info('Destroying node: %s...' % (node))
         status = driver.destroy_node(node=node)
 
         if status is True:

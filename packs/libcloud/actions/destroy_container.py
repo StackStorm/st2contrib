@@ -12,7 +12,7 @@ class DestroyContainerAction(BaseAction):
         driver = self._get_driver_for_credentials(credentials=credentials)
         container = driver.get_container(container_id)
 
-        self.logger('Destroying container: %s...' % (container))
+        self.logger.info('Destroying container: %s...' % (container))
         status = driver.destroy_container(container)
 
         if status is True:

@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-# C0111 Missing docstring
+# C0111 Missing docstring 
 # I0011 Warning locally suppressed using disable-msg
 # I0012 Warning locally suppressed using disable-msg
 # W0704 Except doesn't do anything Used when an except clause does nothing but "pass" and there is no "else" clause
@@ -21,8 +21,7 @@ disable=C0103,C0111,I0011,I0012,W0704,W0142,W0212,W0232,W0613,W0702,R0201,W0614,
 [TYPECHECK]
 # Note: This modules are manipulated during the runtime so we can't detect all the properties during
 # static analysis
-ignored-modules=distutils,eventlet.green.subprocess,responses,MySQLdb
-ignored-classes=MySQLdb,Connection
+ignored-modules=distutils,eventlet.green.subprocess
 
 [FORMAT]
 max-line-length=100

@@ -20,6 +20,8 @@ REFERER_FIELD = "referer"
 DATE_LAND_FIELD = "date_land"
 DATE_SUBMIT_FIELD = "date_submit"
 
+# pylint: disable=no-member
+
 
 class TypeformRegistrationSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=180):
