@@ -80,17 +80,32 @@ export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 #echo "PYTHONPATH=${PYTHONPATH}"
 #echo "PYTHON_BINARY=${PYTHON_BINARY}"
 
-ACTION_FILES_COUNT=$(find ${PACK_PATH}/actions -name "*.py" -printf "." -print0 | wc -c)
-if [ -d ${PACK_PATH}/actions ] && [ ${ACTION_FILES_COUNT} -gt 0 ]; then
+if [ -d ${PACK_PATH}/actions ]; then
+    ACTION_PYTHON_FILES_COUNT=$(find ${PACK_PATH}/actions -name "*.py" -printf "." -print0 | wc -c)
+else
+    ACTION_PYTHON_FILES_COUNT=0
+fi
+
+if [ ${ACTION_PYTHON_FILES_COUNT} -gt 0 ]; then
     find ${PACK_PATH}/actions -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./lint-configs/python/.pylintrc && echo "--> No pylint issues found in actions." || exit $?
 fi
 
-SENSOR_FILES_COUNT=$(find ${PACK_PATH}/sensors -name "*.py" -printf "." -print0 | wc -c)
-if [ -d ${PACK_PATH}/sensors ] && [ ${SENSOR_FILES_COUNT} -gt 0 ]; then
+if [ -d ${PACK_PATH}/sensors ]; then
+    SENSOR_PYTHON_FILES_COUNT=$(find ${PACK_PATH}/sensors -name "*.py" -printf "." -print0 | wc -c)
+else
+    SENSOR_PYTHON_FILES_COUNT=0
+fi
+
+if [ ${SENSOR_PYTHON_FILES_COUNT} -gt 0 ]; then
     find ${PACK_PATH}/sensors -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./lint-configs/python/.pylintrc && echo "--> No pylint issues found in sensors." || exit $?
 fi
 
-ETC_FILES_COUNT=$(find ${PACK_PATH}/etc -name "*.py" -printf "." -print0 | wc -c)
-if [ -d ${PACK_PATH}/etc ] && [ ${ETC_FILES_COUNT} -gt 0 ]; then
+if [ -d ${PACK_PATH}/etc ]; then
+    ETC_PYTHON_FILES_COUNT=$(find ${PACK_PATH}/etc -name "*.py" -printf "." -print0 | wc -c)
+else
+    ETC_PYTHON_FILES_COUNT=0
+fi
+
+if [ ${ETC_PYTHON_FILES_COUNT} -gt 0 ]; then
     find ${PACK_PATH}/etc -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=./lint-configs/python/.pylintrc && echo "--> No pylint issues found in etc." || exit $?
 fi
