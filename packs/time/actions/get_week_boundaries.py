@@ -1,5 +1,3 @@
-import datetime
-
 import arrow
 
 from st2common.util import isotime
