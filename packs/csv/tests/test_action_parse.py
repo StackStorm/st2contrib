@@ -18,8 +18,10 @@ name1|surename1|1990
 
 
 class ParseCSVActionTestCase(BaseActionTestCase):
+    action_cls = ParseCSVAction
+
     def test_run_comma_delimiter(self):
-        result = ParseCSVAction().run(data=MOCK_DATA_1, delimiter=',')
+        result = self.get_action_instance().run(data=MOCK_DATA_1, delimiter=',')
         expected = [
             ['first', 'last', 'year'],
             ['name1', 'surename1', '1990']
@@ -27,7 +29,7 @@ class ParseCSVActionTestCase(BaseActionTestCase):
         self.assertEqual(result, expected)
 
     def test_run_pipe_delimiter(self):
-        result = ParseCSVAction().run(data=MOCK_DATA_2, delimiter='|')
+        result = self.get_action_instance().run(data=MOCK_DATA_2, delimiter='|')
         expected = [
             ['first', 'last', 'year'],
             ['name1', 'surename1', '1990']
