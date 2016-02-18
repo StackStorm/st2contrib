@@ -72,6 +72,7 @@ def user_to_dict(user):
     result['login'] = user.login
     return result
 
+
 def team_to_dict(team):
     if not team:
         return None
