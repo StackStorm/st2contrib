@@ -44,7 +44,7 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	@echo "==================== flake8 ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PY}" ]; then echo No files have changed, skipping run...; fi; for file in ${CHANGED_PY}; do if [ -n "$$file" ]; then flake8 --config ./.flake8 $$file; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PY}" ]; then echo No files have changed, skipping run...; fi; for file in ${CHANGED_PY}; do if [ -n "$$file" ]; then flake8 --config ./lint-configs/python/.flake8 $$file; fi; done
 
 .PHONY: .pylint
 .pylint:
