@@ -1,0 +1,10 @@
+description: ''
+enabled: true
+entry_point: do.py
+name: get_my_images
+parameters:
+  action:
+    default: get_my_images
+    immutable: true
+    type: string
+runner_type: run-python
