@@ -1,0 +1,9 @@
+---
+name : cassandra
+description : st2 content pack containing cassandra integrations
+keywords:
+  - datastax
+  - cassandra
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com

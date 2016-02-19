@@ -1,0 +1,11 @@
+---
+name: get_dse_status
+runner_type: remote-shell-cmd
+description: Get DSE cassandra service status.
+enabled: true
+entry_point: ''
+parameters:
+  sudo:
+    default: true
+  cmd:
+    default: "service dse status"

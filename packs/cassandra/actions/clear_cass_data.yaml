@@ -1,0 +1,15 @@
+---
+name: clear_cass_data
+runner_type: remote-shell-cmd
+description: Clear cassandra data directory.
+enabled: true
+entry_point: ''
+parameters:
+  data_dir:
+    type: string
+    required: true
+    description: "Path to cassandra data dir - usually /var/lib/cassandra/"
+  sudo:
+    default: true
+  cmd:
+    default: "rm -rf {{data_dir}}/*"
