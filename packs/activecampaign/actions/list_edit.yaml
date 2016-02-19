@@ -1,0 +1,88 @@
+description: Edit existing mailing list.
+enabled: true
+entry_point: run.py
+name: list_edit
+parameters:
+  api_action:
+    default: list_edit
+    description: list_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  carboncopy:
+    description: Comma-separated list of email addresses to send a copy of all mailings
+      to upon send
+    required: true
+    type: string
+  get_unsubscribe_reason:
+    description: 'Whether or not to ask for reason when unsubscribing. Examples: 1
+      = yes, 0 = no'
+    required: false
+    type: string
+  id:
+    description: List ID to edit
+    required: true
+    type: string
+  name:
+    description: 'Internal list name. Example: ''List Name'''
+    required: true
+    type: string
+  p_use_captcha:
+    description: 'Whether or not to require CAPTCHA ("enter text on image" field)
+      for this list. Examples: 1 = yes, 0 = no'
+    required: false
+    type: string
+  require_name:
+    description: 'Whether or not to require name with email when subscribing. Examples:
+      1 = yes, 0 = no'
+    required: false
+    type: string
+  send_last_broadcast:
+    description: 'Whether or not to send the last broadcast campaign when subscribing.
+      Examples: 1 = yes, 0 = no'
+    required: false
+    type: string
+  sender_addr1:
+    description: Physical mailing address
+    required: false
+    type: string
+  sender_country:
+    description: Physical mailing address country
+    required: false
+    type: string
+  sender_reminder:
+    description: Remind your contacts why they are on this list and why you are emailing
+      them
+    required: false
+    type: string
+  sender_url:
+    description: Website associated with this list
+    required: false
+    type: string
+  sender_zip:
+    description: 'Physical mailing address: zip or postal code'
+    required: false
+    type: string
+  subscription_notify:
+    description: Comma-separated list of email addresses to notify on new subscriptions
+      to this list
+    required: true
+    type: string
+  to_name:
+    description: 'If contact doesn''t enter a name, use this. Example: ''Recipient'''
+    required: true
+    type: string
+  unsubscription_notify:
+    description: Comma-separated list of email addresses to notify on any unsubscriptions
+      from this list
+    required: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,33 @@
+description: Add event tracking event name and value
+enabled: true
+entry_point: run.py
+name: track_event_add
+parameters:
+  actid:
+    description: Your unique tracking account ID (can be found on the Integrations
+      page)
+    required: true
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  event:
+    description: 'The event name you want to add. Example: ''my_custom_event'''
+    required: true
+    type: string
+  eventdata:
+    description: 'The event value (related to the event name). Example: ''12345''.
+      (Note: if you don''t include this parameter it will still save the event name.)'
+    required: false
+    type: string
+  key:
+    description: Your unique tracking event key (can be found on the Integrations
+      page)
+    required: true
+    type: string
+  visit:
+    description: See below example for the data you can include here.
+    required: false
+    type: string
+runner_type: run-python

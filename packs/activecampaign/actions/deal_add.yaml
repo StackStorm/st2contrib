@@ -1,0 +1,57 @@
+description: Add new deal.
+enabled: true
+entry_point: run.py
+name: deal_add
+parameters:
+  api_action:
+    default: deal_add
+    description: deal_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  contact_name:
+    description: 'Name of the contact for the new deal. Example: ''John Doe'''
+    required: false
+    type: string
+  contactid:
+    description: 'ID of an existing contact for the new deal. Example: ''8''. NOTE:
+      IF THIS IS NOT PROVIDED, ''contact'' MUST BE. (Get available contact IDs with
+      "contact_list" call)'
+    required: false
+    type: string
+  currency:
+    description: 'Currency of the new deal. Example: ''usd'''
+    required: true
+    type: string
+  organization:
+    description: 'Name of the organization of the contact for the new deal. Example:
+      ''Acme Corp''. NOTE: IF THIS IS NOT PROVIDED, ''orgid'' MUST BE.'
+    required: false
+    type: string
+  pipeline:
+    description: 'ID of the new deal''s pipeline. Example: ''3'' (Get available pipeline
+      IDs with "deal_pipeline_list" call)'
+    required: true
+    type: string
+  stage:
+    description: 'ID of the new deal''s stage. Example: ''52'' (Get available stage
+      IDs with "deal_stage_list" call)'
+    required: true
+    type: string
+  title:
+    description: 'Title of the new deal. Example: ''Deal Title'''
+    required: true
+    type: string
+  value:
+    description: 'Value of the new deal in dollars. Example: ''450.00'' or 450'
+    required: true
+    type: string
+runner_type: run-python

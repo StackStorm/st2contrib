@@ -1,0 +1,24 @@
+description: Delete existing mailing list.
+enabled: true
+entry_point: run.py
+name: list_delete
+parameters:
+  api_action:
+    default: list_delete
+    description: list_delete
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: ID of the subscription form you wish to delete
+    required: true
+    type: string
+runner_type: run-python

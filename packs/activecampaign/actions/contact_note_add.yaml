@@ -1,0 +1,37 @@
+description: Add a new contact note.
+enabled: true
+entry_point: run.py
+name: contact_note_add
+parameters:
+  api_action:
+    default: contact_note_add
+    description: contact_note_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  contact:
+    description: 'Optional contact data array to include with the date (used for the
+      webhook). Example: contact[email] = test@test.com'
+    required: false
+    type: string
+  id:
+    description: Contact ID to associate the note with.
+    required: true
+    type: string
+  listid:
+    description: List ID to associate the note with. Use 0 for all lists.
+    required: true
+    type: string
+  note:
+    description: Actual note content. HTML will be stripped.
+    required: true
+    type: string
+runner_type: run-python

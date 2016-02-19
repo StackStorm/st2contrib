@@ -1,0 +1,233 @@
+description: Edit an existing User Group.
+enabled: true
+entry_point: run.py
+name: group_edit
+parameters:
+  abuseratio:
+    description: 'Abuse ratio threshold (default: 4%). Example: 4'
+    required: false
+    type: string
+  api_action:
+    default: group_edit
+    description: group_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  descript:
+    description: Brief description of the group.
+    required: false
+    type: string
+  group_limit_attachment_checkbox:
+    description: 'Attachments limit. Example: ''on'''
+    required: false
+    type: string
+  group_limit_campaign_checkbox:
+    description: 'Campaign sending limit. Example: ''on'''
+    required: false
+    type: string
+  group_limit_list_checkbox:
+    description: 'List maximum limit. Example: ''on'''
+    required: false
+    type: string
+  group_limit_mail_checkbox:
+    description: 'Email sending limit (campaigns * contacts). Example: ''on'''
+    required: false
+    type: string
+  group_limit_subscriber_checkbox:
+    description: 'Contact limit. Example: ''on'''
+    required: false
+    type: string
+  group_limit_user_checkbox:
+    description: 'User limit. Example: ''on'''
+    required: false
+    type: string
+  id:
+    description: 'ID of the User Group to edit. Example: 4'
+    required: true
+    type: string
+  limit_attachment:
+    description: 'Attachments limit quantity. Example: ''23'''
+    required: false
+    type: string
+  limit_campaign:
+    description: 'Campaign sending limit quantity. Example: ''34'''
+    required: false
+    type: string
+  limit_campaign_type:
+    description: 'Campaign sending limit by type. Examples: ''day'', ''week'', ''month'',
+      ''month1st'', ''monthcdate'', ''year'', ''ever'''
+    required: false
+    type: string
+  limit_list:
+    description: 'List maximum limit quantity. Example: ''45'''
+    required: false
+    type: string
+  limit_mail:
+    description: 'Email sending limit quantity. Example: ''67'''
+    required: false
+    type: string
+  limit_mail_type:
+    description: 'Email sending limit by type. Examples: ''day'', ''week'', ''month'',
+      ''month1st'', ''monthcdate'', ''year'', ''ever'''
+    required: false
+    type: string
+  limit_subscriber:
+    description: 'Contact limit quantity. Example: ''56'''
+    required: false
+    type: string
+  limit_user:
+    description: 'User limit quantity. Example: ''12'''
+    required: false
+    type: string
+  lists:
+    description: 2, etc.
+    required: false
+    type: object
+  pg_form_edit:
+    description: 'Permission for editing subscription forms. Example: 1 = yes, 0 =
+      no'
+    required: false
+    type: string
+  pg_list_add:
+    description: 'Permission for adding lists. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_list_bounce:
+    description: 'Permission for accessing list bounce settings. Example: 1 = yes,
+      0 = no'
+    required: false
+    type: string
+  pg_list_delete:
+    description: 'Permission for deleting lists. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_list_edit:
+    description: 'Permission for editing lists. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_list_emailaccount:
+    description: 'Permission for managing Unsubscribe By Email. Example: 1 = yes,
+      0 = no'
+    required: false
+    type: string
+  pg_list_headers:
+    description: 'Permission for managing custom email headers. Example: 1 = yes,
+      0 = no'
+    required: false
+    type: string
+  pg_message_add:
+    description: 'Permission for adding messages. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_message_delete:
+    description: 'Permission for deleting messages. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_message_edit:
+    description: 'Permission for editing messages. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_message_send:
+    description: 'Permission for sending messages. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_reports_campaign:
+    description: 'Permission for accessing Campaign Reports. Example: 1 = yes, 0 =
+      no'
+    required: false
+    type: string
+  pg_reports_list:
+    description: 'Permission for accessing List Reports. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_reports_trend:
+    description: 'Permission for accessing Report trends. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_reports_user:
+    description: 'Permission for accessing User Reports. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_add:
+    description: 'Permission for adding contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_approve:
+    description: 'Permission for approving contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_delete:
+    description: 'Permission for deleting contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_edit:
+    description: 'Permission for editing contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_export:
+    description: 'Permission for exporting contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_fields:
+    description: 'Permission for managing contact custom fields. Example: 1 = yes,
+      0 = no'
+    required: false
+    type: string
+  pg_subscriber_filters:
+    description: 'Permission for managing contact list segments. Example: 1 = yes,
+      0 = no'
+    required: false
+    type: string
+  pg_subscriber_import:
+    description: 'Permission for importing contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_subscriber_sync:
+    description: 'Permission for syncing contacts. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_template_add:
+    description: 'Permission for adding templates. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_template_delete:
+    description: 'Permission for deleting templates. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_template_edit:
+    description: 'Permission for editing templates. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_user_add:
+    description: 'Permission for adding users. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_user_delete:
+    description: 'Permission for deleting users. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  pg_user_edit:
+    description: 'Permission for editing users. Example: 1 = yes, 0 = no'
+    required: false
+    type: string
+  sendmethods:
+    description: 'Assign sending methods. Example: 1,2,3'
+    required: false
+    type: object
+  title:
+    description: 'Name of the group. Example: ''Group Title'''
+    required: false
+    type: string
+  unsubscribelink:
+    description: 'Force unsubscribe links. Example: ''on'''
+    required: false
+    type: string
+runner_type: run-python

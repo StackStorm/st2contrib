@@ -1,0 +1,46 @@
+description: View one or many campaigns.
+enabled: true
+entry_point: run.py
+name: campaign_list
+parameters:
+  api_action:
+    default: campaign_list
+    description: campaign_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  filters:
+    description: Campaigns sent by users of a certain group.
+    required: false
+    type: object
+  full:
+    description: Whether or not to return ALL data, or an abbreviated portion (set
+      to 1 for ALL data, and 0 for abbreviated).
+    required: false
+    type: string
+  ids:
+    description: A comma-separated list of campaign ID's you wish to view.
+    required: true
+    type: string
+  page:
+    description: 'Pagination: results are limited to 10 per page, so specify what
+      page to view.'
+    required: false
+    type: string
+  sort:
+    description: 'Field to sort on (possible values: id, cdate).'
+    required: false
+    type: string
+  sort_direction:
+    description: 'Direction of sort (possible values: ASC or DESC).'
+    required: false
+    type: string
+runner_type: run-python

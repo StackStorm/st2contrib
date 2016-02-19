@@ -1,0 +1,29 @@
+description: Delete multiple User Groups.
+enabled: true
+entry_point: run.py
+name: group_delete_list
+parameters:
+  alt:
+    description: ID of the User Group that existing relations should be moved to.
+    required: true
+    type: string
+  api_action:
+    default: group_delete_list
+    description: group_delete_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's (comma-separated) of the User Groups you wish to delete. Must
+      all be greater than 3.
+    required: true
+    type: string
+runner_type: run-python

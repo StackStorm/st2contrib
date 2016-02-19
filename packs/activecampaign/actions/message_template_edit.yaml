@@ -1,0 +1,47 @@
+description: Edit an existing basic message template.
+enabled: true
+entry_point: run.py
+name: message_template_edit
+parameters:
+  api_action:
+    default: message_template_edit
+    description: message_template_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  html:
+    description: 'Actual template HTML content. Example: ''<html><head><title>Template
+      added via API</title></head><body>This template was added via the API</body></html>'''
+    required: false
+    type: string
+  name:
+    description: 'Internal template name. Example: ''My Template'''
+    required: false
+    type: string
+  p:
+    default: {}
+    description: '1'
+    required: false
+    type: object
+  tags:
+    description: 'Optional template tag array. Example: tags[] = ''Holiday'''
+    required: false
+    type: object
+  template_scope:
+    description: 'List visibility. Examples: ''all'', ''specific'''
+    required: false
+    type: string
+  text:
+    description: 'Actual template text content. Example: ''This template was added
+      via the API'''
+    required: false
+    type: string
+runner_type: run-python

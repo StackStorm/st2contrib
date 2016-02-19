@@ -1,0 +1,38 @@
+description: View multiple mailing lists.
+enabled: true
+entry_point: run.py
+name: list_list
+parameters:
+  api_action:
+    default: list_list
+    description: list_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  filters:
+    description: 'Filter: Perform a pattern match (LIKE) for List Name.'
+    required: false
+    type: object
+  full:
+    description: Whether or not to return ALL data, or an abbreviated portion (set
+      to 1 for ALL data, and 0 for abbreviated).
+    required: false
+    type: string
+  global_fields:
+    description: Whether or not to include global custom fields.
+    required: false
+    type: string
+  ids:
+    description: A comma-separated list of subscription form ID's of lists you wish
+      to view. Pass "all" to view all lists.
+    required: true
+    type: string
+runner_type: run-python

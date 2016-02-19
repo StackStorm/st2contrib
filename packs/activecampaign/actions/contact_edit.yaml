@@ -1,0 +1,98 @@
+description: Edit existing contact.
+enabled: true
+entry_point: run.py
+name: contact_edit
+parameters:
+  api_action:
+    default: contact_edit
+    description: contact_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  email:
+    description: 'Email of the new contact. Example: ''test@example.com'''
+    required: true
+    type: string
+  field:
+    description: '''value'' (You can also use the personalization tag to specify which
+      field you want updated)'
+    required: false
+    type: object
+  first_name:
+    description: 'First name of the contact. Example: ''FirstName'''
+    required: false
+    type: string
+  form:
+    description: 'Optional subscription Form ID, to inherit those redirection settings.
+      Example: 1001. This will allow you to mimic adding the contact through a subscription
+      form, where you can take advantage of the redirection settings.'
+    required: false
+    type: string
+  id:
+    description: ID of the contact you want to edit.
+    required: true
+    type: string
+  instantresponders:
+    description: 'Use only if status = 1. Whether or not to set "send instant responders."
+      Examples: 1 = yes, 0 = no.'
+    required: false
+    type: object
+  last_name:
+    description: 'Last name of the contact. Example: ''LastName'''
+    required: false
+    type: string
+  lastmessage:
+    description: 'Whether or not to set "send the last broadcast campaign." Examples:
+      1 = yes, 0 = no.'
+    required: false
+    type: object
+  noresponders:
+    description: 'Whether or not to set "do not send any future responders." Examples:
+      1 = yes, 0 = no.'
+    required: false
+    type: object
+  orgname:
+    description: Organization name (if doesn't exist, this will create a new organization)
+      - MUST HAVE CRM FEATURE FOR THIS.
+    required: false
+    type: string
+  overwrite:
+    description: 1 (overwrite all contact data), or 0 (only update included post parameters)
+    required: false
+    type: string
+  p:
+    default: {}
+    description: Assign to lists. List ID goes in brackets, as well as the value.
+    required: false
+    type: object
+  phone:
+    description: 'Phone number of the contact. Example: ''+1 312 201 0300'''
+    required: false
+    type: string
+  sendoptout:
+    description: 'Use only if status = 2. Whether or not to set "send instant responders."
+      Examples: 1 = yes, 0 = no.'
+    required: false
+    type: object
+  status:
+    description: 'The status for each list the contact is added to. Examples: 1 =
+      active, 2 = unsubscribed'
+    required: false
+    type: object
+  tags:
+    description: 'Tags for this contact (comma-separated). Example: "tag1, tag2, etc"'
+    required: false
+    type: string
+  unsubreason:
+    description: Reason for unsubscribing. Include list ID in brackets.
+    required: false
+    type: object
+runner_type: run-python

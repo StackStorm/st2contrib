@@ -1,0 +1,28 @@
+description: Obtain link click totals for a specific campaign.
+enabled: true
+entry_point: run.py
+name: campaign_report_link_totals
+parameters:
+  api_action:
+    default: campaign_report_link_totals
+    description: campaign_report_link_totals
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  campaignid:
+    description: ID of the campaign you wish to see forwards for
+    required: true
+    type: string
+  messageid:
+    description: Message ID
+    required: true
+    type: string
+runner_type: run-python

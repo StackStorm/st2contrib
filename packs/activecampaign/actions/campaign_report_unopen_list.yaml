@@ -1,0 +1,28 @@
+description: View unopens for a specific campaign.
+enabled: true
+entry_point: run.py
+name: campaign_report_unopen_list
+parameters:
+  api_action:
+    default: campaign_report_unopen_list
+    description: campaign_report_unopen_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  campaignid:
+    description: ID of the campaign you wish to see unopens for
+    required: true
+    type: string
+  messageid:
+    description: Message ID associated with the above campaign
+    required: true
+    type: string
+runner_type: run-python

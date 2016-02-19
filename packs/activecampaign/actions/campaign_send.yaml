@@ -1,0 +1,49 @@
+description: Send a campaign.
+enabled: true
+entry_point: run.py
+name: campaign_send
+parameters:
+  action:
+    description: 'Examples: ''send'' = send a campaign to this contact and to append
+      him to the recipients list, ''copy'' = send a copy of a campaign to contact
+      (campaign is not updated), ''test'' = send a test email to contact (campaign
+      is not updated), ''source'' = simulate a campaign test to contact (campaign
+      is not updated), return message source, ''messagesize'' = simulate a campaign
+      test to contact (campaign is not updated), return message size, ''spamcheck''
+      = simulate a campaign test to contact (campaign is not updated), return spam
+      rate, ''preview'' = same as preview'
+    required: true
+    type: string
+  api_action:
+    default: campaign_send
+    description: campaign_send
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  campaignid:
+    description: ID of the campaign you wish to send
+    required: true
+    type: string
+  email:
+    description: Email address (of the contact) that will be receiving the email
+    required: true
+    type: string
+  messageid:
+    description: ID of the campaign's message you wish to send (used in Split campaigns
+      if you have more than one message assigned to a campaign).
+    required: true
+    type: string
+  type:
+    description: Type of the message you wish to send (can be used to send TEXT-only
+      email even if campaign is set to use MIME).
+    required: true
+    type: string
+runner_type: run-python

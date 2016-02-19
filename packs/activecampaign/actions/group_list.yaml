@@ -1,0 +1,24 @@
+description: View many User Groups.
+enabled: true
+entry_point: run.py
+name: group_list
+parameters:
+  api_action:
+    default: group_list
+    description: group_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: A comma-separated list of User Group ID's you wish to view.
+    required: true
+    type: string
+runner_type: run-python

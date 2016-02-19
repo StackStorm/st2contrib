@@ -1,0 +1,44 @@
+description: View a list of existing contacts using pagination, much like it appears
+  in the standard user interface.
+enabled: true
+entry_point: run.py
+name: contact_paginator
+parameters:
+  api_action:
+    default: contact_paginator
+    description: contact_paginator
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  filter:
+    description: 'The section filter that should be applied. This corresponds to a
+      unique ID in the sectionfilter database table. Example: 11'
+    required: true
+    type: string
+  limit:
+    description: 'The amount of contacts you wish to retrieve. Example: 10, 20, 50,
+      100'
+    required: true
+    type: string
+  offset:
+    description: 'The amount of records you want to skip over. This works in tandem
+      with "limit." Example: 20, 50'
+    required: true
+    type: string
+  public:
+    description: '0: no, 1: yes'
+    required: true
+    type: string
+  sort:
+    description: 'Leave empty for default sorting. Example: 01, 01D, 02, 02D, etc.'
+    required: true
+    type: string
+runner_type: run-python

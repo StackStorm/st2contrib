@@ -1,0 +1,34 @@
+description: Remove contact from automation
+enabled: true
+entry_point: run.py
+name: automation_contact_remove
+parameters:
+  api_action:
+    default: automation_contact_remove
+    description: automation_contact_remove
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  automation:
+    description: The automation ID (only one allowed) to remove the contact from
+    required: true
+    type: string
+  contact_email:
+    description: The email address of the contact you want to have removed from the
+      automation (either this or contact_id is required)
+    required: true
+    type: string
+  contact_id:
+    description: The ID of the contact you want to have removed from the automation
+      (either this or contact_email is required)
+    required: true
+    type: string
+runner_type: run-python

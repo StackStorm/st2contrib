@@ -1,0 +1,197 @@
+description: Create new campaign.
+enabled: true
+entry_point: run.py
+name: campaign_create
+parameters:
+  activerss_interval:
+    description: 'If ActiveRSS. Same options as for recurring mailings. Example: ''day1'''
+    required: false
+    type: string
+  analytics_campaign_name:
+    description: 'Set the name of this campaign to use in Google Analytics. Example:
+      ''Friday Newsletter: Analytics'''
+    required: false
+    type: string
+  api_action:
+    default: campaign_create
+    description: campaign_create
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  facebook:
+    description: 'Whether or not to use lists'' Facebook settings. Example: 1 = yes,
+      0 = no.'
+    required: false
+    type: string
+  htmlunsub:
+    description: 'Whether or not to append unsubscribe link to the bottom of HTML
+      body. Example: 1 = yes, 0 = no.'
+    required: false
+    type: string
+  htmlunsubdata:
+    description: '(DOWNLOADED USERS ONLY) Provide custom unsubscribe link addons.
+      Example: ''<div><a href="%UNSUBSCRIBELINK%">Click here</a> to unsubscribe from
+      future mailings.</div>''.'
+    required: false
+    type: string
+  linkmessage:
+    description: 'If ''tracklinks'' variable is not set to ''all'', provide a list
+      of link messages to track here. Found in message with this ID. Example: 8.'
+    required: false
+    type: object
+  linkname:
+    description: 'If ''tracklinks'' variable is not set to ''all'', provide a list
+      of link names to track here. Example: ''Google Inc.''.'
+    required: false
+    type: object
+  linkurl:
+    description: 'If ''tracklinks'' variable is not set to ''all'', provide a list
+      of link URL''s to track here. Example: ''http://www.google.com/''.'
+    required: false
+    type: object
+  m:
+    description: 'Message ID to use. Example: m[1] = 100. In this example, 1 is the
+      message ID, and 100 is the percentage of contacts who should get this message
+      (used only in Split Test campaigns with Winner scenario). In almost all cases
+      use 100 for the value.'
+    required: true
+    type: object
+  name:
+    description: 'The internal campaign name. Example: ''Friday Newsletter'''
+    required: true
+    type: string
+  p:
+    default: {}
+    description: 'Array of List ID(s) to use. Example: p[1] = 1, p[2] = 2. List ID
+      should be the array key AND value.'
+    required: false
+    type: object
+  public:
+    description: 'The visibility of the campaign - if the campaign should be visible
+      on the public side. Example: 1 = visible, 0 = not visible.'
+    required: true
+    type: string
+  recurring:
+    description: 'If recurring mailing. Repeat every day. Example: ''day1''. Possible
+      values are day1, day2, week1, week2, month1, month2, quarter1, quarter2, year1,
+      year2. Values ending with 1 mean "every", and ending with 2 mean "every other."'
+    required: false
+    type: string
+  reminder_field:
+    description: 'If auto-reminder. What contact field to use. Examples: cdate, sdate,
+      udate, or an ID of a custom field.'
+    required: false
+    type: string
+  reminder_format:
+    description: 'If auto-reminder. Format in which the date is represented in abovementioned
+      contact field. Example: ''yyyy-mm-dd'''
+    required: false
+    type: string
+  reminder_offset:
+    description: 'If auto-reminder. How many days/weeks/months/years from that date
+      should it trigger. Example: 5.'
+    required: false
+    type: string
+  reminder_offset_sign:
+    description: 'If auto-reminder. Examples: + and -. For example: +5days from today
+      needs to be the value of contact''s field.'
+    required: false
+    type: string
+  reminder_offset_type:
+    description: 'If auto-reminder. Examples: day, week, month, year.'
+    required: false
+    type: string
+  reminder_type:
+    description: 'If auto-reminder. Match just a month and the day (yearly), or match
+      year as well. Examples: ''month_day'', ''year_month_day'''
+    required: false
+    type: string
+  responder_offset:
+    description: 'If auto-responder. How long after (un)subscription to send it. Example:
+      12.'
+    required: false
+    type: string
+  responder_type:
+    description: 'If auto-responder. After what to send it. Examples: ''subscribe''
+      and ''unsubscribe'''
+    required: false
+    type: string
+  sdate:
+    description: 'The date when the campaign should be sent out (not used for campaign
+      types ''responder'', ''reminder'', ''special''). Example: ''2010-11-05 08:40:00'''
+    required: true
+    type: string
+  segmentid:
+    description: List segment ID (0 for no segment)
+    required: false
+    type: string
+  split_offset:
+    description: 'If split mailing. How much to wait. Example: 12.'
+    required: false
+    type: string
+  split_offset_type:
+    description: 'If split mailing. How long to wait. Examples: hour, day, week, month.'
+    required: false
+    type: string
+  split_type:
+    description: 'If split mailing. Example: ''even'' (send each message to even number
+      of contacts). Possible values are even, read and click. If read or click is
+      used, ''split_offset'' and ''split_offset_type'' need to be present. In that
+      case it will use a "winner" scenario.'
+    required: false
+    type: string
+  status:
+    description: 'The status of the campaign. Example: 0 = draft, 1 = scheduled'
+    required: true
+    type: string
+  textunsub:
+    description: 'Whether or not to append unsubscribe link to the bottom of TEXT
+      body. Example: 1 = yes, 0 = no.'
+    required: false
+    type: string
+  textunsubdata:
+    description: '(DOWNLOADED USERS ONLY) Provide custom unsubscribe link addons.
+      Example: ''Click here to unsubscribe from future mailings: %UNSUBSCRIBELINK%''.'
+    required: false
+    type: string
+  tracklinks:
+    description: 'Whether or not to track links, and what type of links to track.
+      Examples: ''all'', ''mime'', ''html'', ''text'', ''none''. Setting this value
+      to ''all'' will let the system know to fetch, parse, and track all emails it
+      finds in both TEXT and HTML body. If mime/html/text is provided, then variable
+      ''links'' also must exist, with a list of URLs to track. Choosing ''html'' or
+      ''text'' will track only the links in that message body.'
+    required: true
+    type: string
+  tracklinksanalytics:
+    description: 'Whether or not to use the lists'' Google Analytics settings. Example:
+      1 = yes, 0 = no.'
+    required: false
+    type: string
+  trackreads:
+    description: 'Whether or not to track reads. Examples: 0 = no, 1 = yes.'
+    required: false
+    type: string
+  trackreplies:
+    description: 'Whether or not to track replies. Example: 1 = yes, 0 = no.'
+    required: false
+    type: string
+  tweet:
+    description: 'Whether or not to use lists'' Twitter settings. Example: 1 = yes,
+      0 = no.'
+    required: false
+    type: string
+  type:
+    description: 'Campaign type. Example: ''single'', ''recurring'', ''split'', ''responder'',
+      ''reminder'', ''special'', ''activerss'', ''text'''
+    required: true
+    type: string
+runner_type: run-python

@@ -1,0 +1,30 @@
+description: View multiple (a list of) email messages.
+enabled: true
+entry_point: run.py
+name: message_list
+parameters:
+  api_action:
+    default: message_list
+    description: message_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's (comma-separated) of each email message you want to view. Use
+      'all' to return all messages.
+    required: true
+    type: string
+  page:
+    description: 'Pagination: results are limited to 20 per page, so specify what
+      page to view.'
+    required: false
+    type: string
+runner_type: run-python

@@ -1,0 +1,38 @@
+description: Add new deal task.
+enabled: true
+entry_point: run.py
+name: deal_task_add
+parameters:
+  api_action:
+    default: deal_task_add
+    description: deal_task_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  dealid:
+    description: 'ID of the deal for the new deal task. Example: ''31'' (Get available
+      deal IDs with "deal_list" call)'
+    required: true
+    type: string
+  duedate:
+    description: 'Due date of the new deal task. Example: ''2014-03-17 09:30:00'''
+    required: true
+    type: string
+  note:
+    description: 'Text of the new deal task. Example: ''Discuss merger specifics'''
+    required: false
+    type: string
+  owner:
+    description: 'ID of the owner of the new deal task. Example: ''4'' (Get available
+      owner IDs with "user_list" call)'
+    required: false
+    type: string
+runner_type: run-python

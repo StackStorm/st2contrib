@@ -1,0 +1,35 @@
+description: Add contact to automation
+enabled: true
+entry_point: run.py
+name: automation_contact_add
+parameters:
+  api_action:
+    default: automation_contact_add
+    description: automation_contact_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  automation:
+    description: The automation ID's (can be multiple as comma-separated) to add the
+      contact to
+    required: true
+    type: string
+  contact_email:
+    description: The email address of the contact you want to have added to the automation
+      (either this or contact_id is required)
+    required: true
+    type: string
+  contact_id:
+    description: The ID of the contact you want to have added to the automation (either
+      this or contact_email is required)
+    required: true
+    type: string
+runner_type: run-python

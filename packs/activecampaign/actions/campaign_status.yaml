@@ -1,0 +1,34 @@
+description: Set a campaign's status.
+enabled: true
+entry_point: run.py
+name: campaign_status
+parameters:
+  api_action:
+    default: campaign_status
+    description: campaign_status
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: ID of the campaign you wish to change status for
+    required: true
+    type: string
+  sdate:
+    description: New scheduled date (use format YYYY-MM-DD HH:MM:SS). This only applies
+      to scheduled campaigns (status = 1), and "single" (regular/one-time)
+    required: false
+    type: string
+  status:
+    description: 'New status. Examples: 0 = draft, 1 = scheduled, 2 = sending, 3 =
+      paused, 4 = stopped, 5 = completed'
+    required: true
+    type: string
+runner_type: run-python
