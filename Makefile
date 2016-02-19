@@ -11,7 +11,7 @@ ST2_REPO_BRANCH ?= action_testing_fixes
 FORCE_CHECK_ALL_FILES =? false
 FORCE_CHECK_PACK =? false
 
-export ST2_REPO_PATH ROOT_DIR FORCE_CHECK_ALL_FILES
+export ST2_REPO_PATH ROOT_DIR FORCE_CHECK_ALL_FILES FORCE_CHECK_PACK
 
 # All components are prefixed by st2
 COMPONENTS := $(wildcard /tmp/st2/st2*)

@@ -9,7 +9,7 @@ if [ "${FORCE_CHECK_ALL_FILES}" = "true" ]; then
     exit 0
 fi
 
-if [ "${FORCE_CHECK_PACK}" != "false" ]; then
+if [ ! -z "${FORCE_CHECK_PACK}" ] && [ "${FORCE_CHECK_PACK}" != "false" ]; then
     echo $(find ${ROOT_DIRECTORY}/packs/${FORCE_CHECK_PACK} -name "*.json")
     exit 0
 fi
