@@ -1,0 +1,15 @@
+name: query_service
+runner_type: run-python
+description: "Query details about a service in consul"
+enabled: true
+entry_point: "query_service.py"
+parameters:
+    service:
+        type: string
+        description: "Service to query in Consul"
+        required: true
+        position: 0
+    tag:
+        type: string
+        description: "Optional tags to query"
+        position: 1

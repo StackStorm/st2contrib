@@ -1,0 +1,11 @@
+name: get
+runner_type: run-python
+description: "Get value from Consul server"
+enabled: true
+entry_point: "get.py"
+parameters:
+    key:
+        type: string
+        description: "Key to retrieve from Consul"
+        required: true
+        position: 0

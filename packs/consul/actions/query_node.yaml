@@ -1,0 +1,11 @@
+name: query_node
+runner_type: run-python
+description: "Query details about a node in consul"
+enabled: true
+entry_point: "query_node.py"
+parameters:
+    node:
+        type: string
+        description: "Node to query in Consul"
+        required: true
+        position: 0
