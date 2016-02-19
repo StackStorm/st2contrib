@@ -50,6 +50,13 @@ specifying ``FORCE_CHECK_ALL_FILES=true`` environment variable as show below.
 FORCE_CHECK_ALL_FILES=true make all
 ```
 
+If you want to force run checks on a specific pack you can do that by specifying
+``FORCE_CHECK_PACK=<pack name>` environment variable as shown below.
+
+```bash
+FORCE_CHECK_PACK=csv make all
+```
+
 ## Available Packs
 
 Icon | Name | Description | Keywords | Author | Latest Version | Available Resources
