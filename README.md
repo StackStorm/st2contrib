@@ -55,6 +55,8 @@ If you want to force run checks on a specific pack you can do that by specifying
 
 ```bash
 FORCE_CHECK_PACK=csv make all
+# or
+FORCE_CHECK_PACK=csv make packs-tests
 ```
 
 ## Available Packs
