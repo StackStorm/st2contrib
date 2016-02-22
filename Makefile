@@ -7,7 +7,7 @@ CHANGED_YAML := $(shell $(ROOT_DIR)/scripts/utils/git-changes yaml)
 CHANGED_JSON := $(shell $(ROOT_DIR)/scripts/utils/git-changes json)
 VIRTUALENV_DIR ?= virtualenv
 ST2_REPO_PATH ?= /tmp/st2
-ST2_REPO_BRANCH ?= action_testing_fixes
+ST2_REPO_BRANCH ?= master
 FORCE_CHECK_ALL_FILES =? false
 FORCE_CHECK_PACK =? false
 
