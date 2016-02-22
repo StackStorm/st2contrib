@@ -3,6 +3,7 @@ from st2actions.runners.pythonrunner import Action
 # http://python-consul.readthedocs.org/en/latest/#
 import consul
 
+
 class ConsulBaseAction(Action):
 
     def __init__(self, config):
