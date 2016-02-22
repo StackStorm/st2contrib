@@ -1,0 +1,20 @@
+---
+    name: 'add_package'
+    runner_type: 'run-remote-script'
+    description: 'Add package to the Freight cache'
+    enabled: true
+    entry_point: 'add_package.py'
+    parameters:
+        sudo:
+            immutable: true
+            default: true
+        file:
+            type: 'string'
+            description: 'Full (local) path to a file to be added to cache'
+            position: 1
+            required: true
+        distribution:
+            type: 'string'
+            description: 'Comma seperated list of repositories to advertise package to'
+            position: 2
+            required: true
