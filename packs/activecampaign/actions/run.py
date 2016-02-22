@@ -4,9 +4,9 @@ import urlparse
 
 from st2actions.runners.pythonrunner import Action
 
+
 class ActiveCampaignAction(Action):
 
-    
     def run(self, **kwargs):
         if kwargs['api_key'] is None:
             kwargs['api_key'] = self.config['api_key']
