@@ -1,0 +1,20 @@
+---
+name: submit_gauge
+runner_type: run-python
+description: List all metrics setup on Librato
+enabled: true
+entry_point: submit_gauge.py
+parameters:
+  name:
+    type: string
+    description: Name of metric to store gauge value
+    required: true
+  value:
+    type: string
+    description: Data value to submit as gauge to said metric
+    required: true
+  source:
+    type: string
+    description: Describes the originating source of a measurement
+    required: true
+
