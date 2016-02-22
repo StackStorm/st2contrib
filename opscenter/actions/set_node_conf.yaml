@@ -1,0 +1,19 @@
+---
+name: set_node_conf
+runner_type: python-script
+description: Set node configuration.
+enabled: true
+entry_point: set_node_conf.py
+parameters:
+  cluster_id:
+    type: string
+    description: "Name of the cass cluster E.g.: Test-Cluster."
+    required: false
+  node_ip:
+    type: string
+    description: "IP of the node."
+    required: true
+  node_conf:
+    type: string
+    description: "Node configuration YAML valid string."
+    required: true
