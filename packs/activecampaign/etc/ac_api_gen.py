@@ -3,9 +3,7 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 
-import sys
 import time
-import pprint
 
 method_list = []
 method_dict = {}
@@ -17,7 +15,7 @@ opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 api_doc_main = opener.open(base_overview_url)
 
 soup = BeautifulSoup(api_doc_main, 'html5lib')
-api_containers = soup.find_all('div',{"class": "ac_api-container"})
+api_containers = soup.find_all('div', {"class": "ac_api-container"})
 
 for api_container in api_containers:
     methods = api_container.find_all('a')
@@ -26,7 +24,7 @@ for api_container in api_containers:
 
 for method in method_list:
     if method != 'View another method...':
-        method_dict[method] = {'params':{}}
+        method_dict[method] = {'params': {}}
         method_url = '%s?call=%s' % (base_example_url, method)
         method_opener = urllib2.build_opener()
         method_opener.addheaders = [('User-agent', 'Mozilla/5.0')]
@@ -35,7 +33,7 @@ for method in method_list:
         method_description = method_soup.find_all('h3')[0].text
         method_description = re.sub('\n|\r', ' ', method_description)
         method_dict[method]['description'] = method_description
-        method_args_table = method_soup.find_all('table', {"class":"innertable"})
+        method_args_table = method_soup.find_all('table', {"class": "innertable"})
         if len(method_args_table) < 2 or method_args_table is None:
             print "skipping innertables..."
             continue
@@ -64,7 +62,7 @@ for method in method_list:
                 required = False
             if param_name == 'api_key':
                 required = False
-            method_dict[method]['params'][param_name] = {'type':'string'}
+            method_dict[method]['params'][param_name] = {'type': 'string'}
             method_dict[method]['params'][param_name]['description'] = param_description
             method_dict[method]['params'][param_name]['required'] = required
             method_dict[method]['params'][param_name]['default'] = default
@@ -74,22 +72,25 @@ for method in method_list:
 for method in method_dict:
 
     file_name = 'actions/%s.yaml' % method
-    output_dict = { 'name': method,
-                    'runner_type': 'run-python',
-                    'enabled': True,
-                    'entry_point': 'run.py',
-                    'description': method_dict[method]['description'],
-                    'parameters': {}
-                  }
+    output_dict = {'name': method,
+                   'runner_type': 'run-python',
+                   'enabled': True,
+                   'entry_point': 'run.py',
+                   'description': method_dict[method]['description'],
+                   'parameters': {}
+                   }
 
     for param in method_dict[method]['params']:
         if param == 'token':
             method_dict[method]['params'][param]['required'] = False
         output_dict['parameters'][param] = {'type': method_dict[method]['params'][param]['type']}
         if method_dict[method]['params'][param]['default'] is not None:
-            output_dict['parameters'][param]['default'] = method_dict[method]['params'][param]['default']
-        output_dict['parameters'][param]['required'] = method_dict[method]['params'][param]['required']
-        output_dict['parameters'][param]['description'] = method_dict[method]['params'][param]['description']
+            out_default = method_dict[method]['params'][param]['default']
+            output_dict['parameters'][param]['default'] = out_default
+        out_required = method_dict[method]['params'][param]['required']
+        output_dict['parameters'][param]['required'] = out_required
+        out_description = method_dict[method]['params'][param]['description']
+        output_dict['parameters'][param]['description'] = out_description
 
     print yaml.safe_dump(output_dict, default_flow_style=False)
     fh = open(file_name, 'w')
