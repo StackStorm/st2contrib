@@ -17,8 +17,10 @@ MOCK_DATA_1 = """
 
 
 class ParseXMLActionTestCase(BaseActionTestCase):
+    action_cls = ParseXMLAction
+
     def test_run(self):
-        result = ParseXMLAction().run(data=MOCK_DATA_1)
+        result = self.get_action_instance().run(data=MOCK_DATA_1)
         expected = {
             'note': {
                 'to': 'Tove',
