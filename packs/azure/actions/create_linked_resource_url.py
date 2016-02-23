@@ -1,11 +1,11 @@
-from azure.mgmt.resource import (
+from azure.mgmt.resource.resources import (
     ResourceManagementClient,
     ResourceManagementClientConfiguration)
-from azure.mgmt.resource import Deployment
-from azure.mgmt.resource import DeploymentProperties
-from azure.mgmt.resource import DeploymentMode
-from azure.mgmt.resource import ParametersLink
-from azure.mgmt.resource import TemplateLink
+from azure.mgmt.resource.resources.models import Deployment
+from azure.mgmt.resource.resources.models import DeploymentProperties
+from azure.mgmt.resource.resources.models import DeploymentMode
+from azure.mgmt.resource.resources.models import ParametersLink
+from azure.mgmt.resource.resources.models import TemplateLink
 
 from lib.base import AzureBaseResourceManagerAction
 

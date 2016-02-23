@@ -1,7 +1,7 @@
-from azure.mgmt.resource import (
+from azure.mgmt.resource.resources import (
     ResourceManagementClient,
     ResourceManagementClientConfiguration)
-from azure.mgmt.resource import GenericResource
+from azure.mgmt.resource.resources.models import GenericResource
 
 from lib.base import AzureBaseResourceManagerAction
 
