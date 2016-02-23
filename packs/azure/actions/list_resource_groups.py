@@ -1,4 +1,4 @@
-from azure.mgmt.resource.resources import (
+from azure.mgmt.resource import (
     ResourceManagementClient,
     ResourceManagementClientConfiguration)
 from lib.base import AzureBaseResourceManagerAction
