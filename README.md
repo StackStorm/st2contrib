@@ -808,12 +808,15 @@ vpc_unmonitor_instances |
 Name | Description
 ---- | -----------
 create_container | Create a new storage container.
+create_linked_resource_url | Create a new ARM Linked Resource from a URI.
+create_resource | Create a new ARM Generic Resource.
 create_vm | Create a new VM.
 delete_container | Delete a storage container.
 delete_object | Delete an object.
 destroy_vm | Destroy a VM.
 list_container_objects | List storage objects for the provided container.
 list_containers | List storage containers.
+list_resource_groups | List ARM resource group names
 list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
 upload_file | Upload a file to the provided container.
