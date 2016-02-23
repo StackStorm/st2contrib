@@ -10,14 +10,15 @@ __all__ = [
 
 
 class GetBuildNumberActionTestCase(BaseActionTestCase):
+    action_cls = GetBuildNumberAction
 
     def test_get_base_headers(self):
-        action = GetBuildNumberAction()
+        action = self.get_action_instance()
         self.assertTrue('Content-Type' in action._get_base_headers())
         self.assertTrue('Accept' in action._get_base_headers())
 
     def test_get_auth_headers(self):
-        action = GetBuildNumberAction()
+        action = self.get_action_instance()
         setattr(action, 'config', {})
         self.assertRaises(Exception, action._get_auth_headers)
         setattr(action, 'config', {'token': 'dummy'})
@@ -25,7 +26,7 @@ class GetBuildNumberActionTestCase(BaseActionTestCase):
 
     @responses.activate
     def test_get_build_num_project_not_found(self):
-        action = GetBuildNumberAction()
+        action = self.get_action_instance()
         setattr(action, 'config', {'token': 'dummy'})
         responses.add(
             responses.GET, 'https://circleci.com/api/v1/project/area51',
@@ -36,7 +37,7 @@ class GetBuildNumberActionTestCase(BaseActionTestCase):
 
     @responses.activate
     def test_get_build_num(self):
-        action = GetBuildNumberAction()
+        action = self.get_action_instance()
         setattr(action, 'config', {'token': 'dummy'})
         MOCK_RESPONSE = [
             {'build_num': 373, 'vcs_revision': 'dhjhvjVv635r6735'},
