@@ -5,6 +5,8 @@ from libcloud.compute.providers import get_driver as get_compute_driver
 from libcloud.storage.providers import Provider as StorageProvider
 from libcloud.storage.providers import get_driver as get_storage_driver
 
+from msrestazure.azure_active_directory import ServicePrincipalCredentials
+
 __all__ = [
     'AzureBaseComputeAction',
     'AzureBaseStorageAction',
@@ -45,9 +47,8 @@ class AzureBaseStorageAction(Action):
 
 class AzureBaseResourceManagerAction(Action):
     def __init__(self, config):
-        super(AzureBaseStorageAction, self).__init__(config=config)
+        super(AzureBaseResourceManagerAction, self).__init__(config=config)
 
-        from msrestazure.azure_active_directory import ServicePrincipalCredentials
         resource_config = self.config['resource_manager']
         self.credentials = ServicePrincipalCredentials(
             client_id=resource_config['client_id'],

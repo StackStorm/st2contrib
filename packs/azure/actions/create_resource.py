@@ -24,7 +24,7 @@ class CreateResourceAction(AzureBaseResourceManagerAction):
             resource_type=resource_type,
             resource_name=resource_name,
             api_version=api_version,
-            resource=GenericResource(
+            parameters=GenericResource(
                 location=location,
                 properties={},
             ),
