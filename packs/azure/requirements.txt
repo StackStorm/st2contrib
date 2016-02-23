@@ -1,1 +1,2 @@
+azure-mgmt
 -e git+https://github.com/apache/libcloud.git@trunk#egg=libcloud

@@ -1,0 +1,39 @@
+---
+name: create_resource
+runner_type: run-python
+description: Create a new ARM Generic Resource.
+enabled: true
+entry_point: create_resource.py
+parameters:
+  subscription_id:
+    type: string
+    description: Azure subscription ID.
+    required: true
+  group_name:
+    type: string
+    description: Resource group name to use
+    required: true
+  resource_name:
+    type: string
+    description: Name of the new resource
+    required: true
+  resource_provider_namespace:
+    type: string
+    description: Provider namespace e.g. Microsoft.Compute
+    required: true
+  resource_type:
+    type: string
+    description: "Resource type code, e.g. 'availabilitySets'"
+    required: true
+  parent_resource_path:
+    type: string
+    description: Parent path
+    required: false
+  api_version:
+    type: string
+    description: API version, e.g.'2015-05-01-preview'
+    required: true
+  location:
+    type: string
+    description: Datacenter location, e.g. 'West US'
+    required: true
