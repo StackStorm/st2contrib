@@ -1,0 +1,19 @@
+---
+name: replace_host
+runner_type: mistral-v2
+description: Cassandra replace host workflow.
+enabled: true
+entry_point: workflows/replace_host.yaml
+parameters:
+  dead_node:
+    type: string
+    required: true
+    description: "Dead node to replace."
+  replacement_node:
+    type: string
+    required: true
+    description: "Spare node to replace dead node with."
+  healthy_node:
+    type: string
+    required: true
+    description: "Healthy node to run nodetool commands against the cluster."
