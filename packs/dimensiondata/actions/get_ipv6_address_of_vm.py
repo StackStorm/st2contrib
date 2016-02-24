@@ -1,5 +1,4 @@
 from lib import actions
-from time import sleep
 
 __all__ = [
     'GetIPV6AddressAction',
