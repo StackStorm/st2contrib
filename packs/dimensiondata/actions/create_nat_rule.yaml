@@ -1,0 +1,24 @@
+---
+name: create_nat_rule
+runner_type: python-script
+description: Create a NAT rule in a network domain
+enabled: true
+entry_point: run_compute_network_domain.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_create_nat_rule
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: The ID of the network domain
+  internal_ip:
+    type: string
+    description: The internal IP
+  external_ip:
+    type: string
+    description: The external IP

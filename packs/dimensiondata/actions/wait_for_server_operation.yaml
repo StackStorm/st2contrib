@@ -1,0 +1,14 @@
+---
+name: wait_for_server_operation
+runner_type: python-script
+description: wait for the server operation to complete
+enabled: true
+entry_point: wait_for_server_operation.py
+parameters:  
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  id:
+    type: string
+    description: The ID of the VM

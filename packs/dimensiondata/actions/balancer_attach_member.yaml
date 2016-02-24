@@ -1,0 +1,23 @@
+---
+name: balancer_attach_member
+runner_type: python-script
+description: Attach a member to a load balancer
+enabled: true
+entry_point: balancer_attach_member.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  balancer_id:
+    type: string
+    description: ID of the load balancer
+    required: true
+  member_ip:
+    type: string
+    description: The IP of the member to attach
+    required: true
+  member_port:
+    type: string
+    description: The TCP/UDP port of the member
+    required: true

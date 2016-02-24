@@ -1,0 +1,78 @@
+---
+name: create_firewall_rule
+runner_type: python-script
+description: Create a firewall (ACL) rule in a network domain
+enabled: true
+entry_point: create_firewall_rule.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_create_firewall_rule
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: The ID of the network domain 
+  position:
+    type: integer
+    description: The rule position
+    required: true
+  protocol:
+    type: string
+    description: The protocol, TCP, IP, UDP
+    default: TCP
+    required: true
+  name:
+    type: string
+    description: The firewall rule name
+    required: true
+  fw_action:
+    type: string
+    description: Whether to ACCEPT_DECISIVELY or DROP
+    required: true
+    default: ACCEPT_DECISIVELY
+  ip_version:
+    type: string
+    description: IPV4 or IPV6
+    default: IPV4
+  any_source:
+    type: boolean
+    default: false
+    description: Rule is for any destination IP
+  source_ip:
+    type: string
+    description: The IP of the source
+  source_port_begin:
+    type: integer
+    required: false
+    description: The source port, leave blank for any
+  source_port_end:
+    type: integer
+    required: false
+    description: The source port end, leave blank for any or a specific port
+  source_ip_prefix_size:
+    type: string
+    required: false
+    description: The IP range to allow, leave blank for a specific IP
+  any_destination:
+    type: boolean
+    default: false
+    description: Rule is for any destination IP
+  destination_ip:
+    type: string
+    description: The IP of the destination
+  destination_port_begin:
+    type: integer
+    required: false
+    description: The destination port, leave blank for any
+  destination_port_end:
+    type: integer
+    required: false
+    description: The destination port end, leave blank for any or a specific port
+  destination_ip_prefix_size:
+    type: string
+    required: false
+    description: The IP range to allow, leave blank for a specific IP

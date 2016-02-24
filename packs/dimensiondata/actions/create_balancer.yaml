@@ -1,0 +1,32 @@
+---
+name: create_balancer
+runner_type: python-script
+description: Create a load balancer
+enabled: true
+entry_point: create_balancer.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: Network Domian ID
+    required: true
+  name:
+    type: string
+    description: The name of the balancer
+    required: true
+  port:
+    type: string
+    description: The TCP/UDP port of the balancer
+    required: true
+  protocol:
+    type: string
+    description: The protocol of the balancer
+    required: true
+  algorithm:
+    type: string
+    description: The algorithm of the balancer, choice of LEAST_CONNECTIONS, ROUND_ROBIN, SHORTEST_RESPONSE, PERSISTENT_IP
+    required: false
+    default: "ROUND_ROBIN"

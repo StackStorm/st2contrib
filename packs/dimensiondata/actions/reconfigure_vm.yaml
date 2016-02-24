@@ -1,0 +1,30 @@
+---
+name: reconfigure_vm
+runner_type: python-script
+description: Reconfigure the virtual hardware specification of a node
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_reconfigure_node
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)
+  memory_gb:
+    type: integer
+    description: Change the RAM in GB
+  cpu_count:
+    type: integer
+    description: Change the CPU count
+  cores_per_socket:
+    type: integer
+    description: Changes the number of cores per socket
+  cpu_performance:
+    type: string
+    description: The CPU speed type

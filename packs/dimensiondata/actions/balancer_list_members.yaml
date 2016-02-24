@@ -1,0 +1,15 @@
+---
+name: balancer_list_members
+runner_type: python-script
+description: List members of a load balancer
+enabled: true
+entry_point: balancer_list_members.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  balancer_id:
+    type: string
+    description: ID of the load balancer
+    required: true

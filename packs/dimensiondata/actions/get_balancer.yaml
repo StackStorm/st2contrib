@@ -1,0 +1,18 @@
+---
+name: get_balancer
+runner_type: python-script
+description: Get a specific load balancer by ID
+enabled: true
+entry_point: run_lb.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: get_balancer
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  balancer_id:
+    type: string
+    description: The Load Balancer ID

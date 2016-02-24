@@ -1,0 +1,15 @@
+---
+name: balancer_delete_node
+runner_type: python-script
+description: Delete a node
+enabled: true
+entry_point: balancer_delete_node.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node to delete
+    required: true
