@@ -1,0 +1,18 @@
+---
+name: get_image_by_name
+runner_type: python-script
+description: Get an image by name
+enabled: true
+entry_point: get_image_by_name.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: get_image
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  image_name:
+    type: string
+    description: The name of the image

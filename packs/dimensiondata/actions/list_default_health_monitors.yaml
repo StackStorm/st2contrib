@@ -1,0 +1,19 @@
+---
+name: list_default_health_monitors
+runner_type: python-script
+description: List the default health monitors
+enabled: true
+entry_point: run_lb.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_get_default_health_monitors
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: The network domain to list
+    required: true

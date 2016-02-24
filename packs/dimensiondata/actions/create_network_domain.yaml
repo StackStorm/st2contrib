@@ -1,0 +1,28 @@
+---
+name: create_network_domain
+runner_type: python-script
+description: Create a network domain
+enabled: true
+entry_point: create_network_domain.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_create_network_domain
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  location:
+    type: string
+    description: The ID of the datacenter (e.g. NA9)
+  name:
+    type: string
+    description: The name of the network domain
+  service_plan:
+    type: string
+    description: The plan (one of ADVANCED and ESSENTIALS)
+    default: ADVANCED
+  description:
+    type: string
+    description: The description of the network domain

@@ -1,0 +1,17 @@
+---
+name: get_vlan_by_name
+runner_type: python-script
+description: Get vlan by name
+enabled: true
+entry_point: get_vlan_by_name.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  vlan_name:
+    type: string
+    description: The name of the vlan
+  network_domain_id:
+    type: string
+    description: The network domain ID

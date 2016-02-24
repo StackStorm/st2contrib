@@ -1,0 +1,14 @@
+---
+name: get_network_by_name
+runner_type: python-script
+description: Get an network by name
+enabled: true
+entry_point: get_network_by_name.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_name:
+    type: string
+    description: The name of the network

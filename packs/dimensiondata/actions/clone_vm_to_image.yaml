@@ -1,0 +1,24 @@
+---
+name: clone_vm_to_image
+runner_type: python-script
+description: Clone a VM to a customer image
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_clone_node_to_image
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)
+  image_name:
+    type: string
+    description: The image name
+  image_description:
+    type: string
+    description: The image description

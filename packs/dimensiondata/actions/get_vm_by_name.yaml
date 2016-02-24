@@ -1,0 +1,19 @@
+---
+name: get_vm_by_name
+runner_type: python-script
+description: Get a VM by name
+enabled: true
+entry_point: get_vm_by_name.py
+parameters:
+  location:
+    type: string
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  name:
+    type: string
+    description: The name of the VM
+  network_domain:
+    type: string
+    description: The name of the network domain to filter by

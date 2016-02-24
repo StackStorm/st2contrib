@@ -1,0 +1,22 @@
+---
+name: update_monitoring_plan
+runner_type: python-script
+description: Update monitoring plan on a node
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_update_monitoring_plan
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)
+  service_plan:
+    type: string
+    default: ESSENTIALS
+    description: The new service plan, ESSENTIALS or ADVANCED

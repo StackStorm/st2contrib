@@ -1,0 +1,18 @@
+---
+name: disable_monitoring
+runner_type: python-script
+description: Enable monitoring on a node
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_disable_monitoring
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)

@@ -1,0 +1,46 @@
+---
+name: create_vm_mcp1
+runner_type: python-script
+description: Create a VM on MCP 1 datacenter
+enabled: true
+entry_point: create_vm_mcp1.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  location:
+    type: string
+    description: The ID of the data center (e.g. NA3)
+  network_id:
+    type: string
+    description: ID of the network to deploy into
+  name:
+    type: string
+    description: Name of the virtual machine 
+  image_name:
+    type: string
+    description: Name of the virtual machine image template to use
+  description:
+    type: string
+    description: Description of the new VM
+  is_started:
+    type: boolean
+    description: Start the VM on deploy
+  password:
+    type: string
+    description: password for the new image
+  memory_gb:
+    type: integer
+    description: Override the image RAM in GB
+  cpu_count:
+    type: integer
+    description: Override the CPU count
+  cores_per_socket:
+    type: integer
+    description: Override the number of cores per socket
+    default: 1
+  cpu_speed:
+    type: string
+    description: The CPU speed type
+    default: STANDARD
