@@ -5,9 +5,12 @@ from libcloud.compute.providers import get_driver as get_compute_driver
 from libcloud.storage.providers import Provider as StorageProvider
 from libcloud.storage.providers import get_driver as get_storage_driver
 
+from msrestazure.azure_active_directory import ServicePrincipalCredentials
+
 __all__ = [
     'AzureBaseComputeAction',
-    'AzureBaseStorageAction'
+    'AzureBaseStorageAction',
+    'AzureBaseResourceManagerAction'
 ]
 
 
@@ -40,3 +43,15 @@ class AzureBaseStorageAction(Action):
         cls = get_storage_driver(StorageProvider.AZURE_BLOBS)
         driver = cls(key=name, secret=access_key)
         return driver
+
+
+class AzureBaseResourceManagerAction(Action):
+    def __init__(self, config):
+        super(AzureBaseResourceManagerAction, self).__init__(config=config)
+
+        resource_config = self.config['resource_manager']
+        self.credentials = ServicePrincipalCredentials(
+            client_id=resource_config['client_id'],
+            secret=resource_config['secret'],
+            tenant=resource_config['tenant']
+        )

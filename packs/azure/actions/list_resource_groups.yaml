@@ -1,0 +1,11 @@
+---
+name: list_resource_groups
+runner_type: run-python
+description: List ARM resource group names
+enabled: true
+entry_point: list_resource_groups.py
+parameters:
+  subscription_id:
+    type: string
+    description: Azure subscription ID.
+    required: true

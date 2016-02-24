@@ -8,8 +8,10 @@ from parse_date_string import ParseDateStringAction
 
 
 class ParseDateStringActionTestCase(BaseActionTestCase):
+    action_cls = ParseDateStringAction
+
     def test_run_success(self):
-        action = ParseDateStringAction()
+        action = self.get_action_instance()
 
         result = action.run(date_string='now')
         expected = arrow.utcnow().timestamp
@@ -29,7 +31,7 @@ class ParseDateStringActionTestCase(BaseActionTestCase):
         self.assertEqual(result, expected)
 
     def test_run_invalid_date_string(self):
-        action = ParseDateStringAction()
+        action = self.get_action_instance()
         self.assertRaises(ValueError, action.run, date_string='some invalid string')
 
     def assertTimestampMatches(self, actual_ts, expected_ts):

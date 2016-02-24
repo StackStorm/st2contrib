@@ -9,5 +9,10 @@ if [ "${FORCE_CHECK_ALL_FILES}" = "true" ]; then
     exit 0
 fi
 
+if [ ! -z "${FORCE_CHECK_PACK}" ] && [ "${FORCE_CHECK_PACK}" != "false" ]; then
+    echo "${ROOT_DIRECTORY}/packs/${FORCE_CHECK_PACK}"
+    exit 0
+fi
+
 cd ${ROOT_DIRECTORY}
 echo $(git diff --name-only ${BASE_BRANCH} -- 'packs/*' | xargs -I FILENAME dirname FILENAME | awk -F'/' '/^\./ {next} /^[^\/]+$/ {next} /^scripts/ {next} /.*/{print $1"/"$2"/"}' | uniq) 

@@ -1,0 +1,10 @@
+description: ''
+enabled: true
+entry_point: do.py
+name: get_all_sizes
+parameters:
+  action:
+    default: get_all_sizes
+    immutable: true
+    type: string
+runner_type: run-python

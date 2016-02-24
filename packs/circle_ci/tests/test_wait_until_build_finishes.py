@@ -10,10 +10,11 @@ __all__ = [
 
 
 class WaitUntilBuildFinishesActionTestCase(BaseActionTestCase):
+    action_cls = WaitUntilBuildFinishes
 
     @responses.activate
     def test_bad_build_number(self):
-        action = WaitUntilBuildFinishes()
+        action = self.get_action_instance()
         setattr(action, 'config', {'token': 'dummy'})
         test_build_num = 373
         MOCK_RESPONSE = {'error': 'Build not found'}
@@ -29,7 +30,7 @@ class WaitUntilBuildFinishesActionTestCase(BaseActionTestCase):
 
     @responses.activate
     def test_timeout_fails_action(self):
-        action = WaitUntilBuildFinishes()
+        action = self.get_action_instance()
         setattr(action, 'config', {'token': 'dummy'})
         test_build_num = 373
         MOCK_RESPONSE = {'lifecycle': 'Running'}
@@ -52,7 +53,7 @@ class WaitUntilBuildFinishesActionTestCase(BaseActionTestCase):
 
     @responses.activate
     def test_happy_case(self):
-        action = WaitUntilBuildFinishes()
+        action = self.get_action_instance()
         setattr(action, 'config', {'token': 'dummy'})
         test_build_num = 373
         MOCK_RESPONSE = {'lifecycle': 'finished'}

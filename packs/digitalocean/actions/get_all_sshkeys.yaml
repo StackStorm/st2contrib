@@ -1,0 +1,10 @@
+description: ''
+enabled: true
+entry_point: do.py
+name: get_all_sshkeys
+parameters:
+  action:
+    default: get_all_sshkeys
+    immutable: true
+    type: string
+runner_type: run-python

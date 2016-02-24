@@ -1,0 +1,14 @@
+description: ''
+enabled: true
+entry_point: do.py
+name: get_all_droplets
+parameters:
+  cls:
+    default: Manager
+    immutable: true
+    type: string
+  action:
+    default: get_all_droplets
+    immutable: true
+    type: string
+runner_type: run-python
