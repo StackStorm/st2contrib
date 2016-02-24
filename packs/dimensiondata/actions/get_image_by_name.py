@@ -13,4 +13,4 @@ class GetImageByNameAction(actions.BaseAction):
         images = driver.list_images(location=location)
         image = list(filter(lambda x: x.name == image_name,
                             images))[0]
-        return self._format_response_obj(image)
+        return self.resultsets.formatter(image)

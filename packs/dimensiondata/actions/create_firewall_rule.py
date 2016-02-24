@@ -1,6 +1,7 @@
 from lib import actions
-from libcloud.compute.drivers.dimensiondata import DimensionDataFirewallRule,\
-                                                   DimensionDataFirewallAddress
+from libcloud.compute.drivers.dimensiondata import (
+    DimensionDataFirewallRule,
+    DimensionDataFirewallAddress)
 
 __all__ = [
     'CreateFirewallRuleAction',
