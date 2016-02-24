@@ -11,5 +11,5 @@ class GetBalancerByNameAction(actions.BaseAction):
         driver = self._get_lb_driver(region)
         balancers = driver.list_balancers()
         balancer = list(filter(lambda x: x.name == balancer_name,
-                            balancers))[0]
+                               balancers))[0]
         return self.resultsets.formatter(balancer)

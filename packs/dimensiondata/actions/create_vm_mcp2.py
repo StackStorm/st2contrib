@@ -41,7 +41,7 @@ class CreateVMMcp2Action(actions.BaseAction):
                                   ex_cpu_specification=cpu,
                                   ex_memory_gb=memory_gb,
                                   ex_is_started=is_started)
-        timeout = 1200 # 20 minutes
+        timeout = 1200  # 20 minutes
         poll_interval = 5
         cnt = 0
         while cnt < timeout / poll_interval:
