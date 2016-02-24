@@ -1,10 +1,3 @@
-try:
-    import libcloud
-except ImportError:
-    message = ('Missing "apache-libcloud", please install it using pip:\n'
-               'pip install apache-libcloud')
-    raise ImportError(message)
-
 from libcloud.compute.drivers.dimensiondata import DimensionDataNodeDriver
 from libcloud.loadbalancer.drivers.dimensiondata import DimensionDataLBDriver
 from dimensiondata_parsers import ResultSets
