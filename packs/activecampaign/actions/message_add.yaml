@@ -1,0 +1,108 @@
+description: Add new email message.
+enabled: true
+entry_point: run.py
+name: message_add
+parameters:
+  api_action:
+    default: message_add
+    description: message_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  attach:
+    description: 'Not supported yet: an ID of an uploaded file'
+    required: false
+    type: object
+  charset:
+    description: 'Character set used. Example: ''utf-8'''
+    required: true
+    type: string
+  encoding:
+    description: 'Encoding used. Example: ''quoted-printable'''
+    required: true
+    type: string
+  format:
+    description: 'Examples: html, text, mime (both html and text)'
+    required: true
+    type: string
+  fromemail:
+    description: 'The "From" email address. Example: ''test@example.com'''
+    required: true
+    type: string
+  fromname:
+    description: 'The "From" name. Example: ''From Name'''
+    required: true
+    type: string
+  html:
+    description: 'HTML version. Content of your html email. Example: ''<strong>html</strong>
+      content of your email'''
+    required: true
+    type: string
+  htmlconstructor:
+    description: 'HTML version. Examples: editor, external, upload. If editor, it
+      uses ''html'' parameter. If external, uses ''htmlfetch'' and ''htmlfetchwhen''
+      parameters. If upload, uses ''message_upload_html''.'
+    required: true
+    type: string
+  htmlfetch:
+    description: 'HTML version. URL where to fetch the body from. Example: ''http://somedomain.com/somepage.html'''
+    required: true
+    type: string
+  htmlfetchwhen:
+    description: 'HTML version. Examples: (fetch at) ''send'' and (fetch) ''pers''(onalized)'
+    required: true
+    type: string
+  message_upload_html:
+    description: 'HTML version. Not supported yet: an ID of an uploaded content.'
+    required: false
+    type: object
+  message_upload_text:
+    description: 'Text version. Not supported yet: an ID of an uploaded content'
+    required: false
+    type: object
+  p:
+    default: {}
+    description: '3'
+    required: false
+    type: object
+  priority:
+    description: 'Examples: 1 = high, 3 = medium/default, 5 = low'
+    required: true
+    type: string
+  reply2:
+    description: 'The "Reply To" email address. Example: ''reply2@example.com'''
+    required: true
+    type: string
+  subject:
+    description: Subject of the email message.
+    required: true
+    type: string
+  text:
+    description: 'Text version. Content of your text only email. Example: ''_text
+      only_ content of your email'''
+    required: true
+    type: string
+  textconstructor:
+    description: 'Text version. Examples: editor, external, upload. If editor, it
+      uses ''text'' parameter. If external, uses ''textfetch'' and ''textfetchwhen''
+      parameters. If upload, uses ''message_upload_text''.'
+    required: true
+    type: string
+  textfetch:
+    description: 'Text version. URL where to fetch the body from. Example: ''http://somedomain.com/somepage.txt'''
+    required: true
+    type: string
+  textfetchwhen:
+    description: 'Text version. When to fetch. Examples: (fetch at) ''send'' and (fetch)
+      ''pers''(onalized)'
+    required: true
+    type: string
+runner_type: run-python

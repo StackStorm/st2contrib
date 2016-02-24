@@ -1,0 +1,25 @@
+description: Get a deal.
+enabled: true
+entry_point: run.py
+name: deal_get
+parameters:
+  api_action:
+    default: deal_get
+    description: deal_get
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  id:
+    description: 'ID of the deal to get. Example: ''3'' (Get available deal IDs with
+      "deal_list" call)'
+    required: true
+    type: string
+runner_type: run-python

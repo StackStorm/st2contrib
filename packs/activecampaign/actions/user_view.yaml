@@ -1,0 +1,24 @@
+description: View a single user.
+enabled: true
+entry_point: run.py
+name: user_view
+parameters:
+  api_action:
+    default: user_view
+    description: user_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID of the user you want to view
+    required: true
+    type: string
+runner_type: run-python

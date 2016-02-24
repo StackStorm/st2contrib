@@ -1,0 +1,25 @@
+description: View contact custom fields (no data).
+enabled: true
+entry_point: run.py
+name: list_field_view
+parameters:
+  api_action:
+    default: list_field_view
+    description: list_field_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's of the contact custom field you want to view (comma-separated
+      for many; use 'all' to view all)
+    required: true
+    type: string
+runner_type: run-python

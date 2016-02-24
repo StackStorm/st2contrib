@@ -1,0 +1,24 @@
+description: View a specific subscription form.
+enabled: true
+entry_point: run.py
+name: form_html
+parameters:
+  api_action:
+    default: form_html
+    description: form_html
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: 'ID of the form HTML you wish to fetch. Example: 1000'
+    required: true
+    type: string
+runner_type: run-python

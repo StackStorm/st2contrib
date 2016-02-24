@@ -1,0 +1,48 @@
+description: Add new contact custom field.
+enabled: true
+entry_point: run.py
+name: list_field_add
+parameters:
+  api_action:
+    default: list_field_add
+    description: list_field_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  options:
+    description: 'Options for fields that have them (IE: checkbox, radio, dropdown,
+      listbox). Example: array("label" => "value1", "label" => "value2")'
+    required: false
+    type: object
+  p:
+    default: {}
+    description: 'Lists that the custom field is associated with. Example: array(1
+      => 1, 2 => 2)'
+    required: false
+    type: object
+  perstag:
+    description: Unique tag used as a placeholder for dynamic content
+    required: true
+    type: string
+  req:
+    description: Required? (1 = yes, 0 = no)
+    required: true
+    type: string
+  title:
+    description: 'Internal field name. Example: ''Field 1'''
+    required: true
+    type: string
+  type:
+    description: 'Possible values: 1 = Text Field, 2 = Text Box (textarea), 3 = Checkbox,
+      4 = Radio, 5 = Dropdown, 6 = Hidden field, 7 = List Box, 9 = Date'
+    required: true
+    type: string
+runner_type: run-python

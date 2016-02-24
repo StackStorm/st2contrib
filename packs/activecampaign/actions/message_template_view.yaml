@@ -1,0 +1,24 @@
+description: View a single basic message template.
+enabled: true
+entry_point: run.py
+name: message_template_view
+parameters:
+  api_action:
+    default: message_template_view
+    description: message_template_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: ID of the message template you want to view
+    required: true
+    type: string
+runner_type: run-python

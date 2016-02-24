@@ -1,0 +1,66 @@
+description: Edit existing user.
+enabled: true
+entry_point: run.py
+name: user_edit
+parameters:
+  api_action:
+    default: user_edit
+    description: user_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  email:
+    description: 'Email address of the user. Example: ''test@example.com'''
+    required: true
+    type: string
+  first_name:
+    description: 'First name of the user. Example: ''FirstName'''
+    required: true
+    type: string
+  group:
+    description: '2'
+    required: true
+    type: object
+  id:
+    description: 'ID of the user you want to edit. Example: 23'
+    required: true
+    type: string
+  lang:
+    description: 'Language setting for this user. Possible values: chinese, danish,
+      dutch, english, finnish, french, german, italian, portuguese, "portuguese -
+      brazil", spanish, turkish'
+    required: false
+    type: string
+  last_name:
+    description: 'Last name of the user. Example: ''LastName'''
+    required: true
+    type: string
+  password:
+    description: 'Password. Example: ''newpassword'''
+    required: true
+    type: string
+  password_r:
+    description: 'Repeat password. Example: ''newpassword'''
+    required: true
+    type: string
+  phone:
+    description: 'Phone number of the user. Example: ''332-220-1121'''
+    required: true
+    type: string
+  timezone:
+    description: Timezone setting for this user
+    required: false
+    type: string
+  username:
+    description: Username. Username cannot be changed!
+    required: true
+    type: string
+runner_type: run-python

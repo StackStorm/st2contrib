@@ -1,0 +1,39 @@
+description: Update deal note.
+enabled: true
+entry_point: run.py
+name: deal_note_edit
+parameters:
+  api_action:
+    default: deal_note_edit
+    description: deal_note_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  dealid:
+    description: 'ID of the deal of the deal note. Example: ''4'' (Get available deal
+      IDs with "deal_list" call)'
+    required: false
+    type: string
+  id:
+    description: 'ID of the deal note to update. Example: ''2'''
+    required: true
+    type: string
+  note:
+    description: 'Text of the deal note. Example: ''This is a note about important
+      things.'''
+    required: false
+    type: string
+  userid:
+    description: 'ID of the owner of the deal note. Example: ''9'' (Get available
+      owner IDs with "user_list" call)'
+    required: false
+    type: string
+runner_type: run-python

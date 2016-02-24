@@ -1,0 +1,34 @@
+description: Add new deal note.
+enabled: true
+entry_point: run.py
+name: deal_note_add
+parameters:
+  api_action:
+    default: deal_note_add
+    description: deal_note_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  dealid:
+    description: 'ID of the deal for the new deal note. Example: ''31'' (Get available
+      deal IDs with "deal_list" call)'
+    required: true
+    type: string
+  note:
+    description: 'Text of the note. Example: ''Follow up about this deal soon'''
+    required: true
+    type: string
+  owner:
+    description: 'ID of the owner of the new deal note. Example: ''4'' (Get available
+      owner IDs with "user_list" call)'
+    required: false
+    type: string
+runner_type: run-python

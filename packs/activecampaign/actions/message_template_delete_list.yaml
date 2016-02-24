@@ -1,0 +1,24 @@
+description: Delete multiple basic template.
+enabled: true
+entry_point: run.py
+name: message_template_delete_list
+parameters:
+  api_action:
+    default: message_template_delete_list
+    description: message_template_delete_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's (comma-separated) of the message templates you wish to delete
+    required: true
+    type: string
+runner_type: run-python

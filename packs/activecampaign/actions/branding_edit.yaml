@@ -1,0 +1,73 @@
+description: Update Design/Branding settings for User Groups.
+enabled: true
+entry_point: run.py
+name: branding_edit
+parameters:
+  admin_style:
+    description: 'The actual CSS. Example: test color: green; (ONLY AVAILABLE FOR
+      CERTAIN PLANS)'
+    required: false
+    type: string
+  admin_template:
+    description: The actual HTML template (ONLY AVAILABLE FOR CERTAIN PLANS)
+    required: false
+    type: string
+  api_action:
+    default: branding_edit
+    description: branding_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  branding_footer_html_val:
+    description: 'Content of non-removeable footer. Example: <p>footer content here</p>'
+    required: false
+    type: string
+  branding_header_html_val:
+    description: 'Content of non-removable header. Example: <p>header content here</p>'
+    required: false
+    type: string
+  design_url:
+    description: URL of logo. Large logos appear on the login page.
+    required: false
+    type: string
+  design_url_small:
+    description: URL of small logo. Small logos appear in the header of the admin
+      panel.
+    required: false
+    type: string
+  footer_text_value:
+    description: 'Content of non-removeable footer. Example: text footer content'
+    required: false
+    type: string
+  header_text_value:
+    description: 'Content of non-removable header. Example: text header content'
+    required: false
+    type: string
+  links:
+    description: External links. To enable (which is the default) exclude this parameter
+      entirely. To disable (remove our branding), just pass this parameter with any
+      value.
+    required: false
+    type: string
+  public_style:
+    description: 'The actual CSS. Example: test color: green; (ONLY AVAILABLE FOR
+      CERTAIN PLANS)'
+    required: false
+    type: string
+  public_template:
+    description: The actual HTML template (ONLY AVAILABLE FOR CERTAIN PLANS)
+    required: false
+    type: string
+  site_name:
+    description: 'Title of software. Example: ''ActiveCampaign Email Marketing'''
+    required: false
+    type: string
+runner_type: run-python

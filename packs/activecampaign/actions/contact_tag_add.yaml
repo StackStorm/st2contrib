@@ -1,0 +1,34 @@
+description: Add new tags to a contact.
+enabled: true
+entry_point: run.py
+name: contact_tag_add
+parameters:
+  api_action:
+    default: contact_tag_add
+    description: contact_tag_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  email:
+    description: Contact email address to associate the tags with (use this OR id
+      parameter).
+    required: false
+    type: string
+  id:
+    description: Contact ID to associate the tags with (use this OR email parameter).
+    required: false
+    type: string
+  tags:
+    description: Tags to add to the contact. Pass a string (for one tag) or an array
+      (for multiple tags).
+    required: true
+    type: string
+runner_type: run-python

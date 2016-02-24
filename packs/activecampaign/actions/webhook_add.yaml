@@ -1,0 +1,43 @@
+description: Add new webhook.
+enabled: true
+entry_point: run.py
+name: webhook_add
+parameters:
+  action:
+    description: 'Event that causes the webhook to fire. Include more than one if
+      desired. Possible values: subscribe, unsubscribe, update, sent, open, click,
+      forward, share, bounce'
+    required: true
+    type: object
+  api_action:
+    default: webhook_add
+    description: webhook_add
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  init:
+    description: 'Source that triggered the event. Include more than one if desired.
+      Possible values: public, admin, api, system'
+    required: true
+    type: object
+  lists:
+    description: Assign to list(s). Can accept multiple lists here.
+    required: true
+    type: object
+  name:
+    description: Internal name/label for the webhook.
+    required: true
+    type: string
+  url:
+    description: URL of the webhook.
+    required: true
+    type: string
+runner_type: run-python
