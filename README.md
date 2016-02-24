@@ -75,6 +75,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
 [![Digital Ocean icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/digitalocean/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | [Digital Ocean](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | st2 content pack containing Digital Ocean integration. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#Digital Ocean-pack)
+[![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | [dimensiondata](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | st2 content pack containing Dimension Data Cloud integrations | cloud, load balancers, dimension data | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#dimensiondata-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 [![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
@@ -1094,6 +1095,80 @@ get_global_images |
 get_image | 
 get_my_images | 
 get_ssh_key | 
+
+### dimensiondata pack
+
+![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_storage_to_vm | Add another disk to the VM
+attach_node_to_vlan | Attach a VM to a VLAN
+balancer_attach_member | Attach a member to a load balancer
+balancer_delete_node | Delete a node
+balancer_detach_member | Detach a member to a load balancer
+balancer_list_members | List members of a load balancer
+clone_vm_to_image | Clone a VM to a customer image
+configure | Configure the pack
+create_balancer | Create a load balancer
+create_firewall_rule | Create a firewall (ACL) rule in a network domain
+create_nat_rule | Create a NAT rule in a network domain
+create_network | Create a network
+create_network_domain | Create a network domain
+create_public_ip_block | Create a public IP block in a network domain
+create_vlan | Create a VLAN
+create_vm_mcp1 | Create a VM on MCP 1 datacenter
+create_vm_mcp2 | Create a VM on MCP 2 datacenter
+delete_network | Delete a network
+delete_network_domain | Delete a network domain
+delete_vlan | Delete a VLAN
+delete_vlan | Get a VLAN
+destroy_nic | Delete (remove) a NIC from a VM
+destroy_vm | Destroy a virtual machine
+disable_monitoring | Enable monitoring on a node
+enable_monitoring | Enable monitoring on a node
+get_balancer | Get a specific load balancer by ID
+get_balancer_by_name | Get an balancer by name
+get_image | Get an image by ID
+get_image_by_name | Get an image by name
+get_ipv6_address_of_vm | get ipv6 address of vm
+get_location_by_id | Get a location (DC) by ID e.g. NA1
+get_network_by_name | Get an network by name
+get_network_domain | Get a network domain
+get_network_domain_by_name | Get an network domain by name
+get_public_ip_block | Get a public IP block
+get_vlan_by_name | Get vlan by name
+get_vm | Get a VM by ID
+get_vm_by_name | Get a VM by name
+list_balancer_nodes | List the load balancer nodes
+list_balancers | List the load balancers available
+list_customer_images | List the images available
+list_default_health_monitors | List the default health monitors
+list_firewall_rules | List the firewall rules in a network domain
+list_images | List the customer images available
+list_locations | List the locations available
+list_nat_rules | List NAT rules in a network domain
+list_network_domains | List the network domains available
+list_networks | List the networks available
+list_pool_members | List the members of a load balancer pool
+list_public_ip_blocks | List the public IP blocks in a network domain
+list_vlans | List the VLANs available
+list_vms | List the Virtual Machines available
+power_off_vm | Power Off a virtual machine
+reboot_vm | Reboot a virtual machine
+reconfigure_vm | Reconfigure the virtual hardware specification of a node
+remove_storage_from_vm | Remove disk from VM
+reset_vm | Reset a virtual machine
+shutdown_vm | Shutdown a virtual machine
+start_vm | Start a virtual machine
+update_disk_size | Update the size of a disk
+update_disk_speed | Update the speed of a disk
+update_monitoring_plan | Update monitoring plan on a node
+update_vm | Update VM specification, name or description
+update_vm_tools | Update VMware tools on a node
+wait_for_server_operation | wait for the server operation to complete
 
 ### docker pack
 
