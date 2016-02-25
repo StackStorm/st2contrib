@@ -63,15 +63,19 @@ FORCE_CHECK_PACK=csv make packs-tests
 
 Icon | Name | Description | Keywords | Author | Latest Version | Available Resources
 ---- | ---- | ----------- | -------- | ------ | -------------- | -------------------
+[![activecampaign icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/activecampaign/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | [activecampaign](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | Integration with ActiveCampaign |  | [DoriftoShoes](mailto:patrick@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#activecampaign-pack)
 [![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
 [![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud, iam, vpc, s3, CloudFormation, RDS, SQS | [st2-dev](mailto:info@stackstorm.com) | 0.6.0 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
+[![cassandra icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cassandra/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cassandra) | [cassandra](https://github.com/StackStorm/st2contrib/tree/master/packs/cassandra) | st2 content pack containing cassandra integrations | datastax, cassandra | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cassandra-pack)
 [![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 [![Circle CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | [Circle CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | Pack which allows integration with Circle CI. | circle, circle ci, continous integration, ci | [StackStorm dev](mailto:support@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Circle CI-pack)
 [![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
+[![Digital Ocean icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/digitalocean/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | [Digital Ocean](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | st2 content pack containing Digital Ocean integration. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#Digital Ocean-pack)
+[![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | [dimensiondata](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | st2 content pack containing Dimension Data Cloud integrations | cloud, load balancers, dimension data | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#dimensiondata-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 [![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
@@ -129,6 +133,143 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
 [![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
 [![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
+### activecampaign pack
+
+![activecampaign icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/activecampaign/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+ActiveCampaignWebhook | ActiveCapmaign Webhook sensor
+
+#### Actions
+
+Name | Description
+---- | -----------
+account_view | View hosted account information.
+automation_contact_add | Add contact to automation
+automation_contact_list | View contacts from an automation
+automation_contact_remove | Remove contact from automation
+automation_contact_view | View a single contact in an automation
+automation_list | View existing automations
+branding_edit | Update Design/Branding settings for User Groups.
+branding_view | View Design/Branding settings for a specific User Group.
+campaign_create | Create new campaign.
+campaign_delete | Delete existing campaign.
+campaign_delete_list | Delete multiple existing campaigns.
+campaign_list | View one or many campaigns.
+campaign_paginator | View a list of existing campaigns using pagination, much like it appears in the standard user interface.
+campaign_report_bounce_list | View bounced email addresses for a specific campaign.
+campaign_report_bounce_totals | Obtain bounce totals for a specific campaign.
+campaign_report_forward_list | View forwarded email addresses for a specific campaign.
+campaign_report_forward_totals | Obtain forward totals for a specific campaign.
+campaign_report_link_list | View all links (and click data) for a specific campaign.
+campaign_report_link_totals | Obtain link click totals for a specific campaign.
+campaign_report_open_list | View opens for a specific campaign.
+campaign_report_open_totals | Obtain open totals for a specific campaign.
+campaign_report_totals | Obtain all totals for a specific campaign.
+campaign_report_unopen_list | View unopens for a specific campaign.
+campaign_report_unsubscription_list | View unsubscriptions for a specific campaign.
+campaign_report_unsubscription_totals | Obtain unsubscription totals for a specific campaign.
+campaign_send | Send a campaign.
+campaign_status | Set a campaign's status.
+contact_add | Add new contact.
+contact_automation_list | View automations for a contact
+contact_delete | Delete existing contact.
+contact_delete_list | Delete multiple existing contacts.
+contact_edit | Edit existing contact.
+contact_list | View multiple (a list of) contacts.
+contact_note_add | Add a new contact note.
+contact_note_delete | Delete contact note.
+contact_note_edit | Edit a contact note.
+contact_paginator | View a list of existing contacts using pagination, much like it appears in the standard user interface.
+contact_sync | Sync a contact.
+contact_tag_add | Add new tags to a contact.
+contact_tag_remove | Remove tags from a contact.
+contact_view | View a single contact.
+contact_view_email | View a single contact by looking up their email address.
+contact_view_hash | View a single contact by looking up their hash.
+deal_add | Add new deal.
+deal_delete | Delete deal.
+deal_edit | Update deal.
+deal_get | Get a deal.
+deal_list | View multiple (a list of) deals.
+deal_note_add | Add new deal note.
+deal_note_edit | Update deal note.
+deal_pipeline_add | Add new deal pipeline.
+deal_pipeline_delete | Delete deal pipeline.
+deal_pipeline_edit | Update deal pipeline.
+deal_pipeline_list | View multiple (a list of) deal pipelines.
+deal_stage_add | Add new deal stage.
+deal_stage_delete | Delete deal stage.
+deal_stage_edit | Update deal stage.
+deal_stage_list | View multiple (a list of) deal stages.
+deal_task_add | Add new deal task.
+deal_task_edit | Update deal task.
+deal_tasktype_add | Add new deal task type.
+deal_tasktype_delete | Delete deal task type.
+deal_tasktype_edit | Update deal task type.
+form_getforms | View all forms.
+form_html | View a specific subscription form.
+group_add | Add new User Group.
+group_delete | Delete existing User Group.
+group_delete_list | Delete multiple User Groups.
+group_edit | Edit an existing User Group.
+group_list | View many User Groups.
+group_view | View a specific User Group.
+list_add | Add new mailing list.
+list_delete | Delete existing mailing list.
+list_delete_list | Delete multiple existing mailing lists.
+list_edit | Edit existing mailing list.
+list_field_add | Add new contact custom field.
+list_field_delete | Delete existing contact custom field.
+list_field_edit | Modify existing contact custom field.
+list_field_view | View contact custom fields (no data).
+list_list | View multiple mailing lists.
+list_paginator | View many existing mailing lists using pagination, much like it appears in the standard user interface.
+list_view | View a specific mailing list.
+message_add | Add new email message.
+message_delete | Delete existing email message.
+message_delete_list | Delete multiple existing email messages.
+message_edit | Edit existing email message.
+message_list | View multiple (a list of) email messages.
+message_template_add | Add new basic message template.
+message_template_delete | Delete existing basic message template.
+message_template_delete_list | Delete multiple basic template.
+message_template_edit | Edit an existing basic message template.
+message_template_export | Export basic message template.
+message_template_import | Import basic message template.
+message_template_list | View multiple (a list of) basic message templates.
+message_template_view | View a single basic message template.
+message_view | View a single email message.
+organization_list | View multiple (a list of) contact organizations.
+settings_edit | Edit general software settings
+singlesignon | Utilize Single Sign-On.
+track_event_add | Add event tracking event name and value
+track_event_delete |  Developers Portal 
+track_event_list |  Developers Portal 
+track_event_status_edit |  Developers Portal 
+track_site_list |  Developers Portal 
+track_site_status_edit |  Developers Portal 
+track_site_whitelist_add |  Developers Portal 
+track_site_whitelist_delete |  Developers Portal 
+user_add | Add new user.
+user_delete | Delete existing user.
+user_delete_list | Delete multiple existing users.
+user_edit | Edit existing user.
+user_list | View multiple (a list of) users.
+user_me | View user information.
+user_view | View a single user.
+user_view_email | View a single user by looking up their email address.
+user_view_username | View a single user by looking up their username.
+webhook_add | Add new webhook.
+webhook_delete | Delete existing webhook.
+webhook_edit | Edit existing webhook.
+webhook_events | Webhook event types
+webhook_list | View a list of webhooks.
+webhook_view | View a single webhook.
+
 ### ansible pack
 
 ![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)
@@ -808,12 +949,15 @@ vpc_unmonitor_instances |
 Name | Description
 ---- | -----------
 create_container | Create a new storage container.
+create_linked_resource_url | Create a new ARM Linked Resource from a URI.
+create_resource | Create a new ARM Generic Resource.
 create_vm | Create a new VM.
 delete_container | Delete a storage container.
 delete_object | Delete an object.
 destroy_vm | Destroy a VM.
 list_container_objects | List storage objects for the provided container.
 list_containers | List storage containers.
+list_resource_groups | List ARM resource group names
 list_vms | List available VMs.
 reboot_vm | Reboot a running VM.
 upload_file | Upload a file to the provided container.
@@ -854,6 +998,27 @@ Name | Description
 getaccountaddress | Retrieves address of local wallet.
 getwalletinfo | Information of the local wallet.
 sendtoaddresss | Send some BTC to supplied address.
+
+### cassandra pack
+
+![cassandra icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cassandra/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+append_replace_address_env_file | Appends replace.address JVM OPT to cassandra env file.
+clear_cass_data | Clear cassandra data directory.
+get_dse_status | Get DSE cassandra service status.
+is_seed_node | Find whether given node is a seed node.
+list_seed_nodes | List seed nodes in cassandra config.
+nodetool | Cassandra nodetool wrapper.
+remove_gossip_peer_info | Remove gossip peer info data from cassandra nodes.
+remove_replace_address_env_file | Remove replace.address JVM OPT from cassandra env file.
+replace_host | Cassandra replace host workflow.
+start_dse | Start DSE cassandra service.
+stop_dse | Stop DSE cassandra service.
+wait_for_port_open | Find whether given node is a seed node.
 
 ### chef pack
 
@@ -907,6 +1072,103 @@ Name | Description
 get_device | Retrieve details for a particular device (cube).
 get_measurements | Retrieve current measurements for a particular device (cube).
 list_devices | List information about all the available devices (cubes).
+
+### digitalocean pack
+
+![digitalocean icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/digitalocean/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_action | 
+get_all_domains | 
+get_all_droplets | 
+get_all_images | 
+get_all_regions | 
+get_all_sizes | 
+get_all_sshkeys | 
+get_data | 
+get_domain | 
+get_droplet | 
+get_global_images | 
+get_image | 
+get_my_images | 
+get_ssh_key | 
+
+### dimensiondata pack
+
+![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_storage_to_vm | Add another disk to the VM
+attach_node_to_vlan | Attach a VM to a VLAN
+balancer_attach_member | Attach a member to a load balancer
+balancer_delete_node | Delete a node
+balancer_detach_member | Detach a member to a load balancer
+balancer_list_members | List members of a load balancer
+clone_vm_to_image | Clone a VM to a customer image
+configure | Configure the pack
+create_balancer | Create a load balancer
+create_firewall_rule | Create a firewall (ACL) rule in a network domain
+create_nat_rule | Create a NAT rule in a network domain
+create_network | Create a network
+create_network_domain | Create a network domain
+create_public_ip_block | Create a public IP block in a network domain
+create_vlan | Create a VLAN
+create_vm_mcp1 | Create a VM on MCP 1 datacenter
+create_vm_mcp2 | Create a VM on MCP 2 datacenter
+delete_network | Delete a network
+delete_network_domain | Delete a network domain
+delete_vlan | Delete a VLAN
+delete_vlan | Get a VLAN
+destroy_nic | Delete (remove) a NIC from a VM
+destroy_vm | Destroy a virtual machine
+disable_monitoring | Enable monitoring on a node
+enable_monitoring | Enable monitoring on a node
+get_balancer | Get a specific load balancer by ID
+get_balancer_by_name | Get an balancer by name
+get_image | Get an image by ID
+get_image_by_name | Get an image by name
+get_ipv6_address_of_vm | get ipv6 address of vm
+get_location_by_id | Get a location (DC) by ID e.g. NA1
+get_network_by_name | Get an network by name
+get_network_domain | Get a network domain
+get_network_domain_by_name | Get an network domain by name
+get_public_ip_block | Get a public IP block
+get_vlan_by_name | Get vlan by name
+get_vm | Get a VM by ID
+get_vm_by_name | Get a VM by name
+list_balancer_nodes | List the load balancer nodes
+list_balancers | List the load balancers available
+list_customer_images | List the images available
+list_default_health_monitors | List the default health monitors
+list_firewall_rules | List the firewall rules in a network domain
+list_images | List the customer images available
+list_locations | List the locations available
+list_nat_rules | List NAT rules in a network domain
+list_network_domains | List the network domains available
+list_networks | List the networks available
+list_pool_members | List the members of a load balancer pool
+list_public_ip_blocks | List the public IP blocks in a network domain
+list_vlans | List the VLANs available
+list_vms | List the Virtual Machines available
+power_off_vm | Power Off a virtual machine
+reboot_vm | Reboot a virtual machine
+reconfigure_vm | Reconfigure the virtual hardware specification of a node
+remove_storage_from_vm | Remove disk from VM
+reset_vm | Reset a virtual machine
+shutdown_vm | Shutdown a virtual machine
+start_vm | Start a virtual machine
+update_disk_size | Update the size of a disk
+update_disk_speed | Update the speed of a disk
+update_monitoring_plan | Update monitoring plan on a node
+update_vm | Update VM specification, name or description
+update_vm_tools | Update VMware tools on a node
+wait_for_server_operation | wait for the server operation to complete
 
 ### docker pack
 

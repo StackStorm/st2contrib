@@ -1,0 +1,24 @@
+description: View a single email message.
+enabled: true
+entry_point: run.py
+name: message_view
+parameters:
+  api_action:
+    default: message_view
+    description: message_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: ID of the email message you want to view
+    required: true
+    type: string
+runner_type: run-python

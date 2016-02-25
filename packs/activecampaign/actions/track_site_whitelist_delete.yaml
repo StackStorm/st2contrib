@@ -1,0 +1,6 @@
+description: ' Developers Portal '
+enabled: true
+entry_point: run.py
+name: track_site_whitelist_delete
+parameters: {}
+runner_type: run-python

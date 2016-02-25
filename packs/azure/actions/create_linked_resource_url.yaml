@@ -1,0 +1,27 @@
+---
+name: create_linked_resource_url
+runner_type: run-python
+description: Create a new ARM Linked Resource from a URI.
+enabled: true
+entry_point: create_linked_resource_url.py
+parameters:
+  subscription_id:
+    type: string
+    description: Azure subscription ID.
+    required: true
+  group_name:
+    type: string
+    description: Resource group name to use
+    required: true
+  deployment_name:
+    type: string
+    description: Name of the new deployment
+    required: true
+  template_uri:
+    type: string
+    description: URI of an ARM template JSON file
+    required: true
+  parameters_uri:
+    type: string
+    description: URI of an ARM parameters JSON file
+    required: true

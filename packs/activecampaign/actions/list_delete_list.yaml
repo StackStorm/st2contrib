@@ -1,0 +1,24 @@
+description: Delete multiple existing mailing lists.
+enabled: true
+entry_point: run.py
+name: list_delete_list
+parameters:
+  api_action:
+    default: list_delete_list
+    description: list_delete_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's (comma-separated) of the mailing lists you wish to delete
+    required: true
+    type: string
+runner_type: run-python

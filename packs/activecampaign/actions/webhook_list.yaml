@@ -1,0 +1,24 @@
+description: View a list of webhooks.
+enabled: true
+entry_point: run.py
+name: webhook_list
+parameters:
+  api_action:
+    default: webhook_list
+    description: webhook_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  filters:
+    description: See below code example for all filters you can pass
+    required: false
+    type: string
+runner_type: run-python

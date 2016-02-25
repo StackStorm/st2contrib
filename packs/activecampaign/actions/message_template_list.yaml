@@ -1,0 +1,25 @@
+description: View multiple (a list of) basic message templates.
+enabled: true
+entry_point: run.py
+name: message_template_list
+parameters:
+  api_action:
+    default: message_template_list
+    description: message_template_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  ids:
+    description: ID's (comma-separated) of each message template you want to view.
+      Pass 'all' to return all templates.
+    required: true
+    type: string
+runner_type: run-python

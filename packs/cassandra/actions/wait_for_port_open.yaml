@@ -1,0 +1,25 @@
+---
+name: wait_for_port_open
+runner_type: remote-shell-script
+description: Find whether given node is a seed node.
+enabled: true
+entry_point: 'wait_for_port_open.py'
+parameters:
+  server:
+    type: string
+    required: true
+    description: "Host ip or name."
+  check_port:
+    type: integer
+    description: "Port to check."
+    required: true
+  sleep:
+    type: number
+    description: "Interval to sleep before re-check"
+    default: 10
+    required: false
+  sudo:
+    default: false
+  kwarg_op:
+    default: '--'
+    immutable: true

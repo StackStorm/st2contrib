@@ -1,0 +1,33 @@
+description: Remove tags from a contact.
+enabled: true
+entry_point: run.py
+name: contact_tag_remove
+parameters:
+  api_action:
+    default: contact_tag_remove
+    description: contact_tag_remove
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  email:
+    description: Contact email address to remove the tags from (use this OR id parameter).
+    required: false
+    type: string
+  id:
+    description: Contact ID to remove the tags from (use this OR email parameter).
+    required: false
+    type: string
+  tags:
+    description: Tags to remove from the contact. Pass a string (for one tag) or an
+      array (for multiple tags).
+    required: true
+    type: string
+runner_type: run-python

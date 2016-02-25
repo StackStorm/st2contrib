@@ -1,0 +1,19 @@
+---
+name: balancer_detach_member
+runner_type: python-script
+description: Detach a member to a load balancer
+enabled: true
+entry_point: balancer_detach_member.py
+parameters:
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  balancer_id:
+    type: string
+    description: ID of the load balancer
+    required: true
+  member_id:
+    type: string
+    description: The ID of the member to detach
+    required: true

@@ -1,0 +1,30 @@
+---
+name: update_vm
+runner_type: python-script
+description: Update VM specification, name or description
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_update_node
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)
+  name:
+    type: string
+    description: The new name
+  description:
+    type: string
+    description: The new description
+  cpu_count:
+    type: integer
+    description: The number of CPUs
+  ram_mb:
+    type: integer
+    description: The amount of RAM in MB

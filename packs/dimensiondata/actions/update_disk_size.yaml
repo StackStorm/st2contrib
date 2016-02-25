@@ -1,0 +1,24 @@
+---
+name: update_disk_speed
+runner_type: python-script
+description: Update the speed of a disk
+enabled: true
+entry_point: run_compute_node.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_change_storage_size
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  node_id:
+    type: string
+    description: The ID of the node (VM)
+  speed:
+    type: string
+    description: The speed of the storage to add e.g. STANDARD
+  disk_id:
+    type: string
+    description: The UUID of the disk

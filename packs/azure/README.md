@@ -17,6 +17,8 @@ certificate file and obtaining subscription ID](https://libcloud.readthedocs.org
 For information on how to obtain those credentials, see the following page
 [Connecting to Azure Blobs](https://libcloud.readthedocs.org/en/latest/storage/drivers/azure_blobs.html#connecting-to-azure-blobs).
 
+For usage of the Resource Manager actions you will need to create a [Service Principal](https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/)
+
 ## Actions
 
 ### Virtual Machines / Servers
@@ -32,3 +34,9 @@ For information on how to obtain those credentials, see the following page
 * ``list_container_objects`` - List container objects.
 * ``upload_file`` - Upload local file to the provided container.
 * ``delete_object`` - Delete the provided object.
+
+### Resource Management
+
+* ``create_resource`` - Create a generic ARM resource
+* ``create_linked_resource_url`` - Create a linked (template and parameter) resource from a URI
+* ``list_resource_groups`` - List the names of the resource groups

@@ -1,0 +1,24 @@
+description: View a single contact by looking up their email address.
+enabled: true
+entry_point: run.py
+name: contact_view_email
+parameters:
+  api_action:
+    default: contact_view_email
+    description: contact_view_email
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  email:
+    description: 'Email address of the contact you are looking up. Example: ''test@example.com'''
+    required: true
+    type: string
+runner_type: run-python

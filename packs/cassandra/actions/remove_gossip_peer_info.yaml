@@ -1,0 +1,19 @@
+---
+name: remove_gossip_peer_info
+runner_type: remote-shell-cmd
+description: Remove gossip peer info data from cassandra nodes.
+enabled: true
+entry_point: ''
+parameters:
+  peer_name:
+    type: string
+    description: "Peer name of the form peer-$UUID. You can specify globs as well. E.g. peer-*"
+    required: true
+  peer_info_path:
+    type: string
+    description: "Parent dir containing peer info data"
+    default: "/var/lib/cassandra/data/system/"
+  sudo:
+    default: true
+  cmd:
+    default: "rm -rf {{peer_info_path}}/peer_name"

@@ -1,0 +1,15 @@
+---
+name: list_images
+runner_type: python-script
+description: List the customer images available
+enabled: true
+entry_point: run_compute.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: list_images
+  region:
+    type: string
+    description: The region code
+    default: dd-na

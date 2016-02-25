@@ -1,0 +1,18 @@
+---
+name: get_network_domain
+runner_type: python-script
+description: Get a network domain
+enabled: true
+entry_point: run_compute.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_get_network_domain
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: The ID of the network domain

@@ -1,0 +1,20 @@
+---
+name: append_replace_address_env_file
+runner_type: remote-shell-cmd
+description: Appends replace.address JVM OPT to cassandra env file.
+enabled: true
+entry_point: ''
+parameters:
+  dead_node:
+    type: string
+    required: true
+    description: "IP address of dead node"
+  env_file_path:
+    type: string
+    description: "Path to cassandra env file."
+    required: false
+    default: "/usr/share/cassandra/cassandra.in.sh"
+  sudo:
+    default: true
+  cmd:
+    default: "echo 'JVM_OPTS=\"$JVM_OPTS -Dcassandra.replace_address={{dead_node}}\"' >> {{env_file_path}}"

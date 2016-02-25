@@ -1,0 +1,28 @@
+description: View a single contact in an automation
+enabled: true
+entry_point: run.py
+name: automation_contact_view
+parameters:
+  api_action:
+    default: automation_contact_view
+    description: automation_contact_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  automation:
+    description: The ID of the automation to view the contact in
+    required: false
+    type: string
+  contact_id:
+    description: The ID of the contact you want to view within an automation
+    required: false
+    type: string
+runner_type: run-python

@@ -1,0 +1,32 @@
+---
+name: create_vlan
+runner_type: python-script
+description: Create a VLAN
+enabled: true
+entry_point: create_vlan.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_create_vlan
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: The ID of the hosting network domain
+  name:
+    type: string
+    description: The name of the VLAN
+  private_ipv4_base_address:
+    type: string
+    description: The network address of the new VLAN (e.g. 10.0.10.0)
+    default: "10.0.0.0"
+  private_ipv4_prefix_size:
+    type: string
+    description: Size of the network in the VLAN
+    default: "24"
+  description:
+    type: string
+    description: The description of the VLAN

@@ -1,0 +1,32 @@
+description: View contacts from an automation
+enabled: true
+entry_point: run.py
+name: automation_contact_list
+parameters:
+  api_action:
+    default: automation_contact_list
+    description: automation_contact_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  automation:
+    description: The ID of the automation you want to view contacts for
+    required: false
+    type: string
+  limit:
+    description: Limit of records per page (default and maximum is 100)
+    required: false
+    type: string
+  offset:
+    description: Offset to start returning records from (default is 0)
+    required: false
+    type: string
+runner_type: run-python

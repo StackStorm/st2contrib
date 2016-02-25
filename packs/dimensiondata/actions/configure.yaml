@@ -1,0 +1,15 @@
+---
+name: configure
+runner_type: python-script
+description: Configure the pack
+enabled: true
+entry_point: configure.py
+parameters:
+  api_user:
+    type: string
+    required: true
+    description: The username for the Cloud Control API
+  api_password:
+    type: string
+    required: true
+    description: The password for the Cloud Control API

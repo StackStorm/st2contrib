@@ -1,0 +1,25 @@
+description: Delete deal pipeline.
+enabled: true
+entry_point: run.py
+name: deal_pipeline_delete
+parameters:
+  api_action:
+    default: deal_pipeline_delete
+    description: deal_pipeline_delete
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  id:
+    description: 'ID of the deal pipeline to delete. Example: ''2'' (Get available
+      pipeline IDs with "deal_pipeline_list" call)'
+    required: true
+    type: string
+runner_type: run-python

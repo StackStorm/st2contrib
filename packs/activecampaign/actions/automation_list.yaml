@@ -1,0 +1,28 @@
+description: View existing automations
+enabled: true
+entry_point: run.py
+name: automation_list
+parameters:
+  api_action:
+    default: automation_list
+    description: automation_list
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  limit:
+    description: Limit of records per page (default and maximum is 100)
+    required: false
+    type: string
+  offset:
+    description: Offset to start returning records from (default is 0)
+    required: false
+    type: string
+runner_type: run-python

@@ -1,0 +1,11 @@
+---
+name: start_dse
+runner_type: remote-shell-cmd
+description: Start DSE cassandra service.
+enabled: true
+entry_point: ''
+parameters:
+  sudo:
+    default: true
+  cmd:
+    default: "service dse start"

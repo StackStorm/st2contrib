@@ -1,0 +1,16 @@
+---
+name: remove_replace_address_env_file
+runner_type: remote-shell-cmd
+description: Remove replace.address JVM OPT from cassandra env file.
+enabled: true
+entry_point: ''
+parameters:
+  env_file_path:
+    type: string
+    description: "Path to cassandra env file."
+    required: false
+    default: "/usr/share/cassandra/cassandra.in.sh"
+  sudo:
+    default: true
+  cmd:
+    default: "sed -i /replace_address/d {{env_file_path}}"

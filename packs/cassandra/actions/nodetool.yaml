@@ -1,0 +1,29 @@
+---
+name: nodetool
+runner_type: remote-shell-cmd
+description: Cassandra nodetool wrapper.
+enabled: true
+entry_point: ''
+parameters:
+  command:
+    type: string
+    required: true
+    description: "nodetool command to run. E.g. ``info``"
+  nodetool_path:
+    type: string
+    default: nodetool
+    required: false
+  nodetool_host:
+    type: string
+    description: "IP/Hostname for nodeltool host argument."
+    required: false
+    default: "127.0.0.1"
+  nodetool_port:
+    type: string
+    description: "Port for nodetool."
+    default: "7199"
+    required: false
+  sudo:
+    default: false
+  cmd:
+    default: "{{nodetool_path}} -h {{nodetool_host}} -p {{nodetool_port}} {{command}}"

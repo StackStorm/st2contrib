@@ -1,0 +1,43 @@
+description: Update deal.
+enabled: true
+entry_point: run.py
+name: deal_edit
+parameters:
+  api_action:
+    default: deal_edit
+    description: deal_edit
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: json
+    required: false
+    type: string
+  currency:
+    description: 'Currency of the deal. Example: ''usd'''
+    required: false
+    type: string
+  id:
+    description: 'ID of the deal to update. Example: ''2'' (Get available deal IDs
+      with "deal_list" call)'
+    required: true
+    type: string
+  pipeline:
+    description: 'ID of the pipeline of the deal. Example: ''23'' (Get available pipeline
+      IDs with "deal_pipeline_list" call)'
+    required: false
+    type: string
+  status:
+    description: 'Status of the deal. Options: ''0'' (open), ''1'' (won), ''2'' (lost)'
+    required: false
+    type: string
+  userid:
+    description: 'ID of the user who owns the deal. Example: ''14'' (Get available
+      owner IDs with "user_list" call)'
+    required: false
+    type: string
+runner_type: run-python

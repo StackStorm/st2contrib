@@ -1,0 +1,18 @@
+---
+name: get_public_ip_block
+runner_type: python-script
+description: Get a public IP block
+enabled: true
+entry_point: run_compute.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_get_public_ip_block
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  block_id:
+    type: string
+    description: The ID of the IP block

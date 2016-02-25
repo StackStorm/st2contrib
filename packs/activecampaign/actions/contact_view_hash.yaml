@@ -1,0 +1,24 @@
+description: View a single contact by looking up their hash.
+enabled: true
+entry_point: run.py
+name: contact_view_hash
+parameters:
+  api_action:
+    default: contact_view_hash
+    description: contact_view_hash
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  hash:
+    description: 'Hash of the contact you are looking up. Example: ''89acb12a60fd44897dfr23edb29f0a63'''
+    required: true
+    type: string
+runner_type: run-python

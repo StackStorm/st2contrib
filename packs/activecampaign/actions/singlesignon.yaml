@@ -1,0 +1,35 @@
+description: Utilize Single Sign-On.
+enabled: true
+entry_point: run.py
+name: singlesignon
+parameters:
+  api_action:
+    default: singlesignon
+    description: singlesignon
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  sso_addr:
+    description: 'This is the IP address user uses to access the server. Example:
+      ''127.0.0.1''. This can also be $_SERVER[''REMOTE_ADDR''] if this script is
+      ran by user'
+    required: true
+    type: string
+  sso_duration:
+    description: 'Optionally, you can provide the duration of his token (in minutes;
+      default is 15). Example: 30'
+    required: true
+    type: string
+  sso_user:
+    description: 'this is the user you are logging in as. Example: ''admin'''
+    required: true
+    type: string
+runner_type: run-python

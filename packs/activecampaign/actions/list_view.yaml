@@ -1,0 +1,24 @@
+description: View a specific mailing list.
+enabled: true
+entry_point: run.py
+name: list_view
+parameters:
+  api_action:
+    default: list_view
+    description: list_view
+    required: false
+    type: string
+  api_key:
+    description: Your API key
+    required: false
+    type: string
+  api_output:
+    default: json
+    description: xml, json, or serialize (default is XML)
+    required: false
+    type: string
+  id:
+    description: ID of the mailing list you want to view
+    required: true
+    type: string
+runner_type: run-python
