@@ -7,7 +7,7 @@ entry_point: list_scans.py
 parameters:
   launched_after:
     type: string
-    description: filter by a date in the format: YYYY-MM-DD
+    description: filter by a date in the format YYYY-MM-DD
     required: false
   state:
     type: string
