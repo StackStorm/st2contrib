@@ -1,5 +1,3 @@
-from libcloud.loadbalancer.base import Member
-
 from lib.actions import BaseAction
 
 __all__ = [
@@ -14,5 +12,5 @@ class CreatePoolMemberAction(BaseAction):
         driver = self._get_lb_driver(region)
         pool = driver.ex_get_pool(pool_id)
         node = driver.ex.get_node(node_id)
-        member = driver.ex_create_pool_member(pool,node,port)
+        member = driver.ex_create_pool_member(pool, node, port)
         return self.resultsets.formatter(member)
