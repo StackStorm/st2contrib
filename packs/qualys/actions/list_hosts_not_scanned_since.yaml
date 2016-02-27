@@ -1,0 +1,11 @@
+---
+name: list_hosts_not_scanned_since
+runner_type: python-script
+description: Get a list of host not scanned in a number of days
+enabled: true
+entry_point: list_hosts_not_scanned_since.py
+parameters:  
+  days:
+    type: integer
+    description: The number of days since last scanned
+    required: true

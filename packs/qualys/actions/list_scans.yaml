@@ -1,0 +1,28 @@
+---
+name: list_scans
+runner_type: python-script
+description: List the scans
+enabled: true
+entry_point: list_scans.py
+parameters:
+  launched_after:
+    type: string
+    description: filter by a date in the format: YYYY-MM-DD
+    required: false
+  state:
+    type: string
+    required: false
+    description: parameter accepts "Running", "Paused", "Canceled", "Finished", "Error", "Queued", and "Loading".
+  title:
+    type: string
+    required: false
+    description:
+  scan_type:
+    type: string
+    required: false
+    description: Filter by type, accepts "On-Demand", and "Scheduled".
+  user_login:
+    description: Filter by a user name
+    required: false
+    type: string
+  

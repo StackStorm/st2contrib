@@ -1,0 +1,7 @@
+---
+name: list_reports
+runner_type: python-script
+description: Get a list of available reports
+enabled: true
+entry_point: list_reports.py
+

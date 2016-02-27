@@ -1,0 +1,11 @@
+---
+name: get_report
+runner_type: python-script
+description: Get a report
+enabled: true
+entry_point: get_report.py
+parameters:
+  id:
+    type: integer
+    description: Report ID
+    required: true

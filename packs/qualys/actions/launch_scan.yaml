@@ -1,0 +1,27 @@
+---
+name: launch_scan
+runner_type: python-script
+description: Launch a scan
+enabled: true
+entry_point: launch_scan.py
+parameters:  
+  title:
+    type: string
+    description: IP of the machine to scan
+    required: false
+  option_title:
+    type: string
+    description: The option profile name of the scan
+    required: false
+  iscanner_name:
+    type: string
+    description: The iscanner name (the scanner appliance)
+    required: false
+  asset_groups:
+    type: string
+    description: Target an asset group or collection (CSV) of groups
+    required: false
+  ip:
+    type: string
+    description: Target a specific IP
+    required: false
