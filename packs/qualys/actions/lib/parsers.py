@@ -1,4 +1,4 @@
-from qualysapi.api_objects import *
+from qualysapi.api_objects import Host, Scan, Report
 
 
 class FieldLists():

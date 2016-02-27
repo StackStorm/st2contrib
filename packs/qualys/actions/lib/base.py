@@ -1,5 +1,5 @@
 from qualysapi.connector import QGConnector
-
+from parsers import ResultSets
 from st2actions.runners.pythonrunner import Action
 
 __all__ = [
@@ -15,3 +15,4 @@ class QualysBaseAction(Action):
              config['password']),
             config['hostname']
         )
+        self.resultsets = ResultSets()
