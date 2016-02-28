@@ -1,0 +1,16 @@
+name: put
+runner_type: run-python
+description: "Put value in Consul server"
+enabled: true
+entry_point: "put.py"
+parameters:
+    key:
+        type: string
+        description: "Key to write in Consul"
+        required: true
+        position: 0
+    value:
+        type: string
+        description: "Value of Key to write in Consul"
+        required: true
+        position: 1

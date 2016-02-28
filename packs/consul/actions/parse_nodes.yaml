@@ -1,0 +1,10 @@
+name: parse_nodes
+runner_type: run-python
+description: "Helper function to extract hosts from a consul response to be used with StackStorm workflows"
+enabled: true
+entry_point: "parse_nodes"
+parameters:
+  data:
+    type: string
+    description: Data from consul query
+    required: true

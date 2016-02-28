@@ -1,0 +1,6 @@
+name: list_nodes
+runner_type: run-python
+description: "Real-time query of all known nodes in Consul"
+enabled: true
+entry_point: "list_nodes.py"
+parameters: {}

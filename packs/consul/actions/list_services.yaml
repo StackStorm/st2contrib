@@ -1,0 +1,6 @@
+name: list_services
+runner_type: run-python
+description: "Real-time query of all known services in Consul"
+enabled: true
+entry_point: "list_services.py"
+parameters: {}
