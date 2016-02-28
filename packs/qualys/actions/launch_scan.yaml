@@ -7,7 +7,7 @@ entry_point: launch_scan.py
 parameters:  
   title:
     type: string
-    description: IP of the machine to scan
+    description: The name of the scan
     required: false
   option_title:
     type: string

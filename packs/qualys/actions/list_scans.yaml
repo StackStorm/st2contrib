@@ -7,8 +7,8 @@ entry_point: list_scans.py
 parameters:
   launched_after:
     type: string
-    description: filter by a date in the format YYYY-MM-DD
     required: false
+    description: filter by a date in the format YYYY-MM-DD
   state:
     type: string
     required: false
@@ -16,13 +16,12 @@ parameters:
   title:
     type: string
     required: false
-    description:
+    description: Filter by scan title
   scan_type:
     type: string
     required: false
     description: Filter by type, accepts "On-Demand", and "Scheduled".
   user_login:
-    description: Filter by a user name
     required: false
     type: string
-  
+    description: Filter by a user name
