@@ -15,5 +15,5 @@ class AddHostAction(QualysBaseAction):
             host_type = 'vm'
         else:
             host_type = ''
-        host = self.connection.addHost(host, host_type)
+        host = self.connection.addIP(host, host_type)
         return self.resultsets.formatter(host)
