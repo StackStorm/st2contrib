@@ -1,0 +1,11 @@
+---
+name: get_host
+runner_type: python-script
+description: Get a registered host from the host collection
+enabled: true
+entry_point: get_host.py
+parameters:  
+  host:
+    type: string
+    description: The host name
+    required: true

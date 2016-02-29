@@ -8,7 +8,7 @@ parameters:
   region:
     type: string
     description: The region code
-    default: dd-na
+    default: dd-na  
   balancer_id:
     type: string
     description: ID of the load balancer

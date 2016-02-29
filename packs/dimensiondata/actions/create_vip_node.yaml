@@ -1,0 +1,39 @@
+---
+name: create_vip_node
+runner_type: python-script
+description: Create node in the network domain
+enabled: true
+entry_point: run_lb.py
+parameters:
+  action:
+    type: string
+    immutable: true
+    default: ex_create_node
+  region:
+    type: string
+    description: The region code
+    default: dd-na
+  network_domain_id:
+    type: string
+    description: network domain id
+    required: true
+  name:
+    type: string
+    description: name of the node
+    required: true
+  ip:
+    type: string
+    description: IP Address of the node
+    required: true
+  ex_description:
+    type: string
+    description: description of the node
+    required: true
+  connection_limit:
+    type: int
+    description: Maximum number of concurrent connections per sec
+    default: 25000
+  connection_rate_limit:
+    type: int
+    description: Maximum number of concurrent sessions
+    default: 2000

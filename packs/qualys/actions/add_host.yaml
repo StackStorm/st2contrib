@@ -1,0 +1,17 @@
+---
+name: add_host
+runner_type: python-script
+description: Add an IP of a host to the Qualys registry
+enabled: true
+entry_point: add_host.py
+parameters:  
+  host:
+    type: string
+    description: The host IP, or a list seperated with commas
+    required: true
+  vulnerability_management:
+    type:  boolean
+    description: Place host under vulnerability management
+  policy_compliance:
+    type: boolean
+    description: Place host under policy compliance
