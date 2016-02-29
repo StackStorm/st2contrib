@@ -109,6 +109,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
+[![qualys icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/qualys/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | [qualys](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | Qualys Cloud Security Services integration pack | security, qualys | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 1.0 | [click](https://github.com/StackStorm/st2contrib#qualys-pack)
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 [![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
@@ -1135,7 +1136,9 @@ create_firewall_rule | Create a firewall (ACL) rule in a network domain
 create_nat_rule | Create a NAT rule in a network domain
 create_network | Create a network
 create_network_domain | Create a network domain
+create_pool_member | add member to a pool
 create_public_ip_block | Create a public IP block in a network domain
+create_vip_node | Create node in the network domain
 create_vlan | Create a VLAN
 create_vm_mcp1 | Create a VM on MCP 1 datacenter
 create_vm_mcp2 | Create a VM on MCP 2 datacenter
@@ -1712,6 +1715,24 @@ cert_clean | Revoke a host's certificate (if applicable) and remove all files re
 cert_revoke | Revoke the certificate of a client.
 cert_sign | Sign an outstanding certificate request.
 run_agent | Run puppet agent.
+
+### qualys pack
+
+![qualys icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/qualys/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_host | Add an IP of a host to the Qualys registry
+add_hosts | Add IPs of hosts to the Qualys registry
+get_host | Get a registered host from the host collection
+get_host_range | Get the status of a range of hosts (IP range)
+get_report | Get a report
+launch_scan | Launch a scan
+list_hosts_not_scanned_since | Get a list of host not scanned in a number of days
+list_reports | Get a list of available reports
+list_scans | List the scans
 
 ### rabbitmq pack
 
