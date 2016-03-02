@@ -82,6 +82,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
+[![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | [freight](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | freight |  | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#freight-pack)
 [![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
 [![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
@@ -1272,6 +1273,17 @@ get_submission_results | Query results of completed job
 get_submission_status | Query status of running job
 submit_malware | Submit a Malware object to FireEye AX appliance
 view_ax_config | Returns a list of profiles and applications on AX devices
+
+### freight pack
+
+![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_package | Add package to the Freight cache
+update_cache | Update the Freight cache and regenerate the repository
 
 ### git pack
 
