@@ -1,0 +1,22 @@
+---
+description: "Get results of a scan execution."
+enabled: true
+entry_point: "scan_get_results.py"
+name: "scan_get_results"
+pack: "alertlogic"
+
+parameters:
+  scan_exec_id:
+    type: "integer"
+    description: "The scan execution ID."
+    required: true
+  new_vulns:
+    type: "boolean"
+    description: "If true, only new vulnerabilities discovered during this scan execution will be shown."
+    default: false
+  new_ports:
+    type: "boolean"
+    description: "If true, only new vulnerable ports discovered during this scan execution will be shown."
+    default: false
+
+runner_type: "python-script"

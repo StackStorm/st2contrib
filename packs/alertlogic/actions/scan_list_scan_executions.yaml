@@ -1,0 +1,14 @@
+---
+description: "Get a list of executions for given scan."
+enabled: true
+entry_point: "scan_list_scan_executions.py"
+name: "scan_list_scan_executions.yaml"
+pack: "alertlogic"
+
+parameters:
+  scan_id:
+    type: "integer"
+    description: "The scan ID."
+    required: true
+
+runner_type: "python-script"

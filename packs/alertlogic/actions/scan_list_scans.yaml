@@ -1,0 +1,14 @@
+---
+description: "Get a list of scans for a customer."
+enabled: true
+entry_point: "scan_list_scans.py"
+name: "scan_list_scans"
+pack: "alertlogic"
+
+parameters:
+  customer_id:
+    type: "string"
+    description: "Optional Customer ID. Must be a child Customer ID of your account. The default value is your Customer ID."
+    default: ~
+
+runner_type: "python-script"
