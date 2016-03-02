@@ -1,7 +1,7 @@
 # pylint: disable=no-member
 
-from curator.api.utils import *  # noqa
-from curator.api.filter import *  # noqa
+from curator.api.utils import get_indices
+from curator.api.utils import get_snapshots
 from items_filter import ItemsFilter
 from easydict import EasyDict
 from utils import xstr
