@@ -82,6 +82,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
+[![fpm icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fpm/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | [fpm](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | fpm |  | [jfryman](mailto:jfryman@FryBook-2.local) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#fpm-pack)
 [![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | [freight](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | freight |  | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#freight-pack)
 [![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#git-pack)
 [![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#github-pack)
@@ -97,6 +98,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![kubernetes icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/kubernetes/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/kubernetes) | [kubernetes](https://github.com/StackStorm/st2contrib/tree/master/packs/kubernetes) | st2 content pack containing Kubernetes sensors | kubenetes, sensors, thirdpartyresource | [Michael Ward](mailto:mward29@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#kubernetes-pack)
 [![lastline icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/lastline/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/lastline) | [lastline](https://github.com/StackStorm/st2contrib/tree/master/packs/lastline) | Lastline Security Breach Detection Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#lastline-pack)
 [![libcloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/libcloud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | [libcloud](https://github.com/StackStorm/st2contrib/tree/master/packs/libcloud) | st2 content pack containing libcloud integrations | libcloud, cloud, dns, dnsaas, lbaas, load balancers, aws, amazon, s3, ec2, rackspace, cloudstack, openstack, cloudsigma, gce, google compute engine | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#libcloud-pack)
+[![librato icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/librato/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/librato) | [librato](https://github.com/StackStorm/st2contrib/tree/master/packs/librato) | Send and manage metrics with Librato |  | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#librato-pack)
 [![mailgun icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mailgun/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | [mailgun](https://github.com/StackStorm/st2contrib/tree/master/packs/mailgun) | st2 content pack containing mailgun integrations | email, mail, mailgun | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mailgun-pack)
 [![mistral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mistral/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
 [![mmonit icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mmonit/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | [mmonit](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | st2 content pack containing mmonit integrations | monitoring, mmonit | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mmonit-pack)
@@ -1274,6 +1276,30 @@ get_submission_status | Query status of running job
 submit_malware | Submit a Malware object to FireEye AX appliance
 view_ax_config | Returns a list of profiles and applications on AX devices
 
+### fpm pack
+
+![fpm icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fpm/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+create_deb_from_deb | Create a deb package from deb with fpm
+create_deb_from_dir | Create a deb package from dir with fpm
+create_deb_from_empty | Create a deb package from empty with fpm
+create_deb_from_gem | Create a deb package from gem with fpm
+create_deb_from_python | Create a deb package from python with fpm
+create_deb_from_rpm | Create a deb package from rpm with fpm
+create_deb_from_tar | Create a deb package from tar with fpm
+create_rpm_from_deb | Create a rpm package from deb with fpm
+create_rpm_from_dir | Create a rpm package from dir with fpm
+create_rpm_from_empty | Create a rpm package from empty with fpm
+create_rpm_from_gem | Create a rpm package from gem with fpm
+create_rpm_from_python | Create a rpm package from python with fpm
+create_rpm_from_rpm | Create a rpm package from rpm with fpm
+create_rpm_from_tar | Create a rpm package from tar with fpm
+load_metadata | Load package metadata from directory
+
 ### freight pack
 
 ![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)
@@ -1526,6 +1552,21 @@ start_vm | Start a new VM.
 stop_container | Stop a container.
 stop_vm | Stop a running VM.
 upload_file | Upload a file to the provided container
+
+### librato pack
+
+![librato icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/librato/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+add_annotation | Add an annotation
+delete_metric | Delete a metric from Librato
+get_metric | Retrieve a metric from Librato
+list_metrics | List all metrics setup on Librato
+submit_counter | List all metrics setup on Librato
+submit_gauge | List all metrics setup on Librato
 
 ### mailgun pack
 
