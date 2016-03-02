@@ -2,7 +2,7 @@
 name: "post_receive_webhook"
 pack: "bitbucket"
 description: "Trigger ST2 pack deploy for commit on Git branch"
-enabled: true
+enabled: false
 
 trigger:
   type: "core.st2.webhook"
