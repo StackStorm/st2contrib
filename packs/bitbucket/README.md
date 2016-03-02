@@ -194,7 +194,7 @@ This has a number of pre-dependancies:
 - Setting an Workflow / Hooks / Post-Receive WebHooks pointing at the URL
 
 ```
-https://<my-server>/api/v1/webhooks/bitbucket_post_receive?st2-api-key=<ST2-API-Key>
+https://<my-server>/api/v1/webhooks/bitbucket_post_receive?st2-api-key=<ST2-API-Key
 ```
 
 *Important:* The BitBucket server (or cloud) needs to be able to reach
