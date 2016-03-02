@@ -1,0 +1,15 @@
+---
+name: decommission_node
+runner_type: python-script
+description: Decommission node from cluster.
+enabled: true
+entry_point: decommission_node.py
+parameters:
+  cluster_id:
+    type: string
+    description: "Name of the cass cluster E.g.: Test-Cluster."
+    required: false
+  node_ip:
+    type: string
+    description: "IP of the node."
+    required: true

@@ -1,0 +1,11 @@
+---
+name: stop_cluster_repair
+runner_type: python-script
+description: "Stop repair for cluster."
+enabled: true
+entry_point: stop_cluster_repair.py
+parameters:
+  cluster_id:
+    type: string
+    description: "Name of the cass cluster E.g.: Test-Cluster."
+    required: false
