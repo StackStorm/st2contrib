@@ -1,0 +1,15 @@
+---
+name: "list_master_token"
+pack: "packagecloud"
+runner_type: "local-shell-cmd"
+enabled: true
+parameters:
+  user:
+    type: string
+    required: true
+  repository:
+    type: string
+    required: true
+  cmd:
+    immutable: true
+    default: "package_cloud master_token list {{user}}/{{repository}}"
