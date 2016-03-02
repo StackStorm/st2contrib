@@ -197,6 +197,12 @@ This has a number of pre-dependancies:
 https://<my-server>/api/v1/webhooks/bitbucket_post_receive?st2-api-key=<ST2-API-Key>
 ```
 
+- The rule is disabled by default and needs to be enabled with
+
+```bash
+st2 rule enable bitbucket.post_receive_webhook
+```
+
 *Important:* The BitBucket server (or cloud) needs to be able to reach
 your StackStorm server and considers the SSL cert as valid. The
 `ST2-API-Key` should be genrated as per the instructions at
