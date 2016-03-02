@@ -1,0 +1,6 @@
+---
+name: list_metrics
+runner_type: run-python
+description: List all metrics setup on Librato
+enabled: true
+entry_point: list_metrics.py

@@ -1,0 +1,17 @@
+---
+name: get_metric
+runner_type: run-python
+description: Retrieve a metric from Librato
+enabled: true
+entry_point: get_metric.py
+parameters:
+  name:
+    type: string
+    description: Metric to retrieve from Librato
+    required: true
+  count:
+    type: string
+    description: "The number of metrics to retrieve (default: 1)"
+  resolution:
+    type: string
+    description: "Resolution of metric to retrieve (default: 1)"
