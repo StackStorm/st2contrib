@@ -19,7 +19,7 @@ class SaltLocal(SaltAction):
         'status'
     ]
 
-    def run(self, module, target, expr_form, *args, **kwargs):
+    def run(self, module, target, expr_form, args, **kwargs):
         self.verify_ssl = self.config.get('verify_ssl', True)
         '''
         CLI Examples:
@@ -29,7 +29,7 @@ class SaltLocal(SaltAction):
         '''
         self.generate_package('local',
                               cmd=module,
-                              args=args,
+                              args=list(args),
                               target=target,
                               expr_form=expr_form,
                               data=kwargs)
