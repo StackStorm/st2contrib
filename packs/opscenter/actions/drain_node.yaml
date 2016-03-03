@@ -1,0 +1,15 @@
+---
+name: drain_node
+runner_type: python-script
+description: Drain node.
+enabled: true
+entry_point: drain_node.py
+parameters:
+  cluster_id:
+    type: string
+    description: "Name of the cass cluster E.g.: Test-Cluster."
+    required: false
+  node_ip:
+    type: string
+    description: "IP of the node."
+    required: true

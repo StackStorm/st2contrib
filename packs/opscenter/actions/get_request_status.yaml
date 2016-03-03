@@ -1,0 +1,11 @@
+---
+name: get_request_status
+runner_type: python-script
+description: Get status of long running request.
+enabled: true
+entry_point: get_request_status.py
+parameters:
+  request_id:
+    type: string
+    description: "Request ID."
+    required: true
