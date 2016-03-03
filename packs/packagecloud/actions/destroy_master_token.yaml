@@ -16,6 +16,9 @@ parameters:
   token_name:
     type: string
     required: true
+  sudo:
+    immutable: true
+    default: true
   cmd:
     immutable: true
     default: "package_cloud master_token destroy {{user}}/{{repository}} {{mastertoken}} {{token_name}}"

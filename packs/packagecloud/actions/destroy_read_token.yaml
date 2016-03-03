@@ -16,6 +16,9 @@ parameters:
   readtoken:
     type: string
     required: true
+  sudo:
+    immutable: true
+    default: true
   cmd:
     immutable: true
     default: "package_cloud read_token destroy {{user}}/{{repository}} {{mastertoken}}/{{readtoken}}"
