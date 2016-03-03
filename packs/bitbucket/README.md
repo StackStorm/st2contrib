@@ -175,3 +175,38 @@ Usage:
 ```bash
 st2 run bitbucket.list_branches repo="<repo_name>"
 ```
+<<<<<<< HEAD
+=======
+
+## Rules
+
+### Post-Receive WebHook
+
+This rule triggers ``packs.deploy`` action (in StackStorm v1.4+) to allow
+auto-deployment of single pack repository.
+
+This has a number of pre-dependancies:
+
+- The repository being configured in:
+
+```bash
+/opt/stackstorm/packs/packs/config.yaml
+```
+
+- Setting an Workflow / Hooks / Post-Receive WebHooks pointing at the URL
+
+```
+https://<my-server>/api/v1/webhooks/bitbucket_post_receive?st2-api-key=<ST2-API-Key>
+```
+
+- The rule is disabled by default and needs to be enabled with
+
+```bash
+st2 rule enable bitbucket.post_receive_webhook
+```
+
+*Important:* The BitBucket server (or cloud) needs to be able to reach
+your StackStorm server and consider the SSL cert as valid. The
+`ST2-API-Key` should be generated as per the instructions at
+https://docs.stackstorm.com/authentication.html.
+>>>>>>> master

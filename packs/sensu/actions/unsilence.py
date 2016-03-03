@@ -13,6 +13,6 @@ stashes = sensu.Stashes('config.yaml')
 
 path = "silence/%s" % args.client
 if args.check:
-    path = "%s/%s" % (path, args.client)
+    path = "%s/%s" % (path, args.check)
 
 print(stashes.delete(path))

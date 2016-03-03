@@ -1,0 +1,27 @@
+---
+name: add_annotation
+runner_type: run-python
+description: Add an annotation
+enabled: true
+entry_point: add_annotation.py
+parameters:
+  stream:
+    type: string
+    description: Annotation stream to add the annotation to.
+    required: true
+  title:
+    type: string
+    description: Annotation title.
+    required: true
+  description:
+    type: string
+    description: Annotation description.
+    required: false
+  start_time:
+    type: integer
+    description: Annotation start time (unix timestamp).
+    required: false
+  end_time:
+    type: integer
+    description: Annotation end time (unix timestamp).
+    required: false

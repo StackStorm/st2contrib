@@ -1,0 +1,5 @@
+api_url: https://place.com:8000/
+username: user
+password: 
+eauth: pam
+verify_ssl: true

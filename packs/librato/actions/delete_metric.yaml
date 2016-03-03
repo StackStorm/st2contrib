@@ -1,0 +1,11 @@
+---
+name: delete_metric
+runner_type: run-python
+description: Delete a metric from Librato
+enabled: true
+entry_point: delete_metric.py
+parameters:
+  name:
+    type: string
+    description: Metric to delete from Librato
+    required: true
