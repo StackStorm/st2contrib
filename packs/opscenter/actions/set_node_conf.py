@@ -11,7 +11,7 @@ class SetNodeConfAction(OpscenterAction):
             cluster_id = self.cluster_id
 
         try:
-            yaml.safe_loads(node_conf)  # If this throws, fail the action.
+            yaml.safe_load(node_conf)  # If this throws, fail the action.
         except:
             self.logger.error('Configuration is not valid YAML.')
             raise
