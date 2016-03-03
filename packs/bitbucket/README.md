@@ -175,8 +175,6 @@ Usage:
 ```bash
 st2 run bitbucket.list_branches repo="<repo_name>"
 ```
-<<<<<<< HEAD
-=======
 
 ## Rules
 
@@ -209,4 +207,3 @@ st2 rule enable bitbucket.post_receive_webhook
 your StackStorm server and consider the SSL cert as valid. The
 `ST2-API-Key` should be generated as per the instructions at
 https://docs.stackstorm.com/authentication.html.
->>>>>>> master
