@@ -29,9 +29,10 @@ class SaltLocal(SaltAction):
         '''
         self.generate_package('local',
                               cmd=module,
+                              args=args,
                               target=target,
                               expr_form=expr_form,
-                              args=args, data=kwargs)
+                              data=kwargs)
         request = self.generate_request()
         self.logger.info('[salt] Request generated')
         request.prepare_body(json.dumps(self.data), None)

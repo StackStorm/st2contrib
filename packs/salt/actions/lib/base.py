@@ -42,7 +42,8 @@ class SaltAction(Action):
         self.username = self.config.get('username', None)
         self.password = self.config.get('password', None)
 
-    def generate_package(self, client='local', cmd=None, **kwargs):
+    def generate_package(self, client='local', cmd=None, args=None,
+                         **kwargs):
         self.data = SaltPackage(client).data
         self.data['eauth'] = self.eauth
         self.data['username'] = self.username
@@ -54,6 +55,8 @@ class SaltAction(Action):
             self.data['expr_form'] = kwargs.get('expr_form', 'glob')
         if kwargs.get('kwargs', None) is not None:
             self.data['kwarg'] = kwargs['kwargs']['kwargs']
+        if args is not None:
+            self.data['arg'] = args
         clean_payload = sanitize_payload(('username', 'password'), self.data)
         self.logger.info("[salt] Payload to be sent: {0}".format(clean_payload))
 
