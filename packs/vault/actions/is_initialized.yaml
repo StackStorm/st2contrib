@@ -1,3 +1,4 @@
+---
 name: is_initialized
 runner_type: run-python
 description: "Read initialization status from Vault server"

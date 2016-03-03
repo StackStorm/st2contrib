@@ -1,6 +1,6 @@
+import hvac
 from st2actions.runners.pythonrunner import Action
 
-import hvac
 
 class VaultBaseAction(Action):
 

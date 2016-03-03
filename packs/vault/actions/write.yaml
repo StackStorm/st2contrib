@@ -1,3 +1,4 @@
+---
 name: write
 runner_type: run-python
 description: "Write a key/value to Vault"

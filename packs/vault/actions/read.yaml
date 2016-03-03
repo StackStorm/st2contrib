@@ -1,3 +1,4 @@
+---
 name: read
 runner_type: run-python
 description: "Read value from Vault server"
@@ -9,8 +10,3 @@ parameters:
         description: "Key to read from Vault"
         required: true
         position: 0
-    key:
-        type: string
-        description: "Key to read from Vault"
-        required: false
-        position: 1

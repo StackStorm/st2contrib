@@ -1,3 +1,4 @@
+---
 name: delete
 runner_type: run-python
 description: "Delete value from Vault server"

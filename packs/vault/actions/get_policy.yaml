@@ -1,3 +1,4 @@
+---
 name: get_policy
 runner_type: run-python
 description: "Read policy from Vault server"
