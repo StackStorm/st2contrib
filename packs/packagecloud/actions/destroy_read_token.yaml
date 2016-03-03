@@ -1,5 +1,6 @@
 ---
 name: "destroy_read_token"
+description: "destroy read token for a repository"
 pack: "packagecloud"
 runner_type: "local-shell-cmd"
 enabled: true

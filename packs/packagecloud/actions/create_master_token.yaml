@@ -1,5 +1,6 @@
 ---
 name: "create_master_token"
+description: "create master token for a repository"
 pack: "packagecloud"
 runner_type: "local-shell-cmd"
 enabled: true
