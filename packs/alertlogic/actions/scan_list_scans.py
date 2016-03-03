@@ -35,6 +35,10 @@ class ListScans(Action):
            ValueError: On lack of key in config.
         """
 
+        # ChatOps is not passing None, so catch 0...
+        if customer_id == 0:
+            customer_id = None
+
         # Set up the results
         results = {}
 
@@ -53,7 +57,7 @@ class ListScans(Action):
                              params=payload)
             r.raise_for_status()
         except:
-            raise ValueError("HTTP error: %s" % r.status_code)
+            raise ValueError("HTTP error: %s on %s" % (r.status_code, r.url))
 
         try:
             data = r.json()
