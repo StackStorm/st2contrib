@@ -1,5 +1,6 @@
 ---
 name: "destroy_master_token"
+description: "destroy master token for a repository"
 pack: "packagecloud"
 runner_type: "local-shell-cmd"
 enabled: true

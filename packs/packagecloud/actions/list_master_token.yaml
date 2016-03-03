@@ -1,5 +1,6 @@
 ---
 name: "list_master_token"
+description: "List master tokens for a repository"
 pack: "packagecloud"
 runner_type: "local-shell-cmd"
 enabled: true
