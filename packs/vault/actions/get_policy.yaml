@@ -1,0 +1,11 @@
+name: get_policy
+runner_type: run-python
+description: "Read policy from Vault server"
+enabled: true
+entry_point: "get_policy.py"
+parameters:
+    name:
+        type: string
+        description: "Policy to read from Vault"
+        required: true
+        position: 0

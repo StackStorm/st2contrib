@@ -1,0 +1,16 @@
+name: write
+runner_type: run-python
+description: "Write a key/value to Vault"
+enabled: true
+entry_point: "write.py"
+parameters:
+    path:
+        type: string
+        description: "Path to the Vault secrets"
+        required: true
+        position: 0
+    values:
+        type: string
+        description: "Keys and values to write in Vault ({'key':'value','key2': 'value2'}"
+        required: true
+        position: 1

@@ -1,0 +1,11 @@
+name: delete
+runner_type: run-python
+description: "Delete value from Vault server"
+enabled: true
+entry_point: "delete.py"
+parameters:
+    path:
+        type: string
+        description: "Path to delte from Vault"
+        required: true
+        position: 0

@@ -1,0 +1,5 @@
+name: list_policies
+runner_type: run-python
+description: "List Policies from Vault server"
+enabled: true
+entry_point: "list_policies.py"
