@@ -1,0 +1,10 @@
+---
+name: "salt.local"
+action_ref: "salt.local"
+description: "Execute salt command."
+formats:
+    - "salt-local {{module}} {{target='*'}} {{args=[]}}"
+ack:
+    format: "Running salt local across minions"
+result:
+  format: "Salt said{~} {{ execution.result.result.return }}"
