@@ -29,7 +29,7 @@ class SaltLocal(SaltAction):
         '''
         self.generate_package('local',
                               cmd=module,
-                              args=list(args),
+                              args=args,
                               target=target,
                               expr_form=expr_form,
                               data=kwargs)
