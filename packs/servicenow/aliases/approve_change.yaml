@@ -1,0 +1,10 @@
+---
+name: "servicenow.approve_change"
+action_ref: "servicenow.approve_change"
+description: "Set the approval status of a Change Request to approved."
+formats:
+    - "approve {{number}}"
+ack:
+    format: "Approving change"
+result:
+    format: "Change approved"
