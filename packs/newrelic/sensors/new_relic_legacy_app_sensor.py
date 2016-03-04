@@ -96,8 +96,8 @@ class LegacyNewRelicHookSensor(Sensor):
         if not self._host or not self._port or not self._url:
             raise Exception('NewRelic webhook app config (host:%s, port:%s, url:%s)' %
                             (self._host, self._port, self._url))
-        self._log.info('LegacyNewRelicHookSensor up. host %s, port %s, url %s', self._host, self._port,
-                       self._url)
+        self._log.info('LegacyNewRelicHookSensor up. host %s, port %s, url %s', self._host,
+                       self._port, self._url)
 
         @self._app.route(self._url, methods=['POST'])
         def handle_nrhook():
