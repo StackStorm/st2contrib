@@ -46,7 +46,7 @@ APP_URL_KEY = 'url'
 NORMAL_REPORT_DELAY_KEY = 'normal_report_delay'
 
 
-class NewRelicHookSensor(Sensor):
+class LegacyNewRelicHookSensor(Sensor):
     """
     Sensor class that starts up a flask webapp that listens to alert hooks from NewRelic.
     It translates hooks into appropriate triggers using the following mapping -
@@ -96,7 +96,7 @@ class NewRelicHookSensor(Sensor):
         if not self._host or not self._port or not self._url:
             raise Exception('NewRelic webhook app config (host:%s, port:%s, url:%s)' %
                             (self._host, self._port, self._url))
-        self._log.info('NewRelicHookSensor up. host %s, port %s, url %s', self._host, self._port,
+        self._log.info('LegacyNewRelicHookSensor up. host %s, port %s, url %s', self._host, self._port,
                        self._url)
 
         @self._app.route(self._url, methods=['POST'])
@@ -312,7 +312,7 @@ class NewRelicHookSensor(Sensor):
 
     @staticmethod
     def _get_sensor_config_param(config, param_name, default=None):
-        sensor_config = NewRelicHookSensor._get_sensor_config(config)
+        sensor_config = LegacyNewRelicHookSensor._get_sensor_config(config)
         if sensor_config:
             return sensor_config.get(param_name, default)
         return default
