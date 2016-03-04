@@ -48,14 +48,3 @@ class ListScanExecutions(Action):
         scans = GetScanList(self.config, customer_id)
 
         return GetScanExecutions(self.config, scans[scan_title]['id'])
-
-if __name__ == '__main__':
-
-    config_file = "/home/jjm/src/our-configs/alertlogic.yaml"
-    with open(config_file) as f:
-        config = yaml.safe_load(f)
-
-    action = ListScanExecutions(config)
-    ScanId = action.run(scan_title="ACI - RDG3 - Martin")
-    print(json.dumps( ScanId,
-                      sort_keys=True, indent=2))
