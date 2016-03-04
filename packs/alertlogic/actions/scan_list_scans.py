@@ -24,6 +24,8 @@ import yaml
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
+from lib import GetScanList
+
 class ListScans(Action):
     def run(self, customer_id=None):
         """
@@ -39,33 +41,4 @@ class ListScans(Action):
         if customer_id == 0:
             customer_id = None
 
-        # Set up the results
-        results = {}
-
-        url = "https://{}/api/scan/v1/scans".format(self.config['api_host'])
-        payload = None
-        headers = { "Accept": "application/json" }
-
-        if customer_id is not None:
-            payload = {}
-            payload['customer_id'] = customer_id
-
-        try:
-            r = requests.get(url,
-                             headers=headers,
-                             auth=(self.config['api_key'], ''),
-                             params=payload)
-            r.raise_for_status()
-        except:
-            raise ValueError("HTTP error: %s on %s" % (r.status_code, r.url))
-
-        try:
-            data = r.json()
-        except:
-            raise ValueError("Invalid JSON")
-        else:
-            for item in data:
-                results[item['title']] = {"active": item["active"],
-                                          "id": item["id"],
-                                          "type": item["type" ] }
-            return results
+        return GetScanList(self.config, customer_id)

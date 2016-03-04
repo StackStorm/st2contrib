@@ -24,8 +24,11 @@ import yaml
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
+from lib import GetScanList
+from lib import GetScanExecutions
+
 class ListScanExecutions(Action):
-    def run(self, scan_id=None):
+    def run(self, scan_title, customer_id=None):
         """
         The template class for 
 
@@ -38,21 +41,21 @@ class ListScanExecutions(Action):
         # Set up the results
         results = {}
 
-        url = "https://{}/api/scan/v1/scans/{}".format(self.config['api_host'],scan_id)
-        payload = None
-        headers = { "Accept": "application/json" }
+        # ChatOps is not passing None, so catch 0...
+        if customer_id == 0:
+            customer_id = None
 
-        try:
-            r = requests.get(url,
-                             headers=headers,
-                             auth=(self.config['api_key'], ''))
-            r.raise_for_status()
-        except:
-            raise ValueError("HTTP error: %s" % r.status_code)
+        scans = GetScanList(self.config, customer_id)
 
-        try:
-            data = r.json()
-        except:
-            raise ValueError("Invalid JSON")
-        else:
-            return data
+        return GetScanExecutions(self.config, scans[scan_title]['id'])
+
+if __name__ == '__main__':
+
+    config_file = "/home/jjm/src/our-configs/alertlogic.yaml"
+    with open(config_file) as f:
+        config = yaml.safe_load(f)
+
+    action = ListScanExecutions(config)
+    ScanId = action.run(scan_title="ACI - RDG3 - Martin")
+    print(json.dumps( ScanId,
+                      sort_keys=True, indent=2))

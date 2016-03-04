@@ -7,7 +7,7 @@ pack: "alertlogic"
 
 parameters:
   customer_id:
-    type: "string"
+    type: "integer"
     description: "Optional Customer ID. Must be a child Customer ID of your account. The default value is your Customer ID."
     default: ~
 
