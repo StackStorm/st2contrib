@@ -119,7 +119,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
 [![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
-[![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
+[![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
 [![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
 [![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.2.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 [![SmartThings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | [SmartThings](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | Integration with SmartThings | smartthings, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#SmartThings-pack)
@@ -2077,10 +2077,15 @@ unsilence | Unsilence a Sensu client or check
 
 Name | Description
 ---- | -----------
+approve_change | Run a string GET query on the ServiceNow API
+assign_incident_to | Run a string GET query on the ServiceNow API
 delete | Delete an entry from a ServiceNow Table
 get | Get an entry from a ServiceNow Table
+get_incidents_assigned_to | Run a string GET query on the ServiceNow API
 get_non_structured | Run a string GET query on the ServiceNow API
+get_user | Run a string GET query on the ServiceNow API
 insert | Insert an entry to a ServiceNow Table
+set_incident_owner | Run a string GET query on the ServiceNow API
 update | Update an entry in a ServiceNow Table
 
 ### signalr pack
