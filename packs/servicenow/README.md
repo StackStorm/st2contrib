@@ -34,8 +34,12 @@ Content-Type: application/json
 
 ## Actions
 
+* `servicenow.approve_change` Set a change request number to approved
+* `servicenow.assign_incident_to` assign an incident to a username
 * `servicenow.get` - Get an entry using a dictionary query from a ServiceNow Table
 * `servicenow.get_non_structured` - Get an entry using a string query from a ServiceNow Table
+* `servicenow.get_incidents_assigned_to` - Get incidents assigned to a particular user
 * `servicenow.update` - Update an entry in a ServiceNow Table
+* `servicenow.set_incident_owner` - Set the owner of an incident record
 * `servicenow.insert` - Insert an entry to a ServiceNow Table
 * `servicenow.delete` - Delete an entry from a ServiceNow Table
