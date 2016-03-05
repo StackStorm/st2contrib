@@ -9,10 +9,6 @@ parameters:
     type: "string"
     description: "Table to take action on"
     required: true
-  query:
-    type: "object"
-    description: "Structured query for SN data"
-    required: true
   payload:
     type: "object"
     description: "Data to upload to ServiceNow"
