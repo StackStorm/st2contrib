@@ -12,5 +12,5 @@ result:
     format: |
         Found {{ execution.result.result | length }} executions:{~}
         {% for exe in execution.result.result -%}
-            • `{{ exe.id }}` for `{{ exe.action.ref }}`: {{ exe.status }}, started at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% if exe.end_timestamp %}, finished at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% endif %}.
+            • `{{ exe.id }}` for `{{ exe.action.ref }}`: {{ exe.status }}, started at {{ exe.start_timestamp[:19]|replace("T", " ") }}{% if 'end_timestamp' in exe %}, finished at {{ exe.end_timestamp[:19]|replace("T", " ") }}{% endif %}.
         {%+ endfor %}
