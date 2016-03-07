@@ -1,0 +1,34 @@
+---
+name: "get_scan_results"
+pack: "alertlogic"
+description: "Summary of the latest execution of an AlertLogic of an scan"
+action_ref: "alertlogic.scan_get_results_by_title"
+formats:
+  - display: "alertlogic scan results [customer_id <customer_id>] <scan_title>"
+    representation:
+      - "alertlogic scan results customer_id {{customer_id}} {{scan_title}}"
+      - "alertlogic scan results {{scan_title}}"
+ack:
+  enabled: true
+  append_url: false
+  format: "Retrieving scan results..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Scan _{{execution.parameters.scan_title}}_ found *{{execution.result.result.total_vulns}}* vulnerabilities on *{{execution.result.result.total_hosts}}* host(s){~}
+
+    *Vulnerability Summary:* {% if execution.result.result.vulns_summary.Urgent != 0 %}_Urgent:_ {{execution.result.result.vulns_summary.Urgent}}; {% endif %}
+    {% if execution.result.result.vulns_summary.Critical != 0 %}_Critical:_ {{execution.result.result.vulns_summary.Critical}}; {% endif %}
+    {% if execution.result.result.vulns_summary.High != 0 %}_High:_ {{execution.result.result.vulns_summary.High}}; {% endif %}
+    {% if execution.result.result.vulns_summary.Medium != 0 %}_Medium:_ {{execution.result.result.vulns_summary.Medium}}; {% endif %}
+    {% if execution.result.result.vulns_summary.Low != 0 %}_Low:_ {{execution.result.result.vulns_summary.Low}}; {% endif %}
+    {% if execution.result.result.vulns_summary.Unclassified != 0 %}_Unclassified:_ {{execution.result.result.vulns_summary.Unclassified}}; {% endif %}
+
+
+    *Hosts:*
+    {% for item in execution.result.result.scanned_hosts %}
+     - <{{item.ui_link}}|{{item.ip_address}}> - *{% if item.host_name != '' %}{{item.host_name}}{% else %}?{% endif %}*
+    {% endfor %}
+    {% else %}
+    Failed!
+    {% endif %}
