@@ -16,57 +16,55 @@
 import requests
 import datetime
 
+
 def GetScanExecutions(config, scan_id):
-   """
-   The template class for
+    """
+    The template class for
 
-   Returns: An blank Dict.
-   
-   Raises:
-   ValueError: On lack of key in config.
-   """
-   
-   results = {}
+    Returns: An blank Dict.
 
-   url = "https://{}/api/scan/v1/scans/{}".format(config['api_host'], scan_id)
-   payload = None
-   headers = { "Accept": "application/json" }
+    Raises:
+    ValueError: On lack of key in config.
+    """
+    results = {}
 
-   try:
-      r = requests.get(url,
-                       headers=headers,
-                       auth=(config['api_key'], ''))
-      r.raise_for_status()
-   except:
-      raise ValueError("HTTP error: %s on %s" % (r.status_code, r.url))
+    url = "https://{}/api/scan/v1/scans/{}".format(config['api_host'], scan_id)
+    headers = {"Accept": "application/json"}
 
-   try:
-      data = r.json()
-   except:
-      raise ValueError("Invalid JSON")
-   else:
-      results = { 'latest_complete': None, 'scans': [] }
-      for item in data:
-         create_date = datetime.datetime.fromtimestamp(item['create_date'])
-         finish_date = datetime.datetime.fromtimestamp(item['finish_date'])
-         duration = finish_date - create_date
+    try:
+        r = requests.get(url,
+                         headers=headers,
+                         auth=(config['api_key'], ''))
+        r.raise_for_status()
+    except:
+        raise ValueError("HTTP error: %s on %s" % (r.status_code, r.url))
 
-         results['scans'].append({ "id": item['id'],
-                                   "active":      item['active'],
-                                   "create_date": create_date.strftime('%Y-%m-%d %H:%M:%S'),
-                                   "finish_date": finish_date.strftime('%Y-%m-%d %H:%M:%S'),
-                                   "duration":    str(duration)
-                                })
-         
-   # This list can be very large, limit to the last 10.
-   results['scans'].sort(reverse=True)
-   results['scans'] = results['scans'][0:10]
+    try:
+        data = r.json()
+    except:
+        raise ValueError("Invalid JSON")
+    else:
+        results = {'latest_complete': None, 'scans': []}
+        for item in data:
+            create_date = datetime.datetime.fromtimestamp(item['create_date'])
+            finish_date = datetime.datetime.fromtimestamp(item['finish_date'])
+            duration = finish_date - create_date
 
-   # Find the latest ccmpleted scan..
-   for item in results['scans']:
-      if item['active'] is False:
-         results['latest_complete'] = item['id']
-         break
+            results['scans'].append({"id": item['id'],
+                                     "active": item['active'],
+                                     "create_date": create_date.strftime('%Y-%m-%d %H:%M:%S'),
+                                     "finish_date": finish_date.strftime('%Y-%m-%d %H:%M:%S'),
+                                     "duration": str(duration)})
 
-   return results
+    # This list can be very large, limit to the last 10.
+    results['scans'].sort(reverse=True)
+    results['scans'] = results['scans'][0:10]
+
+    # Find the latest ccmpleted scan..
+    for item in results['scans']:
+        if item['active'] is False:
+            results['latest_complete'] = item['id']
+            break
+
+    return results
 
