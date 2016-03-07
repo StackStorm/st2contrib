@@ -4,7 +4,7 @@ pack: "alertlogic"
 description: "List all the Executions AlertLogic of an scan"
 action_ref: "alertlogic.scan_list_scan_executions"
 formats:
-  - display: "alertlogic scan executions [ customer_id <customer_id> ] <scan_title>"
+  - display: "alertlogic scan executions [customer_id <customer_id>] <scan_title>"
     representation:
       - "alertlogic scan executions customer_id {{customer_id}} {{scan_title}}"
       - "alertlogic scan executions {{scan_title}}"
