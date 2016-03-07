@@ -3,9 +3,8 @@ name: "tesla.honk_horn"
 action_ref: "tesla.honk_horn"
 description: "Honk your horn"
 formats:
-    - "honk {{vin}}"
     - "beep-beep {{vin}}"
     - "meep-meep {{vin}}"
-    - "honk-honk {{vin}}"
+    - "honk(-honk)* {{ vin }}[!1]*`"
 result:
-    format: "**Honk Honk**"
+    format: "{~}**Honk Honk**"

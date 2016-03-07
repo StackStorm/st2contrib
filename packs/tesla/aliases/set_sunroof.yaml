@@ -4,4 +4,3 @@ action_ref: "tesla.set_vehicle_sun_roof"
 description: "Set the position of the sun roof"
 formats:
     - "roof {{state}} {{percent=0}}"
-
