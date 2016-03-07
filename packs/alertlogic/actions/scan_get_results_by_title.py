@@ -20,14 +20,17 @@ import requests
 import json
 import os
 import yaml
+import datetime
 
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
+from lib import GetScanList
+from lib import GetScanExecutions
 from lib import GetScanResults
 
-class ScanResults(Action):
-    def run(self, scan_exec_id=None, new_vulns=False, new_ports=False):
+class GetScanResultsByTitle(Action):
+    def run(self, customer_id=None, scan_title=None, new_vulns=False, new_ports=False):
         """
         The template class for 
 
@@ -37,4 +40,9 @@ class ScanResults(Action):
            ValueError: On lack of key in config.
         """
 
-        return GetScanResults(self.config, scan_exec_id, new_vulns, new_ports)
+        scans = GetScanList(self.config, customer_id)
+        scan_executions = GetScanExecutions(self.config,  scans[scan_title]['id'])
+
+        latest_scan_id = scan_executions['latest_complete']
+
+        return GetScanResults(self.config, latest_scan_id, new_vulns=new_vulns, new_ports=new_ports)

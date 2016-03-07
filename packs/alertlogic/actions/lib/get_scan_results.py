@@ -15,13 +15,13 @@
 
 import requests
 
-def booleen2string(self, booleen):
+def booleen2string(booleen):
     if booleen is True:
         return "true"
     else:
         return "false"
         
-def GetScanResults (config, scan_id, new_vulns=False, new_ports=False):
+def GetScanResults (config, scan_exec_id, new_vulns=False, new_ports=False):
     """
     The template class for
 
@@ -46,7 +46,7 @@ def GetScanResults (config, scan_id, new_vulns=False, new_ports=False):
     try:
         r = requests.get(url,
                          headers=headers,
-                        auth=(self.config['api_key'], ''),
+                         auth=(config['api_key'], ''),
                          params=payload)
         r.raise_for_status()
     except:
