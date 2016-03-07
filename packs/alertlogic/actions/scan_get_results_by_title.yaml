@@ -1,5 +1,5 @@
 ---
-description: "Get a Scans latest complete."
+description: "Get the scan results for the latest complete execution."
 enabled: true
 entry_point: "scan_get_results_by_title.py"
 name: "scan_get_results_by_title"
