@@ -24,7 +24,7 @@ import yaml
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
-from lib import GetScanResults
+from lib.get_scan_results import GetScanResults
 
 class ScanResults(Action):
     def run(self, scan_exec_id=None, new_vulns=False, new_ports=False):

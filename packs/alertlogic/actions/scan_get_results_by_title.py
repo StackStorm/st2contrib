@@ -25,9 +25,9 @@ import datetime
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
-from lib import GetScanList
-from lib import GetScanExecutions
-from lib import GetScanResults
+from lib.get_scan_list import GetScanList
+from lib.get_scan_executions import GetScanExecutions
+from lib.get_scan_results import GetScanResults
 
 class GetScanResultsByTitle(Action):
     def run(self, customer_id=None, scan_title=None, new_vulns=False, new_ports=False):

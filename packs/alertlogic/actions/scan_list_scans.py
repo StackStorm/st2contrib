@@ -24,7 +24,7 @@ import yaml
 from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
-from lib import GetScanList
+from lib.get_scan_list import GetScanList
 
 class ListScans(Action):
     def run(self, customer_id=None, active_only=False):
