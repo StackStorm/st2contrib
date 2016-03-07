@@ -11,4 +11,9 @@ parameters:
     description: "Optional Customer ID. Must be a child Customer ID of your account. The default value is your Customer ID."
     default: ~
 
+  active_only:
+    type: "boolean"
+    description: "Only include active scans."
+    default: true
+
 runner_type: "python-script"

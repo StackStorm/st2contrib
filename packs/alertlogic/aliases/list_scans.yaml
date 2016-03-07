@@ -1,12 +1,13 @@
 ---
 name: "list_scans"
 pack: "alertlogic"
-description: "List all the AlertLogic scans for a customer_id to account of key."
+description: "List all the active AlertLogic scans for a customer_id to account of key."
 action_ref: "alertlogic.scan_list_scans"
 formats:
-  - display: "alertlogic scan list [ <customer_id> ]"
+  - display: "alertlogic scan list [customer_id <customer_id>]"
     representation:
-      - "alertlogic scan list {{customer_id=0}}"
+      - "alertlogic scan list"
+      - "alertlogic scan list customer_id {{customer_id}}"
 ack:
   enabled: true
   append_url: false

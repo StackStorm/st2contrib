@@ -15,7 +15,7 @@
 
 import requests
 
-def GetScanList(config, customer_id=None):
+def GetScanList(config, customer_id=None, active_only=False):
     """
     The template class for
     
@@ -50,6 +50,9 @@ def GetScanList(config, customer_id=None):
         raise ValueError("Invalid JSON")
     else:
         for item in data:
+            if item["active"] is False and active_only is True:
+                continue
+
             results[item['title']] = {"active": item["active"],
                                       "id": item["id"],
                                       "type": item["type" ] }

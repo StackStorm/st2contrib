@@ -27,7 +27,7 @@ from st2actions.runners.pythonrunner import Action
 from lib import GetScanList
 
 class ListScans(Action):
-    def run(self, customer_id=None):
+    def run(self, customer_id=None, active_only=False):
         """
         The template class for 
 
@@ -37,8 +37,4 @@ class ListScans(Action):
            ValueError: On lack of key in config.
         """
 
-        # ChatOps is not passing None, so catch 0...
-        if customer_id == 0:
-            customer_id = None
-
-        return GetScanList(self.config, customer_id)
+        return GetScanList(self.config, customer_id, active_only)

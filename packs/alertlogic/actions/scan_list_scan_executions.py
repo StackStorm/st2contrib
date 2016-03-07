@@ -41,10 +41,6 @@ class ListScanExecutions(Action):
         # Set up the results
         results = {}
 
-        # ChatOps is not passing None, so catch 0...
-        if customer_id == 0:
-            customer_id = None
-
         scans = GetScanList(self.config, customer_id)
 
         return GetScanExecutions(self.config, scans[scan_title]['id'])
