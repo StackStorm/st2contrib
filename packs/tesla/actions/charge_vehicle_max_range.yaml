@@ -12,4 +12,4 @@ parameters:
   action:
     type: "string"
     immutable: true
-    default: "charge_max_range
+    default: "charge_max_range"
