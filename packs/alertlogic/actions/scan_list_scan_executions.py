@@ -15,31 +15,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-import requests
-import json
-import os
-import yaml
-
-from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
 from lib.get_scan_list import GetScanList
 from lib.get_scan_executions import GetScanExecutions
 
+
 class ListScanExecutions(Action):
     def run(self, scan_title, customer_id=None):
         """
-        The template class for 
+        The template class for
 
         Returns: An blank Dict.
 
         Raises:
            ValueError: On lack of key in config.
         """
-
-        # Set up the results
-        results = {}
 
         scans = GetScanList(self.config, customer_id)
 

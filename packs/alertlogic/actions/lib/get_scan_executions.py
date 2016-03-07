@@ -67,4 +67,3 @@ def GetScanExecutions(config, scan_id):
             break
 
     return results
-

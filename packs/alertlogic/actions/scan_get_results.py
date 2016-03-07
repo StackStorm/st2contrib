@@ -15,21 +15,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-import requests
-import json
-import os
-import yaml
-
-from getpass import getpass
 from st2actions.runners.pythonrunner import Action
 
 from lib.get_scan_results import GetScanResults
 
+
 class ScanResults(Action):
     def run(self, scan_exec_id=None, new_vulns=False, new_ports=False):
         """
-        The template class for 
+        The template class for
 
         Returns: An blank Dict.
 

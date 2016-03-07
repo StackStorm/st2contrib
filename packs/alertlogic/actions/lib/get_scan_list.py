@@ -15,12 +15,13 @@
 
 import requests
 
+
 def GetScanList(config, customer_id=None, active_only=False):
     """
     The template class for
-    
+
     Returns: An blank Dict.
-    
+
     Raises:
     ValueError: On lack of key in config.
     """
@@ -29,7 +30,7 @@ def GetScanList(config, customer_id=None, active_only=False):
 
     url = "https://{}/api/scan/v1/scans".format(config['api_host'])
     payload = None
-    headers = { "Accept": "application/json" }
+    headers = {"Accept": "application/json"}
 
     if customer_id is not None:
         payload = {}
@@ -55,5 +56,5 @@ def GetScanList(config, customer_id=None, active_only=False):
 
             results[item['title']] = {"active": item["active"],
                                       "id": item["id"],
-                                      "type": item["type" ] }
+                                      "type": item["type"]}
     return results

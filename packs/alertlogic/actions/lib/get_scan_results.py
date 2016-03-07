@@ -15,13 +15,15 @@
 
 import requests
 
+
 def booleen2string(booleen):
     if booleen is True:
         return "true"
     else:
         return "false"
-        
-def GetScanResults (config, scan_exec_id, new_vulns=False, new_ports=False):
+
+
+def GetScanResults(config, scan_exec_id, new_vulns=False, new_ports=False):
     """
     The template class for
 
@@ -31,17 +33,15 @@ def GetScanResults (config, scan_exec_id, new_vulns=False, new_ports=False):
     ValueError: On lack of key in config.
     """
 
-    results = {}
-   
-    url = "https://{}/api/scan/v1/results/{}".format(config['api_host'],scan_exec_id)
+    url = "https://{}/api/scan/v1/results/{}".format(config['api_host'], scan_exec_id)
 
     payload = {}
 
     # The API expects false and not False, so send strings not booleens
-    payload = { 'new_vulns': booleen2string(new_vulns),
-                'new_ports': booleen2string(new_ports) }
+    payload = {'new_vulns': booleen2string(new_vulns),
+               'new_ports': booleen2string(new_ports)}
 
-    headers = { "Accept": "application/json" }
+    headers = {"Accept": "application/json"}
 
     try:
         r = requests.get(url,
