@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import requests
-import datetime
+from datetime import datetime
 
 
 def GetScanExecutions(config, scan_id):
@@ -46,16 +46,16 @@ def GetScanExecutions(config, scan_id):
     else:
         results = {'latest_complete': None, 'scans': []}
         for item in data:
-            create_date = datetime.datetime.fromtimestamp(item['create_date']).strftime('%Y-%m-%d %H:%M:%S')
+            cd = datetime.fromtimestamp(item['create_date'])
+            create_date = cd.strftime('%Y-%m-%d %H:%M:%S')
 
             if item['finish_date'] is not None:
-                finish_date = datetime.datetime.fromtimestamp(item['finish_date']).strftime('%Y-%m-%d %H:%M:%S')
-                duration = str(datetime.datetime.fromtimestamp(item['finish_date']) -
-                               datetime.datetime.fromtimestamp(item['create_date']))
+                fd = datetime.fromtimestamp(item['finish_date'])
+                finish_date = fd.strftime('%Y-%m-%d %H:%M:%S')
+                duration = str(fd - cd)
             else:
                 finish_date = "-"
-                duration = str(datetime.datetime.now().replace(microsecond=0) -
-                               datetime.datetime.fromtimestamp(item['create_date']))
+                duration = str(datetime.now().replace(microsecond=0) - cd)
 
             results['scans'].append({"id": item['id'],
                                      "active": item['active'],
