@@ -3,6 +3,6 @@ name : tesla
 description : car horn automation
 keywords:
   - tesla
-version : 0.1
+version : 0.2.0
 author : Anthony Shaw
 email : anthony.shaw@dimensiondata.com
