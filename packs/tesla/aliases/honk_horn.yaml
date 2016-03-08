@@ -1,0 +1,10 @@
+---
+name: "tesla.honk_horn"
+action_ref: "tesla.honk_horn"
+description: "Honk your horn"
+formats:
+   - display: "honk-honk {{vin}}"
+     representation:
+       - "((beep|honk|meep)-?)+ {{vin}}[!.]?"
+result:
+    format: "{~}**Honk Honk**"

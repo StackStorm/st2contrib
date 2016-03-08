@@ -1,0 +1,6 @@
+---
+name: "list_vehicles"
+runner_type: "python-script"
+description: "List the vehicles in your garage"
+enabled: true
+entry_point: "list_vehicles.py"
