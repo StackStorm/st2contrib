@@ -5,6 +5,6 @@ description: "Honk your horn"
 formats:
    - display: "honk-honk {{vin}}"
      representation:
-       - "((beep|honk|meep)-?)+ {{vin}}[!.]?"
+       - "((beep|honk|meep)-?)+ {{vin}}[!.]*"
 result:
     format: "{~}**Honk Honk**"
