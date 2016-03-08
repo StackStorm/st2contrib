@@ -17,7 +17,8 @@ result:
     {% if execution.status == 'succeeded' %}
     Scan _{{execution.parameters.scan_title}}_ found *{{execution.result.result.total_vulns}}* vulnerabilities on *{{execution.result.result.total_hosts}}* host(s){~}
 
-    *Vulnerability Summary:* {% if execution.result.result.vulns_summary.Urgent != 0 %}_Urgent:_ {{execution.result.result.vulns_summary.Urgent}}; {% endif %}
+    *Vulnerability Summary:*
+    {% if execution.result.result.vulns_summary.Urgent != 0 %}_Urgent:_ {{execution.result.result.vulns_summary.Urgent}}; {% endif %}
     {% if execution.result.result.vulns_summary.Critical != 0 %}_Critical:_ {{execution.result.result.vulns_summary.Critical}}; {% endif %}
     {% if execution.result.result.vulns_summary.High != 0 %}_High:_ {{execution.result.result.vulns_summary.High}}; {% endif %}
     {% if execution.result.result.vulns_summary.Medium != 0 %}_Medium:_ {{execution.result.result.vulns_summary.Medium}}; {% endif %}
