@@ -46,15 +46,22 @@ def GetScanExecutions(config, scan_id):
     else:
         results = {'latest_complete': None, 'scans': []}
         for item in data:
-            create_date = datetime.datetime.fromtimestamp(item['create_date'])
-            finish_date = datetime.datetime.fromtimestamp(item['finish_date'])
-            duration = finish_date - create_date
+            create_date = datetime.datetime.fromtimestamp(item['create_date']).strftime('%Y-%m-%d %H:%M:%S')
+
+            if item['finish_date'] is not None:
+                finish_date = datetime.datetime.fromtimestamp(item['finish_date']).strftime('%Y-%m-%d %H:%M:%S')
+                duration = str(datetime.datetime.fromtimestamp(item['finish_date']) -
+                               datetime.datetime.fromtimestamp(item['create_date']))
+            else:
+                finish_date = "-"
+                duration = str(datetime.datetime.now().replace(microsecond=0) -
+                               datetime.datetime.fromtimestamp(item['create_date']))
 
             results['scans'].append({"id": item['id'],
                                      "active": item['active'],
-                                     "create_date": create_date.strftime('%Y-%m-%d %H:%M:%S'),
-                                     "finish_date": finish_date.strftime('%Y-%m-%d %H:%M:%S'),
-                                     "duration": str(duration)})
+                                     "create_date": create_date,
+                                     "finish_date": finish_date,
+                                     "duration": duration})
 
     # This list can be very large, limit to the last 10.
     results['scans'].sort(reverse=True)

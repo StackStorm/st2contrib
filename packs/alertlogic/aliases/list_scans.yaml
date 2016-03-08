@@ -11,7 +11,7 @@ formats:
 ack:
   enabled: true
   append_url: false
-  format: "Requesting..."
+  format: "Requesting Scan List..."
 result:
   format: |
     {% if execution.status == 'succeeded' %}

@@ -1,7 +1,7 @@
 ---
 name: "get_scan_results"
 pack: "alertlogic"
-description: "Summary of the latest execution of an AlertLogic of an scan"
+description: "Summary of the latest complete execution of an AlertLogic of an scan"
 action_ref: "alertlogic.scan_get_results_by_title"
 formats:
   - display: "alertlogic scan results [customer_id <customer_id>] <scan_title>"
@@ -11,7 +11,7 @@ formats:
 ack:
   enabled: true
   append_url: false
-  format: "Retrieving scan results..."
+  format: "Retrieving latest complete results for scan _{{execution.parameters.scan_title}}_..."
 result:
   format: |
     {% if execution.status == 'succeeded' %}
