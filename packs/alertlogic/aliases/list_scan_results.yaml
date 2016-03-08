@@ -25,7 +25,6 @@ result:
     {% if execution.result.result.vulns_summary.Low != 0 %}_Low:_ {{execution.result.result.vulns_summary.Low}}; {% endif %}
     {% if execution.result.result.vulns_summary.Unclassified != 0 %}_Unclassified:_ {{execution.result.result.vulns_summary.Unclassified}}; {% endif %}
 
-
     *Hosts:*
     {% for item in execution.result.result.scanned_hosts %}
      - <{{item.ui_link}}|{{item.ip_address}}> - *{% if item.host_name != '' %}{{item.host_name}}{% else %}?{% endif %}*
