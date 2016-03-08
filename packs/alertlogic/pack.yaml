@@ -2,7 +2,7 @@
 name: alertlogic
 description: AlertLogic ActiveIntegration APIs 
 keywords:
-    - AlertLogic
+  - AlertLogic
 version: 0.1
-author: st2-dev
-email: info@stackstorm.com
+author: Jon Middleton
+email: jon.middleton@pulsant.com
