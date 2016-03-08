@@ -126,6 +126,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 [![splunk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/splunk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | [splunk](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | Splunk integration pack | splunk | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#splunk-pack)
 [![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.2 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![tesla icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/tesla/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/tesla) | [tesla](https://github.com/StackStorm/st2contrib/tree/master/packs/tesla) | car horn automation | tesla | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#tesla-pack)
 [![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | [time](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | st2 content pack containing different date and time related functionality | date, time | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#time-pack)
 [![Travis CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
@@ -2252,6 +2253,31 @@ kv.set_object | Serialize and store object in a datastore
 rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
 upload_to_s3 | Sends collected data to write-only StackStorm S3 bucket
+
+### tesla pack
+
+![tesla icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/tesla/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+charge_vehicle | Charge a vehicle for standard charge
+charge_vehicle_max_range | Charge a vehicle for max range charge
+flash_lights | Flash lights of a vehicle
+get_vehicle | Get a vehicle from your garage
+honk_horn | Honk Horn of a vehicle
+list_vehicles | List the vehicles in your garage
+lock_vehicle | Lock the doors of a vehicle
+open_charge_port_door | Open the charge port of a vehicle
+set_vehicle_sun_roof | Set vehicle sun roof position
+set_vehicle_temperature | Set vehicle sun roof position
+start_vehicle_ac | Start a vehicle AC
+start_vehicle_charge | Start a vehicle charge
+stop_vehicle_ac | Stop a vehicle AC
+stop_vehicle_charge | Stop a vehicle charge
+unlock_vehicle | Unlock the doors of a vehicle
+wake_vehicle | Wake a vehicle
 
 ### time pack
 
