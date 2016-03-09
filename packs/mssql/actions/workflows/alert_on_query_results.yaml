@@ -1,0 +1,10 @@
+---
+chain:
+  -
+    name: execute_query
+    ref: mssql.execute.query
+    parameters:
+      database: positions
+      query_string: "EXEC sp_test_multi_result_set"
+      params:
+

@@ -1,0 +1,33 @@
+---
+pack: mssql
+name: execute.insert
+description: Sends an INSERT statement to MS SQL Server and returns the id of the new row.
+enabled: true
+
+runner_type: python-script
+entry_point: mssql_runner.py
+
+parameters:
+  action:
+    default: execute_insert
+    immutable: true
+    type: string
+  query_string:
+    description: Query to send to MS SQL Server.
+    required: true
+    type: string
+  params:
+    description: Parameters for interpolation in the query_string.
+    type: string
+  server:
+    description: Database host if not specified in config.
+    type: string
+  user:
+    description: Database user if not specified in config.
+    type: string
+  password:
+    description: Database password if not specified in config.
+    type: string
+  database:
+    description: Database name if not specified in config.
+    type: string

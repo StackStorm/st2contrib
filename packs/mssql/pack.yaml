@@ -1,0 +1,6 @@
+---
+name: mssql
+description: st2 content pack containing Microsoft SQL Server integrations
+version: 0.1.0
+author: codyaray
+email: cray@peak6.com
