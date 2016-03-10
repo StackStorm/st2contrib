@@ -8,19 +8,20 @@ __all__ = [
     'BaseGithubAction'
 ]
 
-BASE_URL = 'https://github.com'
-
 
 class BaseGithubAction(Action):
     def __init__(self, config):
         super(BaseGithubAction, self).__init__(config=config)
         token = self.config.get('token', None)
         token = token or None
-        self._client = Github(token)
+        base_url = self.config.get('BASE_URL', None)
+        base_url = base_url or None
+        self._client = Github(token, base_url)
 
     def _web_session(self):
         '''Returns a requests session to scrape off the web'''
-        login_url = BASE_URL + '/login'
+        base_url = self.config.get('BASE_URL')
+        login_url = base_url + '/login'
         session = requests.Session()
         request = session.get(login_url).text
         html = BeautifulSoup(request)
@@ -35,12 +36,13 @@ class BaseGithubAction(Action):
             'authenticity_token': token
         }
 
-        session_url = BASE_URL + session_path
+        session_url = base_url + session_path
         session.post(session_url, data=login_data)
         return session
 
     def _get_analytics(self, category, repo):
-        url = 'https://github.com/' + repo + '/graphs/' + category + '.json'
+        base_url = self.config.get('BASE_URL')
+        url = base_url + repo + '/graphs/' + category + '.json'
         s = self._web_session()
         response = s.get(url)
         return response.json()

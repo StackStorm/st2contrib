@@ -2,6 +2,7 @@
 token: ""
 user: ""
 password: ""
+BASE_URL: "https://github.com"  # can also be a GitHub Enterprise URL
 
 repository_sensor:
   event_type_whitelist:
