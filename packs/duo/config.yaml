@@ -1,0 +1,4 @@
+---
+host: api-hostname
+ikey: admin-api-integration-key
+skey: admin-api-secret-key
