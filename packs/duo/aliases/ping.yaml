@@ -3,14 +3,14 @@ name: "ping"
 pack: "duo"
 description: "Check the Duo platform can be reached."
 action_ref: "duo.ping"
-formations:
+formats:
   - "duo ping"
 ack:
   enabled: true
   append_url: false
   format: "Cheking connection to Duo..."
 result:
-  formaat: |
+  format: |
     {% if execution.status == 'succeeded' %}
     Pong! Succeeded{~}
     {% else %}

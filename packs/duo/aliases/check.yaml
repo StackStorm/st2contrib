@@ -3,14 +3,14 @@ name: "check"
 pack: "duo"
 description: "Test the intergration setup to the Duo platform"
 action_ref: "duo.check"
-formations:
+formats:
   - "duo check"
 ack:
   enabled: true
   append_url: false
   format: "Chekcing setup for Duo Authication..."
 result:
-  formaat: |
+  format: |
     {% if execution.status == 'succeeded' %}
     Check Succeeded!{~}
     {% else %}

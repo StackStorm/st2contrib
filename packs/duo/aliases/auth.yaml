@@ -3,14 +3,14 @@ name: "auth"
 pack: "duo"
 description: "Test your authication via the Duo platform"
 action_ref: "duo.auth"
-formations:
+formats:
   - "duo auth"
 ack:
   enabled: true
   append_url: false
   format: "Spending a Duo push request..."
 result:
-  formaat: |
+  format: |
     {% if execution.status == 'succeeded' %}
     Authentication Succeeded!{~}
     {% else %}
