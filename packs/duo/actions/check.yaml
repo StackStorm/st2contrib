@@ -1,0 +1,8 @@
+---
+description: "Verify that the integration and secret keys are valid."
+enabled: true
+entry_point: 'check.py'
+name: "check"
+pack: "duo"
+
+runner_type: "python-script"
