@@ -22,9 +22,9 @@ parameters:
       - "phone"
     default: "auto"
 
-  ipaddr:
-    type: "string"
-    description: "The IP address of the user to be authenticated, in dotted quad format."
+  #ipaddr:
+  #  type: "string"
+  #  description: "The IP address of the user to be authenticated, in dotted quad format."
 
   async:
     type: "boolean"
@@ -37,17 +37,17 @@ parameters:
     description: "The device ID to use."
     default: "auto"
 
-  type:
+  push_type:
     type: "string"
     description: "This string is displayed in the Duo Mobile app before the word “request”. "
-    default: "StackStorm"
+    default: "ChatOps"
 
   passcode:
     type: "integer"
     description: "Passcode entered by the user."
 
-  push_info:
-    type: "string"
-    description: "Extra key/value pairs that will be URL-encoded."
+  #push_info:
+  #  type: "string"
+  #  description: "Extra key/value pairs that will be URL-encoded."
 
 runner_type: "python-script"

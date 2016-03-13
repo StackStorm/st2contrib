@@ -12,8 +12,7 @@ ack:
 result:
   format: |
     {% if execution.status == 'succeeded' %}
-    Check Succeeded!{~}
+    The Integration key & secret key is *valid*! @ {{execution.result.result.time}}{~}
     {% else %}
-    Check failed!{~}
+    The Integration key & secret key is *invalid!{~}
     {% endif %}
-

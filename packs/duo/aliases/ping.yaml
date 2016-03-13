@@ -12,9 +12,7 @@ ack:
 result:
   format: |
     {% if execution.status == 'succeeded' %}
-    Succeeded!{~}
-    {{execution.result.result.stat}} @ {{execution.result.result.response.time}}
+    Duo is Up! @ {{execution.result.result.time}}{~}
     {% else %}
     Ping Failed!{~}
     {% endif %}
-

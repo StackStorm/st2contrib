@@ -12,8 +12,8 @@ ack:
 result:
   format: |
     {% if execution.status == 'succeeded' %}
-    Authentication Succeeded!{~}
+    {{execution.result.result.status_msg}}{~}
     {% else %}
-    Authentication failed!{~}
+    {{execution.result.stdout}}{~}
     {% endif %}
 
