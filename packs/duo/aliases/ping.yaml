@@ -12,8 +12,9 @@ ack:
 result:
   format: |
     {% if execution.status == 'succeeded' %}
-    Pong! Succeeded{~}
+    Succeeded!{~}
+    {{execution.result.result.stat}} @ {{execution.result.result.response.time}}
     {% else %}
-    Failed!{~}
+    Ping Failed!{~}
     {% endif %}
 
