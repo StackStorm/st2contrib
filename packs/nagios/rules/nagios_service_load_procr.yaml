@@ -4,7 +4,7 @@ pack: nagios
 description: Check running procs on host when load is high
 enabled: true
 trigger:
-  type: nagios.service.state_change
+  type: nagios.service-state-change
 criteria:
   trigger.service:
     pattern: "(.*)_check_loadavg"

@@ -4,7 +4,7 @@ pack: nagios
 description: Check process state on host
 enabled: true
 trigger:
-  type: st2.nagios.service.state_change
+  type: nagios.service-state-change
 criteria:
   service:
     pattern: "(.*)_check_(.*)_process"
