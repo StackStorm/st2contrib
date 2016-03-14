@@ -17,7 +17,6 @@
 
 import urllib
 
-from st2actions.runners.pythonrunner import Action
 from lib.actions import AuthAction
 
 
