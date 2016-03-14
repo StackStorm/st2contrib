@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -16,24 +14,20 @@
 # limitations under the License.
 
 from st2actions.runners.pythonrunner import Action
-from lib.actions import AuthAction
+import duo_client
 
 
-class Ping(AuthAction):
-    def run(self):
-        """
-        Ping the Duo Platorm.
-
-        Returns: An dict with info returned by Duo.
-
-        Raises:
-          RuntimeError: On ping failure.
-        """
-
+class AuthAction(Action):
+    def __init__(self, config):
+        super(AuthAction, self).__init__(config)
+        
         try:
-            data = self.duo_auth.ping()
-        except RuntimeError, e:
-            print "Ping failed! %s" % e
-            raise ValueError("Ping failed! %s" % e)
-        else:
-            return data
+            ikey = self.config['auth']['ikey']
+            skey = self.config['auth']['skey']
+            host = self.config['auth']['host']
+        except KeyError:
+            raise ValueError("Duo config not found in config.")
+
+        self.duo_auth = duo_client.Auth(ikey=ikey,
+                                        skey=skey,
+                                        host=host)

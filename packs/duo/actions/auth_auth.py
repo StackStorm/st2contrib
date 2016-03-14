@@ -18,10 +18,10 @@
 import urllib
 
 from st2actions.runners.pythonrunner import Action
-import duo_client
+from lib.actions import AuthAction
 
 
-class Auth(Action):
+class Auth(AuthAction):
     def run(self, username, factor,
             ipaddr, device, push_type, passcode, pushinfo):
         """
@@ -33,17 +33,6 @@ class Auth(Action):
           ValueError: 'Duo config not found in config' or 'Invalid factor'
           RuntimeError: 'Failed auth.'
         """
-
-        try:
-            ikey = self.config['auth']['ikey']
-            skey = self.config['auth']['skey']
-            host = self.config['auth']['host']
-        except KeyError:
-            raise ValueError("Duo config not found in config.")
-
-        auth = duo_client.Auth(ikey=ikey,
-                               skey=skey,
-                               host=host)
 
         auth_kargs = {}
 
@@ -76,9 +65,9 @@ class Auth(Action):
             raise ValueError("Invalid factor!")
 
         try:
-            data = auth.auth(factor=factor,
-                             username=username,
-                             **auth_kargs)
+            data = self.duo_auth.auth(factor=factor,
+                                      username=username,
+                                      **auth_kargs)
         except RuntimeError, e:
             print "Error: %s" % e
             raise RuntimeError("Error: %s" % e)

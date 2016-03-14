@@ -16,10 +16,10 @@
 # limitations under the License.
 
 from st2actions.runners.pythonrunner import Action
-import duo_client
+from lib.actions import AuthAction
 
 
-class Check(Action):
+class Check(AuthAction):
     def run(self):
         """
         Ping the Duo Platorm.
@@ -31,18 +31,7 @@ class Check(Action):
         """
 
         try:
-            ikey = self.config['auth']['ikey']
-            skey = self.config['auth']['skey']
-            host = self.config['auth']['host']
-        except KeyError:
-            raise ValueError("Duo config not found in config.")
-
-        auth = duo_client.Auth(ikey=ikey,
-                               skey=skey,
-                               host=host)
-
-        try:
-            data = auth.check()
+            data = self.duo_auth.check()
         except RuntimeError, e:
             print e
             raise RuntimeError("Check failed! '%s'" % e)
