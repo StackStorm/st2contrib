@@ -41,6 +41,5 @@ parameters:
     description: "Passcode entered by the user."
 
   pushinfo:
-    type: "string"
-    description: "Extra key/value pairs that will be URL-encoded (format item=text; item2=text."
-
+    type: "object"
+    description: "Extra key/value pairs for push auth (format in object notation)."

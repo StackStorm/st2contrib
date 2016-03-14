@@ -43,12 +43,7 @@ class Auth(AuthAction):
                 auth_kargs['ipaddr'] = ipaddr
 
             if pushinfo is not None:
-                info = {}
-                for value in pushinfo.split('; '):
-                    (key, value) = value.split('=')
-                    info[key] = value
-
-                encoded = urllib.urlencode(info)
+                encoded = urllib.urlencode(pushinfo)
                 auth_kargs['pushinfo'] = encoded
         elif factor == "passcode":
             auth_kargs['passcode'] = passcode

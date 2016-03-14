@@ -17,6 +17,7 @@ duo.auth_wrap_demo:
 
       input:
         username: <% $.username %>
+        pushinfo: {"workflow": "duo.auth_wrap_demo","ChatOps": "true"}
 
       on-success:
         - run_action
