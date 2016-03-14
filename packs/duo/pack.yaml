@@ -1,0 +1,9 @@
+---
+name: duo
+description: Use Duo 2FA authenication with StackStorm actions.
+keywords:
+    - 2Fa
+    - Duo
+version: 0.1
+author: Jon Middleton
+email: jon.middleton@pulsant.com
