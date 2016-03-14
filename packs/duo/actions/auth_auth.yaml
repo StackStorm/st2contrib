@@ -19,7 +19,6 @@ parameters:
       - "auto"
       - "push"
       - "passcode"
-      - "sms"
       - "phone"
     default: "auto"
 
@@ -39,7 +38,7 @@ parameters:
     default: "ChatOps"
 
   passcode:
-    type: "integer"
+    type: "string"
     description: "Passcode entered by the user."
 
   # FIX

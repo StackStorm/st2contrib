@@ -20,8 +20,8 @@ import duo_client
 
 
 class Auth(Action):
-    def run(self, username, factor, ipaddr, device,
-            push_type, passcode, push_info):
+    def run(self, username, factor,
+            ipaddr, device, push_type, passcode, push_info):
         """
         Auth against the Duo Platorm.
 
@@ -42,13 +42,37 @@ class Auth(Action):
                                skey=skey,
                                host=host)
 
+        auth_kargs = {}
+
+        if factor == "auto" or factor == "push":
+            auth_kargs['type'] = push_type
+            auth_kargs['device'] = device
+
+            if ipaddr is not None:
+                auth_kargs['ipaddr'] = ipaddr
+
+            if push_info is not None:
+                auth_kargs['push_info'] = push_info
+        elif factor == "passcode":
+            auth_kargs['passcode'] = passcode
+        elif factor == "phone":
+            auth_kargs['device'] = device
+        elif factor == "sms":
+            # As 'sms' just denies and then we do not support it
+            # requires re-authentication.
+
+            print "Denied, we do not support SMS!"
+            raise ValueError("Denied, we do not support SMS!")
+        else:
+            raise ValueError("Invalid factor!")
+
         try:
             data = auth.auth(factor=factor,
                              username=username,
-                             type=push_type,
-                             device=device)
-        except:
-            raise ValueError("Duo Auth request failed!")
+                             **auth_kargs)
+        except RuntimeError, e:
+            print "Error: %s" % e
+            raise ValueError("Error: %s" % e)
         else:
             if data['status'] == "allow":
                 return data
