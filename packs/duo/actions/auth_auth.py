@@ -18,8 +18,9 @@
 from st2actions.runners.pythonrunner import Action
 import duo_client
 
+
 class Auth(Action):
-    def run(self, username, factor, ipaddr, async, device,
+    def run(self, username, factor, ipaddr, device,
             push_type, passcode, push_info):
         """
         Auth against the Duo Platorm.

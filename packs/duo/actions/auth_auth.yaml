@@ -28,12 +28,6 @@ parameters:
     type: "string"
     description: "The IP address of the user to be authenticated, in dotted quad format."
 
-  async:
-    type: "boolean"
-    description: "Return a transaction ID instead of waiting for auth."
-    default: false
-    immutable: true
-
   device:
     type: "string"
     description: "The device ID to use."
