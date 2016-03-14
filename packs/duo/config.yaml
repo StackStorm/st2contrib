@@ -1,4 +1,11 @@
 ---
-host: api-hostname
-ikey: admin-api-integration-key
-skey: admin-api-secret-key
+auth:
+  host: api-hostname
+  ikey: auth-api-integration-key
+  skey: auth-api-secret-key
+
+# The Admin API needs Platform and Enterprise edition customers.
+admin:
+  host: api-hostname
+  ikey: admin-api-integration-key
+  skey: admin-api-secret-key
