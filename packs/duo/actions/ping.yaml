@@ -1,8 +1,0 @@
----
-description: "Carry liveness check against Duo API host."
-enabled: true
-entry_point: 'ping.py'
-name: "ping"
-pack: "duo"
-
-runner_type: "python-script"

@@ -31,9 +31,9 @@ class Check(Action):
         """
 
         try:
-            ikey = self.config['ikey']
-            skey = self.config['skey']
-            host = self.config['host']
+            ikey = self.config['auth']['ikey']
+            skey = self.config['auth']['skey']
+            host = self.config['auth']['host']
         except KeyError:
             raise ValueError("Duo config not found in config.")
 

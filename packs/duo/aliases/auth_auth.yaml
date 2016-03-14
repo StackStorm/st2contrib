@@ -1,10 +1,10 @@
 ---
-name: "auth"
+name: "auth_auth"
 pack: "duo"
 description: "Test your authentication via the Duo platform"
-action_ref: "duo.auth"
+action_ref: "duo.auth_auth"
 formats:
-  - "duo auth"
+  - "duo auth test"
 ack:
   enabled: true
   append_url: false

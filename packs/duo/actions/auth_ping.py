@@ -19,11 +19,10 @@ from st2actions.runners.pythonrunner import Action
 import duo_client
 
 
-class Auth(Action):
-    def run(self, username, factor, ipaddr, async, device,
-            push_type, passcode, push_info):
+class Ping(Action):
+    def run(self):
         """
-        Auth against the Duo Platorm.
+        Ping the Duo Platorm.
 
         Returns: An dict with info returned by Duo.
 
@@ -32,9 +31,9 @@ class Auth(Action):
         """
 
         try:
-            ikey = self.config['ikey']
-            skey = self.config['skey']
-            host = self.config['host']
+            ikey = self.config['auth']['ikey']
+            skey = self.config['auth']['skey']
+            host = self.config['auth']['host']
         except KeyError:
             raise ValueError("Duo config not found in config.")
 
@@ -43,18 +42,8 @@ class Auth(Action):
                                host=host)
 
         try:
-            data = auth.auth(factor=factor,
-                             username=username,
-                             type=push_type,
-                             device=device)
+            data = auth.ping()
         except:
-            raise ValueError("Duo Auth request failed!")
+            raise ValueError("Ping failed!")
         else:
-            if data['status'] == "allow":
-                return data
-            elif data['status'] == "deny":
-                print data['status_msg']
-                raise ValueError("Duo login denied! {}".format(
-                    data['status_msg']))
-            else:
-                raise ValueError("Invalid status")
+            return data

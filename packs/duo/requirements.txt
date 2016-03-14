@@ -1,1 +1,1 @@
-duo_client
+duo_client=0.1.2

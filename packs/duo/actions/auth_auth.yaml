@@ -1,9 +1,10 @@
 ---
+name: "auth_auth"
+pack: "duo"
+runner_type: "python-script"
 description: "Carry out an duo auth."
 enabled: true
-entry_point: 'auth.py'
-name: "auth"
-pack: "duo"
+entry_point: 'auth_auth.py'
 
 parameters:
   username:
@@ -52,4 +53,3 @@ parameters:
     type: "string"
     description: "*Fix* Extra key/value pairs that will be URL-encoded."
 
-runner_type: "python-script"

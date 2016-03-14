@@ -1,10 +1,10 @@
 ---
-name: "ping"
+name: "auth_ping"
 pack: "duo"
 description: "Check the Duo platform can be reached."
-action_ref: "duo.ping"
+action_ref: "duo.auth_ping"
 formats:
-  - "duo ping"
+  - "duo auth ping"
 ack:
   enabled: true
   append_url: false
