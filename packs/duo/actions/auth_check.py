@@ -32,7 +32,7 @@ class Check(AuthAction):
         try:
             data = self.duo_auth.check()
         except RuntimeError, e:
-            print e
+            self.send_user_error(e)
             raise RuntimeError("Check failed! '%s'" % e)
         else:
             return data

@@ -58,7 +58,6 @@ class Auth(AuthAction):
             # As 'sms' just denies and then we do not support it
             # requires re-authentication.
 
-            print "Denied, we do not support SMS!"
             raise ValueError("Denied, we do not support SMS!")
         else:
             raise ValueError("Invalid factor!")
@@ -68,13 +67,12 @@ class Auth(AuthAction):
                                       username=username,
                                       **auth_kargs)
         except RuntimeError, e:
-            print "Error: %s" % e
             raise RuntimeError("Error: %s" % e)
         else:
             if data['result'] == "allow":
                 return data
             elif data['result'] == "deny":
-                print data['status_msg']
+                self.send_user_error(data['status_msg'])
                 raise RuntimeError("{}".format(
                     data['status_msg']))
             else:

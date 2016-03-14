@@ -20,7 +20,7 @@ import duo_client
 class AuthAction(Action):
     def __init__(self, config):
         super(AuthAction, self).__init__(config)
-        
+
         try:
             ikey = self.config['auth']['ikey']
             skey = self.config['auth']['skey']
@@ -31,3 +31,6 @@ class AuthAction(Action):
         self.duo_auth = duo_client.Auth(ikey=ikey,
                                         skey=skey,
                                         host=host)
+
+    def send_user_error(self, message):
+        print(message)
