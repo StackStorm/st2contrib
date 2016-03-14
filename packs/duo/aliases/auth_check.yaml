@@ -14,5 +14,6 @@ result:
     {% if execution.status == 'succeeded' %}
     The Integration key & secret key is *valid*! @ {{execution.result.result.time}}{~}
     {% else %}
-    The Integration key & secret key is *invalid!{~}
+    The Integration key & secret key is *invalid*!{~}
+    {{execution.result.stdout}}
     {% endif %}

@@ -27,7 +27,7 @@ class Ping(Action):
         Returns: An dict with info returned by Duo.
 
         Raises:
-          ValueError: On Auth Failure.
+          RuntimeError: On ping failure.
         """
 
         try:
@@ -43,7 +43,8 @@ class Ping(Action):
 
         try:
             data = auth.ping()
-        except:
-            raise ValueError("Ping failed!")
+        except RuntimeError, e:
+            print "Ping failed! %s" % e
+            raise ValueError("Ping failed! %s" % e)
         else:
             return data

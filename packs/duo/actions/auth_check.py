@@ -27,7 +27,7 @@ class Check(Action):
         Returns: An dict with info returned by Duo.
 
         Raises:
-          ValueError: On Auth Failure.
+          RuntimeError: On Invalid keys.
         """
 
         try:
@@ -43,7 +43,8 @@ class Check(Action):
 
         try:
             data = auth.check()
-        except:
-            raise ValueError("Ping failed!")
+        except RuntimeError, e:
+            print e
+            raise RuntimeError("Check failed! '%s'" % e)
         else:
             return data

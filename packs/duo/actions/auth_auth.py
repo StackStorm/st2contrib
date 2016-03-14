@@ -15,20 +15,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import urllib
+
 from st2actions.runners.pythonrunner import Action
 import duo_client
 
 
 class Auth(Action):
     def run(self, username, factor,
-            ipaddr, device, push_type, passcode, push_info):
+            ipaddr, device, push_type, passcode, pushinfo):
         """
         Auth against the Duo Platorm.
 
         Returns: An dict with info returned by Duo.
 
         Raises:
-          ValueError: On Auth Failure.
+          ValueError: 'Duo config not found in config' or 'Invalid factor'
+          RuntimeError: 'Failed auth.'
         """
 
         try:
@@ -51,8 +54,14 @@ class Auth(Action):
             if ipaddr is not None:
                 auth_kargs['ipaddr'] = ipaddr
 
-            if push_info is not None:
-                auth_kargs['push_info'] = push_info
+            if pushinfo is not None:
+                info = {}
+                for value in pushinfo.split('; '):
+                    (key, value) = value.split('=')
+                    info[key] = value
+
+                encoded = urllib.urlencode(info)
+                auth_kargs['pushinfo'] = encoded
         elif factor == "passcode":
             auth_kargs['passcode'] = passcode
         elif factor == "phone":
@@ -72,13 +81,13 @@ class Auth(Action):
                              **auth_kargs)
         except RuntimeError, e:
             print "Error: %s" % e
-            raise ValueError("Error: %s" % e)
+            raise RuntimeError("Error: %s" % e)
         else:
-            if data['status'] == "allow":
+            if data['result'] == "allow":
                 return data
-            elif data['status'] == "deny":
+            elif data['result'] == "deny":
                 print data['status_msg']
-                raise ValueError("Duo login denied! {}".format(
+                raise RuntimeError("{}".format(
                     data['status_msg']))
             else:
-                raise ValueError("Invalid status")
+                raise RuntimeError("Invalid status")
