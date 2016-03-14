@@ -8,7 +8,7 @@ formats:
 ack:
   enabled: true
   append_url: false
-  format: "Cheking connection to Duo..."
+  format: "Checking connection to Duo..."
 result:
   format: |
     {% if execution.status == 'succeeded' %}

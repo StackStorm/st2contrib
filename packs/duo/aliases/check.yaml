@@ -1,14 +1,14 @@
 ---
 name: "check"
 pack: "duo"
-description: "Test the intergration setup to the Duo platform"
+description: "Test the integration setup to the Duo platform"
 action_ref: "duo.check"
 formats:
   - "duo check"
 ack:
   enabled: true
   append_url: false
-  format: "Chekcing setup for Duo Authication..."
+  format: "Chekcing setup for Duo authentication..."
 result:
   format: |
     {% if execution.status == 'succeeded' %}
