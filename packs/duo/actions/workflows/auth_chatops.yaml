@@ -25,7 +25,7 @@ duo.auth_chatops:
       on-error:
         - no_auth
 
-    run_action:
+    announce_success:
       # [105, 128]
       action: duo.announce_success
 
