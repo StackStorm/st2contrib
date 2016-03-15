@@ -10,9 +10,4 @@ ack:
   append_url: false
   format: "Sending a Duo push request..."
 result:
-  format: |
-    {% if execution.result.auth %}
-    *Success*: {{execution.result.message}}{~}
-    {% else %}
-    *Failure*: {{execution.result.message}}{~}
-    {% endif %}
+  enabled: false
