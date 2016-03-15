@@ -20,7 +20,7 @@ duo.auth_chatops:
         pushinfo: {"UUID": "<% $.uuid %>","ChatOps": "true"}
 
       on-success:
-        - announce
+        - announce_success
 
       on-error:
         - no_auth
