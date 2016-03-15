@@ -1,0 +1,18 @@
+---
+name: "auth_chatops"
+pack: "duo"
+description: "Authenticate via Duo when prompted by the bot"
+action_ref: "duo.auth_chatops"
+formats:
+  - "2fa {{ uuid }}"
+ack:
+  enabled: true
+  append_url: false
+  format: "Sending a Duo push request..."
+result:
+  format: |
+    {% if execution.result.auth %}
+    *Success*: {{execution.result.message}}{~}
+    {% else %}
+    *Failure*: {{execution.result.message}}{~}
+    {% endif %}

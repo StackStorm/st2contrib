@@ -1,0 +1,45 @@
+---
+version: '2.0'
+duo.auth_chatops:
+  description: "Only send an announcement if successfully auth'ed with Duo"
+
+  input:
+    - uuid
+
+  output:
+    auth: <% $.auth %>
+    message: <% $.message %>
+
+  tasks:
+    duo_auth:
+      # [235, 26]
+      action: duo.auth_auth
+
+      input:
+        username: <% env().get('__actions').get('st2.action').st2_context.parent.api_user %>
+        pushinfo: {"UUID": "<% $.uuid %>","ChatOps": "true"}
+
+      on-success:
+        - announce
+
+      on-error:
+        - no_auth
+
+    run_action:
+      # [105, 128]
+      action: duo.announce_success
+
+      input:
+        uuid: <% $.uuid %>
+
+      publish:
+        auth: true
+        message: "Duo auth successful!"
+
+    no_auth:
+      # [365, 128]
+      action: core.noop
+
+      publish:
+        auth: false
+        message: "Duo auth unsuccessful!"
