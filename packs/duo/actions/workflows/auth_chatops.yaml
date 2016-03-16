@@ -5,6 +5,9 @@ duo.auth_chatops:
 
   input:
     - uuid
+    - user
+    - channel
+    - hint
 
   output:
     auth: <% $.auth %>
@@ -16,8 +19,8 @@ duo.auth_chatops:
       action: duo.auth_auth
 
       input:
-        username: <% env().get('__actions').get('st2.action').st2_context.parent.api_user %>
-        pushinfo: {"UUID": "<% $.uuid %>", "Source": "ChatOps"}
+        username: <% $.user %>
+        pushinfo: {"Source": "ChatOps", "Action": "<% $.hint %>"}
 
       on-success:
         - announce_success
@@ -35,7 +38,7 @@ duo.auth_chatops:
       # [365, 128]
       action: chatops.post_message
       input:
-        channel: <% env().get('__actions').get('st2.action').st2_context.parent.source_channel %>
+        channel: <% $.channel %>
         whisper: false
         message: "*auth failure:* two-factor auth attempt failed.{~}"
-        user: <% env().get('__actions').get('st2.action').st2_context.parent.api_user %>
+        user: <% $.user %>
