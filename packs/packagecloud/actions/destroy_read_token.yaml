@@ -1,0 +1,25 @@
+---
+name: "destroy_read_token"
+description: "destroy read token for a repository"
+pack: "packagecloud"
+runner_type: "local-shell-cmd"
+enabled: true
+parameters:
+  user:
+    type: string
+    required: true
+  repository:
+    type: string
+    required: true
+  mastertoken:
+    type: string
+    required: true
+  readtoken:
+    type: string
+    required: true
+  sudo:
+    immutable: true
+    default: true
+  cmd:
+    immutable: true
+    default: "package_cloud read_token destroy {{user}}/{{repository}} {{mastertoken}}/{{readtoken}}"

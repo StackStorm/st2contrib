@@ -1,0 +1,10 @@
+---
+name: "servicenow.assign_incident_to"
+action_ref: "servicenow.assign_incident_to"
+description: "Assign an incident to a username"
+formats:
+    - "assign incident {{number}} to {{name}}"
+ack:
+    format: "Reassiging incident"
+result:
+    format: "incident reassigned"

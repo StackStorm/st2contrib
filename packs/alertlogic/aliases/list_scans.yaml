@@ -1,0 +1,24 @@
+---
+name: "list_scans"
+pack: "alertlogic"
+description: "List all the active AlertLogic scans for a customer_id to account of key."
+action_ref: "alertlogic.scan_list_scans"
+formats:
+  - display: "alertlogic scan list [customer_id <customer_id>]"
+    representation:
+      - "alertlogic scan list"
+      - "alertlogic scan list customer_id {{customer_id}}"
+ack:
+  enabled: true
+  append_url: false
+  format: "Requesting Scan List..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {% for item, value in execution.result.result.iteritems() %}
+    *{{value.type}}:* _{{item}}_ ({% if value.active %}enabled{% else %}disabled{% endif %})
+    {% endfor %}
+    {% else %}
+    Failed!
+    {% endif %}
+

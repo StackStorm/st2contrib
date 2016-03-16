@@ -1,0 +1,12 @@
+---
+name: "get_user"
+runner_type: "action-chain"
+description: "Run a string GET query on the ServiceNow API"
+enabled: true
+entry_point: "workflows/get_user.yaml"
+parameters:
+  name:
+    type: "string"
+    description: "Users name"
+    required: true
+

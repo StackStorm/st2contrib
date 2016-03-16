@@ -1,0 +1,42 @@
+---
+version: '2.0'
+duo.auth_wrap_demo:
+  description: "Only complete an action if successfully auth'ed with duo.auth_auth"
+
+  input:
+    - username
+
+  output:
+    auth: <% $.auth %>
+    message: <% $.message %>
+
+  tasks:
+    duo_auth:
+      # [235, 26]
+      action: duo.auth_auth
+
+      input:
+        username: <% $.username %>
+        pushinfo: {"workflow": "duo.auth_wrap_demo","ChatOps": "true"}
+
+      on-success:
+        - run_action
+
+      on-error:
+        - no_auth
+
+    run_action:
+      # [105, 128]
+      action: core.noop
+
+      publish:
+        auth: true
+        message: "Auth'ed and ran `core.noop`"
+
+    no_auth:
+      # [365, 128]
+      action: core.noop
+
+      publish:
+        auth: false
+        message: "Duo Auth unsuccessful!"

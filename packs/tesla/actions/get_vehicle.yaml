@@ -1,0 +1,12 @@
+---
+name: "get_vehicle"
+runner_type: "python-script"
+description: "Get a vehicle from your garage"
+enabled: true
+entry_point: "get_vehicle.py"
+parameters:
+  vin:
+    type: "string"
+    description: "The vehicle identification number"
+    required: true
+

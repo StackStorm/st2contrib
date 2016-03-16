@@ -15,7 +15,7 @@ parameters:
     default: false
     type: boolean
   filters:
-    type: string
+    type: object
   instance_ids:
     type: string
   max_results:

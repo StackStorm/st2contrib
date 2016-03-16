@@ -1,0 +1,18 @@
+---
+name: "auth_auth"
+pack: "duo"
+description: "Test your authentication via the Duo platform"
+action_ref: "duo.auth_auth"
+formats:
+  - "duo auth test"
+ack:
+  enabled: true
+  append_url: false
+  format: "Spending a Duo push request..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {{execution.result.result.status_msg}}{~}
+    {% else %}
+    {{execution.result.stdout}}{~}
+    {% endif %}

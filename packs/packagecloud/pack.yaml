@@ -1,0 +1,8 @@
+---
+name : packagecloud
+description : packagecloud integration pack
+keywords:
+  - packagecloud
+version : 0.2
+author : st2-dev
+email : info@stackstorm.com

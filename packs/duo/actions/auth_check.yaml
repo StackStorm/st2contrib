@@ -1,0 +1,7 @@
+---
+name: "auth_check"
+runner_type: "python-script"
+pack: "duo"
+description: "Verify that the integration and secret keys are valid."
+enabled: true
+entry_point: 'auth_check.py'

@@ -1,0 +1,25 @@
+---
+name: "destroy_master_token"
+description: "destroy master token for a repository"
+pack: "packagecloud"
+runner_type: "local-shell-cmd"
+enabled: true
+parameters:
+  user:
+    type: string
+    required: true
+  repository:
+    type: string
+    required: true
+  mastertoken:
+    type: string
+    required: true
+  token_name:
+    type: string
+    required: true
+  sudo:
+    immutable: true
+    default: true
+  cmd:
+    immutable: true
+    default: "package_cloud master_token destroy {{user}}/{{repository}} {{mastertoken}} {{token_name}}"

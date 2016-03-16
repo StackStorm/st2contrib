@@ -1,0 +1,15 @@
+---
+name: "start_vehicle_charge"
+runner_type: "python-script"
+description: "Start a vehicle charge"
+enabled: true
+entry_point: "vehicle_action.py"
+parameters:
+  vin:
+    type: "string"
+    description: "The vehicle identification number"
+    required: false
+  action:
+    type: "string"
+    immutable: true
+    default: "charge_start"

@@ -4,7 +4,7 @@ pack: nagios
 description: Send mail when nagios service state changes
 enabled: true
 trigger:
-  type: nagios.service.state_change
+  type: nagios.service-state-change
 criteria: {}
 action:
   ref: send_mail

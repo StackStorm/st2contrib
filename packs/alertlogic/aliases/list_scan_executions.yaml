@@ -1,0 +1,24 @@
+---
+name: "list_scan_executions"
+pack: "alertlogic"
+description: "List all the Executions AlertLogic of an scan"
+action_ref: "alertlogic.scan_list_scan_executions"
+formats:
+  - display: "alertlogic scan executions [customer_id <customer_id>] <scan_title>"
+    representation:
+      - "alertlogic scan executions customer_id {{customer_id}} {{scan_title}}"
+      - "alertlogic scan executions {{scan_title}}"
+ack:
+  enabled: true
+  append_url: false
+  format: "Requesting Scan Executions for _{{execution.parameters.scan_title}}_..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    The last 10 executions for _{{execution.parameters.scan_title}}_:{~}
+    {% for item in execution.result.result.scans %}
+    *{{item.id}}:* {{item.create_date}} to {{item.finish_date}} ({{item.duration}} {% if item.active %} - scanning{% else %}complete{% endif %})
+    {% endfor %}
+    {% else %}
+    Failed!
+    {% endif %}

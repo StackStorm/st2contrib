@@ -64,6 +64,7 @@ FORCE_CHECK_PACK=csv make packs-tests
 Icon | Name | Description | Keywords | Author | Latest Version | Available Resources
 ---- | ---- | ----------- | -------- | ------ | -------------- | -------------------
 [![activecampaign icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/activecampaign/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | [activecampaign](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | Integration with ActiveCampaign |  | [DoriftoShoes](mailto:patrick@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#activecampaign-pack)
+[![alertlogic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/alertlogic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | [alertlogic](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | AlertLogic ActiveIntegration APIs | AlertLogic | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#alertlogic-pack)
 [![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
 [![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud, iam, vpc, s3, CloudFormation, RDS, SQS | [st2-dev](mailto:info@stackstorm.com) | 0.6.0 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
@@ -79,6 +80,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | [dimensiondata](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | st2 content pack containing Dimension Data Cloud integrations | cloud, load balancers, dimension data | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#dimensiondata-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
 [![dripstat icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dripstat/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | [dripstat](https://github.com/StackStorm/st2contrib/tree/master/packs/dripstat) | Integration with the Dripstat Application Performance Monitoring tool | dripstat, java, monitoring, performance monitoring | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#dripstat-pack)
+[![duo icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/duo/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/duo) | [duo](https://github.com/StackStorm/st2contrib/tree/master/packs/duo) | Use Duo 2FA authenication with StackStorm actions. | 2Fa, Duo | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#duo-pack)
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [st2-dev](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
@@ -103,12 +105,13 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![mistral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mistral/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
 [![mmonit icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mmonit/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | [mmonit](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | st2 content pack containing mmonit integrations | monitoring, mmonit | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mmonit-pack)
 [![mqtt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mqtt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mqtt) | [mqtt](https://github.com/StackStorm/st2contrib/tree/master/packs/mqtt) | MQTT Integration for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#mqtt-pack)
-[![nagios icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nagios/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
+[![nagios icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nagios/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 [![nest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
-[![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
+[![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 [![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | [octopusdeploy](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | st2 content pack containing octopusdeploy integrations | octopus, octopusdeploy, deployment, continous deployment, continous integration | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#octopusdeploy-pack)
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
 [![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
+[![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | [packagecloud](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | packagecloud integration pack | packagecloud | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#packagecloud-pack)
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
@@ -116,15 +119,16 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 [![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
-[![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
+[![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4.1 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
-[![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
+[![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
 [![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
 [![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.2.1 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
 [![SmartThings icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/smartthings/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | [SmartThings](https://github.com/StackStorm/st2contrib/tree/master/packs/SmartThings) | Integration with SmartThings | smartthings, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#SmartThings-pack)
 [![softlayer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/softlayer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | [softlayer](https://github.com/StackStorm/st2contrib/tree/master/packs/softlayer) | st2 content pack containing Softlayer integrations. | softlayer, cloud | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#softlayer-pack)
 [![splunk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/splunk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | [splunk](https://github.com/StackStorm/st2contrib/tree/master/packs/splunk) | Splunk integration pack | splunk | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#splunk-pack)
-[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![st2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | [st2](https://github.com/StackStorm/st2contrib/tree/master/packs/st2) | StackStorm pack management |  | [st2-dev](mailto:info@stackstorm.com) | 0.1.2 | [click](https://github.com/StackStorm/st2contrib#st2-pack)
+[![tesla icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/tesla/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/tesla) | [tesla](https://github.com/StackStorm/st2contrib/tree/master/packs/tesla) | car horn automation | tesla | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#tesla-pack)
 [![time icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/time/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | [time](https://github.com/StackStorm/st2contrib/tree/master/packs/time) | st2 content pack containing different date and time related functionality | date, time | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#time-pack)
 [![Travis CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/travis_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | [Travis CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Travis CI) | Pack which allows integration with Travis CI. | travis, travis ci, continous integration, ci | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Travis CI-pack)
 [![trello icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/trello/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | [trello](https://github.com/StackStorm/st2contrib/tree/master/packs/trello) | Integration with Trello, Web based Project Management | trello, kanban, productivity, collaboration | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#trello-pack)
@@ -274,6 +278,19 @@ webhook_edit | Edit existing webhook.
 webhook_events | Webhook event types
 webhook_list | View a list of webhooks.
 webhook_view | View a single webhook.
+
+### alertlogic pack
+
+![alertlogic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/alertlogic/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+scan_get_results | Get results of a scan execution.
+scan_get_results_by_title | Get the scan results for the latest complete execution.
+scan_list_scan_executions | Get a list of executions for given scan.
+scan_list_scans | Get a list of scans for a customer.
 
 ### ansible pack
 
@@ -1222,6 +1239,19 @@ Name | Description
 ---- | -----------
 DripstatAlertSensor | Sensor which monitors Dripstat API for active alerts
 
+### duo pack
+
+![duo icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/duo/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+auth_auth | Carry out an duo auth.
+auth_check | Verify that the integration and secret keys are valid.
+auth_ping | Carry liveness check against Duo API host.
+auth_wrap_demo | None
+
 ### elasticsearch pack
 
 ![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)
@@ -1668,7 +1698,7 @@ toggle_away | Toggle current Home/Away status
 
 Name | Description
 ---- | -----------
-NewRelicHookSensor | Sensor which watches for alerts from the NewRelic legacy API.
+LegacyNewRelicHookSensor | Sensor which watches for alerts from the NewRelic legacy API.
 NewRelicHookSensor | Sensor which watches for alerts from NewRelic API.
 
 #### Actions
@@ -1727,6 +1757,19 @@ nova | Run OpenStack Nova commands
 nova_confirm | Confirms a resize or migrate
 nova_instances | Returns a list of instances by hypervisor
 nova_migrate_server | Evacuate guests from compute node
+
+### packagecloud pack
+
+![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+create_master_token | create master token for a repository
+destroy_master_token | destroy master token for a repository
+destroy_read_token | destroy read token for a repository
+list_master_token | List master tokens for a repository
 
 ### packer pack
 
@@ -2063,10 +2106,15 @@ unsilence | Unsilence a Sensu client or check
 
 Name | Description
 ---- | -----------
+approve_change | Run a string GET query on the ServiceNow API
+assign_incident_to | Run a string GET query on the ServiceNow API
 delete | Delete an entry from a ServiceNow Table
 get | Get an entry from a ServiceNow Table
+get_incidents_assigned_to | Run a string GET query on the ServiceNow API
 get_non_structured | Run a string GET query on the ServiceNow API
+get_user | Run a string GET query on the ServiceNow API
 insert | Insert an entry to a ServiceNow Table
+set_incident_owner | Run a string GET query on the ServiceNow API
 update | Update an entry in a ServiceNow Table
 
 ### signalr pack
@@ -2233,6 +2281,31 @@ kv.set_object | Serialize and store object in a datastore
 rules.list | Retrieve a list of available StackStorm rules
 sensors.list | Retrieve a list of available StackStorm sensors.
 upload_to_s3 | Sends collected data to write-only StackStorm S3 bucket
+
+### tesla pack
+
+![tesla icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/tesla/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+charge_vehicle | Charge a vehicle for standard charge
+charge_vehicle_max_range | Charge a vehicle for max range charge
+flash_lights | Flash lights of a vehicle
+get_vehicle | Get a vehicle from your garage
+honk_horn | Honk Horn of a vehicle
+list_vehicles | List the vehicles in your garage
+lock_vehicle | Lock the doors of a vehicle
+open_charge_port_door | Open the charge port of a vehicle
+set_vehicle_sun_roof | Set vehicle sun roof position
+set_vehicle_temperature | Set vehicle sun roof position
+start_vehicle_ac | Start a vehicle AC
+start_vehicle_charge | Start a vehicle charge
+stop_vehicle_ac | Stop a vehicle AC
+stop_vehicle_charge | Stop a vehicle charge
+unlock_vehicle | Unlock the doors of a vehicle
+wake_vehicle | Wake a vehicle
 
 ### time pack
 
