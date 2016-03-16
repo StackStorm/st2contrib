@@ -12,6 +12,6 @@ parameters:
         position: 0
     values:
         type: string
-        description: "Keys and values to write in Vault ({'key':'value','key2': 'value2'}"
+        description: 'Keys and values to write in Vault ({"key":"value", "key2": "value2"}'
         required: true
         position: 1
