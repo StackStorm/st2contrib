@@ -1,0 +1,12 @@
+---
+name: read
+runner_type: run-python
+description: "Read value from Vault server"
+enabled: true
+entry_point: "read.py"
+parameters:
+    path:
+        type: string
+        description: "Key to read from Vault"
+        required: true
+        position: 0
