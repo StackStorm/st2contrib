@@ -27,11 +27,10 @@ class ParseDateStringActionTestCase(BaseActionTestCase):
         expected = dt_to_timestamp(expected)
         self.assertTimestampMatchesWithDrift(result, expected)
 
-        # TODO: Uupstream library is broke, fix it
-        # result = action.run(date_string='2013-05-12')
-        # expected = datetime.datetime(2013, 5, 12)
-        # expected = dt_to_timestamp(expected)
-        # self.assertTimestampMatchesWithDrift(result, expected)
+        result = action.run(date_string='2013-10-24')
+        expected = datetime.datetime(2013, 10, 24)
+        expected = dt_to_timestamp(expected)
+        self.assertTimestampMatchesWithDrift(result, expected)
 
     def test_run_invalid_date_string(self):
         action = self.get_action_instance()

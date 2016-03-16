@@ -1,2 +1,2 @@
 arrow>=0.7.0,<0.8
-dateparser==0.3.0
+-e git+https://github.com/Kami/dateparser.git@slots_fix#egg=dateparser
