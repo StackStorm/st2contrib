@@ -8,7 +8,12 @@ __all__ = [
     'BaseGithubAction'
 ]
 
-WEB_URL = 'https://github.com'
+# Default Github web URL (used by tasks which directly scrape data from HTML)
+# pages
+DEFAULT_WEB_URL = 'https://github.com'
+
+# Default Github API url
+DEFAULT_API_URL = 'https://api.github.com'
 
 
 class BaseGithubAction(Action):
@@ -16,12 +21,12 @@ class BaseGithubAction(Action):
         super(BaseGithubAction, self).__init__(config=config)
         token = self.config.get('token', None)
         token = token or None
-        base_url = self.config.get('base_url', None)
+        base_url = self.config.get('base_url', DEFAULT_API_URL)
         self._client = Github(token, base_url=base_url)
 
     def _web_session(self):
         '''Returns a requests session to scrape off the web'''
-        login_url = WEB_URL + '/login'
+        login_url = DEFAULT_WEB_URL + '/login'
         session = requests.Session()
         request = session.get(login_url).text
         html = BeautifulSoup(request)
@@ -36,12 +41,12 @@ class BaseGithubAction(Action):
             'authenticity_token': token
         }
 
-        session_url = WEB_URL + session_path
+        session_url = DEFAULT_WEB_URL + session_path
         session.post(session_url, data=login_data)
         return session
 
     def _get_analytics(self, category, repo):
-        url = WEB_URL + repo + '/graphs/' + category + '.json'
+        url = DEFAULT_WEB_URL + repo + '/graphs/' + category + '.json'
         s = self._web_session()
         response = s.get(url)
         return response.json()
