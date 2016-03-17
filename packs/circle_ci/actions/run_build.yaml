@@ -12,4 +12,4 @@ parameters:
   branch:
     type: string
     description: Branch to run the build on.
-    required: true
+    default: master
