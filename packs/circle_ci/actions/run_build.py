@@ -25,9 +25,7 @@ class RunBuild(CircleCI):
             data = {'tag': tag} if tag else {'revision': vcs_revision}
             data = json.dumps(data)
 
-        response = self._perform_request(
-           path, method='POST', data=data
-        )
+        response = self._perform_request(path, method='POST', data=data)
 
         if response.status_code != httplib.CREATED:
             message = response.json().get('message', 'Unknown reason.')
