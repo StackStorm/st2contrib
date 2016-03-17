@@ -1,0 +1,15 @@
+---
+name: "announce_success"
+runner_type: "announcement"
+description: "Post a message to stream for Duo 2FA"
+enabled: true
+entry_point: ""
+parameters:
+  experimental:
+    immutable: true
+    default: true
+  route:
+    default: "2fa"
+  uuid:
+    type: "string"
+    description: "UUID of a frozen action."
