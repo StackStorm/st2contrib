@@ -1,0 +1,15 @@
+name: get_build_info
+pack: circle_ci
+runner_type: run-python
+description: Get info for build number.
+enabled: true
+entry_point: get_build_info.py
+parameters:
+  project:
+    type: string
+    description: Name of project in circle ci.
+    required: true
+  build_num:
+    type: integer
+    description: Build number from circle CI.
+    required: true
