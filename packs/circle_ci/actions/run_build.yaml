@@ -12,4 +12,9 @@ parameters:
   branch:
     type: string
     description: Branch to run the build on.
-    default: master
+  tag:
+    type: string
+    description: Tag to run the build on.
+  vcs_revision:
+    type: string
+    description: Commit SHA/revision (usually github SHA).

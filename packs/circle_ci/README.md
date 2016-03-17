@@ -45,6 +45,10 @@ Usage:
 
 ```bash
 st2 run circle_ci.run_build project=<project> branch=<branch_name>
+OR
+st2 run circle_ci.run_build project=<project> tag=<tag_name>
+OR
+st2 run circle_ci.run_build project=<project> vcs_revision=<sha>
 ```
 
 ### Retry build -  ```retry_build```
