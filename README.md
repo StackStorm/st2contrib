@@ -1248,7 +1248,9 @@ DripstatAlertSensor | Sensor which monitors Dripstat API for active alerts
 
 Name | Description
 ---- | -----------
+announce_success | Post a message to stream for Duo 2FA
 auth_auth | Carry out an duo auth.
+auth_chatops | None
 auth_check | Verify that the integration and secret keys are valid.
 auth_ping | Carry liveness check against Duo API host.
 auth_wrap_demo | None
