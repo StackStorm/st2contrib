@@ -22,6 +22,7 @@ addons:
     packages:
       - git  # needed by git-changes scripts
       - libsox-dev  # needed by witai pack
+      - freetds-dev  # needed by mssql package
 cache:
   directories:
     - $HOME/.pip-cache/
