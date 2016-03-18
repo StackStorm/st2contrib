@@ -8,7 +8,7 @@ parameters:
     immutable: true
     type: string
   capabilities:
-    type: string
+    type: array
   cls:
     default: CloudFormationConnection
     immutable: true
@@ -24,7 +24,7 @@ parameters:
   on_failure:
     type: string
   parameters:
-    type: string
+    type: array
   stack_name:
     required: true
     type: string
