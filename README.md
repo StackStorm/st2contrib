@@ -72,7 +72,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
 [![cassandra icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cassandra/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cassandra) | [cassandra](https://github.com/StackStorm/st2contrib/tree/master/packs/cassandra) | st2 content pack containing cassandra integrations | datastax, cassandra | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cassandra-pack)
 [![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
-[![Circle CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | [Circle CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | Pack which allows integration with Circle CI. | circle, circle ci, continous integration, ci | [StackStorm dev](mailto:support@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#Circle CI-pack)
+[![Circle CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | [Circle CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | Pack which allows integration with Circle CI. | circle, circle ci, continous integration, ci | [StackStorm dev](mailto:support@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#Circle CI-pack)
 [![consul icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/consul/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | [consul](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | consul |  | [jfryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#consul-pack)
 [![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
@@ -1065,7 +1065,11 @@ solo | Performs chef-solo run on remote hosts.
 
 Name | Description
 ---- | -----------
+cancel_build | Cancel specific build for project.
+get_build_info | Get info for build number.
 get_build_number | Get build number for given SHA.
+retry_build | Retry build for project.
+run_build | Run build for project and branch.
 wait_until_build_finishes | Wait until build finishes.
 
 ### consul pack
