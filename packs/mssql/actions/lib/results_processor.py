@@ -87,7 +87,7 @@ class ResultsProcessor(object):
                     writer.writerow(self._filter_numbered_columns(row))
         if not output_files:
             self.logger.info("Query returned no results, failing")
-            sys.exit(2)
+            sys.exit(self.NO_DATA)
         return {"output_files": output_files}
 
     def _filter_numbered_columns(self, row):
