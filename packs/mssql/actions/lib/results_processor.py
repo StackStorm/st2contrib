@@ -2,6 +2,7 @@ from _mssql import ROW_FORMAT_DICT
 from tempfile import NamedTemporaryFile
 import csv
 import os
+import sys
 
 __all__ = [
     'ResultsProcessor'
@@ -12,23 +13,31 @@ __all__ = [
 # noinspection PyMethodMayBeStaticInspection
 class ResultsProcessor(object):
     """
-    Utility for processing action response, i.e. changing the returned results, passing data via disk, etc.
+    Utility for processing action response, e.g. changing returned results or passing data via disk
     """
 
-    def __init__(self, config):
+    NO_DATA = 2
+
+    def __init__(self, config, logger):
         self.config = config
+        self.logger = logger
 
     def execute_scalar(self, response, cursor):
         """
         Returns the scalar response.
         """
+        if not response:
+            sys.exit(self.NO_DATA)
         return response
 
     def execute_row(self, response, cursor):
         """
         Returns a mapping of column name to value for a row.
         """
-        return self._filter_numbered_columns(response)
+        row = self._filter_numbered_columns(response or {})
+        if not row:
+            sys.exit(self.NO_DATA)
+        return row
 
     def execute_insert(self, response, cursor):
         """
@@ -40,6 +49,8 @@ class ResultsProcessor(object):
         """
         Returns the number of rows affected by the non-query.
         """
+        if cursor.rows_affected == 0:
+            sys.exit(self.NO_DATA)
         return cursor.rows_affected
 
     def execute_query(self, response, cursor):
@@ -47,21 +58,22 @@ class ResultsProcessor(object):
         Writes results to CSV for downstream processing. Each result set is written to its own file.
         Returns a list of all file names in order of result set for use by downstream actions.
 
-        Checks `output_csv` section in `config.yaml` to determine where to write CSV files. You can specify
-        the output `directory` as well as the file `prefix` and `suffix`.
+        Checks `output_csv` section in `config.yaml` to determine where to write CSV files. You can
+        specify the output `directory` as well as the file `prefix` and `suffix`.
 
-        Tries writing to `$TMPDIR`, `$TEMP`, and `$TMP` in order before falling back to platform-specific locations.
-        See https://docs.python.org/2/library/tempfile.html#tempfile.tempdir for details.
+        Tries writing to `$TMPDIR`, `$TEMP`, and `$TMP` in order before falling back to platform-
+        specific locations. See https://docs.python.org/2/library/tempfile.html#tempfile.tempdir.
         """
         output_files = []
         while True:
             with self._get_output_file() as csv_file:
                 # Since pythonrunner runs as root, only root can read and write CSV file by default
-                # Let's chmod it so downstream processes which run as stanley can also read and write
-                os.chmod(csv_file.name, 0o666)  # race condition with open() is OK since we're making less restrictive
+                # Let's chmod it so downstream processes which run as stanley can read and write
+                os.chmod(csv_file.name, 0o666)  # race condition w/ open() OK since increasing perms
                 try:
                     # Grab the first row so we can read the headers and write them to the CSV
-                    first_row = self._filter_numbered_columns(next(cursor.get_iterator(ROW_FORMAT_DICT)))
+                    first_row = self._filter_numbered_columns(
+                        next(cursor.get_iterator(ROW_FORMAT_DICT)))
                 except StopIteration:
                     # the last result set will always be empty, so remove the file created for it
                     os.unlink(csv_file.name)
@@ -73,7 +85,10 @@ class ResultsProcessor(object):
                 writer.writerow(first_row)
                 for row in cursor:
                     writer.writerow(self._filter_numbered_columns(row))
-        return output_files
+        if not output_files:
+            self.logger.info("Query returned no results, failing")
+            sys.exit(2)
+        return {"output_files": output_files}
 
     def _filter_numbered_columns(self, row):
         """only return columns by name, not column number"""

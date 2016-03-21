@@ -60,6 +60,7 @@ Action                | Description                                     | Exampl
 **execute.insert**    | Returns newly inserted row identity.            | `INSERT INTO employees VALUES ('Cody', 'Ray')`
 **execute.non_query** | Returns number of affected rows.                | `INSERT`, `UPDATE`, `DELETE`, or DDL commands
 **execute.query**     | Returns list of CSV files containing result.    | `SELECT` or `EXEC` stored procedures
+**query_and_email**   | Emails all query results as attached files      | `SELECT` or `EXEC` stored procedures
 
 ### Query Parameters
 

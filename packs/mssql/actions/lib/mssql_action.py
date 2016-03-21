@@ -13,10 +13,10 @@ class MSSQLAction(Action):
         super(MSSQLAction, self).__init__(config=config)
         self.config = config
 
-    def connect(self, server=None, user=None, password=None, database=None):
-        return connect(**self._connect_params(server, user, password, database))
+    def connect(self, database=None, server=None, user=None, password=None):
+        return connect(**self._connect_params(database, server, user, password))
 
-    def _connect_params(self, server=None, user=None, password=None, database=None):
+    def _connect_params(self, database=None, server=None, user=None, password=None):
         database = database or self.config.get('default')
         db_config = self.config.get(database, {})
         params = {

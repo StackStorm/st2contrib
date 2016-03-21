@@ -3,152 +3,157 @@ from st2tests.base import BaseActionTestCase
 from lib.mssql_action import MSSQLAction
 
 
+class MSSQLExampleAction(MSSQLAction):
+    def run(self):
+        pass
+
+
 # noinspection PyProtectedMemberInspection
 class MSSQLActionTestCase(BaseActionTestCase):
-    action_cls = MSSQLAction
+    action_cls = MSSQLExampleAction
 
     def test_connect_none(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {})
+        action.config = {}
         self.assertRaises(Exception, action._connect_params)
 
     def test_connect_config(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'another-db',
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'default': 'db2',
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser',
                 'password': 'apass'
             },
-            'another-db': {
-                'server': 'bserver1',
+            'db2': {
+                'server': 'bhost1',
                 'user': 'buser',
                 'password': 'bpass'
             }
-        })
-        expected = {'database': 'another-db', 'server': 'bserver1', 'user': 'buser', 'password': 'bpass'}
+        }
+        expected = {'database': 'db2', 'server': 'bhost1', 'user': 'buser', 'password': 'bpass'}
         self.assertEqual(expected, action._connect_params())
 
     def test_connect_config_database(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'another-db',
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'default': 'db2',
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser',
                 'password': 'apass'
             },
-            'another-db': {
-                'database': 'another-name',
-                'server': 'bserver1',
+            'db2': {
+                'database': 'wtdb',
+                'server': 'bhost1',
                 'user': 'buser',
                 'password': 'bpass'
             }
-        })
-        expected = {'database': 'another-name', 'server': 'bserver1', 'user': 'buser', 'password': 'bpass'}
+        }
+        expected = {'database': 'wtdb', 'server': 'bhost1', 'user': 'buser', 'password': 'bpass'}
         self.assertEqual(expected, action._connect_params())
 
     def test_connect_manual(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {})
-        expected = {'database': 'manual-db', 'server': 'mserver1', 'user': 'muser', 'password': 'mpass'}
+        action.config = {}
+        expected = {'database': 'db3', 'server': 'mhost1', 'user': 'muser', 'password': 'mpass'}
         self.assertEqual(expected, action._connect_params(
-            database='manual-db',
-            server='mserver1',
+            database='db3',
+            server='mhost1',
             user='muser',
             password='mpass'
         ))
 
     def test_connect_manual_database(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser',
                 'password': 'apass'
             },
-            'another-db': {
-                'server': 'bserver1',
+            'db2': {
+                'server': 'bhost1',
                 'user': 'buser',
                 'password': 'bpass'
             }
-        })
-        expected = {'database': 'some-db', 'server': 'aserver1', 'user': 'auser', 'password': 'apass'}
-        self.assertEqual(expected, action._connect_params(database='some-db'))
+        }
+        expected = {'database': 'db1', 'server': 'ahost1', 'user': 'auser', 'password': 'apass'}
+        self.assertEqual(expected, action._connect_params(database='db1'))
 
     def test_connect_override(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'another-db',
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'default': 'db2',
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser',
                 'password': 'apass'
             },
-            'another-db': {
-                'server': 'bserver1',
+            'db2': {
+                'server': 'bhost1',
                 'user': 'buser',
                 'password': 'bpass'
             }
-        })
-        expected = {'database': 'some-db', 'server': 'mserver1', 'user': 'muser', 'password': 'bpass'}
+        }
+        expected = {'database': 'db1', 'server': 'mhost1', 'user': 'muser', 'password': 'apass'}
         self.assertEqual(expected, action._connect_params(
-            database='some-db',
-            server='mserver1',
+            database='db1',
+            server='mhost1',
             user='muser',
         ))
 
     def test_connect_unlisted_database(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'unknown-db',
-            'some-db': {
-                'server': 'aserver1'
+        action.config = {
+            'default': 'unknown-db',
+            'db1': {
+                'server': 'ahost1'
             }
-        })
+        }
         self.assertRaises(Exception, action._connect_params)
 
     def test_connect_missing_database(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser',
                 'password': 'apass'
             }
-        })
+        }
         self.assertRaises(Exception, action._connect_params)
 
     def test_connect_missing_server(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'some-db',
-            'some-db': {
+        action.config = {
+            'default': 'db1',
+            'db1': {
                 'user': 'auser',
                 'password': 'apass'
             }
-        })
+        }
         self.assertRaises(Exception, action._connect_params)
 
     def test_connect_missing_user(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'some-db',
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'default': 'db1',
+            'db1': {
+                'server': 'ahost1',
                 'password': 'apass'
             }
-        })
+        }
         self.assertRaises(Exception, action._connect_params)
 
     def test_connect_missing_password(self):
         action = self.get_action_instance()
-        setattr(action, 'config', {
-            'database': 'some-db',
-            'some-db': {
-                'server': 'aserver1',
+        action.config = {
+            'default': 'db1',
+            'db1': {
+                'server': 'ahost1',
                 'user': 'auser'
             }
-        })
+        }
         self.assertRaises(Exception, action._connect_params)

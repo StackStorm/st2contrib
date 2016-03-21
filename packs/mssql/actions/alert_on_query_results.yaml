@@ -1,0 +1,44 @@
+---
+name: "alert_on_query_results"
+description: "Executes an MS SQL Query and emails any results"
+enabled: true
+
+runner_type: "action-chain"
+entry_point: "workflows/alert_on_query_results.yaml"
+
+parameters:
+  query_string:
+    description: "Query to send to MS SQL Server"
+    required: true
+    type: string
+  params:
+    description: "Parameters for interpolation in the query_string"
+    type: string
+  database:
+    description: "Database name if not specified in config"
+    type: string
+  server:
+    description: "Database host if not specified in config"
+    type: string
+  user:
+    description: "Database user if not specified in config"
+    type: string
+  password:
+    description: "Database password if not specified in config"
+    type: string
+  email_to:
+    description: "Email results to this address"
+    type: "string"
+    required: true
+  email_from:
+    description: "Email results from this address"
+    type: "string"
+    default: "stanley"
+  email_subject:
+    description: "Email subject line"
+    type: "string"
+    required: true
+  email_body:
+    description: "Email message body"
+    type: "string"
+    default: 'Results of executing query attached.<br><br>Query: {{query_string}}'

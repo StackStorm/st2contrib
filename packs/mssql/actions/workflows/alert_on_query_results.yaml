@@ -1,10 +1,37 @@
 ---
 chain:
   -
-    name: execute_query
-    ref: mssql.execute.query
+    name: 'query_mssql'
+    ref: 'mssql.execute.query'
     parameters:
-      database: positions
-      query_string: "EXEC sp_test_multi_result_set"
-      params:
-
+      query_string: '{{query_string}}'
+      params: '{{params}}'
+      database: '{{database}}'
+    # success indicates returned data, which is actually a negative result
+    on-success: 'format_query_attachments'
+    # failure (may) indicate no data, which could actually be a positive result (or an actual error)
+    on-failure: 'check_for_no_data_response'
+  -
+    name: 'format_query_attachments'
+    ref: 'core.local'
+    parameters:
+      cmd: 'python -c "import ast; print \",\".join(ast.literal_eval(\"{{query_mssql.result.output_files}}\"))"'
+    publish:
+      output_file_list: '{{format_query_attachments.stdout}}'
+    on-success: 'escalate_check_failed'
+  -
+    name: 'escalate_check_failed'
+    ref: 'core.sendmail'
+    parameters:
+      attachments: '{{output_file_list}}'
+      subject: '{{email_subject}}'
+      body: '{{email_body}}'
+      from: '{{email_from}}'
+      to: '{{email_to}}'
+  -
+    name: 'check_for_no_data_response'
+    # so the parent check shows "SUCCESSFUL" if NO DATA
+    ref: 'core.local'
+    parameters:
+      # mssql.execute.query returns 1 on ERROR and 2 if NO DATA
+      cmd: '[[ "{{query_mssql.exit_code}}" -eq 2 ]]'

@@ -19,6 +19,9 @@ parameters:
   params:
     description: Parameters for interpolation in the query_string.
     type: string
+  database:
+    description: Database name if not specified in config.
+    type: string
   server:
     description: Database host if not specified in config.
     type: string
@@ -27,7 +30,4 @@ parameters:
     type: string
   password:
     description: Database password if not specified in config.
-    type: string
-  database:
-    description: Database name if not specified in config.
     type: string
