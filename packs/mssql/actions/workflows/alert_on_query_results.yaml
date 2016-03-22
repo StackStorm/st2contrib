@@ -13,11 +13,9 @@ chain:
     on-failure: 'check_for_no_data_response'
   -
     name: 'format_query_attachments'
-    ref: 'core.local'
-    parameters:
-      cmd: 'python -c "import ast; print \",\".join(ast.literal_eval(\"{{query_mssql.result.output_files}}\"))"'
+    ref: 'core.noop'
     publish:
-      output_file_list: '{{format_query_attachments.stdout}}'
+      output_file_list: '{{query_mssql.result.output_files | join(",")}}'
     on-success: 'escalate_check_failed'
   -
     name: 'escalate_check_failed'
