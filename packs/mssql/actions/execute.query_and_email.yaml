@@ -41,4 +41,4 @@ parameters:
   email_body:
     description: "Email message body"
     type: "string"
-    default: 'Results of executing query attached.<br><br>Query: {{query_string}}'
+    default: 'Query results attached.<br><br>Query: {{query_string}}<br>Params: {{params}}'
