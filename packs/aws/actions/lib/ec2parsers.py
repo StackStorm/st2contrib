@@ -71,7 +71,7 @@ class FieldLists():
         'state_code',
         'state_reason',
         'subnet_id',
-		'tags',
+        'tags',
         'virtualization_type',
         'vpc_id',
     ]
