@@ -1,6 +1,6 @@
 ---
 setup:
-  region: "us-east-1"
+  region: ""
   aws_access_key_id: null
   aws_secret_access_key: null
 interval: 20
