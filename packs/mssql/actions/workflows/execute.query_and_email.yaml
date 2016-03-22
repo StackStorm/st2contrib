@@ -7,28 +7,22 @@ chain:
       query_string: '{{query_string}}'
       params: '{{params}}'
       database: '{{database}}'
-    # success indicates returned data, which is actually a negative result
-    on-success: 'format_query_attachments'
-    # failure (may) indicate no data, which could actually be a positive result (or an actual error)
-    on-failure: 'check_for_no_data_response'
+    # success indicates returned data. don't email if NO DATA
+    on-success: 'email_results'
+    # failure may indicate no data or an actual error
+    on-failure: 'success_on_no_data'
   -
-    name: 'format_query_attachments'
-    ref: 'core.noop'
-    publish:
-      output_file_list: '{{query_mssql.result.output_files | join(",")}}'
-    on-success: 'escalate_check_failed'
-  -
-    name: 'escalate_check_failed'
+    name: 'email_results'
     ref: 'core.sendmail'
     parameters:
-      attachments: '{{output_file_list}}'
+      attachments: '{{query_mssql.result.output_files | join(",")}}'
       subject: '{{email_subject}}'
       body: '{{email_body}}'
       from: '{{email_from}}'
       to: '{{email_to}}'
   -
-    name: 'check_for_no_data_response'
-    # so the parent check shows "SUCCESSFUL" if NO DATA
+    name: 'success_on_no_data'
+    # so the parent action shows "SUCCESSFUL" if NO DATA
     ref: 'core.local'
     parameters:
       # mssql.execute.query returns 1 on ERROR and 2 if NO DATA
