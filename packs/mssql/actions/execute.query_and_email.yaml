@@ -1,10 +1,10 @@
 ---
-name: "alert_on_query_results"
-description: "Executes an MS SQL Query and emails any results"
+name: "execute.query_and_email"
+description: "Executes an MS SQL Query and emails results as attachments"
 enabled: true
 
 runner_type: "action-chain"
-entry_point: "workflows/alert_on_query_results.yaml"
+entry_point: "workflows/execute.query_and_email.yaml"
 
 parameters:
   query_string:
