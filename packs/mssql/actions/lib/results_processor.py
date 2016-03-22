@@ -1,4 +1,4 @@
-from _mssql import ROW_FORMAT_DICT
+import _mssql
 from tempfile import NamedTemporaryFile
 import csv
 import os
@@ -71,9 +71,10 @@ class ResultsProcessor(object):
                 # Let's chmod it so downstream processes which run as stanley can read and write
                 os.chmod(csv_file.name, 0o666)  # race condition w/ open() OK since increasing perms
                 try:
+                    # pylint: disable=no-member
                     # Grab the first row so we can read the headers and write them to the CSV
                     first_row = self._filter_numbered_columns(
-                        next(cursor.get_iterator(ROW_FORMAT_DICT)))
+                        next(cursor.get_iterator(_mssql.ROW_FORMAT_DICT)))
                 except StopIteration:
                     # the last result set will always be empty, so remove the file created for it
                     os.unlink(csv_file.name)

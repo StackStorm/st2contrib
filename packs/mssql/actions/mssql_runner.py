@@ -1,4 +1,4 @@
-from _mssql import MSSQLException
+import _mssql
 import ast
 import sys
 
@@ -32,6 +32,6 @@ class MSSQLRunner(MSSQLAction):
                 params = ast.literal_eval(params) if params else None
                 response = getattr(cursor, driver_action)(query_string, params)
                 return getattr(self.processor, processor_action)(response, cursor)
-        except MSSQLException as e:
+        except _mssql.MSSQLException as e:  # pylint: disable=no-member
             self.logger.error(e)
             sys.exit(1)
