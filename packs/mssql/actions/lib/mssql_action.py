@@ -9,10 +9,6 @@ __all__ = [
 
 class MSSQLAction(Action):
 
-    def __init__(self, config):
-        super(MSSQLAction, self).__init__(config=config)
-        self.config = config
-
     def connect(self, database=None, server=None, user=None, password=None):
         # pylint: disable=no-member
         return _mssql.connect(**self._connect_params(database, server, user, password))
