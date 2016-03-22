@@ -1,0 +1,20 @@
+name: run_build
+pack: circle_ci
+runner_type: run-python
+description: Run build for project and branch.
+enabled: true
+entry_point: run_build.py
+parameters:
+  project:
+    type: string
+    description: Name of project in circle ci.
+    required: true
+  branch:
+    type: string
+    description: Branch to run the build on.
+  tag:
+    type: string
+    description: Tag to run the build on.
+  vcs_revision:
+    type: string
+    description: Commit SHA/revision (usually github SHA).

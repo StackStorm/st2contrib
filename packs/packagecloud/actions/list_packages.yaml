@@ -1,0 +1,19 @@
+---
+name: list_packages
+pack: packagecloud
+description: List packages for a repo
+runner_type: http-request
+enabled: true
+parameters:
+    repo:
+        type: string
+        description: Name of the packagecloud repo
+        required: true
+    api_token:
+        type: string
+        description: Token to access the packagecloud API
+        default: "{{system.pkg_cloud_token}}"
+    url:
+        type: string
+        immutable: true
+        default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
