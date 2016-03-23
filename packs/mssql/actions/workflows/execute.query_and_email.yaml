@@ -7,24 +7,14 @@ chain:
       query_string: '{{query_string}}'
       params: '{{params}}'
       database: '{{database}}'
-    on-success: 'check_for_results'
-  -
-    name: 'check_for_results'
-    ref: 'core.local'
-    parameters:
-      cmd: '[[ "{{query_mssql.result.output_files | length}}" -gt 0 ]]'
     on-success: 'email_results'
-    on-failure: 'success_on_no_data'
   -
     name: 'email_results'
     ref: 'core.sendmail'
     parameters:
+      send_empty_body: False
       attachments: '{{query_mssql.result.output_files | join(",")}}'
       subject: '{{email_subject}}'
-      body: '{{email_body}}'
+      body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
       from: '{{email_from}}'
       to: '{{email_to}}'
-  -
-    name: 'success_on_no_data'
-    # so the parent action shows "SUCCESSFUL" if NO DATA
-    ref: 'core.noop'
