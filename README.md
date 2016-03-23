@@ -105,6 +105,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![mistral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mistral/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | [mistral](https://github.com/StackStorm/st2contrib/tree/master/packs/mistral) | Mistral integrations to operate mistral. | mistral, workflows | [StackStorm](mailto:support@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#mistral-pack)
 [![mmonit icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mmonit/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | [mmonit](https://github.com/StackStorm/st2contrib/tree/master/packs/mmonit) | st2 content pack containing mmonit integrations | monitoring, mmonit | [Itxaka Serrano Garcia](mailto:itxakaserrano@gmail.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#mmonit-pack)
 [![mqtt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mqtt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mqtt) | [mqtt](https://github.com/StackStorm/st2contrib/tree/master/packs/mqtt) | MQTT Integration for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#mqtt-pack)
+[![mssql icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mssql/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mssql) | [mssql](https://github.com/StackStorm/st2contrib/tree/master/packs/mssql) | st2 content pack containing Microsoft SQL Server integrations |  | [codyaray](mailto:cray@peak6.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#mssql-pack)
 [![nagios icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nagios/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 [![nest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
 [![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
@@ -1676,6 +1677,21 @@ MQTTSensor | Listen for events on MQTT bus/topic
 Name | Description
 ---- | -----------
 publish | Publish message to MQTT broker
+
+### mssql pack
+
+![mssql icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mssql/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+execute.insert | Sends an INSERT statement to MS SQL Server and returns the id of the new row.
+execute.non_query | Sends a statement to MS SQL Server and returns the number of rows affected. This action is useful for INSERT, UPDATE, DELETE and for DDL commands.
+execute.query | Queries MS SQL Server and writes the results to CSV. Returns list of paths to CSV files.
+execute.query_and_email | Executes an MS SQL Query and emails results as attachments
+execute.row | Returns first row of data from result. This action is useful if you want just a single row, as in 'SELECT * FROM employees WHERE id=13'
+execute.scalar | Returns first column of first row from result. This action is useful if you want just a single value, as in 'SELECT COUNT(*) FROM employees'
 
 ### nest pack
 
