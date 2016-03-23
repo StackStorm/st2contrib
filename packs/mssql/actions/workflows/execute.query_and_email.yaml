@@ -12,9 +12,9 @@ chain:
     name: 'email_results'
     ref: 'core.sendmail'
     parameters:
-      send_empty_body: False
-      attachments: '{{query_mssql.result.output_files | join(",")}}'
+      to: '{{email_to}}'
+      from: '{{email_from}}'
       subject: '{{email_subject}}'
       body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
-      from: '{{email_from}}'
-      to: '{{email_to}}'
+      attachments: '{{query_mssql.result.output_files | join(",")}}'
+      send_empty_body: False
