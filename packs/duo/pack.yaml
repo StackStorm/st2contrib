@@ -4,6 +4,6 @@ description: Use Duo 2FA authenication with StackStorm actions.
 keywords:
     - 2Fa
     - Duo
-version: 0.1
+version: 0.2
 author: Jon Middleton
 email: jon.middleton@pulsant.com
