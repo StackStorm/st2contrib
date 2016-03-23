@@ -11,7 +11,7 @@ parameters:
   target:
      required: false
      type: string
-     default: *
+     default: '*'
   expr_form:
     required: false
     type: string
