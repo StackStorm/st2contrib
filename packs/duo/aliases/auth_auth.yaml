@@ -8,7 +8,7 @@ formats:
 ack:
   enabled: true
   append_url: false
-  format: "Spending a Duo push request..."
+  format: "Sending a Duo push request..."
 result:
   format: |
     {% if execution.status == 'succeeded' %}
