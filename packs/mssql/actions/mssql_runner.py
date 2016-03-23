@@ -21,7 +21,7 @@ class MSSQLRunner(MSSQLAction):
 
     def __init__(self, config):
         super(MSSQLRunner, self).__init__(config)
-        self.processor = ResultsProcessor(self.config, self.logger)
+        self.processor = ResultsProcessor(self.config)
 
     def run(self, action, query_string, params=None,
             database=None, server=None, user=None, password=None):

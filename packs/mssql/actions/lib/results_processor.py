@@ -2,7 +2,6 @@ import _mssql
 from tempfile import NamedTemporaryFile
 import csv
 import os
-import sys
 
 __all__ = [
     'ResultsProcessor'
@@ -16,28 +15,20 @@ class ResultsProcessor(object):
     Utility for processing action response, e.g. changing returned results or passing data via disk
     """
 
-    NO_DATA = 2
-
-    def __init__(self, config, logger):
+    def __init__(self, config):
         self.config = config
-        self.logger = logger
 
     def execute_scalar(self, response, cursor):
         """
         Returns the scalar response.
         """
-        if not response:
-            sys.exit(self.NO_DATA)
         return response
 
     def execute_row(self, response, cursor):
         """
         Returns a mapping of column name to value for a row.
         """
-        row = self._filter_numbered_columns(response or {})
-        if not row:
-            sys.exit(self.NO_DATA)
-        return row
+        return self._filter_numbered_columns(response or {})
 
     def execute_insert(self, response, cursor):
         """
@@ -49,8 +40,6 @@ class ResultsProcessor(object):
         """
         Returns the number of rows affected by the non-query.
         """
-        if cursor.rows_affected == 0:
-            sys.exit(self.NO_DATA)
         return cursor.rows_affected
 
     def execute_query(self, response, cursor):
@@ -86,9 +75,6 @@ class ResultsProcessor(object):
                 writer.writerow(first_row)
                 for row in cursor:
                     writer.writerow(self._filter_numbered_columns(row))
-        if not output_files:
-            self.logger.info("Query returned no results, failing")
-            sys.exit(self.NO_DATA)
         return {"output_files": output_files}
 
     def _filter_numbered_columns(self, row):

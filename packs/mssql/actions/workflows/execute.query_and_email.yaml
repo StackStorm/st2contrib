@@ -7,23 +7,14 @@ chain:
       query_string: '{{query_string}}'
       params: '{{params}}'
       database: '{{database}}'
-    # success indicates returned data. don't email if NO DATA
     on-success: 'email_results'
-    # failure may indicate no data or an actual error
-    on-failure: 'success_on_no_data'
   -
     name: 'email_results'
     ref: 'core.sendmail'
     parameters:
-      attachments: '{{query_mssql.result.output_files | join(",")}}'
-      subject: '{{email_subject}}'
-      body: '{{email_body}}'
-      from: '{{email_from}}'
       to: '{{email_to}}'
-  -
-    name: 'success_on_no_data'
-    # so the parent action shows "SUCCESSFUL" if NO DATA
-    ref: 'core.local'
-    parameters:
-      # mssql.execute.query returns 1 on ERROR and 2 if NO DATA
-      cmd: '[[ "{{query_mssql.exit_code}}" -eq 2 ]]'
+      from: '{{email_from}}'
+      subject: '{{email_subject}}'
+      attachments: '{{query_mssql.result.output_files | join(",")}}'
+      body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
+      send_empty_body: False
