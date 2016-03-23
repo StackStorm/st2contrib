@@ -15,6 +15,6 @@ chain:
       to: '{{email_to}}'
       from: '{{email_from}}'
       subject: '{{email_subject}}'
-      body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
       attachments: '{{query_mssql.result.output_files | join(",")}}'
+      body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
       send_empty_body: False
