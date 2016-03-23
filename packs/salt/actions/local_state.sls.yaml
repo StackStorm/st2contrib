@@ -8,6 +8,14 @@ parameters:
     default: state.sls
     immutable: true
     type: string
+  target:
+     required: false
+     type: string
+     default: '*'
+  expr_form:
+    required: false
+    type: string
+    default: glob
   args:
     required: false
     type: array
