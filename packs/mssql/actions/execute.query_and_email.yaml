@@ -1,0 +1,44 @@
+---
+name: "execute.query_and_email"
+description: "Executes an MS SQL Query and emails results as attachments"
+enabled: true
+
+runner_type: "action-chain"
+entry_point: "workflows/execute.query_and_email.yaml"
+
+parameters:
+  query_string:
+    description: "Query to send to MS SQL Server"
+    required: true
+    type: string
+  params:
+    description: "Parameters for interpolation in the query_string"
+    type: string
+  database:
+    description: "Database name if not specified in config"
+    type: string
+  server:
+    description: "Database host if not specified in config"
+    type: string
+  user:
+    description: "Database user if not specified in config"
+    type: string
+  password:
+    description: "Database password if not specified in config"
+    type: string
+  email_to:
+    description: "Email results to this address"
+    type: "string"
+    required: true
+  email_from:
+    description: "Email results from this address"
+    type: "string"
+    default: "stanley"
+  email_subject:
+    description: "Email subject line"
+    type: "string"
+    required: true
+  email_body:
+    description: "Email message body"
+    type: "string"
+    default: 'Query results attached.<br><br>Query: {{query_string}}<br>Params: {{params}}'
