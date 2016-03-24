@@ -3,6 +3,6 @@ name : packagecloud
 description : packagecloud integration pack
 keywords:
   - packagecloud
-version : 0.3
+version : 0.4
 author : st2-dev
 email : info@stackstorm.com
