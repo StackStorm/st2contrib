@@ -54,13 +54,13 @@ the workflow engine by sending a large amount of data to downstream actions.
 ## Actions
 
 Action                      | Description                                     | Example or Use Case
-----------------------------| ----------------------------------------------------------------------------------
+--------------------------- | ----------------------------------------------- | --------------------------------
 **execute.scalar**          | Returns first column of first row from result.  | `SELECT COUNT(*) FROM employees`
 **execute.row**             | Returns first row of data from result.          | `SELECT * FROM employees WHERE id=13`
-**execute.insert**          | Returns newly inserted row identity.            | `INSERT INTO employees VALUES ('Cody', 'Ray')`
+**execute.insert**          | Returns newly inserted row identity.            | `INSERT INTO employees VALUES ('Cody','Ray')`
 **execute.non_query**       | Returns number of affected rows.                | `INSERT`, `UPDATE`, `DELETE`, or DDL commands
-**execute.query**           | Returns list of CSV files containing result.    | `SELECT` or `EXEC` stored procedures
-**execute.query_and_email** | Emails all query results as attached files      | `SELECT` or `EXEC` stored procedures
+**execute.query**           | Returns list of CSV files containing results.   | `SELECT` or `EXEC` stored procedures
+**execute.query_and_email** | Emails all query results as attached files.     | `SELECT` or `EXEC` stored procedures
 
 ### Query Parameters
 
