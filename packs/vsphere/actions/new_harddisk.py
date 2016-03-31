@@ -60,7 +60,7 @@ class NewHardDisk(BaseAction):
         elif disk_type == 'flat':
             backing_info = NewHardDisk.get_flatfile_backinginfo(storage_format, persistence);
         elif disk_type.startswith('raw'):
-            backing_info = get_rawfile_backinginfo(device_name, persistence);
+            backing_info = NewHardDisk.get_rawfile_backinginfo(device_name, persistence);
         else:
             raise Exception("Wrong disk_type and empty disk_path. Either one should be present.")
         backing_info.datastore = datastore
