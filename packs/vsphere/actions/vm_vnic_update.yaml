@@ -1,0 +1,35 @@
+---
+  name: "vm_vnic_update"
+  runner_type: "run-python"
+  description: "Add nic to a VM."
+  enabled: true
+  entry_point: "vm_vnic_update.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to add nic."
+      required: true
+    network_id: 
+      type: "string"
+      description: "Network for the nic."
+      required: true
+    vnic_key: 
+      type: "integer"
+      description: "key of the nic to update."
+      default: -1
+    ip: 
+      type: "string"
+      description: "IP to assign."
+      required: true
+    subnet: 
+      type: "string"
+      description: "subnet mask."
+      required: true
+    gateway: 
+      type: "string"
+      description: "Default gateway."
+    domain: 
+      type: "string"
+      description: "DNS domain."
+      required: true
+

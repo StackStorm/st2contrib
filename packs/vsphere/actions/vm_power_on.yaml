@@ -1,0 +1,12 @@
+---
+  name: "vm_poweron"
+  runner_type: "run-python"
+  description: "Power on a VM."
+  enabled: true
+  entry_point: "vm_power_on.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to PowerOn."
+      required: true
+

@@ -1,0 +1,50 @@
+---
+  name: "provision_vm"
+  pack: "vsphere"
+  runner_type: "mistral-v2"
+  description: "Workflow to provision a virtual machine"
+  enabled: true
+  entry_point: "workflows/provision_vm.yaml"
+  parameters: 
+    workflow: 
+      type: "string"
+      default: "vsphere.provision_vm.main"
+      immutable: true
+    vm_name: 
+      type: "string"
+      required: true
+    vm_template_id: 
+      type: "string"
+      required: true
+    datacenter_id: 
+      type: "string"
+      required: true
+    resourcepool_id: 
+      type: "string"
+      required: true
+    datastore_id: 
+      type: "string"
+      required: true
+    network_id: 
+      type: "string"
+      required: true
+    ip: 
+      type: "string"
+      required: true
+    subnet: 
+      type: "string"
+      required: true
+    domain: 
+      type: "string"
+      default: "cisco.com"
+    cpu_cores: 
+      type: "integer"
+      default: 1
+    memory_mb: 
+      type: "integer"
+      default: 1024
+    requester: 
+      type: "string"
+      required: true
+
+

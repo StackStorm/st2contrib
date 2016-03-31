@@ -1,0 +1,234 @@
+version: "2.0"
+name: "vsphere.provision_vm"
+
+workflows:
+
+    main:
+        description: "Main workflow to provision VM"
+        type: direct
+        input:
+            - vm_name
+            - vm_template_id
+            - datacenter_id
+            - resourcepool_id
+            - datastore_id
+            - network_id
+            - ip
+            - subnet
+            - domain
+            - cpu_cores
+            - memory_mb
+            - requester
+        task-defaults:
+          on-error:
+            - callback_on_error
+            - fail
+        tasks:
+            create_vm:
+                workflow: create_vm
+                input:
+                    name: $.vm_name
+                    template_id: $.vm_template_id
+                    datacenter_id: $.datacenter_id
+                    resourcepool_id: $.resourcepool_id
+                    datastore_id: $.datastore_id
+                publish:
+                    vm_id: $.vm_id
+                    task_id: $.task_id
+                    vm_powered_on: $.powered_on
+                on-success:
+                    - reconfig_vm
+            reconfig_vm:
+                workflow: reconfig_vm
+                input:
+                    vm_id: $.vm_id
+                    network_id: $.network_id
+                    ip: $.ip
+                    subnet: $.subnet
+                    domain: $.domain
+                    cpu_cores: $.cpu_cores
+                    memory_mb: $.memory_mb
+                on-success:
+                    - power_on_vm
+            power_on_vm:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_poweron
+                    parameters:
+                        vm_id: $.vm_id
+                publish:
+                    powered_on: $.state
+                on-success:
+                    - customize_guest_os
+            customize_guest_os:
+                workflow: customize_guest_os
+                input:
+                    vm_name: $.vm_name
+                    vm_id: $.vm_id
+                    ip: $.ip
+                on-success:
+                    - post_os_config
+            post_os_config:
+                action: st2.action
+                input:
+                    ref: vsphere.post_os_config
+                    parameters:
+                        vm_name: $.vm_name
+                        requester: $.requester
+                on-success:
+                    - register_to_cmdb
+            register_to_cmdb:
+                action: st2.action
+                input:
+                    ref: cmdb.register
+                    parameters:
+                        vm_name: $.vm_name
+                        vm_template_id: $.vm_template_id
+                        datacenter_id: $.datacenter_id
+                        resourcepool_id: $.resourcepool_id
+                        datastore_id: $.datastore_id
+                on-success:
+                    - post_result
+            post_result:
+                action: st2.callback
+                input:
+                    state: "SUCCESS"
+                    result:
+                        vm_id: $.vm_id
+                        task_id: $.task_id
+                        vm_powered_on: $.vm_powered_on
+            callback_on_error:
+                action: st2.callback
+                input:
+                    state: "ERROR"
+                    result: $
+
+    create_vm:
+        description: "Subflow to create VM"
+        type: direct
+        input:
+            - name
+            - template_id
+            - datacenter_id
+            - resourcepool_id
+            - datastore_id
+        output:
+            vm_id: $.vm_id
+            task_id: $.task_id
+            powered_on: $.powered_on
+        task-defaults:
+          on-error:
+            - callback_on_error
+            - fail
+        tasks:
+            create:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_create_from_template
+                    parameters:
+                        datacenter_id: $.datacenter_id
+                        resourcepool_id: $.resourcepool_id
+                        name: $.name
+                        template_id: $.template_id
+                        datastore_id: $.datastore_id
+                publish:
+                    vm_id: $.vm_id
+                    task_id: $.task_id
+            callback_on_error:
+                action: st2.callback
+                input:
+                    state: "ERROR"
+                    result: $
+
+    reconfig_vm:
+        type: direct
+        input:
+            - vm_id
+            - network_id
+            - ip
+            - subnet
+            - domain
+            - cpu_cores
+            - memory_mb
+        task-defaults:
+          on-error:
+            - callback_on_error
+            - fail
+        tasks:
+            add_disk:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_disk_add
+                    parameters:
+                        vm_id: $.vm_id
+                on-success:
+                    - update_vnic
+            update_vnic:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_vnic_update
+                    parameters:
+                        vm_id: $.vm_id
+                        network_id: $.network_id
+                        ip: $.ip
+                        subnet: $.subnet
+                        domain: $.domain
+                on-success:
+                    - edit_cpu_mem
+            edit_cpu_mem:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_edit_cpu_memory
+                    parameters:
+                        vm_id: $.vm_id
+                        cpu: $.cpu_cores
+                        memory: $.memory_mb
+            callback_on_error:
+                action: st2.callback
+                input:
+                    state: "ERROR"
+                    result: $
+
+    customize_guest_os:
+        type: direct
+        input:
+            - vm_name
+            - vm_id
+            - ip
+        task-defaults:
+          on-error:
+            - callback_on_error
+            - fail
+        tasks:
+            check_vm_tools:
+                action: st2.action
+                input:
+                    ref: vsphere.vm_check_tools
+                    parameters:
+                        vm_id: $.vm_id
+                on-success:
+                    - ping_vm
+            ping_vm:
+                action: st2.action
+                input:
+                    ref: core.ping
+                    parameters:
+                        cmd: $.ip
+                policies:
+                    retry:
+                        count: 10
+                        delay: 30
+                on-success:
+                    - update_dns
+            update_dns:
+                action: st2.action
+                input:
+                    ref: demo.eman
+                    parameters:
+                        n: $.vm_name
+                        i: $.ip
+            callback_on_error:
+                action: st2.callback
+                input:
+                    state: "ERROR"
+                    result: $

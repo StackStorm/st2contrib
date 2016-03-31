@@ -1,0 +1,19 @@
+---
+    name: stop_vm
+    runner_type: run-python
+    description: Stops the Virtual Machine.
+    enabled: true
+    entry_point: stop_vm.py
+    parameters:
+        vm:
+            type: 'string'
+            description: moId of a Virtual Machine. e.g. "vm-1".
+            required: true
+        kill:
+            type: 'boolean'
+            description: >
+                Indicate that you want to stop the specified virtual machines by terminating their
+                processes running on the ESX. You can use this parameter to stop a virtual machine
+                that is not responding and cannot be stopped or restarted in other ways.
+            required: false
+            default: false
