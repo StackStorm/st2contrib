@@ -71,6 +71,7 @@ class FieldLists():
         'state_code',
         'state_reason',
         'subnet_id',
+        'tags',
         'virtualization_type',
         'vpc_id',
     ]
@@ -117,6 +118,13 @@ class FieldLists():
         'zone'
     ]
 
+    TAG = [
+        'name',
+        'value',
+        'res_type',
+        'res_id'
+    ]
+
 
 class ResultSets(object):
 
@@ -142,6 +150,8 @@ class ResultSets(object):
             return self.parseR53Zone(output)
         elif isinstance(output, boto.route53.status.Status):
             return self.parseR53Status(output)
+        elif isinstance(output, boto.ec2.tag.Tag):
+            return self.parseTag(output)
         elif isinstance(output, boto.ec2.ec2object.EC2Object):
             return self.parseEC2Object(output)
         else:
@@ -198,6 +208,10 @@ class ResultSets(object):
     def parseBucket(self, output):
         bucket_data = {field: getattr(output, field) for field in FieldLists.BUCKET}
         return bucket_data
+
+    def parseTag(self, output):
+        tag_data = {field: getattr(output, field) for field in FieldLists.TAG}
+        return tag_data
 
     def parseEC2Object(self, output):
         # Looks like everything that is an EC2Object pretty much only has these extra
