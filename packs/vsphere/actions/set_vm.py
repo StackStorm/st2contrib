@@ -1,11 +1,11 @@
 from pyVmomi import vim
 
-from vmwarelib import inventory
 from vmwarelib.actions import BaseAction
 
 
 class SetVM(BaseAction):
-    def run(self, vm, alternate_guest_name=None, description=None, guest_id=None, memory_mb=None, name=None, num_cpu=None, vm_swapfile_policy=None):
+    def run(self, vm, alternate_guest_name=None, description=None, guest_id=None, memory_mb=None,
+            name=None, num_cpu=None, vm_swapfile_policy=None):
         vm_swapfile_policy = vm_swapfile_policy.lower() if vm_swapfile_policy else None
 
         si = self.si
@@ -25,10 +25,8 @@ class SetVM(BaseAction):
         elif vm_swapfile_policy == 'withvm':
             spec.swapPlacement = 'vmDirectory'
 
-
         task = vm_obj.ReconfigVM_Task(spec)
 
         success = self._wait_for_task(task)
-
 
         return {'success': success}

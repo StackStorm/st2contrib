@@ -31,7 +31,8 @@ class VMDiskAdd(BaseAction):
         return {'state': successfully_added_disk}
 
     def get_next_unit_number(self, vm):
-        # See https://github.com/whereismyjetpack/pyvmomi-community-samples/blob/add-disk/samples/add_disk_to_vm.py
+        # See https://github.com/whereismyjetpack/pyvmomi-community-samples/blob/
+        # add-disk/samples/add_disk_to_vm.py
         unit_number = 0
         for dev in vm.config.hardware.device:
             if hasattr(dev.backing, 'fileName'):
