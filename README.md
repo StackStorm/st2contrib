@@ -139,6 +139,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
 [![vault icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | [vault](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | vault |  | [steve.neuharth](mailto:steve.neuharth@target.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vault-pack)
 [![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | [victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#victorops-pack)
+[![vsphere icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vsphere/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vsphere) | [vsphere](https://github.com/StackStorm/st2contrib/tree/master/packs/vsphere) | st2 content pack containing vsphere integrations. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#vsphere-pack)
 [![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
@@ -2470,6 +2471,36 @@ Name | Description
 ack_incident | Acknowledge a triggered event on victorops
 open_incident | Triggers the event on VictorOps with the given parameters
 recover_incident | Recover a triggered event on victorops
+
+### vsphere pack
+
+![vsphere icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vsphere/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_vmconsole_urls | Retrieves urls of the virtual machines' consoles
+get_vms | Retrieves the virtual machines on a vCenter Server system. It computes the union of Virtual Machine sets based on each parameter.
+hello_vsphere | Wait for a Task to complete and returns its result.
+new_harddisk | Adds a new or existing virtual disk to provided Virtual Machines.
+new_networkadapter | Adds a new network adapter to provided Virtual Machines.
+post_os_config | Workflow to configure VM post OS
+provision_vm | Workflow to provision a virtual machine
+remove_vm | Removes the Virtual Machine.
+set_vm | Changes configuration of a Virtual Machine.
+start_vm | Starts the Virtual Machine.
+stop_vm | Stops the Virtual Machine.
+vm_check_tools | Wait for a Task to complete and returns its result.
+vm_create_from_template | Create a new VM from existing template.
+vm_destroy | Wait for a Task to complete and returns its result.
+vm_disk_add | Add disk to a VM.
+vm_edit_cpu_memory | Power off a VM.
+vm_poweroff | Power off a VM.
+vm_poweron | Power on a VM.
+vm_vnic_add | Add nic to a VM.
+vm_vnic_update | Add nic to a VM.
+wait_task | Wait for a Task to complete and returns its result.
 
 ### webpagetest pack
 
