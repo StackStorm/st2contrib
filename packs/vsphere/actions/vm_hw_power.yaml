@@ -1,7 +1,7 @@
 ---
   name: "vm_hw_power"
   runner_type: "run-python"
-  description: "Performs a Hardware Power On or Off of a VM"
+  description: "Performs a Hardware Power On or Off of a VM. Note: Power off is not the same as an OS shutdown."
   enabled: true
   entry_point: "vm_hw_power.py"
   parameters: 
