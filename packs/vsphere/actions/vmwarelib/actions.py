@@ -28,8 +28,10 @@ class BaseAction(Action):
         self.si_content = self.si.RetrieveContent()
 
     def _connect(self):
-        si = connect.SmartConnect(host=self.config['host'], port=self.config['port'],
-                                  user=self.config['user'], pwd=self.config['passwd'])
+        si = connect.SmartConnect(host=self.config['host'],
+                                  port=self.config['port'],
+                                  user=self.config['user'],
+                                  pwd=self.config['passwd'])
         atexit.register(connect.Disconnect, si)
         return si
 

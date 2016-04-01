@@ -1,0 +1,10 @@
+---
+  name: vm_uuid_get
+  runner_type: run-python
+  description: Retrieve uuid of a VM object
+  entry_point: vm_hw_uuid_get.py
+  parameters:
+    vms:
+      type: array
+      description: Comma seperated list of VM Names
+      required: true

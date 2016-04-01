@@ -1,0 +1,23 @@
+---
+  name: "vm_hw_power"
+  runner_type: "run-python"
+  description: "Performs a Hardware Power On or Off of a VM"
+  enabled: true
+  entry_point: "vm_hw_power.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to PowerOn."
+      required: false
+    vm_name: 
+      type: "string"
+      description: "VM Name to PowerOn."
+      required: false
+    power_onoff: 
+      type: "string"
+      description: "Turn VM On or Off."
+      required: true
+      enum:
+        - poweron
+        - poweroff
+

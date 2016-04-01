@@ -1,0 +1,23 @@
+---
+  name: "vm_hw_cpu_mem_flex"
+  runner_type: "run-python"
+  description: "Adjust CPU and RAM allocation for a Virtual Machine"
+  enabled: true
+  entry_point: "vm_hw_cpu_mem_flex.py"
+  parameters:
+    vm_id:
+      type: "string"
+      description: "VM to Flex."
+      required: false
+    vm_name:
+      type: "string"
+      description: "VM Name to Flex."
+      required: false
+    cpu_flex:
+      type: "integer"
+      description: "Number of CPUs to allocate"
+      required: false
+    mem_flex:
+      type: "integer"
+      description: "Amount of RAM to assign (GB)"
+      required: false
