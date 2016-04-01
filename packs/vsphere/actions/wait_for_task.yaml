@@ -1,0 +1,12 @@
+---
+  name: "wait_task"
+  runner_type: "run-python"
+  description: "Wait for a Task to complete and returns its result."
+  enabled: true
+  entry_point: "wait_for_task.py"
+  parameters: 
+    task_id: 
+      type: "string"
+      description: "Task to track"
+      required: true
+

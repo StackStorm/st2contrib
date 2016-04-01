@@ -1,0 +1,20 @@
+---
+  name: "vm_disk_add"
+  runner_type: "run-python"
+  description: "Add disk to a VM."
+  enabled: true
+  entry_point: "vm_disk_add.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to add nic."
+      required: true
+    disk_size: 
+      type: "integer"
+      description: "Size in GB."
+      default: 1
+    disk_type: 
+      type: "string"
+      description: "thin or thick."
+      default: "thin"
+

@@ -1,0 +1,12 @@
+---
+  name: "vm_check_tools"
+  runner_type: "run-python"
+  description: "Wait for a Task to complete and returns its result."
+  enabled: true
+  entry_point: "vm_check_tools.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM whose Tools to check."
+      required: true
+

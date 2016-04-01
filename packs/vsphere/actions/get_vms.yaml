@@ -1,0 +1,64 @@
+---
+    name: get_vms
+    runner_type: run-python
+    description: Retrieves the virtual machines on a vCenter Server system. It computes the union of Virtual Machine sets based on each parameter.
+    enabled: true
+    entry_point: get_vms.py
+    parameters:
+        ids:
+            type: 'array'
+            description: Comma-separated ids of Virtual Machines to retrieve.
+            required: false
+        names:
+            type: 'array'
+            description: Comma-separated names of Virtual Machines to retrieve.
+            required: false
+        datastores:
+            type: 'array'
+            description: Comma-separated moId's of the Datastores accociated with searched VMs.
+            required: false
+        datastore_clusters:
+            type: 'array'
+            description: Comma-separated moId's of the Datastore Clusters accociated with searched VMs.
+            required: false
+        resource_pools:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere ResourcePool objects, where VMs are going to be searched.
+            required: false
+        vapps:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere VApp objects, where VMs are going to be searched.
+            required: false
+        hosts:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere Host objects, where VMs are going to be searched.
+            required: false
+        folders:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere folder objects, where VMs are going to be searched.
+            required: false
+        clusters:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere compute cluster objects, where VMs are going to be searched.
+            required: false
+        datacenters:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the vSphere datacenter objects, where VMs are going to be searched.
+            required: false
+        virtual_switches:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the Virtual Switches, to which the searched VMs' network adapters are attached.
+            required: false
+        no_recursion:
+            type: 'boolean'
+            description: >
+                Specifies, whether or not to disable the recursive behavior or the command. By default it is False
+            required: false
+            default: false

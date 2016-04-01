@@ -1,0 +1,16 @@
+---
+    name: remove_vm
+    runner_type: run-python
+    description: Removes the Virtual Machine.
+    enabled: true
+    entry_point: remove_vm.py
+    parameters:
+        vm:
+            type: 'string'
+            description: moId of a Virtual Machines. e.g. "vm-1".
+            required: true
+        delete_permanently:
+            type: 'boolean'
+            description: >
+                Indicate that you want to delete the virtual machines not only from the inventory, but from the datastore.
+            required: true

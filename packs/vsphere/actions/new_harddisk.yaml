@@ -1,0 +1,75 @@
+---
+    name: new_harddisk
+    runner_type: run-python
+    description: Adds a new or existing virtual disk to provided Virtual Machines.
+    enabled: true
+    entry_point: new_harddisk.py
+    parameters:
+        vms:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the Virtual Machines. e.g. "vm-1,vm-2".
+            required: true
+        persistence:
+            type: 'string'
+            description: >
+                Specifies the disk persistence mode.
+                The valid values are Persistent, IndependentPersistent, IndependentNonPersistent.
+                This parameter is supported only when the disk type is set to 'rawVirtual' or 'flat'.
+            required: false
+            default: 'Persistent'
+        disk_type:
+            type: 'string'
+            description: >
+                Specifies the type of file backing you want to use.
+                The valid values are rawVirtual, rawPhysical, flat, and unknown.
+            required: false
+            default: 'flat'
+        capacity_gb:
+            type: 'number'
+            description: >
+                Specifies the capacity of the new virtual disk in gigabytes (GB).
+                You need to specify this parameter when you create hard disks of type Flat.
+            required: false
+            default: 1
+        datastore:
+            type: 'string'
+            description: >
+                Specifies the datastore moId where you want to place the new hard disk.
+                If specified, do not specify 'datastore_cluster' parameter. e.g. "datastore-1".
+            required: false
+            default: ~
+        datastore_cluster:
+            type: 'string'
+            description: >
+                Specifies the datastore cluster moId where you want to place the new hard disk.
+                If specified, do not specify 'datastore' parameter. e.g. "group-p1".
+            required: false
+            default: ~
+        device_name:
+            type: 'string'
+            description: >
+                Specifies the host-specific device the LUN is being accessed through.
+                If the target LUN is not available on the host then it is empty.
+                For example, this could happen if it has been masked out accidentally.
+                Only supported when DiskType is set to 'rawVirtual' or 'rawPhysical'.
+                The device name is visible in the vSphere Client through the new raw hard disk wizard.
+            required: false
+            default: ~
+        disk_path:
+            type: 'string'
+            description: >
+                Specifies the host-specific device the LUN is being accessed through.
+                If the target LUN is not available on the host then it is empty.
+                For example, this could happen if it has been masked out accidentally.
+                Only supported when DiskType is set to 'rawVirtual' or 'rawPhysical'.
+                The device name is visible in the vSphere Client through the new raw hard disk wizard.
+            required: false
+            default: ''
+        storage_format:
+            type: 'string'
+            description: >
+                Specifies the storage format of the new hard disk.
+                This parameter accepts Thin, Thin2GB, Thick, Thick2GB and EagerZeroedThick values.
+            required: false
+            default: 'Thin'

@@ -1,0 +1,58 @@
+---
+    name: new_networkadapter
+    runner_type: run-python
+    description: Adds a new network adapter to provided Virtual Machines.
+    enabled: true
+    entry_point: new_networkadapter.py
+    parameters:
+        vms:
+            type: 'array'
+            description: >
+                Comma-separated moId's of the Virtual Machines. e.g. "vm-1,vm-2".
+            required: true
+        distributed_switch:
+            type: 'string'
+            description: >
+                Specifies the distributed switch moId to which you want to connect the network adapter.
+                Note: Do not specify 'network_name' parameter if this one is present.
+            required: false
+            default: ~
+        mac_address:
+            type: 'string'
+            description: >
+                Specify a mac address for the new virtual network adapter.
+            required: false
+            default: ~
+        network_name:
+            type: 'string'
+            description: >
+                Specify the name of the network to which you want to add the new network adapter.
+                Note: Do not specify 'distributed_switch' parameter if this one is present.
+            required: false
+            default: ~
+        port_key:
+            type: 'string'
+            description: >
+                Specify the port of the virtual switch to which you want to connect the network adapter.
+                This is used only with 'distributed_switch' paremeter.
+            required: false
+            default: ~
+        stay_connected:
+            type: 'boolean'
+            description: >
+                Specifies if the network adapter starts conected when the virtual machine associated with it powers on.
+            required: false
+            default: false
+        network_type:
+            type: 'string'
+            description: >
+                Specify the type of the new network adapter. The valid types are e1000, Flexible, Vmxnet,
+                EnhancedVmxnet, and Vmxnet3. It defaults to 'Flexible'.
+            required: false
+            default: 'Flexible'
+        wake_on_lan:
+            type: 'boolean'
+            description: >
+                Specifies that the wake-on-LAN is enabled on the newly created virtual network adapter.
+            required: false
+            default: false

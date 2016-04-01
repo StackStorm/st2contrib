@@ -1,0 +1,12 @@
+---
+    name: start_vm
+    runner_type: run-python
+    description: Starts the Virtual Machine.
+    enabled: true
+    entry_point: start_vm.py
+    parameters:
+        vm:
+            type: 'string'
+            description: moId of a Virtual Machine. e.g. "vm-1".
+            required: true
+

@@ -1,0 +1,12 @@
+---
+    name: 'get_vmconsole_urls'
+    runner_type: 'run-python'
+    description: "Retrieves urls of the virtual machines' consoles"
+    enabled: true
+    entry_point: 'get_vmconsole_urls.py'
+    parameters:
+        vms:
+            type: 'array'
+            description: >
+                Coma-separated moId's of the Virtual Machines. e.g. "vm1-,vm-2"
+            required: true
