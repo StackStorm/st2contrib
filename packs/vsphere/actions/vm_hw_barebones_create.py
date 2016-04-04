@@ -29,7 +29,7 @@ class VMCreateBareBones(BaseAction):
         # Setup Identifiers for objects
         si = self.si
         si_content = si.RetrieveContent()
-        #checkinputs.vm_storage(datastore_cluster, datastore)
+        # checkinputs.vm_storage(datastore_cluster, datastore)
         checkinputs.one_of_two_strings(datastore_cluster,
                                        datastore,
                                        "Datastore Cluster or Datastore")
@@ -39,7 +39,7 @@ class VMCreateBareBones(BaseAction):
         data_store_cluster = inventory.get_datastore_cluster(
             self.si_content,
             name=datastore_cluster)
-        #data_store = inventory.get_datastore(self.si_content, name=datastore)
+        # data_store = inventory.get_datastore(self.si_content, name=datastore)
         target_folder = data_center.vmFolder
 
         # If No Resource Pool issued the Default one for
@@ -90,15 +90,15 @@ class VMCreateBareBones(BaseAction):
             else:
                 raise Exception('Error No Storage Data Provided')
 
-        #Now Datastore is known the remaining
-        #of VM Config can be setup and added
+        # Now Datastore is known the remaining
+        # of VM Config can be setup and added
         vmx_file = vim.vm.FileInfo(logDirectory=None,
                                    snapshotDirectory=None,
                                    suspendDirectory=None,
                                    vmPathName=datastore_path)
         config.files = vmx_file
 
-        #Create task to Build actual Machine
+        # Create task to Build actual Machine
         task = target_folder.CreateVM_Task(config=config, pool=resource_pool)
         self._wait_for_task(task)
         if task.info.state != vim.TaskInfo.State.success:
