@@ -84,8 +84,6 @@ class VMCreateBareBones(BaseAction):
         else:
             # No Datastore Cluster has been offered so using the D
             if datastore:
-                #data_store = inventory.get_datastore(self.si_content,
-                                                     #name=datastore)
                 datastore_path = '[' + datastore + '] ' + vm_name
             else:
                 raise Exception('Error No Storage Data Provided')
