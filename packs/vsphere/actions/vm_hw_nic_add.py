@@ -27,7 +27,6 @@ class VMAddNic(BaseAction):
     def run(self, vm_id, vm_name, network_name,
             nictype, stayconnected, wakeonlan):
         # create object itmes of key components
-        #checkinputs.vm_identifier(vm_id, vm_name)
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
 
         vm = inventory.get_virtualmachine(self.si_content, vm_id, vm_name)
@@ -73,7 +72,7 @@ class VMAddNic(BaseAction):
         network_spec.device.connectable.startConnected = stay_connected
         network_spec.device.connectable.allowGuestControl = True
 
-        #creating reconfig spec
+        # creating reconfig spec
         vm_reconfig_spec = vim.vm.ConfigSpec()
         vm_reconfig_spec.deviceChange = [network_spec]
         return vm_reconfig_spec

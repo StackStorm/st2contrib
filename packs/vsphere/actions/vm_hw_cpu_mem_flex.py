@@ -26,7 +26,6 @@ class VMCPUMemFlex(BaseAction):
 
     def run(self, vm_id, vm_name, cpu_flex, mem_flex):
         # check a means of finding the VM has been provided
-        #checkinputs.vm_identifier(vm_id, vm_name)
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
 
         vm = inventory.get_virtualmachine(self.si_content,

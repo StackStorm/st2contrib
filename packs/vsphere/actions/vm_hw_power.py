@@ -27,7 +27,6 @@ class VMApplyPowerState(BaseAction):
 
     def run(self, vm_id, vm_name, power_onoff):
         # check I have information to find a VM
-        #checkinputs.vm_identifier(vm_id, vm_name)
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
         # convert ids to stubs
         vm = inventory.get_virtualmachine(self.si_content,

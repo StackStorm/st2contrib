@@ -27,7 +27,6 @@ class VMAddHDD(BaseAction):
     def run(self, vm_id, vm_name, datastore_cluster,
             datastore, disk_size, provision_type):
         # ensure that minimal inputs are provided
-        #checkinputs.vm_identifier(vm_id, vm_name)
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
 
         vm = inventory.get_virtualmachine(self.si_content, vm_id, vm_name)
@@ -35,7 +34,7 @@ class VMAddHDD(BaseAction):
         hdd_unit_number = self.get_next_unit_number(vm)
         ctrl_key = self.get_controller_key(vm)
 
-        #Prepare new Disk configuration
+        # Prepare new Disk configuration
         disk_changes = []
         disk_spec = vim.vm.device.VirtualDeviceSpec()
         disk_spec.fileOperation = "create"
@@ -52,7 +51,7 @@ class VMAddHDD(BaseAction):
         disk_spec.device.capacityInKB = int(disk_size) * 1024 * 1024
         disk_spec.device.controllerKey = ctrl_key
 
-        #If Datastore Cluster is provided attach Disk via that
+        # If Datastore Cluster is provided attach Disk via that
         if datastore_cluster:
             ds_clust_obj = inventory.get_datastore_cluster(
                 self.si_content, name=datastore_cluster)
@@ -106,8 +105,8 @@ class VMAddHDD(BaseAction):
 
     def get_next_unit_number(self, vm):
         unit_number = 0
-        #Cycle though devices on VM and find
-        #entries with attribute "fileName".
+        # Cycle though devices on VM and find
+        # entries with attribute "fileName".
         for device in vm.config.hardware.device:
             if hasattr(device.backing, 'fileName'):
                 unit_number = int(device.unitNumber) + 1
@@ -117,7 +116,7 @@ class VMAddHDD(BaseAction):
         return unit_number
 
     def get_controller_key(self, vm):
-        #1000 is the default used for hdd controllers
+        # 1000 is the default used for hdd controllers
         key = 1000
         for device in vm.config.hardware.device:
             if isinstance(device, vim.vm.device.VirtualSCSIController):

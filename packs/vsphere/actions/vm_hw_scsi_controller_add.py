@@ -26,7 +26,6 @@ class VMAddSCSIController(BaseAction):
 
     def run(self, vm_id, vm_name, controller_type, scsi_sharing):
         # VM name or ID given?
-        #checkinputs.vm_identifier(vm_id, vm_name)
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
 
         # Create object for VM
