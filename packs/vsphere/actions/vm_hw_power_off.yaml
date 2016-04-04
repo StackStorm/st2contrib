@@ -1,0 +1,23 @@
+---
+  name: "vm_hw_power_off"
+  runner_type: "run-python"
+  description: "Performs a Hardware Power Off of a VM. Note: This is not an OS shutdown."
+  enabled: true
+  entry_point: "vm_hw_power.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to PowerOff."
+      required: false
+      position: 0
+    vm_name: 
+      type: "string"
+      description: "VM Name to PowerOff."
+      required: false
+      position: 1
+    power_onoff: 
+      type: "string"
+      description: "State to apply."
+      immutable: true
+      default: poweroff
+
