@@ -24,6 +24,7 @@ addons:
       - libsox-dev  # needed by witai pack
       - freetds-dev  # needed by mssql package
 cache:
+  - apt
   directories:
     - $HOME/.pip-cache/
 install:
