@@ -10,6 +10,7 @@ parameters:
   vm_name: 
     required: true
     type: string 
+    position: 0
   vm_hdd_dscluster: 
     type: string
     description: Which Datastore Cluster should be used for this HDD. Blank = same as Base VM    
