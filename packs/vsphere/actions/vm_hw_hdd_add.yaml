@@ -9,10 +9,12 @@
         type: "string"
         description: "Virtual Machine ID (vm-1234)"
         required: false
+        position: 0
       vm_name:
         type: "string"
         description: "Virtual Machine Name"
         required: false
+        position: 1
       datastore_cluster:
         type: "string"
         description: "Datastore Cluster for new Drive"
