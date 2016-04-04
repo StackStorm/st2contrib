@@ -110,7 +110,7 @@ class VMAddHDD(BaseAction):
         for device in vm.config.hardware.device:
             if hasattr(device.backing, 'fileName'):
                 unit_number = int(device.unitNumber) + 1
-                #unit number 7 is reserved
+                # unit number 7 is reserved
                 if unit_number == 7:
                     unit_number += 1
         return unit_number

@@ -40,16 +40,16 @@ def get_managed_entity(content, vimtype, moid=None, name=None):
             # Single Match found
             return results
 
-    #if this area is reached no object has been found
-    #if a name was passed error
+    # if this area is reached no object has been found
+    # if a name was passed error
     if name:
         raise Exception("Inventory Error: Unable to Find Object (%s): %s"
                         % (vimtype, name))
-    #if a moid was passed error
+    # if a moid was passed error
     elif moid:
         raise Exception("Inventory Error: Unable to Find Object (%s): %s"
                         % (vimtype, moid))
-    #catch all error
+    # catch all error
     else:
         raise Exception("Inventory Error: No Name or moid provided (%s)"
                         % vimtype)
