@@ -1,3 +1,20 @@
+#!/usr/bin/env python
+
+# Licensed to the StackStorm, Inc ('StackStorm') under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from pyVmomi import vim
 
 from vmwarelib import inventory
@@ -12,7 +29,10 @@ class VMCreateBareBones(BaseAction):
         # Setup Identifiers for objects
         si = self.si
         si_content = si.RetrieveContent()
-        checkinputs.vm_storage(datastore_cluster, datastore)
+        #checkinputs.vm_storage(datastore_cluster, datastore)
+        checkinputs.one_of_two_strings(datastore_cluster,
+                                       datastore,
+                                       "Datastore Cluster or Datastore")
 
         data_center = self.si_content.rootFolder.childEntity[0]
         cluster = inventory.get_cluster(self.si_content, name=cluster)
@@ -47,7 +67,7 @@ class VMCreateBareBones(BaseAction):
             podsel = vim.storageDrs.PodSelectionSpec()
             podsel.storagePod = data_store_cluster
 
-            storageSpec = vim.storageDrs.StoragePlacementSpec(
+            storage_spec = vim.storageDrs.StoragePlacementSpec(
                 type='create',
                 configSpec=config,
                 resourcePool=resource_pool,
@@ -57,7 +77,7 @@ class VMCreateBareBones(BaseAction):
             # Create Instance of Storage Resource Manager -
             # This is used to identify a Recommended Datastore from a Cluster
             srm = si_content.storageResourceManager
-            results = srm.RecommendDatastores(storageSpec=storageSpec)
+            results = srm.RecommendDatastores(storageSpec=storage_spec)
             rec_ds = results.recommendations[0].action[0]\
                 .relocateSpec.datastore
             datastore_path = '[' + rec_ds.name + '] ' + vm_name
@@ -84,4 +104,4 @@ class VMCreateBareBones(BaseAction):
         if task.info.state != vim.TaskInfo.State.success:
             raise Exception(task.info.error.msg)
 
-        return {'task_id': task._moId, 'vm_id': task.info.result._moId}
+        return {'vm_id': task.info.result._moId}

@@ -9,6 +9,7 @@
       type: "string"
       description: "Name of the new Virtual Machine"
       required: true
+      position: 0
     cluster:
       type: "string"
       description: "Cluster Name to Buid VM within"
