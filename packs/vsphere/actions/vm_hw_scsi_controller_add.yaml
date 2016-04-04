@@ -9,10 +9,12 @@
         type: "string"
         description: "Virtual Machine ID"
         required: false
+        position: 0
       vm_name:
         type: "string"
         description: "Virtual Machine Name"
         required: false
+        position: 1
       controller_type:
         type: "string"
         description: "Type of Controller to Add"
