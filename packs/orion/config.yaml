@@ -1,0 +1,6 @@
+---
+orion:
+  platform:
+    host: orion-server
+    user: stanley
+    password: S0meth1ngSt0ng?
