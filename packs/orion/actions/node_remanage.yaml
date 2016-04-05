@@ -1,0 +1,18 @@
+---
+description: "Re-manage an Solarwinds Orion node's"
+enabled: true
+entry_point: 'remanage_node.py'
+name: "remanage_node"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  node:
+    type: "string"
+    description: "The node to unmanage on the monitoring platform."
+    required: true
+
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+    required: true

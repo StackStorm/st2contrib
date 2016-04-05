@@ -42,6 +42,23 @@ class OrionBaseAction(Action):
     def invoke(self, entity, verb, *args):
         return self.swis.invoke(entity, verb, *args)
 
+    def get_node_id(self, caption):
+        swql = "SELECT NodeID FROM Orion.Nodes WHERE Caption=@caption"
+        kargs = {'caption': caption}
+        data = self.query(swql, **kargs)
+
+        if len(data['results']) == 1:
+            try:
+                return data['results'][0]['NodeID']
+            except IndexError:
+                raise IndexError("Invalid Node")
+        elif len(data['results']) >= 2:
+            raise IndexError("Muliple Nodes match '{}' Caption".format(
+                caption))
+        elif len(data['results']) == 0:
+            raise IndexError("No matching Caption for '{}'".format(
+                caption))
+
     def get_ncm_node_id(self, caption):
         swql = "SELECT NodeID FROM Cirrus.Nodes WHERE NodeCaption=@node"
         kargs = {'node': caption}

@@ -15,32 +15,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from datetime import datetime, timedelta
+
 from lib.actions import OrionBaseAction
 
 
-class OrionStatus(OrionBaseAction):
-    def run(self, node, platform):
+class NodeUnmanage(OrionBaseAction):
+    def run(self, node, platform, minutes):
         """
-        Query Solarwinds Orion.
+        Unmanage an Orion node
         """
 
-        # Set up the results
-        results = {}
-        results['status'] = None
-        results['color'] = None
+        if minutes > self.config['unmanage_max']:
+            raise ValueError(
+                "minutes ({}) greater than unmanage_max ({})".format(
+                    minutes, self.config['unmanage_max']))
 
         self.connect(platform)
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE Caption=@node"
-        kargs = {'node': node}
-        orion_data = self.query(swql, **kargs)
+        NodeId = "N:{}".format(self.get_node_id(node))
+        now = datetime.utcnow()
+        later = now + timedelta(minutes=minutes)
 
-        if len(orion_data['results']) != 0:
-            (results['status'], results['color']) = self.status_code_to_text(
-                orion_data['results'][0]['Status'])
-        else:
-            error_msg = "Node not found"
-            self.send_user_error(error_msg)
-            raise ValueError(error_msg)
+        self.invoke("Orion.Nodes",
+                    "Unmanage",
+                    NodeId,
+                    now,
+                    later,
+                    False)
 
-        return results
+        # The Invoke returns None, so return something.
+        return True

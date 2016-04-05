@@ -17,10 +17,10 @@ from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
-from status import OrionStatus
+from node_status import NodeStatus
 
 __all__ = [
-    'OrionStatusTestCase'
+    'NodeStatusTestCase'
 ]
 
 MOCK_CONFIG_BLANK = ""
@@ -33,19 +33,19 @@ orion:
 """
 
 
-class OrionStatusTestCase(BaseActionTestCase):
-    action_cls = OrionStatus
+class NodeStatusTestCase(BaseActionTestCase):
+    action_cls = NodeStatus
 
     def test_run_no_config(self):
         config = yaml.safe_load(MOCK_CONFIG_BLANK)
 
-        self.assertRaises(ValueError, OrionStatus, config)
+        self.assertRaises(ValueError, NodeStatus, config)
 
     def test_run_basic_config(self):
         config = yaml.safe_load(MOCK_CONFIG_FULL)
 
         action = self.get_action_instance(config)
-        self.assertIsInstance(action, OrionStatus)
+        self.assertIsInstance(action, NodeStatus)
 
     def test_run_connect_fail(self):
         config = yaml.safe_load(MOCK_CONFIG_FULL)
