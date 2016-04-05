@@ -3,4 +3,5 @@ ROOT_DIRECTORY=$1
 BASE_BRANCH="origin/master"
 
 cd ${ROOT_DIRECTORY}
-echo $(git diff --name-only ${BASE_BRANCH} | xargs -I FILENAME dirname FILENAME | awk '/^\./ {next} /.*/{print "./"$1}')
+# Note: We include all but deleted files ("D" flag)
+echo $(git diff --diff-filter=ACMRTUXB --name-only ${BASE_BRANCH} | xargs -I FILENAME dirname FILENAME | awk '/^\./ {next} /.*/{print "./"$1}')
