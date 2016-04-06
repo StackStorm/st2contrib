@@ -63,6 +63,15 @@ class OrionBaseAction(Action):
                 caption))
 
     def get_ncm_node_id(self, caption):
+        """
+        Queries the Network configuration Manager nodes table on the Orion
+        platform for the NodeID of a given node name (aka NodeCaption).
+
+        Raises: IndexError on Invalid number of nodes (e.g. 0 or 2+).
+
+        Returns: A single node id.
+        """
+
         swql = "SELECT NodeID FROM Cirrus.Nodes WHERE NodeCaption=@node"
         kargs = {'node': caption}
         data = self.query(swql, **kargs)
