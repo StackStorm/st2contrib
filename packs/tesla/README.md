@@ -2,6 +2,12 @@
 
 Include your tesla automobile in your ChatOps workflows.
 
+## Warning
+
+It is currently unknown whether this pack will be compatible with
+the upcoming Tesla 3. Please raise an issue if the current actions
+or aliases raise an Exception or aren't compatible.
+
 ## Configuration
 
 * ``tesla_username`` - Your tesla online username (email)
