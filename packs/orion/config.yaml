@@ -6,3 +6,9 @@ orion:
     password: S0meth1ngSt0ng?
 
 unmanage_max: 60
+
+defaults:
+  platform: "platform"
+  snmp:
+    internal: publ1c
+    external: n0t_publ1c

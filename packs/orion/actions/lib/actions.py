@@ -23,24 +23,27 @@ class OrionBaseAction(Action):
     def __init__(self, config):
         super(OrionBaseAction, self).__init__(config)
 
-        self.swis = None
+        self.client = None
 
         if "orion" not in self.config:
             raise ValueError("Orion host details not in the config.yaml")
 
     def connect(self, platform):
         try:
-            self.swis = SwisClient(self.config['orion'][platform]['host'],
+            self.client = SwisClient(self.config['orion'][platform]['host'],
                                    self.config['orion'][platform]['user'],
                                    self.config['orion'][platform]['password'])
         except KeyError:
             raise ValueError("Orion host details not in the config.yaml")
 
     def query(self, swql, **kargs):
-        return self.swis.query(swql, **kargs)
+        return self.client.query(swql, **kargs)
 
     def invoke(self, entity, verb, *args):
-        return self.swis.invoke(entity, verb, *args)
+        return self.client.invoke(entity, verb, *args)
+
+    def create(self, entity, **kargs):
+        return self.client.create(entity, **kargs)
 
     def get_node_id(self, caption):
         swql = "SELECT NodeID FROM Orion.Nodes WHERE Caption=@caption"

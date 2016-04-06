@@ -1,8 +1,8 @@
 ---
 description: "Query Solarwinds Orion for a node's status (i.e. Up/Down)"
 enabled: true
-entry_point: 'status.py'
-name: "status"
+entry_point: 'node_status.py'
+name: "node_status"
 pack: "orion"
 runner_type: "python-script"
 
