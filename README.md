@@ -2485,8 +2485,6 @@ get_vms | Retrieves the virtual machines on a vCenter Server system. It computes
 hello_vsphere | Wait for a Task to complete and returns its result.
 new_harddisk | Adds a new or existing virtual disk to provided Virtual Machines.
 new_networkadapter | Adds a new network adapter to provided Virtual Machines.
-post_os_config | Workflow to configure VM post OS
-provision_vm | Workflow to provision a virtual machine
 remove_vm | Removes the Virtual Machine.
 set_vm | Changes configuration of a Virtual Machine.
 start_vm | Starts the Virtual Machine.
