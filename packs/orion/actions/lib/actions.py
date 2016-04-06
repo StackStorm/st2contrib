@@ -54,12 +54,12 @@ class OrionBaseAction(Action):
             try:
                 return data['results'][0]['NodeID']
             except IndexError:
-                raise IndexError("Invalid Node")
+                raise ValueError("Invalid Node")
         elif len(data['results']) >= 2:
-            raise IndexError("Muliple Nodes match '{}' Caption".format(
+            raise ValueError("Muliple Nodes match '{}' Caption".format(
                 caption))
         elif len(data['results']) == 0:
-            raise IndexError("No matching Caption for '{}'".format(
+            raise ValueError("No matching Caption for '{}'".format(
                 caption))
 
     def get_ncm_node_id(self, caption):

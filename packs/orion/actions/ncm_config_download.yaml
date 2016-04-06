@@ -10,7 +10,7 @@ runner_type: "python-script"
 parameters:
   node:
     type: "string"
-    description: "The node to query for state in the monitoring platform."
+    description: "The monitoring platform node to act on."
     required: true
   platform:
     type: "string"
