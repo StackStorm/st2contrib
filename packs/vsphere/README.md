@@ -12,6 +12,10 @@ You will need to specificy the details of the vcenter instance you will be conne
   user:
   passwd:
 ```
+## Requirements
+This pack requires the python module PYVMOMI. At present the `requirements.txt` specifies version 5.5.0. 
+The version specification is to ensure compatibility with Python 2.7.6 (standard version with Ubuntu 14.04).
+PYVMOMI 6.0 requires alternative connection coding and Python 2.7.9 minimum due to elements of the SSL module being used.
 
 ## Actions
 
