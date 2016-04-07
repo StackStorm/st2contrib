@@ -1,0 +1,6 @@
+---
+name: check_mk
+description: st2 content pack containing Check_MK integrations
+version: 0.1.0
+author: codyaray
+email: talktome@codyaray.com
