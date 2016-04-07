@@ -20,9 +20,9 @@ from vmwarelib import checkinputs
 from vmwarelib.actions import BaseAction
 
 
-class VMCPUMemFlex(BaseAction):
+class VMCPUMemEdit(BaseAction):
 
-    def run(self, vm_id, vm_name, cpu_flex, mem_flex):
+    def run(self, vm_id, vm_name, cpu_edit, mem_edit):
         # check a means of finding the VM has been provided
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
 
@@ -30,10 +30,10 @@ class VMCPUMemFlex(BaseAction):
                                           moid=vm_id,
                                           name=vm_name)
         spec = vim.vm.ConfigSpec()
-        if cpu_flex:
-            spec.numCPUs = cpu_flex
-        if mem_flex:
-            spec.memoryMB = mem_flex * 1024
+        if cpu_edit:
+            spec.numCPUs = cpu_edit
+        if mem_edit:
+            spec.memoryMB = mem_edit * 1024
 
         task = vm.ReconfigVM_Task(spec)
         self._wait_for_task(task)
