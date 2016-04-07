@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_hosts.add_hosts
 parameters:
-  action:
+  module:
     default: hosts.add_hosts
     immutable: true
     type: string

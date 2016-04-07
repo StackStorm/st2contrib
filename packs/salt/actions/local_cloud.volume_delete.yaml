@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.volume_delete
 parameters:
-  action:
+  module:
     default: cloud.volume_delete
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_systemd.systemctl_reload
 parameters:
-  action:
+  module:
     default: systemd.systemctl_reload
     immutable: true
     type: string

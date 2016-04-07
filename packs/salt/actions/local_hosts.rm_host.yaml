@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_hosts.rm_host
 parameters:
-  action:
+  module:
     default: hosts.rm_host
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_saltutil.sync_renderers
 parameters:
-  action:
+  module:
     default: saltutil.sync_renderers
     immutable: true
     type: string

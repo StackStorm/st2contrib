@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.network_create
 parameters:
-  action:
+  module:
     default: cloud.network_create
     immutable: true
     type: string

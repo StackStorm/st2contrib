@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_systemd.available
 parameters:
-  action:
+  module:
     default: systemd.available
     immutable: true
     type: string

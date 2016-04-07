@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_ret.get_jid
 parameters:
-  action:
+  module:
     default: ret.get_jid
     immutable: true
     type: string

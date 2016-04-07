@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_schedule.disable_job
 parameters:
-  action:
+  module:
     default: schedule.disable_job
     immutable: true
     type: string

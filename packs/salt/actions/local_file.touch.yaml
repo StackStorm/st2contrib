@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_file.touch
 parameters:
-  action:
+  module:
     default: file.touch
     immutable: true
     type: string

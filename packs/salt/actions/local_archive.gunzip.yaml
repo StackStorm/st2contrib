@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_archive.gunzip
 parameters:
-  action:
+  module:
     default: archive.gunzip
     immutable: true
     type: string

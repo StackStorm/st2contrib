@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_network.connect
 parameters:
-  action:
+  module:
     default: network.connect
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cron.rm_job
 parameters:
-  action:
+  module:
     default: cron.rm_job
     immutable: true
     type: string

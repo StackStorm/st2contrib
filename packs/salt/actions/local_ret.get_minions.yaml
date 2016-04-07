@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_ret.get_minions
 parameters:
-  action:
+  module:
     default: ret.get_minions
     immutable: true
     type: string

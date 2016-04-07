@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_network.subnets
 parameters:
-  action:
+  module:
     default: network.subnets
     immutable: true
     type: string

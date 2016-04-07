@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_saltutil.sync_returners
 parameters:
-  action:
+  module:
     default: saltutil.sync_returners
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_ret.get_fun
 parameters:
-  action:
+  module:
     default: ret.get_fun
     immutable: true
     type: string
