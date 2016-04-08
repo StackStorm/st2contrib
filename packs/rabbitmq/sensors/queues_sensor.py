@@ -26,6 +26,7 @@ class RabbitMQQueueSensor(Sensor):
     def __init__(self, sensor_service, config=None):
         super(RabbitMQQueueSensor, self).__init__(sensor_service=sensor_service, config=config)
 
+        self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
         self.host = self._config['sensor_config']['host']
         self.username = self._config['sensor_config']['username']
         self.password = self._config['sensor_config']['password']
@@ -45,6 +46,7 @@ class RabbitMQQueueSensor(Sensor):
         self.channel = None
 
     def run(self):
+        self._logger.info('Starting to consume messages from RabbitMQ for %s', self.queues)
         # run in an eventlet in-order to yield correctly
         gt = eventlet.spawn(self.channel.start_consuming)
         # wait else the sensor will quit
@@ -74,8 +76,9 @@ class RabbitMQQueueSensor(Sensor):
 
     def callback(self, ch, method, properties, body, queue):
         body = self._deserialize_body(body=body)
-        payload = {"queue": queue, "body": body}
+        self._logger.debug('Received message for queue %s with body %s', queue, body)
 
+        payload = {"queue": queue, "body": body}
         try:
             self._sensor_service.dispatch(trigger="rabbitmq.new_message", payload=payload)
         finally:
