@@ -17,9 +17,8 @@ Defaut Connection details can be specified within the `config.yaml`. These value
 ## Actions
 
 * `hpe-icsp.icsp_server_attributes_get` - Retrieve all Server Attributes set against server
+* `hpe-icsp.icsp_server_attributes_set` - Assign Custom Attributes to Server
 * `hpe-icsp.icsp_buildplan_apply` - Assign build plans provided list of Servers
 * `hpe-icsp.icsp_buildplan_get` - Retrieve list of Build plans and Build Plan IDs
 * `hpe-icsp.icsp_job_status` - Retrieve Status of specified Job
 * `hpe-icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
-* `hpe-icsp.icsp_server_attributes_set` - Assign Custom Attributes to Server
-
