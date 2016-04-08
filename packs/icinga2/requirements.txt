@@ -1,0 +1,3 @@
+# Place any required python libraries here. Will be installed into a pack specific virtualenv
+pycurl==7.19.0
+

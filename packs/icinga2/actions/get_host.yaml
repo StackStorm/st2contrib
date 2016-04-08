@@ -1,0 +1,11 @@
+---
+description: Get Icinga2 host object
+enabled: true
+entry_point: get_host.py
+parameters:
+  hosts:
+    type: "array"
+    required: false
+    default: []
+name: get_host
+runner_type: "python-script"
