@@ -1,0 +1,32 @@
+---
+  name: "icsp_server_attributes_set"
+  runner_type: "run-python"
+  description: "Set Custom Server Attribute on a Server Entity in ICSP. Note: Server hostname is set in the build plan apply action."
+  enabled: true
+  entry_point: "icsp_server_attributes_set.py"
+  parameters:
+    mid:
+      type: "integer"
+      description: "ICSP MID for desired server."
+      required: true
+      position: 0
+    attributes:
+      type: "object"
+      description: "Key Value pair collection of attributes to be set. eg. {\"attribute=value,category=webserver\"}"
+      required: true
+      position: 1
+    function:
+      type: "string"
+      description: "Replace or Append Attributes. Append will only add any attributes NOT already defined."
+      enum:
+        - replace
+        - append
+      default: replace
+      position: 2
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 3
+
