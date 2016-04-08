@@ -1,10 +1,12 @@
 import json
 import pickle
 
+import eventlet
 import pika
+
 from pika.credentials import PlainCredentials
 
-from st2reactor.sensor.base import PollingSensor
+from st2reactor.sensor.base import Sensor
 
 DESERIALIZATION_FUNCTIONS = {
     'json': json.loads,
@@ -12,31 +14,47 @@ DESERIALIZATION_FUNCTIONS = {
 }
 
 
-class RabbitMQSensor(PollingSensor):
-    def __init__(self, sensor_service, config=None, poll_interval=5):
-        super(RabbitMQSensor, self).__init__(sensor_service=sensor_service, config=config,
-                                             poll_interval=poll_interval)
+class RabbitMQQueueSensor(Sensor):
+    """Sensor which monitors a RabbitMQ queue for new messages
 
-    def cleanup(self):
-        if self.conn:
-            self.conn.close()
+    This is a RabbitMQ Queue sensor i.e. it works on the simplest RabbitMQ
+    messaging model as described in https://www.rabbitmq.com/tutorials/tutorial-one-python.html.
 
-    def setup(self):
-        self.queues = None
-        self.conn = None
-        self.channel = None
+    It is capable of simultaneously consuming from multiple queues. Each message is
+    dispatched to stackstorm as a `rabbitmq.new_message` TriggerInstance.
+    """
+    def __init__(self, sensor_service, config=None):
+        super(RabbitMQQueueSensor, self).__init__(sensor_service=sensor_service, config=config)
 
+        self.host = self._config['sensor_config']['host']
         self.username = self._config['sensor_config']['username']
         self.password = self._config['sensor_config']['password']
-        self.queues = self._config['sensor_config']['queues']
-        self.host = self._config['sensor_config']['host']
-        self.deserialization_method = self._config['sensor_config']['deserialization_method']
+
+        queue_sensor_config = self._config['sensor_config']['rabbitmq_queue_sensor']
+        self.queues = queue_sensor_config['queues']
+        if not isinstance(self.queues, list):
+            self.queues = [self.queues]
+        self.deserialization_method = queue_sensor_config['deserialization_method']
 
         supported_methods = DESERIALIZATION_FUNCTIONS.keys()
         if self.deserialization_method and self.deserialization_method not in supported_methods:
             raise ValueError('Invalid deserialization method specified: %s' %
                              (self.deserialization_method))
 
+        self.conn = None
+        self.channel = None
+
+    def run(self):
+        # run in an eventlet in-order to yield correctly
+        gt = eventlet.spawn(self.channel.start_consuming)
+        # wait else the sensor will quit
+        gt.wait()
+
+    def cleanup(self):
+        if self.conn:
+            self.conn.close()
+
+    def setup(self):
         if self.username and self.password:
             credentials = PlainCredentials(username=self.username, password=self.password)
             connection_params = pika.ConnectionParameters(host=self.host, credentials=credentials)
@@ -47,12 +65,12 @@ class RabbitMQSensor(PollingSensor):
         self.channel = self.conn.channel()
         self.channel.basic_qos(prefetch_count=1)
 
-    def poll(self):
+        # Setup Qs for listening
         for queue in self.queues:
-            queue_state = self.channel.queue_declare(queue=queue, durable=True)
-            if queue_state.method.message_count != 0:
-                method, properties, body = self.channel.basic_get(queue, no_ack=False)
-                self.callback(self.channel, method, properties, body, queue)
+            self.channel.queue_declare(queue=queue, durable=True)
+            cb = lambda ch, method, properties, body: self.callback(
+                ch, method, properties, body, queue)
+            self.channel.basic_consume(cb, queue=queue)
 
     def callback(self, ch, method, properties, body, queue):
         body = self._deserialize_body(body=body)
