@@ -1,14 +1,14 @@
 ---
-  name: "icsp_server_attribute_get"
+  name: "icsp_server_attributes_get"
   runner_type: "run-python"
   description: "Retrieve Attributes set against Server"
   enabled: true
-  entry_point: "icsp_server_attribute_get.py"
+  entry_point: "icsp_server_attributes_get.py"
   parameters:
     mids:
       type: "array"
       description: "ICSP Server ID list, Comma seperated."
-      required: false
+      required: true
       position: 0
     attribute_key:
       type: "string"
