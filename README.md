@@ -1864,7 +1864,7 @@ list_scans | List the scans
 
 Name | Description
 ---- | -----------
-RabbitMQSensor | Sensor which monitors a RabbitMQ queue for new messages
+RabbitMQQueueSensor | Sensor which monitors a RabbitMQ queue for new messages
 
 #### Actions
 
