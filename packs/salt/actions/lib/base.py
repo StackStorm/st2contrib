@@ -14,13 +14,14 @@ class SaltPackage(object):
         'list',
         'compound'
     ]
-    _data = {"eauth": "",
-             "username": "",
-             "password": "",
-             "client": "",
-             "fun": ""}
 
     def __init__(self, client='local'):
+        self._data = {"eauth": "",
+                      "username": "",
+                      "password": "",
+                      "client": "",
+                      "fun": ""}
+
         self._data['client'] = client
 
     @property
