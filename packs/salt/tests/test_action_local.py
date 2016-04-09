@@ -20,7 +20,7 @@ one_arg = {
     'module': 'this.something',
     'target': '*',
     'expr_form': 'glob',
-    'args': 'os',
+    'args': ['os'],
 }
 
 multiple_args = {
@@ -56,7 +56,9 @@ class SaltLocalActionTestCase(testtools.TestCase, BaseActionTestCase):
     def test_generic_action_one_arg(self):
         self.action.run(**one_arg)
         self.assertIn('arg', self.action.data)
+        self.assertIsInstance(self.action.data['arg'], list)
 
     def test_generic_action_multiple_args(self):
         self.action.run(**multiple_args)
         self.assertIn('arg', self.action.data)
+        self.assertIsInstance(self.action.data['arg'], list)
