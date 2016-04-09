@@ -54,10 +54,11 @@ class SaltAction(Action):
         if client is 'local':
             self.data['tgt'] = kwargs.get('target', '*')
             self.data['expr_form'] = kwargs.get('expr_form', 'glob')
-        if kwargs.get('kwargs', None) is not None:
-            self.data['kwarg'] = kwargs['kwargs']['kwargs']
-        if kwargs.get('args', None) is not None:
+        if len(kwargs.get('args', [])) > 0:
             self.data['arg'] = kwargs['args']
+        if len(kwargs.get('data', {})) > 0:
+            if kwargs['data'].get('kwargs', None) is not None:
+                self.data['kwarg'] = kwargs['kwargs']['kwargs']
         clean_payload = sanitize_payload(('username', 'password'), self.data)
         self.logger.info("[salt] Payload to be sent: {0}".format(clean_payload))
 
