@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_puppet.summary
 parameters:
-  action:
+  module:
     default: puppet.summary
     immutable: true
     type: string

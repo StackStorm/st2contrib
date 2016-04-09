@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_archive.zip_
 parameters:
-  action:
+  module:
     default: archive.zip_
     immutable: true
     type: string

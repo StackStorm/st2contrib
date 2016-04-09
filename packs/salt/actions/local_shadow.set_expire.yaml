@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_shadow.set_expire
 parameters:
-  action:
+  module:
     default: shadow.set_expire
     immutable: true
     type: string

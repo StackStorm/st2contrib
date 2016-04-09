@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_archive.tar
 parameters:
-  action:
+  module:
     default: archive.tar
     immutable: true
     type: string

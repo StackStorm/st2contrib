@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_state.highstate
 parameters:
-  action:
+  module:
     default: state.highstate
     immutable: true
     type: string

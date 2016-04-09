@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_hosts.get_alias
 parameters:
-  action:
+  module:
     default: hosts.get_alias
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.volume_create
 parameters:
-  action:
+  module:
     default: cloud.volume_create
     immutable: true
     type: string

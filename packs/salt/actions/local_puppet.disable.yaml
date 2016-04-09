@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_puppet.disable
 parameters:
-  action:
+  module:
     default: puppet.disable
     immutable: true
     type: string

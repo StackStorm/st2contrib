@@ -48,12 +48,15 @@ password: clams
 ```bash
     st2 run salt.runner_manage.up
     st2 run salt.runner_job.list_jobs kwargs='{"ext_source":"blah"}'
+    st2 run salt.local_pillar.items args=this,that
 ```
 
-One can also use the generic "runner" action to execute arbitrary runners.
+One can also use the generic "runner" action to execute arbitrary runners and execution modules.
 
 ```bash
     st2 run salt.runner module=manage.down
+    st2 run salt.local module=grains.get args=os
+    st2 run salt.local module=pillar.items args=thing1,thing2
 ```
 
 ### Actions

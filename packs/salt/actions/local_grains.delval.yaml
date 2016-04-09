@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_grains.delval
 parameters:
-  action:
+  module:
     default: grains.delval
     immutable: true
     type: string

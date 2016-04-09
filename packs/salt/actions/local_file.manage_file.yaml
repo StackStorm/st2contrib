@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_file.manage_file
 parameters:
-  action:
+  module:
     default: file.manage_file
     immutable: true
     type: string

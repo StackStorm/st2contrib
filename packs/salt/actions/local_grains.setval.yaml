@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_grains.setval
 parameters:
-  action:
+  module:
     default: grains.setval
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_pkg.install
 parameters:
-  action:
+  module:
     default: pkg.install
     immutable: true
     type: string

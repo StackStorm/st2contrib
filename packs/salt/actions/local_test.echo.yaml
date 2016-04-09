@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_test.echo
 parameters:
-  action:
+  module:
     default: test.echo
     immutable: true
     type: string

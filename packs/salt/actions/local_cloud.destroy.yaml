@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.destroy
 parameters:
-  action:
+  module:
     default: cloud.destroy
     immutable: true
     type: string
