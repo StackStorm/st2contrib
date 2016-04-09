@@ -17,4 +17,4 @@ Replace this with the PR description.
 - [ ] Metadata: pack.yaml, icon, structure (required for new packs)
 - [ ] Version bump (required for changed packs)
 - [ ] Code linting (required, can be done after the PR checks)
-- [ ] Tests (not required but really recommended)
+- [ ] [Tests](https://docs.stackstorm.com/development/pack_testing.html) (not required but really recommended)
