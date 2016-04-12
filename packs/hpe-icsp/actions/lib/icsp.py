@@ -39,6 +39,13 @@ class ICSPBaseActions(Action):
             self.icsp_user = connection['user']
         if 'pass' in connection:
             self.icsp_pass = connection['pass']
+        if 'apiv' in connection:
+            self.icsp_apiv = connection['apiv']
+        if 'sslverify' in connection:
+            if connection['sslverify'].lower() == "false":
+                self.icsp_sslverify = False
+            else:
+                self.icsp_sslverify = True
 
     def getSessionID(self):
         url = 'https://%s/rest/login-sessions' % self.icsp_host
