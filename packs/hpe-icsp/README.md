@@ -22,3 +22,4 @@ Defaut Connection details can be specified within the `config.yaml`. These value
 * `hpe-icsp.icsp_buildplan_get` - Retrieve list of Build plans and Build Plan IDs
 * `hpe-icsp.icsp_job_status` - Retrieve Status of specified Job
 * `hpe-icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
+* `hpe-icsp.icsp_server_delete` - Remove server record from ICSP instance
