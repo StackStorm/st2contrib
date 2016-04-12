@@ -14,7 +14,7 @@ Defaut Connection details can be specified within the `config.yaml`. These value
   sslverify: True
 ```
 
-To reteieve apiv retrieve your ICSP version
+To retrieve apiv retrieve your ICSP version
 ```
 https://ICSP/rest/version
 ```
