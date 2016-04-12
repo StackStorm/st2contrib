@@ -18,6 +18,10 @@ To retrieve apiv, retrieve your ICSP version
 ```
 https://ICSP/rest/version
 ```
+This should return something similar to 
+```
+  {"minimumVersion":1,"currentVersion":108}
+```
 
 ### Override Connection configuration
 Host, user and password can be individually overridden via the use of the "connection_detail" parameter.
