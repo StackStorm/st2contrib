@@ -1,6 +1,6 @@
 # HPE Insight Control Server Provisioning Integration Pack
 
-Pack to communicate with HPE's Insight Control Server Provisioning Application. Allows for the assignment of buildplans to stream OS Installations 
+Pack to communicate with HPE Insight Control Server Provisioning Application. Allows for the assignment of buildplans to stream OS Installations 
 
 ## Connection Configuration
 
@@ -13,6 +13,22 @@ Defaut Connection details can be specified within the `config.yaml`. These value
   apiv: 104
   sslverify: True
 ```
+
+To reteieve apiv retrieve your ICSP version
+```
+https://ICSP/rest/version
+```
+
+### Override Connection configuration
+Host, user and password can be individually overridden via the use of the "connection_detail" parameter.
+```
+  {
+    "host": "192.168.0.1",
+    "user": "username",
+    "pass": "secret" 
+  } 
+```
+Each attribute is independant allowing a mixture of config.yaml and parameter to be used as suits.
 
 ## Actions
 
