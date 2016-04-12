@@ -75,8 +75,48 @@ class NodeCreate(OrionBaseAction):
         self.logger.info("Creating Orion Node: {}".format(kargs))
         orion_data = self.create('Orion.Nodes', **kargs)
 
-        results['node_id'] = re.search('(\d+)$', orion_data).group(0)
+        node_id = re.search('(\d+)$', orion_data).group(0)
+        results['node_id'] = node_id
 
         self.logger.info("Created Orion Node: {}".format(results['node_id']))
+
+        pollers_to_add = {
+            'N.Details.SNMP.Generic': True,
+            'N.Uptime.SNMP.Generic': True,
+            'N.Cpu.SNMP.HrProcessorLoad': True,
+            'N.Memory.SNMP.NetSnmpReal': True,
+            'N.AssetInventory.Snmp.Generic': True,
+            'N.Topology_Layer3.SNMP.ipNetToMedia': False,
+            'N.Routing.SNMP.Ipv4CidrRoutingTable': False
+        }
+
+        if status == 'icmp':
+            pollers_to_add['N.Status.ICMP.Native'] = True
+            pollers_to_add['N.Status.SNMP.Native'] = False
+            pollers_to_add['N.ResponseTime.ICMP.Native'] = True
+            pollers_to_add['N.ResponseTime.SNMP.Native'] = False
+        elif status == 'snmp':
+            pollers_to_add['N.Status.ICMP.Native'] = False
+            pollers_to_add['N.Status.SNMP.Native'] = True
+            pollers_to_add['N.ResponseTime.ICMP.Native'] = False
+            pollers_to_add['N.ResponseTime.SNMP.Native'] = True
+
+        pollers = []
+        for p in pollers_to_add:
+            pollers.append({
+                'PollerType': p,
+                'NetObject': 'N:{}'.format(node_id),
+                'NetObjectType': 'N',
+                'NetObjectID': node_id,
+                'Enabled': pollers_to_add[p]
+            })
+
+        for poller in pollers:
+            # self.logger.info(
+            #    "Adding poller type: {} with status {}... ".format(
+            #        poller['PollerType'], poller['Enabled'])
+            #    )
+            response = self.create('Orion.Pollers', **poller)
+            # self.logger.info("Done: {}".format(response))
 
         return results
