@@ -7,12 +7,12 @@
   parameters:
     job_id:
       type: "integer"
-      description: "ID for Job, blank will return all jobs listed"
+      description: "URI for Job, blank will return all jobs listed"
       required: false
       position: 0
     monitor:
       type: boolean
-      description: "Monitor Progress of The Job. False = One time status"
+      description: "Monitor Progress of The Job. False = One time check"
       required: false
       default: false
       position: 1

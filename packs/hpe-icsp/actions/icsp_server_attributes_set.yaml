@@ -7,7 +7,7 @@
   parameters:
     mid:
       type: "integer"
-      description: "ICSP MID for desired server."
+      description: "Server MID"
       required: true
       position: 0
     attributes:

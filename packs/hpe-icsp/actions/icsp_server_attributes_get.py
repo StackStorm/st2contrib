@@ -16,7 +16,7 @@
 from lib.icsp import ICSPBaseActions
 
 
-class getServerAttributes(ICSPBaseActions):
+class GetServerAttributes(ICSPBaseActions):
     def run(self, mids, connection_details,
             attribute_key, attribute_type="all"):
         if connection_details:

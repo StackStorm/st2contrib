@@ -51,6 +51,7 @@ class Apply(ICSPBaseActions):
             # Prepare server personality Data
             # Initially not including network data Although
             # this can be included later
+            # TODO extend variable values to include IP configuration
 
             if "hostname" in server_data[server]:
                 pdata['hostName'] = server_data[server]['hostname']

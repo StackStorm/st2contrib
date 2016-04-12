@@ -7,7 +7,7 @@
   parameters:
     mids:
       type: "array"
-      description: "Comma seperated list of server MID values"
+      description: "Server MIDs, Comma sepereated"
       required: true
       position: 0
     connection_details:

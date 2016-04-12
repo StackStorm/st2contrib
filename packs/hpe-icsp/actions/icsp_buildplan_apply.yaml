@@ -13,8 +13,10 @@
     server_data:
       type: "object"
       description: "Server Data to apply Build plans to. eg
-                    {\"970001\": {\"hostname\": \"testst2vm9\"},
-                     \"980001\": {\"hostname\": \"testst2vm6\"}}"
+                    {\"MID\": {\"Key\": \"Value\"},
+                     \"970001\": {\"hostname\": \"testst2vm9\"},
+                     \"980001\": {\"hostname\": \"testst2vm6\"}}
+                    Approved Keys: hostname, domain, workgroup"
       required: true
       position: 0
     connection_details:

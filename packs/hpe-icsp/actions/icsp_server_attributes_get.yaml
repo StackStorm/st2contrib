@@ -7,7 +7,7 @@
   parameters:
     mids:
       type: "array"
-      description: "ICSP Server ID list, Comma seperated."
+      description: "Server MID list, Comma seperated."
       required: true
       position: 0
     attribute_key:
@@ -17,7 +17,7 @@
       position: 1
     attribute_type:
       type: "string"
-      description: "Type of Attribute to retrieve. Default = Attributes of all types"
+      description: "Type of Attribute to retrieve. Default = All types"
       required: false
       position: 2
       enum:
