@@ -1,6 +1,24 @@
-from st2reactor.sensor.base import Sensor
-from flask import Flask, request, jsonify, abort, make_response
+# Licensed to the StackStorm, Inc ('StackStorm') under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the 'License'); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an 'AS IS' BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import json, requests
+
+from flask import Flask, request, jsonify, abort, make_response
+from st2reactor.sensor.base import Sensor
+
+TRIGGER_REF = 'circle_ci.build_event'
 
 
 class CircleCIWebhookSensor(Sensor):
@@ -10,15 +28,19 @@ class CircleCIWebhookSensor(Sensor):
         self.port = self._config['port']
         self._endpoints = self._config['endpoints']
         self.app = Flask(__name__)
-        self.trigger_ref = "circle_ci.build_event"
+        self.trigger_ref = TRIGGER_REF
         self.log = self._sensor_service.get_logger(__name__)
 
         @self.app.route('/status')
         def status():
-            return json.dumps({"response":"OK"})
+            return json.dumps({'response': 'OK'})
 
         @self.app.route('/webhooks/<path:endpoint>', methods=['POST',])
         def build_events(endpoint):
+
+            if not endpoint in self._endpoints:
+                self.log.error('Ignoring unknown endpoint : %s', endpoint)
+                abort(404)
 
             webhook_body = request.get_json()
             payload = {}
@@ -26,8 +48,8 @@ class CircleCIWebhookSensor(Sensor):
             payload['body'] = webhook_body
 
             response = self._sensor_service.dispatch(self.trigger_ref, payload)
-            self.log.info(json.dumps(response))
-            return json.dumps({"response":"triggerposted"})
+            self.log.debug(json.dumps(response))
+            return json.dumps({'response': 'triggerposted'})
 
     def run(self):
         self.app.run(host=self.host,port=self.port,debug=True, threaded=True)
@@ -47,19 +69,7 @@ class CircleCIWebhookSensor(Sensor):
         pass
 
     def update_trigger(self, trigger):
-        self.remove_trigger(trigger)
-        self.add_trigger(trigger)
+        pass
 
     def remove_trigger(self, trigger):
-        id = trigger['id']
-
-        try:
-            job_id = self._jobs[id]
-        except KeyError:
-            self._log.info('Job not found: %s', id)
-            return
-
-        self._scheduler.remove_job(job_id)
-
-    def _get_trigger_type(self, ref):
         pass
