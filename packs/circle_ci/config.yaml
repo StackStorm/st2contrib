@@ -1,2 +1,6 @@
 ---
   token: INVALID_TOKEN
+  host: "0.0.0.0"
+  port: 8531
+  endpoints:
+    - "build/events"

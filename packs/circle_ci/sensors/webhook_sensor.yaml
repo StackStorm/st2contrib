@@ -1,0 +1,15 @@
+---
+  class_name: "CircleCIWebhookSensor"
+  entry_point: "webhook_sensor.py"
+  description: "CircleCI Webhook sensor"
+  trigger_types:
+    -
+      name: "build_event"
+      description: "A build event"
+      payload_schema:
+        type: "object"
+        properties:
+          executed_at:
+            type: "string"
+            format: "date-time"
+            default: "2016-03-17 05:04:24.578325"
