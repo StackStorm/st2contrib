@@ -31,7 +31,6 @@ class RunBuild(CircleCI):
                 data = {}
             data['build_parameters'] = build_parameters
 
-
         response = self._perform_request(path, method='POST', data=data)
 
         if response.status_code != httplib.CREATED:
