@@ -1,0 +1,12 @@
+---
+  name: "vm_destroy"
+  runner_type: "run-python"
+  description: "Wait for a Task to complete and returns its result."
+  enabled: true
+  entry_point: "vm_destroy.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to destroy."
+      required: true
+

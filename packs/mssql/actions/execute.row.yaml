@@ -1,0 +1,33 @@
+---
+pack: mssql
+name: execute.row
+description: Returns first row of data from result. This action is useful if you want just a single row, as in 'SELECT * FROM employees WHERE id=13'
+enabled: true
+
+runner_type: python-script
+entry_point: mssql_runner.py
+
+parameters:
+  action:
+    default: execute_row
+    immutable: true
+    type: string
+  query_string:
+    description: Query to send to MS SQL Server.
+    required: true
+    type: string
+  params:
+    description: Parameters for interpolation in the query_string.
+    type: string
+  database:
+    description: Database name if not specified in config.
+    type: string
+  server:
+    description: Database host if not specified in config.
+    type: string
+  user:
+    description: Database user if not specified in config.
+    type: string
+  password:
+    description: Database password if not specified in config.
+    type: string

@@ -1,0 +1,15 @@
+name: cancel_build
+pack: circle_ci
+runner_type: run-python
+description: Cancel specific build for project.
+enabled: true
+entry_point: cancel_build.py
+parameters:
+  project:
+    type: string
+    description: Name of project in circle ci.
+    required: true
+  build_num:
+    type: integer
+    description: Build number from circle CI.
+    required: true

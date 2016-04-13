@@ -43,7 +43,7 @@ class CircleCI(Action):
         if method == "GET":
             response = requests.get(url, headers=headers)
         elif method == 'POST':
-            response = requests.post(url, headers=headers)
+            response = requests.post(url, data=data, headers=headers)
         elif method == 'PUT':
             response = requests.put(url, data=data, headers=headers)
 

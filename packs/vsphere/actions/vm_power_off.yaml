@@ -1,0 +1,12 @@
+---
+  name: "vm_poweroff"
+  runner_type: "run-python"
+  description: "Power off a VM."
+  enabled: true
+  entry_point: "vm_power_off.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to PowerOff."
+      required: true
+

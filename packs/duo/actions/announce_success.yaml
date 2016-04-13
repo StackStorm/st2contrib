@@ -13,3 +13,4 @@ parameters:
   uuid:
     type: "string"
     description: "UUID of a frozen action."
+    required: true
