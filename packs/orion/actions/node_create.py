@@ -40,21 +40,28 @@ class NodeCreate(OrionBaseAction):
             try:
                 platform = self.config['defaults']['platform']
             except IndexError:
+                self.send_user_error("No default Orion platform.")
                 raise ValueError("No default Orion platform.")
 
         self.logger.info("Connecting to Orion platform: {}".format(platform))
         self.connect(platform)
         results['platform'] = platform
 
-        # Check node / ip is not already on platform.
-        self.logger.info(
-            "Checking node ({}) is not on Orion platform: {}".format(node,
-                                                                     platform))
+        if self.node_exists(node, ip_address):
+            self.logger.error(
+                "Node ({}) or IP ({}) already in Orion platform: {}".format(
+                    node,
+                    platform)
+            )
 
-        # The API allows addition of duplicate nodes, so check and raise
-        # exception if it's already monitored (by name or IP address).
-        # FIX ME - Do check of node caption here...
-        # FIX ME - Do check of ip caption here...
+            self.send_user_error("Node and/or IP is already in Orion!")
+            raise Exception("Node and/or IP already exists!")
+        else:
+            self.logger.info(
+                "Checking node ({}) is not on Orion platform: {}".format(
+                    node,
+                    platform)
+            )
 
         kargs = {'Caption': node,
                  'EngineID': engineID,
@@ -86,7 +93,7 @@ class NodeCreate(OrionBaseAction):
             'N.Cpu.SNMP.HrProcessorLoad': True,
             'N.Memory.SNMP.NetSnmpReal': True,
             'N.AssetInventory.Snmp.Generic': True,
-            'N.Topology_Layer3.SNMP.ipNetToMedia': False,
+            'N.Topology_Layer3.SNMP.ipNetToMedia': True,
             'N.Routing.SNMP.Ipv4CidrRoutingTable': False
         }
 
@@ -112,11 +119,10 @@ class NodeCreate(OrionBaseAction):
             })
 
         for poller in pollers:
-            # self.logger.info(
-            #    "Adding poller type: {} with status {}... ".format(
-            #        poller['PollerType'], poller['Enabled'])
-            #    )
             response = self.create('Orion.Pollers', **poller)
-            # self.logger.info("Done: {}".format(response))
+            self.logger.info("Added {} ({}) poller: {}".format(
+                poller['PollerType'],
+                poller['Enabled'],
+                response))
 
         return results

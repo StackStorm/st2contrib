@@ -26,5 +26,6 @@ result:
     Created {{execution.parameters.node}} ({{execution.parameters.ip_address}}) on {{execution.result.result.platform}} {~}
     The NodeID is {{execution.result.result.node_id}}
     {% else %}
-    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    Error: {{execution.result.stdout}}{~}
+    See {{execution.id}} for more details.
     {% endif %}

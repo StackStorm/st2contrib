@@ -30,9 +30,10 @@ class OrionBaseAction(Action):
 
     def connect(self, platform):
         try:
-            self.client = SwisClient(self.config['orion'][platform]['host'],
-                                   self.config['orion'][platform]['user'],
-                                   self.config['orion'][platform]['password'])
+            self.client = SwisClient(
+                self.config['orion'][platform]['host'],
+                self.config['orion'][platform]['user'],
+                self.config['orion'][platform]['password'])
         except KeyError:
             raise ValueError("Orion host details not in the config.yaml")
 
@@ -44,6 +45,22 @@ class OrionBaseAction(Action):
 
     def create(self, entity, **kargs):
         return self.client.create(entity, **kargs)
+
+    def node_exists(self, caption, ip_address):
+        swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
+                  WHERE Caption=@caption"""
+        kargs = {'caption': caption}
+        caption_data = self.query(swql, **kargs)
+
+        swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
+                  WHERE IPAddress=@ip_address"""
+        kargs = {'ip_address': ip_address}
+        ip_data = self.query(swql, **kargs)
+
+        if len(caption_data['results']) >= 1 or len(ip_data['results']) >= 1:
+            return True
+        else:
+            return False
 
     def get_node_id(self, caption):
         swql = "SELECT NodeID FROM Orion.Nodes WHERE Caption=@caption"
