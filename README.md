@@ -1063,6 +1063,12 @@ solo | Performs chef-solo run on remote hosts.
 
 ![circle_ci icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)
 
+#### Sensors
+
+Name | Description
+---- | -----------
+CircleCIWebhookSensor | CircleCI Webhook sensor
+
 #### Actions
 
 Name | Description
