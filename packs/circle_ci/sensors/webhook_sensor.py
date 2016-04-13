@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, requests
+import json
 
-from flask import Flask, request, jsonify, abort, make_response
+from flask import Flask, request, abort
 from st2reactor.sensor.base import Sensor
 
 TRIGGER_REF = 'circle_ci.build_event'
@@ -35,10 +35,10 @@ class CircleCIWebhookSensor(Sensor):
         def status():
             return json.dumps({'response': 'OK'})
 
-        @self.app.route('/webhooks/<path:endpoint>', methods=['POST',])
+        @self.app.route('/webhooks/<path:endpoint>', methods=['POST'])
         def build_events(endpoint):
 
-            if not endpoint in self._endpoints:
+            if endpoint not in self._endpoints:
                 self.log.error('Ignoring unknown endpoint : %s', endpoint)
                 abort(404)
 
