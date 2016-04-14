@@ -1,0 +1,53 @@
+---
+  name: "vm_hw_barebones_create"
+  runner_type: "run-python"
+  description: "Create BareBones VM (CPU, Ram, Graphics Only)"
+  enabled: true
+  entry_point: "vm_hw_barebones_create.py"
+  parameters:
+    vm_name:
+      type: "string"
+      description: "Name of the new Virtual Machine"
+      required: true
+      position: 0
+    cluster:
+      type: "string"
+      description: "Cluster Name to Buid VM within"
+      required: true
+    datastore_cluster:
+      type: "string"
+      description: "Datastore Cluster for VM Files"
+      required: false
+    datastore:
+      type: "string"
+      description: "Datastore for VM Files"
+      required: false
+    description:
+      type: "string"
+      description: "Annotation text for Server"
+      required: false
+    resourcepool:
+      type: "string"
+      description: "Resource Pool for VM"
+      required: false
+    cpu_size:
+      type: "integer"
+      description: "Number of CPUs"
+      required: false
+      default: 1
+    ram_size:
+      type: "integer"
+      description: "Ammount of RAM in GB"
+      required: false
+      default: 2
+    guestos:
+      type: "string"
+      description: "Guest OS Type"
+      required: true
+    version:
+      type: "string"
+      description: "VM Version"
+      required: false
+      default: "vmx-10"
+
+

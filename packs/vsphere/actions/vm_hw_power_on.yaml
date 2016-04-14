@@ -1,0 +1,23 @@
+---
+  name: "vm_hw_power_on"
+  runner_type: "run-python"
+  description: "Performs a Hardware Power On of a VM."
+  enabled: true
+  entry_point: "vm_hw_power.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to PowerOn."
+      required: false
+      position: 0
+    vm_name: 
+      type: "string"
+      description: "VM Name to PowerOn."
+      required: false
+      position: 1
+    power_onoff: 
+      type: "string"
+      description: "State to apply."
+      immutable: true
+      default: poweron
+

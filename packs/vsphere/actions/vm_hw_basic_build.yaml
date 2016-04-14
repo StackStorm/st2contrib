@@ -1,0 +1,61 @@
+---
+name: "vm_hw_basic_build"
+runner_type: "mistral-v2"
+pack: "vsphere"
+enabled: true
+entry_point: 'workflows/vm_hw_basic_build.yaml'
+description: WorkFlow to build a base VM hardware and power it on (CPU, RAM, HDD, NIC)
+
+parameters:
+  vm_name: 
+    required: true
+    type: string 
+    position: 0
+  vm_hdd_dscluster: 
+    type: string
+    description: Which Datastore Cluster should be used for this HDD. Blank = same as Base VM    
+  vm_resourcepool: 
+    type: string
+  vm_version: 
+    default: vmx-09
+    type: string
+    description: Virtual Machine Hardware Version
+  vm_cpu: 
+    default: 1
+    type: integer
+    description: Number of CPU's to attach to this VM
+  vm_ram: 
+    default: 2
+    type: integer
+    description: RAM (GB) assigned to server)
+  vm_ctrl_type: 
+    default: ParaVirtual
+    type: string
+    description: Type of HDD SCSI Controller to be used on this machine
+  vm_hdd_size: 
+    default: 40
+    type: integer
+    description: Size of HDD in GB
+  vm_nic_type: 
+    default: vmxnet3
+    type: string
+    description: Type of Network Adapter to attach
+  vm_nic_netname: 
+    required: true
+    type: string
+    description: Which network do you want to attach to?
+  vm_dscluster: 
+    required: true
+    type: string
+    description: Datastore Cluster core VM Files will be store against (vmx files).
+  vm_dccluster: 
+    required: true
+    type: string
+    description: DataCenter Cluster to Buid VM within
+  vm_guestos: 
+    default: rhel6_64guest
+    type: string
+  vm_description: 
+    description: Simple description about Virtual Machine
+    type: string
+

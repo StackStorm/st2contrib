@@ -13,29 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import atexit
 import eventlet
-
-from pyVim import connect
 from pyVmomi import vim
-from st2actions.runners.pythonrunner import Action
+
+from vmwarelib import inventory
+from vmwarelib import checkinputs
+from vmwarelib.actions import BaseAction
 
 
-class BaseAction(Action):
-    def __init__(self, config):
-        super(BaseAction, self).__init__(config)
-        self.si = self._connect()
-        self.si_content = self.si.RetrieveContent()
+class VMApplyPowerState(BaseAction):
 
-    def _connect(self):
-        si = connect.SmartConnect(host=self.config['host'],
-                                  port=self.config['port'],
-                                  user=self.config['user'],
-                                  pwd=self.config['passwd'])
-        atexit.register(connect.Disconnect, si)
-        return si
-
-    def _wait_for_task(self, task):
+    def run(self, vm_id, vm_name, power_onoff):
+        # check I have information to find a VM
+        checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+        # convert ids to stubs
+        vm = inventory.get_virtualmachine(self.si_content,
+                                          moid=vm_id, name=vm_name)
+        if not vm:
+            raise Exception('Error: Unable to find VM')
+        if power_onoff == "poweroff":
+            task = vm.PowerOffVM_Task()
+        elif power_onoff == "poweron":
+            task = vm.PowerOnVM_Task()
         while task.info.state == vim.TaskInfo.State.running:
             eventlet.sleep(1)
-        return task.info.state == vim.TaskInfo.State.success
+        return {'state': str(task.info.state)}

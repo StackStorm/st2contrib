@@ -1,0 +1,16 @@
+---
+  name: vm_hw_detail_get
+  runner_type: run-python
+  description: Retrieve details of a VM object
+  entry_point: vm_hw_details_get.py
+  parameters:
+    vm_ids:
+      type: array
+      description: Comma seperated list of VM IDs
+      required: false
+      position: 0
+    vm_names:
+      type: array
+      description: Comma seperated list of VM Names
+      required: false
+      position: 1

@@ -17,38 +17,91 @@ from pyVmomi import vim
 
 
 def get_managed_entity(content, vimtype, moid=None, name=None):
-    container = content.viewManager.CreateContainerView(content.rootFolder, [vimtype], True)
+    if not name and not moid:
+        return
+    container = content.viewManager.CreateContainerView(
+        content.rootFolder, [vimtype], True)
+    count = 0
     for entity in container.view:
-        # verify if this works.
+        # Find matches in the results
         if moid and entity._moId == moid:
-            return entity
+            results = entity
+            count += 1
         elif name and entity.name == name:
-            return entity
+            results = entity
+            count += 1
+        # check to see if multiple matches were found
+        if count >= 2:
+            raise Exception("Multiple Managed Objects found,\
+                            Check Names or IDs provided are unique")
+        elif count == 1:
+            # Single Match found
+            return results
+
+    # if this area is reached no object has been found
+    # if a name was passed error
+    if name:
+        raise Exception("Inventory Error: Unable to Find Object (%s): %s"
+                        % (vimtype, name))
+    # if a moid was passed error
+    elif moid:
+        raise Exception("Inventory Error: Unable to Find Object (%s): %s"
+                        % (vimtype, moid))
+    # catch all error
+    else:
+        raise Exception("Inventory Error: No Name or moid provided (%s)"
+                        % vimtype)
+
+
+def get_managed_entities(content, vimtype):
+    container = content.viewManager.CreateContainerView(
+        content.rootFolder, [vimtype], True)
+    return container
 
 
 def get_datacenter(content, moid=None, name=None):
     return get_managed_entity(content, vim.Datacenter, moid=moid, name=name)
 
 
+def get_cluster(content, moid=None, name=None):
+    return get_managed_entity(content, vim.ClusterComputeResource,
+                              moid=moid, name=name)
+
+
 def get_folder(content, moid=None, name=None):
-    return get_managed_entity(content, vim.Folder, moid=moid, name=name)
+    return get_managed_entity(content, vim.Folder,
+                              moid=moid, name=name)
 
 
 def get_resource_pool(content, moid=None, name=None):
-    return get_managed_entity(content, vim.ResourcePool, moid=moid, name=name)
+    return get_managed_entity(content, vim.ResourcePool,
+                              moid=moid, name=name)
+
+
+def get_datastore_cluster(content, moid=None, name=None):
+    return get_managed_entity(content, vim.StoragePod,
+                              moid=moid, name=name)
 
 
 def get_datastore(content, moid=None, name=None):
-    return get_managed_entity(content, vim.Datastore, moid=moid, name=name)
+    return get_managed_entity(content, vim.Datastore,
+                              moid=moid, name=name)
 
 
 def get_network(content, moid=None, name=None):
-    return get_managed_entity(content, vim.Network, moid=moid, name=name)
+    return get_managed_entity(content, vim.Network,
+                              moid=moid, name=name)
 
 
 def get_virtualmachine(content, moid=None, name=None):
-    return get_managed_entity(content, vim.VirtualMachine, moid=moid, name=name)
+    return get_managed_entity(content, vim.VirtualMachine,
+                              moid=moid, name=name)
+
+
+def get_virtualmachines(content):
+    return get_managed_entities(content, vim.VirtualMachine)
 
 
 def get_task(content, moid=None):
-    return get_managed_entity(content, vim.Task, moid=moid, name=None)
+    return get_managed_entity(content, vim.Task,
+                              moid=moid, name=None)
