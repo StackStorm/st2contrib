@@ -13,7 +13,4 @@ parameters:
   foo:
     required: false
     type: string
-  token:
-    required: false
-    type: string
 runner_type: run-python
