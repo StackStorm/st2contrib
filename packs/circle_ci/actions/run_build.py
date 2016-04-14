@@ -23,13 +23,15 @@ class RunBuild(CircleCI):
         else:
             path = 'project/%s' % project
             data = {'tag': tag} if tag else {'revision': vcs_revision}
-            data = json.dumps(data)
 
         # build parameters are pass-trhrough to circleci
         if build_parameters:
             if data is None:
                 data = {}
             data['build_parameters'] = build_parameters
+
+        if data:
+            data = json.dumps(data)
 
         response = self._perform_request(path, method='POST', data=data)
 
