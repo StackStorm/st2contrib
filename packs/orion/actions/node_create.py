@@ -49,6 +49,7 @@ class NodeCreate(OrionBaseAction):
             self.logger.error(
                 "Node ({}) or IP ({}) already in Orion platform: {}".format(
                     node,
+                    ip_address,
                     platform)
             )
 
