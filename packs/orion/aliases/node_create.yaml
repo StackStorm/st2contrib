@@ -6,16 +6,10 @@ action_ref: "orion.node_create"
 formats:
   - display: "orion node create <node> ip <ip_address> [snmp <std_community>] [platform <platform>]"
     representation:
-      - "orion node create {{node}} ip {{ip_address}} snmp {{std_community}} platform {{platform}}"
-      - "orion node create {{node}} ip {{ip_address}} snmp {{std_community}}"
-      - "orion node create {{node}} ip {{ip_address}} platform {{platform}}"
-      - "orion node create {{node}} ip {{ip_address}}"
+      - "orion node create {{node}} ip {{ip_address}}( snmp {{std_community}})?( platform {{platform}})?"
   - display: "create orion node <node> at <ip_address> [on <poller>] [with std_community]"
     representation:
-      - "create orion node {{node}} at {{ip_address}} with {{std_community}} on {{platform}}"      
-      - "create orion node {{node}} at {{ip_address}} with {{std_community}}"
-      - "create orion node {{node}} at {{ip_address}} on {{platform}}"
-      - "create orion node {{node}} at {{ip_address}}"
+      - "create orion node {{node}} at {{ip_address}}( with {{std_community}})?( on {{platform}})?"
 ack:
   enabled: true
   append_url: false
