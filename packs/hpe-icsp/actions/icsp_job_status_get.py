@@ -46,9 +46,12 @@ class GetJobStatus(ICSPBaseActions):
                     eventlet.sleep(120)
                     jobs = self.icspGET(endpoint)
                     status = jobs['state']
-                output[jobid] = jobs['state']
+                if status == 'STATUS_SUCCESS':
+                    output[jobid] = jobs['state']
+                else:
+                    raise Exception("%s: %s" % (jobid, status))
             else:
                 jobid = jobs["uri"].split("/")[-1]
                 output[jobid] = jobs['state']
 
-        return {"jobids": output}
+        return {"jobs": output}
