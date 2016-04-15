@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_event.fire_master
 parameters:
-  action:
+  module:
     default: event.fire_master
     immutable: true
     type: string

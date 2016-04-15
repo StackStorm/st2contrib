@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_hosts.get_ip
 parameters:
-  action:
+  module:
     default: hosts.get_ip
     immutable: true
     type: string

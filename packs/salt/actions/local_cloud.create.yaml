@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.create
 parameters:
-  action:
+  module:
     default: cloud.create
     immutable: true
     type: string

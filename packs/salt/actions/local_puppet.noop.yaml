@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_puppet.noop
 parameters:
-  action:
+  module:
     default: puppet.noop
     immutable: true
     type: string

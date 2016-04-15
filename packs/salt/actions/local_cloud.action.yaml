@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.action
 parameters:
-  action:
+  module:
     default: cloud.action
     immutable: true
     type: string

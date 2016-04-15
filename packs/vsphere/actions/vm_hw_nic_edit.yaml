@@ -1,0 +1,26 @@
+---
+  name: "vm_hw_nic_edit"
+  runner_type: "run-python"
+  description: "Alter Configuration of Network Adapater"
+  enabled: true
+  entry_point: "vm_hw_nic_edit.py"
+  parameters:
+    vm_id:
+      type: "string"
+      description: "VM to Flex."
+      required: false
+      position: 0
+    vm_name:
+      type: "string"
+      description: "VM Name to Flex."
+      required: false
+      position: 1
+    network_adapter:
+      type: "string"
+      description: "Name of Network Adapater"
+      required: true
+    network_name:
+      type: "string"
+      description: "Network Adapater should be connected to"
+      required: true
+

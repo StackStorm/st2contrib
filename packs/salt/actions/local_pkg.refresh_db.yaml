@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_pkg.refresh_db
 parameters:
-  action:
+  module:
     default: pkg.refresh_db
     immutable: true
     type: string

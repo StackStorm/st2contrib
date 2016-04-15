@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_schedule.delete
 parameters:
-  action:
+  module:
     default: schedule.delete
     immutable: true
     type: string

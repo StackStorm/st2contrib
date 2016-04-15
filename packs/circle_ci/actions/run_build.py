@@ -6,7 +6,7 @@ from lib.action import CircleCI
 
 class RunBuild(CircleCI):
 
-    def run(self, project, branch=None, tag=None, vcs_revision=None):
+    def run(self, project, branch=None, tag=None, vcs_revision=None, build_parameters=None):
         """
         Run build for a SHA in project.
         """
@@ -23,6 +23,14 @@ class RunBuild(CircleCI):
         else:
             path = 'project/%s' % project
             data = {'tag': tag} if tag else {'revision': vcs_revision}
+
+        # build parameters are pass-trhrough to circleci
+        if build_parameters:
+            if data is None:
+                data = {}
+            data['build_parameters'] = build_parameters
+
+        if data:
             data = json.dumps(data)
 
         response = self._perform_request(path, method='POST', data=data)

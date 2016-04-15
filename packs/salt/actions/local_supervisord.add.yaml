@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_supervisord.add
 parameters:
-  action:
+  module:
     default: supervisord.add
     immutable: true
     type: string

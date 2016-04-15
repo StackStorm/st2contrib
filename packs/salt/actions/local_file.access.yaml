@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_file.access
 parameters:
-  action:
+  module:
     default: file.access
     immutable: true
     type: string

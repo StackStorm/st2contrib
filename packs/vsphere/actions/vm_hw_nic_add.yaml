@@ -1,0 +1,35 @@
+---
+    name: "vm_hw_nic_add"
+    runner_type: "run-python"
+    description: "Add New Hdd to Virtual Machine. You must Provide Either VM_ID or Name."
+    enabled: true
+    entry_point: "vm_hw_nic_add.py"
+    parameters:
+      vm_id:
+        type: "string"
+        description: "Virtual Machine ID (vm-1234)"
+        required: false
+        position: 0
+      vm_name:
+        type: "string"
+        description: "Virtual Machine Name"
+        required: false
+        position: 1
+      network_name:
+        type: "string"
+        description: "Network to attach NIC to"
+        required: true
+      nictype:
+        type: "string"
+        description: "Type of Network Card"
+        required: false
+        default: VMXNET3
+      stayconnected:
+        type: "boolean"
+        description: "Should this network adapter always be connected"
+        default: true
+      wakeonlan:
+        type: "boolean"
+        description: "Enable wake on Lan for this adapter"
+        default: false
+

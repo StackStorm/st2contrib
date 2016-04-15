@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_systemd.restart
 parameters:
-  action:
+  module:
     default: systemd.restart
     immutable: true
     type: string

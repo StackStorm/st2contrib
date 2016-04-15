@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_test.ping
 parameters:
-  action:
+  module:
     default: test.ping
     immutable: true
     type: string

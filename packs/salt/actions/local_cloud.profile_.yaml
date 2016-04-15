@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_cloud.profile_
 parameters:
-  action:
+  module:
     default: cloud.profile_
     immutable: true
     type: string

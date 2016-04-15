@@ -18,3 +18,6 @@ parameters:
   vcs_revision:
     type: string
     description: Commit SHA/revision (usually github SHA).
+  build_parameters:
+    type: object
+    description: k-v pair of extra build_parameters

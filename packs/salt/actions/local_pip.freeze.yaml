@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_pip.freeze
 parameters:
-  action:
+  module:
     default: pip.freeze
     immutable: true
     type: string

@@ -4,7 +4,7 @@ enabled: true
 entry_point: local.py
 name: local_network.interface_ip
 parameters:
-  action:
+  module:
     default: network.interface_ip
     immutable: true
     type: string
