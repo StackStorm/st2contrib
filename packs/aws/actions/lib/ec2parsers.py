@@ -136,6 +136,23 @@ class FieldLists():
         'stack_status'
     ]
 
+    DBINSTANCE = [
+        'endpoint',
+        'engine',
+        'engine_version',
+        'id',
+        'iops',
+        '_port',
+        'status',
+        'allocated_storage',
+        'master_username',
+        'multi_az',
+        'instance_class',
+        'create_time',
+        'availability_zone',
+        'PubliclyAccessible'
+    ]
+
 
 class ResultSets(object):
 
@@ -167,6 +184,8 @@ class ResultSets(object):
             return self.parseEC2Object(output)
         elif isinstance(output, boto.cloudformation.stack.Stack):
             return self.parseStackObject(output)
+        elif isinstance(output, boto.rds.dbinstance.DBInstance):
+            return self.parseDBInstanceObject(output)
         else:
             return output
 
@@ -229,6 +248,10 @@ class ResultSets(object):
     def parseStackObject(self, output):
         stack_data = {field: getattr(output, field) for field in FieldLists.STACK}
         return stack_data
+
+    def parseDBInstanceObject(self, output):
+        dbinstance_data = {field: getattr(output, field) for field in FieldLists.DBINSTANCE}
+        return dbinstance_data
 
     def parseEC2Object(self, output):
         # Looks like everything that is an EC2Object pretty much only has these extra
