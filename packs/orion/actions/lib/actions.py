@@ -29,6 +29,9 @@ class OrionBaseAction(Action):
             raise ValueError("Orion host details not in the config.yaml")
 
     def connect(self, platform):
+        """
+        Connect to an Orion platform from the packs config.yaml.
+        """
         try:
             self.client = SwisClient(
                 self.config['orion'][platform]['host'],
@@ -38,15 +41,29 @@ class OrionBaseAction(Action):
             raise ValueError("Orion host details not in the config.yaml")
 
     def query(self, swql, **kargs):
+        """
+        Run SWQL against the Orion Platform.
+        """
         return self.client.query(swql, **kargs)
 
     def invoke(self, entity, verb, *args):
+        """
+        Run an Invoke against the Orion Platform.
+        """
         return self.client.invoke(entity, verb, *args)
 
     def create(self, entity, **kargs):
+        """
+        Run an Create against the Orion Platform.
+        """
         return self.client.create(entity, **kargs)
 
     def node_exists(self, caption, ip_address):
+        """
+        Check if an Node exists (caption and or ip) on the Orion platform.
+
+        Returns: True or False.
+        """
         swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
                   WHERE Caption=@caption"""
         kargs = {'caption': caption}
@@ -63,6 +80,13 @@ class OrionBaseAction(Action):
             return False
 
     def get_node_id(self, caption):
+        """
+        Gets an NodeID from the Orion platform.
+
+        Raises: ValueError on muliple or no matching caption.
+
+        Returns: the NodeID (int)
+        """
         swql = "SELECT NodeID FROM Orion.Nodes WHERE Caption=@caption"
         kargs = {'caption': caption}
         data = self.query(swql, **kargs)
@@ -78,6 +102,31 @@ class OrionBaseAction(Action):
         elif len(data['results']) == 0:
             raise ValueError("No matching Caption for '{}'".format(
                 caption))
+
+    def get_engine_id(self, poller):
+        """
+        Takes a poller name (or primary) and returns the EngineID for
+        the poller.
+
+        Raises: ValueError on an invaild poller.
+
+        Returns: The EngineID (int)
+        """
+
+        if poller == "primary":
+            return 1
+        else:
+            swql = """SELECT EngineID, ServerName, IP, ServerType
+            FROM Orion.Engines
+            WHERE ServerName=@poller"""
+            kargs = {'poller': poller}
+            data = self.query(swql, **kargs)
+
+            if len(data['results']) == 1:
+                return data['results'][0]['EngineID']
+            else:
+                self.send_user_error("Invalid poller name")
+                raise ValueError("Invalid poller name")
 
     def get_ncm_node_id(self, caption):
         """
@@ -106,6 +155,12 @@ class OrionBaseAction(Action):
                 caption))
 
     def get_ncm_transfer_results(self, transfer_id):
+        """
+        Gets the completed (waits until finished). NCM job transfer status
+        from Orion.
+
+        Retruns: The completed status.
+        """
         ts = {}
         while True:
             swql = """SELECT TransferID, Action, Status, ErrorMessage,
@@ -151,4 +206,7 @@ class OrionBaseAction(Action):
             return ("Critical", "danger")
 
     def send_user_error(self, message):
+        """
+        Prints an user error message.
+        """
         print(message)

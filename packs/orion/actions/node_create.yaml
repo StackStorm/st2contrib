@@ -11,17 +11,17 @@ parameters:
     type: "string"
     description: "The Caption for the node to add to the monitoring platform."
     required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
   ip_address:
     type: "string"
     required: true
     description: "The ip address to use for polling."
-  engineID:
-    type: "integer"
-    description: "The additional polling engine to use (defaults to primary)."
-    default: 1
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+  poller:
+    type: "string"
+    description: "The name of the additional polling engine to use (defaults to primary)."
+    default: "primary"
   mon_protocol:
     type: "string"
     description: "The monitoing protocol to use (only snmpv2 currently supported)."

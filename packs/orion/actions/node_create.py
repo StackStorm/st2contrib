@@ -21,9 +21,9 @@ from lib.actions import OrionBaseAction
 class NodeCreate(OrionBaseAction):
     def run(self,
             node,
-            platform,
             ip_address,
-            engineID,
+            platform,
+            poller,
             mon_protocol,
             std_community,
             community,
@@ -61,6 +61,12 @@ class NodeCreate(OrionBaseAction):
                     node,
                     platform)
             )
+
+        # engineID if happens to be None, default to the primary.
+        if poller is not None:
+            engineID = self.get_engine_id(poller)
+        else:
+            engineID = 1
 
         kargs = {'Caption': node,
                  'EngineID': engineID,
