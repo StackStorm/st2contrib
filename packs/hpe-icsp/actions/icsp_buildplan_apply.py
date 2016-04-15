@@ -69,4 +69,4 @@ class Apply(ICSPBaseActions):
         except Exception as e:
             raise Exception("Error: %s" % e)
 
-        return {"jobid": results['uri'].rsplit("/")[-1]}
+        return {"jobid": int(results['uri'].rsplit("/")[-1])}
