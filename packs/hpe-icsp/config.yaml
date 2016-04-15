@@ -2,5 +2,5 @@
   host: 
   user:
   pass:
-  apiv: 104
-  sslverify: True
+  apiv: 102
+  sslverify: False
