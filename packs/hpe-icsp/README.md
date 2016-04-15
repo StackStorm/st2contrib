@@ -1,38 +1,31 @@
 # HPE Insight Control Server Provisioning Integration Pack
 
-Pack to communicate with HPE Insight Control Server Provisioning Application. Allows for the assignment of buildplans to stream OS Installations 
+Pack to communicate with HPE's Insight Control Server Provisioning Application. Allows for the assignment of buildplans to stream OS Installations 
 
 ## Connection Configuration
 
-Defaut Connection details can be specified within the `config.yaml`. These values can be overriden using the connection_data flow parameter.
+Default Connection details can be specified within the `config.yaml`. These values can be overriden using the connection_data flow parameter.
 
 ```yaml
   host:
   user:
   pass:
-  apiv: 104
+  apiv: 102
   sslverify: True
 ```
+Each element of the above can be independently overridden using the "connection_data" object parameter for each action.
 
-To retrieve apiv, retrieve your ICSP version
-```
-https://ICSP/rest/version
-```
-This should return something similar to 
-```
-  {"minimumVersion":1,"currentVersion":108}
-```
+## Usage considerations
+### API Versions
+API versions use different variable names. One known api variation is "hostname". This is used within the buildplan assignment api call.
+Between versions the case of some characters within the variable name has changed:
+* 102: hostname
+* 108: hostName
+using an incorrect match of version and variable will results in the api call reporting in correct json elements. Given that the provided buildplans utilise the 102 format of hostname, actions within this pack are designed to work with the 102 version of the api.
+To increase the version number to a later release will require updates to actions and buildplans.
 
-### Override Connection configuration
-Host, user and password can be individually overridden via the use of the "connection_detail" parameter.
-```
-  {
-    "host": "192.168.0.1",
-    "user": "username",
-    "pass": "secret" 
-  } 
-```
-Each attribute is independant allowing a mixture of config.yaml and parameter to be used as suits.
+## TODO
+* Extend build plan application action to include network configuration information
 
 ## Actions
 
