@@ -20,6 +20,7 @@ class NcmConfigDownloadActionAliasTestCase(BaseActionAliasTestCase):
 
     def test_ncm_config_download_alias(self):
         format_string = self.action_alias_db.formats[0]['representation'][0]
+        format_strings = self.action_alias_db.get_format_strings()
 
         command = "orion ncm config-download orion router1"
         expected_parameters = {
@@ -29,15 +30,18 @@ class NcmConfigDownloadActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
+        self.assertCommandMatchesExactlyOneFormatString(
+            format_strings=format_strings,
+            command=command)
 
 
 class NodeStatusActionAliasTestCase(BaseActionAliasTestCase):
     action_alias_name = 'node_status'
 
     def test_node_status_alias(self):
-        format_string = self.action_alias_db.formats[0]['representation'][0]
-        format_strings = self.action_alias_db.formats[0]['representation']
+        format_strings = self.action_alias_db.get_format_strings()
 
+        format_string = self.action_alias_db.formats[0]['representation'][0]
         command = "orion node status orion router1"
         expected_parameters = {
             'platform': 'orion',
@@ -46,7 +50,6 @@ class NodeStatusActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -56,16 +59,10 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
     action_alias_name = 'node_create'
 
     def test_node_create_alias(self):
-        format_strings = []
-
-        print self.action_alias_db.formats
-        for repre in self.action_alias_db.formats:
-            for string in repre['representation']:
-                format_strings.append(string)
+        format_strings = self.action_alias_db.get_format_strings()
 
         # First Format 'orion node create'
         format_string = self.action_alias_db.formats[0]['representation'][0]
-
         command = "orion node create router1 ip 192.168.0.1 snmp read platform orion"
         expected_parameters = {
             'ip_address': "192.168.0.1",
@@ -76,7 +73,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -91,7 +87,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -106,7 +101,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -121,7 +115,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -139,7 +132,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -154,7 +146,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -169,7 +160,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
@@ -184,7 +174,6 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
                                             parameters=expected_parameters)
-
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
