@@ -2,7 +2,7 @@
 name: "node_create_webhook"
 pack: "orion"
 description: "Trigger orion.node_create via a webhook"
-enabled: true
+enabled: false
 
 trigger:
   type: "core.st2.webhook"

@@ -69,12 +69,19 @@ class OrionBaseAction(Action):
         kargs = {'caption': caption}
         caption_data = self.query(swql, **kargs)
 
+        if len(caption_data['results']) >= 1:
+            self.logger.debug(
+                "One (or more) Nodes match '{}' Caption.".format(caption))
+            return True
+
         swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
                   WHERE IPAddress=@ip_address"""
         kargs = {'ip_address': ip_address}
         ip_data = self.query(swql, **kargs)
 
-        if len(caption_data['results']) >= 1 or len(ip_data['results']) >= 1:
+        if len(ip_data['results']) >= 1:
+            self.logger.debug(
+                "One (or more) Nodes match '{}' IP.".format(ip_address))
             return True
         else:
             return False
@@ -97,9 +104,15 @@ class OrionBaseAction(Action):
             except IndexError:
                 raise ValueError("Invalid Node")
         elif len(data['results']) >= 2:
+            self.logger.debug(
+                "Muliple Nodes match '{}' Caption: {}".format(
+                    caption, data))
             raise ValueError("Muliple Nodes match '{}' Caption".format(
                 caption))
         elif len(data['results']) == 0:
+            self.logger.debug(
+                "No Nodes match '{}' Caption: {}".format(
+                    caption, data))
             raise ValueError("No matching Caption for '{}'".format(
                 caption))
 
@@ -154,7 +167,7 @@ class OrionBaseAction(Action):
             raise IndexError("No matching NodeCaption for '{}'".format(
                 caption))
 
-    def get_ncm_transfer_results(self, transfer_id):
+    def get_ncm_transfer_results(self, transfer_id, sleep_delay=10):
         """
         Gets the completed (waits until finished). NCM job transfer status
         from Orion.
@@ -172,7 +185,7 @@ class OrionBaseAction(Action):
             status = transfer_data['results'][0]['Status']
 
             if status == 1:
-                time.sleep(10)
+                time.sleep(sleep_delay)
             elif status == 2:
                 ts['status'] = "Complete"
                 break

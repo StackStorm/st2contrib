@@ -18,9 +18,9 @@ parameters:
     required: true
   configs:
     description: "Which config(s) to download from NCM."
-    type: "array"
+    type: "string"
     enum:
-      - ["running"]
-      - ["startup"]
-      - ["running", "startup"]
-    default: ["running", "startup"]
+      - "running"
+      - "startup"
+      - "running,startup"
+    default: "running,startup"
