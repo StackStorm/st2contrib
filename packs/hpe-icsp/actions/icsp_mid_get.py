@@ -13,24 +13,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from lib import checkinputs
 from lib.icsp import ICSPBaseActions
 
 
 class GetMid(ICSPBaseActions):
     def run(self, uuid, serialnumber, connection_details):
-        checkinputs.one_of_two_strings(uuid, serialnumber,
-                                       "UUID or SerialNumber")
+
         if connection_details:
             self.setConnection(connection_details)
         self.getSessionID()
         endpoint = "/rest/os-deployment-servers"
-        results = self.icspGET(endpoint)
-        servers = results["members"]
+        getresults = self.icspGET(endpoint)
+        servers = getresults["members"]
+        results = []
+        # Checking arrays are set otherwise errors occur later
+        # when called within flows missing arrays cause python errors
+        if not serialnumber:
+            serialnumber = []
+        if not uuid:
+            uuid = []
         for server in servers:
-            if (server["uuid"] == uuid) or\
-                    (server["serialNumber"] == serialnumber):
-                mid = server["mid"]
-                continue
+            if (server["uuid"] in uuid) or\
+                    (server["serialNumber"] in serialnumber):
+                if (len(uuid) + len(serialnumber)) == 1:
+                    return {'mid': int(server["mid"])}
+                else:
+                    if server["mid"] not in results:
+                        results.append(int(server["mid"]))
 
-        return {'mid': mid}
+        if results:
+            return results
+        else:
+            raise ValueError("No Servers Found")
