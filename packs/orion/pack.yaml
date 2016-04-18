@@ -5,6 +5,7 @@ keywords:
    - solarwinds
    - orion
    - ncm
-version: 0.2
+   - npm
+version: 0.3
 author: Jon Middleton
 email: jon.middleton@pulsant.com
