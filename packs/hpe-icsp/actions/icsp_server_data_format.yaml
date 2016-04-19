@@ -15,13 +15,14 @@
       description: "Array of hostname values"
       required: true
       position: 1
-    domains:
-      type: "array"
-      description: "Array of domain to use for each host. If number of domains does not match the number of servers this field will be skipped."
-      required: false
-      position: 2
-    workgroups:
-      type: "array"
-      description: "Array of workgroup to use for each host. If number of workgroups does not match the number of servers this field will be skipped."
-      required: false
-      position: 3
+# Disabled due to lack of testing.
+#    domains:
+#      type: "array"
+#      description: "Array of domain to use for each host. If number of domains does not match the number of servers this field will be skipped."
+#      required: false
+#      position: 2
+#    workgroups:
+#      type: "array"
+#      description: "Array of workgroup to use for each host. If number of workgroups does not match the number of servers this field will be skipped."
+#      required: false
+#      position: 3
