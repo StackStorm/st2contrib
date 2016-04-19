@@ -21,11 +21,12 @@ API versions use different variable names. One known api variation is "hostname"
 Between versions the case of some characters within the variable name has changed:
 * 102: hostname
 * 108: hostName
-using an incorrect match of version and variable will results in the api call reporting in correct json elements. Given that the provided buildplans utilise the 102 format of hostname, actions within this pack are designed to work with the 102 version of the api.
+using an incorrect match of version and variable will results in the api call reporting incorrect json elements. Given that the provided buildplans utilise the 102 format of hostname, actions within this pack are designed to work with the 102 version of the api.
 To increase the version number to a later release will require updates to actions and buildplans.
 
 ## TODO
 * Extend build plan application action to include network configuration information
+* Identify correct domain and workgroup names for json payload.
 
 ## Actions
 
@@ -38,3 +39,4 @@ To increase the version number to a later release will require updates to action
 * `hpe-icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
 * `hpe-icsp.icsp_server_delete` - Remove server record from ICSP instance
 * `hpe-icsp.icsp_ca_cert` - Retrieve certificate for ICSP server
+* `hpe-icsp.icsp_id_to_os` - Allow for the application of build plans to a single UUID or Serial number.
