@@ -58,7 +58,7 @@ class NcmConfigDownloadTestCase(BaseActionTestCase):
                           action.run,
                           "router1",
                           "orion",
-                          "running,startup")
+                          ["running","startup"])
 
     def test_run_ncm_node_not_found(self):
         orion_data = {'results': []}
@@ -73,7 +73,7 @@ class NcmConfigDownloadTestCase(BaseActionTestCase):
                           action.run,
                           "router1",
                           "orion",
-                          "running,startup")
+                          ["running","startup"])
 
     def test_run_ncm_download_complete(self):
         expected = {'running': {'status': 'Complete'},
@@ -95,6 +95,6 @@ class NcmConfigDownloadTestCase(BaseActionTestCase):
 
         result = action.run("router1",
                             "orion",
-                            "running,startup")
+                            ["running","startup"])
 
         self.assertEqual(result, expected)

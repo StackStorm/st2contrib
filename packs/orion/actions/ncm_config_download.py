@@ -27,10 +27,6 @@ class NcmConfigDownload(OrionBaseAction):
         results = {}
         node_ids = []
 
-        # Split into an Array, as enum and array type does not play nice
-        # in the WebUI.
-        configs = configs.split(",")
-
         self.connect(platform)
 
         try:
