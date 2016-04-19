@@ -19,7 +19,7 @@ hpe-icsp.icsp_id_to_os:
         uuid: [<% $.identifier %>]
         connection_details: <% $.connection_details %>
       publish:
-        icsp_mid: <% $.get_mid.result.mid %>
+        icsp_mid: <% $.get_mid_uuid.result.mid %>
       retry:
         count: 5
         delay: 120
@@ -31,7 +31,7 @@ hpe-icsp.icsp_id_to_os:
         serialnumber: [<% $.identifier %>]
         connection_details: <% $.connection_details %>
       publish:
-        icsp_mid: <% $.get_mid.result.mid %>
+        icsp_mid: <% $.get_mid_sn.result.mid %>
       retry:
         count: 5
         delay: 120
