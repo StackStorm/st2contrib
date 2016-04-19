@@ -1,0 +1,11 @@
+---
+name: orion
+description: Intergrate via the OrionSDK to SolarWinds Orion
+keywords:
+   - solarwinds
+   - orion
+   - ncm
+   - npm
+version: 0.3
+author: Jon Middleton
+email: jon.middleton@pulsant.com

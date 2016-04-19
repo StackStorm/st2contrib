@@ -1,0 +1,20 @@
+---
+name: "node_status"
+pack: "orion"
+description: "Query Solarwinds Orion for a nodes status (e.g. up/down)."
+action_ref: "orion.node_status"
+formats:
+  - display: "orion node status {{platform}} {{node}}"
+    representation:
+      - "orion node status {{platform}} {{node}}"
+ack:
+  enabled: false
+  append_url: false
+  format: "Let me check {{execution.parameters.node}} on {{execution.parameters.node}} Orion Platform for you..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {{ execution.parameters.node }} is {{ execution.result.result.status }}{~}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}
