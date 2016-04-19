@@ -1,0 +1,25 @@
+---
+version: '2.0'
+
+hpe-icsp.icsp_ids_to_os:
+  input:
+    - identifier
+    - id_type
+    - hostname
+    - buildplan_uris 
+    - connection_details
+  tasks:
+    check_arrays:
+      on-success: 
+        - iterateservers: <% $.identifier.len() = $.hostname.len() %>
+    iterateservers:
+      with-items:
+        - id in <% $.identifier %>
+        - name in <% $.hostname %>
+      action: hpe-icsp.icsp_id_to_os
+      input:
+        identifier: <% $.id %>
+        id_type: <% $.id_type %>
+        hostname: <% $.name %>
+        buildplan_uris: <% $.buildplan_uris %>
+        connection_details: <% $.connection_details %>
