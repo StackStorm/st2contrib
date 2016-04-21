@@ -1,7 +1,7 @@
 # AlertLogic ActiveIntegration Pack
 
 This intergration pack allows you to intergrate with 
-[AlertLogic][https://www.alertlogic.com/].
+[AlertLogic](https://www.alertlogic.com/).
 
 ## Config
 
