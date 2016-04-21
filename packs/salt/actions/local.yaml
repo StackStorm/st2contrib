@@ -23,6 +23,7 @@ parameters:
         description: 'Positional arguments to pass to the module'
         type: array
         required: false
+        default: []
     kwargs:
         description: 'Key Pair arguments to pass to the module'
         type: object
