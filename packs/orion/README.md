@@ -13,6 +13,12 @@ orion:
     password: S0meth1ngSt0ng?
 ```
 
+## StackStorm Version
+
+This pack uses features released in 1.4+, if your using on an older
+release some changes will be likley (at least removal of the `extra`
+sections in some aliases.
+
 ## Actions
 
 ### tbc
