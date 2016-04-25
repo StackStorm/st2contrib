@@ -19,7 +19,7 @@ class EventsConsumerSensor(PollingSensor):
         if not self._base_url.endswith('/'):
             self._base_url = self._base_url + '/'
 
-        self._cluster_id = self.config['cluster_id']
+        self._cluster_id = self._config['cluster_id']
         self._events_url = self._cluster_id + '/events'
         self._last_timestamp = None
 
