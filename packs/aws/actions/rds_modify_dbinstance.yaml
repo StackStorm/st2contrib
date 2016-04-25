@@ -45,5 +45,5 @@ parameters:
   security_groups:
     type: string
   vpc_security_groups:
-    type: string
+    type: array
 runner_type: run-python
