@@ -1,0 +1,26 @@
+---
+description: "Get the scan results for the latest complete execution."
+enabled: true
+entry_point: "scan_get_results_by_title.py"
+name: "scan_get_results_by_title"
+pack: "alertlogic"
+
+parameters:
+  scan_title:
+    type: "string"
+    description: "Get results for this scan."
+    required: true
+  customer_id:
+    type: "integer"
+    description: "The customer ID."
+    default: ~
+  new_vulns:
+    type: "boolean"
+    description: "If true, only new vulnerabilities discovered during this scan execution will be shown."
+    default: false
+  new_ports:
+    type: "boolean"
+    description: "If true, only new vulnerable ports discovered during this scan execution will be shown."
+    default: false
+
+runner_type: "python-script"

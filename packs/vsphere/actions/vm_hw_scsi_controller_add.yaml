@@ -1,0 +1,38 @@
+---
+    name: "vm_hw_scsi_controller_add"
+    runner_type: "run-python"
+    description: "Add SCSI Controller to VM. You must provide at least one of VM_ID or Name"
+    enabled: true
+    entry_point: "vm_hw_scsi_controller_add.py"
+    parameters:
+      vm_id:
+        type: "string"
+        description: "Virtual Machine ID"
+        required: false
+        position: 0
+      vm_name:
+        type: "string"
+        description: "Virtual Machine Name"
+        required: false
+        position: 1
+      controller_type:
+        type: "string"
+        description: "Type of Controller to Add"
+        required: false
+        default: ParaVirtual
+        enum:
+          - ParaVirtual
+          - BusLogic
+          - LSILogic
+          - LSILogicSAS
+      scsi_sharing:
+        type: "string"
+        description: "Type of SCSI Bus Sharing"
+        required: false
+        default: None
+        enum:
+          - None
+          - Physical
+          - Virtual
+
+

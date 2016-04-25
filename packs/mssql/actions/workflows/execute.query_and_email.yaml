@@ -1,0 +1,20 @@
+---
+chain:
+  -
+    name: 'query_mssql'
+    ref: 'mssql.execute.query'
+    parameters:
+      query_string: '{{query_string}}'
+      params: '{{params}}'
+      database: '{{database}}'
+    on-success: 'email_results'
+  -
+    name: 'email_results'
+    ref: 'core.sendmail'
+    parameters:
+      to: '{{email_to}}'
+      from: '{{email_from}}'
+      subject: '{{email_subject}}'
+      attachments: '{{query_mssql.result.output_files | join(",")}}'
+      body: '{% if query_mssql.result.output_files | length > 0 %}{{email_body}}{% endif %}'
+      send_empty_body: False

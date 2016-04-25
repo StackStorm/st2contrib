@@ -1,0 +1,15 @@
+---
+name: "get_incidents_assigned_to"
+runner_type: "action-chain"
+description: "Run a string GET query on the ServiceNow API"
+enabled: true
+entry_point: "workflows/get_incidents_assigned_to.yaml"
+parameters:
+  name:
+    type: "string"
+    description: "Users name"
+    required: true
+  skip_notify:
+    default:
+      - "getIncidents"
+      - "getUser"

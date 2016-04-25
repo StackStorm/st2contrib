@@ -1,6 +1,7 @@
 sensor_config:
-  queues:
   host:
   username:
   password:
-  deserialization_method:
+  rabbitmq_queue_sensor:
+    queues:
+    deserialization_method:

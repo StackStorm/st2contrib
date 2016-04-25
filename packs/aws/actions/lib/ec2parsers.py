@@ -71,6 +71,7 @@ class FieldLists():
         'state_code',
         'state_reason',
         'subnet_id',
+        'tags',
         'virtualization_type',
         'vpc_id',
     ]
@@ -117,6 +118,41 @@ class FieldLists():
         'zone'
     ]
 
+    TAG = [
+        'name',
+        'value',
+        'res_type',
+        'res_id'
+    ]
+
+    STACK = [
+        'creation_time',
+        'outputs',
+        'parameters',
+        'stack_id',
+        'description',
+        'tags',
+        'capabilities',
+        'stack_status'
+    ]
+
+    DBINSTANCE = [
+        'endpoint',
+        'engine',
+        'engine_version',
+        'id',
+        'iops',
+        '_port',
+        'status',
+        'allocated_storage',
+        'master_username',
+        'multi_az',
+        'instance_class',
+        'create_time',
+        'availability_zone',
+        'PubliclyAccessible'
+    ]
+
 
 class ResultSets(object):
 
@@ -142,8 +178,14 @@ class ResultSets(object):
             return self.parseR53Zone(output)
         elif isinstance(output, boto.route53.status.Status):
             return self.parseR53Status(output)
+        elif isinstance(output, boto.ec2.tag.Tag):
+            return self.parseTag(output)
         elif isinstance(output, boto.ec2.ec2object.EC2Object):
             return self.parseEC2Object(output)
+        elif isinstance(output, boto.cloudformation.stack.Stack):
+            return self.parseStackObject(output)
+        elif isinstance(output, boto.rds.dbinstance.DBInstance):
+            return self.parseDBInstanceObject(output)
         else:
             return output
 
@@ -198,6 +240,18 @@ class ResultSets(object):
     def parseBucket(self, output):
         bucket_data = {field: getattr(output, field) for field in FieldLists.BUCKET}
         return bucket_data
+
+    def parseTag(self, output):
+        tag_data = {field: getattr(output, field) for field in FieldLists.TAG}
+        return tag_data
+
+    def parseStackObject(self, output):
+        stack_data = {field: getattr(output, field) for field in FieldLists.STACK}
+        return stack_data
+
+    def parseDBInstanceObject(self, output):
+        dbinstance_data = {field: getattr(output, field) for field in FieldLists.DBINSTANCE}
+        return dbinstance_data
 
     def parseEC2Object(self, output):
         # Looks like everything that is an EC2Object pretty much only has these extra

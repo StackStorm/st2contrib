@@ -1,0 +1,25 @@
+---
+name: "node_create"
+pack: "orion"
+description: "Create a Node on a Solarwinds Orion Plaform (standard SNMP string)."
+action_ref: "orion.node_create"
+formats:
+  - display: "orion node create <node> ip <ip_address> [snmp <std_community>] [platform <platform> <poller=primary>]"
+    representation:
+      - "orion node create {{node}} ip {{ip_address}}( snmp {{std_community}})?( platform {{platform}} {{poller=primary}})?"
+  - display: "create orion node <node> at <ip_address> [with std_community] [on <platform> <poller=primary>]"
+    representation:
+      - "create orion node {{node}} at {{ip_address}}( with {{std_community}})?( on {{platform}} {{poller=primary}})?"
+ack:
+  enabled: true
+  append_url: false
+  format: "Adding {{execution.parameters.node}} to Orion for you..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Created {{execution.parameters.node}} ({{execution.parameters.ip_address}}) on {{execution.result.result.platform}} {~}
+    The NodeID is {{execution.result.result.node_id}}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}
+    See {{execution.id}} for more details.
+    {% endif %}

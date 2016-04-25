@@ -1,0 +1,38 @@
+---
+    name: "vm_hw_hdd_add"
+    runner_type: "run-python"
+    description: "Add New Hdd to Virtual Machine. You must Provide Either VM_ID or Name."
+    enabled: true
+    entry_point: "vm_hw_hdd_add.py"
+    parameters:
+      vm_id:
+        type: "string"
+        description: "Virtual Machine ID (vm-1234)"
+        required: false
+        position: 0
+      vm_name:
+        type: "string"
+        description: "Virtual Machine Name"
+        required: false
+        position: 1
+      datastore_cluster:
+        type: "string"
+        description: "Datastore Cluster for new Drive"
+        required: false
+      datastore:
+        type: "string"
+        description: "Datastore for new Drive"
+        required: false
+      disk_size:
+        type: "integer"
+        description: "Size of new Drive in GB"
+        required: true
+        default: 40
+      provision_type:
+        type: "string"
+        description: "Drive Provisioning (thick|thin)"
+        required: false
+        default: "thin"
+        enum:
+          - thin
+          - thick

@@ -1,0 +1,8 @@
+---
+    chain:
+        -
+            name: "getUser"
+            ref: "servicenow.get_non_structured"
+            parameters:
+                table: "sys_user"
+                query: "user_name={{name}}"

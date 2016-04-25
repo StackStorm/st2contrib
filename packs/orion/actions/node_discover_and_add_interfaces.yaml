@@ -1,0 +1,27 @@
+---
+description: "Discover and add Interfaces for a Solarwinds Orion node."
+enabled: true
+entry_point: 'node_discover_and_add_interfaces.py'
+name: "node_discover_and_add_interfaces"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  node:
+    type: "string"
+    description: "The node to unmanage on the monitoring platform."
+    required: true
+
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+    required: true
+
+  whitelist:
+    type: "array"
+    description: "Array of interface captions which should be added (and not blcklisted)."
+
+  blacklist:
+    type: "array"
+    description: "Array of interface captions which should not be added."
+    default: ["lo"]

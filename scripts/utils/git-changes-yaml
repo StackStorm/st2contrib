@@ -15,4 +15,5 @@ if [ ! -z "${FORCE_CHECK_PACK}" ] && [ "${FORCE_CHECK_PACK}" != "false" ]; then
 fi
 
 cd ${ROOT_DIRECTORY}
-echo $(git diff --name-only ${BASE_BRANCH} -- '*.yaml' '*.yml')
+# Note: We include all but deleted files ("D" flag)
+echo $(git diff --diff-filter=ACMRTUXB --name-only ${BASE_BRANCH} -- '*.yaml' '*.yml')

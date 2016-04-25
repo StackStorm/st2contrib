@@ -1,0 +1,20 @@
+---
+  name: "vm_edit_cpu_memory"
+  runner_type: "run-python"
+  description: "Power off a VM."
+  enabled: true
+  entry_point: "vm_edit_cpu_memory.py"
+  parameters: 
+    vm_id: 
+      type: "string"
+      description: "VM to edit."
+      required: true
+    cpu: 
+      type: "integer"
+      description: "No of cpus to set on VM."
+      required: true
+    memory: 
+      type: "integer"
+      description: "Memory in MB to set on VM."
+      required: true
+

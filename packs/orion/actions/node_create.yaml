@@ -1,0 +1,48 @@
+---
+description: "Create an node on a Solarwinds Orion platform"
+enabled: true
+entry_point: 'node_create.py'
+name: "node_create"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  node:
+    type: "string"
+    description: "The Caption for the node to add to the monitoring platform."
+    required: true
+  ip_address:
+    type: "string"
+    required: true
+    description: "The ip address to use for polling."
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+  poller:
+    type: "string"
+    description: "The name of the additional polling engine to use (defaults to primary)."
+    default: "primary"
+  mon_protocol:
+    type: "string"
+    description: "The monitoing protocol to use (only snmpv2 currently supported)."
+    enum:
+      - "icmp"
+      - "snmpv1"
+      - "snmpv2"
+      - "snmpv3"
+      - "wmi"
+    default: "snmpv2"
+    immutable: true
+  std_community:
+    type: "string"
+    description: "Pick a standard SNMP community from the config don't set *community*."
+  community:
+    type: "string"
+    description: "The SNMP community to use (don't set *std_community*)."
+  status:
+    type: "string"
+    enum:
+      - "snmp"
+      - "icmp"
+    description: "Protocol to use for Status and Response Time checks."
+    default: "snmp"

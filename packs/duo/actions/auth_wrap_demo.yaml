@@ -1,0 +1,12 @@
+---
+name: "auth_wrap_demo"
+runner_type: "mistral-v2"
+pack: "duo"
+enabled: true
+entry_point: 'workflows/auth_wrap_demo.yaml'
+
+parameters:
+  username:
+    type: "string"
+    description: "Username to use for Duo Auth."
+    default: "{{action_context.api_user}}"

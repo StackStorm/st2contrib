@@ -29,7 +29,8 @@ ST2_COMPONENTS=$(get_st2_components)
 PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
 
 REGISTER_SCRIPT_PATH="${ST2_REPO_PATH}/st2common/bin/st2-register-content"
-REGISTER_SCRIPT_COMMON_FLAGS="-v --register-fail-on-failure --config-file=scripts/st2.tests.conf"
+# Note: -v verbose flag has been removed to work around Travis log size limits
+REGISTER_SCRIPT_COMMON_FLAGS="--register-fail-on-failure --config-file=scripts/st2.tests.conf"
 
 # Note: Rules in some packs rely on triggers which are created lazily later on
 # so we can't test rule registration for those packs.

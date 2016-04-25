@@ -4,10 +4,18 @@ enabled: true
 entry_point: local.py
 name: local_state.single
 parameters:
-  action:
+  module:
     default: state.single
     immutable: true
     type: string
+  target:
+     required: false
+     type: string
+     default: '*'
+  expr_form:
+    required: false
+    type: string
+    default: glob
   args:
     required: false
     type: array

@@ -1,0 +1,64 @@
+---
+    name: set_vm
+    runner_type: run-python
+    description: Changes configuration of a Virtual Machine.
+    enabled: true
+    entry_point: set_vm.py
+    parameters:
+        vm:
+            type: 'string'
+            description: moId of a Virtual Machine. e.g. "vm-1".
+            required: true
+        alternate_guest_name:
+            type: 'string'
+            description: >
+                Specify the full name of the guest OS for the virtual machine if the value of
+                the GuestID parameter is set to otherGuest or otherGuest64.
+            required: false
+            default: ~
+        description:
+            type: 'string'
+            description: >
+                Provide a description of the virtual machine. The alias of this parameter is Notes.
+            required: false
+            default: ~
+        guest_id:
+            type: 'string'
+            description: >
+                Specify the guest operating system of the virtual machine.
+                The valid values for specific ESX versions are listed in the description
+                of the VirtualMachineGuestOsIdentifier enumeration type in
+                the vSphere API Reference available at http://www.vmware.com/support/developer/vc-sdk/.
+                Depending on the hardware configuration of the host, some of the guest operating systems might be inapplicable.
+            required: false
+            default: ~
+        memory_mb:
+            type: 'integer'
+            description: >
+                Specify the memory size in MB.
+            required: false
+            default: ~
+        name:
+            type: 'string'
+            description: >
+                Specify a new name for the virtual machine.
+            required: false
+            default: ~
+        num_cpu:
+            type: 'integer'
+            description: >
+                Specify the number of virtual CPUs.
+            required: false
+            default: ~
+        vm_swapfile_policy:
+            type: 'string'
+            description: >
+                Specify the swapfile placement policy. The following values are valid:
+                InHostDataStore - Store the swapfile in the datastore specified by the
+                    VMSwapfileDatastoreID property of the virtual machine host. If the VMSwapfileDatastoreID property
+                    is not set or indicates a datastore with insufficient free space, the swapfile is stored
+                    in the same directory as the virtual machine. This setting might degrade the VMotion performance.
+                WithVM - Store the swapfile in the same directory as the virtual machine.
+                This parameter is supported only on vCenter Server 2.5 and ESX 3.5 servers, or later versions.
+            required: false
+            default: ~

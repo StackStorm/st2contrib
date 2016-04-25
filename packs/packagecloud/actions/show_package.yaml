@@ -1,0 +1,50 @@
+---
+name: show_package
+pack: packagecloud
+description: Show package detail
+runner_type: http-request
+enabled: true
+parameters:
+    repo:
+        type: string
+        description: Name of the packagecloud repo
+        required: true
+    distro:
+        type: string
+        required: true
+        enum:
+            - debian
+            - el
+            - ubuntu
+    distro_version:
+        type: string
+        required: true
+    arch:
+        type: string
+        required: true
+        enum:
+            - x86_64
+            - amd64 
+    package:
+        type: string
+        required: true
+    package_type:
+        type: string
+        required: true
+        enum:
+            - deb
+            - rpm
+    package_version:
+        type: string
+        required: true
+    package_revision:
+        type: string
+        required: true
+    api_token:
+        type: string
+        description: Token to access the packagecloud API
+        default: "{{system.pkg_cloud_token}}"
+    url:
+        type: string
+        immutable: true
+        default: 'https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/package/{{package_type}}/{{distro}}/{{distro_version}}/{{package}}/{{arch}}/{{package_version}}{% if distro == "el" %}/{% else %}-{% endif %}{{package_revision}}.json'

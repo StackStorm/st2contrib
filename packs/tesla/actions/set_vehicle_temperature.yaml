@@ -1,0 +1,23 @@
+---
+name: "set_vehicle_temperature"
+runner_type: "python-script"
+description: "Set vehicle sun roof position"
+enabled: true
+entry_point: "vehicle_action.py"
+parameters:
+  vin:
+    type: "string"
+    description: "The vehicle identification number"
+    required: false
+  action:
+    type: "string"
+    immutable: true
+    default: "set_temps"
+  driver:
+    type: integer
+    description: The target temperature for the driver
+    required: true
+  passenger:
+    type: integer
+    description: The target temperature for the passenger
+    required: true

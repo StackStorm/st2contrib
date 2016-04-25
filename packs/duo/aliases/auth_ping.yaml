@@ -1,0 +1,18 @@
+---
+name: "auth_ping"
+pack: "duo"
+description: "Check the Duo platform can be reached."
+action_ref: "duo.auth_ping"
+formats:
+  - "duo auth ping"
+ack:
+  enabled: true
+  append_url: false
+  format: "Checking connection to Duo..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Duo is Up! @ {{execution.result.result.time}}{~}
+    {% else %}
+    Ping Failed!{~}
+    {% endif %}

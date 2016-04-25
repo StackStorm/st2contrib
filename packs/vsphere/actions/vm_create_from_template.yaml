@@ -1,0 +1,28 @@
+---
+  name: "vm_create_from_template"
+  runner_type: "run-python"
+  description: "Create a new VM from existing template."
+  enabled: true
+  entry_point: "vm_create_from_template.py"
+  parameters: 
+    name: 
+      type: "string"
+      description: "Name fo a new VM"
+      required: true
+    template_id: 
+      type: "string"
+      description: "Id of template to use."
+      required: true
+    datacenter_id: 
+      type: "string"
+      description: "Datacenter in which to place VM."
+      required: true
+    resourcepool_id: 
+      type: "string"
+      description: "Resourcepool in which to place VM."
+      required: true
+    datastore_id: 
+      type: "string"
+      description: "Datastore in which to place VM."
+      required: true
+

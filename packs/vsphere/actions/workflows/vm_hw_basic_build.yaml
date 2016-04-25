@@ -1,0 +1,69 @@
+---
+version: '2.0'
+
+vsphere.vm_hw_basic_build:
+  description: "Create a Simple VM (CPU, Ram, HDD, NIC) and then Power it on"
+  input:
+    - vm_name
+    - vm_resourcepool
+    - vm_cpu
+    - vm_ram
+    - vm_dscluster
+    - vm_dccluster
+    - vm_guestos
+    - vm_description
+    - vm_ctrl_type
+    - vm_hdd_size
+    - vm_hdd_dscluster
+    - vm_nic_type
+    - vm_nic_netname
+    - vm_version
+  tasks:
+    barebones_build:
+      # [189, 97]
+      action: vsphere.vm_hw_barebones_create
+      input:
+        vm_name: <% $.vm_name %>
+        ram_size: <% $.vm_ram %>
+        cpu_size: <% $.vm_cpu %>
+        cluster: <% $.vm_dccluster %>
+        datastore_cluster: <% $.vm_dscluster %>
+        resourcepool: <% $.vm_resourcepool %>
+        version: <% $.vm_version %>
+        guestos: <% $.vm_guestos %>
+        description: <% $.vm_description %>
+      on-success:
+        - add_controller
+    add_controller:
+      # [186, 198]
+      action: vsphere.vm_hw_scsi_controller_add
+      input:
+        vm_name: <% $.vm_name %>
+        controller_type: <% $.vm_ctrl_type %>
+      on-success:
+        - add_hdd
+    add_hdd:
+      # [188, 302]
+      action: vsphere.vm_hw_hdd_add
+      input: 
+        vm_name: <% $.vm_name %>
+        datastore_cluster: <% $.vm_hdd_dscluster %>
+        disk_size: <% $.vm_hdd_size %>
+        provision_type: "thin"
+      on-success:
+        - add_nic
+    add_nic:
+      # [189, 404]
+      action: vsphere.vm_hw_nic_add
+      input:
+        vm_name: <% $.vm_name %>
+        network_name: <% $.vm_nic_netname %>
+        nictype: <% $.vm_nic_type %>
+      on-success:
+        - power_on
+    power_on:
+      # [190, 505]
+      action: vsphere.vm_hw_power
+      input:
+        vm_name: <% $.vm_name %>
+        power_onoff: "poweron"

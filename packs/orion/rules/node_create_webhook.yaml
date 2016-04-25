@@ -1,0 +1,32 @@
+---
+name: "node_create_webhook"
+pack: "orion"
+description: "Trigger orion.node_create via a webhook"
+enabled: false
+
+trigger:
+  type: "core.st2.webhook"
+  parameters:
+    url: "orion_node_create"
+
+criteria:
+  trigger.body:
+    pattern: "orion_node_create"
+    type: "exists"
+
+action:
+  ref: "orion.node_create"
+  parameters:
+    node: "{{trigger.body.orion_node_create.node}}"
+    ip_address: "{{trigger.body.orion_node_create.ip_address}}"
+    platform: "{{trigger.body.orion_node_create.platform}}"
+    poller: "{{trigger.body.orion_node_create.poller}}"
+    std_community: "{{trigger.body.orion_node_create.std_community}}"
+    status: "{{trigger.body.orion_node_create.status}}"
+
+    # Don't use. See ST2 issue #2621 - Issue with casting None (null
+    #  type) parameters in the rules when invoking actions
+    # community: {{trigger.body.orion_node_create.community}}
+
+    # Not currently supported..
+    # mon_protocol: "{{trigger.body.mon_protocol}}"   # currently immutable

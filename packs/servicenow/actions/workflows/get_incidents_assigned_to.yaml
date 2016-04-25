@@ -1,0 +1,19 @@
+---
+    chain:
+        -
+            name: "getUser"
+            ref: "servicenow.get_non_structured"
+            parameters:
+                table: "sys_user"
+                query: "user_name={{name}}"
+            on-success: getIncidents
+            publish:
+                user_id: "{{getUser.result[0].sys_id}}"
+        -
+            name: "getIncidents"
+            ref: "servicenow.get_non_structured"
+            parameters:
+                table: "incident"
+                query: "assigned_to={{user_id}}"
+            publish:
+                incidents: "{{getIncidents.result}}"

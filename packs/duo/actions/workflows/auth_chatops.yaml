@@ -1,0 +1,44 @@
+---
+version: '2.0'
+duo.auth_chatops:
+  description: "Only send an announcement if successfully auth'ed with Duo"
+
+  input:
+    - uuid
+    - user
+    - channel
+    - hint
+
+  output:
+    auth: <% $.auth %>
+    message: <% $.message %>
+
+  tasks:
+    duo_auth:
+      # [235, 26]
+      action: duo.auth_auth
+
+      input:
+        username: <% $.user %>
+        pushinfo: {"Source": "ChatOps", "Action": "<% $.hint %>"}
+
+      on-success:
+        - announce_success
+
+      on-error:
+        - post_failure
+
+    announce_success:
+      # [105, 128]
+      action: duo.announce_success
+      input:
+        uuid: <% $.uuid %>
+
+    post_failure:
+      # [365, 128]
+      action: chatops.post_message
+      input:
+        channel: <% $.channel %>
+        whisper: false
+        message: "*auth failure:* two-factor auth attempt failed.{~}"
+        user: <% $.user %>
