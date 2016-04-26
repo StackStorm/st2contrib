@@ -18,10 +18,9 @@ import eventlet
 
 
 class GetJobStatus(ICSPBaseActions):
-    def run(self, job_id, monitor, connection_details):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+    def run(self, job_id, monitor, monitor_interval=120, connection_details=None):
+        self.set_connection(connection_details)
+        self.get_sessionid()
 
         output = {}
         endpoint = "/rest/os-deployment-jobs"
@@ -30,28 +29,29 @@ class GetJobStatus(ICSPBaseActions):
                              feature requires a single Job ID")
 
         if job_id:
-            endpoint = endpoint + "/%s" % job_id
+            endpoint = endpoint + "/%s" % (job_id)
 
-        jobs = self.icspGET(endpoint)
+        jobs = self.icsp_get(endpoint)
         # Single Job ID doesn't have Members element
         if not job_id:
             for job in jobs['members']:
-                jobid = job["uri"].split("/")[-1]
+                jobid = self.extract_id(job["uri"])
                 output[jobid] = job['state']
         else:
             status = jobs['state']
             if monitor:
-                jobid = jobs["uri"].split("/")[-1]
+                jobid = self.extract_id(jobs["uri"])
                 while status == "STATUS_ACTIVE":
-                    eventlet.sleep(120)
-                    jobs = self.icspGET(endpoint)
+                    eventlet.sleep(monitor_interval)
+                    jobs = self.icsp_get(endpoint)
                     status = jobs['state']
                 if status == 'STATUS_SUCCESS':
                     output[jobid] = jobs['state']
                 else:
                     raise Exception("%s: %s" % (jobid, status))
             else:
-                jobid = jobs["uri"].split("/")[-1]
+                jobid = self.extract_id(jobs["uri"])
                 output[jobid] = jobs['state']
 
         return {"jobs": output}
+

@@ -6,7 +6,7 @@ hpe-icsp.icsp_ids_to_os:
     - identifier
     - id_type
     - hostname
-    - buildplan_uris 
+    - buildplan_ids 
     - connection_details
   tasks:
     check_arrays:
@@ -21,5 +21,5 @@ hpe-icsp.icsp_ids_to_os:
         identifier: <% $.id %>
         id_type: <% $.id_type %>
         hostname: <% $.name %>
-        buildplan_uris: <% $.buildplan_uris %>
+        buildplan_ids: <% $.buildplan_ids %>
         connection_details: <% $.connection_details %>

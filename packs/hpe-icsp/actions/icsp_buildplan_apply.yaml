@@ -5,9 +5,9 @@
   enabled: true
   entry_point: "icsp_buildplan_apply.py"
   parameters:
-    buildplan_uris:
+    buildplan_ids:
       type: "array"
-      description: "Comma seperated list of build plan URIs"
+      description: "List of build plan IDs"
       required: true
       position: 1
     server_data:

@@ -17,11 +17,10 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetServerAttributes(ICSPBaseActions):
-    def run(self, mids, connection_details,
-            attribute_key, attribute_type="all"):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+    def run(self, mids, connection_details=None,
+            attribute_key=None, attribute_type="all"):
+        self.set_connection(connection_details)
+        self.get_sessionid()
         endpoint = "/rest/os-deployment-servers"
         results = {}
         for mid in mids:
@@ -29,7 +28,7 @@ class GetServerAttributes(ICSPBaseActions):
                 isinstance(mid, int)
             except:
                 raise ValueError("MIDs must be integers")
-            getreq = self.icspGET(endpoint + "/%s" % mid)
+            getreq = self.icsp_get(endpoint + "/%s" % (mid))
             allattr = getreq['customAttributes']
             results[mid] = allattr
 

@@ -25,11 +25,11 @@ parameters:
     position: 2
     type: string
     description: "Hostname to be applied to this server"
-  buildplan_uris:
+  buildplan_ids:
     required: true
     position: 3
     type: array
-    description: "Comma seperated list of Builplan URI ids"
+    description: "List of Builplan URI ids"
   connection_details:
     required: false
     position: 4

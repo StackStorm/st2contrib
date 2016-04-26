@@ -11,7 +11,7 @@ parameters:
     required: true
     position: 0
     type: array
-    description: "Serial Number or UUID of the target Servers seperated by a comma (must be all of same type)."
+    description: "List of Serial Numbers or UUID of the target Servers (must be all of same type)."
   id_type:
     required: true
     position: 1
@@ -25,7 +25,7 @@ parameters:
     position: 2
     type: array
     description: "Hostname to be applied to this server, Must match order of identifiers."
-  buildplan_uris:
+  buildplan_ids:
     required: true
     position: 3
     type: array

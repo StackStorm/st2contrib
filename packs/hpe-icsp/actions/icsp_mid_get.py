@@ -17,13 +17,12 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetMid(ICSPBaseActions):
-    def run(self, uuid, serialnumber, connection_details):
+    def run(self, uuid=None, serialnumber=None, connection_details=None):
 
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+        self.set_connection(connection_details)
+        self.get_sessionid()
         endpoint = "/rest/os-deployment-servers"
-        getresults = self.icspGET(endpoint)
+        getresults = self.icsp_get(endpoint)
         servers = getresults["members"]
         results = []
         # Checking arrays are set otherwise errors occur later

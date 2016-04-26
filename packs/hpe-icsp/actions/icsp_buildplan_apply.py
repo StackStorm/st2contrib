@@ -17,11 +17,10 @@ from lib.icsp import ICSPBaseActions
 import json
 
 
-class Apply(ICSPBaseActions):
-    def run(self, buildplan_uris, server_data, connection_details):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+class ApplyBuildPlan(ICSPBaseActions):
+    def run(self, buildplan_ids, server_data, connection_details=None):
+        self.set_connection(connection_details)
+        self.get_sessionid()
 
         # Prepare Endpoint within ICSP API
         endpoint = "/rest/os-deployment-jobs"
@@ -32,7 +31,7 @@ class Apply(ICSPBaseActions):
         pload['failMode'] = None
         pload['serverData'] = []
 
-        for plan in buildplan_uris:
+        for plan in buildplan_ids:
             # Confirm input are integers
             try:
                 isinstance(plan, int)
@@ -41,12 +40,12 @@ class Apply(ICSPBaseActions):
                                  Integers (comma seperated)")
 
             pload["osbpUris"].append("/rest/os-deployment-build-plans/%s"
-                                     % plan)
+                                     % (plan))
 
         for server in server_data:
             data = {}
             pdata = {}
-            data['serverUri'] = "/rest/os-deployment-servers/%s" % server
+            data['serverUri'] = "/rest/os-deployment-servers/%s" % (server)
 
             # Prepare server personality Data
             # Initially not including network data Although
@@ -65,8 +64,8 @@ class Apply(ICSPBaseActions):
 
         payload = json.dumps(pload)
         try:
-            results = self.icspPOST(endpoint, payload)
+            results = self.icsp_post(endpoint, payload)
         except Exception as e:
             raise Exception("Error: %s" % e)
 
-        return {"jobid": int(results['uri'].rsplit("/")[-1])}
+        return {"jobid": self.extract_id(results['uri'])}

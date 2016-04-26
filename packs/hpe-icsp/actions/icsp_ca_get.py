@@ -17,10 +17,9 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetCA(ICSPBaseActions):
-    def run(self, connection_details):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+    def run(self, connection_details=None):
+        self.set_connection(connection_details)
+        self.get_sessionid()
         endpoint = "/rest/certificates/ca"
 
-        return self.icspGET(endpoint)
+        return self.icsp_get(endpoint)

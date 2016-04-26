@@ -17,16 +17,15 @@ from lib.icsp import ICSPBaseActions
 
 
 class DeleteServer(ICSPBaseActions):
-    def run(self, mids, connection_details):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+    def run(self, mids, connection_details=None):
+        self.set_connection(connection_details)
+        self.get_sessionid()
         for mid in mids:
             try:
                 isinstance(mid, int)
             except:
                 raise ValueError("MID values must be numbers")
 
-            endpoint = "/rest/os-deployment-servers/%s" % mid
-            self.icspDELETE(endpoint)
+            endpoint = "/rest/os-deployment-servers/%s" % (mid)
+            self.icsp_delete(endpoint)
         return

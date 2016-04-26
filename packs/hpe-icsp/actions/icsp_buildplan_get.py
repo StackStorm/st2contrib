@@ -17,22 +17,21 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetBuildPlans(ICSPBaseActions):
-    def run(self, plan_names, connection_details):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
+    def run(self, plan_names=None, connection_details=None):
+        self.set_connection(connection_details)
+        self.get_sessionid()
 
         endpoint = "/rest/os-deployment-build-plans"
-        results = self.icspGET(endpoint)
+        results = self.icsp_get(endpoint)
         plans = []
         for plan in results["members"]:
             if plan_names:
                 for name in plan_names:
                     if name.lower() == str(plan["name"]).lower():
-                        uri = plan["uri"].split("/")[-1]
+                        uri = self.extract_id(plan["uri"])
                         plans.append({"name": plan["name"], "uri": uri})
             else:
-                uri = plan["uri"].split("/")[-1]
+                uri = self.extract_id(plan["uri"])
                 plans.append({"name": plan["name"], "uri": uri})
 
         return {"plans": plans}

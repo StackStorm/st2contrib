@@ -7,7 +7,7 @@
   parameters:
     plan_names:
       type: "array"
-      description: "Comma seperated list of plan names (Case sensitive)"
+      description: "Lst of plan names (Case sensitive)"
       required: false
       position: 0
     connection_details:

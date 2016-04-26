@@ -6,7 +6,7 @@ hpe-icsp.icsp_id_to_os:
     - identifier
     - id_type
     - hostname
-    - buildplan_uris 
+    - buildplan_ids 
     - connection_details
   tasks:
     fork_input:
@@ -50,7 +50,7 @@ hpe-icsp.icsp_id_to_os:
       action: hpe-icsp.icsp_buildplan_apply
       input:
         server_data: <% $.icsp_serverdata %>
-        buildplan_uris: <% $.buildplan_uris %>
+        buildplan_ids: <% $.buildplan_ids %>
       publish:
         icsp_jobid: <% $.apply_buildplan.result.jobid %>
       on-success:

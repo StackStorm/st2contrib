@@ -7,7 +7,7 @@
   parameters:
     mids:
       type: "array"
-      description: "Server MID list, Comma seperated."
+      description: "Server MID list."
       required: true
       position: 0
     attribute_key:

@@ -17,11 +17,10 @@ from lib.icsp import ICSPBaseActions
 
 
 class SetServerAttributes(ICSPBaseActions):
-    def run(self, mid, connection_details, attributes, function):
-        if connection_details:
-            self.setConnection(connection_details)
-        self.getSessionID()
-        endpoint = "/rest/os-deployment-servers/%s" % mid
+    def run(self, mid, connection_details=None, attributes, function):
+        self.set_connection(connection_details)
+        self.get_sessionid()
+        endpoint = "/rest/os-deployment-servers/%s" % (mid)
         payload = {"category": "os-deployment-servers",
                    "customAttributes": [], "type": "OSDServer"}
         for attribute in attributes:
@@ -33,7 +32,7 @@ class SetServerAttributes(ICSPBaseActions):
         # any attribute to replace must be defined in full in the new call
 
         if function == "append":
-            currentdetails = self.icspGET(endpoint)
+            currentdetails = self.icsp_get(endpoint)
             for element in currentdetails['customAttributes']:
                 if element['values'][0]['scope'] == 'server'\
                         and not element['key'].startswith("__"):
@@ -44,7 +43,7 @@ class SetServerAttributes(ICSPBaseActions):
                         payload['customAttributes'].append(oldatt)
 
         try:
-            self.icspPUT(endpoint, payload)
+            self.icsp_put(endpoint, payload)
         except Exception as e:
             raise Exception("Error: %s" % e)
         return

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import requests
+import requests, copy
 from st2actions.runners.pythonrunner import Action
 
 
@@ -27,27 +27,28 @@ class ICSPBaseActions(Action):
         self.icsp_apiv = config['apiv']
         self.icsp_sslverify = config['sslverify']
 
-    def checkResults(self, results):
+    def check_results(self, results):
         # Check for errorCode json element
         if 'errorCode' in results:
             raise Exception("Error: %s" % (results["recommendedActions"]))
 
-    def setConnection(self, connection):
-        if 'host' in connection:
-            self.icsp_host = connection['host']
-        if 'user' in connection:
-            self.icsp_user = connection['user']
-        if 'pass' in connection:
-            self.icsp_pass = connection['pass']
-        if 'apiv' in connection:
-            self.icsp_apiv = connection['apiv']
-        if 'sslverify' in connection:
-            if connection['sslverify'].lower() == "false":
-                self.icsp_sslverify = False
-            else:
-                self.icsp_sslverify = True
+    def set_connection(self, connection=None):
+        if connection:
+            if 'host' in connection:
+                self.icsp_host = connection['host']
+            if 'user' in connection:
+                self.icsp_user = connection['user']
+            if 'pass' in connection:
+                self.icsp_pass = connection['pass']
+            if 'apiv' in connection:
+                self.icsp_apiv = connection['apiv']
+            if 'sslverify' in connection:
+                if connection['sslverify'].lower() == "false":
+                    self.icsp_sslverify = False
+                else:
+                    self.icsp_sslverify = True
 
-    def getSessionID(self):
+    def get_sessionid(self):
         url = 'https://%s/rest/login-sessions' % self.icsp_host
         payload = {'userName': self.icsp_user, 'password': self.icsp_pass}
         headers = {'accept': 'application/json',
@@ -56,43 +57,48 @@ class ICSPBaseActions(Action):
         p = requests.post(url, headers=headers,
                           json=payload, verify=self.icsp_sslverify)
         results = p.json()
-        self.checkResults(results)
+        self.check_results(results)
         self.icsp_sessionid = results["sessionID"]
+
+        # added here due to the requirement of the session id
+        self.base_headers = {'Auth': self.icsp_sessionid,
+                   'X-Api-Version': self.icsp_apiv}
+
         return results["sessionID"]
 
-    def icspGET(self, endpoint):
+    def extract_id (self, joburi):
+        jobid = str(joburi)
+        return int(jobid.split("/")[-1])
+
+    def icsp_get(self, endpoint):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
-        headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv}
+        headers = copy.copy(self.base_headers)
         p = requests.get(url, headers=headers, verify=self.icsp_sslverify)
         results = p.json()
-        self.checkResults(results)
+        self.check_results(results)
         return results
 
-    def icspPUT(self, endpoint, payload):
+    def icsp_put(self, endpoint, payload):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
-        headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv}
+        headers = copy.copy(self.base_headers)
         p = requests.put(url, headers=headers,
                          json=payload, verify=self.icsp_sslverify)
         results = p.json()
-        self.checkResults(results)
+        self.check_results(results)
         return
 
-    def icspPOST(self, endpoint, payload):
+    def icsp_post(self, endpoint, payload):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
-        headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv,
-                   'Content-type': "application/json"}
+        headers = copy.copy(self.base_headers)
+        headers['Content-type'] = "application/json"
         p = requests.post(url, headers=headers,
                           data=payload, verify=self.icsp_sslverify)
         results = p.json()
-        self.checkResults(results)
+        self.check_results(results)
         return results
 
-    def icspDELETE(self, endpoint):
+    def icsp_delete(self, endpoint):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
-        headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv}
+        headers = copy.copy(self.base_headers)
         requests.delete(url, headers=headers, verify=self.icsp_sslverify)
         return

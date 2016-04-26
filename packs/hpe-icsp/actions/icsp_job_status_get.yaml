@@ -16,6 +16,12 @@
       required: false
       default: false
       position: 1
+    monitor_interval:
+      type: integer
+      description: "Interval to check Job status (Seconds)"
+      required: false
+      default: 120
+      position: 2
     connection_details:
       type: "object"
       description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
