@@ -17,7 +17,8 @@ from lib.icsp import ICSPBaseActions
 
 
 class SetServerAttributes(ICSPBaseActions):
-    def run(self, mid, connection_details=None, attributes, function):
+    def run(self, mid, attributes, function, connection_details=None):
+
         self.set_connection(connection_details)
         self.get_sessionid()
         endpoint = "/rest/os-deployment-servers/%s" % (mid)

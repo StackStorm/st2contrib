@@ -18,7 +18,8 @@ import eventlet
 
 
 class GetJobStatus(ICSPBaseActions):
-    def run(self, job_id, monitor, monitor_interval=120, connection_details=None):
+    def run(self, job_id, monitor, monitor_interval=120,
+            connection_details=None):
         self.set_connection(connection_details)
         self.get_sessionid()
 
@@ -54,4 +55,3 @@ class GetJobStatus(ICSPBaseActions):
                 output[jobid] = jobs['state']
 
         return {"jobs": output}
-
