@@ -13,7 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import requests, copy
+import requests
+import copy
 from st2actions.runners.pythonrunner import Action
 
 
@@ -66,7 +67,7 @@ class ICSPBaseActions(Action):
 
         return results["sessionID"]
 
-    def extract_id (self, joburi):
+    def extract_id(self, joburi):
         jobid = str(joburi)
         return int(jobid.split("/")[-1])
 
