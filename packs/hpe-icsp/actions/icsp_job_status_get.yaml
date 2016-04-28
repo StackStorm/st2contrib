@@ -29,4 +29,4 @@
       secret: true
       position: 3
     timeout:
-      default: 1800
+      default: 3600

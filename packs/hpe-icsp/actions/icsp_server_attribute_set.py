@@ -16,31 +16,34 @@
 from lib.icsp import ICSPBaseActions
 
 
-class SetServerAttributes(ICSPBaseActions):
-    def run(self, mid, attributes, function, connection_details=None):
+class SetServerAttribute(ICSPBaseActions):
+    def run(self, mid, attribute_key, function,
+            attribute_value=None, connection_details=None):
 
         self.set_connection(connection_details)
         self.get_sessionid()
         endpoint = "/rest/os-deployment-servers/%s" % (mid)
         payload = {"category": "os-deployment-servers",
                    "customAttributes": [], "type": "OSDServer"}
-        for attribute in attributes:
+        if function == "Add":
             payload["customAttributes"].append(
-                {"key": attribute, "values": [
-                    {"scope": "server", "value": attributes[attribute]}]})
+                {"key": attribute_key, "values": [
+                    {"scope": "server", "value": attribute_value}]})
 
         # If function is set to append any undefined attributes from server
         # any attribute to replace must be defined in full in the new call
 
-        if function == "append":
-            currentdetails = self.icsp_get(endpoint)
-            for element in currentdetails['customAttributes']:
-                if element['values'][0]['scope'] == 'server'\
-                        and not element['key'].startswith("__"):
-                    oldatt = {"key": element['key'], "values": [
-                        {"scope": "server",
-                         "value": element['values'][0]['value']}]}
-                    if oldatt not in payload['customAttributes']:
+        currentdetails = self.icsp_get(endpoint)
+        for element in currentdetails['customAttributes']:
+            if element['values'][0]['scope'] == 'server'\
+                    and not element['key'].startswith("__"):
+                if function == "Delete" and element['key'] == attribute_key:
+                    continue
+                else:
+                    if element['key'] != attribute_key:
+                        oldatt = {"key": element['key'], "values": [
+                            {"scope": "server",
+                             "value": element['values'][0]['value']}]}
                         payload['customAttributes'].append(oldatt)
 
         try:

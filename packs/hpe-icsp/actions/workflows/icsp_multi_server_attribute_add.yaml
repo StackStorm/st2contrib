@@ -1,50 +1,55 @@
 ---
 version: '2.0'
-name: "hpe-icsp.icsp_ids_to_os"
-description: "Deploy an OS to a list of Servers"
+name: "hpe-icsp.icsp_multi_server_attribute_add"
+description: "Deploy a Key with server Unique values"
 
 workflows:
 
   entry:
     type: direct
-
+  
     input:
       - identifiers
       - id_type
-      - hostnames
-      - buildplan_ids
+      - attribute_key
+      - attribute_values 
+      #- function
       - connection_details
 
     tasks:
       check_arrays:
-        on-success:
-          - iterateservers: <% $.identifiers.len() = $.hostnames.len() %>
+        on-success: 
+          - iterateservers: <% $.identifiers.len() = $.attribute_values.len() %>
       iterateservers:
         with-items:
           - id in <% $.identifiers %>
-          - hostname in <% $.hostnames %>
-        workflow: hpe-icsp.icsp_ids_to_os.single_run
+          - value in <% $.attribute_values %>
+        workflow: hpe-icsp.icsp_server_attributes_ms_set.single_run
         input:
           identifier: <% $.id %>
           id_type: <% $.id_type %>
-          hostname: <% $.hostname %>
-          buildplan_ids: <% $.buildplan_ids %>
+          key: <% $.attribute_key %>
+          value: <% $.value %>
+          #function: <% $.function %>
           connection_details: <% $.connection_details %>
 
   single_run:
     type: direct
-
+    
     input:
       - identifier
       - id_type
-      - hostname
-      - buildplan_ids
+      - key
+      - value
+      #- function
       - connection_details
+    
     tasks:
-      fork_input:
+      fork_mid_get:
         on-success:
           - get_mid_uuid: <% $.id_type = 'UUID' %>
           - get_mid_sn: <% $.id_type = 'serialnumber' %>
+
       get_mid_uuid:
         action: hpe-icsp.icsp_mid_get
         input:
@@ -56,7 +61,8 @@ workflows:
           count: 5
           delay: 120
         on-success:
-          - generate_server_data
+          - set_attribute
+
       get_mid_sn:
         action: hpe-icsp.icsp_mid_get
         input:
@@ -68,27 +74,13 @@ workflows:
           count: 5
           delay: 120
         on-success:
-          - generate_server_data
-      generate_server_data:
-        action: hpe-icsp.icsp_server_data_format
+          - set_attribute
+
+      set_attribute:
+        action: hpe-icsp.icsp_server_attribute_add
         input:
-          mids: [<% $.icsp_mid %>]
-          hostnames: [<% $.hostname %>]
-        publish:
-          icsp_serverdata:  <% $.generate_server_data.result %>
-        on-success:
-          - apply_buildplan
-      apply_buildplan:
-        action: hpe-icsp.icsp_buildplan_apply
-        input:
-          server_data: <% $.icsp_serverdata %>
-          buildplan_ids: <% $.buildplan_ids %>
-        publish:
-          icsp_jobid: <% $.apply_buildplan.result.jobid %>
-        on-success:
-          - monitor_job
-      monitor_job:
-        action: hpe-icsp.icsp_job_status_get
-        input:
-          job_id: <% $.icsp_jobid %>
-          monitor: True
+          mid: <% $.icsp_mid %>
+          attribute_key: <% $.key %>
+          attribute_value: <% $.value %>
+          #function: <% $.function %>
+          connection_details: <% $.connection_details %>
