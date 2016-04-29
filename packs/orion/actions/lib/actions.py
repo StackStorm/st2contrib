@@ -86,6 +86,47 @@ class OrionBaseAction(Action):
         else:
             return False
 
+    def get_snmp_community(self, community, std_community):
+        """
+        Return the correct SNMP comminity to use.
+        """
+        if community is not None:
+            return community
+        elif std_community is not None:
+            try:
+                return self.config['defaults']['snmp'][std_community]
+            except KeyError:
+                raise ValueError("Invalid standard community")
+        elif std_community is None:
+            raise ValueError("Need one of community or std_community")
+
+    def get_snmp_cred_id(self, community):
+        """
+        Look up an SNMP community in the config and then look up
+        the Orion ID for the Credential.
+        """
+
+        # Check if community is a know standard, otherwise
+        # use it as the community.
+        try:
+            name = self.get_snmp_community(None, community)
+        except ValueError:
+            name = community
+
+        swql = """SELECT ID FROM Orion.Credential
+        WHERE CredentialType=@CredentialType and Name=@name"""
+
+        kargs = {'CredentialType':
+                 'SolarWinds.Orion.Core.Models.Credentials.SnmpCredentialsV2',
+                 'name': name}
+        orion_data = self.query(swql, **kargs)
+
+        if len(orion_data['results']) == 1:
+            return orion_data['results'][0]['ID']
+        else:
+            raise ValueError(
+                "Failed to lookup community in Orion.Credential!")
+
     def get_node_id(self, caption):
         """
         Gets an NodeID from the Orion platform.
@@ -208,15 +249,15 @@ class OrionBaseAction(Action):
         """
 
         if status == 0:
-            return ("Unknown", "grey")
+            return ("Unknown", "grey")  # aka slack 'grey'
         elif status == 1:
-            return ("Up", "good")
+            return ("Up", "good")  # slack 'good'
         elif status == 2:
-            return ("Down", "danger")
+            return ("Down", "#7CD197")  # slack 'danger'
         elif status == 3:
-            return ("Warning", "warning")
+            return ("Warning", "warning")  # slack 'warning'
         elif status == 14:
-            return ("Critical", "danger")
+            return ("Critical", "#7CD197")  # slack 'danger'
 
     def send_user_error(self, message):
         """

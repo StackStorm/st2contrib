@@ -19,13 +19,19 @@ from lib.actions import OrionBaseAction
 class StartDiscovery(OrionBaseAction):
     def run(self,
             name,
-            node,
-            ip_address,
             platform,
             poller,
-            std_community):
+            snmp_communities,
+            nodes=None,
+            subnets=None,
+            ip_ranges=None,
+            no_icmp_only=True,
+            auto_import=False):
         """
         Create and Start Discovery process in Orion.
+
+        Returns:
+         - ProfileID that was created (or error from Orion).
         """
         results = {}
 
@@ -41,46 +47,58 @@ class StartDiscovery(OrionBaseAction):
         self.connect(platform)
         results['platform'] = platform
 
-        if self.node_exists(node, ip_address):
-            self.logger.error(
-                "Node ({}) or IP ({}) already in Orion platform: {}".format(
-                    node,
-                    ip_address,
-                    platform)
+        # Set BulkList to how Orion likes this to be empty
+        BulkList = None
+        if nodes is not None:
+            BulkList = []
+            for node in nodes:
+                BulkList.append({'Address': node})
+
+        # Set IpRanges how Orion likes this to be empty
+        IpRanges = []
+        if ip_ranges is not None:
+            for ip_range in ip_ranges:
+                (start_ip, end_ip) = ip_range.split(':')
+                IpRanges.append({'StartAddress': start_ip,
+                                 'EndAddress': end_ip})
+
+        # Set Subnets how Orion likes this to be empty
+        Subnets = None
+        if subnets is not None:
+            Subnets = []
+            for subnet in subnets:
+                (SubnetIP, SubnetMask) = subnet.split('/')
+                Subnets.append({'SubnetIP': SubnetIP,
+                                'SubnetMask': SubnetMask})
+
+        CredID_order = 1
+        CredIDs = []
+        for snmp in snmp_communities:
+            CredIDs.append(
+                {'CredentialID': self.get_snmp_cred_id(snmp),
+                 'Order': CredID_order}
             )
-
-            self.send_user_error("Node and/or IP is already in Orion!")
-            raise Exception("Node and/or IP already exists!")
-        else:
-            self.logger.info(
-                "Checking node ({}) is not on Orion platform: {}".format(
-                    node,
-                    platform)
-            )
-
-        ## Need to get the CredentialID for the standard community
-        ## Can we turn off UDT?
-
-        #self.get_snmp_community(community, std_community))
+            CredID_order += 1
 
         CorePluginConfiguration = self.invoke('Orion.Discovery',
                                               'CreateCorePluginConfiguration',
-                                              {'BulkList': [{'Address': ip_address}],
-                                               # 'IpRanges': [], # Optional
-                                               # 'Subnets': None, # Optional
-                                               'Credentials': [
-                                                   {'CredentialID': 1, 'Order': 1}
-                                               ],
+                                              {'BulkList': BulkList,
+                                               'IpRanges': IpRanges,
+                                               'Subnets': Subnets,
+                                               'Credentials': CredIDs,
                                                'WmiRetriesCount': 0,
-                                               'WmiRetryIntervalMiliseconds': 1000})
+                                               'WmiRetryIntervalMiliseconds':
+                                               1000})
 
-        # engineID if happens to be None, default to the primary.
+        # engineID if happens to be None, default to the primary (aka 1).
         if poller is not None:
             engineID = self.get_engine_id(poller)
         else:
             engineID = 1
 
-        self.logger.info("Triggering Discovery of Orion Node: {} [{}]".format(node, ip_address))
+        self.logger.info(
+            "Adding '{}' Discovery profile to Orion Platform {}".format(
+                name, platform))
 
         disco = self.invoke('Orion.Discovery', 'StartDiscovery',
                             {
@@ -94,12 +112,13 @@ class StartDiscovery(OrionBaseAction):
                                 'SnmpPort': 161,
                                 'HopCount': 0,
                                 'PreferredSnmpVersion': 'SNMP2c',
-                                'DisableIcmp': False,
+                                'DisableIcmp': no_icmp_only,
                                 'AllowDuplicateNodes': False,
-                                'IsAutoImport': True,
+                                'IsAutoImport': auto_import,
                                 'IsHidden': False,
                                 'PluginConfigurations': [
-                                    {'PluginConfigurationItem': CorePluginConfiguration}
+                                    {'PluginConfigurationItem':
+                                     CorePluginConfiguration}
                                 ]
                             })
 
