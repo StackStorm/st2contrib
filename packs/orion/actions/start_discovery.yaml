@@ -31,6 +31,10 @@ parameters:
     type: "array"
     description: "Array of SNMP community strings or configured standard names (Note: must already be in suee)."
     required: true
+  no_icmp_only:
+    type: "boolean"
+    description: "Should nodes that only respond to ICMP be skipped."
+    default: true
   auto_import:
     type: "boolean"
     description: "Should nodes be auto imported post discovery."

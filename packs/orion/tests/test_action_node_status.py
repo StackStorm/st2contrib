@@ -78,7 +78,7 @@ class NodeStatusTestCase(BaseActionTestCase):
         self.assertEqual(result, expected)
 
     def test_run_node_status_down(self):
-        expected = {'status': "Down", 'color': "danger"}
+        expected = {'status': "Down", 'color': "#7CD197"}
         orion_data = {'results': [{'Status': 2}]}
 
         config = yaml.safe_load(MOCK_CONFIG_FULL)

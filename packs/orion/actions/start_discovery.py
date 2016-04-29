@@ -54,6 +54,9 @@ class StartDiscovery(OrionBaseAction):
             for node in nodes:
                 BulkList.append({'Address': node})
 
+            if ip_ranges is not None or subnets is not None:
+                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
+
         # Set IpRanges how Orion likes this to be empty
         IpRanges = []
         if ip_ranges is not None:
@@ -61,6 +64,9 @@ class StartDiscovery(OrionBaseAction):
                 (start_ip, end_ip) = ip_range.split(':')
                 IpRanges.append({'StartAddress': start_ip,
                                  'EndAddress': end_ip})
+
+            if BulkList is not None or subnets is not None:
+                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
 
         # Set Subnets how Orion likes this to be empty
         Subnets = None
@@ -70,6 +76,9 @@ class StartDiscovery(OrionBaseAction):
                 (SubnetIP, SubnetMask) = subnet.split('/')
                 Subnets.append({'SubnetIP': SubnetIP,
                                 'SubnetMask': SubnetMask})
+
+            if BulkList is not None or IpRanges is not None:
+                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
 
         CredID_order = 1
         CredIDs = []
