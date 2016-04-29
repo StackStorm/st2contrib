@@ -1,0 +1,32 @@
+---
+description: "Create a discovery profile in Solarwinds Orion platform"
+enabled: true
+entry_point: 'start_discovery.py'
+name: "start_discovery"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  name:
+    type: "string"
+    description: "Name for the discorty profile"
+    required: true
+  node:
+    type: "string"
+    description: "The Caption for the node to add to the monitoring platform."
+    required: true
+  ip_address:
+    type: "string"
+    required: true
+    description: "The ip address to use for polling."
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+  poller:
+    type: "string"
+    description: "The name of the additional polling engine to use (defaults to primary)."
+    default: "primary"
+  std_community:
+    type: "string"
+    description: "Pick a standard SNMP community from the config don't set *community*."
+
