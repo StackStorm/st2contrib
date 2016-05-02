@@ -1,0 +1,33 @@
+---
+  name: "icsp_server_attributes_get"
+  runner_type: "run-python"
+  description: "Retrieve Attributes set against Server"
+  enabled: true
+  entry_point: "icsp_server_attributes_get.py"
+  parameters:
+    mids:
+      type: "array"
+      description: "Server MID list."
+      required: true
+      position: 0
+    attribute_key:
+      type: "string"
+      description: "Attribute key to retrieve. Blank = All keys returned"
+      required: false
+      position: 1
+    attribute_type:
+      type: "string"
+      description: "Type of Attribute to retrieve. Default = All types"
+      required: false
+      position: 2
+      enum:
+        - all
+        - server
+        - facility
+      default: all
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 3

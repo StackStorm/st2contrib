@@ -1,0 +1,13 @@
+---
+  name: "icsp_ca_get"
+  runner_type: "run-python"
+  description: "Retreive CA Certificate from ICSP"
+  enabled: true
+  entry_point: "icsp_ca_get.py"
+  parameters:
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 0
