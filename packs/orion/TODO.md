@@ -30,7 +30,7 @@ may not be so useful.
 
 ## NCM
 
- [!] Cirrus.Nodes: AddNodeToNCM
+ [X] Cirrus.Nodes: AddNodeToNCM
     [ ] Cirrus.Nodes: GetAllConnectionProfiles (No args).
     [ ] Cirrus.Nodes: ValidateLoginTest
     [ ] Cirrus.Nodes: ValidateLogin
