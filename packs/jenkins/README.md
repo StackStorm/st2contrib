@@ -8,7 +8,7 @@ Examples of rules can be found in the `rules` directory.
 Jenkins jobs are required to have the "parameterized" setting enabled in order
 for this pack to be able to start jobs.
 
-[!](https://wiki.jenkins-ci.org/download/attachments/34930782/param-step-1.png?version=2&modificationDate=1218818660000)
+![](https://wiki.jenkins-ci.org/download/attachments/34930782/param-step-1.png?version=2&modificationDate=1218818660000)
 
 ## Configuration
 
