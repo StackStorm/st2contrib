@@ -1,0 +1,42 @@
+---
+name: "icsp_ids_to_os"
+runner_type: "mistral-v2"
+pack: "hpe-icsp"
+enabled: true
+entry_point: "workflows/icsp_ids_to_os.yaml"
+description: "Apply OS Build plans to a series of Machine Serial Number/UUIDs."
+
+parameters:
+  identifiers:
+    required: true
+    position: 0
+    type: array
+    description: "List of Serial Numbers or UUID of the target Servers (must be all of same type)."
+  id_type:
+    required: true
+    position: 1
+    type: string
+    enum:
+      - serialnumber
+      - UUID
+    default: serialnumber
+  hostnames:
+    required: true
+    position: 2
+    type: array
+    description: "Hostname to be applied to this server, Must match order of identifiers."
+  buildplan_ids:
+    required: true
+    position: 3
+    type: array
+    description: "Comma seperated list of Builplan URI ids"
+  connection_details:
+    required: false
+    position: 4
+    type: object
+    description: "Overriding connection details for ICSP server"
+  workflow:
+    default: hpe-icsp.icsp_ids_to_os.entry
+    immutable: true
+    type: string
+

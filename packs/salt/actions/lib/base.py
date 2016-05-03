@@ -54,7 +54,7 @@ class SaltAction(Action):
         if client is 'local':
             self.data['tgt'] = kwargs.get('target', '*')
             self.data['expr_form'] = kwargs.get('expr_form', 'glob')
-        if len(kwargs.get('args', [])) > 0:
+        if isinstance(kwargs.get('args', []), list) and len(kwargs.get('args', [])) > 0:
             self.data['arg'] = kwargs['args']
         if len(kwargs.get('data', {})) > 0:
             if kwargs['data'].get('kwargs', None) is not None:

@@ -66,7 +66,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![activecampaign icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/activecampaign/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | [activecampaign](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | Integration with ActiveCampaign |  | [DoriftoShoes](mailto:patrick@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#activecampaign-pack)
 [![alertlogic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/alertlogic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | [alertlogic](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | AlertLogic ActiveIntegration APIs | AlertLogic | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#alertlogic-pack)
 [![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
-[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud, iam, vpc, s3, CloudFormation, RDS, SQS | [st2-dev](mailto:info@stackstorm.com) | 0.6.4 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
+[![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud, iam, vpc, s3, CloudFormation, RDS, SQS | [st2-dev](mailto:info@stackstorm.com) | 0.6.5 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
 [![bitcoin icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitcoin/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | [bitcoin](https://github.com/StackStorm/st2contrib/tree/master/packs/bitcoin) | bitcoin integration pack | bitcoin | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#bitcoin-pack)
@@ -90,6 +90,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 [![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
+[![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | [hpe-icsp](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | Pack for HP Enterprise Insight Control Server Provisioning Integration |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#hpe-icsp-pack)
 [![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
 [![hue icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hue/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | [hue](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | Philips Hue Pack | hue, philips, iot | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#hue-pack)
 [![ipcam icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ipcam/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ipcam) | [ipcam](https://github.com/StackStorm/st2contrib/tree/master/packs/ipcam) | st2 content pack containing integration for various home IP cams | ipcam, ip cam, ip camera, camera, smart home, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#ipcam-pack)
@@ -112,7 +113,8 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | [octopusdeploy](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | st2 content pack containing octopusdeploy integrations | octopus, octopusdeploy, deployment, continous deployment, continous integration | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#octopusdeploy-pack)
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
 [![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
-[![orion icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/orion/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | [orion](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | Intergrate via the OrionSDK to SolarWinds Orion | solarwinds, orion, ncm, npm | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#orion-pack)
+[![opscenter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opscenter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | [opscenter](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | st2 content pack containing datastax opscenter integrations | datastax, cassandra, opscenter | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#opscenter-pack)
+[![orion icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/orion/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | [orion](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | Intergrate via the OrionSDK to SolarWinds Orion | solarwinds, orion, ncm, npm | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#orion-pack)
 [![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | [packagecloud](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | packagecloud integration pack | packagecloud | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#packagecloud-pack)
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
@@ -121,7 +123,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
 [![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
-[![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4.3 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
+[![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4.4 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 [![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
 [![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
@@ -1423,6 +1425,27 @@ encrypt_file | Encrypt a file using asymmetric encryption for the provided recip
 import_keys | Import keys into the keyring.
 list_keys | List all keys in the keyring.
 
+### hpe-icsp pack
+
+![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+icsp_buildplan_apply | Apply Buidlplan to Specified Servers
+icsp_buildplan_get | Retreive Available BuildPlans
+icsp_ca_get | Retreive CA Certificate from ICSP
+icsp_ids_to_os | Apply OS Build plans to a series of Machine Serial Number/UUIDs.
+icsp_job_status_get | Return Status of specified Job
+icsp_mid_get | Retreive MIDs for specified servers.
+icsp_multi_server_attribute_add | Apply Attribute with server unique values across multiple servers.
+icsp_server_attribute_add | Add or Update a Server attribute on a ICSP registered server.
+icsp_server_attribute_del | Remove a Server attribute on a ICSP registered server.
+icsp_server_attributes_get | Retrieve Attributes set against Server
+icsp_server_data_format | Generate Server Data Input for bulidplan apply action. MID and Hostname arrays must contain the same number of values. Option values of domain and workgroup can be provided but will be ignored if element count differs from MID count.
+icsp_server_delete | Delete server from ICSP server list.
+
 ### hubot pack
 
 ![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)
@@ -1788,6 +1811,41 @@ nova | Run OpenStack Nova commands
 nova_confirm | Confirms a resize or migrate
 nova_instances | Returns a list of instances by hypervisor
 nova_migrate_server | Evacuate guests from compute node
+
+### opscenter pack
+
+![opscenter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opscenter/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+EventsConsumer | Sensor which consumes all opscenter events and injects them into StackStorm.
+
+#### Actions
+
+Name | Description
+---- | -----------
+cancel_request | Cancel long running request.
+decommission_node | Decommission node from cluster.
+drain_node | Drain node.
+get_cluster_configs | Get Cassandra cluster info.
+get_cluster_info | Get Cassandra cluster info.
+get_cluster_repair_progress | Get repair progress for cluster.
+get_node_conf | Get Cassandra cluster nodes info.
+get_node_info | Get Cassandra cluster nodes info.
+get_nodes_info | Get Cassandra cluster nodes info.
+get_repair_status | Get repair status for cluster.
+get_request_status | Get status of long running request.
+get_storage_capacity | Get Cassandra cluster storage capacity.
+list_requests | List all requests made to opscenter.
+restart_cluster | Restart cassandra cluster.
+restart_node | Restart node in cluster.
+set_node_conf | Set node configuration.
+start_cluster_repair | Start repair for cluster.
+start_node | Start node.
+stop_cluster_repair | Stop repair for cluster.
+stop_node | Stop node.
 
 ### orion pack
 

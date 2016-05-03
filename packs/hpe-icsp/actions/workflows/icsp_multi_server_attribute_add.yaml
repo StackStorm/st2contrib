@@ -1,0 +1,86 @@
+---
+version: '2.0'
+name: "hpe-icsp.icsp_multi_server_attribute_add"
+description: "Deploy a Key with server Unique values"
+
+workflows:
+
+  entry:
+    type: direct
+  
+    input:
+      - identifiers
+      - id_type
+      - attribute_key
+      - attribute_values 
+      #- function
+      - connection_details
+
+    tasks:
+      check_arrays:
+        on-success: 
+          - iterateservers: <% $.identifiers.len() = $.attribute_values.len() %>
+      iterateservers:
+        with-items:
+          - id in <% $.identifiers %>
+          - value in <% $.attribute_values %>
+        workflow: hpe-icsp.icsp_server_attributes_ms_set.single_run
+        input:
+          identifier: <% $.id %>
+          id_type: <% $.id_type %>
+          key: <% $.attribute_key %>
+          value: <% $.value %>
+          #function: <% $.function %>
+          connection_details: <% $.connection_details %>
+
+  single_run:
+    type: direct
+    
+    input:
+      - identifier
+      - id_type
+      - key
+      - value
+      #- function
+      - connection_details
+    
+    tasks:
+      fork_mid_get:
+        on-success:
+          - get_mid_uuid: <% $.id_type = 'UUID' %>
+          - get_mid_sn: <% $.id_type = 'serialnumber' %>
+
+      get_mid_uuid:
+        action: hpe-icsp.icsp_mid_get
+        input:
+          uuid: [<% $.identifier %>]
+          connection_details: <% $.connection_details %>
+        publish:
+          icsp_mid: <% $.get_mid_uuid.result.mid %>
+        retry:
+          count: 5
+          delay: 120
+        on-success:
+          - set_attribute
+
+      get_mid_sn:
+        action: hpe-icsp.icsp_mid_get
+        input:
+          serialnumber: [<% $.identifier %>]
+          connection_details: <% $.connection_details %>
+        publish:
+          icsp_mid: <% $.get_mid_sn.result.mid %>
+        retry:
+          count: 5
+          delay: 120
+        on-success:
+          - set_attribute
+
+      set_attribute:
+        action: hpe-icsp.icsp_server_attribute_add
+        input:
+          mid: <% $.icsp_mid %>
+          attribute_key: <% $.key %>
+          attribute_value: <% $.value %>
+          #function: <% $.function %>
+          connection_details: <% $.connection_details %>

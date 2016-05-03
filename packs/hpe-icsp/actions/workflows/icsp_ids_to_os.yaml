@@ -1,0 +1,94 @@
+---
+version: '2.0'
+name: "hpe-icsp.icsp_ids_to_os"
+description: "Deploy an OS to a list of Servers"
+
+workflows:
+
+  entry:
+    type: direct
+
+    input:
+      - identifiers
+      - id_type
+      - hostnames
+      - buildplan_ids
+      - connection_details
+
+    tasks:
+      check_arrays:
+        on-success:
+          - iterateservers: <% $.identifiers.len() = $.hostnames.len() %>
+      iterateservers:
+        with-items:
+          - id in <% $.identifiers %>
+          - hostname in <% $.hostnames %>
+        workflow: hpe-icsp.icsp_ids_to_os.single_run
+        input:
+          identifier: <% $.id %>
+          id_type: <% $.id_type %>
+          hostname: <% $.hostname %>
+          buildplan_ids: <% $.buildplan_ids %>
+          connection_details: <% $.connection_details %>
+
+  single_run:
+    type: direct
+
+    input:
+      - identifier
+      - id_type
+      - hostname
+      - buildplan_ids
+      - connection_details
+    tasks:
+      fork_input:
+        on-success:
+          - get_mid_uuid: <% $.id_type = 'UUID' %>
+          - get_mid_sn: <% $.id_type = 'serialnumber' %>
+      get_mid_uuid:
+        action: hpe-icsp.icsp_mid_get
+        input:
+          uuid: [<% $.identifier %>]
+          connection_details: <% $.connection_details %>
+        publish:
+          icsp_mid: <% $.get_mid_uuid.result.mid %>
+        retry:
+          count: 5
+          delay: 120
+        on-success:
+          - generate_server_data
+      get_mid_sn:
+        action: hpe-icsp.icsp_mid_get
+        input:
+          serialnumber: [<% $.identifier %>]
+          connection_details: <% $.connection_details %>
+        publish:
+          icsp_mid: <% $.get_mid_sn.result.mid %>
+        retry:
+          count: 5
+          delay: 120
+        on-success:
+          - generate_server_data
+      generate_server_data:
+        action: hpe-icsp.icsp_server_data_format
+        input:
+          mids: [<% $.icsp_mid %>]
+          hostnames: [<% $.hostname %>]
+        publish:
+          icsp_serverdata:  <% $.generate_server_data.result %>
+        on-success:
+          - apply_buildplan
+      apply_buildplan:
+        action: hpe-icsp.icsp_buildplan_apply
+        input:
+          server_data: <% $.icsp_serverdata %>
+          buildplan_ids: <% $.buildplan_ids %>
+        publish:
+          icsp_jobid: <% $.apply_buildplan.result.jobid %>
+        on-success:
+          - monitor_job
+      monitor_job:
+        action: hpe-icsp.icsp_job_status_get
+        input:
+          job_id: <% $.icsp_jobid %>
+          monitor: True

@@ -1,0 +1,23 @@
+---
+  name: "icsp_mid_get"
+  runner_type: "run-python"
+  description: "Retreive MIDs for specified servers."
+  enabled: true
+  entry_point: "icsp_mid_get.py"
+  parameters:
+    uuid:
+      type: "array"
+      description: "UUID of the Machine to retreive."
+      required: false
+      position: 0
+    serialnumber:
+      type: "array"
+      description: "Serial Number of server to find."
+      required: false
+      position: 1
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 2
