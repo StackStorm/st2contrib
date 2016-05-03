@@ -34,6 +34,7 @@ class SetServerAttribute(ICSPBaseActions):
         # any attribute to replace must be defined in full in the new call
 
         currentdetails = self.icsp_get(endpoint)
+        payload["name"] = currentdetails['name']
         for element in currentdetails['customAttributes']:
             if element['values'][0]['scope'] == 'server'\
                     and not element['key'].startswith("__"):

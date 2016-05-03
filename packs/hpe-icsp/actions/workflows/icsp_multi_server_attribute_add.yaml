@@ -24,7 +24,7 @@ workflows:
         with-items:
           - id in <% $.identifiers %>
           - value in <% $.attribute_values %>
-        workflow: hpe-icsp.icsp_server_attributes_ms_set.single_run
+        workflow: hpe-icsp.icsp_multi_server_attribute_add.single_run
         input:
           identifier: <% $.id %>
           id_type: <% $.id_type %>
