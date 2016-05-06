@@ -1,0 +1,7 @@
+---
+description: "Get the list of current Cloudflare IPs"
+enabled: true
+entry_point: "get_ips.py"
+name: "get_ips"
+pack: "cloudflare"
+runner_type: "python-script"

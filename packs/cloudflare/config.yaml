@@ -1,2 +1,2 @@
 ---
-api_host: "api.cloudflare.com"
+api_host: "https://api.cloudflare.com"
