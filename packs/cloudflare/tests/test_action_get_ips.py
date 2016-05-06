@@ -7,7 +7,7 @@ from st2tests.base import BaseActionTestCase
 from get_ips import GetIPs
 
 __all__ = [
-    'MistOncallTestCase'
+    'GetIPsTestCase'
 ]
 
 MOCK_CONFIG_BLANK = ""
@@ -20,9 +20,9 @@ MOCK_CONFIG_FULL = """
 api_host: "mock://api.cloudflare.com"
 """
 
-MOCK_DATA_INVALID_JSON="{'dd': doo}"
+MOCK_DATA_INVALID_JSON = "{'dd': doo}"
 
-MOCK_DATA_SUCCESS="""
+MOCK_DATA_SUCCESS = """
 {
   "success": true,
   "errors": [],
@@ -38,7 +38,7 @@ MOCK_DATA_SUCCESS="""
 }
 """
 
-MOCK_DATA_FAIL="""
+MOCK_DATA_FAIL = """
 {
   "success": false,
   "errors": ["An Error happened"],
