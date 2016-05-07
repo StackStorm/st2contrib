@@ -30,6 +30,11 @@ class GetIPsTestCase(BaseActionTestCase):
     def test_run_no_config(self):
         self.assertRaises(ValueError, GetIPs, MOCK_CONFIG_BLANK)
 
+    def test_run_is_instance(self):
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
+
+        self.assertIsInstance(action, GetIPs)
+
     def test_run_status_no_schema(self):
         action = self.get_action_instance(MOCK_CONFIG_NO_SCHEMA)
 
