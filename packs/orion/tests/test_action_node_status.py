@@ -23,34 +23,24 @@ __all__ = [
     'NodeStatusTestCase'
 ]
 
-MOCK_CONFIG_BLANK = ""
-
-MOCK_CONFIG_FULL = """
-orion:
-  host: orion-npm
-  user: stanley
-  password: foobar
-"""
+MOCK_CONFIG_BLANK = yaml.safe_load(open(
+    'packs/orion/tests/fixture/blank.yaml').read())
+MOCK_CONFIG_FULL = yaml.safe_load(open(
+    'packs/orion/tests/fixture/full.yaml').read())
 
 
 class NodeStatusTestCase(BaseActionTestCase):
     action_cls = NodeStatus
 
     def test_run_no_config(self):
-        config = yaml.safe_load(MOCK_CONFIG_BLANK)
-
-        self.assertRaises(ValueError, NodeStatus, config)
+        self.assertRaises(ValueError, NodeStatus, MOCK_CONFIG_BLANK)
 
     def test_run_basic_config(self):
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         self.assertIsInstance(action, NodeStatus)
 
     def test_run_connect_fail(self):
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = Mock(side_effect=ValueError(
             'Orion host details not in the config.yaml'))
 
@@ -59,8 +49,7 @@ class NodeStatusTestCase(BaseActionTestCase):
     def test_run_node_not_found(self):
         orion_data = {'results': []}
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=orion_data)
 
@@ -70,8 +59,7 @@ class NodeStatusTestCase(BaseActionTestCase):
         expected = {'status': "Up", 'color': "good"}
         orion_data = {'results': [{'Status': 1}]}
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=orion_data)
         result = action.run("router1", "orion")
@@ -81,8 +69,7 @@ class NodeStatusTestCase(BaseActionTestCase):
         expected = {'status': "Down", 'color': "#7CD197"}
         orion_data = {'results': [{'Status': 2}]}
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=orion_data)
         result = action.run("router1", "orion")
@@ -92,8 +79,7 @@ class NodeStatusTestCase(BaseActionTestCase):
         expected = {'status': "Unknown", 'color': "grey"}
         orion_data = {'results': [{'Status': 0}]}
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=orion_data)
         result = action.run("router1", "orion")
@@ -103,8 +89,7 @@ class NodeStatusTestCase(BaseActionTestCase):
         expected = {'status': "Warning", 'color': "warning"}
         orion_data = {'results': [{'Status': 3}]}
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=orion_data)
         result = action.run("router1", "orion")

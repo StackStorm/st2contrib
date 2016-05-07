@@ -38,4 +38,4 @@ parameters:
   auto_import:
     type: "boolean"
     description: "Should nodes be auto imported post discovery."
-    default: false
+    default: true

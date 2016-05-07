@@ -18,7 +18,7 @@ may not be so useful.
  [ ] Orion.Discovery: GetImportDiscoveryResultsProgress
       0: importId (Type: System.Guid; Optional: False)
 
- [!] List Discovery profiles (with filter) + alias.
+ [ ] List Discovery profiles (with filter) + alias.
 
      SELECT ProfileID, Name, Description, RunTimeInSeconds, LastRun, EngineID,
             Status, JobID, SIPPort, HopCount, SearchTimeout, SNMPTimeout,
@@ -30,18 +30,16 @@ may not be so useful.
 
 ## NCM
 
- [X] Cirrus.Nodes: AddNodeToNCM
-    [ ] Cirrus.Nodes: GetAllConnectionProfiles (No args).
-    [ ] Cirrus.Nodes: ValidateLoginTest
-    [ ] Cirrus.Nodes: ValidateLogin
- [ ] Cirrus.ConfigArchive: ExecuteScript
+ [ ] Cirrus.Nodes: GetAllConnectionProfiles (No args).
+ [ ] Cirrus.Nodes: ValidateLoginTest
+ [ ] Cirrus.Nodes: ValidateLogin
+ [!] Cirrus.ConfigArchive: ExecuteScript
  [ ] Cirrus.ConfigArchive: ConfigSearch
  [ ] Cirrus.Nodes: Diff
 
 ## NPM
 
- [!] node_custom_prop_list
- [!] orion_health
+ [ ] orion_health
  [!] node_custom_prop_update
 
 ## NPM Universal Device Pollers

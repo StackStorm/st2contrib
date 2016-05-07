@@ -58,6 +58,24 @@ class OrionBaseAction(Action):
         """
         return self.client.create(entity, **kargs)
 
+    def read(self, uri):
+        """
+        Run an Read against the Orion Platform.
+        """
+        return self.client.read(uri)
+
+    def update(self, uri, **kargs):
+        """
+        Run an Update against the Orion Platform.
+        """
+        return self.client.update(uri, **kargs)
+
+    def delete(self, uri):
+        """
+        Run an Delete of an URI against the Orion Platform.
+        """
+        return self.client.delete(uri)
+
     def node_exists(self, caption, ip_address):
         """
         Check if an Node exists (caption and or ip) on the Orion platform.
@@ -142,6 +160,37 @@ class OrionBaseAction(Action):
         if len(data['results']) == 1:
             try:
                 return data['results'][0]['NodeID']
+            except IndexError:
+                raise ValueError("Invalid Node")
+        elif len(data['results']) >= 2:
+            self.logger.debug(
+                "Muliple Nodes match '{}' Caption: {}".format(
+                    caption, data))
+            raise ValueError("Muliple Nodes match '{}' Caption".format(
+                caption))
+        elif len(data['results']) == 0:
+            self.logger.debug(
+                "No Nodes match '{}' Caption: {}".format(
+                    caption, data))
+            raise ValueError("No matching Caption for '{}'".format(
+                caption))
+
+    def get_node_uri(self, caption):
+        """
+        Gets an NodeID from the Orion platform.
+
+        Raises: ValueError on muliple or no matching caption.
+
+        Returns:
+            string: the Node's URI
+        """
+        swql = "SELECT Uri FROM Orion.Nodes WHERE Caption=@caption"
+        kargs = {'caption': caption}
+        data = self.query(swql, **kargs)
+
+        if len(data['results']) == 1:
+            try:
+                return data['results'][0]['Uri']
             except IndexError:
                 raise ValueError("Invalid Node")
         elif len(data['results']) >= 2:
