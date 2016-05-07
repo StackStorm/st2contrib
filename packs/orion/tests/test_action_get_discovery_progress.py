@@ -1,0 +1,75 @@
+# Licensed to the StackStorm, Inc ('StackStorm') under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+
+import yaml
+from mock import Mock, MagicMock
+
+from st2tests.base import BaseActionTestCase
+
+from get_discovery_progress import GetDiscoveryProgress
+
+__all__ = [
+    'GetDiscoveryProgressTestCase'
+]
+
+MOCK_CONFIG_BLANK = yaml.safe_load(open(
+    'packs/orion/tests/fixture/blank.yaml').read())
+MOCK_CONFIG_FULL = yaml.safe_load(open(
+    'packs/orion/tests/fixture/full.yaml').read())
+
+
+class GetDiscoveryProgressTestCase(BaseActionTestCase):
+    action_cls = GetDiscoveryProgress
+
+    def test_run_no_config(self):
+        self.assertRaises(ValueError, GetDiscoveryProgress, MOCK_CONFIG_BLANK)
+
+    def test_run_is_instance(self):
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
+
+        self.assertIsInstance(action, GetDiscoveryProgress)
+
+    def test_run_discovery_status_to_text(self):
+        action = self.get_action_instance(MOCK_CONFIG_FULL)
+
+        status = action._disc_status_to_text("0")
+        self.assertEqual(status, "Unknown")
+
+        status = action._disc_status_to_text("1")
+        self.assertEqual(status, "InProgress")
+
+        status = action._disc_status_to_text("2")
+        self.assertEqual(status, "Finished")
+
+        status = action._disc_status_to_text("3")
+        self.assertEqual(status, "Error")
+
+        status = action._disc_status_to_text("4")
+        self.assertEqual(status, "NotScheduled")
+
+        status = action._disc_status_to_text("5")
+        self.assertEqual(status, "Scheduled")
+
+        status = action._disc_status_to_text("6")
+        self.assertEqual(status, "NotCompleted")
+
+        status = action._disc_status_to_text("7")
+        self.assertEqual(status, "Canceling")
+
+        status = action._disc_status_to_text("8")
+        self.assertEqual(status, "ReadyForImport")
+
+    # FIXME This needs more tests....
+    #def test_run_response_processed(self):
+    #    pass

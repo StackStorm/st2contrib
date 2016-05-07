@@ -1,6 +1,6 @@
 ---
 description: "Get the progress of an Solarwinds Orion Discovery."
-enabled: true
+enabled: false
 entry_point: 'get_discovery_progress.py'
 name: "get_discovery_progress"
 pack: "orion"
@@ -8,7 +8,7 @@ runner_type: "python-script"
 
 parameters:
   profileId:
-    type: "string"
+    type: "integer"
     description: "The profileId to get progress for."
     required: true
   platform:
