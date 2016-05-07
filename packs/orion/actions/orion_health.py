@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from datetime import datetime, timedelta
-
 from lib.actions import OrionBaseAction
 
 
@@ -26,7 +24,7 @@ class OrionHealth(OrionBaseAction):
 
         self.connect(platform)
 
-        ## Does nothing yet...
+        # Does nothing yet...
 
         # The Invoke returns None, so return something.
         return True

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 
 import yaml
-from mock import Mock, MagicMock
+# from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -33,7 +33,9 @@ class ListNodeCustomPropertiesTestCase(BaseActionTestCase):
     action_cls = ListNodeCustomProperties
 
     def test_run_no_config(self):
-        self.assertRaises(ValueError, ListNodeCustomProperties, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError,
+                          ListNodeCustomProperties,
+                          MOCK_CONFIG_BLANK)
 
     def test_run_is_instance(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)

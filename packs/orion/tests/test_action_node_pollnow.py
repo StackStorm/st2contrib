@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 
 import yaml
-from mock import Mock, MagicMock
+# from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
-from node_pollnow  import NodePollNow
+from node_pollnow import NodePollNow
 
 __all__ = [
     'NodePollNowTestCase'

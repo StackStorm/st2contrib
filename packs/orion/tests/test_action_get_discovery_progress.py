@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 
 import yaml
-from mock import Mock, MagicMock
+# from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -71,5 +71,5 @@ class GetDiscoveryProgressTestCase(BaseActionTestCase):
         self.assertEqual(status, "ReadyForImport")
 
     # FIXME This needs more tests....
-    #def test_run_response_processed(self):
+    # def test_run_response_processed(self):
     #    pass
