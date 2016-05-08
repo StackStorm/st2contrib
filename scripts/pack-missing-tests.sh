@@ -27,7 +27,7 @@ fi
 
 MISSING_COUNT=0
 
-echo "Actions missing tests:"
+echo "Python Actions missing tests:"
 for ACTION in ${ACTIONS}; do 
     if [ ! -f  ${PACK}/tests/test_action_${ACTION} ]; then
 	echo -e "\t${ACTION}"
@@ -36,7 +36,7 @@ for ACTION in ${ACTIONS}; do
 done
 
 echo 
-echo "Tests with no actions:"
+echo "Python Tests with no actions:"
 for TEST in ${ACTION_TESTS}; do 
     if [ ! -f ${PACK}/actions/${TEST#test_action_} ]; then
 	echo -e "\t$TEST"
@@ -44,5 +44,5 @@ for TEST in ${ACTION_TESTS}; do
 done
 
 echo
-echo -e "Coverage:"
+echo -e "Python Test Coverage:"
 echo -e "\tActions: ${ACTION_TEST_COUNT}/${ACTION_COUNT}"
