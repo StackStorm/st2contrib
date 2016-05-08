@@ -1,27 +1,35 @@
 #!/bin/bash
 
 if [ -n "${1}" ]; then
-    DIR=${1}
+    PACK=${1}
 else
-    echo "Need a pack dir"
+    echo "Need a pack "
     exit 1
 fi
 
-ACTIONS=$(cd ${DIR}/actions;ls -1 *.py)
-ACTION_COUNT=$(ls -1 ${DIR}/actions/*.py | wc -l)
+echo -e "====== ${PACK} ======\n"
 
-ACTION_TESTS=$(cd ${DIR}/tests;ls -1 *.py)
-if [ -d ${DIR}/tests/ ]; then
-    ACTION_TEST_COUNT=$(ls -1 ${DIR}/tests/test_action_*.py | wc -l)
+if [ -d ${PACK}/actions ]; then
+    ACTIONS=$(cd ${PACK}/actions;ls -1 *.py)
+    ACTION_COUNT=$(ls -1 ${PACK}/actions/*.py | wc -l)
+else
+    ACTIONS=""
+    ACTION_COUNT=0
+fi
+
+if [ -d ${PACK}/tests/ ]; then
+    ACTION_TESTS=$(cd ${PACK}/tests;ls -1 test_action_*.py)
+    ACTION_TEST_COUNT=$(ls -1 ${PACK}/tests/test_action_*.py | wc -l)
 else
     ACTION_TEST_COUNT=0
+    ACTION_TESTS=""
 fi
 
 MISSING_COUNT=0
 
-echo "Missing tests for these actions:"
+echo "Actions missing tests:"
 for ACTION in ${ACTIONS}; do 
-    if [ ! -f  ${DIR}/tests/test_action_${ACTION} ]; then 
+    if [ ! -f  ${PACK}/tests/test_action_${ACTION} ]; then
 	echo -e "\t${ACTION}"
 	MISSING_COUNT=$((MISSING_COUNT+1))
     fi
@@ -30,13 +38,11 @@ done
 echo 
 echo "Tests with no actions:"
 for TEST in ${ACTION_TESTS}; do 
-    if [ ! -f ${DIR}/actions/${TEST#test_action_} ]; then
+    if [ ! -f ${PACK}/actions/${TEST#test_action_} ]; then
 	echo -e "\t$TEST"
     fi
 done
 
 echo
-echo "Total missing tests: ${MISSING_COUNT}"
-
-echo
-echo "Stats: ${ACTION_TEST_COUNT} test for ${ACTION_COUNT} actions"
+echo -e "Coverage:"
+echo -e "\tActions: ${ACTION_TEST_COUNT}/${ACTION_COUNT}"
