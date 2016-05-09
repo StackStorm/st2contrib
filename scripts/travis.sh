@@ -34,6 +34,8 @@ elif [ ${TASK} == "packs-resource-register" ]; then
   make packs-resource-register
 elif [ ${TASK} == "packs-tests" ]; then
   make packs-tests
+elif [ ${TASK} == "packs-missing-tests-check" ]; then
+  make packs-missing-tests
 else
   echo "Invalid task: ${TASK}"
   exit 2
