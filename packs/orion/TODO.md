@@ -2,6 +2,10 @@
 
 Features that may be useful for the Orion pack.
 
+## General
+
+[ ] Add some pack expections.
+
 ## Discovery
 
 Discovery is currently function using auto import. So the other Verbs
@@ -33,14 +37,13 @@ may not be so useful.
  [ ] Cirrus.Nodes: GetAllConnectionProfiles (No args).
  [ ] Cirrus.Nodes: ValidateLoginTest
  [ ] Cirrus.Nodes: ValidateLogin
- [!] Cirrus.ConfigArchive: ExecuteScript
  [ ] Cirrus.ConfigArchive: ConfigSearch
  [ ] Cirrus.Nodes: Diff
 
 ## NPM
 
- [ ] orion_health
  [!] node_custom_prop_update
+ [ ] orion_health
 
 ## NPM Universal Device Pollers
 

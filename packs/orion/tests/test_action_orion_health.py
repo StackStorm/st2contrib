@@ -23,24 +23,26 @@ __all__ = [
     'OrionHealthTestCase'
 ]
 
-MOCK_CONFIG_BLANK = yaml.safe_load(open(
-    'packs/orion/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_FULL = yaml.safe_load(open(
-    'packs/orion/tests/fixture/full.yaml').read())
-
 
 class OrionHealthTestCase(BaseActionTestCase):
     action_cls = OrionHealth
 
     def test_run_no_config(self):
-        self.assertRaises(ValueError, OrionHealth, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError,
+                          OrionHealth,
+                          yaml.safe_load(
+                              self.get_fixture_content('blank.yaml')))
 
     def test_run_is_instance(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         self.assertIsInstance(action, OrionHealth)
 
     def test_run_connect_fail(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = Mock(side_effect=ValueError(
             'Orion host details not in the config.yaml'))
 

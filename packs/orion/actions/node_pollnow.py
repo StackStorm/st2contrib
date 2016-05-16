@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
 class NodePollNow(OrionBaseAction):
@@ -34,15 +35,19 @@ class NodePollNow(OrionBaseAction):
 
         self.connect(platform)
 
-        try:
-            node_id = self.get_node_id(node)
-        except IndexError, msg:
-            self.send_user_error("{}".format(msg))
-            raise IndexError(msg)
-        else:
-            self.invoke("Orion.Nodes",
-                        "PollNow",
-                        node_id)
+        orion_node = self.get_node(node)
 
-        # Orion.Nodes PollNow does not return any data.
-        return True
+        if not orion_node.npm:
+            error_msg = "Node not found"
+            send_user_error(error_msg)
+            raise ValueError(error_msg)
+
+        orion_data = self.invoke("Orion.Nodes",
+                                 "PollNow",
+                                 orion_node.npm_id)
+
+        # This Invoke always returns None, so check and return True
+        if orion_data is None:
+            return True
+        else:
+            return orion_data

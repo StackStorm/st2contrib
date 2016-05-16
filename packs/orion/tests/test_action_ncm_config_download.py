@@ -23,24 +23,26 @@ __all__ = [
     'NcmConfigDownloadTestCase'
 ]
 
-MOCK_CONFIG_BLANK = yaml.safe_load(open(
-    'packs/orion/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_FULL = yaml.safe_load(open(
-    'packs/orion/tests/fixture/full.yaml').read())
-
 
 class NcmConfigDownloadTestCase(BaseActionTestCase):
     action_cls = NcmConfigDownload
 
     def test_run_no_config(self):
-        self.assertRaises(ValueError, NcmConfigDownload, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError,
+                          NcmConfigDownload,
+                          yaml.safe_load(
+                              self.get_fixture_content('blank.yaml')))
 
     def test_run_basic_config(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         self.assertIsInstance(action, NcmConfigDownload)
 
     def test_run_connect_fail(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = Mock(side_effect=ValueError(
             'Orion host details not in the config.yaml'))
 
@@ -53,29 +55,55 @@ class NcmConfigDownloadTestCase(BaseActionTestCase):
     def test_run_ncm_node_not_found(self):
         orion_data = {'results': []}
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
 
         action.query = MagicMock(return_value=orion_data)
 
-        self.assertRaises(IndexError,
+        self.assertRaises(Exception,
                           action.run,
                           "router1",
                           "orion",
                           ["running", "startup"])
 
     def test_run_ncm_download_complete(self):
-        expected = {'running': {'status': 'Complete'},
-                    'startup': {'status': 'Complete'}
+        expected = {'running': {'DeviceOutput': None,
+                                'ErrorMessage': None,
+                                'RequestedReboot': False,
+                                'RequestedScript': None,
+                                'UserName': 'hubot',
+                                'status': 'Complete'},
+                    'startup': {'DeviceOutput': None,
+                                'ErrorMessage': None,
+                                'RequestedReboot': False,
+                                'RequestedScript': None,
+                                'UserName': 'hubot',
+                                'status': 'Complete'},
                     }
-        query_data = [
-            {'results': [{'NodeID': "abc1234"}]},
-            {'results': [{'Status': 2}]},
-            {'results': [{'Status': 2}]}
-        ]
+
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{"Status": 2,
+                                        "UserName": "hubot",
+                                        "DeviceOutput": None,
+                                        "ErrorMessage": None,
+                                        "RequestedScript": None,
+                                        "RequestedReboot": False}]})
+        query_data.append({'results': [{"Status": 2,
+                                        "UserName": "hubot",
+                                        "DeviceOutput": None,
+                                        "ErrorMessage": None,
+                                        "RequestedScript": None,
+                                        "RequestedReboot": False}]})
         invoke_data = ["1234567890"]
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
 
         action.connect = MagicMock(return_value=True)
         action.query = Mock(side_effect=query_data)

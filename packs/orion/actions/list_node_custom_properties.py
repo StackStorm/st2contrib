@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
 class ListNodeCustomProperties(OrionBaseAction):
@@ -29,17 +30,18 @@ class ListNodeCustomProperties(OrionBaseAction):
             dict: Of data from Orion.
 
         Raises:
-            IndexError: If node does not exist.
+            UserWarning: If node does not exist.
         """
 
         self.connect(platform)
 
-        try:
-            uri = self.get_node_uri(node)
-        except IndexError, msg:
-            self.send_user_error("{}".format(msg))
-            raise IndexError(msg)
-        else:
-            orion_data = self.read(uri + '/CustomProperties')
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            msg = "Node not in Orion NPM: {}".format(node)
+            send_user_error(msg)
+            raise UserWarning(msg)
+
+        orion_data = self.read(orion_node.uri + '/CustomProperties')
 
         return orion_data

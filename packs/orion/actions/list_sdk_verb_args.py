@@ -45,8 +45,6 @@ class ListSdkVerbArgs(OrionBaseAction):
                  'VerbName': verb_name}
         orion_data = self.query(swql, **kargs)
 
-        results['raw'] = orion_data['results']
-
         for item in orion_data['results']:
             results['verb_arguments'].append(
                 {'position': item['Position'],

@@ -16,12 +16,3 @@ parameters:
     type: "string"
     description: "The Orion Platform to act on."
     required: true
-
-  whitelist:
-    type: "array"
-    description: "Array of interface captions which should be added (and not blcklisted)."
-
-  blacklist:
-    type: "array"
-    description: "Array of interface captions which should not be added."
-    default: ["lo"]

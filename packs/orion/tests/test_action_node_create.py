@@ -13,29 +13,158 @@
 # See the License for the specific language governing permissions and
 
 import yaml
-# from mock import Mock, MagicMock
+from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
 from node_create import NodeCreate
+from lib.utils import is_ip
+
 
 __all__ = [
     'NodeCreateTestCase'
 ]
 
-MOCK_CONFIG_BLANK = yaml.safe_load(open(
-    'packs/orion/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_FULL = yaml.safe_load(open(
-    'packs/orion/tests/fixture/full.yaml').read())
-
 
 class NodeCreateTestCase(BaseActionTestCase):
     action_cls = NodeCreate
 
+    def test_run_is_ip_v4(self):
+        self.assertTrue(is_ip("172.16.0.1"))
+        self.assertTrue(is_ip("1762:0:0:0:0:B03:1:AF18"))
+        self.assertFalse(is_ip("172.16.0.300"))
+        self.assertFalse(is_ip("1762:%:0:0:0:B03:1:AF18"))
+
     def test_run_no_config(self):
-        self.assertRaises(ValueError, NodeCreate, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError,
+                          NodeCreate,
+                          yaml.safe_load(
+                              self.get_fixture_content('blank.yaml')))
 
     def test_run_is_instance(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
 
         self.assertIsInstance(action, NodeCreate)
+
+    def test_run_connect_fail(self):
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = Mock(side_effect=ValueError(
+            'Orion host details not in the config.yaml'))
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "192.168.0.1",
+                          "orion",
+                          None,
+                          "snmpv2",
+                          "internal",
+                          None,
+                          "snmp")
+
+    def test_run_node_caption_exists(self):
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+        action.invoke = Mock(return_value=None)
+        action.create = Mock(return_value=None)
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "192.168.0.1",
+                          "orion",
+                          None,
+                          "snmpv2",
+                          "internal",
+                          None,
+                          "snmp")
+
+    def test_run_node_ip_exists(self):
+        query_data = []
+        query_data.append({'results': []})
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+        action.invoke = MagicMock(return_value=None)
+        action.create = MagicMock(return_value=None)
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router2",
+                          "192.168.0.1",
+                          "orion",
+                          None,
+                          "snmpv2",
+                          "internal",
+                          None,
+                          "snmp")
+
+    def test_run_poller_is_none(self):
+        expected = {'node_id': '6', 'platform': 'orion'}
+
+        query_data = {'results': []}
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(return_value=query_data)
+        action.invoke = MagicMock(return_value=None)
+        action.get_engine_id = MagicMock(return_value=2)
+        action.create = MagicMock(
+            return_value="swis://orionr/Orion/Orion.Nodes/NodeID=6")
+
+        result = action.run("router2",
+                            "192.168.0.1",
+                            "orion",
+                            None,
+                            "snmpv2",
+                            "internal",
+                            None,
+                            "snmp")
+        self.assertEqual(result, expected)
+
+    def test_run_node_additonal_poller(self):
+        expected = {'node_id': '6', 'platform': 'orion'}
+
+        query_data = [{'results': []},
+                      {'results': []},
+                      {'results': [{'EngineID': 2}]}]
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+        action.invoke = MagicMock(return_value=None)
+        action.create = MagicMock(
+            return_value="swis://orionr/Orion/Orion.Nodes/NodeID=6")
+
+        result = action.run("router2",
+                            "192.168.0.1",
+                            "orion",
+                            "additonal1",
+                            "snmpv2",
+                            "internal",
+                            None,
+                            "snmp")
+        self.assertEqual(result, expected)

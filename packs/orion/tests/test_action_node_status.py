@@ -23,74 +23,114 @@ __all__ = [
     'NodeStatusTestCase'
 ]
 
-MOCK_CONFIG_BLANK = yaml.safe_load(open(
-    'packs/orion/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_FULL = yaml.safe_load(open(
-    'packs/orion/tests/fixture/full.yaml').read())
-
 
 class NodeStatusTestCase(BaseActionTestCase):
     action_cls = NodeStatus
 
     def test_run_no_config(self):
-        self.assertRaises(ValueError, NodeStatus, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError,
+                          NodeStatus,
+                          yaml.safe_load(
+                              self.get_fixture_content('blank.yaml')))
 
     def test_run_basic_config(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         self.assertIsInstance(action, NodeStatus)
 
     def test_run_connect_fail(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = Mock(side_effect=ValueError(
             'Orion host details not in the config.yaml'))
 
         self.assertRaises(ValueError, action.run, "router1", "orion")
 
     def test_run_node_not_found(self):
-        orion_data = {'results': []}
+        query_data = {'results': []}
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(return_value=orion_data)
+        action.query = MagicMock(return_value=query_data)
 
         self.assertRaises(ValueError, action.run, "router1", "orion")
 
     def test_run_node_status_up(self):
-        expected = {'status': "Up", 'color': "good"}
-        orion_data = {'results': [{'Status': 1}]}
+        expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
+                    'status': "Up",
+                    'color': "good"}
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{'Status': 1}]})
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(return_value=orion_data)
+        action.query = MagicMock(side_effect=query_data)
         result = action.run("router1", "orion")
         self.assertEqual(result, expected)
 
     def test_run_node_status_down(self):
-        expected = {'status': "Down", 'color': "#7CD197"}
-        orion_data = {'results': [{'Status': 2}]}
+        expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
+                    'status': "Down",
+                    'color': "#7CD197"}
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{'Status': 2}]})
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(return_value=orion_data)
+        action.query = MagicMock(side_effect=query_data)
         result = action.run("router1", "orion")
         self.assertEqual(result, expected)
 
     def test_run_node_status_unknown(self):
-        expected = {'status': "Unknown", 'color': "grey"}
-        orion_data = {'results': [{'Status': 0}]}
+        expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
+                    'status': "Unknown",
+                    'color': "grey"}
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{'Status': 0}]})
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(return_value=orion_data)
+        action.query = MagicMock(side_effect=query_data)
         result = action.run("router1", "orion")
         self.assertEqual(result, expected)
 
     def test_run_node_status_warning(self):
-        expected = {'status': "Warning", 'color': "warning"}
-        orion_data = {'results': [{'Status': 3}]}
+        expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
+                    'status': "Warning",
+                    'color': "warning"}
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{'Status': 3}]})
 
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(return_value=orion_data)
+        action.query = MagicMock(side_effect=query_data)
         result = action.run("router1", "orion")
         self.assertEqual(result, expected)

@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error, only_one
 
 
 class StartDiscovery(OrionBaseAction):
@@ -35,50 +36,33 @@ class StartDiscovery(OrionBaseAction):
         """
         results = {}
 
-        # Sort out which platform & poller to create the node on.
-        if platform is None:
-            try:
-                platform = self.config['defaults']['platform']
-            except IndexError:
-                self.send_user_error("No default Orion platform.")
-                raise ValueError("No default Orion platform.")
-
-        self.logger.info("Connecting to Orion platform: {}".format(platform))
-        self.connect(platform)
-        results['platform'] = platform
-
-        # Set BulkList to how Orion likes this to be empty
+        # Orion must have the un-used varabiles to be certain values.
         BulkList = None
+        IpRanges = []
+        Subnets = None
+
+        results['platform'] = self.connect(platform)
+
+        if not only_one(nodes, subnets, ip_ranges):
+            msg = "Need only one out of nodes, ip_ranges or subnets!"
+            send_user_error(msg)
+            raise ValueError(msg)
+
         if nodes is not None:
             BulkList = []
             for node in nodes:
                 BulkList.append({'Address': node})
-
-            if ip_ranges is not None or subnets is not None:
-                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
-
-        # Set IpRanges how Orion likes this to be empty
-        IpRanges = []
-        if ip_ranges is not None:
+        elif ip_ranges is not None:
             for ip_range in ip_ranges:
                 (start_ip, end_ip) = ip_range.split(':')
                 IpRanges.append({'StartAddress': start_ip,
                                  'EndAddress': end_ip})
-
-            if BulkList is not None or subnets is not None:
-                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
-
-        # Set Subnets how Orion likes this to be empty
-        Subnets = None
-        if subnets is not None:
+        elif subnets is not None:
             Subnets = []
             for subnet in subnets:
                 (SubnetIP, SubnetMask) = subnet.split('/')
                 Subnets.append({'SubnetIP': SubnetIP,
                                 'SubnetMask': SubnetMask})
-
-            if BulkList is not None or IpRanges is not None:
-                raise ValueError("Only set one of nodes, ip_ranges or subnets!")
 
         CredID_order = 1
         CredIDs = []
@@ -130,5 +114,7 @@ class StartDiscovery(OrionBaseAction):
                                      CorePluginConfiguration}
                                 ]
                             })
+
+        # FIX ME Check job created....
 
         return disco

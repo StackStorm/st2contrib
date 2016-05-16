@@ -17,19 +17,19 @@ from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
-from add_node_to_ncm import AddNodeToNCM
+from ncm_execute_script import NcmExecuteScript
 
 __all__ = [
-    'AddNodeToNCMTestCase'
+    'NcmExecuteScriptTestCase'
 ]
 
 
-class AddNodeToNCMTestCase(BaseActionTestCase):
-    action_cls = AddNodeToNCM
+class NcmExecuteScriptTestCase(BaseActionTestCase):
+    action_cls = NcmExecuteScript
 
     def test_run_no_config(self):
         self.assertRaises(ValueError,
-                          AddNodeToNCM,
+                          NcmExecuteScript,
                           yaml.safe_load(
                               self.get_fixture_content('blank.yaml')))
 
@@ -37,7 +37,7 @@ class AddNodeToNCMTestCase(BaseActionTestCase):
         action = self.get_action_instance(yaml.safe_load(
             self.get_fixture_content('full.yaml')))
 
-        self.assertIsInstance(action, AddNodeToNCM)
+        self.assertIsInstance(action, NcmExecuteScript)
 
     def test_run_connect_fail(self):
         action = self.get_action_instance(yaml.safe_load(
@@ -49,56 +49,52 @@ class AddNodeToNCMTestCase(BaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
-                          "router1")
+                          "router1",
+                          "show failover")
 
-    def test_run_node_not_in_npm(self):
-        query_data = [{'results': []}]
-
+    def test_run_node_not_found(self):
         action = self.get_action_instance(yaml.safe_load(
             self.get_fixture_content('full.yaml')))
 
         action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
+        action.query = MagicMock(return_value={'results': []})
 
-        self.assertRaises(UserWarning,
+        self.assertRaises(ValueError,
                           action.run,
                           "orion",
-                          "router1")
+                          "router1",
+                          "show failover")
 
-    def test_run_node_already_in_ncm(self):
-        query_data = [
-            yaml.safe_load(
-                self.get_fixture_content("orion_npm_results.yaml")),
-            yaml.safe_load(
-                self.get_fixture_content("orion_ncm_results.yaml"))]
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
-        self.assertRaises(UserWarning,
-                          action.run,
-                          "orion",
-                          "router1")
-
-    def test_run_add_node_to_ncm(self):
-        expected = "abc-1234"
-
-        query_data = [
-            yaml.safe_load(
-                self.get_fixture_content("orion_npm_results.yaml")),
-            {'results': []}]
+    def test_run_exec_script(self):
+        expected = {'job_id': "fake-job-id",
+                    'transfer': {'DeviceOutput': 'show failover',
+                                 'ErrorMessage': None,
+                                 'RequestedReboot': False,
+                                 'RequestedScript': 'show failover',
+                                 'UserName': 'hubot',
+                                 'status': 'Complete'}}
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append({'results': [{"Status": 2,
+                                        "UserName": "hubot",
+                                        "DeviceOutput": "show failover",
+                                        "ErrorMessage": None,
+                                        "RequestedScript": "show failover",
+                                        "RequestedReboot": False}]})
+        invoke_data = ["fake-job-id"]
 
         action = self.get_action_instance(yaml.safe_load(
             self.get_fixture_content('full.yaml')))
 
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
-        action.invoke = MagicMock(return_value="abc-1234")
+        action.invoke = MagicMock(return_value=invoke_data)
 
-        result = action.run("router1",
-                            "orion")
+        result = action.run("orion",
+                            "router1",
+                            "show failover")
 
         self.assertEqual(result, expected)

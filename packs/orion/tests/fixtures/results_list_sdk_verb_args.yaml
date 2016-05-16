@@ -1,0 +1,7 @@
+results:
+  - EntityName: "Cirrus.Nodes"
+    VerbName: "AddNode"
+    Position: 0
+    Name: "node"
+    IsOptional: false
+    Type: "SolarWinds.NCM.Contracts.InformationService.NCMNode"

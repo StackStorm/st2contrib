@@ -31,16 +31,24 @@ class NodeUnmanage(OrionBaseAction):
 
         self.connect(platform)
 
-        NodeId = "N:{}".format(self.get_node_id(node))
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            raise ValueError("Node not found")
+
+        NodeId = "N:{}".format(orion_node.npm_id)
         now = datetime.utcnow()
         later = now + timedelta(minutes=minutes)
 
-        self.invoke("Orion.Nodes",
-                    "Unmanage",
-                    NodeId,
-                    now,
-                    later,
-                    False)
+        orion_data = self.invoke("Orion.Nodes",
+                                 "Unmanage",
+                                 NodeId,
+                                 now,
+                                 later,
+                                 False)
 
-        # The Invoke returns None, so return something.
-        return True
+        # This Invoke always returns None, so check and return True
+        if orion_data is None:
+            return True
+        else:
+            return orion_data

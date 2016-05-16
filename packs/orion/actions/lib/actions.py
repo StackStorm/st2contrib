@@ -18,6 +18,9 @@ import time
 from st2actions.runners.pythonrunner import Action
 from orionsdk import SwisClient
 
+from lib.node import OrionNode
+from lib.utils import send_user_error, is_ip
+
 
 class OrionBaseAction(Action):
     def __init__(self, config):
@@ -32,6 +35,15 @@ class OrionBaseAction(Action):
         """
         Connect to an Orion platform from the packs config.yaml.
         """
+        if platform is None:
+            try:
+                platform = self.config['defaults']['platform']
+            except IndexError:
+                send_user_error("No default Orion platform.")
+                raise ValueError("No default Orion platform.")
+
+        self.logger.debug("Connecting to Orion platform: {}".format(platform))
+
         try:
             self.client = SwisClient(
                 self.config['orion'][platform]['host'],
@@ -39,6 +51,56 @@ class OrionBaseAction(Action):
                 self.config['orion'][platform]['password'])
         except KeyError:
             raise ValueError("Orion host details not in the config.yaml")
+
+        return platform
+
+    def get_node(self, node):
+        """
+        Get an OrionNode object
+        """
+
+        orion_node = OrionNode()
+
+        if is_ip(node):
+            query_for_where = "IPAddress"
+        else:
+            query_for_where = "Caption"
+
+        swql = """SELECT NodeID, Uri, IPAddress, Caption
+        FROM Orion.Nodes
+        WHERE {}=@query_on""".format(query_for_where)
+        kargs = {'query_on': node}
+        data = self.query(swql, **kargs)
+
+        if len(data['results']) == 1:
+            try:
+                orion_node.npm_id = data['results'][0]['NodeID']
+                orion_node.uri = data['results'][0]['Uri']
+                orion_node.ip_address = data['results'][0]['IPAddress']
+                orion_node.caption = data['results'][0]['Caption']
+            except IndexError:
+                pass
+        elif len(data['results']) >= 2:
+            self.logger.debug(
+                "Muliple Nodes match '{}' Caption: {}".format(
+                    node, data))
+            raise ValueError("Muliple Nodes match '{}' Caption".format(
+                node))
+
+        if orion_node.npm:
+            swql = """SELECT NodeID
+            FROM Cirrus.Nodes
+            WHERE CoreNodeID=@CoreNodeID"""
+            kargs = {'CoreNodeID': orion_node.npm_id}
+            data = self.query(swql, **kargs)
+
+            if len(data['results']) == 1:
+                try:
+                    orion_node.ncm_id = data['results'][0]['NodeID']
+                except IndexError:
+                    pass
+
+        return orion_node
 
     def query(self, swql, **kargs):
         """
@@ -75,34 +137,6 @@ class OrionBaseAction(Action):
         Run an Delete of an URI against the Orion Platform.
         """
         return self.client.delete(uri)
-
-    def node_exists(self, caption, ip_address):
-        """
-        Check if an Node exists (caption and or ip) on the Orion platform.
-
-        Returns: True or False.
-        """
-        swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
-                  WHERE Caption=@caption"""
-        kargs = {'caption': caption}
-        caption_data = self.query(swql, **kargs)
-
-        if len(caption_data['results']) >= 1:
-            self.logger.debug(
-                "One (or more) Nodes match '{}' Caption.".format(caption))
-            return True
-
-        swql = """SELECT NodeID, IPAddress FROM Orion.Nodes
-                  WHERE IPAddress=@ip_address"""
-        kargs = {'ip_address': ip_address}
-        ip_data = self.query(swql, **kargs)
-
-        if len(ip_data['results']) >= 1:
-            self.logger.debug(
-                "One (or more) Nodes match '{}' IP.".format(ip_address))
-            return True
-        else:
-            return False
 
     def get_snmp_community(self, community, std_community):
         """
@@ -145,67 +179,6 @@ class OrionBaseAction(Action):
             raise ValueError(
                 "Failed to lookup community in Orion.Credential!")
 
-    def get_node_id(self, caption):
-        """
-        Gets an NodeID from the Orion platform.
-
-        Raises: ValueError on muliple or no matching caption.
-
-        Returns: the NodeID (int)
-        """
-        swql = "SELECT NodeID FROM Orion.Nodes WHERE Caption=@caption"
-        kargs = {'caption': caption}
-        data = self.query(swql, **kargs)
-
-        if len(data['results']) == 1:
-            try:
-                return data['results'][0]['NodeID']
-            except IndexError:
-                raise ValueError("Invalid Node")
-        elif len(data['results']) >= 2:
-            self.logger.debug(
-                "Muliple Nodes match '{}' Caption: {}".format(
-                    caption, data))
-            raise ValueError("Muliple Nodes match '{}' Caption".format(
-                caption))
-        elif len(data['results']) == 0:
-            self.logger.debug(
-                "No Nodes match '{}' Caption: {}".format(
-                    caption, data))
-            raise ValueError("No matching Caption for '{}'".format(
-                caption))
-
-    def get_node_uri(self, caption):
-        """
-        Gets an NodeID from the Orion platform.
-
-        Raises: ValueError on muliple or no matching caption.
-
-        Returns:
-            string: the Node's URI
-        """
-        swql = "SELECT Uri FROM Orion.Nodes WHERE Caption=@caption"
-        kargs = {'caption': caption}
-        data = self.query(swql, **kargs)
-
-        if len(data['results']) == 1:
-            try:
-                return data['results'][0]['Uri']
-            except IndexError:
-                raise ValueError("Invalid Node")
-        elif len(data['results']) >= 2:
-            self.logger.debug(
-                "Muliple Nodes match '{}' Caption: {}".format(
-                    caption, data))
-            raise ValueError("Muliple Nodes match '{}' Caption".format(
-                caption))
-        elif len(data['results']) == 0:
-            self.logger.debug(
-                "No Nodes match '{}' Caption: {}".format(
-                    caption, data))
-            raise ValueError("No matching Caption for '{}'".format(
-                caption))
-
     def get_engine_id(self, poller):
         """
         Takes a poller name (or primary) and returns the EngineID for
@@ -228,34 +201,8 @@ class OrionBaseAction(Action):
             if len(data['results']) == 1:
                 return data['results'][0]['EngineID']
             else:
-                self.send_user_error("Invalid poller name")
+                send_user_error("Invalid poller name")
                 raise ValueError("Invalid poller name")
-
-    def get_ncm_node_id(self, caption):
-        """
-        Queries the Network configuration Manager nodes table on the Orion
-        platform for the NodeID of a given node name (aka NodeCaption).
-
-        Raises: IndexError on Invalid number of nodes (e.g. 0 or 2+).
-
-        Returns: A single node id.
-        """
-
-        swql = "SELECT NodeID FROM Cirrus.Nodes WHERE NodeCaption=@node"
-        kargs = {'node': caption}
-        data = self.query(swql, **kargs)
-
-        if len(data['results']) == 1:
-            try:
-                return data['results'][0]['NodeID']
-            except IndexError:
-                raise IndexError("Invalid Node")
-        elif len(data['results']) >= 2:
-            raise IndexError("Muliple Nodes match '{}' NodeCaption".format(
-                caption))
-        elif len(data['results']) == 0:
-            raise IndexError("No matching NodeCaption for '{}'".format(
-                caption))
 
     def get_ncm_transfer_results(self, transfer_id, sleep_delay=10):
         """
@@ -266,8 +213,10 @@ class OrionBaseAction(Action):
         """
         ts = {}
         while True:
-            swql = """SELECT TransferID, Action, Status, ErrorMessage,
-            DeviceOutput FROM NCM.TransferResults
+            swql = """SELECT TransferID, NodeID, Action, RequestedConfigType,
+            RequestedScript, RequestedReboot, ConfigID, TransferProtocol,
+            Status, ErrorMessage, DeviceOutput, DateTime, UserName
+            FROM NCM.TransferResults
             WHERE TransferID=@transfer_id"""
             kargs = {'transfer_id': transfer_id}
 
@@ -281,35 +230,15 @@ class OrionBaseAction(Action):
                 break
             elif status == 3:
                 ts['status'] = "Error"
-                ts['ErrorMessage'] = transfer_data['results'][0][
-                    'ErrorMessage']
                 break
             else:
                 ts['status'] = "Unknown"
-                ts['ErrorMessage'] = "Invalid stauts: {}".format(status)
                 break
 
+        ts['RequestedScript'] = transfer_data['results'][0]['RequestedScript']
+        ts['RequestedReboot'] = transfer_data['results'][0]['RequestedReboot']
+        ts['ErrorMessage'] = transfer_data['results'][0]['ErrorMessage']
+        ts['DeviceOutput'] = transfer_data['results'][0]['DeviceOutput']
+        ts['UserName'] = transfer_data['results'][0]['UserName']
+
         return ts
-
-    def status_code_to_text(self, status):
-        """
-        Takes an Solarwinds Orion status code and translates it to
-        human text and also a colour that can be used in Slack.
-        """
-
-        if status == 0:
-            return ("Unknown", "grey")  # aka slack 'grey'
-        elif status == 1:
-            return ("Up", "good")  # slack 'good'
-        elif status == 2:
-            return ("Down", "#7CD197")  # slack 'danger'
-        elif status == 3:
-            return ("Warning", "warning")  # slack 'warning'
-        elif status == 14:
-            return ("Critical", "#7CD197")  # slack 'danger'
-
-    def send_user_error(self, message):
-        """
-        Prints an user error message.
-        """
-        print(message)

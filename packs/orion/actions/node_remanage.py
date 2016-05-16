@@ -24,9 +24,17 @@ class NodeRemanage(OrionBaseAction):
 
         self.connect(platform)
 
-        NodeId = "N:{}".format(self.get_node_id(node))
+        orion_node = self.get_node(node)
 
-        self.invoke("Orion.Nodes", "Remanage", NodeId)
+        if not orion_node.npm:
+            raise ValueError("Node not found")
 
-        # The Invoke returns None, so return something.
-        return True
+        NodeId = "N:{}".format(orion_node.npm_id)
+
+        orion_data = self.invoke("Orion.Nodes", "Remanage", NodeId)
+
+        # This Invoke always returns None, so check and return True
+        if orion_data is None:
+            return True
+        else:
+            return orion_data

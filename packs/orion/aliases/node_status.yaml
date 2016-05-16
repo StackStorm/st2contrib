@@ -16,7 +16,7 @@ result:
     color: "{{execution.result.result.color|default('#439FE0')}}"
   format: |
     {% if execution.status == 'succeeded' %}
-    {{ execution.parameters.node }} is {{ execution.result.result.status }}
+    {{ execution.result.result.node }} is {{ execution.result.result.status }}
     {% else %}
     Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
     {% endif %}

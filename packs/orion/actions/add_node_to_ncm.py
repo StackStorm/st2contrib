@@ -29,19 +29,20 @@ class AddNodeToNCM(OrionBaseAction):
             string: with the NCM node ID.
 
         Raises:
-            IndexError: When a node is not found.
+            UserWarning: When a node is not found.
         """
 
         self.connect(platform)
 
-        try:
-            node_id = self.get_node_id(node)
-        except IndexError, msg:
-            self.send_user_error("{}".format(msg))
-            raise IndexError(msg)
-        else:
-            oron_data = self.invoke("Cirrus.Nodes",
-                                    "AddNodeToNCM",
-                                    node_id)
+        orion_node = self.get_node(node)
 
+        if not orion_node.npm:
+            raise UserWarning("Node not in Orion NPM: {}".format(node))
+
+        if orion_node.ncm:
+            raise UserWarning("Node already in NCM: {}".format(node))
+
+        oron_data = self.invoke("Cirrus.Nodes",
+                                "AddNodeToNCM",
+                                orion_node.npm_id)
         return oron_data

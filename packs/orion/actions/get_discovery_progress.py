@@ -16,31 +16,10 @@
 import xml.etree.ElementTree as ET
 
 from lib.actions import OrionBaseAction
+# from lib.utils import discovery_status_to_text
 
 
 class GetDiscoveryProgress(OrionBaseAction):
-    def _disc_status_to_text(self, status):
-        """
-        Convert a Discovery Status code into meaningful text.
-
-        Args:
-            status: Staus code from Orion.
-
-        Returns:
-            String: Human text for status code.
-        """
-        discovery_statuses = {"0": 'Unknown',
-                              "1": 'InProgress',
-                              "2": 'Finished',
-                              "3": 'Error',
-                              "4": "NotScheduled",
-                              "5": "Scheduled",
-                              "6": "NotCompleted",
-                              "7": "Canceling",
-                              "8": "ReadyForImport"}
-
-        return discovery_statuses[status]
-
     def run(self, profileId, platform):
         """
         Get the progress of a discovery profile.
@@ -73,5 +52,6 @@ class GetDiscoveryProgress(OrionBaseAction):
             key = child.tag
             results[key.replace("{http://schemas.solarwinds.com/2008/Orion}",
                                 "")] = child.text
+            # For Status use discovery_status_to_text to get the text.
 
         return results

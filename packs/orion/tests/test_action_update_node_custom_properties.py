@@ -23,11 +23,6 @@ __all__ = [
     'UpdateNodeCustomProperties'
 ]
 
-MOCK_CONFIG_BLANK = yaml.safe_load(open(
-    'packs/orion/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_FULL = yaml.safe_load(open(
-    'packs/orion/tests/fixture/full.yaml').read())
-
 
 class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
     action_cls = UpdateNodeCustomProperties
@@ -35,9 +30,14 @@ class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
     def test_run_no_config(self):
         self.assertRaises(ValueError,
                           UpdateNodeCustomProperties,
-                          MOCK_CONFIG_BLANK)
+                          yaml.safe_load(
+                              self.get_fixture_content('blank.yaml')))
 
     def test_run_is_instance(self):
-        action = self.get_action_instance(MOCK_CONFIG_FULL)
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
 
         self.assertIsInstance(action, UpdateNodeCustomProperties)
+
+    def test_run_stuff(self):
+        raise Exception("Test to be spec'ed and written")
