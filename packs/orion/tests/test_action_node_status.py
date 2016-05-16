@@ -62,7 +62,7 @@ class NodeStatusTestCase(BaseActionTestCase):
     def test_run_node_status_up(self):
         expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
                     'status': "Up",
-                    'color': "good"}
+                    'color': "#00ad52"}
         query_data = []
         query_data.append(yaml.safe_load(
             self.get_fixture_content("orion_npm_results.yaml")))
@@ -81,7 +81,7 @@ class NodeStatusTestCase(BaseActionTestCase):
     def test_run_node_status_down(self):
         expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
                     'status': "Down",
-                    'color': "#7CD197"}
+                    'color': "#eb0000"}
         query_data = []
         query_data.append(yaml.safe_load(
             self.get_fixture_content("orion_npm_results.yaml")))
@@ -100,7 +100,7 @@ class NodeStatusTestCase(BaseActionTestCase):
     def test_run_node_status_unknown(self):
         expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
                     'status': "Unknown",
-                    'color': "grey"}
+                    'color': None}
         query_data = []
         query_data.append(yaml.safe_load(
             self.get_fixture_content("orion_npm_results.yaml")))
@@ -119,7 +119,7 @@ class NodeStatusTestCase(BaseActionTestCase):
     def test_run_node_status_warning(self):
         expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
                     'status': "Warning",
-                    'color': "warning"}
+                    'color': "#e89e0e"}
         query_data = []
         query_data.append(yaml.safe_load(
             self.get_fixture_content("orion_npm_results.yaml")))

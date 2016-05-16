@@ -24,15 +24,15 @@ def status_code_to_text(status):
     """
 
     if status == 0:
-        return ("Unknown", "grey")  # aka slack 'grey'
+        return ("Unknown", None)  # aka slack 'grey'
     elif status == 1:
-        return ("Up", "good")  # slack 'good'
+        return ("Up", "#00ad52")  # aka slack 'good'
     elif status == 2:
-        return ("Down", "#7CD197")  # slack 'danger'
+        return ("Down", "#eb0000")  # aka slack 'danger'
     elif status == 3:
-        return ("Warning", "warning")  # slack 'warning'
+        return ("Warning", "#e89e0e")  # aka slack 'warning'
     elif status == 14:
-        return ("Critical", "#7CD197")  # slack 'danger'
+        return ("Critical", "#eb0000")  # aka slack 'danger'
 
 
 def send_user_error(message):
