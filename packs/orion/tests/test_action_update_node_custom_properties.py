@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 
 import yaml
-# from mock import Mock, MagicMock
+from mock import Mock, MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -39,5 +39,80 @@ class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
 
         self.assertIsInstance(action, UpdateNodeCustomProperties)
 
-    def test_run_stuff(self):
-        raise Exception("Test to be spec'ed and written")
+    def test_run_connect_fail(self):
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = Mock(side_effect=ValueError(
+            'Orion host details not in the config.yaml'))
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "orion",
+                          "router1",
+                          "City",
+                          "Austin")
+
+    def test_run_node_not_exist(self):
+        query_data = [{'results': []}]
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "orion",
+                          "City",
+                          "Austin")
+
+    def test_run_update(self):
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+
+        read_data = {"City": None}
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+        action.update = Mock(return_value="None")
+        action.read = Mock(return_value=read_data)
+
+        result = action.run("router1",
+                             "orion",
+                             "City",
+                             "Austin")
+
+        self.assertTrue(result)
+
+    def test_run_custom_property_not_exist(self):
+        query_data = []
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_npm_results.yaml")))
+        query_data.append(yaml.safe_load(
+            self.get_fixture_content("orion_ncm_results.yaml")))
+
+        read_data = {"City": None}
+
+        action = self.get_action_instance(yaml.safe_load(
+            self.get_fixture_content('full.yaml')))
+
+        action.connect = MagicMock(return_value=True)
+        action.query = MagicMock(side_effect=query_data)
+        action.update = Mock(return_value="fake")
+        action.read = Mock(return_value=read_data)
+
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "orion",
+                          "Cities",
+                          "Austin")

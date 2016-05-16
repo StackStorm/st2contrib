@@ -3,6 +3,10 @@
 This pack intergrates with Solarwinds Orion (a commerical monitoring
 platform).
 
+## Issues
+
+- If don't have Orion NCM installed extra errors appear in the logs.
+
 ## Configuration
 
 ```yaml

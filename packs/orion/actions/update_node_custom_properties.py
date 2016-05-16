@@ -13,8 +13,37 @@
 # See the License for the specific language governing permissions and
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
 class UpdateNodeCustomProperties(OrionBaseAction):
-    def run(self):
-        pass
+    def run(self, platform, node, custom_property, value):
+        """
+        Update a nodes Cutom Properties.
+        """
+        self.connect(platform)
+
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            msg = "Node () does not exist".format(node)
+            send_user_error(msg)
+            raise ValueError(msg)
+
+        current_properties = self.read(orion_node.uri + '/CustomProperties')
+
+        if not custom_property in current_properties:
+            msg = "custom property {} does not exist!".format(custom_property)
+            send_user_error(msg)
+            raise ValueError(msg)
+
+        kargs = {custom_property: value}
+
+        orion_data = self.update(orion_node.uri + '/CustomProperties', **kargs)
+
+        # This update returns None, so check just in case.
+        # This happens even if the custom_property does not exist!
+        if orion_data is None:
+            return True
+        else:
+            return orion_data

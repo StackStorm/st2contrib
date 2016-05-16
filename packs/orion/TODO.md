@@ -42,7 +42,6 @@ may not be so useful.
 
 ## NPM
 
- [!] node_custom_prop_update
  [ ] orion_health
 
 ## NPM Universal Device Pollers

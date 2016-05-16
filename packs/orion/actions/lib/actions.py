@@ -72,6 +72,11 @@ class OrionBaseAction(Action):
         kargs = {'query_on': node}
         data = self.query(swql, **kargs)
 
+        if not 'results' in data:
+            msg = "No results from Orion: {}".format(data)
+            self.logger.info(msg)
+            raise Exception(msg)
+
         if len(data['results']) == 1:
             try:
                 orion_node.npm_id = data['results'][0]['NodeID']
@@ -94,7 +99,12 @@ class OrionBaseAction(Action):
             kargs = {'CoreNodeID': orion_node.npm_id}
             data = self.query(swql, **kargs)
 
-            if len(data['results']) == 1:
+            # Don't raise an exception if this fails.
+            # The platform may not haev NCM installed.
+            if not 'results' in data:
+                msg = "No results from Orion NCM: {}".format(data)
+                self.logger.info(msg)
+            elif len(data['results']) == 1:
                 try:
                     orion_node.ncm_id = data['results'][0]['NodeID']
                 except IndexError:
