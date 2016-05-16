@@ -72,7 +72,7 @@ class OrionBaseAction(Action):
         kargs = {'query_on': node}
         data = self.query(swql, **kargs)
 
-        if not 'results' in data:
+        if 'results' not in data:
             msg = "No results from Orion: {}".format(data)
             self.logger.info(msg)
             raise Exception(msg)
@@ -101,7 +101,7 @@ class OrionBaseAction(Action):
 
             # Don't raise an exception if this fails.
             # The platform may not haev NCM installed.
-            if not 'results' in data:
+            if 'results' not in data:
                 msg = "No results from Orion NCM: {}".format(data)
                 self.logger.info(msg)
             elif len(data['results']) == 1:

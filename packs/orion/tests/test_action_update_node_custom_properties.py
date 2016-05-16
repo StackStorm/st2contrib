@@ -87,9 +87,9 @@ class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
         action.read = Mock(return_value=read_data)
 
         result = action.run("router1",
-                             "orion",
-                             "City",
-                             "Austin")
+                            "orion",
+                            "City",
+                            "Austin")
 
         self.assertTrue(result)
 

@@ -26,13 +26,13 @@ class UpdateNodeCustomProperties(OrionBaseAction):
         orion_node = self.get_node(node)
 
         if not orion_node.npm:
-            msg = "Node () does not exist".format(node)
+            msg = "Node ({}) does not exist".format(node)
             send_user_error(msg)
             raise ValueError(msg)
 
         current_properties = self.read(orion_node.uri + '/CustomProperties')
 
-        if not custom_property in current_properties:
+        if custom_property not in current_properties:
             msg = "custom property {} does not exist!".format(custom_property)
             send_user_error(msg)
             raise ValueError(msg)
