@@ -34,6 +34,9 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
         self.assertTrue(is_ip("1762:0:0:0:0:B03:1:AF18"))
         self.assertFalse(is_ip("172.16.0.300"))
         self.assertFalse(is_ip("1762:%:0:0:0:B03:1:AF18"))
+        self.assertFalse(is_ip("server.example.com"))
+        self.assertFalse(is_ip("router1"))
+        self.assertFalse(is_ip("router:8080"))
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()

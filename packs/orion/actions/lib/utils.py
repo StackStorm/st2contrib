@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import re
+import socket
 import operator
 
 
@@ -65,18 +65,28 @@ def discovery_status_to_text(status):
 
 
 def is_ip(ip_address):
-    v4_pattern = re.compile(
-        "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")  # noqa: ignore=E501
+    """
+    Check if an valid IP address using socket.inet_pton.
 
-    is_ipv4 = v4_pattern.match(ip_address)
+    Args:
+       ip_address: a string to check
 
-    v6_pattern = re.compile("^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$")
-    is_ipv6 = v6_pattern.match(ip_address)
-
-    if is_ipv4 or is_ipv6:
-        return True
+    Returns:
+       bool: True if an IP address, False if not.
+    """
+    if "." in ip_address:
+        family = socket.AF_INET
+    elif ":" in ip_address:
+        family = socket.AF_INET6
     else:
         return False
+
+    try:
+        socket.inet_pton(family, ip_address)
+    except socket.error:
+        return False
+    else:
+        return True
 
 
 def only_one(*args):
