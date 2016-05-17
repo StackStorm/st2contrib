@@ -38,5 +38,6 @@ To increase the version number to a later release will require updates to action
 * `hpe-icsp.icsp_job_status` - Retrieve Status of specified Job
 * `hpe-icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
 * `hpe-icsp.icsp_server_delete` - Remove server record from ICSP instance
+* `hpe-icsp.icsp_server_details_get` - Return Summary information on server
 * `hpe-icsp.icsp_ca_cert` - Retrieve certificate for ICSP server
 * `hpe-icsp.icsp_id_to_os` - Allow for the application of build plans to a single UUID or Serial number.
