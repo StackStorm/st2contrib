@@ -21,13 +21,12 @@ class GetMid(ICSPBaseActions):
 
         self.set_connection(connection_details)
         self.get_sessionid()
-        endpoint = "/rest/os-deployment-servers"
         mids = self.get_MIDs(identifiers, identifier_type)
 
         if mids:
             if len(mids) == 1:
                 return {'mid': int(mids[0])}
             elif len(mids) > 1:
-               return mids
+                return mids
         else:
             raise ValueError("No Servers Found")
