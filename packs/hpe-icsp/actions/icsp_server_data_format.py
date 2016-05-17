@@ -17,7 +17,7 @@ from lib.icsp import ICSPBaseActions
 
 
 class FormatServerData(ICSPBaseActions):
-    def run(self, identifiers, identifier_type,  hostnames,
+    def run(self, identifiers, identifier_type, hostnames,
             domains=None, workgroups=None, connection_details=None):
         if identifier_type == "mid":
             for n in identifiers:
