@@ -1,0 +1,18 @@
+---
+description: "Add an Orion Node to NCM."
+enabled: true
+entry_point: 'add_node_to_ncm.py'
+name: "add_node_to_ncm"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  node:
+    type: "string"
+    description: "The node to add to Orion NCM."
+    required: true
+
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+    required: true

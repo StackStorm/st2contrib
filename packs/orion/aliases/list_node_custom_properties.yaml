@@ -1,0 +1,20 @@
+---
+name: "list_node_custom_properties"
+pack: "orion"
+description: "List Custom Properties for a Solarwinds Node."
+action_ref: "orion.list_node_custom_properties"
+formats:
+  - display: "orion list {{platform}} node {{node}} custom properties <{{cpfilter}}>"
+    representation:
+      - "orion list {{platform}} node {{node}} custom properties( {{cfilter}})?"
+ack:
+  enabled: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {% for item,value in execution.result.result.iteritems() %}
+    *{{item}}*: _{{value}}_
+    {% endfor %}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

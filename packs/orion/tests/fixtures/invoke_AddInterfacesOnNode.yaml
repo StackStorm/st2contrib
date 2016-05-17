@@ -1,0 +1,6 @@
+---
+DiscoveredInterfaces:
+  - InterfaceID: 2
+    Caption: "eth0"
+  - InterfaceID: 3
+    Caption: "eth1"

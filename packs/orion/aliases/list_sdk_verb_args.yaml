@@ -1,0 +1,20 @@
+---
+name: "list_sdk_verb_args"
+pack: "orion"
+description: "List Ivoke Verb Arguments in the Solarwinds OrionSDK."
+action_ref: "orion.list_sdk_verb_args"
+formats:
+  - display: "orion sdk list {{platform}} verb args {{entity_name}} {{verb_name}}"
+    representation:
+      - "orion sdk list {{platform}} verb args {{entity_name}} {{verb_name}}"
+ack:
+  enabled: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {% for item in execution.result.result.verb_arguments %}
+    *{{item.position}}:* _{{item.name}}_ (Type: {{item.type}}; Optional {{item.optional}})
+    {% endfor %}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

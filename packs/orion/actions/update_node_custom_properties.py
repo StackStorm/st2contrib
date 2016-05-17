@@ -11,43 +11,38 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
-
-from datetime import datetime, timedelta
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
-class NodeUnmanage(OrionBaseAction):
-    def run(self, node, platform, minutes):
+class UpdateNodeCustomProperties(OrionBaseAction):
+    def run(self, platform, node, custom_property, value):
         """
-        Unmanage an Orion node
+        Update a nodes Cutom Properties.
         """
-
-        if minutes > self.config['unmanage_max']:
-            raise ValueError(
-                "minutes ({}) greater than unmanage_max ({})".format(
-                    minutes, self.config['unmanage_max']))
-
         self.connect(platform)
 
         orion_node = self.get_node(node)
 
         if not orion_node.npm:
-            raise ValueError("Node not found")
+            msg = "Node ({}) does not exist".format(node)
+            send_user_error(msg)
+            raise ValueError(msg)
 
-        NodeId = "N:{}".format(orion_node.npm_id)
-        now = datetime.utcnow()
-        later = now + timedelta(minutes=minutes)
+        current_properties = self.read(orion_node.uri + '/CustomProperties')
 
-        orion_data = self.invoke("Orion.Nodes",
-                                 "Unmanage",
-                                 NodeId,
-                                 now,
-                                 later,
-                                 False)
+        if custom_property not in current_properties:
+            msg = "custom property {} does not exist!".format(custom_property)
+            send_user_error(msg)
+            raise ValueError(msg)
 
-        # This Invoke always returns None, so check and return True
+        kargs = {custom_property: value}
+
+        orion_data = self.update(orion_node.uri + '/CustomProperties', **kargs)
+
+        # This update returns None, so check just in case.
+        # This happens even if the custom_property does not exist!
         if orion_data is None:
             return True
         else:

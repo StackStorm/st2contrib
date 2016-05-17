@@ -16,73 +16,59 @@ from mock import MagicMock
 
 from orion_base_action_test_case import OrionBaseActionTestCase
 
-from ncm_config_download import NcmConfigDownload
+from ncm_execute_script import NcmExecuteScript
 
 __all__ = [
-    'NcmConfigDownloadTestCase'
+    'NcmExecuteScriptTestCase'
 ]
 
 
-class NcmConfigDownloadTestCase(OrionBaseActionTestCase):
+class NcmExecuteScriptTestCase(OrionBaseActionTestCase):
     __test__ = True
-    action_cls = NcmConfigDownload
+    action_cls = NcmExecuteScript
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "router1",
                           "orion",
-                          ["running", "startup"])
+                          "router1",
+                          "show failover")
 
-    def test_run_ncm_node_not_found(self):
+    def test_run_node_not_found(self):
         action = self.setup_query_blank_results()
-        self.assertRaises(Exception,
+        self.assertRaises(ValueError,
                           action.run,
-                          "router1",
                           "orion",
-                          ["running", "startup"])
+                          "router1",
+                          "show failover")
 
-    def test_run_ncm_download_complete(self):
-        expected = {'running': {'DeviceOutput': None,
-                                'ErrorMessage': None,
-                                'RequestedReboot': False,
-                                'RequestedScript': None,
-                                'UserName': 'hubot',
-                                'status': 'Complete'},
-                    'startup': {'DeviceOutput': None,
-                                'ErrorMessage': None,
-                                'RequestedReboot': False,
-                                'RequestedScript': None,
-                                'UserName': 'hubot',
-                                'status': 'Complete'},
-                    }
-
+    def test_run_exec_script(self):
+        expected = {'job_id': "fake-job-id",
+                    'transfer': {'DeviceOutput': 'show failover',
+                                 'ErrorMessage': None,
+                                 'RequestedReboot': False,
+                                 'RequestedScript': 'show failover',
+                                 'UserName': 'hubot',
+                                 'status': 'Complete'}}
         query_data = []
         query_data.append(self.query_npm_node)
         query_data.append(self.query_ncm_node)
         query_data.append({'results': [{"Status": 2,
                                         "UserName": "hubot",
-                                        "DeviceOutput": None,
+                                        "DeviceOutput": "show failover",
                                         "ErrorMessage": None,
-                                        "RequestedScript": None,
+                                        "RequestedScript": "show failover",
                                         "RequestedReboot": False}]})
-        query_data.append({'results': [{"Status": 2,
-                                        "UserName": "hubot",
-                                        "DeviceOutput": None,
-                                        "ErrorMessage": None,
-                                        "RequestedScript": None,
-                                        "RequestedReboot": False}]})
-        invoke_data = ["1234567890"]
+        invoke_data = ["fake-job-id"]
 
         action = self.get_action_instance(config=self.full_config)
-
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=invoke_data)
 
-        result = action.run("router1",
-                            "orion",
-                            ["running", "startup"])
+        result = action.run("orion",
+                            "router1",
+                            "show failover")
 
         self.assertEqual(result, expected)

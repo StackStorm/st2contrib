@@ -14,19 +14,24 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
-from lib.utils import status_code_to_text, send_user_error
+from lib.utils import send_user_error
 
 
-class NodeStatus(OrionBaseAction):
+class NodePollNow(OrionBaseAction):
     def run(self, node, platform):
         """
-        Query Solarwinds Orion.
-        """
+        Invoke a PollNow verb against a Orion Node.
 
-        # Set up the results
-        results = {}
-        results['status'] = None
-        results['color'] = None
+        Args:
+            node: The caption in Orion of the node to poll.
+            platform: The orion platform to act on.
+
+        Returns
+            True: As PollNow does not return any data.
+
+        Raises:
+            IndexError: When a node is not found.
+        """
 
         self.connect(platform)
 
@@ -37,12 +42,12 @@ class NodeStatus(OrionBaseAction):
             send_user_error(error_msg)
             raise ValueError(error_msg)
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
-        kargs = {'NodeID': orion_node.npm_id}
-        orion_data = self.query(swql, **kargs)
+        orion_data = self.invoke("Orion.Nodes",
+                                 "PollNow",
+                                 orion_node.npm_id)
 
-        (results['status'], results['color']) = status_code_to_text(
-            orion_data['results'][0]['Status'])
-        results['node'] = str(orion_node)
-
-        return results
+        # This Invoke always returns None, so check and return True
+        if orion_data is None:
+            return True
+        else:
+            return orion_data

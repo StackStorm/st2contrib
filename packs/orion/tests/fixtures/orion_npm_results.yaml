@@ -1,0 +1,6 @@
+---
+results:
+  - NodeID: 1
+    Caption: "router1"
+    IPAddress: "192.168.0.1"
+    Uri: '/Orion/NetPerfMon/NodeDetails.aspx?NetObject=N:1'

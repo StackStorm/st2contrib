@@ -14,35 +14,35 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
-from lib.utils import status_code_to_text, send_user_error
 
 
-class NodeStatus(OrionBaseAction):
+class AddNodeToNCM(OrionBaseAction):
     def run(self, node, platform):
         """
-        Query Solarwinds Orion.
-        """
+        Invoke AddNodeToNCM verb against a Orion Node.
 
-        # Set up the results
-        results = {}
-        results['status'] = None
-        results['color'] = None
+        Args:
+            node: The caption in Orion of the node to poll.
+            platform: The orion platform to act on.
+
+        Returns:
+            string: with the NCM node ID.
+
+        Raises:
+            UserWarning: When a node is not found.
+        """
 
         self.connect(platform)
 
         orion_node = self.get_node(node)
 
         if not orion_node.npm:
-            error_msg = "Node not found"
-            send_user_error(error_msg)
-            raise ValueError(error_msg)
+            raise UserWarning("Node not in Orion NPM: {}".format(node))
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
-        kargs = {'NodeID': orion_node.npm_id}
-        orion_data = self.query(swql, **kargs)
+        if orion_node.ncm:
+            raise UserWarning("Node already in NCM: {}".format(node))
 
-        (results['status'], results['color']) = status_code_to_text(
-            orion_data['results'][0]['Status'])
-        results['node'] = str(orion_node)
-
-        return results
+        oron_data = self.invoke("Cirrus.Nodes",
+                                "AddNodeToNCM",
+                                orion_node.npm_id)
+        return oron_data

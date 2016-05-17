@@ -11,30 +11,22 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
 
-from lib.actions import OrionBaseAction
+# from mock import MagicMock
+
+from orion_base_action_test_case import OrionBaseActionTestCase
+
+from orion_health import OrionHealth
+
+__all__ = [
+    'OrionHealthTestCase'
+]
 
 
-class NodeRemanage(OrionBaseAction):
-    def run(self, node, platform):
-        """
-        Remanage an Orion node
-        """
+class OrionHealthTestCase(OrionBaseActionTestCase):
+    __test__ = True
+    action_cls = OrionHealth
 
-        self.connect(platform)
-
-        orion_node = self.get_node(node)
-
-        if not orion_node.npm:
-            raise ValueError("Node not found")
-
-        NodeId = "N:{}".format(orion_node.npm_id)
-
-        orion_data = self.invoke("Orion.Nodes", "Remanage", NodeId)
-
-        # This Invoke always returns None, so check and return True
-        if orion_data is None:
-            return True
-        else:
-            return orion_data
+    def test_run_connect_fail(self):
+        action = self.setup_connect_fail()
+        self.assertRaises(ValueError, action.run, "orion")

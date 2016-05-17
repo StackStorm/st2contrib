@@ -14,35 +14,34 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
-from lib.utils import status_code_to_text, send_user_error
+from lib.utils import send_user_error
 
 
-class NodeStatus(OrionBaseAction):
+class ListNodeCustomProperties(OrionBaseAction):
     def run(self, node, platform):
         """
-        Query Solarwinds Orion.
-        """
+        Lists the Orion Custom Properties on an Node.
 
-        # Set up the results
-        results = {}
-        results['status'] = None
-        results['color'] = None
+        Args:
+            node: The caption in Orion of the node to poll.
+            platform: The orion platform to act on.
+
+        Returns:
+            dict: Of data from Orion.
+
+        Raises:
+            UserWarning: If node does not exist.
+        """
 
         self.connect(platform)
 
         orion_node = self.get_node(node)
 
         if not orion_node.npm:
-            error_msg = "Node not found"
-            send_user_error(error_msg)
-            raise ValueError(error_msg)
+            msg = "Node not in Orion NPM: {}".format(node)
+            send_user_error(msg)
+            raise UserWarning(msg)
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
-        kargs = {'NodeID': orion_node.npm_id}
-        orion_data = self.query(swql, **kargs)
+        orion_data = self.read(orion_node.uri + '/CustomProperties')
 
-        (results['status'], results['color']) = status_code_to_text(
-            orion_data['results'][0]['Status'])
-        results['node'] = str(orion_node)
-
-        return results
+        return orion_data

@@ -16,6 +16,7 @@
 import re
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
 class NodeCreate(OrionBaseAction):
@@ -33,34 +34,33 @@ class NodeCreate(OrionBaseAction):
         """
         results = {}
 
-        # Sort out which platform & poller to create the node on.
-        if platform is None:
-            try:
-                platform = self.config['defaults']['platform']
-            except IndexError:
-                self.send_user_error("No default Orion platform.")
-                raise ValueError("No default Orion platform.")
-
         self.logger.info("Connecting to Orion platform: {}".format(platform))
         self.connect(platform)
         results['platform'] = platform
 
-        if self.node_exists(node, ip_address):
+        orion_node = self.get_node(node)
+        if orion_node.npm:
             self.logger.error(
-                "Node ({}) or IP ({}) already in Orion platform: {}".format(
-                    node,
-                    ip_address,
-                    platform)
-            )
+                "Node ({}) already in Orion platform: {}".format(orion_node,
+                                                                 platform))
 
-            self.send_user_error("Node and/or IP is already in Orion!")
-            raise Exception("Node and/or IP already exists!")
-        else:
-            self.logger.info(
-                "Checking node ({}) is not on Orion platform: {}".format(
-                    node,
-                    platform)
-            )
+            send_user_error("Node and/or IP is already in Orion!")
+            raise ValueError("Node and/or IP already exists!")
+
+        orion_ip_address = self.get_node(ip_address)
+        if orion_ip_address.npm:
+            self.logger.error(
+                "IP ({}) already in Orion platform: {}".format(
+                    orion_ip_address,
+                    platform))
+
+            send_user_error("IP is already in Orion!")
+            raise ValueError("IP already exists!")
+
+        self.logger.info(
+            "Checking node ({}) is not on Orion platform: {}".format(
+                node,
+                platform))
 
         # engineID if happens to be None, default to the primary.
         if poller is not None:
@@ -86,6 +86,8 @@ class NodeCreate(OrionBaseAction):
 
         self.logger.info("Creating Orion Node: {}".format(kargs))
         orion_data = self.create('Orion.Nodes', **kargs)
+
+        self.logger.info("orion_data: {}".format(orion_data))
 
         node_id = re.search('(\d+)$', orion_data).group(0)
         results['node_id'] = node_id

@@ -11,38 +11,48 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
 
 from lib.actions import OrionBaseAction
-from lib.utils import status_code_to_text, send_user_error
 
 
-class NodeStatus(OrionBaseAction):
-    def run(self, node, platform):
+class NcmExecuteScript(OrionBaseAction):
+    def run(self, platform, node, script):
         """
-        Query Solarwinds Orion.
-        """
+        Excute an Orion NCM script on a node.
 
-        # Set up the results
+        Args:
+            platform
+            node
+            script
+
+        Returns:
+            Output
+
+        Raises:
+            ValueError: If Node is not in NCM.
+        """
         results = {}
-        results['status'] = None
-        results['color'] = None
 
         self.connect(platform)
 
         orion_node = self.get_node(node)
 
         if not orion_node.npm:
-            error_msg = "Node not found"
-            send_user_error(error_msg)
-            raise ValueError(error_msg)
+            raise ValueError("Node not found in NPM {}".format(
+                orion_node.caption))
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
-        kargs = {'NodeID': orion_node.npm_id}
-        orion_data = self.query(swql, **kargs)
+        if not orion_node.ncm:
+            raise ValueError("Node not found in NCM {}".format(
+                orion_node.caption))
 
-        (results['status'], results['color']) = status_code_to_text(
-            orion_data['results'][0]['Status'])
-        results['node'] = str(orion_node)
+        orion_data = self.invoke(
+            "Cirrus.ConfigArchive",
+            "ExecuteScript",
+            [orion_node.ncm_id],
+            "show failover")
+        results['job_id'] = orion_data[0]
+
+        results['transfer'] = self.get_ncm_transfer_results(
+            results['job_id'])
 
         return results

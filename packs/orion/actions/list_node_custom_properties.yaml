@@ -1,8 +1,8 @@
 ---
-description: "Discover and add Interfaces for a Solarwinds Orion node."
+description: "List the custom properties for a Solarwinds Orion node's"
 enabled: true
-entry_point: 'node_discover_and_add_interfaces.py'
-name: "node_discover_and_add_interfaces"
+entry_point: 'list_node_custom_properties.py'
+name: "list_node_custom_properties"
 pack: "orion"
 runner_type: "python-script"
 
@@ -11,7 +11,6 @@ parameters:
     type: "string"
     description: "The node to unmanage on the monitoring platform."
     required: true
-
   platform:
     type: "string"
     description: "The Orion Platform to act on."

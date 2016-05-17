@@ -14,14 +14,26 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
+from lib.utils import send_user_error
 
 
 class NcmConfigDownload(OrionBaseAction):
     def run(self, node, platform, configs):
         """
-        Mostly completed! Download configurations via Solarwinds Orion NCM ....
-
+        Download configurations via Solarwinds Orion NCM.
         see https://github.com/solarwinds/OrionSDK/wiki/NCM-Config-Transfer
+        for more information.
+
+        Args:
+           node:
+           platform:
+           configs: Array of Configs to download.
+
+        Returns:
+           dict:
+
+        Raises:
+           Exception: If Node is not in NPM or NCM.
         """
 
         results = {}
@@ -29,18 +41,27 @@ class NcmConfigDownload(OrionBaseAction):
 
         self.connect(platform)
 
-        try:
-            node_ids.append(self.get_ncm_node_id(node))
-        except IndexError, msg:
-            self.send_user_error("{}".format(msg))
-            raise IndexError(msg)
-        else:
-            for config in configs:
-                orion_data = self.invoke("Cirrus.ConfigArchive",
-                                         "DownloadConfig",
-                                         node_ids,
-                                         config)
-                transfer_id = orion_data[0]
-                results[config] = self.get_ncm_transfer_results(transfer_id)
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            error_msg = "Node not in NPM: {}".format(node)
+            send_user_error(error_msg)
+            raise Exception(error_msg)
+
+        if not orion_node.ncm:
+            error_msg = "Node not in NCM: {} ({})".format(node,
+                                                          orion_node.npm_id)
+            send_user_error(error_msg)
+            raise Exception(error_msg)
+
+        node_ids.append(orion_node.ncm_id)
+
+        for config in configs:
+            orion_data = self.invoke("Cirrus.ConfigArchive",
+                                     "DownloadConfig",
+                                     node_ids,
+                                     config)
+            transfer_id = orion_data[0]
+            results[config] = self.get_ncm_transfer_results(transfer_id)
 
         return results

@@ -17,19 +17,27 @@ from lib.actions import OrionBaseAction
 
 
 class NodeDiscoverAndAddInterfaces(OrionBaseAction):
-    def run(self, node, platform, whitelist=[], blacklist=[]):
+    def run(self, node, platform):
         """
         Discover and add interfaces on an Orion node
+
+        Args:
+           node: Node to discover and add interfaces on.
+           platform: Orion platform to use.
+
         """
         results = {'added': [], 'existing': []}
 
         self.connect(platform)
 
-        NodeId = self.get_node_id(node)
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            raise ValueError("Node not found")
 
         Discoverdinterfaces = self.invoke('Orion.NPM.Interfaces',
                                           'DiscoverInterfacesOnNode',
-                                          NodeId)
+                                          orion_node.npm_id)
 
         add_interfaces = []
         for interface in Discoverdinterfaces['DiscoveredInterfaces']:
@@ -40,24 +48,12 @@ class NodeDiscoverAndAddInterfaces(OrionBaseAction):
                     interface['InterfaceID']))
                 results['existing'].append(
                     {interface['Caption']: interface['InterfaceID']})
-                continue
-
-            if interface['Caption'] in blacklist:
-                self.logger.info("Skipping {} as in blacklist".format(
-                    interface['Caption']))
-                continue
-            elif interface['Caption'] in whitelist:
-                self.logger.info("Adding {} as in whitelist".format(
-                    interface['Caption']))
-                add_interfaces.append(interface)
-            elif not whitelist:
-                add_interfaces.append(interface)
             else:
-                continue
+                add_interfaces.append(interface)
 
         additions = self.invoke('Orion.NPM.Interfaces',
                                 'AddInterfacesOnNode',
-                                NodeId,
+                                orion_node.npm_id,
                                 add_interfaces,
                                 'AddDefaultPollers')
 
