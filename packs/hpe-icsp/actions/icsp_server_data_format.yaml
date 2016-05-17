@@ -5,16 +5,33 @@
   enabled: true
   entry_point: "icsp_server_data_format.py"
   parameters:
-    mids:
+    identifiers:
       type: "array"
-      description: "Array of MID values"
+      description: "List of host identifiers (mid,serialnumber or uuid). Must be on a single type."
       required: true
       position: 0
+    identifier_type:
+      type: "string"
+      description: "What type of Identifiers have been provided"
+      required: true
+      default: "mid"
+      position: 1
+      enum:
+        - mid
+        - serialnumber
+        - uuid
     hostnames:
       type: "array"
       description: "Array of hostname values"
       required: true
-      position: 1
+      position: 2
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 3
+
 # Disabled due to lack of testing.
 #    domains:
 #      type: "array"

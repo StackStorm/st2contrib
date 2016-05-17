@@ -17,7 +17,18 @@ from lib.icsp import ICSPBaseActions
 
 
 class FormatServerData(ICSPBaseActions):
-    def run(self, mids, hostnames, domains=None, workgroups=None):
+    def run(self, identifiers, identifier_type,  hostnames, domains=None, workgroups=None, connection_details=None):
+        if identifier_type == "mid":
+            for n in identifiers:
+                try:
+                  test = int(n) 
+                except:
+                    raise ValueError("Identifier provides is not a MID")
+            mids = identifiers
+        else:
+            self.set_connection(connection_details)
+            self.get_sessionid()
+            mids = self.get_MIDs(identifiers, identifier_type)
         if len(mids) == len(hostnames):
             output = {}
             for i in range(len(mids)):

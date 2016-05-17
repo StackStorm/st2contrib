@@ -71,6 +71,21 @@ class ICSPBaseActions(Action):
         jobid = str(joburi)
         return int(jobid.split("/")[-1])
 
+    def get_MIDs(self, ids, idtype):
+        endpoint = "/rest/os-deployment-servers"
+        getresults = self.icsp_get(endpoint)
+        servers = getresults["members"]
+        mids = []
+        for id in ids:
+            for server in servers:
+                if idtype == 'serialnumber':
+                    if ((server["serialNumber"] == id) and (server["mid"] not in mids)):
+                        mids.append(int(server["mid"]))
+                if idtype == 'uuid':
+                    if ((server["uuid"] == id) and (server["mid"] not in mids)):
+                        mids.append(int(server["mid"]))
+        return mids
+
     def icsp_get(self, endpoint):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
         headers = copy.copy(self.base_headers)
