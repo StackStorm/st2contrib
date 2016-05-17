@@ -29,7 +29,7 @@ class FormatServerData(ICSPBaseActions):
         else:
             self.set_connection(connection_details)
             self.get_sessionid()
-            mids = self.get_MIDs(identifiers, identifier_type)
+            mids = self.get_mids(identifiers, identifier_type)
         if len(mids) == len(hostnames):
             output = {}
             for i in range(len(mids)):

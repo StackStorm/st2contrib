@@ -71,7 +71,7 @@ class ICSPBaseActions(Action):
         jobid = str(joburi)
         return int(jobid.split("/")[-1])
 
-    def get_MIDs(self, ids, idtype):
+    def get_mids(self, ids, idtype):
         endpoint = "/rest/os-deployment-servers"
         getresults = self.icsp_get(endpoint)
         servers = getresults["members"]
