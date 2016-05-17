@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
 from mock import Mock, MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from start_discovery import StartDiscovery
 
@@ -24,28 +23,12 @@ __all__ = [
 ]
 
 
-class StartDiscoveryTestCase(BaseActionTestCase):
+class StartDiscoveryTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = StartDiscovery
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          StartDiscovery,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(
-            yaml.safe_load(self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, StartDiscovery)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
@@ -59,10 +42,7 @@ class StartDiscoveryTestCase(BaseActionTestCase):
                           auto_import=False)
 
     def test_run_fail_on_no_targets(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
+        action = self.setup_query_blank_results()
 
         # nodes = 0, subnets = 0, ip_ranges = 0
         self.assertRaises(ValueError,
@@ -78,10 +58,7 @@ class StartDiscoveryTestCase(BaseActionTestCase):
                           auto_import=False)
 
     def test_run_fail_on_mutliple_targets(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
+        action = self.setup_query_blank_results()
 
         # nodes = 1, subnets = 1, ip_ranges = 1
         nodes = ["192.168.1.1", "192.168.1.10"]
@@ -154,33 +131,23 @@ class StartDiscoveryTestCase(BaseActionTestCase):
     def test_run_poller_lookup_primary(self):
         expected = 1
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.get_action_instance(config=self.full_config)
 
         result = action.get_engine_id("primary")
-
         self.assertEqual(result, expected)
 
     def test_run_poller_lookup_fail(self):
-        query_data = []
-        query_data.append({'results': []})
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
+        action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.get_engine_id,
                           "foobar")
 
     def test_run_snmp_communities_fail(self):
         query_data = []
-        query_data.append({'results': []})
-        query_data.append({'results': []})
+        query_data.append(self.query_no_results)
+        query_data.append(self.query_no_results)
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.get_action_instance(config=self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
 
@@ -196,16 +163,14 @@ class StartDiscoveryTestCase(BaseActionTestCase):
         expected = 10
 
         query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content('results_orion_snmp_cred.yaml')))
+        query_data.append(self.load_yaml('results_orion_snmp_cred.yaml'))
         query_data.append({'results': [{'ID': 1}]})
 
         invoke_data = []
         invoke_data.append("CorePluginConfiguration")
         invoke_data.append(10)
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.get_action_instance(config=self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
         action.invoke = Mock(side_effect=invoke_data)
@@ -226,18 +191,15 @@ class StartDiscoveryTestCase(BaseActionTestCase):
         expected = 10
 
         query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content('results_orion_snmp_cred.yaml')))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content('results_orion_engines.yaml')))
+        query_data.append(self.load_yaml('results_orion_snmp_cred.yaml'))
+        query_data.append(self.load_yaml('results_orion_engines.yaml'))
         query_data.append({'results': [{'ID': 1}]})
 
         invoke_data = []
         invoke_data.append("CorePluginConfiguration")
         invoke_data.append(10)
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.get_action_instance(config=self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
         action.invoke = Mock(side_effect=invoke_data)

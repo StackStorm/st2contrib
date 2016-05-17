@@ -7,9 +7,9 @@ pack: "orion"
 runner_type: "python-script"
 
 parameters:
-  profileId:
+  profile_id:
     type: "integer"
-    description: "The profileId to get progress for."
+    description: "The profile_id to get progress for."
     required: true
   platform:
     type: "string"

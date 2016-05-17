@@ -34,7 +34,7 @@ tbc
 The JSON that should be posted to URL (XXXX) is as follows:
 
 ```json
-{'orion_start_discovery': {
+{"orion_start_discovery": {
    "name": "My Example Discovery",
    "platform": "orion",
    "poller": "(primary|poller_name)",

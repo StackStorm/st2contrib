@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from list_node_custom_properties import ListNodeCustomProperties
 
@@ -24,41 +23,19 @@ __all__ = [
 ]
 
 
-class ListNodeCustomPropertiesTestCase(BaseActionTestCase):
+class ListNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = ListNodeCustomProperties
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          ListNodeCustomProperties,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, ListNodeCustomProperties)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
                           "router1")
 
-    def test_run_node_not_found(self):
-        query_data = [{'results': []}]
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
+    def test_run_node_not_exist(self):
+        action = self.setup_query_blank_results()
         self.assertRaises(UserWarning,
                           action.run,
                           "orion",
@@ -67,14 +44,11 @@ class ListNodeCustomPropertiesTestCase(BaseActionTestCase):
     def test_run_list_node_custom_prop(self):
         expected = "abc-1234"
 
-        query_data = [
-            yaml.safe_load(
-                self.get_fixture_content("orion_npm_results.yaml")),
-            yaml.safe_load(
-                self.get_fixture_content("orion_ncm_results.yaml"))]
+        query_data = []
+        query_data.append(self.query_npm_node)
+        query_data.append(self.query_ncm_node)
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.get_action_instance(config=self.full_config)
 
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)

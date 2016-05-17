@@ -4,7 +4,7 @@ Features that may be useful for the Orion pack.
 
 ## General
 
-[ ] Add some pack expections.
+[ ] Add some pack exceptions.
 
 ## Discovery
 

@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from update_node_custom_properties import UpdateNodeCustomProperties
 
@@ -24,28 +23,12 @@ __all__ = [
 ]
 
 
-class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
+class UpdateNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = UpdateNodeCustomProperties
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          UpdateNodeCustomProperties,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, UpdateNodeCustomProperties)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
@@ -54,14 +37,7 @@ class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
                           "Austin")
 
     def test_run_node_not_exist(self):
-        query_data = [{'results': []}]
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
+        action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
@@ -70,45 +46,21 @@ class UpdateNodeCustomPropertiesTestCase(BaseActionTestCase):
                           "Austin")
 
     def test_run_update(self):
-        query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_npm_results.yaml")))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_ncm_results.yaml")))
-
         read_data = {"City": None}
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
+        action = self.setup_node_exists()
+        action.read = MagicMock(return_value=read_data)
 
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-        action.update = Mock(return_value="None")
-        action.read = Mock(return_value=read_data)
-
-        result = action.run("router1",
-                            "orion",
-                            "City",
-                            "Austin")
-
-        self.assertTrue(result)
+        self.assertTrue(action.run("router1",
+                                   "orion",
+                                   "City",
+                                   "Austin"))
 
     def test_run_custom_property_not_exist(self):
-        query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_npm_results.yaml")))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_ncm_results.yaml")))
-
         read_data = {"City": None}
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-        action.update = Mock(return_value="fake")
-        action.read = Mock(return_value=read_data)
+        action = self.setup_node_exists()
+        action.read = MagicMock(return_value=read_data)
 
         self.assertRaises(ValueError,
                           action.run,

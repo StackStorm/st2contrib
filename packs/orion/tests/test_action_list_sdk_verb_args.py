@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from list_sdk_verb_args import ListSdkVerbArgs
 
@@ -24,28 +23,12 @@ __all__ = [
 ]
 
 
-class ListSdkVerbArgsTestCase(BaseActionTestCase):
+class ListSdkVerbArgsTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = ListSdkVerbArgs
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          ListSdkVerbArgs,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, ListSdkVerbArgs)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
@@ -59,16 +42,12 @@ class ListSdkVerbArgsTestCase(BaseActionTestCase):
              'type': "SolarWinds.NCM.Contracts.InformationService.NCMNode",
              'optional': False}]}
 
-        query_data = [
-            yaml.safe_load(
-                self.get_fixture_content("results_list_sdk_verb_args.yaml"))]
+        query_data = []
+        query_data.append(self.load_yaml("results_list_sdk_verb_args.yaml"))
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
+        action = self.get_action_instance(config=self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
 
         result = action.run("orion", "Cirrus.Nodes", "AddNode")
-
         self.assertEqual(result, expected)

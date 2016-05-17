@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from list_sdk_verbs import ListSdkVerbs
 
@@ -24,28 +23,12 @@ __all__ = [
 ]
 
 
-class ListSdkVerbsTestCase(BaseActionTestCase):
+class ListSdkVerbsTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = ListSdkVerbs
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          ListSdkVerbs,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, ListSdkVerbs)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "orion")
@@ -59,17 +42,13 @@ class ListSdkVerbsTestCase(BaseActionTestCase):
         expected['Entities'].append({'Entity': "Orion.Nodes",
                                      'Method': "PollNow"})
 
-        query_data = yaml.safe_load(self.get_fixture_content(
-            "results_sdk_verbs.yaml"))
+        query_data = self.load_yaml("results_sdk_verbs.yaml")
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
+        action = self.get_action_instance(self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=query_data)
 
         result = action.run("orion")
-
         self.assertEqual(result, expected)
 
     def test_run_listsdk_verbs_filtered(self):
@@ -81,15 +60,11 @@ class ListSdkVerbsTestCase(BaseActionTestCase):
         expected['Entities'].append({'Entity': "Orion.Nodes",
                                      'Method': "PollNow"})
 
-        query_data = yaml.safe_load(self.get_fixture_content(
-            "results_sdk_verbs.yaml"))
+        query_data = self.load_yaml("results_sdk_verbs.yaml")
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
+        action = self.get_action_instance(self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(return_value=query_data)
 
         result = action.run("orion", "PollNow")
-
         self.assertEqual(result, expected)

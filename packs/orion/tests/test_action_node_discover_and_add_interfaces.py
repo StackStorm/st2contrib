@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from node_discover_and_add_interfaces import NodeDiscoverAndAddInterfaces
 
@@ -24,44 +23,19 @@ __all__ = [
 ]
 
 
-class NodeDiscoverAndAddInterfacesTestCase(BaseActionTestCase):
+class NodeDiscoverAndAddInterfacesTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = NodeDiscoverAndAddInterfaces
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          NodeDiscoverAndAddInterfaces,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_basic_config(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, NodeDiscoverAndAddInterfaces)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
                           "orion")
 
     def test_run_node_not_found(self):
-        query_data = []
-        query_data.append({'results': []})
-        query_data.append({'results': []})
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
+        action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
@@ -75,24 +49,19 @@ class NodeDiscoverAndAddInterfacesTestCase(BaseActionTestCase):
             'existing': [{'lo': 1}]}
 
         query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_npm_results.yaml")))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_ncm_results.yaml")))
+        query_data.append(self.query_npm_node)
+        query_data.append(self.query_ncm_node)
 
         invoke_data = []
-        invoke_data.append(yaml.safe_load(self.get_fixture_content(
-            'invoke_DiscoverInterfacesOnNode.yaml')))
-        invoke_data.append(yaml.safe_load(self.get_fixture_content(
-            'invoke_AddInterfacesOnNode.yaml')))
+        invoke_data.append(self.load_yaml(
+            'invoke_DiscoverInterfacesOnNode.yaml'))
+        invoke_data.append(self.load_yaml(
+            'invoke_AddInterfacesOnNode.yaml'))
 
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
+        action = self.get_action_instance(config=self.full_config)
         action.connect = MagicMock(return_value=True)
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(side_effect=invoke_data)
 
         result = action.run("router1", "orion")
-
         self.assertEqual(result, expected)

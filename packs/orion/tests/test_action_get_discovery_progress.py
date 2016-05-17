@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-# from mock import Mock, MagicMock
+# from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from get_discovery_progress import GetDiscoveryProgress
 from lib.utils import discovery_status_to_text
@@ -26,20 +25,9 @@ __all__ = [
 ]
 
 
-class GetDiscoveryProgressTestCase(BaseActionTestCase):
+class GetDiscoveryProgressTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = GetDiscoveryProgress
-
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          GetDiscoveryProgress,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, GetDiscoveryProgress)
 
     def test_run_discovery_status_to_text(self):
         status = discovery_status_to_text("0")

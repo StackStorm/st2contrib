@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from node_remanage import NodeRemanage
 
@@ -24,85 +23,34 @@ __all__ = [
 ]
 
 
-class NodeRemanageTestCase(BaseActionTestCase):
+class NodeRemanageTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = NodeRemanage
 
-    def test_run_no_config(self):
-        self.assertRaises(ValueError,
-                          NodeRemanage,
-                          yaml.safe_load(
-                              self.get_fixture_content('blank.yaml')))
-
-    def test_run_is_instance(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        self.assertIsInstance(action, NodeRemanage)
-
     def test_run_connect_fail(self):
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
                           "router1")
 
     def test_run_node_does_not_exist(self):
-        query_data = []
-        query_data.append({'results': []})
-        query_data.append({'results': []})
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-
+        action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
                           "router1")
 
     def test_run_node_remanage(self):
-        query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_npm_results.yaml")))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_ncm_results.yaml")))
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
-        action.invoke = Mock(return_value=None)
-
-        result = action.run("router1",
-                            "orion")
-
-        self.assertTrue(result)
+        action = self.setup_node_exists()
+        self.assertTrue(action.run("router1", "orion"))
 
     def test_run_invoke_returns_text(self):
         expected = "fake"
 
-        query_data = []
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_npm_results.yaml")))
-        query_data.append(yaml.safe_load(
-            self.get_fixture_content("orion_ncm_results.yaml")))
-
-        action = self.get_action_instance(yaml.safe_load(
-            self.get_fixture_content('full.yaml')))
-
-        action.connect = MagicMock(return_value=True)
-        action.query = MagicMock(side_effect=query_data)
+        action = self.setup_node_exists()
         action.invoke = MagicMock(return_value="fake")
 
         result = action.run("router1",
                             "orion")
-
         self.assertEqual(result, expected)
