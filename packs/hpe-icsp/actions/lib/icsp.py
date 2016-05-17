@@ -63,7 +63,7 @@ class ICSPBaseActions(Action):
 
         # added here due to the requirement of the session id
         self.base_headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv}
+                             'X-Api-Version': self.icsp_apiv}
 
         return results["sessionID"]
 
@@ -79,10 +79,12 @@ class ICSPBaseActions(Action):
         for id in ids:
             for server in servers:
                 if idtype == 'serialnumber':
-                    if ((server["serialNumber"] == id) and (server["mid"] not in mids)):
+                    if ((server["serialNumber"] == id) and
+                            (server["mid"] not in mids)):
                         mids.append(int(server["mid"]))
                 if idtype == 'uuid':
-                    if ((server["uuid"] == id) and (server["mid"] not in mids)):
+                    if ((server["uuid"] == id) and
+                            (server["mid"] not in mids)):
                         mids.append(int(server["mid"]))
         return mids
 

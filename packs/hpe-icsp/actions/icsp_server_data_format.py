@@ -17,11 +17,12 @@ from lib.icsp import ICSPBaseActions
 
 
 class FormatServerData(ICSPBaseActions):
-    def run(self, identifiers, identifier_type,  hostnames, domains=None, workgroups=None, connection_details=None):
+    def run(self, identifiers, identifier_type,  hostnames,
+            domains=None, workgroups=None, connection_details=None):
         if identifier_type == "mid":
             for n in identifiers:
                 try:
-                  test = int(n) 
+                    int(n)
                 except:
                     raise ValueError("Identifier provides is not a MID")
             mids = identifiers

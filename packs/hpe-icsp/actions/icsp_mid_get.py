@@ -17,30 +17,17 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetMid(ICSPBaseActions):
-    def run(self, uuid=None, serialnumber=None, connection_details=None):
+    def run(self, identifiers, identifier_type, connection_details=None):
 
         self.set_connection(connection_details)
         self.get_sessionid()
         endpoint = "/rest/os-deployment-servers"
-        getresults = self.icsp_get(endpoint)
-        servers = getresults["members"]
-        results = []
-        # Checking arrays are set otherwise errors occur later
-        # when called within flows missing arrays cause python errors
-        if not serialnumber:
-            serialnumber = []
-        if not uuid:
-            uuid = []
-        for server in servers:
-            if (server["uuid"] in uuid) or\
-                    (server["serialNumber"] in serialnumber):
-                if (len(uuid) + len(serialnumber)) == 1:
-                    return {'mid': int(server["mid"])}
-                else:
-                    if server["mid"] not in results:
-                        results.append(int(server["mid"]))
+        mids = self.get_MIDs(identifiers, identifier_type)
 
-        if results:
-            return results
+        if mids:
+            if len(mids) == 1:
+                return {'mid': int(mids[0])}
+            elif len(mids) > 1:
+               return mids
         else:
             raise ValueError("No Servers Found")
