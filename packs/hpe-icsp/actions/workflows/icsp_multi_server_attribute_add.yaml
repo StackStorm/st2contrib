@@ -13,7 +13,6 @@ workflows:
       - id_type
       - attribute_key
       - attribute_values 
-      #- function
       - connection_details
 
     tasks:
@@ -30,7 +29,6 @@ workflows:
           id_type: <% $.id_type %>
           key: <% $.attribute_key %>
           value: <% $.value %>
-          #function: <% $.function %>
           connection_details: <% $.connection_details %>
 
   single_run:
@@ -41,35 +39,17 @@ workflows:
       - id_type
       - key
       - value
-      #- function
       - connection_details
     
     tasks:
-      fork_mid_get:
-        on-success:
-          - get_mid_uuid: <% $.id_type = 'UUID' %>
-          - get_mid_sn: <% $.id_type = 'serialnumber' %>
-
-      get_mid_uuid:
+      get_mid:
         action: hpe-icsp.icsp_mid_get
         input:
-          uuid: [<% $.identifier %>]
+          identifiers: [<% $.identifier %>]
+          identifier_type: <% $.id_type %>
           connection_details: <% $.connection_details %>
         publish:
-          icsp_mid: <% $.get_mid_uuid.result.mid %>
-        retry:
-          count: 5
-          delay: 120
-        on-success:
-          - set_attribute
-
-      get_mid_sn:
-        action: hpe-icsp.icsp_mid_get
-        input:
-          serialnumber: [<% $.identifier %>]
-          connection_details: <% $.connection_details %>
-        publish:
-          icsp_mid: <% $.get_mid_sn.result.mid %>
+          icsp_mid: <% $.get_mid.result.mid %>
         retry:
           count: 5
           delay: 120
@@ -82,5 +62,4 @@ workflows:
           mid: <% $.icsp_mid %>
           attribute_key: <% $.key %>
           attribute_value: <% $.value %>
-          #function: <% $.function %>
           connection_details: <% $.connection_details %>
