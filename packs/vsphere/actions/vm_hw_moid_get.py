@@ -17,15 +17,18 @@ from vmwarelib import inventory
 from vmwarelib.actions import BaseAction
 
 
-class StopVM(BaseAction):
+class GetVMMoid(BaseAction):
 
-    def run(self, vm, kill=False):
-        # convert ids to stubs
-        vm_obj = inventory.get_virtualmachine(self.si_content, moid=vm)
-        if kill:
-            vm_obj.TerminateVM()
-            success = True
-        else:
-            task = vm_obj.PowerOffVM_Task()
-            success = self._wait_for_task(task)
-        return {'success': success}
+    def run(self, vm_names):
+        results = {}
+
+        vmlist = inventory.get_virtualmachines(self.si_content)
+
+        for vm in vmlist.view:
+            if vm_names:
+                if vm.name in vm_names:
+                    results[vm.name] = str(vm).split(':')[-1].replace("'", "")
+            else:
+                results[vm.name] = str(vm).split(':')[-1].replace("'", "")
+
+        return results

@@ -13,20 +13,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import eventlet
-
 from pyVmomi import vim
 
-from vmwarelib import inventory
 from vmwarelib.actions import BaseAction
 
 
-class VMPowerOff(BaseAction):
+class VMRemove(BaseAction):
 
-    def run(self, vm_id):
-        # convert ids to stubs
-        vm = inventory.get_virtualmachine(self.si_content, moid=vm_id)
-        task = vm.PowerOffVM_Task()
-        while task.info.state == vim.TaskInfo.State.running:
-            eventlet.sleep(1)
-        return task.info.state == vim.TaskInfo.State.success
+    def run(self, vm, delete_permanently):
+        si = self.si
+
+        vm = vim.VirtualMachine(vm, stub=si._stub)
+        if vm.runtime.powerState == vim.VirtualMachine.PowerState.poweredOn:
+            raise Exception("VM Currently Powered On")
+        if delete_permanently:
+            task = vm.Destroy_Task()
+            success = self._wait_for_task(task)
+        else:
+            vm.UnregisterVM()
+            success = True
+
+        return {"success": success}
