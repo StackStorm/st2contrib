@@ -20,11 +20,7 @@ class FormatServerData(ICSPBaseActions):
     def run(self, identifiers, identifier_type, hostnames,
             domains=None, workgroups=None, connection_details=None):
         if identifier_type == "mid":
-            for n in identifiers:
-                try:
-                    int(n)
-                except:
-                    raise ValueError("Identifier provides is not a MID")
+            self.validate_mids(identifiers)
             mids = identifiers
         else:
             self.set_connection(connection_details)

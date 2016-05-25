@@ -88,6 +88,13 @@ class ICSPBaseActions(Action):
                         mids.append(int(server["mid"]))
         return mids
 
+    def validate_mids (self, identifiers):
+        for n in identifiers:
+            try:
+                int(n)
+            except:
+                raise ValueError("Identifier provided is not a MID")
+    
     def icsp_get(self, endpoint):
         url = 'https://%s%s' % (self.icsp_host, endpoint)
         headers = copy.copy(self.base_headers)
