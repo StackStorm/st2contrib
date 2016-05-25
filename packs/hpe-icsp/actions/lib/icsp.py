@@ -76,16 +76,16 @@ class ICSPBaseActions(Action):
         getresults = self.icsp_get(endpoint)
         servers = getresults["members"]
         mids = []
+        # id then server loop to ensure results match
+        # the ID order not the icsp server order
         for id in ids:
             for server in servers:
-                if idtype == 'serialnumber':
-                    if ((server["serialNumber"] == id) and
-                            (server["mid"] not in mids)):
-                        mids.append(int(server["mid"]))
-                if idtype == 'uuid':
-                    if ((server["uuid"] == id) and
-                            (server["mid"] not in mids)):
-                        mids.append(int(server["mid"]))
+                if (((idtype == 'serialnumber'
+                    and server["serialNumber"] == id)
+                        or (idtype == 'uuid'
+                            and server["uuid"] == id))
+                        and server["mid"] not in mids):
+                                mids.append(int(server["mid"]))
         return mids
 
     def validate_mids(self, identifiers):
