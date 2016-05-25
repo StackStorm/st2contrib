@@ -17,7 +17,15 @@ from lib.icsp import ICSPBaseActions
 
 
 class FormatServerData(ICSPBaseActions):
-    def run(self, mids, hostnames, domains=None, workgroups=None):
+    def run(self, identifiers, identifier_type, hostnames,
+            domains=None, workgroups=None, connection_details=None):
+        if identifier_type == "mid":
+            self.validate_mids(identifiers)
+            mids = identifiers
+        else:
+            self.set_connection(connection_details)
+            self.get_sessionid()
+            mids = self.get_mids(identifiers, identifier_type)
         if len(mids) == len(hostnames):
             output = {}
             for i in range(len(mids)):
@@ -31,6 +39,7 @@ class FormatServerData(ICSPBaseActions):
                         values['workgroup'] = workgroups[i]
                 output[mids[i]] = values
         else:
-            raise ValueError("MID and Hostname Array counts do not match")
+            raise ValueError('Matched IDs and Hostname Array counts do '
+                             'not match. Check identifiers and hostnames')
 
         return output

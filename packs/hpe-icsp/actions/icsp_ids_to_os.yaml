@@ -4,7 +4,7 @@ runner_type: "mistral-v2"
 pack: "hpe-icsp"
 enabled: true
 entry_point: "workflows/icsp_ids_to_os.yaml"
-description: "Apply OS Build plans to a series of Machine Serial Number/UUIDs."
+description: "Apply OS Build plans to a series of Machine Serial Number/UUIDs. This will create a batch job in ICSP for the specified servers."
 
 parameters:
   identifiers:

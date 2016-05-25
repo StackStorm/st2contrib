@@ -30,13 +30,16 @@ To increase the version number to a later release will require updates to action
 
 ## Actions
 
-* `hpe-icsp.icsp_server_attributes_get` - Retrieve attributes set against server
-* `hpe-icsp.icsp_server_attributes_set` - Assign custom cttributes to server
-* `hpe-icsp.icsp_server_data_format` - Generates the json object used in the buildplan apply action
 * `hpe-icsp.icsp_buildplan_apply` - Assign build plans provided against list of servers
 * `hpe-icsp.icsp_buildplan_get` - Retrieve list of Build plans and Build Plan URIs
+* `hpe-icsp.icsp_ca_cert` - Retrieve certificate for ICSP server
+* `hpe-icsp.icsp_ids_to_os` - Allow for the application of build plans to a list of Servers
 * `hpe-icsp.icsp_job_status` - Retrieve Status of specified Job
 * `hpe-icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
+* `hpe-icsp.icsp_multi_server_attribute_add` - Apply Attribute with server unique values across multiple servers.
+* `hpe-icsp.icsp_server_attributes_add` - Assign custom cttributes to server
+* `hpe-icsp.icsp_server_attributes_del` - Remove custom attribute from server
+* `hpe-icsp.icsp_server_attributes_get` - Retrieve attributes set against server
+* `hpe-icsp.icsp_server_data_format` - Generates the json object used in the buildplan apply action
 * `hpe-icsp.icsp_server_delete` - Remove server record from ICSP instance
-* `hpe-icsp.icsp_ca_cert` - Retrieve certificate for ICSP server
-* `hpe-icsp.icsp_id_to_os` - Allow for the application of build plans to a single UUID or Serial number.
+* `hpe-icsp.icsp_server_details_get` - Return Summary information on server

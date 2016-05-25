@@ -63,13 +63,37 @@ class ICSPBaseActions(Action):
 
         # added here due to the requirement of the session id
         self.base_headers = {'Auth': self.icsp_sessionid,
-                   'X-Api-Version': self.icsp_apiv}
+                             'X-Api-Version': self.icsp_apiv}
 
         return results["sessionID"]
 
     def extract_id(self, joburi):
         jobid = str(joburi)
         return int(jobid.split("/")[-1])
+
+    def get_mids(self, ids, idtype):
+        endpoint = "/rest/os-deployment-servers"
+        getresults = self.icsp_get(endpoint)
+        servers = getresults["members"]
+        mids = []
+        # id then server loop to ensure results match
+        # the ID order not the icsp server order
+        for id in ids:
+            for server in servers:
+                if (((idtype == 'serialnumber' and
+                    server["serialNumber"] == id) or
+                        (idtype == 'uuid' and
+                            server["uuid"] == id)) and
+                        server["mid"] not in mids):
+                                mids.append(int(server["mid"]))
+        return mids
+
+    def validate_mids(self, identifiers):
+        for n in identifiers:
+            try:
+                int(n)
+            except:
+                raise ValueError("Identifier provided is not a MID")
 
     def icsp_get(self, endpoint):
         url = 'https://%s%s' % (self.icsp_host, endpoint)

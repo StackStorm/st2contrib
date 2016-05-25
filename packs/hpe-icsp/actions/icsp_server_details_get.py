@@ -16,17 +16,10 @@
 from lib.icsp import ICSPBaseActions
 
 
-class GetMid(ICSPBaseActions):
-    def run(self, identifiers, identifier_type, connection_details=None):
-
+class GetCA(ICSPBaseActions):
+    def run(self, mid, connection_details=None):
         self.set_connection(connection_details)
         self.get_sessionid()
-        mids = self.get_mids(identifiers, identifier_type)
+        endpoint = "/rest/os-deployment-servers/%s" % mid
 
-        if mids:
-            if len(mids) == 1:
-                return {'mid': int(mids[0])}
-            elif len(mids) > 1:
-                return mids
-        else:
-            raise ValueError("No Servers Found")
+        return self.icsp_get(endpoint)
