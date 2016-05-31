@@ -12,10 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
-from mock import Mock, MagicMock
+from mock import MagicMock
 
-from st2tests.base import BaseActionTestCase
+from orion_base_action_test_case import OrionBaseActionTestCase
 
 from ncm_config_download import NcmConfigDownload
 
@@ -23,37 +22,13 @@ __all__ = [
     'NcmConfigDownloadTestCase'
 ]
 
-MOCK_CONFIG_BLANK = ""
 
-MOCK_CONFIG_FULL = """
-orion:
-  host: orion-npm
-  user: stanley
-  password: foobar
-"""
-
-
-class NcmConfigDownloadTestCase(BaseActionTestCase):
+class NcmConfigDownloadTestCase(OrionBaseActionTestCase):
+    __test__ = True
     action_cls = NcmConfigDownload
 
-    def test_run_no_config(self):
-        config = yaml.safe_load(MOCK_CONFIG_BLANK)
-
-        self.assertRaises(ValueError, NcmConfigDownload, config)
-
-    def test_run_basic_config(self):
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-
-        action = self.get_action_instance(config)
-        self.assertIsInstance(action, NcmConfigDownload)
-
     def test_run_connect_fail(self):
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-
-        action = self.get_action_instance(config)
-        action.connect = Mock(side_effect=ValueError(
-            'Orion host details not in the config.yaml'))
-
+        action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
@@ -61,36 +36,49 @@ class NcmConfigDownloadTestCase(BaseActionTestCase):
                           ["running", "startup"])
 
     def test_run_ncm_node_not_found(self):
-        orion_data = {'results': []}
-
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
-        action.connect = MagicMock(return_value=True)
-
-        action.query = MagicMock(return_value=orion_data)
-
-        self.assertRaises(IndexError,
+        action = self.setup_query_blank_results()
+        self.assertRaises(Exception,
                           action.run,
                           "router1",
                           "orion",
                           ["running", "startup"])
 
     def test_run_ncm_download_complete(self):
-        expected = {'running': {'status': 'Complete'},
-                    'startup': {'status': 'Complete'}
+        expected = {'running': {'DeviceOutput': None,
+                                'ErrorMessage': None,
+                                'RequestedReboot': False,
+                                'RequestedScript': None,
+                                'UserName': 'hubot',
+                                'status': 'Complete'},
+                    'startup': {'DeviceOutput': None,
+                                'ErrorMessage': None,
+                                'RequestedReboot': False,
+                                'RequestedScript': None,
+                                'UserName': 'hubot',
+                                'status': 'Complete'},
                     }
-        query_data = [
-            {'results': [{'NodeID': "abc1234"}]},
-            {'results': [{'Status': 2}]},
-            {'results': [{'Status': 2}]}
-        ]
+
+        query_data = []
+        query_data.append(self.query_npm_node)
+        query_data.append(self.query_ncm_node)
+        query_data.append({'results': [{"Status": 2,
+                                        "UserName": "hubot",
+                                        "DeviceOutput": None,
+                                        "ErrorMessage": None,
+                                        "RequestedScript": None,
+                                        "RequestedReboot": False}]})
+        query_data.append({'results': [{"Status": 2,
+                                        "UserName": "hubot",
+                                        "DeviceOutput": None,
+                                        "ErrorMessage": None,
+                                        "RequestedScript": None,
+                                        "RequestedReboot": False}]})
         invoke_data = ["1234567890"]
 
-        config = yaml.safe_load(MOCK_CONFIG_FULL)
-        action = self.get_action_instance(config)
+        action = self.get_action_instance(config=self.full_config)
 
         action.connect = MagicMock(return_value=True)
-        action.query = Mock(side_effect=query_data)
+        action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=invoke_data)
 
         result = action.run("router1",

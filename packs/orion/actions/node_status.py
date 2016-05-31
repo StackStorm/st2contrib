@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from lib.actions import OrionBaseAction
+from lib.utils import status_code_to_text, send_user_error
 
 
 class NodeStatus(OrionBaseAction):
@@ -29,16 +30,19 @@ class NodeStatus(OrionBaseAction):
 
         self.connect(platform)
 
-        swql = "SELECT Status FROM Orion.Nodes WHERE Caption=@node"
-        kargs = {'node': node}
+        orion_node = self.get_node(node)
+
+        if not orion_node.npm:
+            error_msg = "Node not found"
+            send_user_error(error_msg)
+            raise ValueError(error_msg)
+
+        swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
+        kargs = {'NodeID': orion_node.npm_id}
         orion_data = self.query(swql, **kargs)
 
-        if len(orion_data['results']) != 0:
-            (results['status'], results['color']) = self.status_code_to_text(
-                orion_data['results'][0]['Status'])
-        else:
-            error_msg = "Node not found"
-            self.send_user_error(error_msg)
-            raise ValueError(error_msg)
+        (results['status'], results['color']) = status_code_to_text(
+            orion_data['results'][0]['Status'])
+        results['node'] = str(orion_node)
 
         return results

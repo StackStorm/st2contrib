@@ -1,0 +1,11 @@
+---
+name: cancel_request
+runner_type: python-script
+description: Cancel long running request.
+enabled: true
+entry_point: cancel_request.py
+parameters:
+  request_id:
+    type: string
+    description: "Request ID."
+    required: true

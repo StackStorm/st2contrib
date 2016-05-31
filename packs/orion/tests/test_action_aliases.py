@@ -63,7 +63,9 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
 
         # First Format 'orion node create'
         format_string = self.action_alias_db.formats[0]['representation'][0]
-        command = "orion node create router1 ip 192.168.0.1 snmp read platform orion"
+        command = """
+orion node create router1 ip 192.168.0.1 snmp read platform orion
+"""
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
@@ -78,7 +80,9 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
             format_strings=format_strings,
             command=command)
 
-        command = "orion node create router1 ip 192.168.0.1 platform orion poller1"
+        command = """
+orion node create router1 ip 192.168.0.1 platform orion poller1
+"""
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
@@ -126,7 +130,9 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
         # Second format 'create orion node'
         format_string = self.action_alias_db.formats[1]['representation'][0]
 
-        command = "create orion node router1 at 192.168.0.1 with read on orion poller1"
+        command = """
+create orion node router1 at 192.168.0.1 with read on orion poller1
+"""
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',

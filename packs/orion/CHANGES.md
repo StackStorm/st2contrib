@@ -1,6 +1,11 @@
 # Changelog
 
-# In Development
+# 0.3.1
+
+- In the Orion.node_status alais set the color for the result so it
+  reflects it status.
+
+# 0.3
 
 - Added the following actions:
    - node_create (tbc).

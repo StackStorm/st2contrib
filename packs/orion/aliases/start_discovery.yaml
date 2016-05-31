@@ -1,0 +1,21 @@
+---
+name: "start_discovery"
+pack: "orion"
+description: "Start an Solarwinds Orion Discovery Process"
+action_ref: "orion.start_discovery"
+formats:
+  - display: "orion start discovery name {{name}} nodes {{node,node}} snmp {{community,community}} [platform {{platform}} {{poller=primary}}]"
+    representation:
+      - "orion start discovery name {{name}} nodes {{nodes}} snmp {{snmp_communities}} platform {{platform}}( {{poller=primary}})?"
+ack:
+  enabled: true
+  append_url: false
+  format: "Discovering {{execution.parameters.nodes}} via Orion for you..."
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Started Discovery (ID #{{execution.result.result}}) in Orion called: {{execution.parameters.name}}.{~}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}
+    See {{execution.id}} for more details.
+    {% endif %}

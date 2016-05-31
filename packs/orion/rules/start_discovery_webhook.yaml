@@ -1,0 +1,35 @@
+---
+name: "start_discovery_webhook"
+pack: "orion"
+description: "Trigger orion.node_create via a webhook"
+enabled: false
+
+trigger:
+  type: "core.st2.webhook"
+  parameters:
+    url: "orion_start_discovery"
+
+criteria:
+  trigger.body:
+    pattern: "orion_start_discovery"
+    type: "exists"
+
+action:
+  ref: "orion.start_discovery"
+  parameters:
+    name: "{{trigger.body.orion_start_discovery.name}}"
+    platform: "{{trigger.body.orion_start_discovery.platform}}"
+    poller: "{{trigger.body.orion_start_discovery.poller}}"
+    snmp_communities: "{{trigger.body.orion_start_discovery.snmp_communities}}"
+    nodes: "{{trigger.body.orion_start_discovery.nodes | use_none}}"
+    subnets: "{{trigger.body.orion_start_discovery.subnets | use_none}}"
+    ip_ranges: "{{trigger.body.orion_start_discovery.ip_ranges | use_none}}"
+    no_icmp_only: "{{trigger.body.orion_start_discovery.no_icmp_only}}"
+    auto_import: "{{trigger.body.orion_start_discovery.auto_import}}"
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+---
+results:
+  - Name: "Unmanage"
+    MethodName: "Unmanage"
+    EntityName: "Orion.Nodes"
+  - Name: "Remanage"
+    MethodName: "Remanage"
+    EntityName: "Orion.Nodes"
+  - Name: "PollNow"
+    MethodName: "PollNow"
+    EntityName: "Orion.Nodes"

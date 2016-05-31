@@ -1,0 +1,27 @@
+---
+  name: "icsp_mid_get"
+  runner_type: "run-python"
+  description: "Retreive MIDs for specified servers."
+  enabled: true
+  entry_point: "icsp_mid_get.py"
+  parameters:
+    identifiers:
+      type: "array"
+      description: "List of host identifiers (mid,serialnumber or uuid). Must be on a single type."
+      required: true
+      position: 0
+    identifier_type:
+      type: "string"
+      description: "What type of Identifiers have been provided"
+      required: true
+      default: "mid"
+      position: 1
+      enum:
+        - serialnumber
+        - uuid
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 2

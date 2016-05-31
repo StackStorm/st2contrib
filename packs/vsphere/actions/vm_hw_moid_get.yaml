@@ -1,0 +1,11 @@
+---
+  name: vm_hw_moid_get
+  runner_type: run-python
+  description: Retrieve moid of a VM object
+  entry_point: vm_hw_moid_get.py
+  parameters:
+    vm_names:
+      type: array
+      description: List of VM Names
+      required: false
+      position: 0

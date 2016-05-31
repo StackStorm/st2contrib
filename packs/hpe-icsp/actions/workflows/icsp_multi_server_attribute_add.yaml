@@ -1,0 +1,65 @@
+---
+version: '2.0'
+name: "hpe-icsp.icsp_multi_server_attribute_add"
+description: "Deploy a Key with server Unique values"
+
+workflows:
+
+  entry:
+    type: direct
+  
+    input:
+      - identifiers
+      - id_type
+      - attribute_key
+      - attribute_values 
+      - connection_details
+
+    tasks:
+      check_arrays:
+        on-success: 
+          - iterateservers: <% $.identifiers.len() = $.attribute_values.len() %>
+      iterateservers:
+        with-items:
+          - id in <% $.identifiers %>
+          - value in <% $.attribute_values %>
+        workflow: hpe-icsp.icsp_multi_server_attribute_add.single_run
+        input:
+          identifier: <% $.id %>
+          id_type: <% $.id_type %>
+          key: <% $.attribute_key %>
+          value: <% $.value %>
+          connection_details: <% $.connection_details %>
+
+  single_run:
+    type: direct
+    
+    input:
+      - identifier
+      - id_type
+      - key
+      - value
+      - connection_details
+    
+    tasks:
+      get_mid:
+        action: hpe-icsp.icsp_mid_get
+        input:
+          identifiers: [<% $.identifier %>]
+          identifier_type: <% $.id_type %>
+          connection_details: <% $.connection_details %>
+        publish:
+          icsp_mid: <% $.get_mid.result.mid %>
+        retry:
+          count: 5
+          delay: 120
+        on-success:
+          - set_attribute
+
+      set_attribute:
+        action: hpe-icsp.icsp_server_attribute_add
+        input:
+          mid: <% $.icsp_mid %>
+          attribute_key: <% $.key %>
+          attribute_value: <% $.value %>
+          connection_details: <% $.connection_details %>

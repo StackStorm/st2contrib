@@ -1,0 +1,6 @@
+---
+results:
+  - EngineID: 2
+    ServerName: "foo"
+    ServerType: "Additional"
+    IP: "192.168.1.200"

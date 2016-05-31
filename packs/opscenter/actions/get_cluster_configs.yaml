@@ -1,0 +1,7 @@
+---
+name: get_cluster_configs
+runner_type: python-script
+description: Get Cassandra cluster info.
+enabled: true
+entry_point: get_cluster_configs.py
+parameters: {}

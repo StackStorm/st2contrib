@@ -83,6 +83,14 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p $$pack || exit 1 ; fi; done
 
+.PHONY: packs-missing-tests
+packs-missing-tests:
+	@echo
+	@echo "==================== pack-missing-tests ===================="
+	@echo
+	if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/pack-missing-tests.sh $$pack || exit 1 ; fi; done
+
+
 .PHONY: .clone_st2_repo
 .clone_st2_repo:
 	@echo

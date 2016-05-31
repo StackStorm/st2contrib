@@ -1,0 +1,11 @@
+---
+name: get_storage_capacity
+runner_type: python-script
+description: Get Cassandra cluster storage capacity.
+enabled: true
+entry_point: get_storage_capacity.py
+parameters:
+  cluster_id:
+    type: string
+    description: "Name of the cass cluster E.g.: Test-Cluster."
+    required: false
