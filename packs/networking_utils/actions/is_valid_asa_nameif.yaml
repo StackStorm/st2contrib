@@ -1,0 +1,14 @@
+---
+description: "Check if a nameif is valid for an Cisco ASA ."
+enabled: true
+entry_point: 'is_valid_asa_nameif.py'
+name: "is_valid_asa_nameif"
+pack: "networking_utils"
+
+parameters:
+  nameif:
+    type: "string"
+    description: "Nameif to validate."
+    required: true
+
+runner_type: "python-script"

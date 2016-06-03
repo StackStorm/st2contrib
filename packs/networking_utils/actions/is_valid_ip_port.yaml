@@ -1,0 +1,14 @@
+---
+description: "Check if a valid IP Port."
+enabled: true
+entry_point: 'is_valid_ip_port.py'
+name: "is_valid_ip_port"
+pack: "networking_utils"
+
+parameters:
+  port:
+    type: "integer"
+    description: "IP Port to valiadate"
+    required: true
+
+runner_type: "python-script"
