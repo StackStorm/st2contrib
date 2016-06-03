@@ -1,0 +1,9 @@
+---
+name: networking-utils
+description: A pack containing useful networking utils for use in workflows.
+keywords:
+    - networking
+    - utilities.
+version: 0.1
+author: Jon Middleton
+email: jon.middleton@pulsant.com
