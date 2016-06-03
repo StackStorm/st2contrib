@@ -110,6 +110,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![mssql icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/mssql/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/mssql) | [mssql](https://github.com/StackStorm/st2contrib/tree/master/packs/mssql) | st2 content pack containing Microsoft SQL Server integrations | mssql, sql, microsoft, sql server | [codyaray](mailto:cray@peak6.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#mssql-pack)
 [![nagios icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nagios/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | [nagios](https://github.com/StackStorm/st2contrib/tree/master/packs/nagios) | Nagios integration pack. See README.md for setup instructions. | nagios, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#nagios-pack)
 [![nest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/nest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | [nest](https://github.com/StackStorm/st2contrib/tree/master/packs/nest) | StackStorm integration with Nest Thermostats |  | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#nest-pack)
+[![networking_utils icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/networking_utils) | [networking_utils](https://github.com/StackStorm/st2contrib/tree/master/packs/networking_utils) | A pack containing useful networking utils for use in workflows. | networking, utilities. | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#networking_utils-pack)
 [![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 [![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | [octopusdeploy](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | st2 content pack containing octopusdeploy integrations | octopus, octopusdeploy, deployment, continous deployment, continous integration | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#octopusdeploy-pack)
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
@@ -1755,6 +1756,20 @@ set_mode | Set current operating mode
 set_temperature | Set current temperature.
 show | Show current Nest information
 toggle_away | Toggle current Home/Away status
+
+### networking_utils pack
+
+![networking_utils icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+is_valid_asa_nameif | Check if a nameif is valid for an Cisco ASA .
+is_valid_ip | Check for a valid IP address (and return some infomation).
+is_valid_ip_port | Check if a valid IP Port.
+is_valid_ipv4 | Check for a valid IPv4 address (and return some infomation).
+is_valid_ipv6 | Check for a valid IPv6 address (and return some infomation).
 
 ### newrelic pack
 
