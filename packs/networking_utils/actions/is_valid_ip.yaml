@@ -3,7 +3,7 @@ description: "Check for a valid IP address (and return some infomation)."
 enabled: true
 entry_point: 'is_valid_ip.py'
 name: "is_valid_ip"
-pack: "networking-utils"
+pack: "networking_utils"
 
 parameters:
   ip_address:
