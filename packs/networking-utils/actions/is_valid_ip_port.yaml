@@ -7,8 +7,8 @@ pack: "networking-utils"
 
 parameters:
   port:
-    type: "interger"
-    description: "IP Address to valiadate"
+    type: "integer"
+    description: "IP Port to valiadate"
     required: true
 
 runner_type: "python-script"
