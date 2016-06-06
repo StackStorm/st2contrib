@@ -15,7 +15,8 @@ WMIC_EXISTS = find_executable('wmic') is not None
 class WMIQueryAction(Action):
     def run(self, host, password, query, username='Administrator'):
         if not WMIC_EXISTS:
-            msg = ('Cannot find "wmic" binary. Please make sure WMI client (wmic) for'
+            msg = ('Cannot find "wmic" binary. Please make sure WMI client'
+                   '(wmic) for'
                    ' Linux is installed and available in $PATH')
             raise Exception(msg)
 
