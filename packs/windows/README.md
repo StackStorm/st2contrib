@@ -59,4 +59,6 @@ wget http://download.opensuse.org/repositories/home:/uibmz:/opsi:/opsi40-testing
 sudo dpkg --install winexe_1.00.1-1_amd64.deb
 ```
 
+### 
+
 For more examples, see [WMI Query Language by Example](http://www.codeproject.com/Articles/46390/WMI-Query-Language-by-Example).

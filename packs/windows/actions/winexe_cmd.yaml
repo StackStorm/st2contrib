@@ -1,9 +1,9 @@
 ---
-  name: "lockdown_winrm"
+  name: "winexe_cmd"
   runner_type: "run-python"
-  description: "Disable remote WinRM access via RPC"
+  description: "Run a command via WinEXE (samba/RPC)"
   enabled: true
-  entry_point: "lockdown_winrm.py"
+  entry_point: "winexe_cmd.py"
   parameters:
     host:
       type: "string"
@@ -17,3 +17,7 @@
       type: "string"
       description: "Account username."
       required: false
+    command:
+      type: "string"
+      description: "The command to run"
+      required: true
