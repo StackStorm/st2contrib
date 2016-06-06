@@ -1,0 +1,19 @@
+---
+  name: "setup_winrm"
+  runner_type: "run-python"
+  description: "Enable remote WinRM access via RPC, to allow untrusted connections"
+  enabled: true
+  entry_point: "setup_winrm.py"
+  parameters:
+    host:
+      type: "string"
+      description: "IP address of a Windows server"
+      required: true
+    password:
+      type: "string"
+      description: "Account password."
+      required: true
+    username:
+      type: "string"
+      description: "Account username."
+      required: false
