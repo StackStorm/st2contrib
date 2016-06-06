@@ -49,4 +49,14 @@ Select * From Win32_Service
 Select FreePhysicalMemory from Win32_OperatingSystem
 ```
 
+## winexe (RPC) commands
+
+These require `winexe` to be installed and available in the path.
+
+For debian this is available by:
+```
+wget http://download.opensuse.org/repositories/home:/uibmz:/opsi:/opsi40-testing/xUbuntu_12.04/amd64/winexe_1.00.1-1_amd64.deb
+sudo dpkg --install winexe_1.00.1-1_amd64.deb
+```
+
 For more examples, see [WMI Query Language by Example](http://www.codeproject.com/Articles/46390/WMI-Query-Language-by-Example).
