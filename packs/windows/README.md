@@ -49,4 +49,20 @@ Select * From Win32_Service
 Select FreePhysicalMemory from Win32_OperatingSystem
 ```
 
+## winexe (RPC) commands
+
+These require `winexe` to be installed and available in the path.
+
+For debian this is available by:
+```
+wget http://download.opensuse.org/repositories/home:/uibmz:/opsi:/opsi40-testing/xUbuntu_12.04/amd64/winexe_1.00.1-1_amd64.deb
+sudo dpkg --install winexe_1.00.1-1_amd64.deb
+```
+
+## winrm commands
+
+The WinRM commands require WinRM to be configured to allow non-domain joined connections (untrusted).
+2 actions are provided to set this up via RPC, `setup_winrm` and `lockdown_winrm`. If you have finished using WinRM, it is recommended to run
+the lockdown action.
+
 For more examples, see [WMI Query Language by Example](http://www.codeproject.com/Articles/46390/WMI-Query-Language-by-Example).
