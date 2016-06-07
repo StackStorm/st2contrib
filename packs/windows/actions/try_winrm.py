@@ -23,4 +23,4 @@ class TryWinRMAction(Action):
                                                              command_id)
         p.cleanup_command(shell_id, command_id)
         p.close_shell(shell_id)
-        return std_out
+        return {'stdout': std_out, 'stderr': std_err}

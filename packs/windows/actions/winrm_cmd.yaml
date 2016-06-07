@@ -32,4 +32,4 @@
     secure:
       type: "boolean"
       description: "Use HTTPS"
-      requried: false
+      required: false

@@ -30,4 +30,4 @@ class SetupWinRMAction(Action):
                 user=username,
                 password=password,
                 host=host) for cmd in cmds]
-        return out
+        return {'stdout': out}

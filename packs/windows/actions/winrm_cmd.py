@@ -30,4 +30,4 @@ class WinRMCmdAction(Action):
         p.cleanup_command(shell_id, command_id)
 
         p.close_shell(shell_id)
-        return std_out_logs, std_err_logs
+        return {'stdout': std_out, 'stderr': std_err}

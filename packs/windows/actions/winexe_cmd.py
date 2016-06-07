@@ -18,4 +18,4 @@ class WinExeCmdAction(Action):
             user=username,
             password=password,
             host=host)
-        return out
+        return {'stdout': out}
