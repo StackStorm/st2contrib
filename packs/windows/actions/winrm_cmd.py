@@ -18,15 +18,11 @@ class WinRMCmdAction(Action):
             password=password,
             server_cert_validation='ignore')
         shell_id = p.open_shell()
-        std_out_logs = []
-        std_err_logs = []
 
         # run the command
         command_id = p.run_command(shell_id, command, params)
         std_out, std_err, status_code = p.get_command_output(shell_id,
                                                              command_id)
-        std_out_logs.append(std_out)
-        std_err_logs.append(std_err)
         p.cleanup_command(shell_id, command_id)
 
         p.close_shell(shell_id)
