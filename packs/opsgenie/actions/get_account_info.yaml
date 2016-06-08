@@ -1,0 +1,7 @@
+---
+description: "Get account infomation from OpsGenie"
+enabled: true
+entry_point: "get_account_info.py"
+name: "get_account_info"
+
+runner_type: "python-script"

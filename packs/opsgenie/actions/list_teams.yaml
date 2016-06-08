@@ -1,0 +1,7 @@
+---
+description: "List Teams in OpsGenie"
+enabled: true
+entry_point: "list_teams.py"
+name: "list_teams"
+
+runner_type: "python-script"

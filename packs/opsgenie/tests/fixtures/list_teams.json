@@ -1,0 +1,17 @@
+{
+    "teams": [{
+	"id": "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
+	"name": "network",
+	"members": [{
+	    "user": "john.smith@opsgenie.com",
+	    "role": "admin"
+	    }]
+	}, {
+	    "id": "fg463552-dvf2-4ca3-a4315-48fhf5j67875",
+	    "name": "database",
+	    "members": [{
+		"user": "eric.boston@opsgenie.com",
+		"role": "user"
+		}]
+	    }]
+}

@@ -1,0 +1,28 @@
+{
+    "oncalls": [
+        {
+    "id": "279fd0c6-c872-44fe-98a7-6843eb3abf07",
+    "type": "schedule",
+            "name": "network_team_schedule",
+            "participants": [
+                {
+                    "name": "john.smith@opsgenie.com",
+                    "type": "user",
+                    "forwarded": "false"
+                }
+            ]
+        },
+
+        {
+    "id": "279fd0c6-c872-44fe-98a7-6843eb3abf07",
+    "type": "schedule",
+            "name": "db_team_schedule",
+            "participants": [
+                {
+                    "name": "network_group",
+                    "type": "group"
+                }
+            ]
+        }
+    ]
+}

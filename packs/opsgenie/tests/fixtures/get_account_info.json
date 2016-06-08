@@ -1,0 +1,9 @@
+{
+    "userCount": 1450,
+    "name": "opsgenie",
+    "plan": {
+        "isYearly": true,
+        "name": "Enterprise",
+        "maxUserCount": 1500
+    }
+}
