@@ -90,7 +90,6 @@ packs-missing-tests:
 	@echo
 	if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-print-pack-tests-coverage $$pack || exit 1 ; fi; done
 
-
 .PHONY: .clone_st2_repo
 .clone_st2_repo:
 	@echo
