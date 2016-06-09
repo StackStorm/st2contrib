@@ -37,6 +37,9 @@ metadata-check: requirements .metadata-check
 .PHONY: packs-resource-register
 packs-resource-register: requirements .clone_st2_repo .packs-resource-register
 
+.PHONY: packs-missing-tests
+packs-missing-tests: requirements .packs-missing-tests
+
 .PHONY: packs-tests
 packs-tests: requirements .clone_st2_repo .packs-tests
 
@@ -83,8 +86,8 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p $$pack || exit 1 ; fi; done
 
-.PHONY: packs-missing-tests
-packs-missing-tests:
+.PHONY: .packs-missing-tests
+.packs-missing-tests:
 	@echo
 	@echo "==================== pack-missing-tests ===================="
 	@echo
