@@ -1,0 +1,10 @@
+{
+    "name" : "host1",
+    "status" : "Expired",
+    "description" : "sample heartbeat",
+    "enabled" : true,
+    "lastHeartbeat" : 1404816169107,
+    "interval" : 10,
+    "intervalUnit" : "hours",
+    "expired" : true
+}

@@ -1,0 +1,33 @@
+---
+description: "Create an alert in OpsGenie"
+enabled: true
+entry_point: "create_alert.py"
+name: "create_alert"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  message:
+    type: "string"
+    description: "Alert ID to close."
+    required: true
+  teams:
+    type: "array"
+    description: "List of team names which will be responsible for the alert."
+  alias:
+    type: "string"
+    description: "Alert ID to close."
+    default: ~
+  user:
+    type: "string"
+    description: "Default owner of the execution."
+    default: ~
+  note: 
+    type: "string"
+    description: "Additional alert note"
+    default: ~
+  source:
+    type: "string"
+    description: "User defined field to specify source of close action."
+    default: "StackStorm"

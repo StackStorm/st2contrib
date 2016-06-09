@@ -11,12 +11,12 @@ Key:
 - [?] Not currently planned.
 - [ ] Outstanding for current version.  
 
-[ ] Alert API
-    [ ] Create Alert
+[-] Alert API
+    [-] Create Alert
     [X] Close Alert
     [X] Delete Alert
     [?] Get Alert
-    [ ] List Alerts
+    [X] List Alerts
     [X] Count
     [?] List Alert Notes
     [?] Get Alert Activity Log
@@ -89,14 +89,14 @@ Key:
     [?] Get Forwarding Rule
     [?] List Forwarding Rules
     [?] List Forwarding Rules for a User
-[ ] Heartbeat API
-    [ ] Add Heartbeat
-    [ ] Update Heartbeat
-    [ ] Enable Heartbeat
-    [ ] Disable Heartbeat
-    [ ] Delete Heartbeat
-    [ ] Get Heartbeat
-    [ ] List Heartbeats
+[-] Heartbeat API
+    [?] Add Heartbeat
+    [?] Update Heartbeat
+    [X] Enable Heartbeat
+    [X] Disable Heartbeat
+    [X] Delete Heartbeat
+    [X] Get Heartbeat
+    [X] List Heartbeats
     [X] Send Heartbeat
 [?] Notification Rule API
     [?] Notification Rule API Requests

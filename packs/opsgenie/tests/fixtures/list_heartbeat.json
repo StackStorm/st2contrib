@@ -1,0 +1,24 @@
+{
+    "heartbeats":[
+        {
+            "name" : "host1",
+            "status" : "Expired",
+            "description" : "sample heartbeat",
+            "enabled" : true,
+            "lastHeartbeat" : 1404816169107,
+            "interval" : 10,
+            "intervalUnit" : "hours",
+            "expired" : true
+        },
+        {
+            "name" : "db1",
+            "status" : "Active",
+            "description" : "",
+            "enabled" : false,
+            "lastHeartbeat" : 1404816169207,
+            "interval" : 20,
+            "intervalUnit" : "minutes",
+            "expired" : false
+        }
+    ]
+}

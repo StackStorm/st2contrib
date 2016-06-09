@@ -1,0 +1,8 @@
+---
+description: "List Heartbeats in OpsGenie"
+enabled: true
+entry_point: "list_heartbeats.py"
+name: "list_heartbeats"
+pack: "opsgenie"
+
+runner_type: "python-script"
