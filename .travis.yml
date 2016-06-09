@@ -6,6 +6,7 @@ os:
 env:
   global:
     - "PIP_DOWNLOAD_CACHE=$HOME/.pip-cache"
+    - "FORCE_CHECK_ALL_FILES=true"
   matrix:
     - "TASK=flake8"
     - "TASK=pylint"
