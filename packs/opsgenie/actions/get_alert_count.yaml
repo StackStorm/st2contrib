@@ -1,0 +1,8 @@
+---
+description: "Get alert count from OpsGenie"
+enabled: true
+entry_point: "get_alert_count.py"
+name: "get_alert_count"
+pack: "opsgenie"
+
+runner_type: "python-script"

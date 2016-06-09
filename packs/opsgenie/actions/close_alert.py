@@ -14,14 +14,27 @@
 
 from lib.actions import OpsGenieBaseAction
 
-class ListTeamsAction(OpsGenieBaseAction):
-    def run(self):
+class CloseAlertAction(OpsGenieBaseAction):
+    def run(self, alert_id, alias=None, user=None, note=None, source="StackStorm"):
         """
         """
-        payload = {"apiKey": self.api_key}
 
-        data = self._req("GET",
-                         "v1/json/team",
-                         payload=payload)
+        body = {"apiKey": self.api_key,
+                "source": source}
+
+        if alias:
+            body["alias"] = alias
+        else:
+            body["id"] =  alert_id
+
+        if user:
+            body['user'] = user
+
+        if note:
+            body['note'] = note
+
+        data = self._req("POST",
+                         "v1/json/alert/close",
+                         body=body)
+
         return data
-

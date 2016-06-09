@@ -19,8 +19,11 @@ class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
         """
         """
 
+        payload = {"apiKey": self.api_key}
+
         data = self._req("GET",
-                         "v1/json/schedule/whoIsOnCall")
+                         "v1/json/schedule/whoIsOnCall",
+                         payload=payload)
 
         return data
 

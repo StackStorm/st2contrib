@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import requests
 
 from st2actions.runners.pythonrunner import Action
@@ -39,15 +40,24 @@ class OpsGenieBaseAction(Action):
         return "{}/{}".format(self.api_host.rstrip("/"),
                               uri)
 
-    def _req(self, method, uri, payload={}):
+    def _req(self, method, uri, payload=None, body=None):
         """
         """
-        payload["apiKey"] = self.api_key
+        kwargs = {}
+
+        if payload is None and body is None:
+            raise ValueError("Need body or payload")
+
+        if payload:
+            kwargs["params"] = payload
+
+        if body:
+            kwargs['data'] = json.dumps(body)
 
         try:
             r = self.session.request(method,
                                      self._url(uri),
-                                     params=payload)
+                                     **kwargs)
             r.raise_for_status()
         except requests.exceptions.HTTPError:
             raise ValueError("HTTP error: {}: '{}'".format(

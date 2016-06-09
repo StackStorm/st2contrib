@@ -14,14 +14,14 @@
 
 from lib.actions import OpsGenieBaseAction
 
-class ListTeamsAction(OpsGenieBaseAction):
+class ListAlertsAction(OpsGenieBaseAction):
     def run(self):
         """
         """
+
         payload = {"apiKey": self.api_key}
 
         data = self._req("GET",
-                         "v1/json/team",
+                         "v1/json/alert",
                          payload=payload)
         return data
-

@@ -14,14 +14,17 @@
 
 from lib.actions import OpsGenieBaseAction
 
-class ListTeamsAction(OpsGenieBaseAction):
-    def run(self):
-        """
-        """
-        payload = {"apiKey": self.api_key}
 
-        data = self._req("GET",
-                         "v1/json/team",
-                         payload=payload)
+class SendHeartbeatAction(OpsGenieBaseAction):
+    def run(self, name):
+        """
+        """
+
+        body = {"apiKey": self.api_key,
+                "name": name}
+
+        data = self._req("POST",
+                         "v1/json/heartbeat/send",
+                         body=body)
+
         return data
-

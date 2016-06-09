@@ -19,8 +19,10 @@ class DisableIntegrationAction(OpsGenieBaseAction):
         """
         """
 
-        payload = {"name": name}
+        payload = {"apiKey": self.api_key,
+                   "name": name}
+
         data = self._req("POST",
                          "v1/json/integration/disable",
-                         payload)
+                         payload=payload)
         return data

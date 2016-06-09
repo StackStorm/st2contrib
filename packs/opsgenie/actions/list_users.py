@@ -19,8 +19,10 @@ class ListUsersAction(OpsGenieBaseAction):
         """
         """
 
-        data = self._req("GET",
-                         "v1/json/user")
+        payload = {"apiKey": self.api_key}
 
+        data = self._req("GET",
+                         "v1/json/user",
+                         payload=payload)
         return data
 

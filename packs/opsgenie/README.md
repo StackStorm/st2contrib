@@ -7,24 +7,24 @@ API key.
 
 Key: 
 - [X] Completed.
-- [-] Partlal coverage.
+- [-] Partial coverage.
 - [?] Not currently planned.
 - [ ] Outstanding for current version.  
 
 [ ] Alert API
     [ ] Create Alert
-    [ ] Close Alert
-    [?] Delete Alert
+    [X] Close Alert
+    [X] Delete Alert
     [?] Get Alert
     [ ] List Alerts
-    [ ] Count
-    [ ] List Alert Notes
+    [X] Count
+    [?] List Alert Notes
     [?] Get Alert Activity Log
-    [ ] List Alert Recipients
-    [ ] Acknowledge
+    [?] List Alert Recipients
+    [?] Acknowledge
     [?] Snooze
     [?] Renotify
-    [ ] Take Ownership
+    [?] Take Ownership
     [?] Assign
     [?] Add Team
     [?] Add Recipient
@@ -42,14 +42,14 @@ Key:
     [?] Get User
     [X] List Users
     [?] Copy Notification Rules To Other Users
-[ ] Group API
+[-] Group API
     [?] Create Group
     [?] Update Group
     [?] Add Member
     [?] Remove Member
     [?] Delete Group
     [?] Get Group
-    [ ] List Groups
+    [X] List Groups
 [-] Team API
     [?] Create Team
     [?] Add Team Member
@@ -76,18 +76,18 @@ Key:
     [?] List Who is on-call
     [X] Who is on-call Next
     [?] Export Schedule
-[ ] Schedule Override API
+[?] Schedule Override API
     [?] Add Schedule Override
     [?] Update Schedule Override
     [?] Delete Schedule Override
     [?] Get Schedule Override
-    [ ] List Schedule Overrides
-[ ] Forwarding Rule API
+    [?] List Schedule Overrides
+[?] Forwarding Rule API
     [?] Add Forwarding Rule
     [?] Update Forwarding Rule
     [?] Delete Forwarding Rule
     [?] Get Forwarding Rule
-    [ ] List Forwarding Rules
+    [?] List Forwarding Rules
     [?] List Forwarding Rules for a User
 [ ] Heartbeat API
     [ ] Add Heartbeat
@@ -97,7 +97,7 @@ Key:
     [ ] Delete Heartbeat
     [ ] Get Heartbeat
     [ ] List Heartbeats
-    [ ] Send Heartbeat
+    [X] Send Heartbeat
 [?] Notification Rule API
     [?] Notification Rule API Requests
         [?] Add Notification Rule
@@ -130,4 +130,4 @@ Key:
     [X] Enable Policy
     [X] Disable Policy
 [X] Account API
-    [X] get_account_info
+    [X] Get Account Info

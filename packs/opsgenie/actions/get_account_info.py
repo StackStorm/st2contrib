@@ -18,9 +18,11 @@ class GetAccountInfoAction(OpsGenieBaseAction):
     def run(self):
         """
         """
+        payload = {"apiKey": self.api_key}
 
         data = self._req("GET",
-                         "v1/json/account/info")
+                         "v1/json/account/info",
+                         payload=payload)
 
         return data
         

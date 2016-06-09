@@ -14,14 +14,24 @@
 
 from lib.actions import OpsGenieBaseAction
 
-class ListTeamsAction(OpsGenieBaseAction):
-    def run(self):
+class DeleteAlertAction(OpsGenieBaseAction):
+    def run(self, alert_id, alias=None, user=None, source="StackStorm"):
         """
         """
-        payload = {"apiKey": self.api_key}
 
-        data = self._req("GET",
-                         "v1/json/team",
+        payload = {"apiKey": self.api_key,
+                   "source": source}
+
+        if alias:
+            payload["alias"] = alias
+        else:
+            payload["id"] =  alert_id
+
+        if user:
+            payload['user'] = user
+
+        data = self._req("DELETE",
+                         "v1/json/alert",
                          payload=payload)
-        return data
 
+        return data
