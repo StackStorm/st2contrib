@@ -18,8 +18,6 @@ import requests
 
 from st2actions.runners.pythonrunner import Action
 
-from lib.utils import send_user_error
-
 
 class OpsGenieBaseAction(Action):
     def __init__(self, config):

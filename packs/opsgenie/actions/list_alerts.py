@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class ListAlertsAction(OpsGenieBaseAction):
     def run(self):
         """

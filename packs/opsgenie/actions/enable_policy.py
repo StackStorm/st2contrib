@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class EnablePolicyAction(OpsGenieBaseAction):
     def run(self, name):
         """
@@ -24,4 +25,3 @@ class EnablePolicyAction(OpsGenieBaseAction):
                          "v1/json/policy/enable",
                          payload)
         return data
-

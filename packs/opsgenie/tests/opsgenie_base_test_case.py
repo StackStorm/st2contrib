@@ -14,7 +14,7 @@
 
 import yaml
 import json
-from mock import MagicMock
+
 import requests_mock
 
 from st2tests.base import BaseActionTestCase
@@ -22,7 +22,7 @@ from st2tests.base import BaseActionTestCase
 
 class OpsGenieBaseActionTestCase(BaseActionTestCase):
     __test__ = False
-    
+
     def setUp(self):
         super(OpsGenieBaseActionTestCase, self).setUp()
 

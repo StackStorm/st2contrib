@@ -12,37 +12,29 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import requests_mock
-
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 from send_heartbeat import SendHeartbeatAction
+
 
 class SendHeartbeatTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
     action_cls = SendHeartbeatAction
 
     def test_run_api_404(self):
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
-        adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat/send",
-                             status_code=404)
+        action, adapter = self._get_action_status_code(
+            'POST',
+            "mock://api.opsgenie.com/v1/json/heartbeat/send",
+            status_code=404)
 
         self.assertRaises(ValueError,
                           action.run,
                           "Test")
 
     def test_run_invalid_json(self):
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
-        adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat/send",
-                             text="{'ffo': bar}")
+        action, adapter = self._get_action_invalid_json(
+            'POST',
+            "mock://api.opsgenie.com/v1/json/heartbeat/send")
 
         self.assertRaises(ValueError,
                           action.run,
@@ -51,10 +43,7 @@ class SendHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_success(self):
         expected = self.load_json("send_heartbeat.json")
 
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
+        action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
                              "mock://api.opsgenie.com/v1/json/heartbeat/send",
                              text=self.get_fixture_content("send_heartbeat.json"))

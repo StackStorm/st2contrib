@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class EnableIntegrationAction(OpsGenieBaseAction):
     def run(self, name):
         """
@@ -24,4 +25,3 @@ class EnableIntegrationAction(OpsGenieBaseAction):
                          "v1/json/integration/enable",
                          payload)
         return data
-

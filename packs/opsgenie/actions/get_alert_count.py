@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class GetAlertCountAction(OpsGenieBaseAction):
     def run(self):
         """

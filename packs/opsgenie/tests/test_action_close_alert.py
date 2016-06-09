@@ -12,11 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import requests_mock
-
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 from close_alert import CloseAlertAction
+
 
 class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
     __test__ = True

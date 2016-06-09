@@ -12,36 +12,28 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import requests_mock
-
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 from list_teams import ListTeamsAction
+
 
 class ListTeamsTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
     action_cls = ListTeamsAction
 
     def test_run_api_404(self):
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
-        adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/team",
-                             status_code=404)
+        action, adapter = self._get_action_status_code(
+            'GET',
+            "mock://api.opsgenie.com/v1/json/team",
+            status_code=404)
 
         self.assertRaises(ValueError,
                           action.run)
 
     def test_run_invalid_json(self):
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
-        adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/team",
-                             text="{'ffo': bar}")
+        action, adapter = self._get_action_invalid_json(
+            'GET',
+            "mock://api.opsgenie.com/v1/json/team")
 
         self.assertRaises(ValueError,
                           action.run)
@@ -49,10 +41,7 @@ class ListTeamsTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_success(self):
         expected = self.load_json("list_teams.json")
 
-        action = self.get_action_instance(self.full_config)
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
+        action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
                              "mock://api.opsgenie.com/v1/json/team",
                              text=self.get_fixture_content("list_teams.json"))

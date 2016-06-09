@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class CloseAlertAction(OpsGenieBaseAction):
     def run(self, alert_id, alias=None, user=None, note=None, source="StackStorm"):
         """
@@ -25,7 +26,7 @@ class CloseAlertAction(OpsGenieBaseAction):
         if alias:
             body["alias"] = alias
         else:
-            body["id"] =  alert_id
+            body["id"] = alert_id
 
         if user:
             body['user'] = user

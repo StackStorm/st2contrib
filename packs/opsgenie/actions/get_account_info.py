@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class GetAccountInfoAction(OpsGenieBaseAction):
     def run(self):
         """
@@ -25,5 +26,3 @@ class GetAccountInfoAction(OpsGenieBaseAction):
                          payload=payload)
 
         return data
-        
-

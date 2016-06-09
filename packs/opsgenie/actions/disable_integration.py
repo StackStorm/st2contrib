@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class DisableIntegrationAction(OpsGenieBaseAction):
     def run(self, name):
         """

@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class ListUsersAction(OpsGenieBaseAction):
     def run(self):
         """
@@ -25,4 +26,3 @@ class ListUsersAction(OpsGenieBaseAction):
                          "v1/json/user",
                          payload=payload)
         return data
-

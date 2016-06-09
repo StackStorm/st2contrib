@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class ListTeamsAction(OpsGenieBaseAction):
     def run(self):
         """
@@ -24,4 +25,3 @@ class ListTeamsAction(OpsGenieBaseAction):
                          "v1/json/team",
                          payload=payload)
         return data
-

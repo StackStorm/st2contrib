@@ -12,11 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import requests_mock
-
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 from get_schedule_who_is_on_call import ScheduleWhoIsOnCallAction
+
 
 class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
@@ -34,7 +33,7 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
         action, adapter = self._get_action_status_code(
             "GET",
             "mock://api.opsgenie.com/v1/json/schedule/whoIsOnCall",
-            status_code=404)                                              
+            status_code=404)
         self.assertRaises(ValueError,
                           action.run)
 

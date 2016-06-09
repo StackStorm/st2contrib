@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
     def run(self):
         """
@@ -26,4 +27,3 @@ class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
                          payload=payload)
 
         return data
-

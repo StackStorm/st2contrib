@@ -14,6 +14,7 @@
 
 from lib.actions import OpsGenieBaseAction
 
+
 class DeleteAlertAction(OpsGenieBaseAction):
     def run(self, alert_id, alias=None, user=None, source="StackStorm"):
         """
@@ -25,7 +26,7 @@ class DeleteAlertAction(OpsGenieBaseAction):
         if alias:
             payload["alias"] = alias
         else:
-            payload["id"] =  alert_id
+            payload["id"] = alert_id
 
         if user:
             payload['user'] = user
