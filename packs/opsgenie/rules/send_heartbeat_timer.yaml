@@ -2,7 +2,7 @@
 name: "send_heartbeat_timer"
 pack: "opsgenie"
 description:
-enabled: true
+enabled: false
 
 trigger:
   type: "core.st2.IntervalTimer"
