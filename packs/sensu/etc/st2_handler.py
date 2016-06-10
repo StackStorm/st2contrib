@@ -240,7 +240,7 @@ def _post_webhook(url, body, verbose=False):
         status = r.status_code
 
         if status in UNREACHABLE_CODES:
-            msg = 'Webhook URL %s does not exist. Check StackStorm installation!'
+            msg = 'Webhook URL %s does not exist. Check StackStorm installation!' % (url)
             raise Exception(msg)
 
         if status not in OK_CODES:

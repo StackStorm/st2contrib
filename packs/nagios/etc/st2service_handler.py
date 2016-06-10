@@ -9,7 +9,7 @@ import os
 import sys
 import traceback
 from urlparse import urljoin
-
+import argparse
 try:
     import requests
 except ImportError:
@@ -24,8 +24,6 @@ except ImportError:
 
 # ST2 configuration
 
-ST2_CONFIG_FILE = './config.yaml'
-
 ST2_API_BASE_URL = 'http://localhost/api/v1/'
 ST2_AUTH_BASE_URL = 'http://localhost/auth/v1/'
 ST2_USERNAME = None
@@ -38,7 +36,7 @@ ST2_AUTH_PATH = 'tokens'
 ST2_WEBHOOKS_PATH = 'webhooks/st2'
 ST2_TRIGGERS_PATH = 'triggertypes'
 ST2_TRIGGERTYPE_PACK = 'nagios'
-ST2_TRIGGERTYPE_NAME = 'service-state-change'
+ST2_TRIGGERTYPE_NAME = 'service_state_change'
 ST2_TRIGGERTYPE_REF = '.'.join([ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME])
 
 STATE_MESSAGE = {
@@ -57,7 +55,6 @@ UNREACHABLE_CODES = [httplib.NOT_FOUND]
 
 TOKEN_AUTH_HEADER = 'X-Auth-Token'
 API_KEY_AUTH_HEADER = 'St2-Api-Key'
-verbose = True
 
 
 def _create_trigger_type(verbose=False):
@@ -73,26 +70,26 @@ def _create_trigger_type(verbose=False):
         headers['Content-Type'] = 'application/json; charset=utf-8'
 
         if verbose:
-            print('POST to URL %s for registering trigger. Body = %s, '
-                  'headers = %s.\n' % (url, payload, headers))
+            print('POST to URL {0} for registering trigger. Body = {1}, '
+                  'headers = {2}.\n'.format(url, payload, headers))
 
         post_resp = requests.post(url, data=json.dumps(payload),
                                   headers=headers,
                                   verify=ST2_SSL_VERIFY)
     except:
         traceback.print_exc(limit=20)
-        raise Exception('Unable to connect to st2 endpoint %s.' % url)
+        raise Exception('Unable to connect to st2 endpoint {0}.'.format(url))
     else:
         status = post_resp.status_code
         if status in UNREACHABLE_CODES:
-            msg = 'Got response %s. Invalid triggers endpoint %s.' \
-                'Check configuration!' % (status, url)
+            msg = 'Got response {0}. Invalid triggers endpoint {1}.' \
+                'Check configuration!'.format(status, url)
             raise Exception(msg)
 
         if status not in OK_CODES:
-            msg = 'Failed to register trigger type %s.%s with st2. ' \
-                'HTTP_CODE: %s' % (ST2_TRIGGERTYPE_PACK, ST2_TRIGGERTYPE_NAME,
-                                   status)
+            msg = 'Failed to register trigger type {0}.{1} with st2. ' \
+                'HTTP_CODE: {2}'.format(ST2_TRIGGERTYPE_PACK,
+                                        ST2_TRIGGERTYPE_NAME, status)
             raise Exception(msg)
         else:
             print('Registered trigger type with st2.\n')
@@ -103,29 +100,30 @@ def _get_auth_url():
 
 
 def _get_auth_token(verbose=False):
-    # global ST2_AUTH_TOKEN
     auth_url = _get_auth_url()
 
     if verbose:
-        print('Will POST to URL %s to get auth token.\n' % auth_url)
+        print('Will POST to URL {0} to get auth token.\n'.format(auth_url))
 
     try:
-        resp = requests.post(auth_url,
-                            json.dumps({'ttl': 5 * 60}),
-                            auth=(ST2_USERNAME, ST2_PASSWORD),
-                            verify=ST2_SSL_VERIFY)
+        resp = requests.post(auth_url, json.dumps({'ttl': 5 * 60}),
+                             auth=(ST2_USERNAME, ST2_PASSWORD),
+                             verify=ST2_SSL_VERIFY)
     except:
         traceback.print_exc(limit=20)
-        raise Exception('Unable to connect to st2 endpoint %s.\n' % auth_url)
+        raise Exception('Unable to connect to st2 endpoint {0}.'.
+                        format(auth_url))
     else:
         if resp.status_code in UNREACHABLE_CODES:
-            msg = 'Got response %s. Invalid auth endpoint %s. ' \
-                'Check configuration!' % (resp.status_code, auth_url)
+            msg = 'Got response {0}. Invalid auth endpoint {1}. '\
+                'Check configuration!'.format(resp.status_code, auth_url)
             raise Exception(msg)
+
         if resp.status_code not in OK_CODES:
-            msg = 'Cannot get a valid auth token from %s. ' \
-                'HTTP_CODE: %s' % (auth_url, resp.status_code)
+            msg = 'Cannot get a valid auth token from {0}. '\
+                'HTTP_CODE: {1}'.format(auth_url, resp.status_code)
             raise Exception(msg)
+
         return resp.json()['token']
 
 
@@ -149,8 +147,8 @@ def _register_with_st2(verbose=False):
     try:
         if not REGISTERED_WITH_ST2:
             if verbose:
-                print('Checking if trigger "%s" registered with st2.'
-                      % ST2_TRIGGERTYPE_REF)
+                print('Checking if trigger "{0}" registered with st2.'
+                      .format(ST2_TRIGGERTYPE_REF))
             _register_trigger_with_st2(verbose=verbose)
             REGISTERED_WITH_ST2 = True
     except:
@@ -161,18 +159,18 @@ def _register_with_st2(verbose=False):
 
 
 def _register_trigger_with_st2(verbose=False):
-    url = urljoin(_get_st2_triggers_url(), ST2_TRIGGERTYPE_REF)
-    sys.stdout.write('GET: %s\n' % url)
+    triggers_url = _get_st2_triggers_url()
 
     try:
         headers = _get_st2_request_headers()
         if verbose:
-            print('Will GET from URL %s for detecting trigger %s. \n' %
-                  (url, ST2_TRIGGERTYPE_REF))
-            print('Request headers: %s\n' % headers)
-        get_resp = requests.get(url, headers=headers, verify=ST2_SSL_VERIFY)
-        # else:
-        #    get_resp = requests.get(url)
+            print('Will GET from URL {0} for detecting trigger {1}.\n'
+                  .format(triggers_url, ST2_TRIGGERTYPE_REF))
+            print('Request headers: {0}\n'.format(headers))
+
+        get_resp = requests.get(triggers_url, headers=headers,
+                                verify=ST2_SSL_VERIFY)
+
         if get_resp.status_code != httplib.OK:
             _create_trigger_type(verbose=verbose)
         else:
@@ -181,15 +179,21 @@ def _register_trigger_with_st2(verbose=False):
                 _create_trigger_type(verbose=verbose)
     except:
         traceback.print_exc(limit=20)
-        raise Exception('Unable to connect to st2 endpoint %s.\n' % url)
+        raise Exception('Unable to connect to st2 endpoint {0}.\n'
+                        .format(triggers_url))
     else:
         if verbose:
-            print('Successfully registered trigger %s with st2.\n'
-                  % ST2_TRIGGERTYPE_REF)
+            print('Successfully registered trigger {0} with st2.\n'
+                  .format(ST2_TRIGGERTYPE_REF))
+
+
+def _get_st2_triggers_base_url():
+    url = urljoin(ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
+    return url
 
 
 def _get_st2_triggers_url():
-    url = urljoin(ST2_API_BASE_URL, ST2_TRIGGERS_PATH)
+    url = urljoin(_get_st2_triggers_base_url() + '/', ST2_TRIGGERTYPE_REF)
     return url
 
 
@@ -201,40 +205,41 @@ def _get_st2_webhooks_url():
 def _post_webhook(url, body, verbose=False):
     headers = _get_st2_request_headers()
     headers['X-ST2-Integration'] = 'nagios.'
-    headers['St2-Trace-Tag'] = body['payload']['id']
     headers['Content-Type'] = 'application/json; charset=utf-8'
 
     try:
         if verbose:
-            print('Webhook POST: url: %s, headers: %s, body: %s\n'
-                  % (url, headers, body))
+            print('Webhook POST: url: {0}, headers: {1}, body: {2}\n'
+                  .format(url, headers, body))
         r = requests.post(url, data=json.dumps(body), headers=headers,
                           verify=False)
     except:
-        raise Exception('Cannot connect to st2 endpoint %s.' % url)
+        traceback.print_exc(20)
+        raise Exception('Cannot connect to st2 endpoint {0}.'.format(url))
     else:
         status = r.status_code
 
         if status in UNREACHABLE_CODES:
-            msg = 'Webhook URL %s does not exist. Check StackStorm installation!'
+            msg = 'Webhook URL {0} does not exist. Check StackStorm '\
+                'installation!'.format(url)
             raise Exception(msg)
 
         if status not in OK_CODES:
             sys.stderr.write('Failed posting nagio event to st2. HTTP_CODE: '
-                             '%d\n' % status)
+                             '{0}\n'.format(status))
         else:
             sys.stdout.write('Sent nagio event to st2. HTTP_CODE: '
-                             '%d\n' % status)
+                             '{0}\n'.format(status))
 
 
 def _post_event_to_st2(payload, verbose=False):
+    # payload: host, service, event_id, state, state_id, state_type, attempt)
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
-
     try:
         body['payload'] = json.loads(payload)
     except:
-        print('Invalid JSON payload %s.' % payload)
+        print('Invalid JSON payload {0}.'.format(payload))
         sys.exit(3)
 
     try:
@@ -243,62 +248,90 @@ def _post_event_to_st2(payload, verbose=False):
     except:
         traceback.print_exc(limit=20)
         print('Cannot send event to st2.')
-        # sys.exit(4)
-        return False
+        sys.exit(4)
 
 
-def _get_payload(host, service, event_id, state, state_type, attempt):
-    payload = {}
-    payload['host'] = host
-    payload['service'] = service
-    payload['event_id'] = event_id
-    payload['state'] = state
-    payload['state_type'] = state_type
-    payload['attempt'] = attempt
-    payload['msg'] = STATE_MESSAGE.get(state, 'Undefined state.')
-    return payload
+def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=False):
+    global ST2_USERNAME
+    global ST2_PASSWORD
+    global ST2_API_KEY
+    global ST2_AUTH_TOKEN
+    global ST2_API_BASE_URL
+    global ST2_AUTH_BASE_URL
+    global ST2_SSL_VERIFY
+    global UNAUTHED
+    global IS_API_KEY_AUTH
 
+    UNAUTHED = unauthed
+    ST2_SSL_VERIFY = ssl_verify
 
-def main(args):
-    event_id = args[1]
-    service = args[2]
-    state = args[3]
-    state_type = args[4]
-    attempt = args[5]
-    host = args[6]
-    verbose = args[7]
+    if not os.path.exists(config_file):
+        print('Configuration file {0} not found. Exiting!!!'
+              .format(config_file))
+        sys.exit(1)
 
-    payload = _get_payload(host, service, event_id, state, state_type, attempt)
-    body = {}
-    body['trigger'] = ST2_TRIGGERTYPE_REF
-    body['payload'] = payload
-    _post_event_to_st2(payload, verbose=verbose)
+    with open(config_file) as f:
+        config = yaml.safe_load(f)
 
+        if verbose:
+            print('Contents of config file: {0}'.format(config))
 
-if __name__ == '__main__':
-    try:
-        if not os.path.exists(ST2_CONFIG_FILE):
-            sys.stderr.write('Configuration file not found. Exiting.\n')
-            sys.exit(1)
+        ST2_USERNAME = config['st2_username']
+        ST2_PASSWORD = config['st2_password']
+        ST2_API_KEY = config['st2_api_key']
+        ST2_API_BASE_URL = config['st2_api_base_url']
+        if not ST2_API_BASE_URL.endswith('/'):
+            ST2_API_BASE_URL += '/'
+        ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+        if not ST2_AUTH_BASE_URL.endswith('/'):
+            ST2_AUTH_BASE_URL += '/'
 
-        with open(ST2_CONFIG_FILE) as f:
-            config = yaml.safe_load(f)
-            ST2_USERNAME = config['st2_username']
-            ST2_PASSWORD = config['st2_password']
-            ST2_API_BASE_URL = config['st2_api_base_url']
-            ST2_AUTH_BASE_URL = config['st2_auth_base_url']
+    if ST2_API_KEY:
+        IS_API_KEY_AUTH = True
+
+    if verbose:
+        print('Unauthed? : {0}\nAPI key auth?: {1}\nSSL Verify? : {2}\n'
+              .format(UNAUTHED, IS_API_KEY_AUTH, ST2_SSL_VERIFY))
+
+    if not UNAUTHED and not IS_API_KEY_AUTH:
         try:
             if not ST2_AUTH_TOKEN:
-                print('No auth token found. Let\'s get one from StackStorm!')
+                if verbose:
+                    print('No auth token found. Let\'s get one from'
+                          'StackStorm!')
                 ST2_AUTH_TOKEN = _get_auth_token(verbose=verbose)
         except:
             traceback.print_exc(limit=20)
             print('Unable to negotiate an auth token. Exiting!')
             sys.exit(1)
 
-        if not REGISTERED_WITH_ST2:
-            _register_with_st2(verbose=verbose)
-    except:
-        sys.stderr.write('Failed registering with st2. Won\'t post event.\n')
-    else:
-        main(sys.argv)
+
+def main(config_file, payload, verbose=False, unauthed=False, ssl_verify=False):
+
+    _set_config_opts(config_file=config_file, unauthed=unauthed,
+                     verbose=verbose, ssl_verify=ssl_verify)
+
+    _register_with_st2(verbose=verbose)
+
+    _post_event_to_st2(payload, verbose=verbose)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='StackStorm nagios event '
+                                     'handler.')
+    parser.add_argument('config_path',
+                        help='Exchange to listen on')
+    parser.add_argument('--verbose', '-v', required=False, action='store_true',
+                        help='Verbose mode.')
+    parser.add_argument('--unauthed', '-u', required=False,
+                        action='store_true', help='Allow to post to '
+                        'unauthed st2. E.g. when auth is disabled ' +
+                        'server side.')
+    parser.add_argument('--ssl-verify', '-s', required=False,
+                        action='store_true', help='Turn on SSL verification '
+                        'for st2 APIs.')
+
+    args = parser.parse_args()
+    payload = sys.stdin.read().strip()
+    main(config_file=args.config_path, payload=payload, verbose=args.verbose,
+         unauthed=args.unauthed, ssl_verify=args.ssl_verify)

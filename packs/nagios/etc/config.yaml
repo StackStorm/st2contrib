@@ -1,5 +1,0 @@
----
-  st2_username: "st2admin"
-  st2_password: "pass"
-  st2_api_base_url: "https://localhost/api/v1/"
-  st2_auth_base_url: "https://localhost/auth/v1/"
