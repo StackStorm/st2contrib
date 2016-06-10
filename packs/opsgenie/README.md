@@ -1,7 +1,31 @@
 # OpsGenie Pack
 
-To use this intergration pack, you'll need an OpsGenie account and an
-API key.
+This integration pack allows you to intergrate with
+[OpsGenie](https://www.opsgenie.com/). Which is a service to manage
+alerts and oncall rotas.
+
+You'll need an account and to create an integration API key and update
+the packs `config.yaml`.
+
+## Using OpsGenie for hubot Heartbeat
+
+This requires 2 StackStorm installations, with both hubots in the same
+channel.
+
+The following needs to be configured in the datastore on both servers
+(replace hubot with the other bot name):
+
+```bash
+st2 key set opsgenie_timer_hb_user "hubot"
+st2 key set opsgenie_timer_hb_name "StackStorm ChatOps hubot"
+st2 key set opsgenie_timer_hb_channel "chatops_heartbeat"
+```
+
+Then you should enable the timer rule:
+
+```bash
+st2 rule enable opsgenie.send_heartbeat_timer
+```
 
 ## Coverage of OpsGenie API
 
@@ -89,9 +113,9 @@ Key:
     [?] Get Forwarding Rule
     [?] List Forwarding Rules
     [?] List Forwarding Rules for a User
-[-] Heartbeat API
-    [?] Add Heartbeat
-    [?] Update Heartbeat
+[X] Heartbeat API
+    [X] Add Heartbeat
+    [-] Update Heartbeat (it's the same as add!)
     [X] Enable Heartbeat
     [X] Disable Heartbeat
     [X] Delete Heartbeat

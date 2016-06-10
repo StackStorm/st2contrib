@@ -15,16 +15,26 @@
 from lib.actions import OpsGenieBaseAction
 
 
-class DeleteHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name):
+class AddHeartbeatAction(OpsGenieBaseAction):
+    def run(self, name, interval=None, intervalUnit=None, description=None, enabled=False):
         """
         """
 
-        payload = {"apiKey": self.api_key,
-                "name": name}
+        body = {"apiKey": self.api_key,
+                "name": name,
+                "enabled": enabled}
 
-        data = self._req("DELETE",
+        if interval:
+            body["interval"] = interval
+
+        if intervalUnit:
+            body["intervalUnit"] = intervalUnit
+
+        if description:
+            body["description"] = description
+
+        data = self._req("POST",
                          "v1/json/heartbeat",
-                         payload=payload)
+                         body=body)
 
         return data

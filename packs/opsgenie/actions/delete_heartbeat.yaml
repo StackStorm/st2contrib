@@ -1,8 +1,8 @@
 ---
-description: "Disable an OpsGenie Heartbeat"
+description: "Delete an OpsGenie Heartbeat"
 enabled: true
-entry_point: "disable_heartbeat.py"
-name: "disable_heartbeat"
+entry_point: "delete_heartbeat.py"
+name: "delete_heartbeat"
 pack: "opsgenie"
 
 runner_type: "python-script"
