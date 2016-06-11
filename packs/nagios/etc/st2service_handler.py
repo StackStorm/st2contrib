@@ -24,8 +24,8 @@ except ImportError:
 
 # ST2 configuration
 
-ST2_API_BASE_URL = 'http://localhost/api/v1/'
-ST2_AUTH_BASE_URL = 'http://localhost/auth/v1/'
+ST2_API_BASE_URL = None
+ST2_AUTH_BASE_URL = None
 ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_API_KEY = None
@@ -233,12 +233,12 @@ def _post_webhook(url, body, verbose=False):
 
 
 def _post_event_to_st2(payload, verbose=False):
-    # payload: host, service, event_id, state, state_id, state_type, attempt)
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
     try:
-        body['payload'] = json.loads(payload)
+        body['payload'] = payload
     except:
+        traceback.print_exc(limit=20)
         print('Invalid JSON payload {0}.'.format(payload))
         sys.exit(3)
 
@@ -251,7 +251,7 @@ def _post_event_to_st2(payload, verbose=False):
         sys.exit(4)
 
 
-def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=False):
+def _set_config_opts(config_file, verbose=False):
     global ST2_USERNAME
     global ST2_PASSWORD
     global ST2_API_KEY
@@ -261,12 +261,8 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
     global ST2_SSL_VERIFY
     global UNAUTHED
     global IS_API_KEY_AUTH
-
-    UNAUTHED = unauthed
-    ST2_SSL_VERIFY = ssl_verify
-
     if not os.path.exists(config_file):
-        print('Configuration file {0} not found. Exiting!!!'
+        print('Configuration file "{0}" not found. Exiting!!!'
               .format(config_file))
         sys.exit(1)
 
@@ -285,6 +281,10 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
         ST2_AUTH_BASE_URL = config['st2_auth_base_url']
         if not ST2_AUTH_BASE_URL.endswith('/'):
             ST2_AUTH_BASE_URL += '/'
+        if type(config['unauthed']) is bool:
+            UNAUTHED = config['unauthed']
+        if type(config['ssl_verify']) is bool:
+            ST2_SSL_VERIFY = config['ssl_verify']
 
     if ST2_API_KEY:
         IS_API_KEY_AUTH = True
@@ -306,10 +306,22 @@ def _set_config_opts(config_file, verbose=False, unauthed=False, ssl_verify=Fals
             sys.exit(1)
 
 
-def main(config_file, payload, verbose=False, unauthed=False, ssl_verify=False):
+def _get_payload(host, service, event_id, state, state_id, state_type, attempt):
+    payload = {}
+    payload['host'] = host
+    payload['service'] = service
+    payload['event_id'] = event_id
+    payload['state'] = state
+    payload['state_id'] = state_id
+    payload['state_type'] = state_type
+    payload['attempt'] = attempt
+    payload['msg'] = STATE_MESSAGE.get(state, 'Undefined state.')
+    return payload
 
-    _set_config_opts(config_file=config_file, unauthed=unauthed,
-                     verbose=verbose, ssl_verify=ssl_verify)
+
+def main(config_file, payload, verbose=False):
+
+    _set_config_opts(config_file=config_file, verbose=verbose)
 
     _register_with_st2(verbose=verbose)
 
@@ -317,21 +329,24 @@ def main(config_file, payload, verbose=False, unauthed=False, ssl_verify=False):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='StackStorm nagios event '
-                                     'handler.')
+    description = '\nStackStorm nagios event handler. Please provide args '\
+        'in following order after the config_path:\n\n event_id, service, '\
+        'state,state_id, state_type, attempt, host\n'
+    parser = argparse.ArgumentParser(description)
     parser.add_argument('config_path',
                         help='Exchange to listen on')
     parser.add_argument('--verbose', '-v', required=False, action='store_true',
                         help='Verbose mode.')
-    parser.add_argument('--unauthed', '-u', required=False,
-                        action='store_true', help='Allow to post to '
-                        'unauthed st2. E.g. when auth is disabled ' +
-                        'server side.')
-    parser.add_argument('--ssl-verify', '-s', required=False,
-                        action='store_true', help='Turn on SSL verification '
-                        'for st2 APIs.')
 
-    args = parser.parse_args()
-    payload = sys.stdin.read().strip()
-    main(config_file=args.config_path, payload=payload, verbose=args.verbose,
-         unauthed=args.unauthed, ssl_verify=args.ssl_verify)
+    args, nagio_args = parser.parse_known_args()
+
+    event_id = nagio_args[0]
+    service = nagio_args[1]
+    state = nagio_args[2]
+    state_id = nagio_args[3]
+    state_type = nagio_args[4]
+    attempt = nagio_args[5]
+    host = nagio_args[6]
+
+    payload = _get_payload(host, service, event_id, state, state_id, state_type, attempt)
+    main(config_file=args.config_path, payload=payload, verbose=args.verbose)

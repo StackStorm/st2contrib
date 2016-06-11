@@ -27,8 +27,8 @@ except ImportError:
 
 # ST2 configuration
 
-ST2_API_BASE_URL = 'https://localhost/api/v1/'
-ST2_AUTH_BASE_URL = 'https://localhost/auth/v1/'
+ST2_API_BASE_URL = None  # 'https://localhost/api/v1/'
+ST2_AUTH_BASE_URL = None  # 'https://localhost/auth/v1/'
 ST2_USERNAME = None
 ST2_PASSWORD = None
 ST2_API_KEY = None
