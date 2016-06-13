@@ -18,6 +18,7 @@ except ImportError:
 
 try:
     import yaml
+    requests.packages.urllib3.disable_warnings()
 except ImportError:
     raise ImportError('Missing dependency pyyaml. \
                       Do ``pip install pyyaml``.')
@@ -59,7 +60,7 @@ API_KEY_AUTH_HEADER = 'St2-Api-Key'
 
 def _create_trigger_type(verbose=False):
     try:
-        url = _get_st2_triggers_url()
+        url = _get_st2_triggers_base_url()
         payload = {
             'name': ST2_TRIGGERTYPE_NAME,
             'pack': ST2_TRIGGERTYPE_PACK,
@@ -274,7 +275,7 @@ def _set_config_opts(config_file, verbose=False):
 
         ST2_USERNAME = config['st2_username']
         ST2_PASSWORD = config['st2_password']
-        ST2_API_KEY = config['st2_api_key']
+        ST2_API_KEY = config.get('st2_api_key', None)
         ST2_API_BASE_URL = config['st2_api_base_url']
         if not ST2_API_BASE_URL.endswith('/'):
             ST2_API_BASE_URL += '/'
