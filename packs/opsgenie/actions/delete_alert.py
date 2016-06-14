@@ -16,8 +16,21 @@ from lib.actions import OpsGenieBaseAction
 
 
 class DeleteAlertAction(OpsGenieBaseAction):
-    def run(self, alert_id, alias=None, user=None, source="StackStorm"):
+    def run(self, alert_id=None, alias=None, user=None, source="StackStorm"):
         """
+        Delete an OpsGenie alert.
+
+        Args
+        - alert_id: Id of the alert that will be deleted.
+        - alias: Alias of the alert will be deleted.
+        - user: Default owner of the execution.
+        - source: User defined field to specify source of delete action.
+
+        Returns:
+        - dict: Data from OpsGenie.
+
+        Raises:
+        - ValueError: If alert_id and alias are None.
         """
 
         payload = {"apiKey": self.api_key,
@@ -25,8 +38,10 @@ class DeleteAlertAction(OpsGenieBaseAction):
 
         if alias:
             payload["alias"] = alias
-        else:
+        elif alert_id:
             payload["id"] = alert_id
+        else:
+            raise ValueError("Need one of alert_id or alias.")
 
         if user:
             payload['user'] = user

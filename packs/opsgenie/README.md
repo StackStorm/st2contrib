@@ -16,16 +16,32 @@ The following needs to be configured in the datastore on both servers
 (replace hubot with the other bot name):
 
 ```bash
-st2 key set opsgenie_timer_hb_user "hubot"
+st2 key set opsgenie_timer_hb_user "other_hubot"
 st2 key set opsgenie_timer_hb_name "StackStorm ChatOps hubot"
 st2 key set opsgenie_timer_hb_channel "chatops_heartbeat"
 ```
 
-Then you should enable the timer rule:
+Then you need to add your Heartbeat to OpsGenie and test it:
+
+```bash
+st2 run opsgenie.add_heartbeat name="{{system.opsgenie_timer_hb_name}}" interval=30 enabled=true
+st2 run opsgenie.send_heartbeat name="{{system.opsgenie_timer_hb_name}}"
+```
+
+If both of these are `successful` you can eanble them with:
 
 ```bash
 st2 rule enable opsgenie.send_heartbeat_timer
 ```
+
+To get an alert if it expires an intergration for Heartbeat should be
+configured in the OpsGenie web interface.
+
+## Configureation
+
+Update the `config.yaml` to setup the API key for OpsGenie.
+
+* `api_key` - The integration API key from the OpsGenie integration page.
 
 ## Coverage of OpsGenie API
 
@@ -115,7 +131,7 @@ Key:
     [?] List Forwarding Rules for a User
 [X] Heartbeat API
     [X] Add Heartbeat
-    [-] Update Heartbeat (it's the same as add!)
+    [X] Update Heartbeat
     [X] Enable Heartbeat
     [X] Disable Heartbeat
     [X] Delete Heartbeat

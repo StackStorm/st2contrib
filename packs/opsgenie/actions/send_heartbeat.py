@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class SendHeartbeatAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Snd heartbeat to OpsGenie.
+
+        Args:
+        - name: Name of the heartbeat.
         """
 
         body = {"apiKey": self.api_key,

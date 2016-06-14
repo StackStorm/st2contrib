@@ -18,6 +18,13 @@ from lib.actions import OpsGenieBaseAction
 class GetHeartbeatAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Retrieve details of heartbeat monitors in OpsGenie.
+
+        Args:
+        - name: Name of the heartbeat.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         body = {"apiKey": self.api_key,

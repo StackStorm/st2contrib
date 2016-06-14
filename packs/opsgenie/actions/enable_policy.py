@@ -18,6 +18,13 @@ from lib.actions import OpsGenieBaseAction
 class EnablePolicyAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Enable an alert policy in OpsGenie.
+
+        Args:
+        - name: Name of policy.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"name": name}

@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class ListGroupsAction(OpsGenieBaseAction):
     def run(self):
         """
+        List groups in OpsGenie.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key}

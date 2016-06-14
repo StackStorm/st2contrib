@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
     def run(self):
         """
+        List current oncall participants of all schedules.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key}

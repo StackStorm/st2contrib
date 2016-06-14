@@ -21,6 +21,27 @@ class CreateAlertAction(OpsGenieBaseAction):
             source="StackStorm", tags=None, details=None,
             entity=None, user=None, note=None):
         """
+        Create alert in OpsGenie.
+
+        Args:
+        - message: Alert text limited to 130 characters
+        - teams: List of team names which will be responsible for the alert
+        - alias: Used for alert deduplication.
+        - description: detailed description of the alert.
+        - recipients: Optional user, group, schedule or escalation names.
+        - actions: A comma separated list of actions that can be executed.
+        - source: Field to specify source of alert.
+        - tags: A comma separated list of labels attached to the alert.
+        - details: Set of user defined properties.
+        - entity: The entity the alert is related to.
+        - user: Default owner of the execution.
+        - note: Additional alert note.
+
+        Returns:
+        - dict: Data returned by OpsGenie.
+
+        Raises:
+        - ValueError: If description or message is too long.
         """
 
         if len(message) > 130:

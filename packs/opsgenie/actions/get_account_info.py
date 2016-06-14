@@ -18,7 +18,12 @@ from lib.actions import OpsGenieBaseAction
 class GetAccountInfoAction(OpsGenieBaseAction):
     def run(self):
         """
+        Retrieve OpsGenie account info.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
+
         payload = {"apiKey": self.api_key}
 
         data = self._req("GET",

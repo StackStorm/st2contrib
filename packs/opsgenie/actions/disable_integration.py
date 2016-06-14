@@ -18,6 +18,13 @@ from lib.actions import OpsGenieBaseAction
 class DisableIntegrationAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Disable an integration in OpsGenie.
+
+        Args:
+        - name: Name of integration
+
+        Returns:
+        - dict: Data from OpsGenie
         """
 
         payload = {"apiKey": self.api_key,

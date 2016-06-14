@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class ListUsersAction(OpsGenieBaseAction):
     def run(self):
         """
+        List users in OpsGenie.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key}

@@ -12,7 +12,7 @@ ack:
 result:
   format: |
     {% if execution.status == 'succeeded' %}
-    Heartbeat was {{execution.result.result.status}} (code: {{execution.result.result.code}})
+    Heartbeat was {{execution.result.result.status}} (code: {{execution.result.result.code}}){~}
     {% else %}
     Could not sent an heartbeat to OpsGenie. See see {{execution.id}} for details.{~}
     {% endif %}

@@ -16,8 +16,19 @@ from lib.actions import OpsGenieBaseAction
 
 
 class AddHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name, interval=None, intervalUnit=None, description=None, enabled=False):
+    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False):
         """
+        Add a Heartbeat to OpsGenie
+
+        Args:
+        - name: Name of the heartbeat
+        - interval: Specifies how often a heartbeat message should be expected.
+        - intervalUnit: interval specified as minutes, hours or days.
+        - description: An optional description of the heartbeat.
+        - enabled: Enable/disable heartbeat monitoring.
+
+        Returns:
+        - dict: Data from OpsGenie
         """
 
         body = {"apiKey": self.api_key,
@@ -27,8 +38,8 @@ class AddHeartbeatAction(OpsGenieBaseAction):
         if interval:
             body["interval"] = interval
 
-        if intervalUnit:
-            body["intervalUnit"] = intervalUnit
+        if interval_unit:
+            body["intervalUnit"] = interval_unit
 
         if description:
             body["description"] = description

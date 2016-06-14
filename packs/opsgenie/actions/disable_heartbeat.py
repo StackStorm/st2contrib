@@ -18,6 +18,13 @@ from lib.actions import OpsGenieBaseAction
 class DisableHeartbeatAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Disable monitored heartbeat in OpsGenie
+
+        Args:
+        - name: Name of the heartbeat.
+
+        Returns:
+        - dict: data from OpsGenie.
         """
 
         body = {"apiKey": self.api_key,

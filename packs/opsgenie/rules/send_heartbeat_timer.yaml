@@ -8,7 +8,7 @@ trigger:
   type: "core.st2.IntervalTimer"
   parameters:
       unit: "minutes"
-      delta: 1
+      delta: 12
 
 action:
   ref: "chatops.post_message"

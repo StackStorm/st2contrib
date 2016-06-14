@@ -18,6 +18,13 @@ from lib.actions import OpsGenieBaseAction
 class EnableIntegrationAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Enable an integration in OpsGenie.
+
+        Args:
+        - name: Name of integration.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"name": name}

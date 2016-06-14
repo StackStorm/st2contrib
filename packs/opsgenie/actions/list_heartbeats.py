@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class ListHeartbeatsAction(OpsGenieBaseAction):
     def run(self):
         """
+        List details of heartbeat monitors in OpsGenie.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key}

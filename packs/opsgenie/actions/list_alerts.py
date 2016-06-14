@@ -18,6 +18,10 @@ from lib.actions import OpsGenieBaseAction
 class ListAlertsAction(OpsGenieBaseAction):
     def run(self):
         """
+        List alerts in OpsGenie.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key}

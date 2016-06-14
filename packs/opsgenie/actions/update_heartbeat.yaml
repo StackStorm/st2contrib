@@ -1,8 +1,8 @@
 ---
-description: "Add a Heartbeat to OpsGenie"
+description: "Update an Heartbeat in OpsGenie"
 enabled: true
 entry_point: "add_heartbeat.py"
-name: "add_heartbeat"
+name: "update_heartbeat"
 pack: "opsgenie"
 
 runner_type: "python-script"
@@ -16,7 +16,7 @@ parameters:
     type: "integer"
     description: "Specifies how often a heartbeat message should be expected."
     default: ~
-  interval_unit:
+  intervalUnit:
     type: "string"
     description: "interval specified as minutes, hours or days."
     enum:

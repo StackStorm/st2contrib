@@ -18,7 +18,12 @@ from lib.actions import OpsGenieBaseAction
 class GetAlertCountAction(OpsGenieBaseAction):
     def run(self):
         """
+        Get counts alerts in OpsGenie.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
+
         payload = {"apiKey": self.api_key}
 
         data = self._req("GET",

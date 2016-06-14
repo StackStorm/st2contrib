@@ -18,10 +18,17 @@ from lib.actions import OpsGenieBaseAction
 class DeleteHeartbeatAction(OpsGenieBaseAction):
     def run(self, name):
         """
+        Delete monitored heartbeat in OpsGenie.
+
+        Args:
+        - name: Name of the heartbeat.
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
         payload = {"apiKey": self.api_key,
-                "name": name}
+                   "name": name}
 
         data = self._req("DELETE",
                          "v1/json/heartbeat",

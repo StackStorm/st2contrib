@@ -11,7 +11,7 @@ parameters:
   alert_id:
     type: "string"
     description: "Alert ID to close."
-    required: true
+    default: ~
   alias:
     type: "string"
     description: "Alert ID to close."
