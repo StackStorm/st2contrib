@@ -55,11 +55,14 @@ class CreateAlertAction(OpsGenieBaseAction):
             body["teams"] = teams
 
         if alias:
-            body["alias"] = alias
+            if len(alias) > 512:
+                raise ValueError("alias is too long, can't be over 512 chars.")
+            else:
+                body["alias"] = alias
 
         if description:
             if len(description) > 15000:
-                raise ValueError("Description is too long, can't be over 15000 chars")
+                raise ValueError("Description is too long, can't be over 15000 chars.")
             else:
                 body["description"] = description
 
@@ -70,7 +73,10 @@ class CreateAlertAction(OpsGenieBaseAction):
             body["actions"] = actions
 
         if source:
-            body["source"] = source
+            if len(source) > 512:
+                raise ValueError("Source is too long, can't be over 512 chars.")
+            else:
+                body["source"] = source
 
         if tags:
             body["tags"] = tags
@@ -79,10 +85,16 @@ class CreateAlertAction(OpsGenieBaseAction):
             body["details"] = details
 
         if entity:
-            body["entity"] = entity
+            if len(entity) > 512:
+                raise ValueError("Entity is too long, can't be over 512 chars.")
+            else:
+                body["entity"] = entity
 
         if user:
-            body['user'] = user
+            if len(user) > 100:
+                raise ValueError("User is too long, can't be over 100 chars.")
+            else:
+                body['user'] = user
 
         if note:
             body['note'] = note
