@@ -1,3 +1,5 @@
+# Needed for chek and lint scripts
+-e git+https://github.com/StackStorm/st2sdk.git@master#egg=st2sdk
 pyyaml
 pep8>=1.6.0,<1.7
 flake8>=2.3.0,<2.4

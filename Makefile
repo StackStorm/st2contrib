@@ -37,6 +37,9 @@ metadata-check: requirements .metadata-check
 .PHONY: packs-resource-register
 packs-resource-register: requirements .clone_st2_repo .packs-resource-register
 
+.PHONY: packs-missing-tests
+packs-missing-tests: requirements .packs-missing-tests
+
 .PHONY: packs-tests
 packs-tests: requirements .clone_st2_repo .packs-tests
 
@@ -52,29 +55,29 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	@echo "==================== pylint ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/pylint-pack.sh $$pack || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-pylint-pack $$pack || exit 1 ; fi; done
 
 .PHONY: .configs-check
 .configs-check:
 	@echo
 	@echo "==================== configs-check ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_YAML}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_YAML); do if [ -n "$$file" ]; then ./scripts/validate-yaml-file.sh $$file || exit 1 ; fi; done
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_JSON}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_JSON); do if [ -n "$$file" ]; then ./scripts/validate-json-file.sh $$file || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_YAML}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_YAML); do if [ -n "$$file" ]; then st2-check-validate-yaml-file $$file || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_JSON}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_JSON); do if [ -n "$$file" ]; then st2-check-validate-json-file $$file || exit 1 ; fi; done
 
 .PHONY: .metadata-check
 .metadata-check:
 	@echo
 	@echo "==================== metadata-check ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then ${ROOT_DIR}/scripts/validate-pack-metadata-exists.sh $$pack || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-validate-pack-metadata-exists $$pack || exit 1 ; fi; done
 
 .PHONY: .packs-resource-register
 .packs-resource-register:
 	@echo
 	@echo "==================== packs-resource-register ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/register-pack-resources.sh $$pack || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-register-pack-resources $$pack || exit 1 ; fi; done
 
 .PHONY: .packs-tests
 .packs-tests:
@@ -83,13 +86,12 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then $(ST2_REPO_PATH)/st2common/bin/st2-run-pack-tests -x -p $$pack || exit 1 ; fi; done
 
-.PHONY: packs-missing-tests
-packs-missing-tests:
+.PHONY: .packs-missing-tests
+.packs-missing-tests:
 	@echo
 	@echo "==================== pack-missing-tests ===================="
 	@echo
-	if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then scripts/pack-missing-tests.sh $$pack || exit 1 ; fi; done
-
+	if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-print-pack-tests-coverage $$pack || exit 1 ; fi; done
 
 .PHONY: .clone_st2_repo
 .clone_st2_repo:
