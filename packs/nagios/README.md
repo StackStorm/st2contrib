@@ -33,7 +33,7 @@ notifications to st2. This trigger type is then referenced in st2 rules. See
     ```bash
     python st2service_handler.py st2service_handler.yaml 44534 3 WARNING HARD "/var/log" 4 host-name
     # You'd see something like the following if the test succeeds.
-    Sent nagio event to st2. HTTP_CODE: 202
+    Sent nagios event to st2. HTTP_CODE: 202
     ```
 
 ## Handler options
