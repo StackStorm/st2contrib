@@ -186,8 +186,9 @@ class OrionBaseAction(Action):
         if len(orion_data['results']) == 1:
             return orion_data['results'][0]['ID']
         else:
-            raise ValueError(
-                "Failed to lookup community in Orion.Credential!")
+            msg = "Could not find community '{}' in Orion.Credential!"
+            send_user_error(msg)
+            raise ValueError(msg)
 
     def get_engine_id(self, poller):
         """
