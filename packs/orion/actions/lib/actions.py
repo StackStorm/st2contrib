@@ -186,7 +186,8 @@ class OrionBaseAction(Action):
         if len(orion_data['results']) == 1:
             return orion_data['results'][0]['ID']
         else:
-            msg = "Could not find community '{}' in Orion.Credential!"
+            msg = "Could not get ID for community in Orion.Credential: {}".format(
+                community)
             send_user_error(msg)
             raise ValueError(msg)
 
