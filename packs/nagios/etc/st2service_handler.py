@@ -215,7 +215,7 @@ def _post_webhook(url, body, verbose=False):
         r = requests.post(url, data=json.dumps(body), headers=headers,
                           verify=False)
     except:
-        traceback.print_exc(20)
+        traceback.print_exc(10)
         raise Exception('Cannot connect to st2 endpoint {0}.'.format(url))
     else:
         status = r.status_code
@@ -229,27 +229,22 @@ def _post_webhook(url, body, verbose=False):
             sys.stderr.write('Failed posting nagio event to st2. HTTP_CODE: '
                              '{0}\n'.format(status))
         else:
-            sys.stdout.write('Sent nagio event to st2. HTTP_CODE: '
+            sys.stdout.write('Sent nagios event to st2. HTTP_CODE: '
                              '{0}\n'.format(status))
 
 
 def _post_event_to_st2(payload, verbose=False):
     body = {}
     body['trigger'] = ST2_TRIGGERTYPE_REF
-    try:
-        body['payload'] = payload
-    except:
-        traceback.print_exc(limit=20)
-        print('Invalid JSON payload {0}.'.format(payload))
-        sys.exit(3)
+    body['payload'] = payload
 
     try:
         _post_webhook(url=_get_st2_webhooks_url(), body=body, verbose=verbose)
         return True
     except:
-        traceback.print_exc(limit=20)
+        traceback.print_exc(limit=10)
         print('Cannot send event to st2.')
-        sys.exit(4)
+        sys.exit(3)
 
 
 def _set_config_opts(config_file, verbose=False):
@@ -265,7 +260,7 @@ def _set_config_opts(config_file, verbose=False):
     if not os.path.exists(config_file):
         print('Configuration file "{0}" not found. Exiting!!!'
               .format(config_file))
-        sys.exit(1)
+        sys.exit(2)
 
     with open(config_file) as f:
         config = yaml.safe_load(f)
@@ -282,10 +277,8 @@ def _set_config_opts(config_file, verbose=False):
         ST2_AUTH_BASE_URL = config['st2_auth_base_url']
         if not ST2_AUTH_BASE_URL.endswith('/'):
             ST2_AUTH_BASE_URL += '/'
-        if type(config['unauthed']) is bool:
-            UNAUTHED = config['unauthed']
-        if type(config['ssl_verify']) is bool:
-            ST2_SSL_VERIFY = config['ssl_verify']
+        UNAUTHED = config['unauthed']
+        ST2_SSL_VERIFY = config['ssl_verify']
 
     if ST2_API_KEY:
         IS_API_KEY_AUTH = True
@@ -307,7 +300,20 @@ def _set_config_opts(config_file, verbose=False):
             sys.exit(1)
 
 
-def _get_payload(host, service, event_id, state, state_id, state_type, attempt):
+def _from_arg_to_payload(nagios_args):
+    try:
+        event_id = nagios_args[0]
+        service = nagios_args[1]
+        state = nagios_args[2]
+        state_id = nagios_args[3]
+        state_type = nagios_args[4]
+        attempt = nagios_args[5]
+        host = nagios_args[6]
+    except IndexError:
+        traceback.print_exc(limit=20)
+        print('Number of Arguments given to the handler are incorrect')
+        sys.exit(1)
+
     payload = {}
     payload['host'] = host
     payload['service'] = service
@@ -323,9 +329,7 @@ def _get_payload(host, service, event_id, state, state_id, state_type, attempt):
 def main(config_file, payload, verbose=False):
 
     _set_config_opts(config_file=config_file, verbose=verbose)
-
     _register_with_st2(verbose=verbose)
-
     _post_event_to_st2(payload, verbose=verbose)
 
 
@@ -333,21 +337,14 @@ if __name__ == '__main__':
     description = '\nStackStorm nagios event handler. Please provide args '\
         'in following order after the config_path:\n\n event_id, service, '\
         'state,state_id, state_type, attempt, host\n'
+
     parser = argparse.ArgumentParser(description)
     parser.add_argument('config_path',
                         help='Exchange to listen on')
     parser.add_argument('--verbose', '-v', required=False, action='store_true',
                         help='Verbose mode.')
 
-    args, nagio_args = parser.parse_known_args()
+    args, nagios_args = parser.parse_known_args()
+    payload = _from_arg_to_payload(nagios_args)
 
-    event_id = nagio_args[0]
-    service = nagio_args[1]
-    state = nagio_args[2]
-    state_id = nagio_args[3]
-    state_type = nagio_args[4]
-    attempt = nagio_args[5]
-    host = nagio_args[6]
-
-    payload = _get_payload(host, service, event_id, state, state_id, state_type, attempt)
     main(config_file=args.config_path, payload=payload, verbose=args.verbose)
