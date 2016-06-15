@@ -22,7 +22,7 @@ class StartDiscovery(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion"
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion"  # NOQA
         expected_parameters = {
             'name': "run-import",
             'nodes': "192.168.1.1",
@@ -41,7 +41,7 @@ class StartDiscovery(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion poller2"
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion poller2"  # NOQA
         expected_parameters = {
             'name': "run-import",
             'nodes': "192.168.1.1",
