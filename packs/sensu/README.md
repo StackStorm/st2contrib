@@ -3,7 +3,7 @@
 Integrates with [Sensu](http://sensuapp.org/) monitoring framework.
 
 ### Prerequisites
-Sensu and StackStorm, up and running. See installation for [Sensu](http://sensuapp.org/docs/latest/guide) and [StackStorm](http://docs.stackstorm.com/install).
+Sensu and StackStorm, up and running. See installation for [Sensu](http://sensuapp.org/docs/latest/installation/) and [StackStorm](http://docs.stackstorm.com/install).
 
 ## Setup
 ### Install Sensu pack on StackStorm

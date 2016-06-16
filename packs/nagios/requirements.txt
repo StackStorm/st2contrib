@@ -1,0 +1,2 @@
+pyyaml
+requests[security]>=2.7.0
