@@ -1,0 +1,4 @@
+---
+name: service_state_change
+pack: nagios
+description: 'Trigger type for nagios service state change event.'
