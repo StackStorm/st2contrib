@@ -1,0 +1,4 @@
+---
+name: event_handler
+pack: sensu
+description: 'Trigger type for sensu event handler.'
