@@ -49,7 +49,7 @@ class NcmExecuteScript(OrionBaseAction):
             "Cirrus.ConfigArchive",
             "ExecuteScript",
             [orion_node.ncm_id],
-            "show failover")
+            script)
         results['job_id'] = orion_data[0]
 
         results['transfer'] = self.get_ncm_transfer_results(

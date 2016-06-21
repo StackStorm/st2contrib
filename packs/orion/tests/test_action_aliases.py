@@ -15,6 +15,48 @@
 from st2tests.base import BaseActionAliasTestCase
 
 
+class StartDiscovery(BaseActionAliasTestCase):
+    action_alias_name = "start_discovery"
+
+    def test_start_discovery(self):
+        format_string = self.action_alias_db.formats[0]['representation'][0]
+        format_strings = self.action_alias_db.get_format_strings()
+
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion"  # NOQA
+        expected_parameters = {
+            'name': "run-import",
+            'nodes': "192.168.1.1",
+            'poller': 'primary',
+            'snmp_communities': "public,private",
+            'platform': "orion"
+        }
+        self.assertExtractedParametersMatch(format_string=format_string,
+                                            command=command,
+                                            parameters=expected_parameters)
+        self.assertCommandMatchesExactlyOneFormatString(
+            format_strings=format_strings,
+            command=command)
+
+    def test_start_discovery_poller(self):
+        format_string = self.action_alias_db.formats[0]['representation'][0]
+        format_strings = self.action_alias_db.get_format_strings()
+
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion poller2"  # NOQA
+        expected_parameters = {
+            'name': "run-import",
+            'nodes': "192.168.1.1",
+            'poller': 'poller2',
+            'snmp_communities': "public,private",
+            'platform': "orion"
+        }
+        self.assertExtractedParametersMatch(format_string=format_string,
+                                            command=command,
+                                            parameters=expected_parameters)
+        self.assertCommandMatchesExactlyOneFormatString(
+            format_strings=format_strings,
+            command=command)
+
+
 class NcmConfigDownloadActionAliasTestCase(BaseActionAliasTestCase):
     action_alias_name = 'ncm_config_download'
 
