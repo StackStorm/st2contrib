@@ -1,0 +1,8 @@
+---
+description: "List users in OpsGenie"
+enabled: true
+entry_point: "list_users.py"
+name: "list_users"
+pack: "opsgenie"
+
+runner_type: "python-script"

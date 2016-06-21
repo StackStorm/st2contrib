@@ -1,0 +1,14 @@
+---
+description: "Disable an OpsGenie Integration"
+enabled: true
+entry_point: "disable_integration.py"
+name: "disable_integration.yaml"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  name:
+    type: "string"
+    description: "Intergration to Disable"
+    required: true

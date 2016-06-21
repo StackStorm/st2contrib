@@ -1,0 +1,8 @@
+---
+description: "List Who is OnCall in OpsGenie"
+enabled: true
+entry_point: "get_schedule_who_is_on_call.py"
+name: "get_schedule_who_is_on_call"
+pack: "opsgenie"
+
+runner_type: "python-script"

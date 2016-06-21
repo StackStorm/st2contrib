@@ -1,0 +1,14 @@
+---
+description: "Disable an OpsGenie Policy"
+enabled: true
+entry_point: "disable_policy.py"
+name: "disable_policy.yaml"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  name:
+    type: "string"
+    description: "Policy to Disable"
+    required: true

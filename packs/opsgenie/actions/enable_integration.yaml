@@ -1,0 +1,14 @@
+---
+description: "Enable an OpsGenie Integration"
+enabled: true
+entry_point: "enable_integration.py"
+name: "enable_integration.yaml"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  name:
+    type: "string"
+    description: "Intergration to Disable"
+    required: true

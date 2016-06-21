@@ -1,0 +1,11 @@
+{
+    "groups": [{
+	"id": "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
+	"name": "network",
+	"users": ["john.smith@opsgenie.com"]
+	}, {
+	    "id": "fg463552-dvf2-4ca3-a4315-48fhf5j67875",
+	    "name": "database",
+	    "users": ["eric.boston@opsgenie.com"]
+	    }]
+}

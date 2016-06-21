@@ -1,0 +1,3 @@
+---
+api_key: "ApiKey"
+api_host: "mock://api.opsgenie.com/"

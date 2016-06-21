@@ -1,0 +1,8 @@
+---
+description: "List Alerts in OpsGenie"
+enabled: true
+entry_point: "list_alerts.py"
+name: "list_alerts"
+pack: "opsgenie"
+
+runner_type: "python-script"

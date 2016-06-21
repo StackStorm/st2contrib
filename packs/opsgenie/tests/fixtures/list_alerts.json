@@ -1,0 +1,32 @@
+{
+    "alerts": [{
+	"id": "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
+	"count": 1,
+	"alias": "host_down",
+	"message": "Host 192.168.1.1 is down",
+	"status": "open",
+	"isSeen": false,
+	"acknowledged": false,
+	"snoozed": false,
+	"createdAt": "1351634560000000",
+	"updatedAt": "1351634560000000",
+	"tinyId": "111",
+	"tags": ["critical"],
+	"owner": "kili@opsgenie.com"
+	}, {
+	    "id": "cf463592-emt2-4ca3-a651d-56hhf5j5c132",
+	    "count": 1,
+	    "alias": "app_down",
+	    "message": "Web server Web_Server1 is down",
+	    "status": "closed",
+	    "isSeen": true,
+	    "acknowledged": false,
+	    "snoozed": false,
+	    "createdAt": "1351634560000000",
+	    "updatedAt": "1351634560000000",
+	    "tinyId": "66",
+	    "tags": ["critical"],
+	    "owner": ""
+	    }]
+}
+

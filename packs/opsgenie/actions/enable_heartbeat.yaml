@@ -1,0 +1,14 @@
+---
+description: "Enable an OpsGenie Heartbeat"
+enabled: true
+entry_point: "enable_heartbeat.py"
+name: "enable_heartbeat"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  name:
+    type: "string"
+    description: "Heartbeat name"
+    required: true

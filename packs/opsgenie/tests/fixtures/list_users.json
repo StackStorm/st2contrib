@@ -1,0 +1,40 @@
+{
+    "users":[
+        {
+             "id" : "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
+             "username" : "john.smith@opsgenie.com",
+             "fullname" : "John Smith",
+             "timezone" : "America/New_York",
+             "locale" : "en_US",
+             "state" : "active",
+             "escalations" : ["support_esc"],
+             "schedules" : ["sch_1st"],
+             "role" : "Owner",
+             "groups" : ["network"],
+             "contacts": [
+                {
+                   "to": "john.smith@opsgenie.com",
+                   "method": "email"
+                }
+             ]
+        },
+        {
+             "id" : "fg463552-dvf2-4ca3-a4315-48fhf5j67875",
+             "username" :  "eric.boston@opsgenie.com",
+             "fullname" : "Eric Boston",
+             "timezone" : "America/New_York",
+             "locale" : "en_US",
+             "state" : "active",
+             "escalations" : ["support_esc"],
+             "schedules" : ["sch_1st"],
+             "role" : "Admin",
+             "groups" : ["database"],
+             "contacts": [
+                {
+                   "to": "eric.boston@opsgenie.com",
+                   "method": "email"
+                }
+             ]
+        }
+    ]
+}

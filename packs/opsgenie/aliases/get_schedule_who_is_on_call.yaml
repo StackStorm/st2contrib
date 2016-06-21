@@ -1,0 +1,22 @@
+---
+name: "get_schedule_who_is_on_call"
+pack: "opsgenie"
+description: "List who is on call."
+action_ref: "opsgenie.get_schedule_who_is_on_call"
+formats:
+  - display: "opsgenie oncall"
+    representation:
+      - "opsgenie oncall"
+ack:
+  enabled: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    On call:{~}
+    {% for item in execution.result.result.oncalls %}
+    {{item.name}}: {% for oncall in item.participants %}{{oncall.name}} {% endfor %}
+
+    {% endfor %}
+    {% else %}
+    Could not query OpsGenie. See see {{execution.id}} for details.{~}
+    {% endif %}
