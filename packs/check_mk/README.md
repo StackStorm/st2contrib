@@ -28,6 +28,8 @@ Here are step-by-step instructions:
 
         st2 trigger create /opt/stackstorm/packs/check_mk/triggers/event_handler.yaml
 
+    If you're using StackStorm v1.5+ this will be automatically registered like actions, sensors, etc.
+
 2. Copy StackStorm Check_MK handler and config to Check_MK directories:
 
         cd /opt/stackstorm/packs/check_mk/
