@@ -26,7 +26,6 @@ class SetVM(BaseAction):
             if vm_swapfile_policy else None
 
         self.establish_connection(vsphere)
-        #si = self.si
         vm_obj = vim.VirtualMachine(vm, stub=self.si._stub)
 
         # convert ids to stubs

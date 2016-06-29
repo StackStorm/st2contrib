@@ -24,6 +24,7 @@ class VMCreateFromTemplate(BaseAction):
     def run(self, name, template_id, datacenter_id, resourcepool_id,
             datastore_id, vsphere=None):
         self.establish_connection(vsphere)
+
         # convert ids to stubs
         template = inventory.get_virtualmachine(self.si_content, template_id)
         datacenter = inventory.get_datacenter(self.si_content, datacenter_id)

@@ -35,8 +35,6 @@ class GetVMs(BaseAction):
         #            it, from vSphere SDK there is no way.
 
         self.establish_connection(vsphere)
-        #si = self.si
-        #self.si_content = si.RetrieveContent()
 
         props = ['name', 'runtime.powerState']
         moid_to_vm = {}
