@@ -43,12 +43,10 @@ class GetVMDetails(BaseAction):
                 if vm:
                     if vm.name not in results:
                         results[vm.name] = vm.summary
-                        #results.append({vm.name: vm.summary})
         if vm_names:
             for vm in vm_names:
                 vm = inventory.get_virtualmachine(self.si_content, name=vm)
                 if vm:
                     if vm.name not in results:
                         results[vm.name] = vm.summary
-                        #results.append({vm.name: vm.summary})
         return results

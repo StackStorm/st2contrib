@@ -41,7 +41,7 @@ class BaseAction(Action):
                                       port=self.config['port'],
                                       user=self.config['user'],
                                       pwd=self.config['passwd'])
- 
+
         atexit.register(connect.Disconnect, si)
         return si
 
