@@ -18,21 +18,30 @@ from vmwarelib.actions import BaseAction
 
 class GetVMConsoleUrls(BaseAction):
 
-    def run(self, vms):
-        meta_url_template = 'https://{host}:{port}/vsphere-client/vmrc/vmrc.jsp?' \
-                            'vm=urn:vmomi:VirtualMachine:{{vm}}:{si_uuid}'
+    def run(self, vm_ids, vsphere=None):
 
-        si_content = self.si.RetrieveContent()
-        si_uuid = si_content.about.instanceUuid
+        self.establish_connection(vsphere)
 
-        host = self.config['host']
-        port = self.config['port']
+        meta_url_template =\
+            'https://{host}:{port}/vsphere-client/vmrc/vmrc.jsp?'\
+            'vm=urn:vmomi:VirtualMachine:{{vm}}:{si_uuid}'
 
-        vm_url_template = meta_url_template.format(host=host, port=port, si_uuid=si_uuid)
+        si_uuid = self.si_content.about.instanceUuid
+        if vsphere:
+            connection = self.config['vsphere'].get(vsphere)
+        else:
+            connection = self.config
 
-        vm_moids = vms
+        host = connection['host']
+        port = connection['port']
+
+        vm_url_template = meta_url_template.format(
+            host=host, port=port, si_uuid=si_uuid)
+
+        vm_moids = vm_ids
         vms_console_urls = [
-            {moid: {'url': vm_url_template.format(vm=moid)}} for moid in vm_moids
+            {moid: {'url': vm_url_template.format(vm=moid)}}
+            for moid in vm_moids
         ]
 
         return vms_console_urls

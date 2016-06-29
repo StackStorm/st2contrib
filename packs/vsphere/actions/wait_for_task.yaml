@@ -9,4 +9,9 @@
       type: "string"
       description: "Task to track"
       required: true
-
+    vsphere:
+      type: "string"
+      description: "Pre-Configured vsphere connection details"
+      required: false
+      position: 1
+      default: ~

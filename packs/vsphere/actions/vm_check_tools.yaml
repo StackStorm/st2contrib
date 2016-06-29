@@ -9,4 +9,8 @@
       type: "string"
       description: "VM whose Tools to check."
       required: true
-
+    vsphere:
+      type: "string"
+      description: "Pre-Configured vsphere connection details"
+      required: false
+      default: ~

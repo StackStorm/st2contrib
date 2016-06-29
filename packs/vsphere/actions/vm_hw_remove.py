@@ -15,15 +15,30 @@
 
 from pyVmomi import vim
 
+from vmwarelib import inventory
 from vmwarelib.actions import BaseAction
 
 
 class VMRemove(BaseAction):
 
-    def run(self, vm, delete_permanently):
-        si = self.si
+    def run(self, vm_id, delete_permanently, vsphere=None):
+        """
+        Remove virtual machine from vsphere
 
-        vm = vim.VirtualMachine(vm, stub=si._stub)
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - delete_permenantly: Delete files as well as unregister from vsphere
+
+        Returns:
+        - dict: success: true/false
+        """
+
+        self.establish_connection(vsphere)
+
+        vm = inventory.get_virtualmachine(self.si_content, moid=vm_id)
+
         if vm.runtime.powerState == vim.VirtualMachine.PowerState.poweredOn:
             raise Exception("VM Currently Powered On")
         if delete_permanently:

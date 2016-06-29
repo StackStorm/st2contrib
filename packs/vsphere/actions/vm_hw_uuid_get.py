@@ -19,7 +19,20 @@ from vmwarelib.actions import BaseAction
 
 class GetVMUUID(BaseAction):
 
-    def run(self, vm_ids, vm_names):
+    def run(self, vm_ids, vm_names, vsphere=None):
+        """
+        Retrieve UUID for specified virtual machine.
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+
+        Returns:
+        - dict: uuid values.
+        """
+        self.establish_connection(vsphere)
+
         results = []
         if not vm_ids and not vm_names:
             raise Exception("No ID nor Names provided")

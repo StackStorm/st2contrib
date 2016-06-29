@@ -15,6 +15,12 @@
         description: "Virtual Machine Name"
         required: false
         position: 1
+      vsphere:
+        type: "string"
+        description: "Pre-configured vsphere connection details"
+        required: false
+        position: 2
+        default: ~
       controller_type:
         type: "string"
         description: "Type of Controller to Add"

@@ -9,3 +9,9 @@
       description: List of VM Names
       required: false
       position: 0
+    vsphere:
+      type: string
+      description: "VSphere within config to connect to"
+      required: false
+      position: 1
+      default: ~

@@ -10,6 +10,12 @@
       description: "Name of the new Virtual Machine"
       required: true
       position: 0
+    vsphere:
+      type: "string"
+      description: "Vsphere instance to connect to defined within config.yaml"
+      required: false
+      position: 1
+      default: ~
     cluster:
       type: "string"
       description: "Cluster Name to Buid VM within"
@@ -34,12 +40,12 @@
       type: "integer"
       description: "Number of CPUs"
       required: false
-      default: 1
+      default: 2
     ram_size:
       type: "integer"
       description: "Ammount of RAM in GB"
       required: false
-      default: 2
+      default: 3
     guestos:
       type: "string"
       description: "Guest OS Type"

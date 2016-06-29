@@ -9,6 +9,11 @@
       type: "string"
       description: "Name fo a new VM"
       required: true
+    vsphere:
+      type: "string"
+      description: "Pre-Configured VSphere connection"
+      required: false
+      default: ~
     template_id: 
       type: "string"
       description: "Id of template to use."

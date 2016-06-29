@@ -24,14 +24,24 @@ from st2actions.runners.pythonrunner import Action
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
-        self.si = self._connect()
+
+    def establish_connection(self, vsphere):
+        self.si = self._connect(vsphere)
         self.si_content = self.si.RetrieveContent()
 
-    def _connect(self):
-        si = connect.SmartConnect(host=self.config['host'],
-                                  port=self.config['port'],
-                                  user=self.config['user'],
-                                  pwd=self.config['passwd'])
+    def _connect(self, vsphere):
+        if vsphere:
+            connection = self.config['vsphere'].get(vsphere)
+            si = connect.SmartConnect(host=connection['host'],
+                                      port=connection['port'],
+                                      user=connection['user'],
+                                      pwd=connection['passwd'])
+        else:
+            si = connect.SmartConnect(host=self.config['host'],
+                                      port=self.config['port'],
+                                      user=self.config['user'],
+                                      pwd=self.config['passwd'])
+ 
         atexit.register(connect.Disconnect, si)
         return si
 

@@ -23,9 +23,24 @@ from vmwarelib.actions import BaseAction
 
 class VMApplyPowerState(BaseAction):
 
-    def run(self, vm_id, vm_name, power_onoff):
+    def run(self, vm_id, vm_name, power_onoff, vsphere=None):
+        """
+        Set power state of targetted virtual machine
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - power_onoff: Desired powerstate.
+
+        Returns:
+        - dict: State true/false
+        """
         # check I have information to find a VM
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+
+        self.establish_connection(vsphere)
+
         # convert ids to stubs
         vm = inventory.get_virtualmachine(self.si_content,
                                           moid=vm_id, name=vm_name)

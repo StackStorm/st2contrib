@@ -15,6 +15,12 @@
       description: "VM Name to edit."
       required: false
       position: 1
+    vsphere:
+      type: "string"
+      description: "Vsphere to connect to"
+      required: false
+      position: 2
+      default: ~
     cpu_edit:
       type: "integer"
       description: "Number of CPUs to allocate"
@@ -23,3 +29,4 @@
       type: "integer"
       description: "Amount of RAM to assign (GB)"
       required: false
+

@@ -23,8 +23,29 @@ from vmwarelib.actions import BaseAction
 class VMCreateBareBones(BaseAction):
     def run(self, vm_name, cluster, datastore_cluster,
             datastore, resourcepool, cpu_size, ram_size,
-            guestos, version, description):
+            guestos, version, description, vsphere=None):
+        """
+        Create barebones VM (CPU/RAM/Graphics)
+
+        Args:
+        - vm_name: Name of Virtual Machine to create
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - description: Short Description of VM and it's purpose
+        - cpu_size: Number of vCPUs to allocate
+        - ram_size: Ammount of memory to assign (GB)
+        - datastore_cluster: name of DataStore Cluster to use for VM Files
+        - datastore: Individual datastore to put vm files within.
+                     Not needed if datastore_cluster is set
+        - cluster: Cluster within vsphere to host virtual machine
+        - version: VM version to set
+        - guestos: Code for GuestOS that will be installed on this VM
+        - resourepool: vsphere resource pool to assign new VM to
+
+        Returns:
+        - dict: vm moid of newly created vm
+        """
         # Setup Identifiers for objects
+        self.establish_connection(vsphere)
         si = self.si
         si_content = si.RetrieveContent()
         # checkinputs.vm_storage(datastore_cluster, datastore)
