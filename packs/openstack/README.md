@@ -1,3 +1,5 @@
+## DEPRECATION NOTICE
+
 OpenStack pack is now at https://github.com/StackStorm/openstack 
 and is using a different approach to integrating with OpenStack. 
 
