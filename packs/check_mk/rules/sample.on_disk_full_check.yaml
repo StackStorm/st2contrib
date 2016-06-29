@@ -1,0 +1,24 @@
+---
+  name: "sample.on_disk_full_check"
+  description: "Sample rule which logs when local disk full"
+  pack: "check_mk"
+  enabled: true
+
+  trigger:
+    type: "check_mk.event_handler"
+
+  criteria:
+    trigger.host.name:
+      pattern: "localhost"
+      type: "equals"
+    trigger.service.desc:
+      pattern: "fs_/"
+      type: "equals"
+    trigger.service.state:
+      pattern: "CRITICAL"
+      type: "equals"
+
+  action:
+    ref: "core.local"
+    parameters:
+      cmd: "echo \"{{trigger}}\" >> /tmp/check_mk-sample.out"
