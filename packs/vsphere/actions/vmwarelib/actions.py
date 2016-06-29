@@ -32,15 +32,16 @@ class BaseAction(Action):
     def _connect(self, vsphere):
         if vsphere:
             connection = self.config['vsphere'].get(vsphere)
+        else:
+            connection = self.config
+        
+        try:
             si = connect.SmartConnect(host=connection['host'],
                                       port=connection['port'],
                                       user=connection['user'],
                                       pwd=connection['passwd'])
-        else:
-            si = connect.SmartConnect(host=self.config['host'],
-                                      port=self.config['port'],
-                                      user=self.config['user'],
-                                      pwd=self.config['passwd'])
+        except:
+            raise Exception("Unable to connect to vsphere, check connection details.")
 
         atexit.register(connect.Disconnect, si)
         return si
