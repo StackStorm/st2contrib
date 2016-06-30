@@ -1,26 +1,17 @@
 from st2reactor.sensor.base import PollingSensor
 from elasticsearch import Elasticsearch
 import json
+import time
 
 class ElasticsearchCountSensor(PollingSensor):
-    """
-    * self.sensor_service
-        - provides utilities like
-            get_logger() for writing to logs.
-            dispatch() for dispatching triggers into the system.
-    * self._config
-        - contains configuration that was specified as
-          config.yaml in the pack.
-    * self._poll_interval
-        - indicates the interval between two successive poll() calls.
-    """
 
     def setup(self):
         self.host = self._config.get('host', None)
         self.port = self._config.get('port', None)
-        self.query_window = "%is" % self._config.get('query_window', None)
+        self.query_window = self._config.get('query_window', 60)
         self.query_string = self._config.get('query_string', '{}')
-        self.count_threshold = self._config.get('count_threshold', 1)
+        self.cooldown_multiplier = self._config.get('cooldown_multiplier', 0)
+        self.count_threshold = self._config.get('count_threshold', 0)
         self.index = self._config.get('index', '_all')
         self._trigger_ref="elasticsearch.count_event"       
         self.LOG = self.sensor_service.get_logger(__name__)
@@ -39,7 +30,7 @@ class ElasticsearchCountSensor(PollingSensor):
                          "must": [self.query],
                          "filter": {
                              "range": {
-                                 "@timestamp": { "gte": "now-%s" % self.query_window}}}}}}
+                                 "@timestamp": { "gte": "now-%ss" % self.query_window}}}}}}
         data = self.es.search(index=self.index, body=query_payload, size=0)
 
         hits = data.get('hits', None)
@@ -49,6 +40,9 @@ class ElasticsearchCountSensor(PollingSensor):
            payload['results']['query'] = query_payload
            self.LOG.info("Dispatching trigger")
            self.sensor_service.dispatch(trigger=self._trigger_ref, payload=payload)
+           cooldown = (self.query_window * self.cooldown_multiplier)
+           self.LOG.info("Cooling down for %i seconds" % cooldown)
+           time.sleep(cooldown)
 
     def cleanup(self):
         # This is called when the st2 system goes down. You can perform cleanup operations like
