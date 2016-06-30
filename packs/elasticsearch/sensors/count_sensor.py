@@ -3,6 +3,7 @@ from elasticsearch import Elasticsearch
 import json
 import time
 
+
 class ElasticsearchCountSensor(PollingSensor):
 
     def setup(self):
@@ -21,31 +22,36 @@ class ElasticsearchCountSensor(PollingSensor):
         try:
             self.es = Elasticsearch([{'host': self.host, 'port': self.port}])
         except:
-            self.LOG.exception("Could not connect to elasticsearch. %s:%i" % (self.host, self.port))
-            raise Exception("Could not connect to elasticsearch. %s:%i" % (self.host, self.port))
+            self.LOG.exception("Could not connect to elasticsearch. %s:%i" %
+                               (self.host, self.port))
+            raise Exception("Could not connect to elasticsearch. %s:%i" %
+                            (self.host, self.port))
 
     def poll(self):
-        query_payload={"query": {
-                     "bool": {
-                         "must": [self.query],
-                         "filter": {
-                             "range": {
-                                 "@timestamp": { "gte": "now-%ss" % self.query_window}}}}}}
+        query_payload = {"query": {
+                           "bool": {
+                             "must": [self.query],
+                             "filter": {
+                               "range": {
+                                 "@timestamp": {
+                                     "gte": "now-%ss" % self.query_window}}}}}}
         data = self.es.search(index=self.index, body=query_payload, size=0)
 
         hits = data.get('hits', None)
         if hits.get('total', 0) > self.count_threshold:
-           payload = {}
-           payload['results'] = hits
-           payload['results']['query'] = query_payload
-           self.LOG.info("Dispatching trigger")
-           self.sensor_service.dispatch(trigger=self._trigger_ref, payload=payload)
-           cooldown = (self.query_window * self.cooldown_multiplier)
-           self.LOG.info("Cooling down for %i seconds" % cooldown)
-           time.sleep(cooldown)
+            payload = dict()
+            payload['results'] = hits
+            payload['results']['query'] = query_payload
+            self.LOG.info("Dispatching trigger")
+            self.sensor_service.dispatch(trigger=self._trigger_ref,
+                                         payload=payload)
+            cooldown = (self.query_window * self.cooldown_multiplier)
+            self.LOG.info("Cooling down for %i seconds" % cooldown)
+            time.sleep(cooldown)
 
     def cleanup(self):
-        # This is called when the st2 system goes down. You can perform cleanup operations like
+        # This is called when the st2 system goes down.
+        # You can perform cleanup operations like
         # closing the connections to external system here.
         pass
 
@@ -60,3 +66,4 @@ class ElasticsearchCountSensor(PollingSensor):
     def remove_trigger(self, trigger):
         # This method is called when trigger is deleted
         pass
+
