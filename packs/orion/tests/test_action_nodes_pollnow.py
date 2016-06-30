@@ -16,16 +16,16 @@ from mock import MagicMock
 
 from orion_base_action_test_case import OrionBaseActionTestCase
 
-from node_pollnow import NodePollNow
+from nodes_pollnow import NodesPollNow
 
 __all__ = [
-    'NodePollNowTestCase'
+    'NodesPollNowTestCase'
 ]
 
 
-class NodePollNowTestCase(OrionBaseActionTestCase):
+class NodesPollNowTestCase(OrionBaseActionTestCase):
     __test__ = True
-    action_cls = NodePollNow
+    action_cls = NodesPollNow
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()

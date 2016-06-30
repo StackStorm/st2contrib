@@ -17,7 +17,7 @@ from lib.actions import OrionBaseAction
 from lib.utils import send_user_error
 
 
-class NodePollNow(OrionBaseAction):
+class NodesPollNow(OrionBaseAction):
     def run(self, node, platform):
         """
         Invoke a PollNow verb against a Orion Node.

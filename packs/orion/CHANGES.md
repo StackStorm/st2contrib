@@ -1,5 +1,12 @@
 # Changelog
 
+# 0.5 (In dev)
+
+- Renamed node_pollnow action to nodes_pollnow and extended it to
+  support multiple nodes, count of polls and a pause between them.
+- Added list_nodes_by_poller action.
+- Added update_node_poller action.
+
 # 0.3.1
 
 - In the Orion.node_status alais set the color for the result so it
