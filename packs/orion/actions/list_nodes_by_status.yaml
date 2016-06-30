@@ -1,0 +1,17 @@
+---
+description: "List the nodes by status"
+enabled: true
+entry_point: 'list_nodes_by_status.py'
+name: "list_nodes_by_status"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  platform:
+    type: "string"
+    description: "The Orion Platform to act on."
+    required: true
+  whitelist:
+    type: "array"
+    description: "Limit nodes to the following"
+    default: ~

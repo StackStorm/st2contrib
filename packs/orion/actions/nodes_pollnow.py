@@ -13,41 +13,50 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import time
+
 from lib.actions import OrionBaseAction
 from lib.utils import send_user_error
 
 
 class NodesPollNow(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, nodes, platform, count, pause):
         """
         Invoke a PollNow verb against a Orion Node.
 
         Args:
-            node: The caption in Orion of the node to poll.
-            platform: The orion platform to act on.
+        - node: The caption in Orion of the node to poll.
+        - platform: The orion platform to act on.
+        - count: Number of polls to complete.
+        - pause: Number of seconds to wait between each cycle.
 
         Returns
             True: As PollNow does not return any data.
 
         Raises:
-            IndexError: When a node is not found.
+            IndexError: When a nodes is not found.
         """
 
         self.connect(platform)
+        orion_nodes = []
 
-        orion_node = self.get_node(node)
+        for node in nodes:
+            orion_node = self.get_node(node)
 
-        if not orion_node.npm:
-            error_msg = "Node not found"
-            send_user_error(error_msg)
-            raise ValueError(error_msg)
+            if orion_node.npm:
+                orion_nodes.append(orion_node.npm_id)
+            else:
+                error_msg = "Node not found"
+                send_user_error(error_msg)
+                raise ValueError(error_msg)
 
-        orion_data = self.invoke("Orion.Nodes",
-                                 "PollNow",
-                                 orion_node.npm_id)
+        for c in range(count):
+            for npm_id in orion_nodes:
+                self.invoke("Orion.Nods",
+                            "PollNow",
+                            npm_id)
+            else:
+                time.sleep(pause)
 
-        # This Invoke always returns None, so check and return True
-        if orion_data is None:
-            return True
-        else:
-            return orion_data
+        # These Invoke's return None, so we just return True
+        return True

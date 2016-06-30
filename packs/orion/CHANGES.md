@@ -6,6 +6,9 @@
   support multiple nodes, count of polls and a pause between them.
 - Added list_nodes_by_poller action.
 - Added update_node_poller action.
+- Added list_nodes_by_status action.
+- Add drain_poller workflow.
+- Fix naming of node_unmanage and node_remanage.
 
 # 0.3.1
 

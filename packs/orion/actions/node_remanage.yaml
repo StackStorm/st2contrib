@@ -1,8 +1,8 @@
 ---
 description: "Re-manage an Solarwinds Orion node's"
 enabled: true
-entry_point: 'remanage_node.py'
-name: "remanage_node"
+entry_point: 'node_remanage.py'
+name: "node_remanage"
 pack: "orion"
 runner_type: "python-script"
 

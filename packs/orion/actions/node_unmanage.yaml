@@ -1,8 +1,8 @@
 ---
 description: "Unmanage an Solarwinds Orion node's"
 enabled: true
-entry_point: 'unmanage_node.py'
-name: "unmanage_node"
+entry_point: 'node_unmanage.py'
+name: "node_unmanage"
 pack: "orion"
 runner_type: "python-script"
 

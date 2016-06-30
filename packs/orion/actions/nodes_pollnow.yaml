@@ -1,18 +1,25 @@
 ---
-description: "Poll an Solarwinds Orion node"
+description: "Force muliple polls of a list of Solarwinds Orion nodes."
 enabled: true
-entry_point: 'node_pollnow.py'
-name: "node_pollnow"
+entry_point: 'nodes_pollnow.py'
+name: "nodes_pollnow"
 pack: "orion"
 runner_type: "python-script"
 
 parameters:
-  node:
-    type: "string"
+  nodes:
+    type: "array"
     description: "The node to poll on the monitoring platform."
     required: true
-
   platform:
     type: "string"
     description: "The Orion Platform to act on."
     required: true
+  count:
+    type: "integer"
+    description: ""
+    default: 1
+  pause:
+    type: "integer"
+    description: ""
+    default: 1
