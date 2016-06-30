@@ -1,0 +1,6 @@
+host: localhost
+port: 9200
+query_window: 30
+query_string: '{"match":{"path":"/path/to/log/file.log"}}'
+count_threshold: 5
+index: 'logstash*'
