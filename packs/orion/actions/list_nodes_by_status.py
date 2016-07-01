@@ -33,10 +33,8 @@ class ListNodesStatus(OrionBaseAction):
         kargs = {}
         orion_data = self.query(swql, **kargs)
 
-        #results['raw'] = orion_data
-
         for node in orion_data['results']:
-            if not whitelist is None:
+            if whitelist is not None:
                 if not node['Caption'] in whitelist:
                     continue
 

@@ -32,23 +32,20 @@ class NodesPollNowTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
-                          "router1")
+                          ["router1"],
+                          2,
+                          1)
 
     def test_run_node_not_exist(self):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
                           "orion",
-                          "router1")
+                          ["router1"],
+                          2,
+                          1)
 
     def test_run_polled(self):
         action = self.setup_node_exists()
-        self.assertTrue(action.run("router1", "orion"))
-
-    def test_run_polled_text(self):
-        expected = "fake"
-
-        action = self.setup_node_exists()
-        action.invoke = MagicMock(return_value="fake")
-        result = action.run("router1", "orion")
-        self.assertEqual(result, expected)
+        result = action.run(["router1"], "orion", 3, 1)
+        self.assertTrue(result)
