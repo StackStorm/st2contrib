@@ -12,8 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from mock import MagicMock
-
 from orion_base_action_test_case import OrionBaseActionTestCase
 
 from nodes_pollnow import NodesPollNow
