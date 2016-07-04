@@ -14,8 +14,10 @@ class BaseAction(Action):
 
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
-        if config['st2_user_data'] is not "":
-            self.userdata = open(config['st2_user_data'], 'r').read()
+
+        if config['st2_user_data']:
+            with open(config['st2_user_data'], 'r') as fp:
+                self.userdata = fp.read()
         else:
             self.userdata = None
         self.setup = config['setup']
