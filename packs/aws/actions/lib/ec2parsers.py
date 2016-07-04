@@ -1,6 +1,8 @@
 import boto
 import six
 
+from boto import cloudformation
+
 
 class FieldLists():
     ADDRESS = [
@@ -182,7 +184,7 @@ class ResultSets(object):
             return self.parseTag(output)
         elif isinstance(output, boto.ec2.ec2object.EC2Object):
             return self.parseEC2Object(output)
-        elif isinstance(output, boto.cloudformation.stack.Stack):
+        elif isinstance(output, cloudformation.stack.Stack):
             return self.parseStackObject(output)
         elif isinstance(output, boto.rds.dbinstance.DBInstance):
             return self.parseDBInstanceObject(output)
