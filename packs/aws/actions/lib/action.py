@@ -113,6 +113,11 @@ class BaseAction(Action):
         else:
             del self.credentials['region']
             obj = getattr(module, cls)(**self.credentials)
+
+        if not obj:
+            raise ValueError('Invalid or missing credentials (aws_access_key_id,'
+                             'aws_secret_access_key) or region')
+
         resultset = getattr(obj, action)(**kwargs)
         formatted = self.resultsets.formatter(resultset)
         return formatted if isinstance(formatted, list) else [formatted]
