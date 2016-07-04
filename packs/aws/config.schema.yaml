@@ -13,4 +13,4 @@
     description: "AWS region to use."
     type: "string"
     required: true
-    default: null
+    default: 'us-east-1'
