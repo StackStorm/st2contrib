@@ -38,6 +38,10 @@ class ListNodesStatus(OrionBaseAction):
                 if not node['Caption'] in whitelist:
                     continue
 
+            # Duplicate names will cause issues, so skip
+            if orion_data['results'].count(node) > 1:
+                continue
+
             if node["Status"] == 1:
                 results['nodes_up'].append(node['Caption'])
             elif node["Status"] == 2:

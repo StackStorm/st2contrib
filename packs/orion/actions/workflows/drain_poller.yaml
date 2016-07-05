@@ -75,8 +75,8 @@ orion.drain_poller:
       input:
         nodes: <% $.orig_nodes %>
         platform: <% $.platform %>
-        count: 22
-        pause: 6
+        count: 25
+        pause: 15
 
       on-success:
         - check_nodes_status

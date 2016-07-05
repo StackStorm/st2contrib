@@ -37,26 +37,71 @@ class NodesPollNow(OrionBaseAction):
             IndexError: When a nodes is not found.
         """
 
+        self.results = {'down': [],
+                        'up': [],
+                        'extra_count': False}
+
         self.connect(platform)
-        orion_nodes = []
+        self.orion_nodes = []
 
         for node in nodes:
             orion_node = self.get_node(node)
 
             if orion_node.npm:
-                orion_nodes.append(orion_node.npm_id)
+                self.orion_nodes.append(orion_node.npm_id)
             else:
                 error_msg = "Node not found"
                 send_user_error(error_msg)
                 raise ValueError(error_msg)
 
         for c in range(count):
-            for npm_id in orion_nodes:
-                self.invoke("Orion.Nods",
-                            "PollNow",
-                            npm_id)
+            self._pollnow_nodes(count, pause)
+
+            if len(self.orion_nodes) == 0:
+                self.results['last_count'] = c
+                break
+        else:
+            self.results['last_count'] = count
+
+        if len(self.orion_nodes) > 0:
+            self.results['extra_pass'] = True
+            for c in range(count):
+                self._pollnow_nodes(count, pause)
             else:
-                time.sleep(pause)
+                self.results['left'] = self.orion_nodes
 
         # These Invoke's return None, so we just return True
-        return True
+        return self.results
+
+    def _pollnow_nodes(self, count, pause):
+        """
+        Carry out a poll on any remaining orion nodes and remove those
+        that are up or down.
+
+        Args:
+        - count: Number of polls to complete.
+        - pause: Number of seconds to wait between each cycle.
+
+        Returns:
+        - None.
+
+        Raises:
+        - None.
+        """
+        for npm_id in self.orion_nodes:
+            self.invoke("Orion.Nods",
+                        "PollNow",
+                        npm_id)
+
+            swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
+            kargs = {'NodeID': npm_id}
+            orion_data = self.query(swql, **kargs)
+
+            if orion_data['results'][0]['Status'] == 1:
+                self.results['up'].append(npm_id)
+                self.orion_nodes.remove(npm_id)
+            elif orion_data['results'][0]['Status'] == 2:
+                self.orion_nodes.remove(npm_id)
+                self.results['down'].append(npm_id)
+        else:
+                time.sleep(pause)

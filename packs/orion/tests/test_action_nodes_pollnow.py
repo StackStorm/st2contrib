@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 
 from orion_base_action_test_case import OrionBaseActionTestCase
+from mock import MagicMock
 
 from nodes_pollnow import NodesPollNow
 
@@ -45,5 +46,15 @@ class NodesPollNowTestCase(OrionBaseActionTestCase):
 
     def test_run_polled(self):
         action = self.setup_node_exists()
-        result = action.run(["router1"], "orion", 3, 1)
-        self.assertTrue(result)
+        expected = {'down': [], 'extra_count': False, 'last_count': 2, 'up': [1]}
+
+        query_data = []
+        query_data.append(self.query_npm_node)
+        query_data.append(self.query_ncm_node)
+        query_data.append({'results': [{'Status': 9}]})
+        query_data.append({'results': [{'Status': 9}]})
+        query_data.append({'results': [{'Status': 1}]})
+        action.query = MagicMock(side_effect=query_data)
+
+        result = action.run(["router1"], "orion", 5, 5)
+        self.assertEqual(result, expected)
