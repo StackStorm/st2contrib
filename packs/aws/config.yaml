@@ -1,8 +1,15 @@
 ---
+# Note: credentials under "setup" object are deprecated and have been replaced
+# with top-level values which have precedence and also work with dynamic config
+# values.
 setup:
   region: ""
   aws_access_key_id: null
   aws_secret_access_key: null
+
+aws_access_key_id: null
+aws_secret_access_key: null
+region: ""
 interval: 20
 st2_user_data: "/opt/stackstorm/packs/aws/actions/scripts/bootstrap_user.sh"
 

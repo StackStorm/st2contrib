@@ -14,26 +14,48 @@ class BaseAction(Action):
 
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
-        if config['st2_user_data'] is not "":
-            self.userdata = open(config['st2_user_data'], 'r').read()
+
+        self.credentials = {
+            'region': None,
+            'aws_access_key_id': None,
+            'aws_secret_access_key': None
+        }
+
+        if config['st2_user_data']:
+            with open(config['st2_user_data'], 'r') as fp:
+                self.userdata = fp.read()
         else:
             self.userdata = None
-        self.setup = config['setup']
+
+        # Note: In old static config credentials and region are under "setup" key and with a new
+        # dynamic config values are top-level
+        access_key_id = config.get('aws_access_key_id', None)
+        secret_access_key = config.get('aws_secret_access_key', None)
+        region = config.get('region', None)
+
+        if access_key_id and secret_access_key:
+            self.credentials['aws_access_key_id'] = access_key_id
+            self.credentials['aws_secret_access_key'] = secret_access_key
+            self.credentials['region'] = region
+        else:
+            # Assume old-style config
+            self.credentials = config['setup']
+
         self.resultsets = ResultSets()
 
     def ec2_connect(self):
-        region = self.setup['region']
-        del self.setup['region']
-        return boto.ec2.connect_to_region(region, **self.setup)
+        region = self.credentials['region']
+        del self.credentials['region']
+        return boto.ec2.connect_to_region(region, **self.credentials)
 
     def vpc_connect(self):
-        region = self.setup['region']
-        del self.setup['region']
-        return boto.vpc.connect_to_region(region, **self.setup)
+        region = self.credentials['region']
+        del self.credentials['region']
+        return boto.vpc.connect_to_region(region, **self.credentials)
 
     def r53_connect(self):
-        del self.setup['region']
-        return boto.route53.connection.Route53Connection(**self. setup)
+        del self.credentials['region']
+        return boto.route53.connection.Route53Connection(**self.credentials)
 
     def get_r53zone(self, zone):
         conn = self.r53_connect()
@@ -89,8 +111,13 @@ class BaseAction(Action):
             del kwargs['zone']
             obj = self.get_r53zone(zone)
         else:
-            del self.setup['region']
-            obj = getattr(module, cls)(**self.setup)
+            del self.credentials['region']
+            obj = getattr(module, cls)(**self.credentials)
+
+        if not obj:
+            raise ValueError('Invalid or missing credentials (aws_access_key_id,'
+                             'aws_secret_access_key) or region')
+
         resultset = getattr(obj, action)(**kwargs)
         formatted = self.resultsets.formatter(resultset)
         return formatted if isinstance(formatted, list) else [formatted]
