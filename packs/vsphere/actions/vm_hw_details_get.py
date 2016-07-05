@@ -33,10 +33,12 @@ class GetVMDetails(BaseAction):
         """
 
         # TODO review using propertspec for retrieving all VM's at onces.
-        self.establish_connection(vsphere)
         results = {}
         if not vm_ids and not vm_names:
-            raise Exception("No IDs nor Names provided.")
+            raise ValueError("No IDs nor Names provided.")
+
+        self.establish_connection(vsphere)
+
         if vm_ids:
             for vid in vm_ids:
                 vm = inventory.get_virtualmachine(self.si_content, moid=vid)
