@@ -28,6 +28,8 @@ Note: To ensure backward compatability and ease for single environment use. If n
   passwd:
 ```
 
+Please Note Configuration validation will raise an exception if config.yaml contains 'vsphere' but no defined endpoints.
+
 ## Requirements
 This pack requires the python module PYVMOMI. At present the `requirements.txt` specifies version 5.5.0. 
 The version specification is to ensure compatibility with Python 2.7.6 (standard version with Ubuntu 14.04).

@@ -24,18 +24,17 @@ from st2actions.runners.pythonrunner import Action
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
-        if "vsphere" in self.config:
+        if config==None:
+            raise ValueError("No connection configuration details found")
+        if "vsphere" in config:
+            if config['vsphere']==None:
+                raise ValueError("'vsphere' config defined but empty.")
+            else:
+                pass
+        elif set(['host','port','user','passwd']).issubset(config):
             pass
-        elif "host" not in self.config:
-            raise ValueError("host: Check Connection configuration details")
-        elif "port" not in self.config:
-            raise ValueError("port: Check Connection configuration details")
-        elif "user" not in self.config:
-            raise ValueError("user: Check Connection configuration details")
-        elif "passwd" not in self.config:
-            raise ValueError("passwd: Check Connection configuration details")
         else:
-            pass
+            raise ValueError("Check Connection configuration details")
 
     def establish_connection(self, vsphere):
         self.si = self._connect(vsphere)
