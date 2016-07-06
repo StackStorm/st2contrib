@@ -14,7 +14,7 @@
 
 import yaml
 import json
-from mock import MagicMock
+# from mock import MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -57,5 +57,3 @@ class VsphereBaseActionTestCase(BaseActionTestCase):
     def test_run_config_new(self):
         action = self.get_action_instance(self.new_config)
         self.assertIsInstance(action, self.action_cls)
-
-
