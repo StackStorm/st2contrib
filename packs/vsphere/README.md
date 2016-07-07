@@ -30,6 +30,10 @@ Note: To ensure backward compatability and ease for single environment use. If n
 
 Please Note Configuration validation will raise an exception if config.yaml contains 'vsphere' but no defined endpoints.
 
+## Todo
+* Review and implement ST2 1.5 config.yaml changes. Review how useable dynamic configuration can be in case of this Packs purpose.
+* Expand base test files. Level of mocking required has limited this at present.
+
 ## Requirements
 This pack requires the python module PYVMOMI. At present the `requirements.txt` specifies version 5.5.0. 
 The version specification is to ensure compatibility with Python 2.7.6 (standard version with Ubuntu 14.04).
