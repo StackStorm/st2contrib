@@ -31,6 +31,7 @@ Note: To ensure backward compatability and ease for single environment use. If n
 Please Note Configuration validation will raise an exception if config.yaml contains 'vsphere' but no defined endpoints.
 
 ## Todo
+* Create actions for vsphere environment data retrieval. Allowing for integration with external systems for accurate action calls with informed parameter values.
 * Review and implement ST2 1.5 config.yaml changes. Review how useable dynamic configuration can be in case of this Packs purpose.
 * Expand base test files. Level of mocking required has limited this at present.
 
