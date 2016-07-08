@@ -54,3 +54,5 @@ PYVMOMI 6.0 requires alternative connection coding and Python 2.7.9 minimum due 
 * `vsphere.vm_hw_uuid_get` - Retrieve VM UUID
 * `vsphere.vm_hw_moid_get` - Retrieve VM MOID
 
+## Known Bugs
+* Bug: vm_hw_hdd_add, Specifying datastore does not work. New files will be added to the same datastore as the core VM files. Note. Specifying a Datastore Cluster does still install files to the correct set of datastores.
