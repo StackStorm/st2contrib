@@ -116,7 +116,6 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![newrelic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/newrelic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | [newrelic](https://github.com/StackStorm/st2contrib/tree/master/packs/newrelic) | st2 content pack containing newrelic integrations | new relic, monitoring, app monitoring, application level monitoring | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#newrelic-pack)
 [![octopusdeploy icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/octopusdeploy/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | [octopusdeploy](https://github.com/StackStorm/st2contrib/tree/master/packs/octopusdeploy) | st2 content pack containing octopusdeploy integrations | octopus, octopusdeploy, deployment, continous deployment, continous integration | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#octopusdeploy-pack)
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
-[![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | [openstack](https://github.com/StackStorm/st2contrib/tree/master/packs/openstack) | st2 content pack containing openstack integrations | cloud, nova, glance, neutron | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#openstack-pack)
 [![opscenter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opscenter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | [opscenter](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | st2 content pack containing datastax opscenter integrations | datastax, cassandra, opscenter | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#opscenter-pack)
 [![opsgenie icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opsgenie/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/opsgenie) | [opsgenie](https://github.com/StackStorm/st2contrib/tree/master/packs/opsgenie) | A intergration pack for the OpsGenie Service | OpsGenie | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#opsgenie-pack)
 [![orion icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/orion/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | [orion](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | Intergrate via the OrionSDK to SolarWinds Orion | solarwinds, orion, ncm, npm | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.4.1 | [click](https://github.com/StackStorm/st2contrib#orion-pack)
@@ -1835,22 +1834,6 @@ Name | Description
 get_status | Get status on an item
 send_command | Send a command to an item
 set_state | Set state on an item
-
-### openstack pack
-
-![openstack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openstack/icon.png)
-
-#### Actions
-
-Name | Description
----- | -----------
-cinder | Run OpenStack Cinder commands
-get_instance_owners | Returns the users associated with a list of instance ids
-glance | Run OpenStack Glance commands
-nova | Run OpenStack Nova commands
-nova_confirm | Confirms a resize or migrate
-nova_instances | Returns a list of instances by hypervisor
-nova_migrate_server | Evacuate guests from compute node
 
 ### opscenter pack
 
