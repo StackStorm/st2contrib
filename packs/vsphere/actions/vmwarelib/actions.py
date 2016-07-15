@@ -20,6 +20,8 @@ from pyVim import connect
 from pyVmomi import vim
 from st2actions.runners.pythonrunner import Action
 
+connectionitems = ['host', 'port', 'user', 'passwd']
+
 
 class BaseAction(Action):
     def __init__(self, config):
@@ -31,10 +33,10 @@ class BaseAction(Action):
                 raise ValueError("'vsphere' config defined but empty.")
             else:
                 pass
-        elif set(['host', 'port', 'user', 'passwd']).issubset(config):
+        elif set(connectionitems).issubset(config):
             pass
         else:
-            raise ValueError("Check Connection configuration details")
+            raise ValueError("Incomplete configuration details")
 
     def establish_connection(self, vsphere):
         self.si = self._connect(vsphere)
@@ -43,6 +45,10 @@ class BaseAction(Action):
     def _connect(self, vsphere):
         if vsphere:
             connection = self.config['vsphere'].get(vsphere)
+            if set(connectionitems).issubset(connection):
+                pass
+            else:
+                raise ValueError("Incomplete configuration details")
         else:
             connection = self.config
 
@@ -51,8 +57,8 @@ class BaseAction(Action):
                                       port=connection['port'],
                                       user=connection['user'],
                                       pwd=connection['passwd'])
-        except:
-            raise Exception("Unable to connect to vsphere.")
+        except Exception as e:
+            raise Exception(e.msg)
 
         atexit.register(connect.Disconnect, si)
         return si
