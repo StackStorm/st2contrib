@@ -22,9 +22,24 @@ from vmwarelib.actions import BaseAction
 
 class VMCPUMemEdit(BaseAction):
 
-    def run(self, vm_id, vm_name, cpu_edit, mem_edit):
+    def run(self, vm_id, vm_name, cpu_edit, mem_edit, vsphere=None):
+        """
+        Edit CPU and/or Memory allocated to Virtual Machine
+
+        Args:
+        - vm_id: Moid of the virtual machine targetted (vm-xxxx)
+        - vm_name: Name of Virtual Machine within vsphere
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - cpu_edit: Number of vCPUs to allocate
+        - mem_edit: Ammount of memory to assign (GB)
+
+        Returns:
+        - state: success or failure
+        """
+
         # check a means of finding the VM has been provided
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+        self.establish_connection(vsphere)
 
         vm = inventory.get_virtualmachine(self.si_content,
                                           moid=vm_id,

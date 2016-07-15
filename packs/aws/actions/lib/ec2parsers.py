@@ -1,5 +1,9 @@
-import boto
 import six
+
+from boto import ec2
+from boto import route53
+from boto import cloudformation
+from boto import rds
 
 
 class FieldLists():
@@ -160,31 +164,31 @@ class ResultSets(object):
         self.foo = ''
 
     def selector(self, output):
-        if isinstance(output, boto.ec2.instance.Reservation):
+        if isinstance(output, ec2.instance.Reservation):
             return self.parseReservation(output)
-        elif isinstance(output, boto.ec2.instance.Instance):
+        elif isinstance(output, ec2.instance.Instance):
             return self.parseInstance(output)
-        elif isinstance(output, boto.ec2.volume.Volume):
+        elif isinstance(output, ec2.volume.Volume):
             return self.parseVolume(output)
-        elif isinstance(output, boto.ec2.blockdevicemapping.BlockDeviceType):
+        elif isinstance(output, ec2.blockdevicemapping.BlockDeviceType):
             return self.parseBlockDeviceType(output)
-        elif isinstance(output, boto.ec2.zone.Zone):
+        elif isinstance(output, ec2.zone.Zone):
             return self.parseEC2Zone(output)
-        elif isinstance(output, boto.ec2.address.Address):
+        elif isinstance(output, ec2.address.Address):
             return self.parseAddress(output)
-        elif isinstance(output, boto.route53.record.Record):
-            return self.parseRecord(output)
-        elif isinstance(output, boto.route53.zone.Zone):
-            return self.parseR53Zone(output)
-        elif isinstance(output, boto.route53.status.Status):
-            return self.parseR53Status(output)
-        elif isinstance(output, boto.ec2.tag.Tag):
+        elif isinstance(output, ec2.tag.Tag):
             return self.parseTag(output)
-        elif isinstance(output, boto.ec2.ec2object.EC2Object):
+        elif isinstance(output, ec2.ec2object.EC2Object):
             return self.parseEC2Object(output)
-        elif isinstance(output, boto.cloudformation.stack.Stack):
+        elif isinstance(output, route53.record.Record):
+            return self.parseRecord(output)
+        elif isinstance(output, route53.zone.Zone):
+            return self.parseR53Zone(output)
+        elif isinstance(output, route53.status.Status):
+            return self.parseR53Status(output)
+        elif isinstance(output, cloudformation.stack.Stack):
             return self.parseStackObject(output)
-        elif isinstance(output, boto.rds.dbinstance.DBInstance):
+        elif isinstance(output, rds.dbinstance.DBInstance):
             return self.parseDBInstanceObject(output)
         else:
             return output
@@ -263,7 +267,7 @@ class ResultSets(object):
         output['region'] = region.name if region else ''
         # now anything that is an EC2Object get some special marshalling care.
         for k, v in six.iteritems(output):
-            if isinstance(v, boto.ec2.ec2object.EC2Object):
+            if isinstance(v, ec2.ec2object.EC2Object):
                 # Better not to assume each EC2Object has an id. If not found
                 # resort to the str of the object which should have something meaningful.
                 output[k] = getattr(v, 'id', str(v))

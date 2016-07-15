@@ -5,13 +5,36 @@ This pack integrates with vsphere and allows for the creation and management of 
 ## Connection Configuration
 
 You will need to specificy the details of the vcenter instance you will be connecting to within the `config.yaml` file.
+You can specificy multiple environments using nested values
 
+```yaml
+  vsphere:
+    dev:
+      host:
+      port:
+      user:
+      passwd:
+    staging:
+      host:
+      port:
+      user:
+      passwd:
+```
+Note: To ensure backward compatability and ease for single environment use. If no vsphere value is passed to the actions it will look for v0.3 config.yaml structure:
 ```yaml
   host:
   port:
   user:
   passwd:
 ```
+
+Please Note Configuration validation will raise an exception if config.yaml contains 'vsphere' but no defined endpoints.
+
+## Todo
+* Create actions for vsphere environment data retrieval. Allowing for integration with external systems for accurate action calls with informed parameter values.
+* Review and implement ST2 1.5 config.yaml changes. Review how useable dynamic configuration can be in case of this Packs purpose.
+* Expand base test files. Level of mocking required has limited this at present.
+
 ## Requirements
 This pack requires the python module PYVMOMI. At present the `requirements.txt` specifies version 5.5.0. 
 The version specification is to ensure compatibility with Python 2.7.6 (standard version with Ubuntu 14.04).
@@ -31,3 +54,5 @@ PYVMOMI 6.0 requires alternative connection coding and Python 2.7.9 minimum due 
 * `vsphere.vm_hw_uuid_get` - Retrieve VM UUID
 * `vsphere.vm_hw_moid_get` - Retrieve VM MOID
 
+## Known Bugs
+* Bug: vm_hw_hdd_add, Specifying datastore does not work. New files will be added to the same datastore as the core VM files. Note. Specifying a Datastore Cluster does still install files to the correct set of datastores.

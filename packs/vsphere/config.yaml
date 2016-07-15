@@ -1,5 +1,7 @@
 ---
-  host:
-  port:
-  user:
-  passwd:
+  vsphere:
+    default:
+      host:
+      port:
+      user:
+      passwd:

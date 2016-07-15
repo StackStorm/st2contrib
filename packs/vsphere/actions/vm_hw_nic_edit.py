@@ -22,9 +22,26 @@ from vmwarelib.actions import BaseAction
 
 class VMNicEdit(BaseAction):
 
-    def run(self, vm_id, vm_name, network_adapter, network_name):
+    def run(self, vm_id, vm_name, network_adapter, network_name, vsphere=None):
+        """
+        Edit Network Adapater on Virtual Machine
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - network_name: Network to attach adapter to
+        - network_adapter: Name of Adapter to edit
+
+        Returns:
+        - dict: State true/false
+        """
+
         # check means of finding the VM was provided
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+
+        self.establish_connection(vsphere)
+
         # convert ids to stubs
         vm = inventory.get_virtualmachine(self.si_content,
                                           moid=vm_id,

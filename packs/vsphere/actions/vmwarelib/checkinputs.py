@@ -21,4 +21,4 @@ def one_of_two_strings(stringa=None, stringb=None, desc="Input"):
             or (stringa and isinstance(stringa, six.string_types)):
         return
     else:
-        raise Exception("No %s provided" % desc)
+        raise ValueError("No %s provided" % desc)

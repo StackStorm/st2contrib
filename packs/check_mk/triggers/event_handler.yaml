@@ -1,0 +1,4 @@
+---
+name: event_handler
+pack: check_mk
+description: 'Trigger type for check_mk events'

@@ -4,5 +4,10 @@
   description: "Wait for a Task to complete and returns its result."
   enabled: true
   entry_point: "hello_vsphere.py"
-  parameters: {}
-
+  parameters:
+    vsphere:
+      type: "string"
+      description: "Pre-Configured vsphere connection details"
+      required: false
+      position: 0 
+      default: ~

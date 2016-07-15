@@ -23,7 +23,8 @@ from vmwarelib.actions import BaseAction
 
 class WaitTask(BaseAction):
 
-    def run(self, task_id):
+    def run(self, task_id, vsphere=None):
+        self.establish_connection(vsphere)
         # convert ids to stubs
         task = inventory.get_task(self.si_content, moid=task_id)
         while task.info.state == vim.TaskInfo.State.running:

@@ -18,5 +18,6 @@ from vmwarelib.actions import BaseAction
 
 class HellowVsphere(BaseAction):
 
-    def run(self):
+    def run(self, vsphere=None):
+        self.establish_connection(vsphere)
         return self.si_content.about.instanceUuid

@@ -7,6 +7,10 @@ entry_point: 'workflows/vm_hw_basic_build.yaml'
 description: WorkFlow to build a base VM hardware and power it on (CPU, RAM, HDD, NIC)
 
 parameters:
+  vsphere:
+    type: string
+    description: Pre-Configured Vsphere Connection
+    default: ~
   vm_name: 
     required: true
     type: string 

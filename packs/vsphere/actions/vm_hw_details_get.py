@@ -18,20 +18,37 @@ from vmwarelib.actions import BaseAction
 
 
 class GetVMDetails(BaseAction):
-    def run(self, vm_ids, vm_names):
-        # TODO strip duplicate entries returned when ID and name are provided
+    def run(self, vm_ids, vm_names, vsphere=None):
+        """
+        Retrieve details for given Virtual Machines
+
+        Args:
+        - vm_ids: Moid of Virtual Machines to retrieve
+        - vm_names: Name of Virtual Machines to retrieve
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+
+
+        Returns:
+        - dict: Virtual machine details.
+        """
+
         # TODO review using propertspec for retrieving all VM's at onces.
-        results = []
+        results = {}
         if not vm_ids and not vm_names:
-            raise Exception("No IDs nor Names provided.")
+            raise ValueError("No IDs nor Names provided.")
+
+        self.establish_connection(vsphere)
+
         if vm_ids:
             for vid in vm_ids:
                 vm = inventory.get_virtualmachine(self.si_content, moid=vid)
                 if vm:
-                    results.append({vm.name: vm.summary})
+                    if vm.name not in results:
+                        results[vm.name] = vm.summary
         if vm_names:
             for vm in vm_names:
                 vm = inventory.get_virtualmachine(self.si_content, name=vm)
                 if vm:
-                    results.append({vm.name: vm.summary})
+                    if vm.name not in results:
+                        results[vm.name] = vm.summary
         return results
