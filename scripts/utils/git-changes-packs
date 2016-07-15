@@ -2,10 +2,14 @@
 ROOT_DIRECTORY=$1
 BASE_BRANCH="origin/master"
 
+# Note: We skip stub packs which have been moved to different repos:
+# linux
+# openstack
+
 # If this environment variable if specified we will return all the files so the
 # checks run on all the files not only changed ones.
 if [ "${FORCE_CHECK_ALL_FILES}" = "true" ]; then
-    echo $(find ${ROOT_DIRECTORY}/packs/* -maxdepth 0 -type d)
+    echo $(find ${ROOT_DIRECTORY}/packs/* -maxdepth 0 -type d | grep -v linux | grep -v openstack)
     exit 0
 fi
 
@@ -15,5 +19,6 @@ if [ ! -z "${FORCE_CHECK_PACK}" ] && [ "${FORCE_CHECK_PACK}" != "false" ]; then
 fi
 
 cd ${ROOT_DIRECTORY}
+
 # Note: We include all but deleted files ("D" flag)
-echo $(git diff --diff-filter=ACMRTUXB --name-only ${BASE_BRANCH} -- 'packs/*' | xargs -I FILENAME dirname FILENAME | awk -F'/' '/^\./ {next} /^[^\/]+$/ {next} /^scripts/ {next} /.*/{print $1"/"$2"/"}' | uniq)
+echo $(git diff --diff-filter=ACMRTUXB --name-only ${BASE_BRANCH} -- 'packs/*' | xargs -I FILENAME dirname FILENAME | awk -F'/' '/^\./ {next} /^[^\/]+$/ {next} /^scripts/ {next} /.*/{print $1"/"$2"/"}' | grep -v linux | grep -v openstack | uniq)
