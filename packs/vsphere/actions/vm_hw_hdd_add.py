@@ -23,9 +23,27 @@ from vmwarelib.actions import BaseAction
 
 class VMAddHDD(BaseAction):
     def run(self, vm_id, vm_name, datastore_cluster,
-            datastore, disk_size, provision_type):
+            datastore, disk_size, provision_type, vsphere=None):
+        """
+        Add Hard Drive object to Virtual Machine
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - datastore_cluster: Datastore Cluster to store new hdd files
+        - datastore: Datastore to put new files in
+        - disk_size: Sze of HDD in GB
+        - provisioning_type: Type of Provisioning to use for HDD
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+
+
+        Returns:
+        - dict: Success
+        """
         # ensure that minimal inputs are provided
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+
+        self.establish_connection(vsphere)
 
         vm = inventory.get_virtualmachine(self.si_content, vm_id, vm_name)
         spec = vim.vm.ConfigSpec()

@@ -9,6 +9,11 @@
             type: 'string'
             description: moId of a Virtual Machine. e.g. "vm-1".
             required: true
+        vsphere:
+            type: 'string'
+            description: "Pre-Configured vsphere connection details"
+            required: false
+            default: ~
         alternate_guest_name:
             type: 'string'
             description: >

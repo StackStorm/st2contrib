@@ -23,9 +23,26 @@ from vmwarelib.actions import BaseAction
 class VMAddNic(BaseAction):
 
     def run(self, vm_id, vm_name, network_name,
-            nictype, stayconnected, wakeonlan):
+            nictype, stayconnected, wakeonlan, vsphere=None):
+        """
+        Add Network Adapter to Virtual Machine
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+        - network_name: vsphere network to connect to
+        - nictype: Nic type to add
+        - stayconnected: Nic connected on boot
+        - wakeonlan: Wake on Lan
+
+        Returns:
+        - dict: state true/false
+        """
         # create object itmes of key components
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+
+        self.establish_connection(vsphere)
 
         vm = inventory.get_virtualmachine(self.si_content, vm_id, vm_name)
         network_obj = inventory.get_network(self.si_content, name=network_name)

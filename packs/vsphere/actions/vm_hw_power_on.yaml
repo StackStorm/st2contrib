@@ -15,6 +15,12 @@
       description: "VM Name to PowerOn."
       required: false
       position: 1
+    vsphere:
+      type: "string"
+      description: "Pre-Configured vsphere connection details"
+      required: false
+      position: 2
+      default: ~
     power_onoff: 
       type: "string"
       description: "State to apply."

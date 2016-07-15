@@ -19,8 +19,19 @@ from vmwarelib.actions import BaseAction
 
 class GetVMMoid(BaseAction):
 
-    def run(self, vm_names):
+    def run(self, vm_names, vsphere=None):
+        """
+        Return moid values for VMs listed within the vsphere.
+
+        Args:
+        - vm_names: list of names as shown in vsphere
+
+        Returns:
+        - dict: key value pair of vm_name and vm moid.
+        """
+
         results = {}
+        self.establish_connection(vsphere)
 
         vmlist = inventory.get_virtualmachines(self.si_content)
 

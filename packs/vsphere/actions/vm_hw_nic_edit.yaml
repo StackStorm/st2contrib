@@ -15,6 +15,12 @@
       description: "VM Name to Flex."
       required: false
       position: 1
+    vsphere:
+      type: "string"
+      description: "Pre-configured Vsphere connection"
+      required: false
+      position: 2
+      default: ~
     network_adapter:
       type: "string"
       description: "Name of Network Adapater"

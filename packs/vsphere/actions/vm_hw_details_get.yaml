@@ -14,3 +14,9 @@
       description: Comma seperated list of VM Names
       required: false
       position: 1
+      default: ~
+    vsphere:
+      type: string
+      description: Pre-configured vsphere endpoint
+      required: false
+      position: 2

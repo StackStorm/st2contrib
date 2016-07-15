@@ -23,7 +23,8 @@ from vmwarelib.actions import BaseAction
 
 class VMCheckTools(BaseAction):
 
-    def run(self, vm_id):
+    def run(self, vm_id, vsphere=None):
+        self.establish_connection(vsphere)
         # convert ids to stubs
         vm = inventory.get_virtualmachine(self.si_content, moid=vm_id)
 

@@ -15,6 +15,12 @@
         description: "Virtual Machine Name"
         required: false
         position: 1
+      vsphere:
+        type: "string"
+        description: "Pre-Configured VSphere connection"
+        required: false
+        position: 2
+        default: ~
       network_name:
         type: "string"
         description: "Network to attach NIC to"

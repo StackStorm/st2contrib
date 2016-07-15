@@ -22,9 +22,25 @@ from vmwarelib.actions import BaseAction
 
 class VMAddSCSIController(BaseAction):
 
-    def run(self, vm_id, vm_name, controller_type, scsi_sharing):
+    def run(self, vm_id, vm_name, controller_type, scsi_sharing, vsphere=None):
+        """
+        Add SCSI controller to Virtual Machine
+
+        Args:
+        - vm_id: Moid of Virtual Machine to edit
+        - vm_name: Name of Virtual Machine to edit
+        - controller_type: Type of Controller to add
+        - scsi_sharing: type of sharing for scsi adapter
+        - vsphere: Pre-configured vsphere connection details (config.yaml)
+
+        Returns:
+        - dict: state true/false
+        """
+
         # VM name or ID given?
         checkinputs.one_of_two_strings(vm_id, vm_name, "ID or Name")
+
+        self.establish_connection(vsphere)
 
         # Create object for VM
         vm = inventory.get_virtualmachine(self.si_content, vm_id, vm_name)

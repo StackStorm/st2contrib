@@ -11,14 +11,27 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
 
-import six
+# import yaml
+# from mock import Mock, MagicMock
+
+from vsphere_base_action_test_case import VsphereBaseActionTestCase
+
+from vm_hw_nic_add import VMAddNic
 
 
-def one_of_two_strings(stringa=None, stringb=None, desc="Input"):
-    if (stringb and isinstance(stringb, six.string_types))\
-            or (stringa and isinstance(stringa, six.string_types)):
-        return
-    else:
-        raise ValueError("No %s provided" % desc)
+__all__ = [
+    'VMAddNicTestCase'
+]
+
+
+class VMAddNicTestCase(VsphereBaseActionTestCase):
+    __test__ = True
+    action_cls = VMAddNic
+
+    def test_run_blank_identifier_input(self):
+        action = self.get_action_instance(self.new_config)
+        self.assertRaises(ValueError, action.run, vm_id=None,
+                          vm_name=None, network_name=None,
+                          nictype=None, stayconnected=None,
+                          wakeonlan=None, vsphere="default")

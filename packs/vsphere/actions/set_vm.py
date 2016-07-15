@@ -19,13 +19,14 @@ from vmwarelib.actions import BaseAction
 
 
 class SetVM(BaseAction):
-    def run(self, vm, alternate_guest_name=None, description=None, guest_id=None, memory_mb=None,
-            name=None, num_cpu=None, vm_swapfile_policy=None):
-        vm_swapfile_policy = vm_swapfile_policy.lower() if vm_swapfile_policy else None
+    def run(self, vm, alternate_guest_name=None, description=None,
+            guest_id=None, memory_mb=None,
+            name=None, num_cpu=None, vm_swapfile_policy=None, vsphere=None):
+        vm_swapfile_policy = vm_swapfile_policy.lower()\
+            if vm_swapfile_policy else None
 
-        si = self.si
-
-        vm_obj = vim.VirtualMachine(vm, stub=si._stub)
+        self.establish_connection(vsphere)
+        vm_obj = vim.VirtualMachine(vm, stub=self.si._stub)
 
         # convert ids to stubs
         spec = vim.vm.ConfigSpec()

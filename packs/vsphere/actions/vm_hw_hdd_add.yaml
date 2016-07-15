@@ -15,6 +15,12 @@
         description: "Virtual Machine Name"
         required: false
         position: 1
+      vsphere:
+        type: "string"
+        description: "Pre-Configured Vsphere to connect to"
+        required: false
+        position: 2
+        default: ~
       datastore_cluster:
         type: "string"
         description: "Datastore Cluster for new Drive"

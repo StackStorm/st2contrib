@@ -62,3 +62,9 @@
                 Specifies, whether or not to disable the recursive behavior or the command. By default it is False
             required: false
             default: false
+        vsphere:
+            type: "string"
+            description: >
+                Pre-Configured vsphere connection details
+            required: false
+            default: ~
