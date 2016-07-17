@@ -5,7 +5,7 @@ PUBKEY=""
 
 create_user() {
 
-  if [ $(id -u ${SYSTEMUSER} &> /devnull; echo $?) != 0 ]
+  if [ $(id -u ${SYSTEMUSER} &> /dev/null; echo $?) != 0 ]
   then
     echo "########## Creating system user: ${SYSTEMUSER} ##########"
     useradd ${SYSTEMUSER}
