@@ -17,20 +17,20 @@ from st2actions.runners.pythonrunner import Action
 import duo_client
 
 
-class AuthAction(Action):
+class AuthBaseAction(Action):
     def __init__(self, config):
-        super(AuthAction, self).__init__(config)
+        super(AuthBaseAction, self).__init__(config)
 
         try:
-            ikey = self.config['auth']['ikey']
-            skey = self.config['auth']['skey']
-            host = self.config['auth']['host']
+            self.ikey = self.config['auth_ikey']
+            self.skey = self.config['auth_skey']
+            self.host = self.config['auth_host']
         except KeyError:
             raise ValueError("Duo config not found in config.")
 
-        self.duo_auth = duo_client.Auth(ikey=ikey,
-                                        skey=skey,
-                                        host=host)
+        self.duo_auth = duo_client.Auth(ikey=self.ikey,
+                                        skey=self.skey,
+                                        host=self.host)
 
     def send_user_error(self, message):
         print(message)

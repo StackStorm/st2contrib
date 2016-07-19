@@ -3,6 +3,6 @@ name: opsgenie
 description: A intergration pack for the OpsGenie Service
 keywords:
     - OpsGenie
-version: 0.1
+version: 0.2
 author: Jon Middleton
 email: jon.middleton@pulsant.com

@@ -1,0 +1,10 @@
+---
+api_key:
+  description: "The AlertLogic API Key."
+  type: "string"
+  secret: true
+  required: true
+api_host:
+  description: "The API host to use."
+  type: "string"
+  default: "api.alertlogic.net"

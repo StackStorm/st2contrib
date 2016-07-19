@@ -1,9 +1,6 @@
-# Change Log
+# Changelog
 
-# 0.3
+## 0.3.0
 
 - Rename `config.yaml` to `config.schema.yaml` and update to use schema.
-
-# 0.1
-
-- First release with a single action (get_ips).
+- Fallen config so it works work `config.schema`.

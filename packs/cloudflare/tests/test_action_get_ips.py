@@ -84,7 +84,7 @@ class GetIPsTestCase(BaseActionTestCase):
         result = action.run()
         self.assertEqual(result, expected)
 
-    def test_run_success_flase(self):
+    def test_run_success_false(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)
 
         adapter = requests_mock.Adapter()

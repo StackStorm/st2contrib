@@ -15,10 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from lib.actions import AuthAction
+from lib.actions import AuthBaseAction
 
 
-class Ping(AuthAction):
+class AuthPingAction(AuthBaseAction):
     def run(self):
         """
         Ping the Duo Platorm.

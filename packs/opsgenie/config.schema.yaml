@@ -1,0 +1,10 @@
+---
+api_key:
+  description: "The API key for OpsGenie."
+  type: "string"
+  secret: true
+  required: true
+api_host:
+  description: "The OpsGenie API host to use."
+  type: "string"
+  default: "https://api.opsgenie.com/"

@@ -1,0 +1,31 @@
+---
+auth_host:
+  description: "The Duo API Server hostname."
+  type: "string"
+  required: true
+auth_ikey:
+  description: "The Duo api-integration-key"
+  type: "string"
+  secret: true
+  required: true
+auth_skey:
+  description: "The Duo secret key"
+  type: "string"
+  secret: true
+  required: true
+
+# The Admin API needs Platform and Enterprise edition customers.
+admin_host:
+  description: "The Duo API Server hostname."
+  type: "string"
+  required: true
+admin_ikey:
+  description: "The Duo Admin api-integration-key"
+  type: "string"
+  secret: true
+  required: true
+admin_skey:
+  description: "The Duo Admin secret key"
+  type: "string"
+  secret: true
+  required: true
