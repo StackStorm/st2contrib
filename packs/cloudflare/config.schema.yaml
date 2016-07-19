@@ -3,3 +3,4 @@ api_host:
   type: "string"
   description: "The base URL for the cloudflare API."
   default: "https://api.cloudflare.com"
+  required: true

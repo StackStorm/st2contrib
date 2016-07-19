@@ -8,3 +8,4 @@ api_host:
   description: "The API host to use."
   type: "string"
   default: "api.alertlogic.net"
+  required: true
