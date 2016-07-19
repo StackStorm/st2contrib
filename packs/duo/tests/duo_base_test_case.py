@@ -15,8 +15,6 @@
 import yaml
 import json
 
-import requests_mock
-
 from st2tests.base import BaseActionTestCase
 
 
