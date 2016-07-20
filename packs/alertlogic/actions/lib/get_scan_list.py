@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import requests
+from lib.base import API_HOST
 
 
 def GetScanList(config, customer_id=None, active_only=False):
@@ -25,7 +26,6 @@ def GetScanList(config, customer_id=None, active_only=False):
     Raises:
     ValueError: On lack of key in config.
     """
-    API_HOST = "api.alertlogic.net"
 
     results = {}
 
