@@ -1,2 +1,2 @@
 ---
-api_host: "mock://api.cloudflare.com"
+api_key: "API-Key"

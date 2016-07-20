@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import requests
+from lib.base import API_HOST
 
 
 def GetScanList(config, customer_id=None, active_only=False):
@@ -28,7 +29,7 @@ def GetScanList(config, customer_id=None, active_only=False):
 
     results = {}
 
-    url = "https://{}/api/scan/v1/scans".format(config['api_host'])
+    url = "https://{}/api/scan/v1/scans".format(API_HOST)
     payload = None
     headers = {"Accept": "application/json"}
 

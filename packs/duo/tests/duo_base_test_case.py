@@ -15,19 +15,17 @@
 import yaml
 import json
 
-import requests_mock
-
 from st2tests.base import BaseActionTestCase
 
 
-class OpsGenieBaseActionTestCase(BaseActionTestCase):
+class DuoBaseActionTestCase(BaseActionTestCase):
     __test__ = False
 
     def setUp(self):
-        super(OpsGenieBaseActionTestCase, self).setUp()
+        super(DuoBaseActionTestCase, self).setUp()
 
-        self._blank_config = self.load_yaml('configs/blank.yaml')
-        self._full_config = self.load_yaml('configs/full.yaml')
+        self._blank_config = self.load_yaml('blank.yaml')
+        self._full_config = self.load_yaml('full.yaml')
 
     def load_yaml(self, filename):
         return yaml.safe_load(self.get_fixture_content(filename))
@@ -51,32 +49,6 @@ class OpsGenieBaseActionTestCase(BaseActionTestCase):
     def test_run_is_instance(self):
         action = self.get_action_instance(self.full_config)
         self.assertIsInstance(action, self.action_cls)
-        self.assertEqual(action.api_key, "ApiKey")
-        self.assertEqual(action.API_HOST, "https://api.opsgenie.com/")
-
-    def _get_mocked_action(self):
-        action = self.get_action_instance(self.full_config)
-        action.API_HOST = "mock://api.opsgenie.com/"
-
-        adapter = requests_mock.Adapter()
-        action.session.mount('mock', adapter)
-
-        return action, adapter
-
-    def _get_action_invalid_json(self, method, url):
-        action, adapter = self._get_mocked_action()
-        action.API_HOST = "mock://api.opsgenie.com/"
-
-        adapter.register_uri(method,
-                             url,
-                             text="{'ffo': bar}")
-        return action, adapter
-
-    def _get_action_status_code(self, method, url, status_code):
-        action, adapter = self._get_mocked_action()
-        action.API_HOST = "mock://api.opsgenie.com/"
-
-        adapter.register_uri(method,
-                             url,
-                             status_code=status_code)
-        return action, adapter
+        self.assertEqual(action.host, "api-hostname")
+        self.assertEqual(action.ikey, "auth-api-integration-key")
+        self.assertEqual(action.skey, "auth-api-secret-key")

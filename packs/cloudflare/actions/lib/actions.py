@@ -19,15 +19,17 @@ from st2actions.runners.pythonrunner import Action
 
 
 class CloudflareBaseAction(Action):
+    API_HOST = "https://api.cloudflare.com"
+
     def __init__(self, config):
         super(CloudflareBaseAction, self).__init__(config)
 
         self.session = requests.Session()
 
         try:
-            self.api_host = self.config['api_host']
+            self.api_key = self.config['api_key']
         except KeyError:
-            raise ValueError("Missing api host in the config.")
+            raise ValueError("Missing api_key in the config.")
 
     def send_user_error(self, message):
         """

@@ -1,0 +1,6 @@
+---
+api_key:
+  type: "string"
+  description: "The API Key for the cloudflare API."
+  required: true
+  default: "Invalid-Key"

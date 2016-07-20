@@ -20,6 +20,8 @@ from st2actions.runners.pythonrunner import Action
 
 
 class OpsGenieBaseAction(Action):
+    API_HOST = "https://api.opsgenie.com/"
+
     def __init__(self, config):
         super(OpsGenieBaseAction, self).__init__(config)
 
@@ -28,14 +30,13 @@ class OpsGenieBaseAction(Action):
 
         try:
             self.api_key = self.config["api_key"]
-            self.api_host = self.config["api_host"]
         except KeyError:
-            raise ValueError("api_key and api_host needs to be configured!")
+            raise ValueError("api_key needs to be configured!")
 
     def _url(self, uri):
         """
         """
-        return "{}/{}".format(self.api_host.rstrip("/"),
+        return "{}/{}".format(self.API_HOST.rstrip("/"),
                               uri)
 
     def _req(self, method, uri, payload=None, body=None):

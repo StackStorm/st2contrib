@@ -1,0 +1,6 @@
+---
+api_key:
+  description: "The AlertLogic API Key."
+  type: "string"
+  secret: true
+  required: true

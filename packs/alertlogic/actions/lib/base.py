@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -15,24 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from lib.actions import AuthBaseAction
-
-
-class AuthCheckAction(AuthBaseAction):
-    def run(self):
-        """
-        Ping the Duo Platorm.
-
-        Returns: An dict with info returned by Duo.
-
-        Raises:
-          RuntimeError: On Invalid keys.
-        """
-
-        try:
-            data = self.duo_auth.check()
-        except RuntimeError, e:
-            self.send_user_error(e)
-            raise RuntimeError("Check failed! '%s'" % e)
-        else:
-            return data
+API_HOST = "api.alertlogic.net"

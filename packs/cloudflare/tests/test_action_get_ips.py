@@ -1,19 +1,17 @@
 import yaml
-import requests
 import requests_mock
+from mock import patch
 
 from st2tests.base import BaseActionTestCase
 
-from get_ips import GetIPs
+from get_ips import GetIPsAction
 
 __all__ = [
-    'GetIPsTestCase'
+    'GetIPsActionTestCase'
 ]
 
 MOCK_CONFIG_BLANK = yaml.safe_load(open(
     'packs/cloudflare/tests/fixture/blank.yaml').read())
-MOCK_CONFIG_NO_SCHEMA = yaml.safe_load(open(
-    'packs/cloudflare/tests/fixture/no_schema.yaml').read())
 MOCK_CONFIG_FULL = yaml.safe_load(open(
     'packs/cloudflare/tests/fixture/full.yaml').read())
 
@@ -24,23 +22,20 @@ MOCK_DATA_FAIL = open(
     'packs/cloudflare/tests/fixture/fail.json').read()
 
 
-class GetIPsTestCase(BaseActionTestCase):
-    action_cls = GetIPs
+class GetIPsActionTestCase(BaseActionTestCase):
+    action_cls = GetIPsAction
 
     def test_run_no_config(self):
-        self.assertRaises(ValueError, GetIPs, MOCK_CONFIG_BLANK)
+        self.assertRaises(ValueError, self.action_cls, MOCK_CONFIG_BLANK)
 
     def test_run_is_instance(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)
 
-        self.assertIsInstance(action, GetIPs)
+        self.assertIsInstance(action, self.action_cls)
+        self.assertEqual(action.api_key, "API-Key")
+        self.assertEqual(action.API_HOST, "https://api.cloudflare.com")
 
-    def test_run_status_no_schema(self):
-        action = self.get_action_instance(MOCK_CONFIG_NO_SCHEMA)
-
-        self.assertRaises(requests.exceptions.MissingSchema,
-                          action.run)
-
+    @patch('get_ips.GetIPsAction.API_HOST', "mock://api.cloudflare.com")
     def test_run_status_404(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)
 
@@ -54,6 +49,7 @@ class GetIPsTestCase(BaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run)
 
+    @patch('get_ips.GetIPsAction.API_HOST', "mock://api.cloudflare.com")
     def test_run_invalid_json(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)
 
@@ -67,6 +63,7 @@ class GetIPsTestCase(BaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run)
 
+    @patch('get_ips.GetIPsAction.API_HOST', "mock://api.cloudflare.com")
     def test_run_success_true(self):
         expected = {'ipv4_cidrs': [u'199.27.128.0/21'],
                     'ipv6_cidrs': [u'2400:cb00::/32'],
@@ -84,7 +81,8 @@ class GetIPsTestCase(BaseActionTestCase):
         result = action.run()
         self.assertEqual(result, expected)
 
-    def test_run_success_flase(self):
+    @patch('get_ips.GetIPsAction.API_HOST', "mock://api.cloudflare.com")
+    def test_run_success_false(self):
         action = self.get_action_instance(MOCK_CONFIG_FULL)
 
         adapter = requests_mock.Adapter()

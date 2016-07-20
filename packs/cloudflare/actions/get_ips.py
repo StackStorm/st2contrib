@@ -16,7 +16,7 @@
 from lib.actions import CloudflareBaseAction
 
 
-class GetIPs(CloudflareBaseAction):
+class GetIPsAction(CloudflareBaseAction):
     def run(self):
         """
         Get CloudFlare IPs
@@ -36,7 +36,7 @@ class GetIPs(CloudflareBaseAction):
 
         results = {}
 
-        url = "{}/client/v4/ips".format(self.api_host)
+        url = "{}/client/v4/ips".format(self.API_HOST)
         payload = {}
         headers = {"Content-Type": "application/json"}
 

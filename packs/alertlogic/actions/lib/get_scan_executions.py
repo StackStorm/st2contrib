@@ -15,6 +15,7 @@
 
 import requests
 from datetime import datetime
+from lib.base import API_HOST
 
 
 def GetScanExecutions(config, scan_id):
@@ -28,7 +29,8 @@ def GetScanExecutions(config, scan_id):
     """
     results = {}
 
-    url = "https://{}/api/scan/v1/scans/{}".format(config['api_host'], scan_id)
+    url = "https://{}/api/scan/v1/scans/{}".format(API_HOST,
+                                                   scan_id)
     headers = {"Accept": "application/json"}
 
     try:

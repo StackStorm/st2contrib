@@ -17,10 +17,10 @@
 
 import urllib
 
-from lib.actions import AuthAction
+from lib.actions import AuthBaseAction
 
 
-class Auth(AuthAction):
+class AuthAuthAction(AuthBaseAction):
     def run(self, username, factor,
             ipaddr, device, push_type, passcode, pushinfo):
         """
