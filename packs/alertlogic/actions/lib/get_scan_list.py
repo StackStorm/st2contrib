@@ -25,10 +25,11 @@ def GetScanList(config, customer_id=None, active_only=False):
     Raises:
     ValueError: On lack of key in config.
     """
+    API_HOST = "api.alertlogic.net"
 
     results = {}
 
-    url = "https://{}/api/scan/v1/scans".format(config['api_host'])
+    url = "https://{}/api/scan/v1/scans".format(API_HOST)
     payload = None
     headers = {"Accept": "application/json"}
 

@@ -32,8 +32,10 @@ def GetScanResults(config, scan_exec_id, new_vulns=False, new_ports=False):
     Raises:
     ValueError: On lack of key in config.
     """
+    API_HOST = "api.alertlogic.net"
 
-    url = "https://{}/api/scan/v1/results/{}".format(config['api_host'], scan_exec_id)
+    url = "https://{}/api/scan/v1/results/{}".format(API_HOST,
+                                                     scan_exec_id)
 
     payload = {}
 

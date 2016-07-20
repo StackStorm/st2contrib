@@ -27,8 +27,10 @@ def GetScanExecutions(config, scan_id):
     ValueError: On lack of key in config.
     """
     results = {}
+    API_HOST = "api.alertlogic.net"
 
-    url = "https://{}/api/scan/v1/scans/{}".format(config['api_host'], scan_id)
+    url = "https://{}/api/scan/v1/scans/{}".format(API_HOST,
+                                                   scan_id)
     headers = {"Accept": "application/json"}
 
     try:
