@@ -14,7 +14,7 @@
 
 import yaml
 import json
-# from mock import MagicMock
+from mock import MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -73,5 +73,5 @@ class VsphereBaseActionTestCase(BaseActionTestCase):
 
     def test_run_config_new_partial(self):
         action = self.get_action_instance(self.new_config_partial)
-        self.assertRaises(KeyError, action.establish_connection, vsphere="default")
-           
+        self.assertRaises(KeyError, action.establish_connection,
+                          vsphere="default")
