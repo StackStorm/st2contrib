@@ -14,7 +14,6 @@
 
 import yaml
 import json
-from mock import MagicMock
 
 from st2tests.base import BaseActionTestCase
 
