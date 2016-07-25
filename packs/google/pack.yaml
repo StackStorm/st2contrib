@@ -4,6 +4,6 @@ description : st2 content pack containing google integrations
 keywords:
   - google
   - search
-version : 0.1
+version : 0.1.1
 author : st2-dev
 email : info@stackstorm.com
