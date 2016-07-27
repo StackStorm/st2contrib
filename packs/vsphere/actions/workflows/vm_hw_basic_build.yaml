@@ -10,6 +10,7 @@ vsphere.vm_hw_basic_build:
     - vm_cpu
     - vm_ram
     - vm_dscluster
+    - vm_datastore
     - vm_dccluster
     - vm_guestos
     - vm_description
@@ -19,6 +20,7 @@ vsphere.vm_hw_basic_build:
     - vm_nic_type
     - vm_nic_netname
     - vm_version
+    - vm_poweron
   tasks:
     barebones_build:
       # [189, 97]
@@ -29,6 +31,7 @@ vsphere.vm_hw_basic_build:
         cpu_size: <% $.vm_cpu %>
         cluster: <% $.vm_dccluster %>
         datastore_cluster: <% $.vm_dscluster %>
+        datastore: <% $.vm_datastore %>
         resourcepool: <% $.vm_resourcepool %>
         version: <% $.vm_version %>
         guestos: <% $.vm_guestos %>
@@ -67,7 +70,7 @@ vsphere.vm_hw_basic_build:
         nictype: <% $.vm_nic_type %>
         vsphere: <% $.vsphere %>
       on-success:
-        - power_on
+        - power_on: <% $.vm_poweron = true %>
     power_on:
       # [190, 505]
       action: vsphere.vm_hw_power_on

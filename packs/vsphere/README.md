@@ -42,6 +42,7 @@ PYVMOMI 6.0 requires alternative connection coding and Python 2.7.9 minimum due 
 
 ## Actions
 
+* `vsphere.vm_end_items_get` - Retrieve json list of objects from vsphere
 * `vsphere.vm_hw_basic_build` - Minstral Flow to Build Basic Server and power it on.
 * `vsphere.vm_hw_cpu_mem_edit` - Adjust the CPU and RAM values assigned to a Virtual Machine
 * `vsphere.vm_hw_detail_get` - Retrieve Vsphere Data about a virtual machine

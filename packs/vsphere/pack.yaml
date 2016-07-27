@@ -1,6 +1,6 @@
 ---
 name : vsphere 
 description : st2 content pack containing vsphere integrations.
-version : 0.4
+version : 0.4.1
 author : Paul Mulvihill
 email : paul.mulvihill@pulsant.com

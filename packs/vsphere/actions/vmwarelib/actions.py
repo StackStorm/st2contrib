@@ -33,10 +33,12 @@ class BaseAction(Action):
                 raise ValueError("'vsphere' config defined but empty.")
             else:
                 pass
-        elif set(CONNECTION_ITEMS).issubset(config):
-            pass
         else:
-            raise ValueError("Incomplete configuration details")
+            for item in CONNECTION_ITEMS:
+                if item in config:
+                    pass
+                else:
+                    raise KeyError("Config.yaml Mising: %s" % (item))
 
     def establish_connection(self, vsphere):
         self.si = self._connect(vsphere)
@@ -45,10 +47,12 @@ class BaseAction(Action):
     def _connect(self, vsphere):
         if vsphere:
             connection = self.config['vsphere'].get(vsphere)
-            if set(CONNECTION_ITEMS).issubset(connection):
-                pass
-            else:
-                raise ValueError("Incomplete configuration details")
+            for item in CONNECTION_ITEMS:
+                if item in connection:
+                    pass
+                else:
+                    raise KeyError("Config.yaml Mising: vsphere:%s:%s"
+                                   % (vsphere, item))
         else:
             connection = self.config
 
