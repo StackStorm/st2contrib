@@ -4,7 +4,7 @@ runner_type: "mistral-v2"
 pack: "vsphere"
 enabled: true
 entry_point: 'workflows/vm_hw_basic_build.yaml'
-description: WorkFlow to build a base VM hardware and power it on (CPU, RAM, HDD, NIC)
+description: WorkFlow to build a base VM hardware and optional power on (CPU, RAM, HDD, NIC)
 
 parameters:
   vsphere:
