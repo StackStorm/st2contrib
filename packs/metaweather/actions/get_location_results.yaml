@@ -1,0 +1,11 @@
+---
+  name: "get_location_results"
+  runner_type: "run-python"
+  description: "Retrieve MetaWeather search results for the provided query."
+  enabled: true
+  entry_point: "get_location_results.py"
+  parameters:
+    query:
+      type: "string"
+      description: "Search query."
+      required: true

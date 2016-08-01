@@ -1,0 +1,11 @@
+---
+  name: "get_weather"
+  runner_type: "run-python"
+  description: "Retrieve MetaWeather results for a location."
+  enabled: true
+  entry_point: "get_weather.py"
+  parameters:
+    woeid:
+      type: "string"
+      description: "Where on Earth ID - Can be found with get_location_results."
+      required: true

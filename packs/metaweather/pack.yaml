@@ -1,0 +1,9 @@
+---
+name : metaweather
+description : Integration with metaweather API to fetch weather in various locations
+keywords:
+  - weather
+  - metaweather
+version : 0.1
+author : st2-dev
+email : info@stackstorm.com
