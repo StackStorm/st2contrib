@@ -11,15 +11,17 @@ parameters:
   repository:
     type: string
     required: true
-  mastertoken:
+  master_token_name:
     type: string
     required: true
-  readtoken:
+    description: "Not the token value but the name used. See https://packagecloud.io/docs#revocation."
+  read_token_name:
     type: string
     required: true
+    description: "Not the token value but the name used. See https://packagecloud.io/docs#revocation."
   sudo:
     immutable: true
     default: true
   cmd:
     immutable: true
-    default: "package_cloud read_token destroy {{user}}/{{repository}} {{mastertoken}}/{{readtoken}}"
+    default: "package_cloud read_token destroy {{user}}/{{repository}} {{master_token_name}}/{{read_token_name}}"
