@@ -20,4 +20,4 @@ parameters:
     default: true
   cmd:
     immutable: true
-    default: "package_cloud master_token destroy {{user}}/{{repository}} {{token_name}}"
+    default: "echo y | package_cloud master_token destroy {{user}}/{{repository}} {{token_name}}"
