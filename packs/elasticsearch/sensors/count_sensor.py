@@ -1,7 +1,7 @@
 from st2reactor.sensor.base import PollingSensor
 from elasticsearch import Elasticsearch
 import json
-import time
+import eventlet
 
 
 class ElasticsearchCountSensor(PollingSensor):
@@ -21,11 +21,8 @@ class ElasticsearchCountSensor(PollingSensor):
 
         try:
             self.es = Elasticsearch([{'host': self.host, 'port': self.port}])
-        except:
-            self.LOG.exception("Could not connect to elasticsearch. %s:%i" %
-                               (self.host, self.port))
-            raise Exception("Could not connect to elasticsearch. %s:%i" %
-                            (self.host, self.port))
+        except Exception:
+            raise
 
     def poll(self):
         query_payload = {"query": {
@@ -48,7 +45,7 @@ class ElasticsearchCountSensor(PollingSensor):
                                          payload=payload)
             cooldown = (self.query_window * self.cooldown_multiplier)
             self.LOG.info("Cooling down for %i seconds" % cooldown)
-            time.sleep(cooldown)
+            eventlet.sleep(cooldown)
 
     def cleanup(self):
         # This is called when the st2 system goes down.
