@@ -33,7 +33,7 @@ class ElasticsearchCountSensor(PollingSensor):
                                      "@timestamp": {
                                          "gte": "now-%ss" %
                                          self.query_window}}}}}}
-        data = self.es.search(index=self.index, body=query_payload, size=0)
+        data = self.es.search(index=self.index, body=query_payload)
 
         hits = data.get('hits', None)
         if hits.get('total', 0) > self.count_threshold:
