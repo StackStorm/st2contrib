@@ -7,18 +7,18 @@ import time
 class ElasticsearchCountSensor(PollingSensor):
 
     def setup(self):
-        self.host = self._config.get('host', None)
-        self.port = self._config.get('port', None)
-        self.query_window = self._config.get('query_window', 60)
-        self.query_string = self._config.get('query_string', '{}')
-        self.cooldown_multiplier = self._config.get('cooldown_multiplier', 0)
-        self.count_threshold = self._config.get('count_threshold', 0)
-        self.index = self._config.get('index', '_all')
-        self._trigger_ref="elasticsearch.count_event"       
+        self.host = self.config.get('host', None)
+        self.port = self.config.get('port', None)
+        self.query_window = self.config.get('query_window', 60)
+        self.query_string = self.config.get('query_string', '{}')
+        self.cooldown_multiplier = self.config.get('cooldown_multiplier', 0)
+        self.count_threshold = self.config.get('count_threshold', 0)
+        self.index = self.config.get('index', '_all')
+        self._trigger_ref = "elasticsearch.count_event"
         self.LOG = self.sensor_service.get_logger(__name__)
         self.query = json.loads(self.query_string)
         self.es = None
-        
+
         try:
             self.es = Elasticsearch([{'host': self.host, 'port': self.port}])
         except:
@@ -29,12 +29,13 @@ class ElasticsearchCountSensor(PollingSensor):
 
     def poll(self):
         query_payload = {"query": {
-                           "bool": {
+                         "bool": {
                              "must": [self.query],
                              "filter": {
-                               "range": {
-                                 "@timestamp": {
-                                     "gte": "now-%ss" % self.query_window}}}}}}
+                                 "range": {
+                                     "@timestamp": {
+                                         "gte": "now-%ss" %
+                                         self.query_window}}}}}}
         data = self.es.search(index=self.index, body=query_payload, size=0)
 
         hits = data.get('hits', None)
@@ -66,4 +67,3 @@ class ElasticsearchCountSensor(PollingSensor):
     def remove_trigger(self, trigger):
         # This method is called when trigger is deleted
         pass
-
