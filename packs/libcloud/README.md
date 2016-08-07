@@ -18,8 +18,8 @@ Currently, the following actions listed bellow are supported:
 ### Storage
 
 * Upload a file to a container - `upload_file`
-* Enable CDN for a container and retrieve container CDN URL
-  - `enable_cdn_for_container`
+* Enable CDN for a container and retrieve container CDN URL -
+  `enable_cdn_for_container`
 * Retrieve CDN URL of a CDN enabled container - `get_container_cdn_url`
 * Retrieve CDN URL for an object which is stored in a CDN enabled container -
   `get_object_cdn_url`
