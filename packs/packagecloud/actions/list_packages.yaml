@@ -17,3 +17,9 @@ parameters:
         type: string
         immutable: true
         default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
+    # Note: By default only returns first 30 items in chronological order. Another options is
+    # to implement handling of pagination.
+    params:
+        type: object
+        default:
+            per_page: 1000
