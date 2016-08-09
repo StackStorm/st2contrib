@@ -2,7 +2,8 @@
 name: list_packages
 pack: packagecloud
 description: List packages for a repo
-runner_type: http-request
+runner_type: python-script
+entry_point: list_packages.py
 enabled: true
 parameters:
     repo:
@@ -13,13 +14,10 @@ parameters:
         type: string
         description: Token to access the packagecloud API
         default: "{{system.pkg_cloud_token}}"
-    url:
+    per_page:
+        type: number
+        default: 1000
+    filename_filter:
         type: string
-        immutable: true
-        default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
-    # Note: By default only returns first 30 items in chronological order. Another options is
-    # to implement handling of pagination.
-    params:
-        type: object
-        default:
-            per_page: 1000
+        description: "Optional glob-like filename filter (e.g. *1.6.0)*"
+        required: false
