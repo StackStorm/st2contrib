@@ -18,16 +18,26 @@ import six.moves.http_client as http_client
 
 from st2actions.runners import pythonrunner
 
+__all__ = [
+    'ListPackagesAction'
+]
+
+BASE_URL = 'https://%(api_token)s:@packagecloud.io/api/v1/repos/%(repo)s/packages.json'
+MAX_PAGE_NUMBER = 100
+
 
 class ListPackagesAction(pythonrunner.Action):
+    def run(self, repo, package, distro_version, version, release, api_token, per_page=200):
+        params = {'per_page': per_page}
+        values = {'repo': repo, 'api_token': api_token}
+        url = BASE_URL % values
 
-    def run(self, repo, package, distro_version, version, release, api_token, url):
         page = 1
         packages = []
 
-        while page < 100:
+        while page < MAX_PAGE_NUMBER:
             page_url = url + '?page=' + str(page)
-            response = requests.get(page_url)
+            response = requests.get(url=page_url, params=params)
 
             if response.status_code != http_client.OK:
                 raise Exception(response.text)

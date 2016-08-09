@@ -26,7 +26,6 @@ parameters:
         type: string
         description: Token to access the packagecloud API
         default: "{{system.pkg_cloud_token}}"
-    url:
-        type: string
-        immutable: true
-        default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
+    per_page:
+        type: number
+        default: 200
