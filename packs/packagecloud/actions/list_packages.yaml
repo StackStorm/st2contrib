@@ -10,14 +10,23 @@ parameters:
         type: string
         description: Name of the packagecloud repo
         required: true
+    package:
+        type: string
+        description: Select by specific packages
+    distro_version:
+        type: string
+        description: Select by specific distro
+    version:
+        type: string
+        description: Select by package version
+    release:
+        type: string
+        description: Select by release number
     api_token:
         type: string
         description: Token to access the packagecloud API
         default: "{{system.pkg_cloud_token}}"
-    per_page:
-        type: number
-        default: 1000
-    filename_filter:
+    url:
         type: string
-        description: "Optional glob-like filename filter (e.g. *1.6.0)*"
-        required: false
+        immutable: true
+        default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
