@@ -21,16 +21,28 @@ class St2BaseAction(Action):
 
     def _get_client(self):
         base_url, api_url, auth_url = self._get_st2_urls()
-        token = self._get_auth_token()
         cacert = self._get_cacert()
 
-        client_kwargs = {}
+        client_kwargs = {
+            'base_url': base_url,
+            'api_url': api_url,
+            'auth_url': auth_url,
+        }
+
         if cacert:
             client_kwargs['cacert'] = cacert
 
-        return self._client(base_url=base_url, api_url=api_url,
-                            auth_url=auth_url, token=token,
-                            **client_kwargs)
+        api_key = self._get_api_key()
+        token = self._get_auth_token()
+
+        # API key has precendece over auth token generated for each action
+        # invocation
+        if api_key:
+            client_kwargs['api_key'] = api_key
+        else:
+            client_kwargs['token'] = token
+
+        return self._client(**client_kwargs)
 
     def _get_st2_urls(self):
         # First try to use base_url from config.
@@ -45,6 +57,10 @@ class St2BaseAction(Action):
             auth_url = os.environ.get('ST2_ACTION_AUTH_URL', None)
 
         return base_url, api_url, auth_url
+
+    def _get_api_key(self):
+        api_key = self.config.get('api_key', None)
+        return api_key
 
     def _get_auth_token(self):
         # First try to use auth_token from config.
