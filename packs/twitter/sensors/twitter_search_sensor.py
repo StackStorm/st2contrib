@@ -34,7 +34,7 @@ class TwitterSearchSensor(PollingSensor):
 
     def poll(self):
         tso = TwitterSearchOrder()
-        tso.set_keywords(self._config['query'])
+        tso.set_keywords(self._config['query'], True)
 
         language = self._config.get('language', None)
         if language:
