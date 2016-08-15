@@ -1,9 +1,11 @@
 from datetime import timedelta
-from kazoo.client import KazooClient
 from socket import gethostname
-from st2actions.runners.pythonrunner import Action
 import sys
 from uuid import uuid4
+
+from kazoo.client import KazooClient
+
+from st2actions.runners.pythonrunner import Action
 
 
 class NonBlockingLease(Action):
