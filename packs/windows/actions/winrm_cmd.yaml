@@ -22,8 +22,8 @@
       description: "The command to run"
       required: true
     params:
-      type: "list"
-      description: "list of parameters for the command"
+      type: "array"
+      description: "array of parameters for the command"
       required: true
     port:
       type: "integer"
