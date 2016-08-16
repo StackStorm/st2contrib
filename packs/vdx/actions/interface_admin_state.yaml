@@ -5,8 +5,13 @@ name: interface_admin_state
 parameters:
   enabled:
     description: Is the interface enabled? (True, False)
-    position: 5
+    position: 6
     type: boolean
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc).
+    position: 4
+    required: true
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -14,7 +19,7 @@ parameters:
     type: string
   name:
     description: Name of interface. (1/0/5, 1/0/10, etc).
-    position: 4
+    position: 5
     required: true
     type: string
   password:
@@ -30,8 +35,8 @@ parameters:
     required: true
     type: string
   rbridge_id:
-    description: rbridge-id for device. Only required when type is
-    position: 6
+    description: 'rbridge-id for device. Only required when type is '
+    position: 7
     required: true
     type: string
   username:

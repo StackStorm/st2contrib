@@ -3,6 +3,11 @@ enabled: true
 entry_point: interface_lacp_timeout.py
 name: interface_lacp_timeout
 parameters:
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
+    required: true
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -10,7 +15,7 @@ parameters:
     type: string
   name:
     description: Name of interface. (1/0/5, 1/0/10, etc)
-    position: 5
+    position: 6
     required: true
     type: string
   password:
@@ -26,8 +31,8 @@ parameters:
     required: true
     type: string
   lacp_timeout:
-    description: ' Timeout length.  (short, long)'
-    position: 4
+    description: Timeout length.  (short, long)
+    position: 5
     required: true
     type: string
   username:

@@ -5,7 +5,12 @@ name: interface_description
 parameters:
   desc:
     description: The description of the interface.
-    position: 5
+    position: 6
+    required: true
+    type: string
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
     required: true
     type: string
   ip:
@@ -15,7 +20,7 @@ parameters:
     type: string
   name:
     description: Name of interface. (1/0/5, 1/0/10, etc)
-    position: 4
+    position: 5
     required: true
     type: string
   password:

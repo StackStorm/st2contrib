@@ -4,9 +4,14 @@ entry_point: interface_tag_native_vlan.py
 name: interface_tag_native_vlan
 parameters:
   enabled:
-    description: Is tagging of the VLAN enabled on trunks?
-    position: 6
+    description: Is tagging of the VLAN enabled on trunks? (True, False)
+    position: 7
     type: boolean
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
+    required: true
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -14,12 +19,12 @@ parameters:
     type: string
   mode:
     description: Trunk port mode (trunk, trunk-no-default-native).
-    position: 5
+    position: 6
     required: true
     type: string
   name:
     description: Name of interface. (1/0/5, 1/0/10, etc)
-    position: 4
+    position: 5
     required: true
     type: string
   password:

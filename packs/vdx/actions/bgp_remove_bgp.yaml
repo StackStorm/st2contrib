@@ -21,7 +21,8 @@ parameters:
     required: true
     type: string
   rbridge_id:
-    description: The rbridge ID of the device on which BGP will be
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
     position: 5
     required: true
     type: string

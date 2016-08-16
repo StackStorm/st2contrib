@@ -5,14 +5,9 @@ name: snmp_add_snmp_host
 parameters:
   community:
     description: Community string to be added to device.
-    position: 5
-    required: true
-    type: string
-  host_info:
-    description: Tuple of host IP and port.
     position: 4
     required: true
-    type: array
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0

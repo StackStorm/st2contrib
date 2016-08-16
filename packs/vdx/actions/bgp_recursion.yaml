@@ -3,6 +3,15 @@ enabled: true
 entry_point: bgp_recursion.py
 name: bgp_recursion
 parameters:
+  afi:
+    description: Address family to configure. (ipv4, ipv6)
+    position: 6
+    required: true
+    type: string
+  get:
+    description: Get config instead of editing config. (True, False)
+    position: 7
+    type: boolean
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -21,7 +30,8 @@ parameters:
     required: true
     type: string
   rbridge_id:
-    description: The rbridge ID of the device on which BGP will be
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
     position: 5
     required: true
     type: string

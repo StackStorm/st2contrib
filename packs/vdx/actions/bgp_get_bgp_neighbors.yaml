@@ -20,6 +20,12 @@ parameters:
     position: 1
     required: true
     type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 4
+    required: true
+    type: string
   username:
     description: Username used with authentication.
     position: 2
@@ -27,7 +33,7 @@ parameters:
     type: string
   vrf:
     description: The VRF for this BGP process.
-    position: 4
+    position: 5
     required: true
     type: string
 runner_type: python-script

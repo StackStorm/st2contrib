@@ -3,6 +3,10 @@ enabled: true
 entry_point: bgp_neighbor.py
 name: bgp_neighbor
 parameters:
+  delete:
+    description: 'Deletes the neighbor if '
+    position: 8
+    type: boolean
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -26,7 +30,8 @@ parameters:
     required: true
     type: string
   rbridge_id:
-    description: The rbridge ID of the device on which BGP will be
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
     position: 7
     required: true
     type: string

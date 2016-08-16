@@ -5,11 +5,11 @@ name: system_host_name
 parameters:
   get:
     description: Get config instead of editing config. (True, False)
-    position: 5
+    position: 6
     type: boolean
   host_name:
     description: The host name of the device.
-    position: 4
+    position: 5
     required: true
     type: string
   ip:
@@ -27,6 +27,12 @@ parameters:
     default: '22'
     description: Port to use to connect to VDX.
     position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 4
     required: true
     type: string
   username:

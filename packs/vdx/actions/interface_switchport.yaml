@@ -5,12 +5,17 @@ name: interface_switchport
 parameters:
   enabled:
     description: Is the interface enabled? (True, False)
-    position: 5
+    position: 6
     type: boolean
   get:
     description: Get config instead of editing config. (True, False)
-    position: 6
+    position: 7
     type: boolean
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
+    required: true
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -18,7 +23,7 @@ parameters:
     type: string
   name:
     description: Name of interface. (1/0/5, 1/0/10, etc)
-    position: 4
+    position: 5
     required: true
     type: string
   password:

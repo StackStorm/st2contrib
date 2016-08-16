@@ -5,13 +5,18 @@ name: interface_channel_group
 parameters:
   channel_type:
     description: tiype of port-channel (standard, brocade)
-    position: 6
+    position: 7
     required: true
     type: string
   delete:
-    description: Removes channel group configuration from this
-    position: 8
+    description: 'Removes channel group configuration from this interface if '
+    position: 9
     type: boolean
+  int_type:
+    description: type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
+    required: true
+    type: string
   ip:
     description: IP address of VDX to connect to.
     position: 0
@@ -19,12 +24,12 @@ parameters:
     type: string
   mode:
     description: mode of channel group (active, on, passive).
-    position: 7
+    position: 8
     required: true
     type: string
   name:
     description: name of interface. (1/0/5, 1/0/10, etc)
-    position: 4
+    position: 5
     required: true
     type: string
   password:
@@ -41,7 +46,7 @@ parameters:
     type: string
   port_int:
     description: port-channel number (1, 2, 3, etc).
-    position: 5
+    position: 6
     required: true
     type: string
   username:
