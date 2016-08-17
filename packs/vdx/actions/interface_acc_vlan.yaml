@@ -1,4 +1,4 @@
-description: ''
+description: Set access VLAN on a port.
 enabled: true
 entry_point: interface_acc_vlan.py
 name: interface_acc_vlan

@@ -1,4 +1,4 @@
-description: ''
+description: set channel group mode.
 enabled: true
 entry_point: interface_channel_group.py
 name: interface_channel_group

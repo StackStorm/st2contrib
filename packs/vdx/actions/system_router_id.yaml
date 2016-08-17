@@ -1,4 +1,4 @@
-description: ''
+description: Configures device's Router ID.
 enabled: true
 entry_point: system_router_id.py
 name: system_router_id

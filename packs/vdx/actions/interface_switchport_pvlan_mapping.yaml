@@ -1,4 +1,4 @@
-description: ''
+description: Switchport private VLAN mapping.
 enabled: true
 entry_point: interface_switchport_pvlan_mapping.py
 name: interface_switchport_pvlan_mapping

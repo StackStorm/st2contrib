@@ -1,4 +1,4 @@
-description: ''
+description: Set BGP update source property for a neighbor.
 enabled: true
 entry_point: bgp_update_source.py
 name: bgp_update_source

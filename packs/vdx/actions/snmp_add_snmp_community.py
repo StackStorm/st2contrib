@@ -1,6 +1,7 @@
 from pynos import device
 from st2actions.runners.pythonrunner import Action
 
+
 class snmp_add_snmp_community(Action):
     def run(self, **kwargs):
         conn = (str(kwargs.pop('ip')), str(kwargs.pop('port')))

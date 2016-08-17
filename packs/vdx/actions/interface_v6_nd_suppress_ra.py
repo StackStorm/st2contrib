@@ -1,6 +1,7 @@
 from pynos import device
 from st2actions.runners.pythonrunner import Action
 
+
 class interface_v6_nd_suppress_ra(Action):
     def run(self, **kwargs):
         conn = (str(kwargs.pop('ip')), str(kwargs.pop('port')))

@@ -1,4 +1,4 @@
-description: ''
+description: Modify allowed VLANs on Trunk (add, remove, none, all).
 enabled: true
 entry_point: interface_trunk_allowed_vlan.py
 name: interface_trunk_allowed_vlan

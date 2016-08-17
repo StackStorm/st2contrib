@@ -1,4 +1,4 @@
-description: ''
+description: Set interface mtu.
 enabled: true
 entry_point: interface_mtu.py
 name: interface_mtu

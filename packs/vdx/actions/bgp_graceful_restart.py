@@ -1,6 +1,7 @@
 from pynos import device
 from st2actions.runners.pythonrunner import Action
 
+
 class bgp_graceful_restart(Action):
     def run(self, **kwargs):
         conn = (str(kwargs.pop('ip')), str(kwargs.pop('port')))

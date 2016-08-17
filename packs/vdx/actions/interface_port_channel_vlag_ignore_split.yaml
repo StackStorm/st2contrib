@@ -1,4 +1,4 @@
-description: ''
+description: Ignore VLAG Split.
 enabled: true
 entry_point: interface_port_channel_vlag_ignore_split.py
 name: interface_port_channel_vlag_ignore_split

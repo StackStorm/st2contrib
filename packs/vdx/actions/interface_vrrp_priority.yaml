@@ -1,4 +1,4 @@
-description: ''
+description: Set VRRP priority.
 enabled: true
 entry_point: interface_vrrp_priority.py
 name: interface_vrrp_priority

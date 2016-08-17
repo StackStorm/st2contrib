@@ -1,4 +1,4 @@
-description: ''
+description: Enable or Disable VRRP.
 enabled: true
 entry_point: services_vrrp.py
 name: services_vrrp

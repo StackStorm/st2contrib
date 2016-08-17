@@ -1,4 +1,4 @@
-description: ''
+description: Set Spanning Tree state.
 enabled: true
 entry_point: interface_spanning_tree_state.py
 name: interface_spanning_tree_state

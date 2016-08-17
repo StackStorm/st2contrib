@@ -1,4 +1,4 @@
-description: ''
+description: Set tagging of native VLAN on trunk.
 enabled: true
 entry_point: interface_tag_native_vlan.py
 name: interface_tag_native_vlan

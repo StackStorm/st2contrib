@@ -1,4 +1,4 @@
-description: ''
+description: Add a secondary PVLAN to a primary PVLAN.
 enabled: true
 entry_point: interface_vlan_pvlan_association_add.py
 name: interface_vlan_pvlan_association_add

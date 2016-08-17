@@ -1,4 +1,4 @@
-description: ''
+description: Set interface administrative state.
 enabled: true
 entry_point: interface_proxy_arp.py
 name: interface_proxy_arp

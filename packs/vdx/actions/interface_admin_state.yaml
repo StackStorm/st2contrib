@@ -1,4 +1,4 @@
-description: ''
+description: Set interface administrative state.
 enabled: true
 entry_point: interface_admin_state.py
 name: interface_admin_state

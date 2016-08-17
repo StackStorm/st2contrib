@@ -1,4 +1,4 @@
-description: ''
+description: Set VRRP VIP.
 enabled: true
 entry_point: interface_vrrp_vip.py
 name: interface_vrrp_vip

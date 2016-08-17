@@ -1,4 +1,4 @@
-description: ''
+description: Set PVLAN mode (promiscuous, host, trunk).
 enabled: true
 entry_point: interface_private_vlan_mode.py
 name: interface_private_vlan_mode

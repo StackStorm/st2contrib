@@ -1,4 +1,4 @@
-description: ''
+description: Set BGP next hop recursion property.
 enabled: true
 entry_point: bgp_recursion.py
 name: bgp_recursion

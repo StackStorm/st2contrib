@@ -1,4 +1,4 @@
-description: ''
+description: Set trunk mode (trunk, trunk-no-default-vlan).
 enabled: true
 entry_point: interface_trunk_mode.py
 name: interface_trunk_mode

@@ -1,4 +1,4 @@
-description: ''
+description: Set fabric ISL state.
 enabled: true
 entry_point: interface_fabric_isl.py
 name: interface_fabric_isl

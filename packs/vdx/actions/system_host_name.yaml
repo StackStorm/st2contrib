@@ -1,4 +1,4 @@
-description: ''
+description: Configures device's host name.
 enabled: true
 entry_point: system_host_name.py
 name: system_host_name

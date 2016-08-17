@@ -1,4 +1,4 @@
-description: ''
+description: Set BGP max paths property.
 enabled: true
 entry_point: bgp_max_paths.py
 name: bgp_max_paths

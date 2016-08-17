@@ -1,4 +1,4 @@
-description: ''
+description: Set BGP local ASN.
 enabled: true
 entry_point: bgp_local_asn.py
 name: bgp_local_asn

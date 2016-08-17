@@ -1,4 +1,4 @@
-description: ''
+description: Set minimum number of links in a port channel.
 enabled: true
 entry_point: interface_port_channel_minimum_links.py
 name: interface_port_channel_minimum_links

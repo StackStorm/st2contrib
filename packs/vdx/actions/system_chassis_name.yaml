@@ -1,4 +1,4 @@
-description: ''
+description: Get device's chassis name/Model.
 enabled: true
 entry_point: system_chassis_name.py
 name: system_chassis_name

@@ -1,4 +1,4 @@
-description: ''
+description: Disable IPv6 Router Advertisements
 enabled: true
 entry_point: interface_v6_nd_suppress_ra.py
 name: interface_v6_nd_suppress_ra

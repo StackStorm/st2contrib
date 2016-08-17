@@ -1,4 +1,4 @@
-description: ''
+description: Set interface PVLAN association.
 enabled: true
 entry_point: interface_pvlan_host_association.py
 name: interface_pvlan_host_association
