@@ -5,6 +5,9 @@ pack: "packagecloud"
 runner_type: "local-shell-cmd"
 enabled: true
 parameters:
+  concise:
+    type: boolean
+    default: false
   user:
     type: string
     required: true
@@ -19,4 +22,4 @@ parameters:
     default: true
   cmd:
     immutable: true
-    default: "package_cloud master_token create {{user}}/{{repository}} {{token_name}}"
+    default: "package_cloud master_token create {{user}}/{{repository}} {{token_name}} {% if concise -%} | grep 'Master token' | awk '{ print $6}' {% endif %}"
