@@ -8,7 +8,6 @@ Pack which allows integration with Git repositories.
   of supported transport protocols such as SSH or HTTP. For example:
   ``git@github.com:runseb/st2contrib.git`` (SSH transport),
   ``https://github.com/runseb/st2contrib.git`` (HTTP transport).
-
 * ``branch`` - BRANCH to of the Git repository to monitor. 
 
 ## Sensors
