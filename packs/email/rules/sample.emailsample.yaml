@@ -1,0 +1,25 @@
+---
+uid: 'rule:email:Sample'
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: true
+name: Sample
+trigger:
+  ref: email.imap.message
+  type: email.imap.message
+  parameters:
+criteria:
+  trigger.from:
+    pattern: johndoe@gmail.com
+    type: contains
+action:
+  ref: core.sendmail
+  parameters:
+    body: 'We received an email'
+    to: janedoe@gmail.com
+    from: stackstorm@yourcompanyname.com
+    subject: 'Email Received'
+ref: email.Sample
+pack: email
