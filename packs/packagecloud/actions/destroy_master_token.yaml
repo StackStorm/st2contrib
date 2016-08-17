@@ -11,15 +11,13 @@ parameters:
   repository:
     type: string
     required: true
-  mastertoken:
-    type: string
-    required: true
   token_name:
     type: string
     required: true
+    description: "Not the token value but the name used. See https://packagecloud.io/docs#revocation."
   sudo:
     immutable: true
     default: true
   cmd:
     immutable: true
-    default: "package_cloud master_token destroy {{user}}/{{repository}} {{mastertoken}} {{token_name}}"
+    default: "echo y | package_cloud master_token destroy {{user}}/{{repository}} {{token_name}}"

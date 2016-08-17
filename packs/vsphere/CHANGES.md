@@ -8,3 +8,6 @@
 
   ## V0.4
   Introduction of Multi Endpoint Configuration.
+
+  ## V0.4.1
+  Improved error message around Connection/Configuration details. Addition of item get action.

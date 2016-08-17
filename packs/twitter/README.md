@@ -3,6 +3,7 @@
 Pack which allows integration with Twitter.
 
 ## Use cases
+
 * [HOWTO: Broadcast Twitter mentions about your Company to Slack channel](http://stackstorm.com/2014/12/22/monitor-twitter-and-fire-automations-based-on-twitter-keywords-using-stackstorm/)
 
 ## Configuration
@@ -12,6 +13,8 @@ Pack which allows integration with Twitter.
 * ``access_token`` - Twitter API access token.
 * ``access_token_secret`` - Twitter API access token secret.
 * ``query`` - A query to search the twitter timeline for. Must be an array.
+  By default OR is applied for array items, and you can refine your results
+  further via rule criteria.
   You can use all the query operators described at https://dev.twitter.com/rest/public/search
 * ``count`` - Number of latest tweets matching the criteria to retrieve.
   Defaults to 30, maximum is 100.

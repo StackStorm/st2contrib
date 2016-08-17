@@ -32,6 +32,7 @@ class GitCommitSensor(PollingSensor):
             raise Exception('Remote git URL not set.')
 
         self._url = git_opts['url']
+        self._branch = git_opts['branch']
         default_clone_dir = os.path.join(os.path.dirname(__file__), 'clones')
         self._local_path = git_opts.get('local_clone_path', default_clone_dir)
         self._poll_interval = git_opts.get('poll_interval', self._poll_interval)
@@ -40,10 +41,10 @@ class GitCommitSensor(PollingSensor):
             self._repo = Repo.init(self._local_path)
         else:
             try:
-                self._repo = Repo.clone_from(self._url, self._local_path)
+                self._repo = Repo.clone_from(self._url, self._local_path, branch=self._branch)
             except Exception:
-                self._logger.exception('Unable to clone remote repo from %s',
-                                       self._url)
+                self._logger.exception('Unable to clone remote repo from %s branch %s',
+                                       self._url, self._branch)
                 raise
 
         self._remote = self._repo.remote('origin')

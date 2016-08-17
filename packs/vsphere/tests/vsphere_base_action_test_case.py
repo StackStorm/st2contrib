@@ -14,7 +14,6 @@
 
 import yaml
 import json
-# from mock import MagicMock
 
 from st2tests.base import BaseActionTestCase
 
@@ -28,6 +27,8 @@ class VsphereBaseActionTestCase(BaseActionTestCase):
         self._blank_config = self.load_yaml('cfg_blank.yaml')
         self._old_config = self.load_yaml('cfg_old.yaml')
         self._new_config = self.load_yaml('cfg_new.yaml')
+        self._old_config_partial = self.load_yaml('cfg_old_partial.yaml')
+        self._new_config_partial = self.load_yaml('cfg_new_partial.yaml')
 
     def load_yaml(self, filename):
         return yaml.safe_load(self.get_fixture_content(filename))
@@ -47,6 +48,14 @@ class VsphereBaseActionTestCase(BaseActionTestCase):
     def new_config(self):
         return self._new_config
 
+    @property
+    def new_config_partial(self):
+        return self._new_config_partial
+
+    @property
+    def old_config_partial(self):
+        return self._old_config_partial
+
     def test_run_config_blank(self):
         self.assertRaises(ValueError, self.action_cls, self.blank_config)
 
@@ -57,3 +66,11 @@ class VsphereBaseActionTestCase(BaseActionTestCase):
     def test_run_config_new(self):
         action = self.get_action_instance(self.new_config)
         self.assertIsInstance(action, self.action_cls)
+
+    def test_run_config_old_partial(self):
+        self.assertRaises(KeyError, self.action_cls, self.old_config_partial)
+
+    def test_run_config_new_partial(self):
+        action = self.get_action_instance(self.new_config_partial)
+        self.assertRaises(KeyError, action.establish_connection,
+                          vsphere="default")

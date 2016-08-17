@@ -1,0 +1,38 @@
+---
+  name: vm_env_items_get
+  runner_type: run-python
+  description: Retrieve list of Objects from VSphere
+  entry_point: vm_env_items_get.py
+  parameters:
+    itemtype:
+      type: string
+      description: Type of item to retrieve
+      required: true
+      position: 0
+      enum:
+        - DataCenter
+        - DataCenter Cluster
+        - Resource Pool
+        - DataStore Cluster
+        - DataStore
+        - Virtual Machines
+        - Networks
+        - Hosts
+    parents:
+        type: boolean
+        description: Include Items Parent ID within results
+        required: false
+        default: false
+        position: 1
+    summary:
+        type: boolean
+        description: Include Item summary within results
+        required: false
+        default: false
+        position: 2
+    vsphere:
+      type: string
+      description: VSphere within config to connect to
+      required: false
+      position: 3
+      default: ~

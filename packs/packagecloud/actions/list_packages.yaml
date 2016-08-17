@@ -2,18 +2,30 @@
 name: list_packages
 pack: packagecloud
 description: List packages for a repo
-runner_type: http-request
+runner_type: python-script
+entry_point: list_packages.py
 enabled: true
 parameters:
     repo:
         type: string
         description: Name of the packagecloud repo
         required: true
+    package:
+        type: string
+        description: Select by specific packages
+    distro_version:
+        type: string
+        description: Select by specific distro
+    version:
+        type: string
+        description: Select by package version
+    release:
+        type: string
+        description: Select by release number
     api_token:
         type: string
         description: Token to access the packagecloud API
         default: "{{system.pkg_cloud_token}}"
-    url:
-        type: string
-        immutable: true
-        default: "https://{{api_token}}:@packagecloud.io/api/v1/repos/{{repo}}/packages.json"
+    per_page:
+        type: number
+        default: 200
