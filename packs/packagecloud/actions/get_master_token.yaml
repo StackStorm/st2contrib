@@ -1,0 +1,29 @@
+---
+name: "get_master_token"
+description: "Get master token for user!"
+pack: "packagecloud"
+runner_type: "local-shell-script"
+entry_point: "get_master_token.sh"
+enabled: true
+parameters:
+  user:
+    type: string
+    required: true
+    position: 1
+
+  repository:
+    type: string
+    required: true
+    position: 2
+
+  token_name:
+    type: string
+    required: true
+    position: 3
+
+  timeout:  # XXX: Package cloud LIST master_tokens API call takes a while!
+    default: 300
+
+  sudo:
+    immutable: true
+    default: true
