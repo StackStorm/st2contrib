@@ -1943,6 +1943,7 @@ Name | Description
 create_master_token | create master token for a repository
 destroy_master_token | destroy master token for a repository
 destroy_read_token | destroy read token for a repository
+get_master_token | Get master token for user!
 list_master_token | List master tokens for a repository
 list_packages | List packages for a repo
 show_package | Show package detail
