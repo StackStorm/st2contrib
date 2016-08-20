@@ -1,15 +1,11 @@
 ---
-uid: 'rule:email:Sample'
-tags: []
-type:
-  ref: standard
-  parameters:
-enabled: false
 name: Sample
+description: "Rule which sends an email when an email from johndoe@gmail.com is received"
+pack: email
+enabled: false
 trigger:
-  ref: email.imap.message
   type: email.imap.message
-  parameters:
+  parameters: {}
 criteria:
   trigger.from:
     pattern: johndoe@gmail.com
@@ -21,5 +17,3 @@ action:
     to: janedoe@gmail.com
     from: stackstorm@yourcompanyname.com
     subject: 'Email Received'
-ref: email.Sample
-pack: email
