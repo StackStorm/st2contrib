@@ -23,4 +23,4 @@ class OneShotSearch(Action):
         kwargs_oneshot = {"output_mode": "json"}
         result = self.service.jobs.oneshot(query, **kwargs_oneshot)
 
-        return result
+        return result.read()
