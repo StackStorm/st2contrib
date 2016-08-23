@@ -1,0 +1,11 @@
+---
+name: search
+action_ref: splunk.search
+description: Splunk one-shot search
+formats:
+   - "splunk one-shot {{ query }}"
+   - "splunk query {{ query }}"
+ack:
+   format: "Running splunk query \"{{ execution.parameters.query }}\""
+result:
+   format: "Splunk query results: {~} {{ execution.result }}"
