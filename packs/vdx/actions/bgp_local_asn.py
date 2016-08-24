@@ -6,6 +6,12 @@ class bgp_local_asn(Action):
     def run(self, **kwargs):
         conn = (str(kwargs.pop('ip')), str(kwargs.pop('port')))
         auth = (str(kwargs.pop('username')), str(kwargs.pop('password')))
-        with device.Device(conn=conn, auth=auth) as dev:
+        test = kwargs.pop('test', False)
+        callback = kwargs.pop('callback', None)
+        with device.Device(
+            conn=conn, auth=auth,
+            test=test,
+            callback=callback
+        ) as dev:
             dev.bgp.local_asn(**kwargs)
         return 0
