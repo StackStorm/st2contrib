@@ -145,6 +145,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![typeform icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/typeform/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | [typeform](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | Typeform service integration pack |  | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#typeform-pack)
 [![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
 [![vault icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vault/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | [vault](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | vault |  | [steve.neuharth](mailto:steve.neuharth@target.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vault-pack)
+[![vdx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vdx/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | [vdx](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | Brocade VDX integration pack. |  | [st2-dev](mailto:info@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vdx-pack)
 [![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | [victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#victorops-pack)
 [![vsphere icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vsphere/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vsphere) | [vsphere](https://github.com/StackStorm/st2contrib/tree/master/packs/vsphere) | st2 content pack containing vsphere integrations. |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.4.1 | [click](https://github.com/StackStorm/st2contrib#vsphere-pack)
 [![webpagetest icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/webpagetest/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | [webpagetest](https://github.com/StackStorm/st2contrib/tree/master/packs/webpagetest) | st2 content pack containing webpagetest integrations | webpagetest, benchmarking | [Linuturk](mailto:linuturk@onitato.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#webpagetest-pack)
@@ -2610,6 +2611,70 @@ is_initialized | Read initialization status from Vault server
 list_policies | List Policies from Vault server
 read | Read value from Vault server
 write | Write a key/value to Vault
+
+### vdx pack
+
+![vdx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vdx/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+bgp_get_bgp_neighbors | Get BGP neighbors configured on a device.
+bgp_graceful_restart | Set BGP next hop recursion property.
+bgp_local_asn | Set BGP local ASN.
+bgp_max_paths | Set BGP max paths property.
+bgp_multihop | Set BGP multihop property for a neighbor.
+bgp_neighbor | Add BGP neighbor.
+bgp_recursion | Set BGP next hop recursion property.
+bgp_redistribute | Set BGP redistribute properties.
+bgp_remove_bgp | Remove BGP process completely.
+bgp_update_source | Set BGP update source property for a neighbor.
+interface_acc_vlan | Set access VLAN on a port.
+interface_access_vlan | 
+interface_add_vlan_int | 
+interface_admin_state | Set interface administrative state.
+interface_channel_group | set channel group mode.
+interface_del_access_vlan | 
+interface_del_ip | 
+interface_del_vlan_int | 
+interface_description | Set interface description.
+interface_disable_switchport | 
+interface_enable_switchport | 
+interface_fabric_isl | Set fabric ISL state.
+interface_fabric_trunk | Set fabric trunk state.
+interface_get_ip_addresses | 
+interface_ip_address | 
+interface_ip_mtu | Set interface mtu.
+interface_lacp_timeout | Set lacp timeout.
+interface_mtu | Set interface mtu.
+interface_port_channel_minimum_links | Set minimum number of links in a port channel.
+interface_port_channel_vlag_ignore_split | Ignore VLAG Split.
+interface_private_vlan_mode | Set PVLAN mode (promiscuous, host, trunk).
+interface_private_vlan_type | Set the PVLAN type (primary, isolated, community).
+interface_proxy_arp | Set interface administrative state.
+interface_pvlan_host_association | Set interface PVLAN association.
+interface_remove_port_channel | 
+interface_set_ip | 
+interface_spanning_tree_state | Set Spanning Tree state.
+interface_switchport | Set interface switchport status.
+interface_switchport_pvlan_mapping | Switchport private VLAN mapping.
+interface_tag_native_vlan | Set tagging of native VLAN on trunk.
+interface_transport_service | Configure VLAN Transport Service.
+interface_trunk_allowed_vlan | Modify allowed VLANs on Trunk (add, remove, none, all).
+interface_trunk_mode | Set trunk mode (trunk, trunk-no-default-vlan).
+interface_v6_nd_suppress_ra | Disable IPv6 Router Advertisements
+interface_vlan_pvlan_association_add | Add a secondary PVLAN to a primary PVLAN.
+interface_vrrp_priority | Set VRRP priority.
+interface_vrrp_vip | Set VRRP VIP.
+services_vrrp | Enable or Disable VRRP.
+snmp_add_snmp_community | 
+snmp_add_snmp_host | 
+snmp_del_snmp_community | 
+snmp_del_snmp_host | 
+system_chassis_name | Get device's chassis name/Model.
+system_host_name | Configures device's host name.
+system_router_id | Configures device's Router ID.
 
 ### victorops pack
 
