@@ -1,0 +1,1170 @@
+bgp_get_bgp_neighbors:
+  description: Get BGP neighbors configured on a device.
+  enabled: true
+  entry_point: bgp_get_bgp_neighbors.py
+  name: bgp_get_bgp_neighbors
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 4, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 5, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_graceful_restart:
+  description: Set BGP next hop recursion property.
+  enabled: true
+  entry_point: bgp_graceful_restart.py
+  name: bgp_graceful_restart
+  parameters:
+    afi: {description: 'Address family to configure. (ipv4, ipv6)', position: 6, required: true,
+      type: string, value: tst}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_local_asn:
+  description: Set BGP local ASN.
+  enabled: true
+  entry_point: bgp_local_asn.py
+  name: bgp_local_asn
+  parameters:
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    local_as: {description: Local ASN of NOS deice., position: 4, required: true,
+      type: string, value: '44322'}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 6, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 5, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_max_paths:
+  description: Set BGP max paths property.
+  enabled: true
+  entry_point: bgp_max_paths.py
+  name: bgp_max_paths
+  parameters:
+    afi: {description: 'Address family to configure. (ipv4, ipv6)', position: 7, required: true,
+      type: string, value: test}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 8,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    paths: {description: 'Number of paths for BGP ECMP (default: 8).', position: 6,
+      required: true, type: string, value: '10'}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_multihop:
+  description: Set BGP multihop property for a neighbor.
+  enabled: true
+  entry_point: bgp_multihop.py
+  name: bgp_multihop
+  parameters:
+    count: {description: Number of hops to allow. (1-255), position: 7, required: true,
+      type: string, value: '3'}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 8,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    neighbor: {description: 'Address family to configure. (ipv4, ipv6)', position: 6,
+      required: true, type: string, value: 10.0.2.1}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_neighbor:
+  description: Add BGP neighbor.
+  enabled: true
+  entry_point: bgp_neighbor.py
+  name: bgp_neighbor
+  parameters:
+    delete: {description: 'Deletes the neighbor if ', position: 8, type: boolean,
+      value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_addr: {description: IP Address of BGP neighbor., position: 4, required: true,
+      type: string, value: 10.10.0.1/24}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 7, required: true, type: string, value: '224'}
+    remote_as: {description: Remote ASN of BGP neighbor., position: 5, required: true,
+      type: string, value: '18003'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 6, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_recursion:
+  description: Set BGP next hop recursion property.
+  enabled: true
+  entry_point: bgp_recursion.py
+  name: bgp_recursion
+  parameters:
+    afi: {description: 'Address family to configure. (ipv4, ipv6)', position: 6, required: true,
+      type: string, value: test}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_redistribute:
+  description: Set BGP redistribute properties.
+  enabled: true
+  entry_point: bgp_redistribute.py
+  name: bgp_redistribute
+  parameters:
+    afi: {description: 'Address family to configure. (ipv4, ipv6)', position: 7, required: true,
+      type: string, value: test}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 8,
+      type: boolean, value: false}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    source: {description: Source for redistributing. (connected), position: 6, required: true,
+      type: string, value: test}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_remove_bgp:
+  description: Remove BGP process completely.
+  enabled: true
+  entry_point: bgp_remove_bgp.py
+  name: bgp_remove_bgp
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+bgp_update_source:
+  description: Set BGP update source property for a neighbor.
+  enabled: true
+  entry_point: bgp_update_source.py
+  name: bgp_update_source
+  parameters:
+    get: {description: 'Get config instead of editing config. (True, False)', position: 9,
+      type: boolean, value: false}
+    int_name: {description: 'Interface identifier (1, 5, 7, etc)', position: 8, required: true,
+      type: string, value: test}
+    int_type: {description: Interface type (loopback), position: 7, required: true,
+      type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    neighbor: {description: 'Address family to configure. (ipv4, ipv6)', position: 6,
+      required: true, type: string, value: 10.2.1.4}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrf: {description: The VRF for this BGP process., position: 4, required: true,
+      type: string, value: test}
+  runner_type: python-script
+interface_acc_vlan:
+  description: Set access VLAN on a port.
+  enabled: true
+  entry_point: interface_acc_vlan.py
+  name: interface_acc_vlan
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: 10/0/2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan: {description: VLAN ID to set as the access VLAN., position: 6, required: true,
+      type: string, value: '10'}
+  runner_type: python-script
+interface_access_vlan:
+  description: ''
+  enabled: true
+  entry_point: interface_access_vlan.py
+  name: interface_access_vlan
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan_id: {description: ID for the VLAN interface being modified. Value of 2-4096.,
+      position: 6, required: true, type: integer, value: '44'}
+  runner_type: python-script
+interface_add_vlan_int:
+  description: ''
+  enabled: true
+  entry_point: interface_add_vlan_int.py
+  name: interface_add_vlan_int
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan_id: {description: ID for the VLAN interface being created. Value of 2-4096.,
+      position: 4, required: true, type: string, value: '44'}
+  runner_type: python-script
+interface_admin_state:
+  description: Set interface administrative state.
+  enabled: true
+  entry_point: interface_admin_state.py
+  name: interface_admin_state
+  parameters:
+    enabled: {description: 'Is the interface enabled? (True, False)', position: 6,
+      type: boolean, value: 'True'}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc).', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: 'rbridge-id for device. Only required when type is ',
+      position: 7, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_channel_group:
+  description: set channel group mode.
+  enabled: true
+  entry_point: interface_channel_group.py
+  name: interface_channel_group
+  parameters:
+    channel_type: {description: 'tiype of port-channel (standard, brocade)', position: 7,
+      required: true, type: string, value: test}
+    delete: {description: 'Removes channel group configuration from this interface
+        if ', position: 9, type: boolean, value: false}
+    int_type: {description: 'type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mode: {description: 'mode of channel group (active, on, passive).', position: 8,
+      required: true, type: string, value: test}
+    name: {description: 'name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    port_int: {description: 'port-channel number (1, 2, 3, etc).', position: 6, required: true,
+      type: string, value: '4'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_del_access_vlan:
+  description: ''
+  enabled: true
+  entry_point: interface_del_access_vlan.py
+  name: interface_del_access_vlan
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan_id: {description: ID for the VLAN interface being modified. Value of 2-4096.,
+      position: 6, required: true, type: integer, value: '44'}
+  runner_type: python-script
+interface_del_ip:
+  description: ''
+  enabled: true
+  entry_point: interface_del_ip.py
+  name: interface_del_ip
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_addr: {description: 'IP Address in <prefix>/<bits> format. Ex: 10.10.10.1/24',
+      position: 6, required: true, type: string, value: 10.10.0.1/24}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_del_vlan_int:
+  description: ''
+  enabled: true
+  entry_point: interface_del_vlan_int.py
+  name: interface_del_vlan_int
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan_id: {description: ID for the VLAN interface being created. Value of 2-4096.,
+      position: 4, required: true, type: integer, value: '44'}
+  runner_type: python-script
+interface_description:
+  description: Set interface description.
+  enabled: true
+  entry_point: interface_description.py
+  name: interface_description
+  parameters:
+    desc: {description: The description of the interface., position: 6, required: true,
+      type: string, value: Test 1 2 3}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: 10.0.2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_disable_switchport:
+  description: ''
+  enabled: true
+  entry_point: interface_disable_switchport.py
+  name: interface_disable_switchport
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_enable_switchport:
+  description: ''
+  enabled: true
+  entry_point: interface_enable_switchport.py
+  name: interface_enable_switchport
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_fabric_isl:
+  description: Set fabric ISL state.
+  enabled: true
+  entry_point: interface_fabric_isl.py
+  name: interface_fabric_isl
+  parameters:
+    enabled: {description: 'Is fabric ISL state enabled? (True, False)', position: 6,
+      type: boolean, value: 'True'}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: 10/0/2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_fabric_trunk:
+  description: Set fabric trunk state.
+  enabled: true
+  entry_point: interface_fabric_trunk.py
+  name: interface_fabric_trunk
+  parameters:
+    enabled: {description: 'Is Fabric trunk enabled? (True, False)', position: 6,
+      type: boolean, value: 'True'}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_get_ip_addresses:
+  description: ''
+  enabled: true
+  entry_point: interface_get_ip_addresses.py
+  name: interface_get_ip_addresses
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet
+        etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface id. (For interface: 1/0/5, 1/0/10 etc).',
+      position: 5, required: true, type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    version: {description: 4 or 6 to represent IPv4 or IPv6 address, position: 6,
+      required: true, type: integer, value: '4'}
+  runner_type: python-script
+interface_ip_address:
+  description: ''
+  enabled: true
+  entry_point: interface_ip_address.py
+  name: interface_ip_address
+  parameters:
+    delete: {description: 'True is the IP address is added and False if its to be
+        deleted (True, False). Default value will be False if not specified.', position: 7,
+      type: boolean, value: false}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet
+        etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_addr: {description: 'IPv4/IPv6 Virtual IP Address.. Ex: 10.10.10.1/24 or 2001:db8::/48',
+      position: 6, required: true, type: string, value: 10.10.0.1/24}
+    name: {description: 'Name of interface id. (For interface: 1/0/5, 1/0/10 etc).',
+      position: 5, required: true, type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: 'rbridge-id for device. Only required when type is ',
+      position: 8, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_ip_mtu:
+  description: Set interface mtu.
+  enabled: true
+  entry_point: interface_ip_mtu.py
+  name: interface_ip_mtu
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mtu: {description: Value between 1300 and 9018, position: 6, required: true, type: string,
+      value: '15000'}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: 10/0/44}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_lacp_timeout:
+  description: Set lacp timeout.
+  enabled: true
+  entry_point: interface_lacp_timeout.py
+  name: interface_lacp_timeout
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 6, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    timeout: {description: 'Timeout length.  (short, long)', position: 5, required: true,
+      type: string, value: '10'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_mtu:
+  description: Set interface mtu.
+  enabled: true
+  entry_point: interface_mtu.py
+  name: interface_mtu
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mtu: {description: Value between 1522 and 9216, position: 6, required: true, type: string,
+      value: '15000'}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_port_channel_minimum_links:
+  description: Set minimum number of links in a port channel.
+  enabled: true
+  entry_point: interface_port_channel_minimum_links.py
+  name: interface_port_channel_minimum_links
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    minimum_links: {description: Minimum number of links in channel group., position: 5,
+      required: true, type: string, value: '2'}
+    name: {description: 'Port-channel number. (1, 5, etc)', position: 4, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_port_channel_vlag_ignore_split:
+  description: Ignore VLAG Split.
+  enabled: true
+  entry_point: interface_port_channel_vlag_ignore_split.py
+  name: interface_port_channel_vlag_ignore_split
+  parameters:
+    enabled: {description: 'Is ignore split enabled? (True, False)', position: 5,
+      type: boolean, value: 'True'}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Port-channel number. (1, 5, etc)', position: 4, required: true,
+      type: string, value: 10/0/1}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_private_vlan_mode:
+  description: Set PVLAN mode (promiscuous, host, trunk).
+  enabled: true
+  entry_point: interface_private_vlan_mode.py
+  name: interface_private_vlan_mode
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mode: {description: The switchport PVLAN mode., position: 6, required: true, type: string,
+      value: test}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_private_vlan_type:
+  description: Set the PVLAN type (primary, isolated, community).
+  enabled: true
+  entry_point: interface_private_vlan_type.py
+  name: interface_private_vlan_type
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: VLAN ID., position: 4, required: true, type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    pvlan_type: {description: 'PVLAN type (primary, isolated, community)', position: 5,
+      required: true, type: string, value: test}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_proxy_arp:
+  description: Set interface administrative state.
+  enabled: true
+  entry_point: interface_proxy_arp.py
+  name: interface_proxy_arp
+  parameters:
+    enabled: {description: 'Is proxy-arp enabled? (True, False)', position: 6, type: boolean,
+      value: 'True'}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc).', position: 5, required: true,
+      type: string, value: 10/0/2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: 'rbridge-id for device. Only required when type is ',
+      position: 7, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_pvlan_host_association:
+  description: Set interface PVLAN association.
+  enabled: true
+  entry_point: interface_pvlan_host_association.py
+  name: interface_pvlan_host_association
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: ve}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    pri_vlan: {description: The primary PVLAN., position: 6, required: true, type: string,
+      value: '10'}
+    sec_vlan: {description: The secondary PVLAN., position: 7, required: true, type: string,
+      value: '43'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_remove_port_channel:
+  description: ''
+  enabled: true
+  entry_point: interface_remove_port_channel.py
+  name: interface_remove_port_channel
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    port_int: {description: 'port-channel number (1, 2, 3, etc).', position: 4, required: true,
+      type: string, value: '3'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_set_ip:
+  description: ''
+  enabled: true
+  entry_point: interface_set_ip.py
+  name: interface_set_ip
+  parameters:
+    inter: {description: The ID for the interface you want to configure. Ex. 1/0/1,
+      position: 5, required: true, type: string, value: 10/0/1}
+    inter_type: {description: 'The type of interface you want to configure. Ex. tengigabitethernet,
+        gigabitethernet, fortygigabitethernet.', position: 4, required: true, type: string,
+      value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_addr: {description: 'IP Address in <prefix>/<bits> format. Ex: 10.10.10.1/24',
+      position: 6, required: true, type: string, value: 10.10.0.1/24}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_spanning_tree_state:
+  description: Set Spanning Tree state.
+  enabled: true
+  entry_point: interface_spanning_tree_state.py
+  name: interface_spanning_tree_state
+  parameters:
+    enabled: {description: 'Is Spanning Tree enabled? (True, False)', position: 6,
+      type: boolean, value: 'True'}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        vlan, port_channel etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface or VLAN id. (For interface: 1/0/5, 1/0/10
+        etc). (For VLANs 0, 1, 100 etc). (For Port Channels 1, 100 etc).', position: 5,
+      required: true, type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_switchport:
+  description: Set interface switchport status.
+  enabled: true
+  entry_point: interface_switchport.py
+  name: interface_switchport
+  parameters:
+    enabled: {description: 'Is the interface enabled? (True, False)', position: 6,
+      type: boolean, value: 'True'}
+    get: {description: 'Get config instead of editing config. (True, False)', position: 7,
+      type: boolean, value: false}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_switchport_pvlan_mapping:
+  description: Switchport private VLAN mapping.
+  enabled: true
+  entry_point: interface_switchport_pvlan_mapping.py
+  name: interface_switchport_pvlan_mapping
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: 10/0/2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    pri_vlan: {description: The primary PVLAN., position: 6, required: true, type: string,
+      value: '20'}
+    sec_vlan: {description: The secondary PVLAN., position: 7, required: true, type: string,
+      value: '10'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_tag_native_vlan:
+  description: Set tagging of native VLAN on trunk.
+  enabled: true
+  entry_point: interface_tag_native_vlan.py
+  name: interface_tag_native_vlan
+  parameters:
+    enabled: {description: 'Is tagging of the VLAN enabled on trunks? (True, False)',
+      position: 7, type: boolean, value: 'True'}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mode: {description: 'Trunk port mode (trunk, trunk-no-default-native).', position: 6,
+      required: true, type: string, value: test}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_transport_service:
+  description: Configure VLAN Transport Service.
+  enabled: true
+  entry_point: interface_transport_service.py
+  name: interface_transport_service
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    service_id: {description: The transport-service ID., position: 5, required: true,
+      type: string, value: '24'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan: {description: The VLAN ID., position: 4, required: true, type: string, value: '24'}
+  runner_type: python-script
+interface_trunk_allowed_vlan:
+  description: Modify allowed VLANs on Trunk (add, remove, none, all).
+  enabled: true
+  entry_point: interface_trunk_allowed_vlan.py
+  name: interface_trunk_allowed_vlan
+  parameters:
+    action: {description: 'Action to take on trunk. (add, remove, none, all)', position: 6,
+      required: true, type: string, value: allow}
+    ctag: {description: ctag range. Only valid for add and remove., position: 8, required: true,
+      type: string, value: test}
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vlan: {description: vlan id for action. Only valid for add and remove., position: 7,
+      required: true, type: string, value: '10'}
+  runner_type: python-script
+interface_trunk_mode:
+  description: Set trunk mode (trunk, trunk-no-default-vlan).
+  enabled: true
+  entry_point: interface_trunk_mode.py
+  name: interface_trunk_mode
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    mode: {description: 'Trunk port mode (trunk, trunk-no-default-native).', position: 6,
+      required: true, type: string, value: test}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_v6_nd_suppress_ra:
+  description: Disable IPv6 Router Advertisements
+  enabled: true
+  entry_point: interface_v6_nd_suppress_ra.py
+  name: interface_v6_nd_suppress_ra
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc)', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc)', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: 'rbridge-id for device. Only required when type is ',
+      position: 6, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_vlan_pvlan_association_add:
+  description: Add a secondary PVLAN to a primary PVLAN.
+  enabled: true
+  entry_point: interface_vlan_pvlan_association_add.py
+  name: interface_vlan_pvlan_association_add
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: VLAN number (1-4094)., position: 4, required: true, type: string,
+      value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    sec_vlan: {description: The secondary PVLAN., position: 5, required: true, type: string,
+      value: '45'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+interface_vrrp_priority:
+  description: Set VRRP priority.
+  enabled: true
+  entry_point: interface_vrrp_priority.py
+  name: interface_vrrp_priority
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc).', position: 4, required: true, type: string, value: tengigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_version: {description: 'Version of IP (4, 6).', position: 8, required: true,
+      type: string, value: '4'}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc).', position: 5, required: true,
+      type: string, value: 10/0/2}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    priority: {description: VRRP Priority., position: 7, required: true, type: string,
+      value: '200'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vrid: {description: VRRPv3 ID., position: 6, required: true, type: string, value: '10'}
+  runner_type: python-script
+interface_vrrp_vip:
+  description: Set VRRP VIP.
+  enabled: true
+  entry_point: interface_vrrp_vip.py
+  name: interface_vrrp_vip
+  parameters:
+    int_type: {description: 'Type of interface. (gigabitethernet, tengigabitethernet,
+        etc).', position: 4, required: true, type: string, value: gigabitethernet}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    name: {description: 'Name of interface. (1/0/5, 1/0/10, etc).', position: 5, required: true,
+      type: string, value: test}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: 'rbridge-id for device. Only required when type is ',
+      position: 8, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+    vip: {description: IPv4/IPv6 Virtual IP Address., position: 7, required: true,
+      type: string, value: 10.9.2.1}
+    vrid: {description: VRRPv3 ID., position: 6, required: true, type: string, value: '10'}
+  runner_type: python-script
+services_vrrp:
+  description: Enable or Disable VRRP.
+  enabled: true
+  entry_point: services_vrrp.py
+  name: services_vrrp
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    ip_version: {description: 'The IP version (''4'' or ''6'') for which VRRP should
+        be enabled/disabled.  Default: ', position: 4, required: true, type: string,
+      value: '4'}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+snmp_add_snmp_community:
+  description: ''
+  enabled: true
+  entry_point: snmp_add_snmp_community.py
+  name: snmp_add_snmp_community
+  parameters:
+    community: {description: Community string to be added to device., position: 4,
+      required: true, type: string, value: test}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+snmp_add_snmp_host:
+  description: ''
+  enabled: true
+  entry_point: snmp_add_snmp_host.py
+  name: snmp_add_snmp_host
+  parameters:
+    community: {description: Community string to be added to device., position: 4,
+      required: true, type: string, value: test}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+snmp_del_snmp_community:
+  description: ''
+  enabled: true
+  entry_point: snmp_del_snmp_community.py
+  name: snmp_del_snmp_community
+  parameters:
+    community: {description: Community string to be added to device., position: 4,
+      required: true, type: string, value: community_test}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+snmp_del_snmp_host:
+  description: ''
+  enabled: true
+  entry_point: snmp_del_snmp_host.py
+  name: snmp_del_snmp_host
+  parameters:
+    community: {description: Community string to be added to device., position: 4,
+      required: true, type: string, value: test}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+system_chassis_name:
+  description: Get device's chassis name/Model.
+  enabled: true
+  entry_point: system_chassis_name.py
+  name: system_chassis_name
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device, position: 4, required: true,
+      type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+system_host_name:
+  description: Configures device's host name.
+  enabled: true
+  entry_point: system_host_name.py
+  name: system_host_name
+  parameters:
+    get: {description: 'Get config instead of editing config. (True, False)', position: 6,
+      type: boolean, value: false}
+    host_name: {description: The host name of the device., position: 5, required: true,
+      type: string, value: test}
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 4, required: true, type: string, value: '224'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
+system_router_id:
+  description: Configures device's Router ID.
+  enabled: true
+  entry_point: system_router_id.py
+  name: system_router_id
+  parameters:
+    ip: {description: IP address of VDX to connect to., position: 0, required: true,
+      type: string}
+    password: {description: Password used with authentication., position: 3, required: true,
+      secret: true, type: string}
+    port: {description: Port to use to connect to VDX., position: 1, required: true,
+      type: string, value: '22'}
+    rbridge_id: {description: The rbridge ID of the device on which BGP will be configured
+        in a VCS fabric., position: 5, required: true, type: string, value: '224'}
+    router_id: {description: Router ID for the device., position: 4, required: true,
+      type: string, value: '4'}
+    username: {description: Username used with authentication., position: 2, required: true,
+      type: string}
+  runner_type: python-script
