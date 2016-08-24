@@ -1,0 +1,53 @@
+description: ''
+enabled: true
+entry_point: interface_ip_address.py
+name: interface_ip_address
+parameters:
+  delete:
+    description: True is the IP address is added and False if its to be deleted (True,
+      False). Default value will be False if not specified.
+    position: 7
+    type: boolean
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet etc).
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  ip_addr:
+    description: 'IPv4/IPv6 Virtual IP Address.. Ex: 10.10.10.1/24 or 2001:db8::/48'
+    position: 6
+    required: true
+    type: string
+  name:
+    description: 'Name of interface id. (For interface: 1/0/5, 1/0/10 etc).'
+    position: 5
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: 'rbridge-id for device. Only required when type is '
+    position: 8
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

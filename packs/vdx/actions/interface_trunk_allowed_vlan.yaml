@@ -1,0 +1,53 @@
+description: Modify allowed VLANs on Trunk (add, remove, none, all).
+enabled: true
+entry_point: interface_trunk_allowed_vlan.py
+name: interface_trunk_allowed_vlan
+parameters:
+  action:
+    description: Action to take on trunk. (add, remove, none, all)
+    position: 6
+    required: true
+    type: string
+  ctag:
+    description: ctag range. Only valid for add and remove.
+    position: 8
+    required: true
+    type: string
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc)
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  name:
+    description: Name of interface. (1/0/5, 1/0/10, etc)
+    position: 5
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vlan:
+    description: vlan id for action. Only valid for add and remove.
+    position: 7
+    required: true
+    type: string
+runner_type: python-script

@@ -1,0 +1,47 @@
+description: Set interface administrative state.
+enabled: true
+entry_point: interface_proxy_arp.py
+name: interface_proxy_arp
+parameters:
+  enabled:
+    description: Is proxy-arp enabled? (True, False)
+    position: 6
+    type: boolean
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc).
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  name:
+    description: Name of interface. (1/0/5, 1/0/10, etc).
+    position: 5
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: 'rbridge-id for device. Only required when type is '
+    position: 7
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

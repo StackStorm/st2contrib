@@ -1,0 +1,37 @@
+description: Ignore VLAG Split.
+enabled: true
+entry_point: interface_port_channel_vlag_ignore_split.py
+name: interface_port_channel_vlag_ignore_split
+parameters:
+  enabled:
+    description: Is ignore split enabled? (True, False)
+    position: 5
+    type: boolean
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  name:
+    description: Port-channel number. (1, 5, etc)
+    position: 4
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

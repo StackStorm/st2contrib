@@ -1,0 +1,33 @@
+description: Enable or Disable VRRP.
+enabled: true
+entry_point: services_vrrp.py
+name: services_vrrp
+parameters:
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  ip_version:
+    description: 'The IP version (''4'' or ''6'') for which VRRP should be enabled/disabled.  Default: '
+    position: 4
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

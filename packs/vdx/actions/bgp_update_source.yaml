@@ -1,0 +1,58 @@
+description: Set BGP update source property for a neighbor.
+enabled: true
+entry_point: bgp_update_source.py
+name: bgp_update_source
+parameters:
+  get:
+    description: Get config instead of editing config. (True, False)
+    position: 9
+    type: boolean
+  int_name:
+    description: Interface identifier (1, 5, 7, etc)
+    position: 8
+    required: true
+    type: string
+  int_type:
+    description: Interface type (loopback)
+    position: 7
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  neighbor:
+    description: Address family to configure. (ipv4, ipv6)
+    position: 6
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 5
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vrf:
+    description: The VRF for this BGP process.
+    position: 4
+    required: true
+    type: string
+runner_type: python-script

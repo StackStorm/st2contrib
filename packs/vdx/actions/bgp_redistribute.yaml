@@ -1,0 +1,53 @@
+description: Set BGP redistribute properties.
+enabled: true
+entry_point: bgp_redistribute.py
+name: bgp_redistribute
+parameters:
+  afi:
+    description: Address family to configure. (ipv4, ipv6)
+    position: 7
+    required: true
+    type: string
+  get:
+    description: Get config instead of editing config. (True, False)
+    position: 8
+    type: boolean
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 5
+    required: true
+    type: string
+  source:
+    description: Source for redistributing. (connected)
+    position: 6
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vrf:
+    description: The VRF for this BGP process.
+    position: 4
+    required: true
+    type: string
+runner_type: python-script

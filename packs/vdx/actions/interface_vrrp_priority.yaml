@@ -1,0 +1,53 @@
+description: Set VRRP priority.
+enabled: true
+entry_point: interface_vrrp_priority.py
+name: interface_vrrp_priority
+parameters:
+  int_type:
+    description: Type of interface. (gigabitethernet, tengigabitethernet, etc).
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  ip_version:
+    description: Version of IP (4, 6).
+    position: 8
+    required: true
+    type: string
+  name:
+    description: Name of interface. (1/0/5, 1/0/10, etc).
+    position: 5
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  priority:
+    description: VRRP Priority.
+    position: 7
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vrid:
+    description: VRRPv3 ID.
+    position: 6
+    required: true
+    type: string
+runner_type: python-script

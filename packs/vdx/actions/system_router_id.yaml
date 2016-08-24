@@ -1,0 +1,39 @@
+description: Configures device's Router ID.
+enabled: true
+entry_point: system_router_id.py
+name: system_router_id
+parameters:
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 5
+    required: true
+    type: string
+  router_id:
+    description: Router ID for the device.
+    position: 4
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

@@ -1,0 +1,44 @@
+description: ''
+enabled: true
+entry_point: interface_del_access_vlan.py
+name: interface_del_access_vlan
+parameters:
+  inter:
+    description: The ID for the interface you want to configure. Ex. 1/0/1
+    position: 5
+    required: true
+    type: string
+  inter_type:
+    description: The type of interface you want to configure. Ex. tengigabitethernet,
+      gigabitethernet, fortygigabitethernet.
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vlan_id:
+    description: ID for the VLAN interface being modified. Value of 2-4096.
+    position: 6
+    required: true
+    type: integer
+runner_type: python-script

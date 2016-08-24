@@ -1,0 +1,38 @@
+description: Add a secondary PVLAN to a primary PVLAN.
+enabled: true
+entry_point: interface_vlan_pvlan_association_add.py
+name: interface_vlan_pvlan_association_add
+parameters:
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  name:
+    description: VLAN number (1-4094).
+    position: 4
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  sec_vlan:
+    description: The secondary PVLAN.
+    position: 5
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

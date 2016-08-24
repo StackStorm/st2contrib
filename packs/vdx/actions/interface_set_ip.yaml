@@ -1,0 +1,44 @@
+description: ''
+enabled: true
+entry_point: interface_set_ip.py
+name: interface_set_ip
+parameters:
+  inter:
+    description: The ID for the interface you want to configure. Ex. 1/0/1
+    position: 5
+    required: true
+    type: string
+  inter_type:
+    description: The type of interface you want to configure. Ex. tengigabitethernet,
+      gigabitethernet, fortygigabitethernet.
+    position: 4
+    required: true
+    type: string
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  ip_addr:
+    description: 'IP Address in <prefix>/<bits> format. Ex: 10.10.10.1/24'
+    position: 6
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+runner_type: python-script

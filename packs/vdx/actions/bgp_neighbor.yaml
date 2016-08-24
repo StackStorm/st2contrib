@@ -1,0 +1,53 @@
+description: Add BGP neighbor.
+enabled: true
+entry_point: bgp_neighbor.py
+name: bgp_neighbor
+parameters:
+  delete:
+    description: 'Deletes the neighbor if '
+    position: 8
+    type: boolean
+  ip:
+    description: IP address of VDX to connect to.
+    position: 0
+    required: true
+    type: string
+  ip_addr:
+    description: IP Address of BGP neighbor.
+    position: 4
+    required: true
+    type: string
+  password:
+    description: Password used with authentication.
+    position: 3
+    required: true
+    secret: true
+    type: string
+  port:
+    default: '22'
+    description: Port to use to connect to VDX.
+    position: 1
+    required: true
+    type: string
+  rbridge_id:
+    description: The rbridge ID of the device on which BGP will be configured in a
+      VCS fabric.
+    position: 7
+    required: true
+    type: string
+  remote_as:
+    description: Remote ASN of BGP neighbor.
+    position: 5
+    required: true
+    type: string
+  username:
+    description: Username used with authentication.
+    position: 2
+    required: true
+    type: string
+  vrf:
+    description: The VRF for this BGP process.
+    position: 6
+    required: true
+    type: string
+runner_type: python-script
