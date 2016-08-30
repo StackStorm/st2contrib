@@ -2,8 +2,8 @@
 
 ## Description
 
-Icinga2 version 2.4.0 introduced API and since then it's been possible to subscribe to Icinga2 events. This pack does exactly that. So far only `StateChange` event type is supported.
-Please, read http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/icinga2-api#icinga2-api for more information on Icinga2 API. Also, won't hurt to visit https://docs.stackstorm.com/ for more details on Stackstorm.
+Icinga2 version 2.4.0 introduced an API, making it possible to subscribe to Icinga2. So far only `StateChange` event type is supported.
+Read http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/icinga2-api#icinga2-api for more information on Icinga2 API. 
 
 ## Configuration
 
@@ -94,3 +94,8 @@ As of now, sensor is configured to catch only `StateChange` events from Icinga2 
 ```
 
 Currently, sensor takes the `host`, `service`, `state`, `state_type`, `type` and `check_result` variables and passes it as a payload to the trigger. All that data can be used in the rule and passed to actions as well.
+
+## TODO
+
+* Re-write actions & sensors to use requests instead of pycurl
+* Updated to use new config schema
