@@ -96,6 +96,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | [hpe-icsp](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | Pack for HP Enterprise Insight Control Server Provisioning Integration |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#hpe-icsp-pack)
 [![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
 [![hue icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hue/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | [hue](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | Philips Hue Pack | hue, philips, iot | [James Fryman](mailto:james@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#hue-pack)
+[![icinga2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/icinga2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/icinga2) | [icinga2](https://github.com/StackStorm/st2contrib/tree/master/packs/icinga2) | Icinga2 Integration pack |  | [Igor Cherkaev](mailto:emptywee@protonmail.ch) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#icinga2-pack)
 [![ipcam icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ipcam/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ipcam) | [ipcam](https://github.com/StackStorm/st2contrib/tree/master/packs/ipcam) | st2 content pack containing integration for various home IP cams | ipcam, ip cam, ip camera, camera, smart home, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#ipcam-pack)
 [![irc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/irc/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | [irc](https://github.com/StackStorm/st2contrib/tree/master/packs/irc) | st2 content pack containing irc integrations | irc, internet relay chat, chat, messaging, instant messaging | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#irc-pack)
 [![jenkins icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/jenkins/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/jenkins) | [jenkins](https://github.com/StackStorm/st2contrib/tree/master/packs/jenkins) | Jenkins CI Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#jenkins-pack)
@@ -1515,6 +1516,24 @@ rgb | Change bulb color based on RGB Values
 set_state | Send manual state to bulb
 toggle | Toggle on/off state of a bulb
 xy | Change bulb color based on CIE color space values
+
+### icinga2 pack
+
+![icinga2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/icinga2/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+Icinga2StateChangeSensor | Sensor for Icinga2 StateChange events.
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_host | Get Icinga2 host object
+get_service | Get Icinga2 service object
+get_status | Get Icinga2 status
 
 ### ipcam pack
 
