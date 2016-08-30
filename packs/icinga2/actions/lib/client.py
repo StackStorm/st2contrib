@@ -1,3 +1,4 @@
+# pylint: disable=no-member
 import json
 import urllib
 import signal

@@ -1,8 +1,9 @@
-import pycurl
+# pylint: disable=no-member
 import json
 import urllib
 import signal
 import time
+import pycurl
 
 POST_PARAMS = {}
 
