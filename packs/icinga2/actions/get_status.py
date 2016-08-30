@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-from lib.client import Client
 from lib.icinga2action import Icinga2Action
 import sys
 
+
 class Icinga2GetStatus(Icinga2Action):
-        
+
     def run(self):
         self.set_method('get')
         self.set_path('/status')

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
-from lib.client import Client
 from lib.icinga2action import Icinga2Action
 
-import sys,urllib
+import sys
+import urllib
+
 
 class Icinga2GetHost(Icinga2Action):
-        
+
     def run(self, hosts):
         api_suffix = ''
         if hosts:
@@ -16,10 +17,10 @@ class Icinga2GetHost(Icinga2Action):
                 for host in hosts[:-1]:
                     api_suffix += 'hosts=' + urllib.quote_plus(host) + '&'
                 api_suffix += 'hosts=' + urllib.quote_plus(hosts[-1])
-            
+
         self.logger.debug('URL suffix: %s', api_suffix)
         self.set_method('get')
-        self.set_path('/objects/hosts' + str(api_suffix))        
+        self.set_path('/objects/hosts' + str(api_suffix))
         self.logger.debug('Action Icinga2GetHost started')
         client = self.get_client()
         client.make_call()
@@ -27,4 +28,3 @@ class Icinga2GetHost(Icinga2Action):
             return self.get_body()
         else:
             sys.exit(self.get_error())
-    

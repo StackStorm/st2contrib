@@ -1,11 +1,12 @@
 #!/usr/bin/env python
-from lib.client import Client
 from lib.icinga2action import Icinga2Action
 
-import sys,urllib
+import sys
+import urllib
+
 
 class Icinga2GetService(Icinga2Action):
-        
+
     def run(self, services):
         api_suffix = ''
         if services:
@@ -16,7 +17,7 @@ class Icinga2GetService(Icinga2Action):
                 for service in services[:-1]:
                     api_suffix += 'services=' + urllib.quote_plus(service) + '&'
                 api_suffix += 'services=' + urllib.quote_plus(services[-1])
-            
+
         self.logger.debug('URL suffix: %s', api_suffix)
         self.set_method('get')
         self.set_path('/objects/services' + str(api_suffix))
@@ -27,4 +28,3 @@ class Icinga2GetService(Icinga2Action):
             return self.get_body()
         else:
             sys.exit(self.get_error())
-    
