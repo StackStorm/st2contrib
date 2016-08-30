@@ -1,0 +1,11 @@
+---
+description: Get Icinga2 service object
+enabled: true
+entry_point: get_service.py
+parameters:
+  services:
+    type: "array"
+    required: false
+    default: []
+name: get_service
+runner_type: "python-script"

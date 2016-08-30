@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: icinga2
+description: Icinga2 Integration pack
+version: 0.2.0
+author: Igor Cherkaev
+email: emptywee@protonmail.ch
