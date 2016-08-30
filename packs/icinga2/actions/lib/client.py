@@ -1,9 +1,9 @@
-import pycurl
 import json
 import urllib
 import signal
 import sys
 import time
+import pycurl
 
 POST_PARAMS = {}
 MAX_ATTEMPTS = 3
