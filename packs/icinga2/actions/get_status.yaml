@@ -1,0 +1,6 @@
+---
+description: Get Icinga2 status
+enabled: true
+entry_point: get_status.py
+name: get_status
+runner_type: "python-script"

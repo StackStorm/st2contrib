@@ -1,0 +1,20 @@
+---
+name: relay_to_chat
+pack: icinga2
+description: Post to chat when icinga2 service state changes
+enabled: false
+trigger:
+  type: icinga2.event.state_change
+criteria:
+  trigger.type:
+    pattern: "StateChange"
+    type: "eq"
+  trigger.state_type:
+    pattern: 0.1
+    type: gt
+action:
+  ref: chatops.post_message
+  parameters:
+    message: Icinga2 service {{trigger.service}} on host {{trigger.host}} has changed its state to {{ trigger.state|int }}, state type {{ trigger.state_type|int }}
+      {{trigger.check_result.output}}
+    channel: '563b5f7f21f7a36d7bd5baaf'
