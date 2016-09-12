@@ -13,7 +13,7 @@ class GetBuildNumberAction(CircleCI):
 
         response = self._perform_request(
             path, method='GET',
-            extra_headers={'limit': int(search_limit)}
+            extra_headers={'limit': str(search_limit)}
         )
 
         if response.status_code != httplib.OK:
