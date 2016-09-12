@@ -1,7 +1,7 @@
 # Circle CI Integration Pack
 
 Pack for integration of Circle CI into StackStorm. The pack includes the
-functionality to perform actions on Travis CI through StackStorm.
+functionality to perform actions on Circle CI through StackStorm.
 
 ## Actions
 
