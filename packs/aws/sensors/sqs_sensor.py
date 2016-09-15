@@ -7,6 +7,7 @@ following values in datastore:
     - aws.aws_access_key_id
     - aws.aws_secret_access_key
     - aws.region
+    - aws.max_number_of_messages (must be between 1 - 10)
 For configuration in config.yaml with config like this
     setup:
       aws_access_key_id:
@@ -16,6 +17,8 @@ For configuration in config.yaml with config like this
       input_queues:
         - first_queue
         - second_queue
+    sqs_other:
+        max_number_of_messages: 1
 If any value exist in datastore it will be taken instead of any value in config.yaml
 """
 
