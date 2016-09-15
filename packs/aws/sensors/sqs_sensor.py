@@ -46,7 +46,7 @@ class AWSSQSSensor(PollingSensor):
         self.aws_region = self._get_config_entry('region')
 
         self.max_number_of_messages = self._get_config_entry('max_number_of_messages',
-                                                              prefix='sqs_other')
+                                                             prefix='sqs_other')
 
         self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
 
