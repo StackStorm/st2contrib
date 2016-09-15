@@ -61,7 +61,6 @@ class AWSSQSSensor(PollingSensor):
                                           num_messages=self.max_number_of_messages)
             for msg in msgs:
                 if msg:
-                    print msg
                     payload = {"queue": queue, "body": msg.body}
                     self._sensor_service.dispatch(trigger="aws.sqs_new_message", payload=payload)
                     msg.delete()
