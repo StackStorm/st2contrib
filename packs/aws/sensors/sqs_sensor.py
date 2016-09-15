@@ -45,7 +45,8 @@ class AWSSQSSensor(PollingSensor):
         self.aws_secret_key = self._get_config_entry('aws_secret_access_key')
         self.aws_region = self._get_config_entry('region')
 
-        self.max_mumber_of_messages = self._get_config_entry('max_mumber_of_messages', prefix='sqs_other')
+        self.max_number_of_messages = self._get_config_entry('max_number_of_messages',
+                                                              prefix='sqs_other')
 
         self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
 
@@ -56,7 +57,8 @@ class AWSSQSSensor(PollingSensor):
 
     def poll(self):
         for queue in self.input_queues:
-            msgs = self._receive_messages(queue=self._get_queue_by_name(queue), num_messages=self.max_mumber_of_messages)
+            msgs = self._receive_messages(queue=self._get_queue_by_name(queue),
+                                          num_messages=self.max_number_of_messages)
             for msg in msgs:
                 if msg:
                     print msg

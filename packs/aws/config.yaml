@@ -22,4 +22,4 @@ sqs_sensor:
   input_queues:
 
 sqs_other:
-  max_mumber_of_messages: 1
+  max_number_of_messages: 1
