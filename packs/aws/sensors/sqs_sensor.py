@@ -1,14 +1,12 @@
 """
 This is generic SQS Sensor using boto3 api to fetch messages from sqs queue.
 After receiving a message it's content is passed as payload to a trigger 'aws.sqs_new_message'
-
 This sensor can be configured either by using config.yaml within a pack or by creating
 following values in datastore:
     - aws.input_queues (list queues as comma separated string: first_queue,second_queue)
     - aws.aws_access_key_id
     - aws.aws_secret_access_key
     - aws.region
-
 For configuration in config.yaml with config like this
     setup:
       aws_access_key_id:
@@ -18,7 +16,6 @@ For configuration in config.yaml with config like this
       input_queues:
         - first_queue
         - second_queue
-
 If any value exist in datastore it will be taken instead of any value in config.yaml
 """
 
@@ -48,6 +45,8 @@ class AWSSQSSensor(PollingSensor):
         self.aws_secret_key = self._get_config_entry('aws_secret_access_key')
         self.aws_region = self._get_config_entry('region')
 
+        self.max_mumber_of_messages = self._get_config_entry('max_mumber_of_messages', prefix='sqs_other')
+
         self._logger = self._sensor_service.get_logger(name=self.__class__.__name__)
 
         self.session = None
@@ -57,11 +56,13 @@ class AWSSQSSensor(PollingSensor):
 
     def poll(self):
         for queue in self.input_queues:
-            msg = self._receive_messages(queue=self._get_queue_by_name(queue))
-            if msg:
-                payload = {"queue": queue, "body": msg[0].body}
-                self._sensor_service.dispatch(trigger="aws.sqs_new_message", payload=payload)
-                msg[0].delete()
+            msgs = self._receive_messages(queue=self._get_queue_by_name(queue), num_messages=self.max_mumber_of_messages)
+            for msg in msgs:
+                if msg:
+                    print msg
+                    payload = {"queue": queue, "body": msg.body}
+                    self._sensor_service.dispatch(trigger="aws.sqs_new_message", payload=payload)
+                    msg.delete()
 
     def cleanup(self):
         pass
@@ -112,8 +113,8 @@ class AWSSQSSensor(PollingSensor):
 
         return queue
 
-    def _receive_messages(self, queue, wait_time=2, num_messages=1):
+    def _receive_messages(self, queue, num_messages, wait_time=2):
         ''' Receive a message from queue and return it. '''
-        msg = queue.receive_messages(WaitTimeSeconds=wait_time, MaxNumberOfMessages=num_messages)
+        msgs = queue.receive_messages(WaitTimeSeconds=wait_time, MaxNumberOfMessages=num_messages)
 
-        return msg
+        return msgs
