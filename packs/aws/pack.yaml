@@ -17,6 +17,6 @@ keywords:
   - RDS
   - SQS
 
-version : 0.6.5
+version : 0.6.6
 author : st2-dev
 email : info@stackstorm.com
