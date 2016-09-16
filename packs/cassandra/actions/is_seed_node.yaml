@@ -5,7 +5,7 @@ description: Find whether given node is a seed node.
 enabled: true
 entry_point: 'is_seed_node.py'
 parameters:
-  config-file:
+  config_file:
     type: string
     required: false
     description: "Path to cassandra config file"

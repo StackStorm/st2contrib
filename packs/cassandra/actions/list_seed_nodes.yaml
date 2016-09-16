@@ -5,7 +5,7 @@ description: List seed nodes in cassandra config.
 enabled: true
 entry_point: 'list_seed_nodes.py'
 parameters:
-  config-file:
+  config_file:
     type: string
     required: false
     description: "Path to cassandra config file"

@@ -39,7 +39,7 @@ def list_seed_nodes(config_file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Cassandra config parser.')
-    parser.add_argument('--config-file', '-f', required=True,
+    parser.add_argument('--config_file', '-f', required=True,
                         help='Path to cassandra config file.'),
     parser.add_argument('--delimiter', '-d', required=False, default=',',
                         help='Delimiter to use for output.')

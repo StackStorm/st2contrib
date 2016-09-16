@@ -39,7 +39,7 @@ def is_seed_node(node_id, config_file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Cassandra config parser.')
-    parser.add_argument('--config-file', '-f', required=True,
+    parser.add_argument('--config_file', '-f', required=True,
                         help='Path to cassandra config file.'),
     parser.add_argument('--ip', '--node_id', required=True,
                         help='IP or hostname of host to check.')
