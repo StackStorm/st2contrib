@@ -2,7 +2,7 @@
 name: check_load
 pack: nagios
 description: Check cpu load on host
-enabled: true
+enabled: false
 trigger:
   type: nagios.service_state_change
 criteria:

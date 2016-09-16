@@ -2,7 +2,7 @@
 name: notify_chat
 pack: nagios
 description: Post to chat when nagios service state changes
-enabled: true
+enabled: false
 trigger:
   type: nagios.service_state_change
 criteria:
