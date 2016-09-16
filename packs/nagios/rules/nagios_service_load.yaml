@@ -13,7 +13,6 @@ criteria:
     pattern: HARD
     type: matchregex
 action:
-  ref: check_loadavg
+  ref: linux.check_loadavg
   parameters:
     hosts: "{{trigger.host}}"
-    cmd: all

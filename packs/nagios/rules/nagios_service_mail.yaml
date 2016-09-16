@@ -7,8 +7,8 @@ trigger:
   type: nagios.service_state_change
 criteria: {}
 action:
-  ref: send_mail
+  ref: core.sendmail
   parameters:
-    cmd: 'patrick@stackstorm.com ''ST2 Nagios Service Alert [{{trigger.state_type}}]:
-      {{trigger.state}}'' ''{{trigger.service}} on {{trigger.host}} is {{trigger.state}}
-      {{trigger.state_type}}.<br>Attempts: {{trigger.attempt}}.<br>MSG: {{trigger.msg}}'''
+    to: 'patrick@stackstorm.com'
+    subject: 'ST2 Nagios Service Alert [{{trigger.state_type}}]: {{trigger.state}}'
+    body: '{{trigger.service}} on {{trigger.host}} is {{trigger.state}} {{trigger.state_type}}.<br>Attempts: {{trigger.attempt}}.<br>MSG: {{trigger.msg}}'
