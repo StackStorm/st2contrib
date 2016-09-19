@@ -62,8 +62,8 @@ class ICSPBaseActions(Action):
         self.icsp_sessionid = results["sessionID"]
 
         # added here due to the requirement of the session id
-        self.base_headers = {'Auth': self.icsp_sessionid,
-                             'X-Api-Version': self.icsp_apiv}
+        self.base_headers = {'Auth': str(self.icsp_sessionid),
+                             'X-Api-Version': str(self.icsp_apiv)}
 
         return results["sessionID"]
 
