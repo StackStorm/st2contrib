@@ -50,12 +50,12 @@ class GetItems(BaseAction):
         itemlist = inventory.get_managed_entities(self.si_content, objecttype)
         for item in itemlist.view:
             values = {}
-            values["ID"] = item
+            values["ID"] = str(item)
             if parents:
-                values["Parent"] = item.parent
+                values["Parent"] = str(item.parent)
 
             if itemtype != 'DataCenter' and summary:
-                values["summary"] = item.summary
+                values["summary"] = str(item.summary)
 
             results[item.name] = values
 
