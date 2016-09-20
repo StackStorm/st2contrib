@@ -48,10 +48,11 @@ workflows:
       get_mid_uuid:
         action: hpe-icsp.icsp_mid_get
         input:
-          uuid: [<% $.identifier %>]
+          identifiers: [<% $.identifier %>]
+          identifier_type: "uuid"
           connection_details: <% $.connection_details %>
         publish:
-          icsp_mid: <% $.get_mid_uuid.result.mid %>
+          icsp_mid: <% task(get_mid_uuid).result.result.mid %>
         retry:
           count: 5
           delay: 120
@@ -60,10 +61,11 @@ workflows:
       get_mid_sn:
         action: hpe-icsp.icsp_mid_get
         input:
-          serialnumber: [<% $.identifier %>]
+          identifiers: [<% $.identifier %>]
+          identifier_type: "serialnumber"
           connection_details: <% $.connection_details %>
         publish:
-          icsp_mid: <% $.get_mid_sn.result.mid %>
+          icsp_mid: <% task(get_mid_sn).result.result.mid %>
         retry:
           count: 5
           delay: 120
@@ -72,10 +74,11 @@ workflows:
       generate_server_data:
         action: hpe-icsp.icsp_server_data_format
         input:
-          mids: [<% $.icsp_mid %>]
+          identifiers: [<% $.icsp_mid %>]
+          identifier_type: "mid" 
           hostnames: [<% $.hostname %>]
         publish:
-          icsp_serverdata:  <% $.generate_server_data.result %>
+          icsp_serverdata:  <% task(generate_server_data).result.result %>
         on-success:
           - apply_buildplan
       apply_buildplan:
@@ -84,7 +87,7 @@ workflows:
           server_data: <% $.icsp_serverdata %>
           buildplan_ids: <% $.buildplan_ids %>
         publish:
-          icsp_jobid: <% $.apply_buildplan.result.jobid %>
+          icsp_jobid: <% task(apply_buildplan).result.result.jobid %>
         on-success:
           - monitor_job
       monitor_job:

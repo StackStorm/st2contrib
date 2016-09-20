@@ -49,7 +49,7 @@ workflows:
           identifier_type: <% $.id_type %>
           connection_details: <% $.connection_details %>
         publish:
-          icsp_mid: <% $.get_mid.result.mid %>
+          icsp_mid: <% task(get_mid).result.result.mid %>
         retry:
           count: 5
           delay: 120
