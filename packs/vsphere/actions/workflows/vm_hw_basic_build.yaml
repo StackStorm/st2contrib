@@ -25,6 +25,7 @@ vsphere.vm_hw_basic_build:
     barebones_build:
       # [189, 97]
       action: vsphere.vm_hw_barebones_create
+      wait-after: 12
       input:
         vm_name: <% $.vm_name %>
         ram_size: <% $.vm_ram %>
@@ -38,12 +39,13 @@ vsphere.vm_hw_basic_build:
         description: <% $.vm_description %>
         vsphere: <% $.vsphere %>
       publish:
-        vm_id: <% $.barebones_build.result.vm_id %>
+        vm_id: <% task(barebones_build).result.result.vm_id %>
       on-success:
         - add_controller
     add_controller:
       # [186, 198]
       action: vsphere.vm_hw_scsi_controller_add
+      wait-after: 12
       input:
         vm_id: <% $.vm_id %>
         controller_type: <% $.vm_ctrl_type %>
@@ -53,6 +55,7 @@ vsphere.vm_hw_basic_build:
     add_hdd:
       # [188, 302]
       action: vsphere.vm_hw_hdd_add
+      wait-after: 12
       input: 
         vm_id: <% $.vm_id %>
         datastore_cluster: <% $.vm_hdd_dscluster %>
@@ -64,6 +67,7 @@ vsphere.vm_hw_basic_build:
     add_nic:
       # [189, 404]
       action: vsphere.vm_hw_nic_add
+      wait-after: 12
       input:
         vm_id: <% $.vm_id %>
         network_name: <% $.vm_nic_netname %>
@@ -74,6 +78,7 @@ vsphere.vm_hw_basic_build:
     power_on:
       # [190, 505]
       action: vsphere.vm_hw_power_on
+      wait-after: 12
       input:
         vm_id: <% $.vm_id %>
         vsphere: <% $.vsphere %>
