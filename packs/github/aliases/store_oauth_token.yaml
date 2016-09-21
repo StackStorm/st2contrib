@@ -1,0 +1,19 @@
+---
+name: "store_oauth_token"
+pack: "github"
+description: ""
+action_ref: "github.store_oauth_token"
+formats:
+  - display: "github store token {{token}}"
+    representation:
+      - "github store token {{token}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Your GitHub token has been stored!
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}
