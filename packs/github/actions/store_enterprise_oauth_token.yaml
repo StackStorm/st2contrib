@@ -1,0 +1,20 @@
+---
+name: "store_enterprise_oauth_token"
+runner_type: "run-python"
+description: "Store a users GitHub Enterprise OAuth token."
+enabled: true
+entry_point: "store_oauth_token.py"
+parameters:
+  user:
+    type: "string"
+    description: "The user that the tokens for"
+    default: "{{action_context.api_user|default(None)}}"
+  token:
+    type: "string"
+    description: "The GitHub OAuth token"
+    required: true
+  enterprise:
+    type: "boolean"
+    description: "Should an enterprise token be stored"
+    default: true
+    immutable: true

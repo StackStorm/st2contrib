@@ -1,0 +1,43 @@
+---
+token:
+  description: "GitHub oAuth Token"
+  type: "string"
+  default: "{{user.github_enterprise_oauth_token}}"
+  required: true
+
+user: 
+  description: "GitHub Username"
+  type: "string"
+
+password:
+  description: "GitHub Password"
+  type: "string"
+
+base_url:
+  description: "GitHub URL, for GitHub Enterprise change this to your hostname."
+  type: "string"
+  default: "https://api.github.com"
+  required: true
+
+enterprise_url:
+  description: "GitHub URL, for GitHub Enterprise change this to your hostname."
+  type: "string"
+
+# This is broken for now..... 
+#repository_sensor:
+#  event_type_whitelist:
+#    - "IssuesEvent"
+#    - "IssueCommentEvent"
+#    - "ForkEvent"
+#    - "WatchEvent"
+#    - "ReleaseEvent"
+#    - "PushEvent"
+#
+#  repositories:
+#    -
+#      user: "StackStorm"
+#      name: "st2"
+#    -
+#      user: "StackStorm"
+#      name: "st2contrib"
+#  count: 30  # Maximum number of old events to retrieve
