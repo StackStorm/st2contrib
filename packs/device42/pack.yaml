@@ -1,0 +1,7 @@
+### Place information about your pack version here.
+---
+name: device42
+description: Device42 Actions for StackStorm
+version: 0.1.0
+author: Device42 Inc.
+email: support@device42.com

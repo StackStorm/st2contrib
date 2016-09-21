@@ -1,0 +1,25 @@
+---
+  name: "suggest_next_ip"
+  runner_type: "run-python"
+  description: "Suggest next available IP Address"
+  enabled: true
+  entry_point: "suggest_next_ip.py"
+  parameters:
+    subnet_id:
+      type: "string"
+      description: "ID of the subnet to suggest the next available IP in"
+    subnet:
+      type: "string"
+      description: "enter in network/mask notation, e.g.: 192.168.1.0/24"
+    name:
+      type: "string"
+      description: "name of the existing subnet. Must be unique name (with combination of VRF group, if supplied)."
+    vrf_group_id:
+      type: "string"
+      description: "ID of the VRF group - useful if you have overlapping subnets in your Device42 instance"
+    vrf_group:
+      type: "string"
+      description: "name of the VRF group - useful if you have overlapping subnets in your Device42 instance"
+    reserved_ip:
+      type: "string"
+      description: "If value of yes is passed, the suggested IP is reserved. Return value also adds reserved as yes or no. "

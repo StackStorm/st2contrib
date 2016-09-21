@@ -1,0 +1,103 @@
+---
+  name: "device_name_list"
+  runner_type: "run-python"
+  description: "Returns list of devices names"
+  enabled: true
+  entry_point: "device_name_list.py"
+  parameters:
+    type:
+      type: "string"
+      description: "filter by device type (physical, virtual, blade, other, cluster or unknown)"
+    service_level:
+      type: "string"
+      description: "filter by service level name"
+    in_service:
+      type: "string"
+      description: "filter by whether in service or not. Use yes or no."
+    customer:
+      type: "string"
+      description: "filter by customer name"
+    tags:
+      type: "string"
+      description: "filter by tags. comma separated for multiple tags (This is an OR filter, gets all the devices for all comma separated tags)"
+    blade_host_name:
+      type: "string"
+      description: "filter by blade host name"
+    virtual_host_name:
+      type: "string"
+      description: "filter by virtual host name"
+    building_id:
+      type: "string"
+      description: "filter by building ID"
+    building:
+      type: "string"
+      description: "filter by building name. Only works if building ID is not present"
+    room_id:
+      type: "string"
+      description: "filter by room ID"
+    room:
+      type: "string"
+      description: "filter by room name. Only works if room ID is not present"
+    rack_id:
+      type: "string"
+      description: "filter by rack ID"
+    rack:
+      type: "string"
+      description: "filter by rack name. Only works if rack ID is not present"
+    serial_no:
+      type: "string"
+      description: "filter by serial #"
+    serial_no_contains:
+      type: "string"
+      description: "filter by partial serial match"
+    asset_no:
+      type: "string"
+      description: "filter by asset #"
+    name:
+      type: "string"
+      description: "filter by name"
+    tags_and:
+      type: "string"
+      description: "filter by all the tags, separated by comma. (This is an AND filter and all tags have to match for filter)"
+    uuid:
+      type: "string"
+      description: "filter by uuid (exact match)"
+    is_it_switch:
+      type: "string"
+      description: "filter by whether switch or not. Use yes or no."
+    is_it_virtual_host:
+      type: "string"
+      description: "filter by whether virtual host or not. Use yes or no."
+    is_it_blade_host:
+      type: "string"
+      description: "filter by whether blade host or not. Use yes or no."
+    hardware:
+      type: "string"
+      description: "filter by name of hardware model, comma separated for multiple hardware models (or filter)."
+    hardware_ids:
+      type: "string"
+      description: "filter by ID of hardware models, comma separated"
+    os:
+      type: "string"
+      description: "filter by OS name"
+    virtual_subtype:
+      type: "string"
+      description: "filter by virtual subtype"
+    last_updated_lt:
+      type: "string"
+      description: "last updated less than date YYYY-MM-DD format"
+    last_updated_gt:
+      type: "string"
+      description: "last updated greater than date YYYY-MM-DD format"
+    first_added_lt:
+      type: "string"
+      description: "first added less than date YYYY-MM-DD format"
+    first_added_gt:
+      type: "string"
+      description: "first added greater date YYYY-MM-DD format"
+    custom_fields_and:
+      type: "string"
+      description: "filter by custom fields, and filter, format of key1:value1,key2:value2"
+    custom_fields_or:
+      type: "string"
+      description: "filter by custom fields, or filter, format of key1:value1,key2:value2"
