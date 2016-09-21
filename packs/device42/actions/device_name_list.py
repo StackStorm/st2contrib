@@ -2,7 +2,7 @@ from st2actions.runners.pythonrunner import Action
 import requests
 
 
-class SuggestNextAvailableIpAddress(Action):
+class DeviceNameList(Action):
     def run(self, type=None, service_level=None, in_service=None, customer=None, tags=None,
             blade_host_name=None, virtual_host_name=None, building_id=None, building=None,
             room_id=None, room=None, rack_id=None, rack=None, serial_no=None,
