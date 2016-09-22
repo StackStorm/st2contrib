@@ -24,13 +24,12 @@ class GetDeploymentStatusesAction(BaseGithubAction):
                 datetime.datetime.strptime(
                     response['created_at'],
                     "%Y-%m-%dT%H:%M:%SZ").timetuple())
-            
+
             results.append({'creator': response['creator']['login'],
                             'id': response['id'],
                             'description': response['description'],
                             'state': response['state'],
-                            'description': response['description'],
-                            'target_url':  response['target_url'],
+                            'target_url': response['target_url'],
                             'created_at': response['created_at'],
                             'updated_at': response['updated_at'],
                             'ts_created_at': ts_created_at})
