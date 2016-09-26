@@ -11,3 +11,7 @@
 
   ## V0.4.1
   Improved error message around Connection/Configuration details. Addition of item get action.
+
+  ## V0.4.2
+  Updates to actions to factor in ST2 V2 changes forcing string conversions for output and publish variable syntax changes.
+  vm_basic_build workflow introduction of 12 seconds delay between elements to support parrallel action load balancing
