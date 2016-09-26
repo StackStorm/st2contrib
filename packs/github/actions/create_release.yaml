@@ -43,3 +43,7 @@ parameters:
     description: "Identify the release as a prerelease."
     default: false
     immutable: true
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

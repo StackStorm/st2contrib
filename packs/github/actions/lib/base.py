@@ -22,9 +22,11 @@ class BaseGithubAction(Action):
         super(BaseGithubAction, self).__init__(config=config)
         token = self.config.get('token', None)
         self.token = token or None
-        self.base_url = self.config.get('base_url', DEFAULT_API_URL)
+        self.github_url = self.config.get('github_url', DEFAULT_API_URL)
+        self.enterprise_url = self.config.get('enterprise_url', None)
+        self.default = self.config.get('default', None)
 
-        self._client = Github(self.token, base_url=self.base_url)
+        self._client = Github(self.token, base_url=self.github_url)
         self._session = requests.Session()
 
     def _web_session(self):
@@ -54,23 +56,44 @@ class BaseGithubAction(Action):
         response = s.get(url)
         return response.json()
 
-    def _get_user_token(self, user):
-        return self.action_service.get_value(
-            name="token_{}".format(user))
+    def _is_enterprise(self, github_type):
 
-    def _change_to_user_token(self, user):
-        token = self.action_service.get_value(
-            name="token_{}".format(user))
+        if github_type == "enterprise":
+            return True
+        elif github_type == "online":
+            return False
+        elif self.default == "enterprise":
+            return True
+        elif self.default == "online":
+            return False
+        else:
+            raise ValueError("Default GitHub Invalid!")
 
-        self._client = Github(token, base_url=self.base_url)
+    def _get_user_token(self, user, enterprise):
+        if enterprise:
+            token_name = "token_enterprise_{}".format(user)
+        else:
+            token_name = "token_{}".format(user)
+
+        return self.action_service.get_value(token_name)
+
+    def _change_to_user_token(self, user, enterprise=False):
+        token = self._get_user_token(user, enterprise)
+
+        if enterprise:
+            self._client = Github(token, base_url=self.enterprise_url)
+        else:
+            self._client = Github(token, base_url=self.github_url)
 
         return True
 
-    def _request(self, method, uri, payload, token):
+    def _request(self, method, uri, payload, token, enterprise):
         headers = {'Authorization': 'token {}'.format(token)}
 
-        url = "{}{}".format(self.base_url,
-                            uri)
+        if enterprise:
+            url = "{}{}".format(self.enterprise_url, uri)
+        else:
+            url = "{}{}".format(self.github_url, uri)
 
         try:
             r = self._session.request(method,

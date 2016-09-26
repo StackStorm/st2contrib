@@ -4,9 +4,9 @@ pack: "github"
 description: ""
 action_ref: "github.latest_release"
 formats:
-  - display: "github release latest {{repository}}"
+  - display: "github release latest [type (enterprise¦online)] {{repository}}"
     representation:
-      - "github release latest {{repository}}"
+      - "github release latest( type {{github_type}})? {{repository}}"
 ack:
   enabled: false
   append_url: false

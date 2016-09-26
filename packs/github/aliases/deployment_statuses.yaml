@@ -4,9 +4,9 @@ pack: "github"
 description: "Create a new git deployment"
 action_ref: "github.get_deployment_statuses"
 formats:
-  - display: "github deployment statuses {{repository}} id {{deployment_id}}"
+  - display: "github deployment statuses [type (enterprise¦online)]{{repository}} id {{deployment_id}}"
     representation:
-      - "github deployment statuses {{repository}} id {{deployment_id}}"
+      - "github deployment statuses( type {{github_type}})? {{repository}} id {{deployment_id}}"
 ack:
   enabled: false
   append_url: false

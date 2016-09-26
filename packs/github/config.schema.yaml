@@ -13,6 +13,15 @@ password:
   description: "GitHub Password"
   type: "string"
 
+default:
+  description: "Default to either github or enterprise."
+  type: "string"
+  default: "online"
+  enum:
+    - "online"
+    - "enterprise"
+  required: true
+
 base_url:
   description: "GitHub URL, for GitHub Enterprise change this to your hostname."
   type: "string"

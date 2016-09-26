@@ -4,9 +4,9 @@ pack: "github"
 description: "Create a new git release "
 action_ref: "github.create_release"
 formats:
-  - display: "github release create {{repository}} [version {{version_increase}] [commit {{target_commitish}}] name {{name}} body {{body}}"
+  - display: "github release create {{repository}} [type (enterprise¦online)] [version {{version_increase}] [commit {{target_commitish}}] name {{name}} body {{body}}"
     representation:
-      - "github release create {{repository}}( version {{version_increase}})?( commit {{target_commitish}})? name {{name}} body {{body}}"
+      - "github release create {{repository}}( type {{github_type}})?( version {{version_increase}})?( commit {{target_commitish}})? name {{name}} body {{body}}"
 ack:
   enabled: false
   append_url: false

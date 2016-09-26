@@ -30,4 +30,7 @@ parameters:
     type: "string"
     description: "A short description of the status. Maximum length of 140 characters."
     default: ""
-
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

@@ -1,0 +1,4 @@
+enterprise_url: "https://github.exmple.com/api/v3"
+token: "foobar"
+
+default: "enterprise"

@@ -9,8 +9,11 @@ parameters:
     type: "string"
     description: "The API user"
     default: "{{action_context.api_user|default(None)}}"
-
   repository:
     type: "string"
     description: "The full (Organization|User)/repository path"
     required: true
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

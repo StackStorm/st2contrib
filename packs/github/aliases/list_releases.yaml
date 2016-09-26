@@ -4,9 +4,9 @@ pack: "github"
 description: ""
 action_ref: "github.list_releases"
 formats:
-  - display: "github releases list {{repository}}"
+  - display: "github releases list [type (enterprise¦online)] {{repository}}"
     representation:
-      - "github releases list {{repository}}"
+      - "github releases list( type {{github_type}})? {{repository}}"
 ack:
   enabled: false
   append_url: false

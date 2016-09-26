@@ -4,9 +4,9 @@ pack: "github"
 description: "Create a new git deployment for a repository."
 action_ref: "github.create_deployment"
 formats:
-  - display: "github deployment create {{repository}} [ref {{ref=master}}] [environment {{environment=production}}] description {{description}}"
+  - display: "github deployment create {{repository}} [type (enterprise¦online)] [ref {{ref=master}}] [environment {{environment=production}}] description {{description}}"
     representation:
-      - "github deployment create {{repository}}( ref {{ref=master}})?( environment {{environment=production}})? description {{description}}"
+      - "github deployment create {{repository}}( type {{github_type}})?( ref {{ref=master}})?( environment {{environment=production}})? description {{description}}"
 ack:
   enabled: false
   append_url: false

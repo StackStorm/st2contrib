@@ -6,17 +6,21 @@ from lib.base import BaseGithubAction
 
 
 class CreateReleaseAction(BaseGithubAction):
-    def run(self, api_user, repository, name, body,
+    def run(self, api_user, repository, name, body, github_type,
             target_commitish="master", version_increase="patch",
             draft=False, prerelease=False):
 
+        enterprise = self._is_enterprise(github_type)
+
         if api_user:
-            self.token = self._get_user_token(api_user)
+            self.token = self._get_user_token(api_user,
+                                              enterprise)
 
         release = self._request("GET",
                                 "/repos/{}/releases/latest".format(repository),
                                 None,
-                                self.token)
+                                self.token,
+                                enterprise)
 
         (major, minor, patch) = release['tag_name'].split(".")
         major = int(major.replace("v", ""))
@@ -47,7 +51,9 @@ class CreateReleaseAction(BaseGithubAction):
         release = self._request("POST",
                                 "/repos/{}/releases".format(repository),
                                 payload,
-                                self.token)
+                                self.token,
+                                enterprise)
+
         ts_published_at = time.mktime(
             datetime.datetime.strptime(
                 release['published_at'],

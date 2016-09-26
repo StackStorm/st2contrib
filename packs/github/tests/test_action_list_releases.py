@@ -12,19 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from lib.base import BaseGithubAction
+# from mock import MagicMock
+
+from github_base_action_test_case import GitHubBaseActionTestCase
+
+from list_releases import ListReleasesAction
 
 
-class StoreOauthTokenAction(BaseGithubAction):
-    def run(self, user, token, enterprise=False):
-
-        if enterprise:
-            value_name = "token_enterprise_{}".format(user)
-        else:
-            value_name = "token_{}".format(user)
-
-        self.action_service.set_value(
-            name=value_name,
-            value=token)
-
-        return True
+class ListReleasesActionTestCase(GitHubBaseActionTestCase):
+    __test__ = True
+    action_cls = ListReleasesAction
