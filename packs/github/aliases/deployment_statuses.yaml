@@ -1,7 +1,7 @@
 ---
 name: "deployment_statuses"
 pack: "github"
-description: "Create a new git deployment"
+description: "Show the deployment statuses for a deployment ID."
 action_ref: "github.get_deployment_statuses"
 formats:
   - display: "github deployment statuses [type (enterprise¦online)]{{repository}} id {{deployment_id}}"

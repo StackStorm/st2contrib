@@ -1,7 +1,7 @@
 ---
 name: "latest_release"
 pack: "github"
-description: ""
+description: "Get the latest release for a repository."
 action_ref: "github.latest_release"
 formats:
   - display: "github release latest [type (enterprise¦online)] {{repository}}"

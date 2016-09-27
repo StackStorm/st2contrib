@@ -1,7 +1,7 @@
 ---
 name: "create_release"
 pack: "github"
-description: "Create a new git release "
+description: "Create a new git release."
 action_ref: "github.create_release"
 formats:
   - display: "github release create {{repository}} [type (enterprise¦online)] [version {{version_increase}] [commit {{target_commitish}}] name {{name}} body {{body}}"

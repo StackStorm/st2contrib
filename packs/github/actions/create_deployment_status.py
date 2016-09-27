@@ -22,7 +22,7 @@ class CreateDeploymentAction(BaseGithubAction):
     def run(self, api_user, repository, deployment_id, state,
             description, github_type):
 
-        valid_states = ["pending", "success", "error", "failure"]
+        valid_states = ['pending', 'success', 'error', 'failure']
 
         enterprise = self._is_enterprise(github_type)
 

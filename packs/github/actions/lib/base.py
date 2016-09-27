@@ -24,7 +24,7 @@ class BaseGithubAction(Action):
         self.token = token or None
         self.github_url = self.config.get('github_url', DEFAULT_API_URL)
         self.enterprise_url = self.config.get('enterprise_url', None)
-        self.default = self.config.get('default', None)
+        self.default_github_type = self.config.get('github_type', None)
 
         self._client = Github(self.token, base_url=self.github_url)
         self._session = requests.Session()
@@ -62,9 +62,9 @@ class BaseGithubAction(Action):
             return True
         elif github_type == "online":
             return False
-        elif self.default == "enterprise":
+        elif self.default_github_type == "enterprise":
             return True
-        elif self.default == "online":
+        elif self.default_github_type == "online":
             return False
         else:
             raise ValueError("Default GitHub Invalid!")

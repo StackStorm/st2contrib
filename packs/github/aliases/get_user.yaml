@@ -1,12 +1,12 @@
 ---
 name: "get_user"
 pack: "github"
-description: ""
+description: "Get the name of a GitHub user."
 action_ref: "github.get_user"
 formats:
-  - display: "github get user {{user}}"
+  - display: "github get user [type (enterprise¦online)] {{user}}"
     representation:
-      - "github get user {{user}}"
+      - "github get user( type {{github_type}})? {{user}}"
 ack:
   enabled: false
   append_url: false

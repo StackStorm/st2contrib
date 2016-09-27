@@ -1,7 +1,7 @@
 ---
 name: "list_releases"
 pack: "github"
-description: ""
+description: "List the releases for a repository."
 action_ref: "github.list_releases"
 formats:
   - display: "github releases list [type (enterprise¦online)] {{repository}}"

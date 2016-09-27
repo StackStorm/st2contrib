@@ -13,8 +13,7 @@ parameters:
     type: "string"
     description: "The GitHub OAuth token"
     required: true
-  enterprise:
-    type: "boolean"
-    description: "Should an enterprise token be stored"
-    default: false
-    immutable: true
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

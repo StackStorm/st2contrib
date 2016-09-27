@@ -2,7 +2,7 @@
 token:
   description: "GitHub oAuth Token"
   type: "string"
-  default: "{{user.github_enterprise_oauth_token}}"
+  default: "{{system.github_oauth_token}}"
   required: true
 
 user: 
@@ -13,7 +13,7 @@ password:
   description: "GitHub Password"
   type: "string"
 
-default:
+github_type:
   description: "Default to either github or enterprise."
   type: "string"
   default: "online"
@@ -23,16 +23,18 @@ default:
   required: true
 
 base_url:
-  description: "GitHub URL, for GitHub Enterprise change this to your hostname."
+  description: "The GitHub URL, for GitHub Enterprise please set enterprise_url."
   type: "string"
   default: "https://api.github.com"
   required: true
 
 enterprise_url:
-  description: "GitHub URL, for GitHub Enterprise change this to your hostname."
+  description: "GitHub API url (including /api/v3) of your GitHub Enterprise hostname."
   type: "string"
 
-# This is broken for now..... 
+# You need to manullay put this into your config, as it's not
+# compatiable with the config schema.
+
 #repository_sensor:
 #  event_type_whitelist:
 #    - "IssuesEvent"
