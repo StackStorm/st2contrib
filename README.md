@@ -90,7 +90,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![fpm icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fpm/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | [fpm](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | fpm |  | [jfryman](mailto:jfryman@FryBook-2.local) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#fpm-pack)
 [![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | [freight](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | freight |  | [James Fryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#freight-pack)
 [![git icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/git/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | [git](https://github.com/StackStorm/st2contrib/tree/master/packs/git) | st2 content pack containing git integrations | git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#git-pack)
-[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#github-pack)
+[![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [st2-dev](mailto:info@stackstorm.com) | 0.5 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 [![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
 [![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | [hpe-icsp](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | Pack for HP Enterprise Insight Control Server Provisioning Integration |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#hpe-icsp-pack)
@@ -1427,13 +1427,21 @@ Name | Description
 add_comment | Add a comment to the provided issue / pull request.
 add_status | Add a commit status for a provided ref.
 add_team_membership | Add (and invite if not a member) a user to a team
+create_deployment | Create a new deployment for a GitHub repository
+create_deployment_status | Create a new deployment Status for a GitHub repository
 create_issue | Create a Github issue.
+create_release | Create a new release for a GitHub repository
 get_clone_stats | Retrieve clone statistics for a given repository
+get_deployment_statuses | Get the statuses of a deployment for a GitHub repository
 get_issue | Retrieve information about a particular Github issue.
 get_traffic_stats | Retrieve traffic statistics for a given repository
 get_user | Get a user from the Github user database
+latest_release | List the latest release for a GitHub repository
+list_deployments | List deployments for a GitHub repository
 list_issues | Retrieve a list of issues (including pull requests) for a particular repository.
+list_releases | List releases for a GitHub repository
 list_teams | List teams in organization
+store_oauth_token | Store a users GitHub OAuth token.
 
 ### google pack
 
