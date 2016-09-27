@@ -42,7 +42,7 @@ class CreateDeployment(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "github deployment create st2contrib type online ref v1.0.0 environment staging description Another description"
+        command = "github deployment create st2contrib type online ref v1.0.0 environment staging description Another description"  # NOQA
         expected_parameters = {
             'repository': "st2contrib",
             'github_type': "online",
@@ -66,7 +66,7 @@ class CreateRelease(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "github release create st2contrib name v1.0.0 body It's a release Jim, but not as we know it!"
+        command = "github release create st2contrib name v1.0.0 body It's a release Jim, but not as we know it!"  # NOQA
         expected_parameters = {
             'repository': "st2contrib",
             'github_type': None,
@@ -87,7 +87,7 @@ class CreateRelease(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "github release create st2contrib type online version patch commit master name v1.0.0 body It's a release Jim, but not as we know it!"
+        command = "github release create st2contrib type online version patch commit master name v1.0.0 body It's a release Jim, but not as we know it!"  # NOQA
         expected_parameters = {
             'repository': "st2contrib",
             'github_type': "online",
@@ -278,7 +278,6 @@ class StoreOauthToken(BaseActionAliasTestCase):
         self.assertCommandMatchesExactlyOneFormatString(
             format_strings=format_strings,
             command=command)
-
 
     def test_alias_store_oauth_token_online(self):
         format_string = self.action_alias_db.formats[0]['representation'][0]
