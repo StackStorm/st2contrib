@@ -1,0 +1,23 @@
+---
+name: "get_deployment_statuses"
+runner_type: "run-python"
+description: "Get the statuses of a deployment for a GitHub repository"
+enabled: true
+entry_point: "get_deployment_statuses.py"
+parameters:
+  api_user:
+    type: "string"
+    description: "The API user"
+    default: "{{action_context.api_user|default(None)}}"
+  repository:
+    type: "string"
+    description: "The full (Organization|User)/repository path"
+    required: true
+  deployment_id:
+    type: "integer"
+    description: "The ID of the deloyment to get the states for."
+    required: true
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

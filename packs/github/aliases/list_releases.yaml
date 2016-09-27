@@ -1,0 +1,25 @@
+---
+name: "list_releases"
+pack: "github"
+description: "List the releases for a repository."
+action_ref: "github.list_releases"
+formats:
+  - display: "github releases list [type (enterprise¦online)] {{repository}}"
+    representation:
+      - "github releases list( type {{github_type}})? {{repository}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      color: "#00ad52" # aka Slack 'good'
+  format: |
+    {% if execution.status == 'succeeded' %}
+    The releases for _{{execution.parameters.repository}}_:{~}
+    {% for release in execution.result.result %}
+    <{{release.html_url}}|{{release.tag_name}}: {{release.name}}> (by {{release.author}} @ {{release.published_at}}){% if release.prerelease %} _Prerelease_{% endif %}{% if release.draft %} _Draft_{% endif %}.
+    {% endfor %}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

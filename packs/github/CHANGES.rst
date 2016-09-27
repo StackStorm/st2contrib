@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.0
+
+* Migrate config.yaml to config.schema.yaml.
+* Add actions and aliases managing releases (list, create, latest).
+* Add actions and aliases for managing deployments.
+* Add action and aliases for sorting a user scoped GitHub oauth token 
+  for GitHub.com and GitHub Enterprise.
+
 ## v0.4.0
 
 * Add support for Github enterprise by allowing user to provide ``base_url`` option in the config.

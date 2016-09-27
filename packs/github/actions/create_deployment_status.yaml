@@ -1,0 +1,36 @@
+---
+name: "create_deployment_status"
+runner_type: "run-python"
+description: "Create a new deployment Status for a GitHub repository"
+enabled: true
+entry_point: "create_deployment_status.py"
+parameters:
+  api_user:
+    type: "string"
+    description: "The API user"
+    default: "{{action_context.api_user|default(None)}}"
+  repository:
+    type: "string"
+    description: "The full (Organization|User)/repository path"
+    required: true
+  deployment_id:
+    type: "integer"
+    description: "The ID of the deployment."
+    required: true
+  state:
+    type: "string"
+    description: "The state of the status."
+    enum:
+      - "pending"
+      - "success"
+      - "error"
+      - "failure"
+    required: true
+  description:
+    type: "string"
+    description: "A short description of the status. Maximum length of 140 characters."
+    default: ""
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

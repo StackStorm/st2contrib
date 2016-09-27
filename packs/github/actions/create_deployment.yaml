@@ -1,0 +1,35 @@
+---
+name: "create_deployment"
+runner_type: "run-python"
+description: "Create a new deployment for a GitHub repository"
+enabled: true
+entry_point: "create_deployment.py"
+parameters:
+  api_user:
+    type: "string"
+    description: "The API user"
+    default: "{{action_context.api_user|default(None)}}"
+  repository:
+    type: "string"
+    description: "The full (Organization|User)/repository path"
+    required: true
+  ref:
+    type: "string"
+    description: "The branch, tag, or SHA to deploy."
+    default: "master"
+  environment:
+    type: "string"
+    description: "Deploy to this environment."
+    default: "production"
+  description:
+    type: "string"
+    description: "Optional short description."
+    default: ""
+  payload:
+    type: "string"
+    description: "Optional JSON payload with extra information about the deployment."
+    default: ""
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

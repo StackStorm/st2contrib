@@ -1,0 +1,54 @@
+---
+token:
+  description: "GitHub oAuth Token"
+  type: "string"
+  default: "{{system.github_oauth_token}}"
+  required: true
+
+user: 
+  description: "GitHub Username"
+  type: "string"
+
+password:
+  description: "GitHub Password"
+  type: "string"
+
+github_type:
+  description: "Default to either github or enterprise."
+  type: "string"
+  default: "online"
+  enum:
+    - "online"
+    - "enterprise"
+  required: true
+
+base_url:
+  description: "The GitHub URL, for GitHub Enterprise please set enterprise_url."
+  type: "string"
+  default: "https://api.github.com"
+  required: true
+
+enterprise_url:
+  description: "GitHub API url (including /api/v3) of your GitHub Enterprise hostname."
+  type: "string"
+
+# You need to manullay put this into your config, as it's not
+# compatiable with the config schema.
+
+#repository_sensor:
+#  event_type_whitelist:
+#    - "IssuesEvent"
+#    - "IssueCommentEvent"
+#    - "ForkEvent"
+#    - "WatchEvent"
+#    - "ReleaseEvent"
+#    - "PushEvent"
+#
+#  repositories:
+#    -
+#      user: "StackStorm"
+#      name: "st2"
+#    -
+#      user: "StackStorm"
+#      name: "st2contrib"
+#  count: 30  # Maximum number of old events to retrieve

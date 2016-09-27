@@ -1,0 +1,22 @@
+---
+name: "deployment_statuses"
+pack: "github"
+description: "Show the deployment statuses for a deployment ID."
+action_ref: "github.get_deployment_statuses"
+formats:
+  - display: "github deployment statuses [type (enterprise¦online)]{{repository}} id {{deployment_id}}"
+    representation:
+      - "github deployment statuses( type {{github_type}})? {{repository}} id {{deployment_id}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Deployment statuses for {{execution.parameters.repository}} (ID: {{execution.parameters.deployment_id}}):{~}
+    {% for status in execution.result.result %}
+    *{{status.updated_at}}:* _{{status.state}}_ ({{status.description}}) by {{status.creator}} {% if status.target_url %} (<{{status.target_url}}|link>){% endif %} 
+    {% endfor %}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

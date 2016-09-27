@@ -1,0 +1,29 @@
+---
+name: "create_release"
+pack: "github"
+description: "Create a new git release."
+action_ref: "github.create_release"
+formats:
+  - display: "github release create {{repository}} [type (enterprise¦online)] [version {{version_increase}] [commit {{target_commitish}}] name {{name}} body {{body}}"
+    representation:
+      - "github release create {{repository}}( type {{github_type}})?( version {{version_increase}})?( commit {{target_commitish}})? name {{name}} body {{body}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      author_name: "{{execution.result.result.author}}"
+      text: "{{execution.result.result.body}}"
+      color: "#00ad52" # aka Slack 'good'
+      title: "{{execution.result.result.tag_name}} - {{execution.result.result.name}}"
+      title_link: "{{execution.result.result.html_url}}"
+      ts: "{{execution.result.result.ts_published_at}}"
+      footer: "GitHub"
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Created a new release for _{{execution.parameters.repository}}_ with the tag {{execution.result.result.tag_name}}{~}
+    {{execution.result.result.body}}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

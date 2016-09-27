@@ -1,0 +1,19 @@
+---
+name: "store_oauth_token"
+runner_type: "run-python"
+description: "Store a users GitHub OAuth token."
+enabled: true
+entry_point: "store_oauth_token.py"
+parameters:
+  user:
+    type: "string"
+    description: "The user that the tokens for"
+    default: "{{action_context.api_user|default(None)}}"
+  token:
+    type: "string"
+    description: "The GitHub OAuth token"
+    required: true
+  github_type:
+    type: "string"
+    description: "The type of github installation to target, if unset will use the configured default."
+    default: ~

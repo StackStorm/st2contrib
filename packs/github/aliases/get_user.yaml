@@ -1,0 +1,19 @@
+---
+name: "get_user"
+pack: "github"
+description: "Get the name of a GitHub user."
+action_ref: "github.get_user"
+formats:
+  - display: "github get user [type (enterprise¦online)] {{user}}"
+    representation:
+      - "github get user( type {{github_type}})? {{user}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    {{ execution.result.result.login}} {{ execution.result.result.name}}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

@@ -1,0 +1,30 @@
+---
+name: "latest_release"
+pack: "github"
+description: "Get the latest release for a repository."
+action_ref: "github.latest_release"
+formats:
+  - display: "github release latest [type (enterprise¦online)] {{repository}}"
+    representation:
+      - "github release latest( type {{github_type}})? {{repository}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      author_name: "{{execution.result.result.author}}"
+      author_icon: "{{execution.result.result.avatar_url}}"
+      text: "{{execution.result.result.body}}"
+      color: "#00ad52" # aka Slack 'good'
+      title: "{{execution.result.result.tag_name}} - {{execution.result.result.name}}"
+      title_link: "{{execution.result.result.html_url}}"
+      ts: "{{execution.result.result.ts_published_at}}"
+      footer: "GitHub"
+  format: |
+    {% if execution.status == 'succeeded' %}
+    The latest release for _{{execution.parameters.repository}}_ is {{execution.result.result.tag_name}} ({{execution.result.result.name}}){~}
+    {{execution.result.result.body}}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

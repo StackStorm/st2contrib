@@ -1,0 +1,29 @@
+---
+name: "create_deployment"
+pack: "github"
+description: "Create a new git deployment for a repository."
+action_ref: "github.create_deployment"
+formats:
+  - display: "github deployment create {{repository}} [type (enterprise¦online)] [ref {{ref=master}}] [environment {{environment=production}}] description {{description}}"
+    representation:
+      - "github deployment create {{repository}}( type {{github_type}})?( ref {{ref=master}})?( environment {{environment=production}})? description {{description}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      author_name: "{{execution.result.result.creator}}"
+      color: "#00ad52" # aka Slack 'good'
+      title: "{{execution.result.result.task}} (ID {{execution.result.result.id}})"
+      ts: "{{execution.result.result.ts_created_at}}"
+      footer: "GitHub"
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Created a new deployment for _{{execution.parameters.repository}}_ for ref _{{execution.parameters.ref}}_{~}
+    Description: {{execution.result.result.description}} Environment: {{execution.result.result.environment}}.
+
+    Check deployment status with: ```! github deployment statuses {{execution.parameters.repository}} id {{execution.result.result.id}}```
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

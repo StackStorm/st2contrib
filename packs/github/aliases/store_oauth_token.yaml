@@ -1,0 +1,19 @@
+---
+name: "store_oauth_token"
+pack: "github"
+description: "Store your own GitHub (online or enterprise) OAuth Token."
+action_ref: "github.store_oauth_token"
+formats:
+  - display: "github store [type (enterprise¦online)] token {{token}}"
+    representation:
+      - "github store( type {{github_type}})? token {{token}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    Your {{execution.result.result.github_type}} GitHub token has been stored!
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

@@ -6,6 +6,10 @@ enabled: true
 entry_point: get_user.py
 parameters:
   user:
-    type: string
+    type: "string"
     description: "The username"
     required: true
+  token_user:
+    type: "string"
+    description: "The"
+    default: "{{action_context.api_user|default(None)}}"
