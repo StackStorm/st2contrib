@@ -1,0 +1,19 @@
+name: get_event
+runner_type: run-python
+description: "Query for event details"
+enabled: true
+entry_point: run.py
+parameters:
+  event_id:
+    type: integer
+    description: "The event to retreive"
+    required: true
+  cls:
+    default: DatadogGetEvent
+    immutable: true
+    type: string
+  module_path:
+    default: lib.events
+    immutable: true
+    type: string
+

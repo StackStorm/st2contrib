@@ -1,0 +1,19 @@
+name: share_screenboard
+runner_type: run-python
+description: "Share an existing screenboard with a public URL"
+enabled: true
+entry_point: run.py
+parameters:
+  board_id:
+    type: integer
+    description: "The id of the screenboard to share"
+    required: true
+  cls:
+    default: DatadogShareScreenboard
+    immutable: true
+    type: string
+  module_path:
+    default: lib.screenboards
+    immutable: true
+    type: string
+

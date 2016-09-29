@@ -1,0 +1,15 @@
+name: get_all_users
+runner_type: run-python
+description: "Get all users in your organisation from Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  cls:
+    default: DatadogGetAllUsers
+    immutable: true
+    type: string
+  module_path:
+    default: lib.users
+    immutable: true
+    type: string
+

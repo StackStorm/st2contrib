@@ -1,0 +1,39 @@
+name: create_monitor
+runner_type: run-python
+description: "Create a monitor"
+enabled: true
+entry_point: run.py
+parameters:
+  type:
+    required: true
+    description: "The type of the monitor, chosen from: metric alert, service check, event alert"
+    type: string
+  query:
+    required: true
+    description: "The monitor query to notify on with syntax varying depending on what type of monitor you are creating, see http://docs.datadoghq.com/api/#monitor-create"
+    type: string
+  name:
+    required: false
+    type: string
+    description: "The name of the alert"
+  message:
+    required: false
+    type: string
+    description: "A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events."
+  tags:
+    type: array
+    required: false
+    description: "A list of tags to associate with your monitor"
+  options:
+    type: object
+    required: false
+    description: "A dictionary of options for the monitor. There are options that are common to all types as well as options that are specific to certain monitor types. See http://docs.datadoghq.com/api/#monitor-create"
+  cls:
+    default: DatadogCreateMonitor
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

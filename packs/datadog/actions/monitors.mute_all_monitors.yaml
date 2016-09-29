@@ -1,0 +1,15 @@
+name: mute_all_monitors
+runner_type: run-python
+description: "Muting will prevent all monitors from notifying through email and posts to the event stream. State changes will only be visible by checking the alert page."
+enabled: true
+entry_point: run.py
+parameters:
+  cls:
+    default: DatadogMuteAllMonitors
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

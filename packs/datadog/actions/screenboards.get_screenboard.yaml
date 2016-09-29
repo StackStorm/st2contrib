@@ -1,0 +1,19 @@
+name: get_screenboard
+runner_type: run-python
+description: "Get a screenboard"
+enabled: true
+entry_point: run.py
+parameters:
+  board_id:
+    type: integer
+    description: "The id of the screenboard to retreive"
+    required: true
+  cls:
+    default: DatadogGetScreenboard
+    immutable: true
+    type: string
+  module_path:
+    default: lib.screenboards
+    immutable: true
+    type: string
+

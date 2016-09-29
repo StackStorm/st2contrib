@@ -1,0 +1,23 @@
+name: mute_monitor
+runner_type: run-python
+description: "Unmute a monitor"
+enabled: true
+entry_point: run.py
+parameters:
+  scope:
+    required: false
+    type: string
+    description: "The scope to apply the mute to, e.g. role:db"
+  all_scopes:
+    required: false
+    type: boolean
+    description: "Clear muting across all scopes"
+  cls:
+    default: DatadogMuteMonitor
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

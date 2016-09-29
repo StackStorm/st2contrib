@@ -1,0 +1,51 @@
+name: post_event
+runner_type: run-python
+description: "Post events to the stream"
+enabled: true
+entry_point: run.py
+parameters:
+  title:
+    type: string
+    description: "Event title, limited to 100 chars"
+    required: true
+  text:
+    type: string
+    description: "Body of the event, limited to 4000 chars. Support markdown"
+    required: true
+  date_happenend:
+    type: integer
+    description: "POSIX timestamp of the event"
+    required: false
+  priority:
+    type: string
+    description: "The priority of the event ('normal' or 'low')"
+    required: false
+  host:
+    type: string
+    description: "Hostname to associat with the event"
+    required: false
+  tags:
+    type: array
+    description: "A list of tags to apply to the event"
+    required: false
+  alert_type:
+    type: string
+    description: '"error", "warning", "info" or "success"'
+    required: false
+  aggregation_key:
+    type: string
+    description: "Arbitrary string to use for aggregation, max 100 chars"
+    required: false
+  source_type_name:
+    type: string
+    description: "The type of event being posted. Options: nagios, hudson, jenkins, user, my apps, feed, chef, puppet, git, bitbucket, fabric, capistrano"
+    required: false
+  cls:
+    default: DatadogPostEvent
+    immutable: true
+    type: string
+  module_path:
+    default: lib.events
+    immutable: true
+    type: string
+
