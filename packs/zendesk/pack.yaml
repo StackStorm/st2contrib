@@ -1,0 +1,10 @@
+---
+name : zendesk
+description : st2 content pack containing zendesk integrations
+keywords:
+  - zendesk
+  - support
+  - ticketing
+version : 0.1
+author : Casey Richardson
+email : casey@bluechasm.com
