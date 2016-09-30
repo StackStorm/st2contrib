@@ -20,7 +20,7 @@ class SuggestNextIp(Action):
         protocol = self.config.get('protocol', 'http')
 
         verify = False
-        if self.confing.get('verify_certificate', None) == 'true' and protocol == 'https':
+        if self.config.get('verify_certificate', None) == 'true' and protocol == 'https':
             verify = True
 
         if not subnet_id and not subnet and not name:

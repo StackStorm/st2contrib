@@ -27,7 +27,7 @@ class DeviceNameList(Action):
         protocol = self.config.get('protocol', 'http')
 
         verify = False
-        if self.confing.get('verify_certificate', None) == 'true' and protocol == 'https':
+        if self.config.get('verify_certificate', None) == 'true' and protocol == 'https':
             verify = True
 
         response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/devices/"), params={
