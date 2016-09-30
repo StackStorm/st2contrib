@@ -17,16 +17,22 @@ class SuggestNextIp(Action):
         if not d42_password:
             raise ValueError('"d42_password" config value is required')
 
+        protocol = self.config.get('protocol', 'http')
+
+        verify = False
+        if self.confing.get('verify_certificate', None) == 'true' and protocol == 'https':
+            verify = True
+
         if not subnet_id and not subnet and not name:
             raise ValueError('"subnet_id" or "subnet" or "name" value is required')
 
-        response = requests.get("http://%s%s" % (d42_server, "/api/1.0/suggest_ip/"), params={
+        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/suggest_ip/"), params={
             "subnet_id": subnet_id,
             "subnet": subnet,
             "name": name,
             "vrf_group_id": vrf_group_id,
             "vrf_group": vrf_group,
             "reserved_ip": reserved_ip,
-        }, auth=(d42_username, d42_password))
+        }, auth=(d42_username, d42_password), verify=verify)
 
         return response.json()["ip"]

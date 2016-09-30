@@ -1,4 +1,6 @@
 ---
 d42_server: 
 d42_username: 
-d42_password: 
+d42_password:
+protocol: http
+verify_certificate: true

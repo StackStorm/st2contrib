@@ -24,7 +24,13 @@ class DeviceNameList(Action):
         if not d42_password:
             raise ValueError('"d42_password" config value is required')
 
-        response = requests.get("http://%s%s" % (d42_server, "/api/1.0/devices/"), params={
+        protocol = self.config.get('protocol', 'http')
+
+        verify = False
+        if self.confing.get('verify_certificate', None) == 'true' and protocol == 'https':
+            verify = True
+
+        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/devices/"), params={
             "type": type,
             "service_level": service_level,
             "in_service": in_service,
@@ -57,7 +63,7 @@ class DeviceNameList(Action):
             "first_added_gt": first_added_gt,
             "custom_fields_and": custom_fields_and,
             "custom_fields_or": custom_fields_or,
-        }, auth=(d42_username, d42_password))
+        }, auth=(d42_username, d42_password), verify=verify)
 
         names = []
         for device in response.json()["Devices"]:
