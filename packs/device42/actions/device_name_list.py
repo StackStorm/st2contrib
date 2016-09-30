@@ -1,5 +1,5 @@
-from st2actions.runners.pythonrunner import Action
 import requests
+from st2actions.runners.pythonrunner import Action
 
 
 class DeviceNameList(Action):
@@ -30,40 +30,41 @@ class DeviceNameList(Action):
         if self.config.get('verify_certificate', None) == 'true' and protocol == 'https':
             verify = True
 
-        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/devices/"), params={
-            "type": type,
-            "service_level": service_level,
-            "in_service": in_service,
-            "customer": customer,
-            "tags": tags,
-            "blade_host_name": blade_host_name,
-            "virtual_host_name": virtual_host_name,
-            "building_id": building_id,
-            "building": building,
-            "room_id": room_id,
-            "room": room,
-            "rack_id": rack_id,
-            "rack": rack,
-            "serial_no": serial_no,
-            "serial_no_contains": serial_no_contains,
-            "asset_no": asset_no,
-            "name": name,
-            "tags_and": tags_and,
-            "uuid": uuid,
-            "is_it_switch": is_it_switch,
-            "is_it_virtual_host": is_it_virtual_host,
-            "is_it_blade_host": is_it_blade_host,
-            "hardware": hardware,
-            "hardware_ids": hardware_ids,
-            "os": os,
-            "virtual_subtype": virtual_subtype,
-            "last_updated_lt": last_updated_lt,
-            "last_updated_gt": last_updated_gt,
-            "first_added_lt": first_added_lt,
-            "first_added_gt": first_added_gt,
-            "custom_fields_and": custom_fields_and,
-            "custom_fields_or": custom_fields_or,
-        }, auth=(d42_username, d42_password), verify=verify)
+        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/devices/"),
+                                params={
+                                    "type": type,
+                                    "service_level": service_level,
+                                    "in_service": in_service,
+                                    "customer": customer,
+                                    "tags": tags,
+                                    "blade_host_name": blade_host_name,
+                                    "virtual_host_name": virtual_host_name,
+                                    "building_id": building_id,
+                                    "building": building,
+                                    "room_id": room_id,
+                                    "room": room,
+                                    "rack_id": rack_id,
+                                    "rack": rack,
+                                    "serial_no": serial_no,
+                                    "serial_no_contains": serial_no_contains,
+                                    "asset_no": asset_no,
+                                    "name": name,
+                                    "tags_and": tags_and,
+                                    "uuid": uuid,
+                                    "is_it_switch": is_it_switch,
+                                    "is_it_virtual_host": is_it_virtual_host,
+                                    "is_it_blade_host": is_it_blade_host,
+                                    "hardware": hardware,
+                                    "hardware_ids": hardware_ids,
+                                    "os": os,
+                                    "virtual_subtype": virtual_subtype,
+                                    "last_updated_lt": last_updated_lt,
+                                    "last_updated_gt": last_updated_gt,
+                                    "first_added_lt": first_added_lt,
+                                    "first_added_gt": first_added_gt,
+                                    "custom_fields_and": custom_fields_and,
+                                    "custom_fields_or": custom_fields_or,
+                                }, auth=(d42_username, d42_password), verify=verify)
 
         names = []
         for device in response.json()["Devices"]:

@@ -1,5 +1,5 @@
-from st2actions.runners.pythonrunner import Action
 import requests
+from st2actions.runners.pythonrunner import Action
 
 
 class SuggestNextIp(Action):
@@ -26,13 +26,14 @@ class SuggestNextIp(Action):
         if not subnet_id and not subnet and not name:
             raise ValueError('"subnet_id" or "subnet" or "name" value is required')
 
-        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/suggest_ip/"), params={
-            "subnet_id": subnet_id,
-            "subnet": subnet,
-            "name": name,
-            "vrf_group_id": vrf_group_id,
-            "vrf_group": vrf_group,
-            "reserved_ip": reserved_ip,
-        }, auth=(d42_username, d42_password), verify=verify)
+        response = requests.get("%s://%s%s" % (protocol, d42_server, "/api/1.0/suggest_ip/"),
+                                params={
+                                    "subnet_id": subnet_id,
+                                    "subnet": subnet,
+                                    "name": name,
+                                    "vrf_group_id": vrf_group_id,
+                                    "vrf_group": vrf_group,
+                                    "reserved_ip": reserved_ip,
+                                }, auth=(d42_username, d42_password), verify=verify)
 
         return response.json()["ip"]
