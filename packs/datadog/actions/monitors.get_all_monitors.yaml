@@ -1,0 +1,23 @@
+name: get_all_monitors
+runner_type: run-python
+description: "Get all monitors"
+entry_point: run.py
+enabled: true  
+parameters:
+  group_states:
+    type: string
+    required: false
+    description: "A string list indicating what, if any, group states to include. Choose from one or more from 'all', 'alert', 'warn', or 'no data'. Example: 'alert,warn'"
+  tags:
+    type: string
+    required: false
+    description: "A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope"
+  cls:
+    default: DatadogGetallMonitors
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

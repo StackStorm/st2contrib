@@ -1,0 +1,27 @@
+name: get_host_tags
+runner_type: run-python
+description: "Return the list of tags that apply to a given host"
+enabled: true
+entry_point: run.py
+parameters:
+  host:
+    type: string
+    description: "Host to get tags"
+    required: true
+  source:
+    type: string
+    description: "Show tags from a particular source"
+    required: false
+  by_source:
+    type: boolean
+    description: "Return tags grouped by source"
+    required: false
+  cls:
+    default: DatadogGetHostTags
+    immutable: true
+    type: string
+  module_path:
+    default: lib.tags
+    immutable: true
+    type: string
+

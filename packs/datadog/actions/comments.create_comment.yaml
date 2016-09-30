@@ -1,0 +1,27 @@
+name: create_comment
+runner_type: run-python
+description: "Add a new comment"
+enabled: true
+entry_point: run.py
+parameters:
+  message:
+    type: string
+    description: "The comment text"
+    required: true
+  handle:
+    type: string
+    description: "The handle of the user making the comment"
+    required: false
+  related_event_id:
+    type: integer
+    description: "The id of another comment or event to reply to"
+    required: false
+  cls:
+    default: DatadogCreateComment
+    immutable: true
+    type: string
+  module_path:
+    default: lib.comments
+    immutable: true
+    type: string
+

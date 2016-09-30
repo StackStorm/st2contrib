@@ -1,0 +1,19 @@
+name: get_user
+runner_type: run-python
+description: "Get informations for one your from Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  user:
+    type: string
+    description: "User to retrieve informations"
+    required: true
+  cls:
+    default: DatadogGetUser
+    immutable: true
+    type: string
+  module_path:
+    default: lib.users
+    immutable: true
+    type: string
+

@@ -1,0 +1,35 @@
+name: update_timeboard
+runner_type: run-python
+description: "Update a timeboard"
+enabled: true
+entry_point: run.py
+parameters:
+  board_id:
+    type: integer
+    required: true
+    description: "Board id"
+  graphs:
+    type: array
+    description: "A list of graph definitions, see http://docs.datadoghq.com/api/#dashboards-update"
+    required: true
+  board_title:
+    required: true
+    type: string
+    description: "The name of the dashboard"
+  description:
+    type: string
+    description: "The description of the dashboard"
+    required: false
+  template_variables:
+   type: array
+   description: "A list of template variables for using Dashboard templating"
+   required: false
+  cls:
+    default: DatadogUpdateTimeboard
+    immutable: true
+    type: string
+  module_path:
+    default: lib.timeboards
+    immutable: true
+    type: string
+

@@ -1,0 +1,19 @@
+name: search
+runner_type: run-python
+description: "Search for entities from the last 24 hours in Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  q:
+    type: string
+    description: "Query form: query_string or facet:query_string. Facets available: hosts and metrics"
+    required: true
+  cls:
+    default: DatadogSearch
+    immutable: true
+    type: string
+  module_path:
+    default: lib.search
+    immutable: true
+    type: string
+

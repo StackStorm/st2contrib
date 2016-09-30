@@ -1,0 +1,39 @@
+name: edit_monitor
+runner_type: run-python
+description: "Edit a monitor"
+enabled: true
+entry_point: run.py
+parameters:
+  monitor_id:
+    type: integer
+    required: true
+    description: "The monitor id to edit"
+  query:
+    type: string
+    description: "The metric query to alert one"
+    required: true
+  name:
+    type: string
+    description: "The name of the monitor"
+    required: false
+  message:
+    type: string
+    description: "A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events"
+    required: false
+  options:
+    type: object
+    required: false
+    description: "Refer to the create monitor documentation for details on the available options"
+  tags:
+    type: array
+    required: false
+    description: "A list of tags to associate with your monitor. This can help you categorize and filter monitors"
+  cls:
+    default: DatadogEditMonitor
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

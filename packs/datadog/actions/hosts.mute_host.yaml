@@ -1,0 +1,31 @@
+name: mute_host
+runner_type: run-python
+description: "Mute a host"
+enabled: true
+entry_point: run.py
+parameters:
+  host:
+    type: string
+    required: true
+    description: "Host to mute"
+  end:
+    type: integer
+    description: "POSIX timestamp when the host will be unmuted. If omitted, the host will remain muted until explicitly unmuted"
+    required: false
+  message:
+    type: string
+    description: "Message to associate with the muting of this host"
+    required: false
+  override:
+    type: boolean
+    description: "If true and the host is already muted, will replace existing host mute settings"
+    required: false
+  cls:
+    default: DatadogMuteHost
+    immutable: true
+    type: string
+  module_path:
+    default: lib.hosts
+    immutable: true
+    type: string
+

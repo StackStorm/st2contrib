@@ -1,0 +1,27 @@
+name: update_host_tags
+runner_type: run-python
+description: "Update all tags for a host on Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  host:
+    type: string
+    description: "Host to set tags"
+    required: true
+  tags:
+    type: array
+    description: "A list of tags to apply to the host"
+    required: true
+  source:
+    type: string
+    description: "The source of the tags (e.g. chef, puppet)"
+    required: false
+  cls:
+    default: DatadogUpdateHostTags
+    immutable: true
+    type: string
+  module_path:
+    default: lib.tags
+    immutable: true
+    type: string
+

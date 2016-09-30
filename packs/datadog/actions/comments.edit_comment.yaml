@@ -1,0 +1,27 @@
+name: edit_comment
+runner_type: run-python
+description: "Edit comment"
+enabled: true
+entry_point: run.py
+parameters:
+  message:
+    type: string
+    description: "The comment text"
+    required: true
+  comment_id:
+    type: integer
+    description: "The id of the comment to edit"
+    required: true
+  handle:
+    type: string
+    description: "The handle of the user making the comment"
+    required: false
+  cls:
+    default: DatadogEditComment
+    immutable: true
+    type: string
+  module_path:
+    default: lib.comments
+    immutable: true
+    type: string
+

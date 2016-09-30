@@ -1,0 +1,19 @@
+name: disable_user
+runner_type: run-python
+description: "Disable user on Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  user:
+    type: string
+    description: "The handle of the user"
+    required: true
+  cls:
+    default: DatadogDisableUser
+    immutable: true
+    type: string
+  module_path:
+    default: lib.users
+    immutable: true
+    type: string
+

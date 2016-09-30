@@ -1,0 +1,31 @@
+name: get_embed
+runner_type: run-python
+description: "Get the HTML fragment for a previously generated embed with embed_id"
+enabled: true
+entry_point: run.py
+parameters:
+  embed_id:
+    type: string
+    description: "The embed id to retrieive"
+    required: true
+  size:
+    type: string
+    description: "The size of the graph. Must be one of small, medium, large, and xlarge"
+    required: false
+  legend:
+    type: string
+    description: "The flag determining if the graph includes a legend. Must be one of yes or no"
+    required: false
+  template_variables:
+    type: string
+    description: "Replace template variables in queries with form $var. To replace $var with val, use var=val as a parameter for each template variable you wish to replace. If any template variables are missing values in the iframe source url, then (*) will be used as the value"
+    required: false
+  cls:
+    default: DatadogGetEmbed
+    immutable: true
+    type: string
+  module_path:
+    default: lib.embeds
+    immutable: true
+    type: string
+

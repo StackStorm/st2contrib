@@ -1,0 +1,19 @@
+name: unmute_host
+runner_type: run-python
+description: "Unmute a host"
+enabled: true
+entry_point: run.py
+parameters:
+  host:
+    type: string
+    description: "Host to unmute"
+    required: true
+  cls:
+    default: DatadogUnmuteHost
+    immutable: true
+    type: string
+  module_path:
+    default: lib.hosts
+    immutable: true
+    type: string
+

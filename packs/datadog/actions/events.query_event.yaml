@@ -1,0 +1,35 @@
+name: query_event_stream
+runner_type: run-python
+enabled: true
+entry_point: run.py
+description: "Query an event stream and filter by time, priority, sources or tags"
+parameters:
+  start:
+    type: integer
+    description: "POSIX timestamp"
+    required: true
+  end:
+    type: integer
+    description: "POSIX timestamp"
+    required: true
+  priority:
+    type: string
+    description: "low or normal"
+    required: false
+  sources:
+    type: array
+    description: "A list of string of sources"
+    required: false
+  tags:
+    type: array
+    description: "A list of string of tags"
+    required: false
+  cls:
+    default: DatadogQueryEvent
+    immutable: true
+    type: string
+  module_path:
+    default: lib.events
+    immutable: true
+    type: string
+

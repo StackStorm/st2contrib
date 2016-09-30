@@ -1,0 +1,39 @@
+name: create_screenboard
+runner_type: run-python
+description: "Create a screenboard"
+enabled: true
+entry_point: run.py
+parameters:
+  board_title:
+    required: true
+    type: string
+    description: "Title of the board"
+  widgets:
+    type: array
+    description: "A list of widget definitions. See http://docs.datadoghq.com/api/screenboards/"
+    required: true
+  template_variables:
+    type: array
+    description: "A list of template variables for using Dashboard templating"
+    required: false
+  width:
+    type: integer
+    description: "Screenboard width in pixels"
+    required: false
+  height:
+    type: integer
+    description: "Height in pixels"
+    required: false
+  read_only:
+    type: boolean
+    description: "The read-only status of the screenboard"
+    required: false
+  cls:
+    default: DatadogCreateScreenboard
+    immutable: true
+    type: string
+  module_path:
+    default: lib.screenboards
+    immutable: true
+    type: string
+

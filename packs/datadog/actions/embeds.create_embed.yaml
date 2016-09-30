@@ -1,0 +1,35 @@
+name: create_embed
+runner_type: run-python
+description: "Creates a new embeddable graph"
+enabled: true
+entry_point: run.py
+parameters:
+  graph:
+    type: object
+    description: "The graph definition"
+    required: true
+  timeframe:
+    type: string
+    description: "The timegrame for the graph. Must be one of 1_hour, 4_hours, 1_day, 2_days, and 1_week"
+    required: false
+  size:
+    type: string
+    description: "The size of the graph. Must be one of small, medium, large, and xlarge"
+    required: false
+  legend:
+    type: string
+    description: "The flag determining if the graph includes a legend. Must be one of yes or no"
+    required: false
+  title:
+    type: string
+    description: "Determines graph title"
+    required: false
+  cls:
+    default: DatadogCreateEmbed
+    immutable: true
+    type: string
+  module_path:
+    default: lib.embeds
+    immutable: true
+    type: string
+

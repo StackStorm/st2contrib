@@ -1,0 +1,19 @@
+name: delete_monitor
+runner_type: run-python
+description: "Delete an existing monitor"
+enabled: true
+entry_point: run.py
+parameters:
+  monitor_id:
+    type: integer
+    description: "The id of the monitor to delete"
+    required: true
+  cls:
+    default: DatadogDeleteMonitor
+    immutable: true
+    type: string
+  module_path:
+    default: lib.monitors
+    immutable: true
+    type: string
+

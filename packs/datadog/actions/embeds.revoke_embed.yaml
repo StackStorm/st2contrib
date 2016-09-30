@@ -1,0 +1,19 @@
+name: revoke_embed
+runner_type: run-python
+description: "Revoke a specified embed"
+enabled: true
+entry_point: run.py
+parameters:
+  embed_id:
+    type: string
+    description: "The embed id to revoke"
+    required: true
+  cls:
+    default: DatadogRevokeEmbed
+    immutable: true
+    type: string
+  module_path:
+    default: lib.embeds
+    immutable: true
+    type: string
+

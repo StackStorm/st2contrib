@@ -1,0 +1,35 @@
+name: update_user
+runner_type: run-python
+description: "Update informations for a user from Datadog"
+enabled: true
+entry_point: run.py
+parameters:
+  handle:
+    type: string
+    required: true
+    description: "The handle of the user"
+  name:
+    type: string
+    required: false
+    description: "The new name of the user"
+  email:
+    type: string
+    required: false
+    description: "The new email of the user"
+  disabled:
+    type: boolean
+    required: false
+    description: "The new disabled status of the user"
+  is_admin:
+    type: boolean
+    required: false
+    description: "The new admin status of the user"
+  cls:
+    default: DatadogUpdateUser
+    immutable: true
+    type: string
+  module_path:
+    default: lib.users
+    immutable: true
+    type: string
+

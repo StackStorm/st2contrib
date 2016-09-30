@@ -1,0 +1,15 @@
+name: get_all_embeds
+runner_type: run-python
+description: "Gets a list of previously created embeddable graphs"
+enabled: true
+entry_point: run.py
+parameters:
+  cls:
+    default: DatadogGetAllEmbeds
+    immutable: true
+    type: string
+  module_path:
+    default: lib.embeds
+    immutable: true
+    type: string
+
