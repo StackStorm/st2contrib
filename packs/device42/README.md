@@ -5,10 +5,9 @@ IT infrastructure
 
 ## Configuration
 
-* `d42_server` - Device42 instance address (without protocol and trailing slash)
+* `d42_server` - Device42 instance address (wit protocol and without trailing slash)
 * `d42_username` - Device42 username
 * `d42_password` - Device42 password
-* `protocol` - `http` or `https`
 * `verify_certificate` - Set to `false` in case of self-signed SSL certificate
 
 ## Supported Actions

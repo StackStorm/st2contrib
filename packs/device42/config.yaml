@@ -1,6 +1,5 @@
 ---
-d42_server: 
+d42_server: http://127.0.0.1
 d42_username: 
 d42_password:
-protocol: http
 verify_certificate: true
