@@ -1,8 +1,7 @@
-import requests
-from st2actions.runners.pythonrunner import Action
+from lib.base_action import BaseAction
 
 
-class DeviceNameList(Action):
+class DeviceNameList(BaseAction):
     def run(self, type=None, service_level=None, in_service=None, customer=None, tags=None,
             blade_host_name=None, virtual_host_name=None, building_id=None, building=None,
             room_id=None, room=None, rack_id=None, rack=None, serial_no=None,
@@ -11,24 +10,7 @@ class DeviceNameList(Action):
             hardware_ids=None, os=None, virtual_subtype=None, last_updated_lt=None,
             last_updated_gt=None, first_added_lt=None, first_added_gt=None,
             custom_fields_and=None, custom_fields_or=None):
-
-        d42_server = self.config.get('d42_server', None)
-        if not d42_server:
-            raise ValueError('"d42_server" config value is required')
-
-        d42_username = self.config.get('d42_username', None)
-        if not d42_username:
-            raise ValueError('"d42_username" config value is required')
-
-        d42_password = self.config.get('d42_password', None)
-        if not d42_password:
-            raise ValueError('"d42_password" config value is required')
-
-        verify = False
-        if self.config.get('verify_certificate', None) == 'true':
-            verify = True
-
-        response = requests.get("%s%s" % (d42_server, "/api/1.0/devices/"), params={
+        response = self.getAPI("/api/1.0/devices/", {
             "type": type,
             "service_level": service_level,
             "in_service": in_service,
@@ -61,10 +43,10 @@ class DeviceNameList(Action):
             "first_added_gt": first_added_gt,
             "custom_fields_and": custom_fields_and,
             "custom_fields_or": custom_fields_or,
-        }, auth=(d42_username, d42_password), verify=verify)
+        })
 
         names = []
-        for device in response.json()["Devices"]:
+        for device in response["Devices"]:
             names.append(device["name"])
 
         return names
