@@ -1,6 +1,8 @@
 from lib.zendesk import ZendeskAction
 
-from st2actions.runners.pythonrunner import Action
+__all__ = [
+    'SearchTicketsAction'
+]
 
 
 class SearchTicketsAction(ZendeskAction):
