@@ -40,6 +40,32 @@ st2 run ansible.playbook playbook=/etc/ansible/playbooks/nginx.yml
 # run playbook on last machine listed in inventory file
 st2 run ansible.playbook playbook=/etc/ansible/playbooks/nginx.yml limit='all[-1]'
 ```
+##### Structured output
+```sh
+# get structured JSON output from a playbook
+st2 run ansible.playbook playbook=/etc/ansible/playbooks/nginx.yml env='{"ANSIBLE_STDOUT_CALLBACK":"json"}'
+```
+Using the JSON stdout_callback leads to JSON output which enables access to details of the result of the playbook in actions following the playbook execution, e.g. posting the results to Slack in an action-alias.
+```yaml
+format: | 
+    *Execution Overview*
+    {% for host, result in execution.result.stdout.stats.iteritems() %}
+        {{ host }}: ```{{ result }}```
+    {% endfor %}
+```
+There is, however, a bug that breaks the JSON when the playbook execution fails (example output below). See [this issue](https://github.com/ansible/ansible/issues/17122) for more information. Manual handling of this case is necessary until the bug is fixed.
+```
+	to retry, use: --limit @/etc/ansible/playbooks/top.retry
+{
+    "plays": [
+        {
+            "play": {
+                "id": "b5fe7b50-9d7d-4927-ac17-6886218bcabc", 
+                "name": "some-host.com"
+            }, 
+            ...
+}
+```
 
 #### `ansible.vault` examples
 ```sh
