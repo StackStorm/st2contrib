@@ -1,0 +1,11 @@
+name: close_ticket
+runner_type: run-python
+description: Closes the zendesk ticket with the given ID
+enabled: true
+entry_point: close_ticket.py
+
+parameters:
+  ticket_id:
+    type: integer
+    description: "Provide Zendesk ticket ID"
+    required: true

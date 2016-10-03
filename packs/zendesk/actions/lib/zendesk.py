@@ -1,4 +1,6 @@
 from zenpy import Zenpy
+from zenpy.lib.api_objects import Ticket
+from zenpy.lib.api_objects import User
 
 from st2actions.runners.pythonrunner import Action
 
@@ -21,15 +23,21 @@ class ZendeskAction(Action):
         except IndexError as e:
             raise e
 
-    def create_ticket(subject, description):
+    def create_ticket(self, subject, description):
+        ticket = Ticket(subject=subject, description=description)
+
+        try:
+            created_ticket = self.api.tickets.create(ticket)
+            return {'ticket_id': created_ticket.id, 'error': None}
+        except Exception as e:
+            return {'ticket_id': None, 'error': 'Could not make API request'}
+
+    def search_tickets(self):
         pass
 
-    def search_tickets():
+    def update_tickets(self):
         pass
 
-    def update_tickets():
-        pass
-
-    def close_ticket(id):
+    def close_ticket(self, id):
         pass
 

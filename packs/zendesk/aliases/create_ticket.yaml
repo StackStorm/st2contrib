@@ -1,0 +1,17 @@
+---
+name: "create_ticket"
+pack: "zendesk"
+description: "Create a Zendesk ticket"
+action_ref: "zendesk.create_ticket"
+formats:
+  - "zendesk create {{subject}} {{description}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    The ID for the newly created ticket is _{{execution.result.result.id}}_{~}{{execution.result.result.error}}
+    {% else %}
+    Error: {{execution.result.stdout}}{~}See {{execution.id}} for more details.
+    {% endif %}

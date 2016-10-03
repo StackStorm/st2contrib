@@ -1,0 +1,11 @@
+name: search_tickets
+runner_type: run-python
+description: Searches tickets on Zendesk
+enabled: true
+entry_point: search_tickets.py
+
+parameters:
+  ticket_id:
+    type: integer
+    description: "The ID of the ticket to search for"
+    required: true
