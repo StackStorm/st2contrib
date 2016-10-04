@@ -1,25 +1,24 @@
 ---
-name: "create_ticket"
+name: "update_ticket"
 pack: "zendesk"
-description: "Create a Zendesk ticket"
-action_ref: "zendesk.create_ticket"
+description: "Update a Zendesk ticket"
+action_ref: "zendesk.update_ticket"
 formats:
-  - "zendesk create {{subject}} {{description}}"
+  - "zendesk update {{ticket_id}} {{comment_text}} {{public=false}}"
 ack:
   enabled: false
   append_url: false
 result:
   extra:
     slack:
-      title: "{% if execution.result.result.error is not defined %}{{execution.parameters.subject}}{% else %}Error!{% endif %}"
-      text: "{{execution.parameters.description}}"
-      fallback: "New Zendesk Ticket"
+      title: "{% if execution.result.result.error is not defined %}Ticket #{{execution.parameters.ticket_id}} has been commented on!{% else %}Error!{% endif %}"
+      fallback: "New Zendesk Comment"
       footer: "Zendesk"
       footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
       color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
   format: |
     {% if execution.result.result.error is not defined %}
-    The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}{{execution.parameters.description}}
+    Ticket *#{{execution.parameters.ticket_id}}* has been update with the following note: ```{{execution.parameters.comment_text}}```
     {% else %}
     Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
     {% endif %}

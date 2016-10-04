@@ -6,6 +6,6 @@ __all__ = [
 
 
 class CloseTicketAction(ZendeskAction):
-    def run(self, ticket_id):
-        return True
+    def run(self, ticket_id, status):
+        return self.close_ticket(ticket_id, status)
         

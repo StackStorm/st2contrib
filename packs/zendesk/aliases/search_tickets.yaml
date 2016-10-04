@@ -1,0 +1,17 @@
+---
+name: "search_tickets"
+pack: "zendesk"
+description: "Search all Zendesk tickets"
+action_ref: "zendesk.search_tickets"
+formats:
+  - "zendesk search {{query}}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  format: |
+    {% if execution.result.result.error is none %}
+    The following results were found for your query:{~}
+    {% else %}
+    Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
+    {% endif %}

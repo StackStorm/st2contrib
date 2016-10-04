@@ -9,3 +9,11 @@ parameters:
     type: integer
     description: "The ID of the ticket to update"
     required: true
+  comment_text:
+    type: string
+    description: "The text of the comment"
+    required: true
+  public:
+    type: boolean
+    description: "Whether or not to post the response publicly"
+    required: false

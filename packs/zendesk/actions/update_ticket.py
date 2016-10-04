@@ -6,5 +6,5 @@ __all__ = [
 
 
 class UpdateTicketAction(ZendeskAction):
-    def run(self, ticket_id):
-        return True
+    def run(self, ticket_id, comment_text, public=False):
+        return self.update_ticket(ticket_id, comment_text, public)

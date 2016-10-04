@@ -1,25 +1,24 @@
 ---
-name: "create_ticket"
+name: "close_ticket"
 pack: "zendesk"
-description: "Create a Zendesk ticket"
-action_ref: "zendesk.create_ticket"
+description: "Close a Zendesk ticket"
+action_ref: "zendesk.close_ticket"
 formats:
-  - "zendesk create {{subject}} {{description}}"
+  - "zendesk mark {{ticket_id}} {{status=solved}}"
 ack:
   enabled: false
   append_url: false
 result:
   extra:
     slack:
-      title: "{% if execution.result.result.error is not defined %}{{execution.parameters.subject}}{% else %}Error!{% endif %}"
-      text: "{{execution.parameters.description}}"
-      fallback: "New Zendesk Ticket"
+      title: "Ticket status changed!"
+      fallback: "Zendesk Ticket Status Changed"
       footer: "Zendesk"
       footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
       color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
   format: |
     {% if execution.result.result.error is not defined %}
-    The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}{{execution.parameters.description}}
+    Ticket with ID *{{execution.result.result.ticket_id}}* has been marked *{{execution.result.result.status}}*.
     {% else %}
     Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
     {% endif %}

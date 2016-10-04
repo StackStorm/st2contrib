@@ -7,4 +7,4 @@ __all__ = [
 
 class SearchTicketsAction(ZendeskAction):
     def run(self, ticket_id):
-        return True
+        return self.search_tickets(ticket_id)
