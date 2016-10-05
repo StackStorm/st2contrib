@@ -1,10 +1,10 @@
 ---
-name: "close_ticket"
+name: "update_ticket_status"
 pack: "zendesk"
-description: "Close a Zendesk ticket"
-action_ref: "zendesk.close_ticket"
+description: "Updates the status of a Zendesk ticket"
+action_ref: "zendesk.update_ticket_status"
 formats:
-  - "zendesk mark {{ticket_id}} {{status=solved}}"
+  - "zendesk mark {{ ticket_id }} {{ status }}"
 ack:
   enabled: false
   append_url: false
@@ -18,7 +18,7 @@ result:
       color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
       fields:
         - title: "Zendesk Page"
-          value: "<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>"
+          value: "{% if execution.result.result.error is not defined%}<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>{% else %}Not Available{% endif %}"
           short: true
   format: |
     {% if execution.result.result.error is not defined %}

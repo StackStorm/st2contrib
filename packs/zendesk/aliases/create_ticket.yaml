@@ -4,7 +4,7 @@ pack: "zendesk"
 description: "Create a Zendesk ticket"
 action_ref: "zendesk.create_ticket"
 formats:
-  - "zendesk create {{subject}} {{description}}"
+  - "zendesk create {{ subject }} {{ description }}"
 ack:
   enabled: false
   append_url: false
@@ -18,11 +18,11 @@ result:
       color: "{% if execution.result.result.error is not defined %}good{% else %}danger{% endif %}"
       fields:
         - title: "Zendesk Page"
-          value: "<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>"
+          value: "{% if execution.result.result.error is not defined%}<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>{% else %}Not Available{% endif %}"
           short: true
   format: |
     {% if execution.result.result.error is not defined %}
     The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}{{execution.result.result.description}}
     {% else %}
-    Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
+    Error: {{execution.result.result.error}}
     {% endif %}

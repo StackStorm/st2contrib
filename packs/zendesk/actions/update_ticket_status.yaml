@@ -1,8 +1,8 @@
-name: close_ticket
+name: update_ticket_status
 runner_type: run-python
-description: Closes the zendesk ticket with the given ID
+description: Updates the status of the zendesk ticket with the given ID
 enabled: true
-entry_point: close_ticket.py
+entry_point: update_ticket_status.py
 
 parameters:
   ticket_id:

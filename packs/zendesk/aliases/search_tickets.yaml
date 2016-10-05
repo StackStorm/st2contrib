@@ -28,5 +28,5 @@ result:
     There were no results for your query.
     {% endif%}
     {% else %}
-    Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
+    Error: {{execution.result.result.error}}
     {% endif %}
