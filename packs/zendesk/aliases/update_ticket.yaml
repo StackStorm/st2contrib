@@ -16,9 +16,13 @@ result:
       footer: "Zendesk"
       footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
       color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
+      fields:
+        - title: "Zendesk Page"
+          value: "<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>"
+          short: true
   format: |
     {% if execution.result.result.error is not defined %}
-    Ticket *#{{execution.parameters.ticket_id}}* has been update with the following note: ```{{execution.parameters.comment_text}}```
+    The following {% if execution.parameters.public %}public{% else %}private{% endif %} comment was added: ```{{execution.parameters.comment_text}}```
     {% else %}
     Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
     {% endif %}

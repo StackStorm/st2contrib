@@ -6,5 +6,5 @@ __all__ = [
 
 
 class SearchTicketsAction(ZendeskAction):
-    def run(self, ticket_id):
-        return self.search_tickets(ticket_id)
+    def run(self, query, limit=10):
+        return self.search_tickets(query, limit=limit)

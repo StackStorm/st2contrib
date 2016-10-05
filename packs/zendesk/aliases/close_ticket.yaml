@@ -11,14 +11,18 @@ ack:
 result:
   extra:
     slack:
-      title: "Ticket status changed!"
+      title: "{% if execution.result.result.error is not defined %}Ticket status changed!{% else %}Error!{% endif %}"
       fallback: "Zendesk Ticket Status Changed"
       footer: "Zendesk"
       footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
       color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
+      fields:
+        - title: "Zendesk Page"
+          value: "<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>"
+          short: true
   format: |
     {% if execution.result.result.error is not defined %}
-    Ticket with ID *{{execution.result.result.ticket_id}}* has been marked *{{execution.result.result.status}}*.
+    Ticket *#{{execution.result.result.ticket_id}}* has been marked *{{execution.result.result.status}}*.
     {% else %}
-    Error: {{execution.result.result.error}}{~}See {{execution.id}} for more details.
+    Error: {{execution.result.result.error}}
     {% endif %}

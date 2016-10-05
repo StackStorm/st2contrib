@@ -5,7 +5,12 @@ enabled: true
 entry_point: search_tickets.py
 
 parameters:
-  ticket_id:
-    type: integer
-    description: "The ID of the ticket to search for"
+  query:
+    type: string
+    description: "The search query"
     required: true
+  limit:
+    type: integer
+    description: "A limit on the amount of results returned"
+    required: false
+    default: 10
