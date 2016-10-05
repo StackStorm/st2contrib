@@ -58,6 +58,7 @@ class ZendeskAction(Action):
             results_clean = map(lambda t: {
                 'ticket_id': t.id,
                 'ticket_url': self.url_for_ticket(t.id),
+                'ticket_status': t.status,
                 'subject': self.clean_response(t.subject),
                 'description': self.clean_response(t.description)},
                 list(query_results)[:limit]

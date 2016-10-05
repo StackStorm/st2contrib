@@ -22,7 +22,7 @@ result:
     {% if execution.result.result.search_results|length > 0 %}
     The following results were found for your query:{~}
     {% for ticket in execution.result.result.search_results %}
-    • <{{ticket.ticket_url}}|Ticket #{{ticket.ticket_id}}>: {{ticket.subject}}
+    • <{{ticket.ticket_url}}|Ticket #{{ticket.ticket_id}}>: ({{ticket.ticket_status}}) {{ticket.subject}}
     {% endfor %}
     {% else %}
     There were no results for your query.
