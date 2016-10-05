@@ -22,7 +22,7 @@ result:
           short: true
   format: |
     {% if execution.result.result.error is not defined %}
-    The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}{{execution.result.result.description}}
+    The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}```{{execution.result.result.description}}```
     {% else %}
     Error: {{execution.result.result.error}}
     {% endif %}
