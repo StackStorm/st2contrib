@@ -124,6 +124,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packagecloud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | [packagecloud](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | packagecloud integration pack | packagecloud | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#packagecloud-pack)
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
+[![powerpoint icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/powerpoint/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/powerpoint) | [powerpoint](https://github.com/StackStorm/st2contrib/tree/master/packs/powerpoint) | Packs which allows integration with Microsoft Powerpoint |  | [Anthony Shaw](mailto:anthonyshaw@apache.org) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#powerpoint-pack)
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 [![qualys icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/qualys/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | [qualys](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | Qualys Cloud Security Services integration pack | security, qualys | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 1.0 | [click](https://github.com/StackStorm/st2contrib#qualys-pack)
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
@@ -2064,6 +2065,16 @@ ack_incident | ACK an incident on PagerDuty
 get_open_incidents | Retrive list of open incidents from PagerDuty
 launch_incident | Launch an incident on PagerDuty
 resolve_incident | Resolve an incident whose key is provided
+
+### powerpoint pack
+
+![powerpoint icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/powerpoint/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+build_presentation | Create a PowerPoint presentation
 
 ### puppet pack
 
