@@ -155,6 +155,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
 [![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
 [![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
+[![zendesk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zendesk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | [zendesk](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | st2 content pack containing zendesk integrations | zendesk, support, ticketing | [Casey Richardson](mailto:casey@bluechasm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#zendesk-pack)
 [![zookeeper icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zookeeper/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | [zookeeper](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | st2 integration pack with zookeeper |  | [Cody A. Ray](mailto:talktome@codyaray.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#zookeeper-pack)
 ### activecampaign pack
 
@@ -2867,6 +2868,19 @@ list_messages | List all messages globally for the authenticated user
 list_messages_from_user | List all messages from my feed for the authenticated user
 list_messages_my_feed | List all messages from my feed for the authenticated user
 post_message | List all messages from my feed for the authenticated user
+
+### zendesk pack
+
+![zendesk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zendesk/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+create_ticket | Creates a ticket on Zendesk
+search_tickets | Searches tickets on Zendesk
+update_ticket | Updates a ticket on Zendesk
+update_ticket_status | Updates the status of the zendesk ticket with the given ID
 
 ### zookeeper pack
 
