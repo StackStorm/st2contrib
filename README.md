@@ -155,7 +155,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
 [![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
-[![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
+[![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
 [![zendesk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zendesk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | [zendesk](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | st2 content pack containing zendesk integrations | zendesk, support, ticketing | [Casey Richardson](mailto:casey@bluechasm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#zendesk-pack)
 [![zookeeper icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zookeeper/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | [zookeeper](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | st2 integration pack with zookeeper |  | [Cody A. Ray](mailto:talktome@codyaray.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#zookeeper-pack)
 ### activecampaign pack
@@ -2874,10 +2874,19 @@ parse | Parse XML string and return JSON object.
 Name | Description
 ---- | -----------
 authenticate | Requests a OAuth authorization URL from the Yammer API, use this URL to authenticate your app in a browser, use the code in config.yaml
+delete_group | Delete Group
+get_group_by_id | Get group by ID
+get_user_by_email | Get user by email
+get_user_by_id | Get user by ID
 like_message | Like a particular message
+list_groups | List all groups
 list_messages | List all messages globally for the authenticated user
+list_messages_about_topic | List all messages in a topic
 list_messages_from_user | List all messages from my feed for the authenticated user
+list_messages_in_group | List all messages in a group
 list_messages_my_feed | List all messages from my feed for the authenticated user
+list_users | List all users in network
+list_users_in_group | List all users in group
 post_message | List all messages from my feed for the authenticated user
 
 ### zendesk pack
