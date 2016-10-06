@@ -26,6 +26,6 @@ class FormatCSVAction(Action):
         for row in data:
             writer.writerow(row)
 
-        out = sh.get_value()
+        out = sh.getvalue()
         sh.close()
         return out
