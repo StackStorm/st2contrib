@@ -1,0 +1,15 @@
+name: create_ticket
+runner_type: run-python
+description: Creates a ticket on Zendesk
+enabled: true
+entry_point: create_ticket.py
+
+parameters:
+  subject:
+    type: string
+    description: "A short subject description of the ticket"
+    required: true
+  description:
+    type: string
+    description: "The full description of the ticket"
+    required: true

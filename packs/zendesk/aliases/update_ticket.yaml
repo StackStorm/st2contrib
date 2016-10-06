@@ -1,0 +1,28 @@
+---
+name: "update_ticket"
+pack: "zendesk"
+description: "Update a Zendesk ticket"
+action_ref: "zendesk.update_ticket"
+formats:
+  - "zendesk update {{ ticket_id }} {{ comment_text }} {{ public=false }}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      title: "{% if execution.result.result.error is not defined %}Ticket #{{execution.parameters.ticket_id}} has been commented on!{% else %}Error!{% endif %}"
+      fallback: "New Zendesk Comment"
+      footer: "Zendesk"
+      footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
+      color: "{% if execution.result.result.error is not defined%}good{% else %}danger{% endif %}"
+      fields:
+        - title: "Zendesk Page"
+          value: "{% if execution.result.result.error is not defined%}<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>{% else %}Not Available{% endif %}"
+          short: true
+  format: |
+    {% if execution.result.result.error is not defined %}
+    The following {% if execution.parameters.public %}public{% else %}private{% endif %} comment was added: ```{{execution.parameters.comment_text}}```
+    {% else %}
+    Error: {{execution.result.result.error}}
+    {% endif %}

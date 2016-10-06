@@ -1,0 +1,19 @@
+name: update_ticket
+runner_type: run-python
+description: Updates a ticket on Zendesk
+enabled: true
+entry_point: update_ticket.py
+
+parameters:
+  ticket_id:
+    type: integer
+    description: "The ID of the ticket to update"
+    required: true
+  comment_text:
+    type: string
+    description: "The text of the comment"
+    required: true
+  public:
+    type: boolean
+    description: "Whether or not to post the response publicly"
+    required: false
