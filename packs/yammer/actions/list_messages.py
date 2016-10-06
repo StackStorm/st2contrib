@@ -6,7 +6,10 @@ __all__ = [
 
 
 class ListMessagesAction(YammerAction):
-    def run(self):
+    def run(self, older_than_message=None,
+            newer_than_message=None, limit=None):
         yammer = self.authenticate()
-        messages = yammer.messages.all()
+        messages = yammer.messages.all(older_than=older_than_message,
+                                       newer_than=newer_than_message,
+                                       limit=limit)
         return messages
