@@ -1,0 +1,11 @@
+---
+name: get_user_by_id
+runner_type: python-script
+description: Get user by ID
+enabled: true
+entry_point: get_user_by_id.py
+parameters:
+    id:
+        type: integer
+        description: User ID
+        required: true

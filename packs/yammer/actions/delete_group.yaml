@@ -1,0 +1,11 @@
+---
+name: delete_group
+runner_type: python-script
+description: Delete Group
+enabled: true
+entry_point: delete_group.py
+parameters:
+    id:
+        type: integer
+        description: Group ID
+        required: true

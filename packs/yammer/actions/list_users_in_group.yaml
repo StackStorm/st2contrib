@@ -1,0 +1,15 @@
+---
+name: list_users_in_group
+runner_type: python-script
+description: List all users in group
+enabled: true
+entry_point: list_users_in_group.py
+parameters:
+    group_id:
+        type: integer
+        description: The group ID
+        required: true
+    page:
+        type: integer
+        description: Page to fetch
+        required: false

@@ -1,0 +1,11 @@
+---
+name: get_user_by_email
+runner_type: python-script
+description: Get user by email
+enabled: true
+entry_point: get_user_by_email.py
+parameters:
+    email:
+        type: string
+        description: User email
+        required: true
