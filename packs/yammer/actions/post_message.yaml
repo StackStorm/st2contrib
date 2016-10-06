@@ -25,3 +25,8 @@ parameters:
     type: string
     description: Sends the message as a private message to the user ID specified
     required: false
+  broadcast:
+    type: boolean
+    description: Broadcast as announcement (network admins only)
+    default: false
+    required: false
