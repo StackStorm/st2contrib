@@ -9,3 +9,15 @@ parameters:
     type: string
     description: the user ID to show messages from
     required: true
+  older_than_message:
+    type: integer
+    description: Only show messages older than this message ID
+    required: false
+  newer_than_message:
+    type: integer
+    description: Only show messages newer than this message ID
+    required: false
+  limit:
+    type: integer
+    description: Limit the number of messages
+    required: false

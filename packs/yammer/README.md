@@ -10,6 +10,8 @@ Currently, the following actions listed bellow are supported:
 
 * `authenticate` - Get an authentication URL for the application, use this in a browser to gain a code. Put this code in config.yaml
 * `delete_group` - Removing a group
+* `delete_message` - Remove a message
+* `email_message` - Send the contents of a message to yourself
 * `get_group_by_id` - Fetch the group details by ID
 * `get_user_by_email` - Fetch a user by email
 * `get_user_by_id` - Fetch a user by id
@@ -19,10 +21,12 @@ Currently, the following actions listed bellow are supported:
 * `list_messages_about_topic` - List all messages about a particular topic
 * `list_messages_from_user` - List all messages from a particular user
 * `list_messages_my_feed` - List messages for my feed
+* `list_private_messages` - List the messages in your inbox
 * `list_users`
 * `list_users_in_group`
 * `like_message` - Like a particular message
 * `post_message` - Post a message to a user, a group or a topic
+* `suspend_user` - Suspend a user (admins only)
 
 ## Configuration
 
