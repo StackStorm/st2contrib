@@ -19,7 +19,7 @@ class FormatCSVAction(Action):
             raise InvalidActionParameterException("data must be a list of dict")
 
         fieldnames = data[0].keys()
-        sh = StringIO.StringIO()
+        sh = StringIO()
         writer = csv.DictWriter(sh, fieldnames=fieldnames)
 
         writer.writeheader()
