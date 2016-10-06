@@ -1,0 +1,11 @@
+---
+name: get_group_by_id
+runner_type: python-script
+description: Get group by ID
+enabled: true
+entry_point: get_group_by_id.py
+parameters:
+    id:
+        type: integer
+        description: Group ID
+        required: true

@@ -1,0 +1,6 @@
+---
+name: list_groups
+runner_type: python-script
+description: List all groups
+enabled: true
+entry_point: list_groups.py
