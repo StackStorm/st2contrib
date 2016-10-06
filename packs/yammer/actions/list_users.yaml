@@ -1,0 +1,25 @@
+---
+name: list_users
+runner_type: python-script
+description: List all users in network
+enabled: true
+entry_point: list_users.py
+parameters:
+    page:
+        type: integer
+        description: Page to fetch
+        required: false
+    letter:
+        type: string
+        description: the first letter of the name to fetch
+        required: false
+    sort_by:
+        type: string
+        enum:
+          - messages
+          - followers
+          - username
+        default: username
+    reverse:
+        type: boolean
+        default: false
