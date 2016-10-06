@@ -23,7 +23,7 @@ parameters:
   headers:
     type: string
   module_path:
-    default: boto.s3.transfer
+    default: boto3.s3.transfer
     immutable: true
     type: string
 runner_type: run-python
