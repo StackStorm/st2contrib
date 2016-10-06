@@ -77,7 +77,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![cloudflare icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cloudflare/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cloudflare) | [cloudflare](https://github.com/StackStorm/st2contrib/tree/master/packs/cloudflare) | A pack to interact with the Cloudflare service. | cloudflare | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#cloudflare-pack)
 [![config_demo icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/config_demo) | [config_demo](https://github.com/StackStorm/st2contrib/tree/master/packs/config_demo) | Pack which demonstrated new pack configuration functionality available in StackStorm v1.5 and above. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#config_demo-pack)
 [![consul icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/consul/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | [consul](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | consul |  | [jfryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#consul-pack)
-[![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
+[![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
 [![datadog icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/datadog/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | [datadog](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | datadog | monitoring, alerting, saas | [Lisa Bekdache](mailto:lisa.bekdache@dailymotion.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#datadog-pack)
 [![Digital Ocean icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/digitalocean/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | [Digital Ocean](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | st2 content pack containing Digital Ocean integration. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#Digital Ocean-pack)
@@ -124,6 +124,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packagecloud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | [packagecloud](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | packagecloud integration pack | packagecloud | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#packagecloud-pack)
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
+[![powerpoint icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/powerpoint/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/powerpoint) | [powerpoint](https://github.com/StackStorm/st2contrib/tree/master/packs/powerpoint) | Packs which allows integration with Microsoft Powerpoint |  | [Anthony Shaw](mailto:anthonyshaw@apache.org) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#powerpoint-pack)
 [![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | [puppet](https://github.com/StackStorm/st2contrib/tree/master/packs/puppet) | st2 content pack containing puppet integrations | puppet, cfg management, configuration management | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#puppet-pack)
 [![qualys icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/qualys/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | [qualys](https://github.com/StackStorm/st2contrib/tree/master/packs/qualys) | Qualys Cloud Security Services integration pack | security, qualys | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 1.0 | [click](https://github.com/StackStorm/st2contrib#qualys-pack)
 [![rabbitmq icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rabbitmq/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | [rabbitmq](https://github.com/StackStorm/st2contrib/tree/master/packs/rabbitmq) | st2 content pack containing rabbitmq integrations | rabbitmq, queuing, messaging, aqmp, stomp, message broker | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#rabbitmq-pack)
@@ -154,7 +155,8 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![windows icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/windows/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | [windows](https://github.com/StackStorm/st2contrib/tree/master/packs/windows) | st2 content pack containing windows integrations | windows, wmi, windows management interface, wql | [st2-dev](mailto:info@stackstorm.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#windows-pack)
 [![witai icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/witai/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | [witai](https://github.com/StackStorm/st2contrib/tree/master/packs/witai) | Wit AI Integration with StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#witai-pack)
 [![xml icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/xml/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | [xml](https://github.com/StackStorm/st2contrib/tree/master/packs/xml) | st2 content pack containing XML integrations | xml, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#xml-pack)
-[![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
+[![yammer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/yammer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | [yammer](https://github.com/StackStorm/st2contrib/tree/master/packs/yammer) | st2 content pack containing yammer integrations | yammer, chatops, social | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.3 | [click](https://github.com/StackStorm/st2contrib#yammer-pack)
+[![zendesk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zendesk/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | [zendesk](https://github.com/StackStorm/st2contrib/tree/master/packs/zendesk) | st2 content pack containing zendesk integrations | zendesk, support, ticketing | [Casey Richardson](mailto:casey@bluechasm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#zendesk-pack)
 [![zookeeper icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zookeeper/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | [zookeeper](https://github.com/StackStorm/st2contrib/tree/master/packs/zookeeper) | st2 integration pack with zookeeper |  | [Cody A. Ray](mailto:talktome@codyaray.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#zookeeper-pack)
 ### activecampaign pack
 
@@ -1136,6 +1138,7 @@ query_service | Query details about a service in consul
 
 Name | Description
 ---- | -----------
+format | Format a Python list into a CSV string
 parse | Parse CSV string and return JSON object.
 
 ### cubesensors pack
@@ -2064,6 +2067,16 @@ get_open_incidents | Retrive list of open incidents from PagerDuty
 launch_incident | Launch an incident on PagerDuty
 resolve_incident | Resolve an incident whose key is provided
 
+### powerpoint pack
+
+![powerpoint icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/powerpoint/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+build_presentation | Create a PowerPoint presentation
+
 ### puppet pack
 
 ![puppet icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/puppet/icon.png)
@@ -2862,11 +2875,37 @@ parse | Parse XML string and return JSON object.
 Name | Description
 ---- | -----------
 authenticate | Requests a OAuth authorization URL from the Yammer API, use this URL to authenticate your app in a browser, use the code in config.yaml
+delete_group | Delete Group
+delete_message | Delete Message
+email_message | Emails the message identified by message_id to the authenticated user.
+get_group_by_id | Get group by ID
+get_user_by_email | Get user by email
+get_user_by_id | Get user by ID
 like_message | Like a particular message
+list_groups | List all groups
 list_messages | List all messages globally for the authenticated user
+list_messages_about_topic | List all messages in a topic
 list_messages_from_user | List all messages from my feed for the authenticated user
+list_messages_in_group | List all messages in a group
 list_messages_my_feed | List all messages from my feed for the authenticated user
+list_private_messages | List all private messages for the authenticated user
+list_users | List all users in network
+list_users_in_group | List all users in group
 post_message | List all messages from my feed for the authenticated user
+suspend_user | Suspend a user
+
+### zendesk pack
+
+![zendesk icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/zendesk/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+create_ticket | Creates a ticket on Zendesk
+search_tickets | Searches tickets on Zendesk
+update_ticket | Updates a ticket on Zendesk
+update_ticket_status | Updates the status of the zendesk ticket with the given ID
 
 ### zookeeper pack
 

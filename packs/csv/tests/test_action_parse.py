@@ -1,6 +1,6 @@
 from st2tests.base import BaseActionTestCase
 
-from parse_csv import ParseCSVAction
+from parse import ParseCSVAction
 
 __all__ = [
     'ParseCSVActionTestCase'

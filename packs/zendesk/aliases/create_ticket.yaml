@@ -1,0 +1,28 @@
+---
+name: "create_ticket"
+pack: "zendesk"
+description: "Create a Zendesk ticket"
+action_ref: "zendesk.create_ticket"
+formats:
+  - "zendesk create {{ subject }} {{ description }}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      title: "{% if execution.result.result.error is not defined %}{{execution.result.result.subject}}{% else %}Error!{% endif %}"
+      fallback: "New Zendesk Ticket"
+      footer: "Zendesk"
+      footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
+      color: "{% if execution.result.result.error is not defined %}good{% else %}danger{% endif %}"
+      fields:
+        - title: "Zendesk Page"
+          value: "{% if execution.result.result.error is not defined%}<{{execution.result.result.ticket_url}}|Ticket #{{execution.result.result.ticket_id}}>{% else %}Not Available{% endif %}"
+          short: true
+  format: |
+    {% if execution.result.result.error is not defined %}
+    The ID for the newly created ticket is *{{execution.result.result.ticket_id}}*{~}```{{execution.result.result.description}}```
+    {% else %}
+    Error: {{execution.result.result.error}}
+    {% endif %}

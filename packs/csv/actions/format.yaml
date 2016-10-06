@@ -1,13 +1,13 @@
 ---
-name: parse
+name: format
 runner_type: run-python
-description: Parse CSV string and return JSON object.
+description: Format a Python list into a CSV string
 enabled: true
-entry_point: parse.py
+entry_point: format.py
 parameters:
   data:
-    type: string
-    description: CSV string to parse.
+    type: object
+    description: Data to parse
     required: true
   delimiter:
     type: string

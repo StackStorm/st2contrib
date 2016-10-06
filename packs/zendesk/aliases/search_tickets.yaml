@@ -1,0 +1,32 @@
+---
+name: "search_tickets"
+pack: "zendesk"
+description: "Search all Zendesk tickets"
+action_ref: "zendesk.search_tickets"
+formats:
+  - "zendesk search {{ query }}"
+  - "zendesk search {{ query }} limit {{ limit=10 }}"
+ack:
+  enabled: false
+  append_url: false
+result:
+  extra:
+    slack:
+      title: "{% if execution.result.result.error is not defined %}Search Results:{% else %}Error!{% endif %}"
+      fallback: "Zendesk Search Results"
+      footer: "Zendesk"
+      footer_icon: "https://zen-marketing-documentation.s3.amazonaws.com/docs/en/branding-logo-zendesk.png"
+      color: "{% if execution.result.result.error is not defined%}{% if execution.result.result.search_results|length > 0 %}good{% else %}warning{% endif %}{% else %}danger{% endif %}"
+  format: |
+    {% if execution.result.result.error is not defined %}
+    {% if execution.result.result.search_results|length > 0 %}
+    The following results were found for your query:{~}
+    {% for ticket in execution.result.result.search_results %}
+    • <{{ticket.ticket_url}}|Ticket #{{ticket.ticket_id}}>: ({{ticket.ticket_status}}) {{ticket.subject}}
+    {% endfor %}
+    {% else %}
+    There were no results for your query.
+    {% endif%}
+    {% else %}
+    Error: {{execution.result.result.error}}
+    {% endif %}
