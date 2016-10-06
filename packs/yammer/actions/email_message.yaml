@@ -1,0 +1,11 @@
+---
+name: email_message
+runner_type: python-script
+description: Emails the message identified by message_id to the authenticated user.
+enabled: true
+entry_point: email_message.py
+parameters:
+    id:
+        type: integer
+        description: Message ID
+        required: true

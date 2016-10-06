@@ -1,0 +1,11 @@
+---
+name: suspend_user
+runner_type: python-script
+description: Suspend a user
+enabled: true
+entry_point: suspend_user.py
+parameters:
+    id:
+        type: integer
+        description: User ID
+        required: true

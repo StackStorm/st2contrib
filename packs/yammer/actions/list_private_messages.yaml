@@ -1,14 +1,10 @@
 ---
-name: list_messages_from_user
+name: list_private_messages
 runner_type: python-script
-description: List all messages from my feed for the authenticated user
+description: List all private messages for the authenticated user
 enabled: true
-entry_point: list_messages_from_user.py
+entry_point: list_private_messages.py
 parameters:
-  user_id:
-    type: string
-    description: the user ID to show messages from
-    required: true
   older_than_message:
     type: integer
     description: Only show messages older than this message ID

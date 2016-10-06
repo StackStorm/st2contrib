@@ -1,0 +1,11 @@
+---
+name: delete_message
+runner_type: python-script
+description: Delete Message
+enabled: true
+entry_point: delete_message.py
+parameters:
+    id:
+        type: integer
+        description: Message ID
+        required: true

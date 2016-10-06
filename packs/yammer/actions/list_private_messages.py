@@ -1,16 +1,15 @@
 from lib.actions import YammerAction
 
 __all__ = [
-    'ListMessagesFromUserAction'
+    'ListPrivateMessagesAction'
 ]
 
 
-class ListMessagesFromUserAction(YammerAction):
-    def run(self, user_id, older_than_message=None,
+class ListPrivateMessagesAction(YammerAction):
+    def run(self, older_than_message=None,
             newer_than_message=None, limit=None):
         yammer = self.authenticate()
-        messages = yammer.messages.from_user(
-            user_id,
+        messages = yammer.messages.private(
             older_than=older_than_message,
             newer_than=newer_than_message,
             limit=limit)

@@ -9,4 +9,3 @@ parameters:
     type: integer
     description: the topic ID to show messages from
     required: true
-  

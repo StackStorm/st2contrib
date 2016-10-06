@@ -4,3 +4,16 @@ runner_type: python-script
 description: List all messages globally for the authenticated user
 enabled: true
 entry_point: list_messages.py
+parameters:
+  older_than_message:
+    type: integer
+    description: Only show messages older than this message ID
+    required: false
+  newer_than_message:
+    type: integer
+    description: Only show messages newer than this message ID
+    required: false
+  limit:
+    type: integer
+    description: Limit the number of messages
+    required: false
