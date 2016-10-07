@@ -1,0 +1,29 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: s3_upload_file
+parameters:
+  action:
+    default: upload_file
+    immutable: true
+    type: string
+  filename:
+    required: true
+    type: string
+  bucket:
+    required: true
+    type: string
+  key:
+    required: true
+    type: string
+  cls:
+    default: S3Transfer
+    immutable: true
+    type: string
+  headers:
+    type: string
+  module_path:
+    default: boto3.s3.transfer
+    immutable: true
+    type: string
+runner_type: run-python
