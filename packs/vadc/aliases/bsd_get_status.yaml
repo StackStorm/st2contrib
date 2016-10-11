@@ -9,5 +9,3 @@ formats:
       - "bsd status {{stringify=true}}"
 result:
   format: "{{execution.result.result}}"
-  extra:
-    json: true

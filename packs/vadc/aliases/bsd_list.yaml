@@ -11,5 +11,3 @@ formats:
       - "bsd list {{stringify=true}}"
 result:
   format: "{{execution.result.result}}"
-  extra:
-    json: true

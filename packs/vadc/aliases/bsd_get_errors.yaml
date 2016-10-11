@@ -9,5 +9,3 @@ formats:
       - "bsd get errors {{stringify=true}}"
 result:
   format: "{{execution.result.result}}"
-  extra:
-    json: true
