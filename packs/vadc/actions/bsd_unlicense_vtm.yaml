@@ -1,0 +1,9 @@
+description: 'Service Director - UnLicense a vTM'
+enabled: true
+entry_point: bsd_unlicense_vtm.py
+name: bsd_unlicense_vtm
+runner_type: "python-script"
+parameters:
+  vtm:
+    type: string
+    required: true

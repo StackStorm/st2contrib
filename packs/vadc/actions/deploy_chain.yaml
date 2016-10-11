@@ -1,0 +1,28 @@
+---
+  description: "An Action Chain to deploy a vTM service"
+  entry_point: "chains/deploy_chain.yaml"
+  runner_type: action-chain
+  name: deploy_chain
+  enabled: true
+  parameters:
+    vtm:
+      type: string
+      required: true
+      description: "The vTM to deploy service"
+    service:
+      type: string
+      required: true
+      description: "The Service/Application ID"
+    nodes: 
+      type: array
+      required: true
+      description: "The nodes for the service"
+    vtms:
+      type: array
+      required: true
+      description: "The vTMs to host the service"
+    addresses:
+      type: array
+      required: true
+      description: "The IP Addresses to use for TIPs"
+      

@@ -1,0 +1,18 @@
+description: 'Service Director - Retrieve list of vTMs'
+enabled: true
+entry_point: bsd_list_vtms.py
+name: bsd_list_vtms
+runner_type: "python-script"
+parameters:
+  full:
+    description: "Show all paramters from vTMs, default is to show: hostname,tag,bandwidth,featurepack,status"
+    type: boolean
+    default: false
+  deleted:
+    description: "Include deleted vTMs"
+    type: boolean
+    default: false
+  stringify:
+    description: "Output a String rather than JSON"
+    type: boolean
+    default: false
