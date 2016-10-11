@@ -19,15 +19,18 @@ class brcdSdSensor(PollingSensor):
     pass
 
   def poll(self):
-    errors = self._bsd.getErrors()
-    last_errors = self._get_last_errors()
-    self._set_last_errors( errors )
-    self._process_changes(errors, last_errors)
-    if last_errors and not errors:
-      payload = { "errors": "vTM Error ALL CLEAR!" }
+    try:
+      errors = self._bsd.getErrors()
+      last_errors = self._get_last_errors()
+      self._set_last_errors( errors )
+      self._process_changes(errors, last_errors)
+      if last_errors and not errors:
+        payload = { "errors": "vTM Error ALL CLEAR!" }
+        self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
+    except Exception as e:
+      payload = { "errors": "BSD Sensor: {}: {}".format(self._config["brcd_sd_host"], e) }
       self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
-    pass
-
+    
   def _process_changes(self, errors, last_errors):
     for instance in errors:
       if instance in last_errors:
