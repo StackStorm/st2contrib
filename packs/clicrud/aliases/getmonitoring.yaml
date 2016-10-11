@@ -1,0 +1,20 @@
+---
+name: "monitoring_query"
+description: "Perform a monitoring query"
+action_ref: "core.http"
+ack:
+  enabled: false
+formats:
+  - "get monitoring {{url=http://10.0.2.2:8080/v1/icmp/testgroups}} {{ method=GET}}"
+result:
+  format: |
+    Details for monitoring as follows:
+    {% for group in execution.result.body %}
+
+    Group: {{group}}
+      {% for key in execution.result.body[group] %}
+      *IP*: {{key['IP']}}
+      *Status*: {{key['Status']}}
+      {% endfor %}
+      ------------------------------------
+    {% endfor %}

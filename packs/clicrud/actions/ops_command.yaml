@@ -1,0 +1,15 @@
+---
+name: ops_command
+runner_type: python-script
+description: Login in to a Brocade ICX/MLX and run an operational command
+enabled: true
+entry_point: ops_command.py
+parameters:
+  host:
+    type: string
+    description: Valid IPv4 address or hostname that resolves.
+    required: true
+  command:
+    type: string
+    description: Command for the operational 'show'
+    required: true

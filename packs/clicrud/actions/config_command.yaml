@@ -1,0 +1,21 @@
+---
+name: config_command
+runner_type: python-script
+description: Login in to a Brocade ICX/MLX and run a configuration command
+enabled: true
+entry_point: config_command.py
+parameters:
+  host:
+    type: string
+    description: Valid IPv4 address or hostname that resolves.
+    required: true
+  command:
+    type: array
+    description: List of commands separated by commas.
+    required: true
+    minItems: 1
+  save:
+    type: boolean
+    required: false
+    description: If true, config will be saved. False, it will not.
+

@@ -1,0 +1,24 @@
+---
+name: "WhoAmI"
+description: "Simple response for giving the audience information about me"
+action_ref: "core.noop"
+formats:
+  - "Who am I"
+ack:
+  enabled: false
+result:
+  format: "I am David Gee"
+  extra:
+    slack:
+      image_url: "http://ipengineer.net/wp-content/uploads/2014/11/favicon.png"
+      fields:
+        - title: "Blog"
+          value: "http://ipengineer.net / http://davidg.ee"
+          short: true
+        - title: "Social Media"
+          value: "@VTEP42 on Twitter"
+          short: true
+        - title: "GitHub"
+          value: "http://github.com/davidjohngee"
+          short: true
+      color: "#00AA00"

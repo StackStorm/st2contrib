@@ -1,0 +1,28 @@
+---
+# Action definition metadata
+name: "chain_remediate"
+description: "Simple chain that when triggered by a webhook, will send info to Slack and remediate problem."
+
+runner_type: "action-chain"
+
+entry_point: "chains/remediate.yaml"
+
+enabled: true
+
+parameters:
+    group:
+        type: "string"
+        required: True
+        description: "The group that's failed during monitoring"
+    status:
+        type: "string"
+        required: True
+        description: "The status of the group (pass/fail)"
+    host:
+        type: "string"
+        required: True
+        description: "IP address or FQDN of the host/network element"
+    command:
+        type: "array"
+        required: True
+        description: "The command to remediate with on the host/network element"

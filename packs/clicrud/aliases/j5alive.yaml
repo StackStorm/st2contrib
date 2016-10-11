@@ -1,0 +1,18 @@
+---
+name: "J5Alive"
+description: "Jonny 5 thinks he's alive"
+action_ref: "core.noop"
+formats:
+  - "Is Johnny 5 alive"
+ack:
+  enabled: false
+result:
+  format: "Jonny 5 is alive!!!!!!"
+  extra:
+    slack:
+      image_url: "http://ih0.redbubble.net/image.115239769.8771/flat,800x800,075,f.u1.jpg"
+      fields:
+        - title: Jonny 5 alive?
+          value: I'm alive!
+          short: true
+      color: "#00AA00"
