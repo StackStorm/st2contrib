@@ -11,5 +11,6 @@ class VtmGetPoolNodes(Action):
   def run(self, vtm, name):
 
     vtm = Vtm(self.config, self.logger, vtm)
-    vtm.getPoolNodes(name)
+    result = vtm.getPoolNodes(name)
+    return result
 

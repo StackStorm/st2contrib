@@ -247,9 +247,9 @@ class Vtm(Vadc):
     return config["properties"]["basic"]["nodes_table"]
 
   def getPoolNodes(self,name):
-    nodes = self._getNodeTable(name)
+    nodeTable = self._getNodeTable(name)
     nodes = { "active":[], "disabled":[], "draining":[] }
-    for node in nodes:
+    for node in nodeTable:
       if node["state"] == "active":
         nodes["active"].append(node["node"])
       elif node["state"] == "disabled":
@@ -259,9 +259,7 @@ class Vtm(Vadc):
       else:
         self.logger.warn("Unknown Node State: {}".format(node["state"]))
 
-      return nodes
-
-    sys.stdout.write( json.dumps(nodes) )
+    return nodes
 
   def drainNodes(self, name, nodes, drain=True):
     url = self.baseUrl + "/pools/" + name
