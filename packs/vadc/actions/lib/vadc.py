@@ -287,13 +287,13 @@ class Vtm(Vadc):
 
     response = self._pushConfig(url, config)
     if response.status_code != 201:
-      raise Exception("Failed to add pool. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add virtual server. ResCode: {}".format(response.status_code) )
 
   def delVserver(self, name):
     url = self.baseUrl + "/virtual_servers/" + name
     response = self._delConfig(url)
     if response.status_code != 204:
-      raise Exception("Failed to delete pool. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to delete virtual server. ResCode: {}".format(response.status_code) )
 
   def addTip(self, name, vtms, addresses):
     url = self.baseUrl + "/traffic_ip_groups/" + name
