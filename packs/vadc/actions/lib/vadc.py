@@ -108,7 +108,7 @@ class Bsd(Vadc):
 
     response = self._pushConfig(url, config, "POST")
     if response.status_code != 201:
-      raise Exception("Failed to add vTM. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add vTM. ResCode: {}, Details: {}".format(response.status_code, response.text) )
     return response.json()
 
   def delVtm(self, vtm):
@@ -116,14 +116,14 @@ class Bsd(Vadc):
     config = { "status": "deleted" }
     response = self._pushConfig(url,config,"POST")
     if response.status_code != 200:
-      raise Exception("Failed to delete vTM. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to delete vTM. ResCode: {}, Details: {}".format(response.status_code, response.text) )
     return response.json()
 
   def listVtms(self, full, deleted, stringify):
     url = self.baseUrl + "/instance/"
     response = self._getConfig(url)
     if response.status_code != 200:
-      raise Exception("Failed to get Status. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to get Status. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
     output = []
     instances = response.json()
@@ -149,7 +149,7 @@ class Bsd(Vadc):
     url = self.baseUrl + "/monitoring/instance"
     response = self._getConfig(url)
     if response.status_code != 200:
-      raise Exception("Failed to get Status. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to get Status. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
     instances = response.json()
     if vtm is not None:
@@ -229,19 +229,19 @@ class Vtm(Vadc):
 
     response = self._pushConfig(url, config)
     if response.status_code != 201 and response.status_code != 200 :
-      raise Exception("Failed to add pool. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def delPool(self, name):
     url = self.baseUrl + "/pools/" + name
     response = self._delConfig(url)
     if response.status_code != 204:
-      raise Exception("Failed to delete pool. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to delete pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def _getNodeTable(self, name):
     url = self.baseUrl + "/pools/" + name
     response = self._getConfig(url)
     if response.status_code != 200:
-      raise Exception("Failed to get pool config. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to get pool config. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
     config = response.json()
     return config["properties"]["basic"]["nodes_table"]
@@ -274,7 +274,7 @@ class Vtm(Vadc):
     config = { "properties":{ "basic" :{ "nodes_table": nodeTable }}}
     response = self._pushConfig(url, config)
     if response.status_code != 201 and response.status_code != 200 :
-      raise Exception("Failed to add pool. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
 
   def addVserver(self, name, pool, tip):
@@ -285,13 +285,13 @@ class Vtm(Vadc):
 
     response = self._pushConfig(url, config)
     if response.status_code != 201:
-      raise Exception("Failed to add virtual server. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add virtual server. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def delVserver(self, name):
     url = self.baseUrl + "/virtual_servers/" + name
     response = self._delConfig(url)
     if response.status_code != 204:
-      raise Exception("Failed to delete virtual server. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to delete virtual server. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def addTip(self, name, vtms, addresses):
     url = self.baseUrl + "/traffic_ip_groups/" + name
@@ -300,11 +300,11 @@ class Vtm(Vadc):
 
     response = self._pushConfig(url, config)
     if response.status_code != 201:
-      raise Exception("Failed to add TIP. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to add TIP. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def delTip(self, name):
     url = self.baseUrl + "/traffic_ip_groups/" + name
     response = self._delConfig(url)
     if response.status_code != 204:
-      raise Exception("Failed to delete TIP. ResCode: {}".format(response.status_code) )
+      raise Exception("Failed to delete TIP. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
