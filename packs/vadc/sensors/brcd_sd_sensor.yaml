@@ -7,8 +7,7 @@ trigger_types:
   -
     name: "bsd_failure_event"
     description: "Failure Event Detected"
-    payload_schema:
-      type: "object"
-      properties:
-        status:
-          type: "object"
+    payload_info:
+      - "status"
+      - "error_level"
+      - "errors"

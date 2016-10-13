@@ -25,26 +25,30 @@ class brcdSdSensor(PollingSensor):
       self._set_last_errors( errors )
       self._process_changes(errors, last_errors)
       if last_errors and not errors:
-        payload = { "errors": "vTM Error ALL CLEAR!" }
+        payload = { "status": "all_clear", "errors": "vTM Error ALL CLEAR!", "error_level": "na" }
         self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
     except Exception as e:
-      payload = { "errors": "BSD Sensor: {}: {}".format(self._config["brcd_sd_host"], e) }
+      payload = { "status": "sensor_fail", "errors": "BSD Sensor: {}: {}".format(self._config["brcd_sd_host"], e), "error_level": "na" }
       self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
     
   def _process_changes(self, errors, last_errors):
     for instance in errors:
+      if "traffic_health" in errors[instance]:
+        error_level = errors[instance]["traffic_health"]["error_level"]
+      else:
+        error_level = "unknown"
       if instance in last_errors:
         if errors[instance] != last_errors[instance]:
           # This has changed
-          payload = { "errors":  "vTM Error Updated: " + json.dumps(errors[instance], encoding="utf-8") }
+          payload = { "status":  "updated", "error_level": error_level, "errors": json.dumps(errors[instance], encoding="utf-8") }
           self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
       else:
         # New error
-        payload = { "errors":  "vTM Error New: " + json.dumps(errors[instance], encoding="utf-8") }
+        payload = { "status":  "new", "error_level": error_level, "errors": json.dumps(errors[instance], encoding="utf-8") }
         self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
     for instance in last_errors:
       if instance not in errors:
-        payload = { "errors":  "vTM Error Resolved: " + json.dumps(last_errors[instance], encoding="utf-8") }
+        payload = { "status":  "resolved", "error_level": "ok", "errors": json.dumps(errors[instance], encoding="utf-8") }
         self.sensor_service.dispatch(trigger="vadc.bsd_failure_event", payload=payload)
 
   def _get_last_errors(self):
