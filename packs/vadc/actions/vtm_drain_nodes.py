@@ -8,8 +8,8 @@ from lib.vadc import Vtm
 
 class VtmDrainNodes(Action):
 
-    def run(self, vtm, name, nodes, drain):
+    def run(self, vtm, pool, nodes, drain):
 
 		vtm = Vtm(self.config, self.logger, vtm)
-		vtm.drainNodes(name, nodes, drain)
+		vtm.drainNodes(pool, nodes, drain)
 
