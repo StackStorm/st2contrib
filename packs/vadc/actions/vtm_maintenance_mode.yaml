@@ -1,0 +1,22 @@
+description: 'vTM - Enable or Disable Maintenance on a service'
+enabled: true
+entry_point: vtm_maintenance_mode.py
+name: vtm_maintenance_mode
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  vserver:
+    description: "The name of the Virtual Server"
+    type: string
+    required: true
+  rule:
+    description: "The name of the maintenance rule"
+    required: true
+    type: string
+  enable:
+    description: "enable or disable the maintenance rule"
+    default: true
+    type: boolean

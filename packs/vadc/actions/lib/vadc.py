@@ -216,27 +216,6 @@ class Vtm(Vadc):
     else:
       self.baseUrl = host + "api/tm/3.8/config/active" 
 
-  def addPool(self, name, nodes, algorithm):
-    url = self.baseUrl + "/pools/" + name
-
-    nodeTable = []
-    for node in nodes:
-      nodeTable.append( {"node": node, "state":"active"} )
-
-    config = { "properties":{ "basic" :{ "nodes_table": nodeTable,
-      "monitors": ["Ping"]  },
-      "load_balancing":{ "algorithm": algorithm }}}
-
-    response = self._pushConfig(url, config)
-    if response.status_code != 201 and response.status_code != 200 :
-      raise Exception("Failed to add pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
-
-  def delPool(self, name):
-    url = self.baseUrl + "/pools/" + name
-    response = self._delConfig(url)
-    if response.status_code != 204:
-      raise Exception("Failed to delete pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
-
   def _getNodeTable(self, name):
     url = self.baseUrl + "/pools/" + name
     response = self._getConfig(url)
@@ -245,6 +224,44 @@ class Vtm(Vadc):
 
     config = response.json()
     return config["properties"]["basic"]["nodes_table"]
+
+  def _getVSConfig(self, name):
+    url = self.baseUrl + "/virtual_servers/" + name
+    response = self._getConfig(url)
+    if response.status_code != 200:
+      raise Exception("Failed to get vserver config. ResCode: {}, Details: {}".format(response.status_code, response.text) )
+
+    config = response.json()
+    return config
+
+  def _setVSConfig(self, name, config):
+    url = self.baseUrl + "/virtual_servers/" + name
+    response = self._pushConfig(url,config)
+    if response.status_code != 200:
+      raise Exception("Failed to update vserver config. ResCode: {}, Details: {}".format(response.status_code, response.text) )
+    config = response.json()
+    return config
+
+  def _getVSRules(self,name):
+    config = self._getVSConfig(name)
+    rules = { k:config["properties"]["basic"][k] for k in ("request_rules","response_rules","completionrules") }
+    return rules
+
+  def _setVSRules(self,name,rules):
+    config = { "properties": { "basic": rules } }
+    response = self._setVSConfig(name, config)
+
+  def enableMaintenance(self,vsname,rulename,enable=True):
+    rules = self._getVSRules(vsname)
+    if enable:
+      if rulename in rules["request_rules"]:
+        raise Exception("VServer {} is already running the maintenance rule '{}'?".format(vsname,rulename))
+      rules["request_rules"].insert(0, rulename)
+    else:
+      if rulename not in rules["request_rules"]:
+        raise Exception("VServer {} is not running the maintenance rule '{}'?".format(vsname,rulename))
+      rules["request_rules"].remove(rulename)
+    self._setVSRules(vsname,rules)
 
   def getPoolNodes(self,name):
     nodeTable = self._getNodeTable(name)
@@ -276,6 +293,26 @@ class Vtm(Vadc):
     if response.status_code != 201 and response.status_code != 200 :
       raise Exception("Failed to add pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
+  def addPool(self, name, nodes, algorithm):
+    url = self.baseUrl + "/pools/" + name
+
+    nodeTable = []
+    for node in nodes:
+      nodeTable.append( {"node": node, "state":"active"} )
+
+    config = { "properties":{ "basic" :{ "nodes_table": nodeTable,
+      "monitors": ["Ping"]  },
+      "load_balancing":{ "algorithm": algorithm }}}
+
+    response = self._pushConfig(url, config)
+    if response.status_code != 201 and response.status_code != 200 :
+      raise Exception("Failed to add pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
+
+  def delPool(self, name):
+    url = self.baseUrl + "/pools/" + name
+    response = self._delConfig(url)
+    if response.status_code != 204:
+      raise Exception("Failed to delete pool. ResCode: {}, Details: {}".format(response.status_code, response.text) )
 
   def addVserver(self, name, pool, tip):
     url = self.baseUrl + "/virtual_servers/" + name
