@@ -1,0 +1,9 @@
+---
+name: "vtm_get_pool_nodes"
+action_ref: "vadc.vtm_get_pool_nodes"
+description: "Get Status of nodes in a pool"
+formats:
+  - display: "vtm get nodes in {{pool}} on {{vtm}}"
+    representation:
+      - "vtm get nodes in {{pool}} on {{vtm}}"
+      - "vtm pool get nodes in {{pool}} on {{vtm}}"

@@ -8,9 +8,9 @@ from lib.vadc import Vtm
 
 class VtmGetPoolNodes(Action):
 
-  def run(self, vtm, name):
+  def run(self, vtm, pool):
 
     vtm = Vtm(self.config, self.logger, vtm)
-    result = vtm.getPoolNodes(name)
+    result = vtm.getPoolNodes(pool)
     return result
 
