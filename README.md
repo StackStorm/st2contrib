@@ -2729,7 +2729,7 @@ Name | Description
 ---- | -----------
 brcdSdSensor | Monitor the Services Director for system failures
 
-#### Sensors
+#### Rules
 
 Name | Description
 ---- | -----------
