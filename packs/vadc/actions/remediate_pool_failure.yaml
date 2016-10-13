@@ -1,0 +1,14 @@
+description: 'vTM - Check service and enable maintenance when all nodes are down'
+enabled: true
+entry_point: remediate_pool_failure.py
+name: remediate_pool_failure
+runner_type: "python-script"
+parameters:
+  errors:
+    description: "Instance Errors from bsd_failure_event"
+    type: string
+    required: true
+  error_level:
+    description: "Instance Error_Level from bsd_failure_event"
+    type: string
+    required: true
