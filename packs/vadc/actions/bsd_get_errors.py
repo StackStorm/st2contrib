@@ -1,16 +1,12 @@
 #! /usr/bin/python
 
-import requests
-import sys
 from st2actions.runners.pythonrunner import Action
-
 from lib.vadc import Bsd
+
 
 class BsdGetErrors(Action):
 
     def run(self, stringify):
-
-      bsd = Bsd(self.config, self.logger)
-      result = bsd.getErrors(stringify)
-      return result 
-
+        bsd = Bsd(self.config, self.logger)
+        result = bsd.getErrors(stringify)
+        return result
