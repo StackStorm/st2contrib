@@ -3,4 +3,4 @@ name: "vtm_deploy_service"
 action_ref: "vadc.deploy_chain"
 description: "Deploy a new Web Service"
 formats:
-  - "vtm_deploy {{service}} on {{vtm}} with {{nodes}} using {{addresses}} and {{vtms}}"
+  - "vtm deploy {{service}} on {{vtm}} with {{nodes}} using {{addresses}} and {{vtms}}"

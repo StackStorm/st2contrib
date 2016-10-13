@@ -3,4 +3,4 @@ name: "vtm_add_pool"
 action_ref: "vadc.vtm_add_pool"
 description: "deploy a pool on a vTM"
 formats:
-  - "vtm_add_pool {{name}} on {{vtm}} with {{nodes}}"
+  - "vtm add pool {{name}} on {{vtm}} with {{nodes}}"
