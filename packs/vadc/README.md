@@ -49,23 +49,34 @@ Dynamic user values can be set with (for example):
 ## BSD Status Sensor
 
 This pack includes a sensor to monitor errors reported by the Services
-Director, and a rule which then reports those errors to ChatOps.  
+Director.
 
-The Sesnor monitors your vTM status through the monitor/instance API.
+The Sensor monitors your vTM status through the monitor/instance API.
 Any errors which appear in the status of a vTM trigger alerts which can
 then be processed by rule.  
 
+###Rules
+
+*bsd\_chatops*
 If you have ChatOps enabled, then take a look at the rule and modify it
 to suit your needs. Then enable the rule with:
 
 ```
-st2 rule enable vadc.bsd_monitor
+st2 rule enable vadc.bsd_chatops
 ```
 
-Alternatively you can edit rules/bsd_monitor.yaml and set:
+Alternatively you can edit rules/bsd_chatops.yaml and set:
 ```
   enabled: true
 ```
+
+*vtm_fail_maintenance*
+This rule can be used to enable a "maintenance" TS automatically when
+all nodes have failed in a pool. It gets triggered by the BSD Sensor
+when the error\_level is error, and the failed\_nodes is not empty.
+
+It only enabled the maintenance rule on vservers which use the failed
+pool as their default.
 
 ## Actions Included
 
