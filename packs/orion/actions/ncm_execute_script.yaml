@@ -11,12 +11,6 @@ parameters:
     type: "string"
     description: "The node to add to Orion NCM."
     required: true
-
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
-    required: true
-
   script:
     type: "string"
     description: "Orion NCM script to run"

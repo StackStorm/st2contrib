@@ -1,5 +1,5 @@
 ---
-description: "List all the arguments for a entity and verb that can be invloked via a Solarwinds Orion platform"
+description: "List all the arguments for a entity and verb that can be invloked via Solarwinds Orion."
 enabled: true
 entry_point: 'list_sdk_verb_args.py'
 name: "list_sdk_verb_args"
@@ -14,8 +14,4 @@ parameters:
   verb_name:
     type: "string"
     description: "The Verb name to look up."
-    required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
     required: true

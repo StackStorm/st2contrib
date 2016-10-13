@@ -20,13 +20,12 @@ from lib.utils import send_user_error
 
 
 class NodesPollNow(OrionBaseAction):
-    def run(self, nodes, platform, count, pause):
+    def run(self, nodes, count, pause):
         """
         Invoke a PollNow verb against a Orion Node.
 
         Args:
         - node: The caption in Orion of the node to poll.
-        - platform: The orion platform to act on.
         - count: Number of polls to complete.
         - pause: Number of seconds to wait between each cycle.
 
@@ -41,7 +40,7 @@ class NodesPollNow(OrionBaseAction):
                         'up': [],
                         'extra_count': False}
 
-        self.connect(platform)
+        self.connect()
         self.orion_nodes = []
 
         for node in nodes:
@@ -89,10 +88,6 @@ class NodesPollNow(OrionBaseAction):
         - None.
         """
         for npm_id in self.orion_nodes:
-            self.invoke("Orion.Nods",
-                        "PollNow",
-                        npm_id)
-
             swql = "SELECT Status FROM Orion.Nodes WHERE NodeID=@NodeID"
             kargs = {'NodeID': npm_id}
             orion_data = self.query(swql, **kargs)
@@ -103,5 +98,9 @@ class NodesPollNow(OrionBaseAction):
             elif orion_data['results'][0]['Status'] == 2:
                 self.orion_nodes.remove(npm_id)
                 self.results['down'].append(npm_id)
+
+            self.invoke("Orion.Nods",
+                        "PollNow",
+                        npm_id)
         else:
                 time.sleep(pause)

@@ -30,7 +30,6 @@ class NodesPollNowTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           ["router1"],
                           2,
                           1)
@@ -39,7 +38,6 @@ class NodesPollNowTestCase(OrionBaseActionTestCase):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           ["router1"],
                           2,
                           1)
@@ -56,5 +54,5 @@ class NodesPollNowTestCase(OrionBaseActionTestCase):
         query_data.append({'results': [{'Status': 1}]})
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run(["router1"], "orion", 5, 5)
+        result = action.run(["router1"], 5, 5)
         self.assertEqual(result, expected)

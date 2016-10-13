@@ -20,13 +20,12 @@ from lib.actions import OrionBaseAction
 
 
 class GetDiscoveryProgress(OrionBaseAction):
-    def run(self, profile_id, platform):
+    def run(self, profile_id):
         """
         Get the progress of a discovery profile.
 
         Args:
             profile_id: The id of the profile to query.
-            platform: The orion platform to act on.
 
         Returns:
             dict: Of information from GetDiscoveryProgress Orion.Discovery
@@ -37,7 +36,7 @@ class GetDiscoveryProgress(OrionBaseAction):
         """
         results = {}
 
-        self.connect(platform)
+        self.connect()
 
         orion_data = self.invoke("Orion.Discovery",
                                  "GetDiscoveryProgress",

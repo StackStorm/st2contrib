@@ -16,12 +16,11 @@ from lib.actions import OrionBaseAction
 
 
 class NcmExecuteScript(OrionBaseAction):
-    def run(self, platform, node, script):
+    def run(self, node, script):
         """
         Excute an Orion NCM script on a node.
 
         Args:
-            platform
             node
             script
 
@@ -33,7 +32,7 @@ class NcmExecuteScript(OrionBaseAction):
         """
         results = {}
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

@@ -17,12 +17,11 @@ from lib.actions import OrionBaseAction
 
 
 class ListSdkVerbArgs(OrionBaseAction):
-    def run(self, platform, entity_name, verb_name):
+    def run(self, entity_name, verb_name):
         """
         List the Orion SDK Verbs
 
         Args:
-            platform: The orion platform to act on.
             entity_name: The EntityName to query.
             verb_name: The VerbName to query.
 
@@ -34,7 +33,7 @@ class ListSdkVerbArgs(OrionBaseAction):
         """
 
         results = {'verb_arguments': []}
-        self.connect(platform)
+        self.connect()
 
         swql = """SELECT EntityName, VerbName, Position, Name, Type,
         XmlTemplate, XmlSchemas, IsOptional

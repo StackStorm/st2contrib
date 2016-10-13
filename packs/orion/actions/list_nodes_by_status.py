@@ -17,7 +17,7 @@ from lib.actions import OrionBaseAction
 
 
 class ListNodesStatus(OrionBaseAction):
-    def run(self, platform, whitelist=None):
+    def run(self, whitelist=None, fail_on_unknowns=False):
         """
         List the Status of Solarwinds Orion Nodes.
         """
@@ -27,7 +27,7 @@ class ListNodesStatus(OrionBaseAction):
                    "nodes_unknown": [],
                    "nodes_up": []}
 
-        self.connect(platform)
+        self.connect()
 
         swql = "SELECT Caption,Status FROM Orion.Nodes"
         kargs = {}
@@ -48,5 +48,9 @@ class ListNodesStatus(OrionBaseAction):
                 results['nodes_down'].append(node['Caption'])
             elif node["Status"] == 0:
                 results['nodes_unknown'].append(node['Caption'])
+
+        if fail_on_unknowns:
+            if len(results['nodes_unknown']) > 0:
+                raise Exception("There are nodes with an Unknown status!")
 
         return results

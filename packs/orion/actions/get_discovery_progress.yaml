@@ -11,7 +11,3 @@ parameters:
     type: "integer"
     description: "The profile_id to get progress for."
     required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
-    required: true

@@ -1,5 +1,5 @@
 ---
-description: "Create a discovery profile in Solarwinds Orion platform"
+description: "Create a discovery profile in Solarwinds Orion."
 enabled: true
 entry_point: 'start_discovery.py'
 name: "start_discovery"
@@ -11,22 +11,19 @@ parameters:
     type: "string"
     description: "Name for the discorty profile"
     required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
   poller:
     type: "string"
     description: "The name of the additional polling engine to use (defaults to primary)."
     default: "primary"
   nodes:
     type: "array"
-    description: "List of DNS or IP addresses to add to the monitoring platform."
+    description: "List of DNS or IP addresses to add to Orion."
   subnets:
     type: "array"
-    description: "List of subnets (ip/subnet) to add to the monitoring platform.."
+    description: "List of subnets (ip/subnet) to add to Orion."
   ip_ranges:
     type: "array"
-    description: "List of ip_ranges (start_ip:end_ip) to add to the monitoring platform."
+    description: "List of ip_ranges (start_ip:end_ip) to add to Orion."
   snmp_communities:
     type: "array"
     description: "Array of SNMP community strings or configured standard names (Note: must already be in suee)."

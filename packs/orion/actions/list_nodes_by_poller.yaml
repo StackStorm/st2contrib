@@ -7,10 +7,6 @@ pack: "orion"
 runner_type: "python-script"
 
 parameters:
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
-    required: true
   poller:
     type: "string"
     description: "The poller to list nodes on."

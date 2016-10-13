@@ -1,5 +1,5 @@
 ---
-description: "List all the verbs that can be invloked via a Solarwinds Orion platform"
+description: "List all the verbs that can be invloked via Solarwinds Orion"
 enabled: true
 entry_point: 'list_sdk_verbs.py'
 name: "list_sdk_verbs"
@@ -11,10 +11,6 @@ parameters:
     type: "boolean"
     description: "Limit to verbs that can (or cannot) be invoked via the OrionSDK."
     default: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
-    required: true
   v_filter:
     type: "string"
     description: "Filter methods and verbs with this string."

@@ -31,19 +31,17 @@ class NodeRemanageTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_node_does_not_exist(self):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_node_remanage(self):
         action = self.setup_node_exists()
-        self.assertTrue(action.run("router1", "orion"))
+        self.assertTrue(action.run("router1"))
 
     def test_run_invoke_returns_text(self):
         expected = "fake"
@@ -51,6 +49,5 @@ class NodeRemanageTestCase(OrionBaseActionTestCase):
         action = self.setup_node_exists()
         action.invoke = MagicMock(return_value="fake")
 
-        result = action.run("router1",
-                            "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)

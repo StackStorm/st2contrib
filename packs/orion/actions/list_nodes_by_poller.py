@@ -18,13 +18,12 @@ from lib.utils import status_text_to_code
 
 
 class ListNodeByPoller(OrionBaseAction):
-    def run(self, platform, poller="primary", status="Up", whitelist=None):
+    def run(self, poller="primary", status="Up", whitelist=None):
         """
         Lists the Orion Nodes (optionally by State) on an Orion Poller.
 
         Args:
         - poller: The Orion poller to list nodes on (default: primary)
-        - platform: The orion platform to act on.
 
         Returns:
         - dict: Of data from Orion.
@@ -35,7 +34,7 @@ class ListNodeByPoller(OrionBaseAction):
 
         results = {'nodes': []}
 
-        self.connect(platform)
+        self.connect()
 
         engine_id = self.get_engine_id(poller)
 

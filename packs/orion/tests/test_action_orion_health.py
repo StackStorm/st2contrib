@@ -29,4 +29,4 @@ class OrionHealthTestCase(OrionBaseActionTestCase):
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
-        self.assertRaises(ValueError, action.run, "orion")
+        self.assertRaises(ValueError, action.run)

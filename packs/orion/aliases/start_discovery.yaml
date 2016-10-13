@@ -4,9 +4,9 @@ pack: "orion"
 description: "Start an Solarwinds Orion Discovery Process"
 action_ref: "orion.start_discovery"
 formats:
-  - display: "orion start discovery name {{name}} nodes {{node,node}} snmp {{community,community}} [platform {{platform}} {{poller=primary}}]"
+  - display: "orion start discovery name {{name}} nodes {{node,node}} snmp {{community,community}} {{poller=primary}}]"
     representation:
-      - "orion start discovery name {{name}} nodes {{nodes}} snmp {{snmp_communities}} platform {{platform}}( {{poller=primary}})?"
+      - "orion start discovery name {{name}} nodes {{nodes}} snmp {{snmp_communities}}( {{poller=primary}})?"
 ack:
   enabled: true
   append_url: false

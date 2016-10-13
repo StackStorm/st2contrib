@@ -18,14 +18,13 @@ from lib.utils import send_user_error
 
 
 class UpdateNodePoller(OrionBaseAction):
-    def run(self, platform, node, poller):
+    def run(self, node, poller):
         """
         Change the poller for an Orion Node.
 
         Args:
         - node: The caption in Orion of the node to poll.
         - poller: The poller to change the node too.
-        - platform: The orion platform to act on.
 
         Returns
         - True: As PollNow does not return any data.
@@ -34,7 +33,7 @@ class UpdateNodePoller(OrionBaseAction):
         - ValueError: When a node is not found.
         """
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

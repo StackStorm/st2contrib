@@ -8,10 +8,6 @@ pack: "orion"
 runner_type: "mistral-v2"
 
 parameters:
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
-    required: true
   src_poller:
     type: "string"
     description: "The source poller to migrate nodes from."

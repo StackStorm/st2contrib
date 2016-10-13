@@ -19,12 +19,11 @@ from lib.actions import OrionBaseAction
 
 
 class ListSdkVerbs(OrionBaseAction):
-    def run(self, platform, can_invoke=True, v_filter=None):
+    def run(self, can_invoke=True, v_filter=None):
         """
         List the Orion SDK Verbs
 
         Args:
-            platform: The orion platform to act on.
             can_invoke: Limit to verbs what can be Invoked by the API.
             v_filter: Limit returned Verbs that match the filter.
 
@@ -36,7 +35,7 @@ class ListSdkVerbs(OrionBaseAction):
         """
 
         results = {'Entities': []}
-        self.connect(platform)
+        self.connect()
 
         swql = """SELECT Name, MethodName, EntityName
         FROM Metadata.Verb where CanInvoke=@CanInvoke"""

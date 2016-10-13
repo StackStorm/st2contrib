@@ -20,7 +20,6 @@ from lib.utils import send_user_error, only_one
 class StartDiscovery(OrionBaseAction):
     def run(self,
             name,
-            platform,
             poller,
             snmp_communities,
             nodes=None,
@@ -41,7 +40,7 @@ class StartDiscovery(OrionBaseAction):
         IpRanges = []
         Subnets = None
 
-        results['platform'] = self.connect(platform)
+        results['label'] = self.connect()
 
         if not only_one(nodes, subnets, ip_ranges):
             msg = "Need only one out of nodes, ip_ranges or subnets!"
@@ -90,8 +89,8 @@ class StartDiscovery(OrionBaseAction):
             engineID = 1
 
         self.logger.info(
-            "Adding '{}' Discovery profile to Orion Platform {}".format(
-                name, platform))
+            "Adding '{}' Discovery profile to Orion: {}".format(
+                name, results['label']))
 
         disco = self.invoke('Orion.Discovery', 'StartDiscovery',
                             {

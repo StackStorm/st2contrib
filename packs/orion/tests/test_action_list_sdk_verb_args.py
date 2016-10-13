@@ -31,7 +31,6 @@ class ListSdkVerbArgsTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "Cirrus.Nodes",
                           "AddNode")
 
@@ -46,8 +45,8 @@ class ListSdkVerbArgsTestCase(OrionBaseActionTestCase):
         query_data.append(self.load_yaml("results_list_sdk_verb_args.yaml"))
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run("orion", "Cirrus.Nodes", "AddNode")
+        result = action.run("Cirrus.Nodes", "AddNode")
         self.assertEqual(result, expected)

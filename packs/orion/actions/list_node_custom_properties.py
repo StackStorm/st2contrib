@@ -18,13 +18,12 @@ from lib.utils import send_user_error
 
 
 class ListNodeCustomProperties(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, node):
         """
         Lists the Orion Custom Properties on an Node.
 
         Args:
             node: The caption in Orion of the node to poll.
-            platform: The orion platform to act on.
 
         Returns:
             dict: Of data from Orion.
@@ -33,7 +32,7 @@ class ListNodeCustomProperties(OrionBaseAction):
             UserWarning: If node does not exist.
         """
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

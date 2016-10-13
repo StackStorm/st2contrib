@@ -9,11 +9,7 @@ runner_type: "python-script"
 parameters:
   nodes:
     type: "array"
-    description: "The node to poll on the monitoring platform."
-    required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
+    description: "The node to poll in Orion."
     required: true
   count:
     type: "integer"

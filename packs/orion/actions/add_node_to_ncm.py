@@ -17,13 +17,12 @@ from lib.actions import OrionBaseAction
 
 
 class AddNodeToNCM(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, node):
         """
         Invoke AddNodeToNCM verb against a Orion Node.
 
         Args:
             node: The caption in Orion of the node to poll.
-            platform: The orion platform to act on.
 
         Returns:
             string: with the NCM node ID.
@@ -32,7 +31,7 @@ class AddNodeToNCM(OrionBaseAction):
             UserWarning: When a node is not found.
         """
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

@@ -1,0 +1,38 @@
+---
+orion_label:
+  description: "The label to use when referancing the Orion platform."
+  type: "string"
+  required: true
+  default: "orion"
+orion_host:
+  description: "The name / IP of the primary orion server."
+  type: "string"
+  required: true
+orion_user:
+  description: "The username for the Orion server."
+  type: "string"
+  required: true
+orion_password:
+  description: "The password for the Orion server."
+  type: "string"
+  secret: true
+  required: true
+unmanage_max:
+  description: "Max allowed time (in mintues) that a node can be put into an unmanaged state."
+  type: "integer"
+  required: true
+  default: 60
+snmp_default:
+  description: "The SNMP community that will be used by default"
+  type: "string"
+  required: true
+snmp_customer:
+  description: "The SNMP community that will be used by default"
+  type: "string"
+  default: "customer"
+  required: true
+snmp_internal:
+  description: "The SNMP community that will be used by default"
+  type: "string"
+  default: "internal"
+  required: true

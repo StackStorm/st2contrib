@@ -31,14 +31,12 @@ class ListNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_node_not_exist(self):
         action = self.setup_query_blank_results()
         self.assertRaises(UserWarning,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_list_node_custom_prop(self):
@@ -50,11 +48,10 @@ class ListNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.read = MagicMock(return_value="abc-1234")
 
-        result = action.run("router1",
-                            "orion")
+        result = action.run("router1")
 
         self.assertEqual(result, expected)

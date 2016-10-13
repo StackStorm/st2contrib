@@ -5,7 +5,6 @@ orion.drain_poller:
   description: "A workflow to drain nodes from one Orion poller to another."
 
   input:
-    - platform
     - src_poller
     - dst_poller
     - status
@@ -18,7 +17,6 @@ orion.drain_poller:
 
       input:
         status: <% $.status %>
-        platform: <% $.platform %>
         poller:  <% $.src_poller %>
         whitelist: <% $. whitelist %>
 
@@ -36,7 +34,6 @@ orion.drain_poller:
 
       input:
         node: <% $.node %>
-        platform: <% $.platform %>
         minutes: 3
           
       on-success:
@@ -50,7 +47,6 @@ orion.drain_poller:
 
       input:
         node: <% $.node %>
-        platform: <% $.platform %>
         poller: <% $.dst_poller %>
 
       on-success:
@@ -64,29 +60,20 @@ orion.drain_poller:
 
       input:
         node: <% $.node %>
-        platform: <% $.platform %>
           
-      on-success:
-        - force_polls
-
-    force_polls:
-      action: orion.nodes_pollnow
-
-      input:
-        nodes: <% $.orig_nodes %>
-        platform: <% $.platform %>
-        count: 25
-        pause: 15
-
       on-success:
         - check_nodes_status
 
     check_nodes_status:
       action: orion.list_nodes_by_status
+      retry: 
+        count: 30
+        delay: 15
+        continue-on: <% len(task(check_nodes_status).result.result.nodes_unknown) = 0  %>
 
       input:
         whitelist: <% $.orig_nodes %>
-        platform: <% $.platform %>
+        fail_on_unknowns: true
         
       publish:
         nodes_down: <% task(check_nodes_status).result.result.nodes_down %>
@@ -105,7 +92,6 @@ orion.drain_poller:
        
       input:
         node: <% $.node %>
-        platform: <% $.platform %>
         poller: <% $.src_poller %>
 
       on-success:
@@ -116,7 +102,6 @@ orion.drain_poller:
 
       input:
         status: <% $.status %>
-        platform: <% $.platform %>
         poller:  <% $.src_poller %>
         whitelist: <% $. whitelist %>
 

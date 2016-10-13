@@ -4,9 +4,9 @@ pack: "orion"
 description: "Download NCM configs for a node."
 action_ref: "orion.ncm_config_download"
 formats:
-  - display: "orion ncm config-download {{platform}} {{node}}"
+  - display: "orion ncm config-download {{node}}"
     representation:
-      - "orion ncm config-download {{platform}} {{node}}"
+      - "orion ncm config-download {{node}}"
 ack:
   enabled: true
   append_url: false

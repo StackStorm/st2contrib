@@ -31,7 +31,6 @@ class UpdateNodePollerTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           "poller1")
 
@@ -39,7 +38,6 @@ class UpdateNodePollerTestCase(OrionBaseActionTestCase):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           "poller1")
 
@@ -47,6 +45,6 @@ class UpdateNodePollerTestCase(OrionBaseActionTestCase):
         action = self.setup_node_exists()
         action.get_engine_id = MagicMock(return_value=2)
 
-        self.assertTrue(action.run("orion",
-                                   "router1",
-                                   "poller1"))
+        self.assertTrue(action.run(
+            "router1",
+            "poller1"))
