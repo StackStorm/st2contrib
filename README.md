@@ -147,6 +147,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![twitter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twitter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
 [![typeform icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/typeform/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | [typeform](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | Typeform service integration pack |  | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#typeform-pack)
 [![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
+[![vadc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vadc/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vadc) | [vadc](https://github.com/StackStorm/st2contrib/tree/master/packs/vadc) | Brocade vADC integration pack. |  | [mbodding](mailto:mbodding@brocade.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vadc-pack)
 [![vault icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vault/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | [vault](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | vault |  | [steve.neuharth](mailto:steve.neuharth@target.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vault-pack)
 [![vdx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vdx/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | [vdx](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | Brocade VDX integration pack. |  | [st2-dev](mailto:info@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vdx-pack)
 [![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | [victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#victorops-pack)
@@ -2699,6 +2700,42 @@ get_results | Get Typeform registration results
 Name | Description
 ---- | -----------
 get_definitions | Retrieve definitions from urbandict for the provided term.
+
+### vadc pack
+![vadc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vadc/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+bsd_get_errors | Get instance errors from the Brocade Services Director.
+bsd_get_status | Get instance status from the Brocade Services Director.
+bsd_license_vtm | License a vTM from the Services Director.
+bsd_unlicense_vtm | Mark a vTM as Deleted in the Services Director inventory.
+bsd_list_vtms | Get the list of vTMs and information from the Services Director.
+vtm_add_pool | Create a pool on a vTM.
+vtm_del_pool | Delete a pool on a vTM.
+vtm_add_tip | Create a Traffic IP Group on a vTM.
+vtm_del_tip | Delete a Traffic IP Group on a vTM.
+vtm_add_vserver | Create a Virtual Server on a vTM.
+vtm_del_vserver | Delete a Virtual Server on a vTM.
+vtm_drain_nodes | Mark nodes as draining in a vTM pool.
+vtm_get_pool_nodes | Get a list of nodes and their status from a pool (active,draining,disabled).
+vtm_maintenance_mode | Activate a maintenance TrafficScript rule to take a VServer out of service
+
+#### Sensors
+
+Name | Description
+---- | -----------
+brcdSdSensor | Monitor the Services Director for system failures
+
+#### Sensors
+
+Name | Description
+---- | -----------
+bsd_chatops | Report all errors from the brcdSdSensor to a ChatOps channel.
+vtm_fail_maintenance | enable "maintenance" rule on a vserver when all nodes fail.
+
 
 ### vault pack
 

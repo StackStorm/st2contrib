@@ -57,7 +57,7 @@ then be processed by rule.
 
 ###Rules
 
-*bsd\_chatops*
+*bsd\_chatops*  
 If you have ChatOps enabled, then take a look at the rule and modify it
 to suit your needs. Then enable the rule with:
 
@@ -65,12 +65,12 @@ to suit your needs. Then enable the rule with:
 st2 rule enable vadc.bsd_chatops
 ```
 
-Alternatively you can edit rules/bsd_chatops.yaml and set:
+Alternatively you can edit rules/bsd\_chatops.yaml and set:
 ```
   enabled: true
 ```
 
-*vtm_fail_maintenance*
+*vtm_fail_maintenance*  
 This rule can be used to enable a "maintenance" TS automatically when
 all nodes have failed in a pool. It gets triggered by the BSD Sensor
 when the error\_level is error, and the failed\_nodes is not empty.
@@ -122,7 +122,7 @@ All of these actions are designed to proxy through the Services
 Director, so a vtm parameter is always required. However it isn't used
 if brcd\_sd\_proxy is set to false.  
 
-  _Configuration_
+_Configuration_
 
   * vtm\_add\_pool  
     Create a pool on a vTM. You must provide the vtm, nodes, and name  
@@ -137,7 +137,7 @@ if brcd\_sd\_proxy is set to false.
 
   * There is also a delete action for all of the add actions above.  
 
-  _Operations_
+_Operations_
 
   * vtm\_drain\_nodes  
     Mark a list of nodes as draining, or undrain the nodes in a pool.  
