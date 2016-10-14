@@ -120,7 +120,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![openhab icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/openhab/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | [openhab](https://github.com/StackStorm/st2contrib/tree/master/packs/openhab) | Integration with OpenHAB | openhab, iot, smart home, home automation | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#openhab-pack)
 [![opscenter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opscenter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | [opscenter](https://github.com/StackStorm/st2contrib/tree/master/packs/opscenter) | st2 content pack containing datastax opscenter integrations | datastax, cassandra, opscenter | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#opscenter-pack)
 [![opsgenie icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/opsgenie/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/opsgenie) | [opsgenie](https://github.com/StackStorm/st2contrib/tree/master/packs/opsgenie) | A intergration pack for the OpsGenie Service | OpsGenie | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#opsgenie-pack)
-[![orion icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/orion/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | [orion](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | Intergrate via the OrionSDK to SolarWinds Orion | solarwinds, orion, ncm, npm | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.4.1 | [click](https://github.com/StackStorm/st2contrib#orion-pack)
+[![orion icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/orion/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | [orion](https://github.com/StackStorm/st2contrib/tree/master/packs/orion) | Intergrate via the OrionSDK to SolarWinds Orion | solarwinds, orion, ncm, npm | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.5.0 | [click](https://github.com/StackStorm/st2contrib#orion-pack)
 [![packagecloud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packagecloud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | [packagecloud](https://github.com/StackStorm/st2contrib/tree/master/packs/packagecloud) | packagecloud integration pack | packagecloud | [st2-dev](mailto:info@stackstorm.com) | 0.4 | [click](https://github.com/StackStorm/st2contrib#packagecloud-pack)
 [![packer icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/packer/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | [packer](https://github.com/StackStorm/st2contrib/tree/master/packs/packer) | Hashicorp Packer builder integration | packer, provisioning, pipeline, hashicorp | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#packer-pack)
 [![pagerduty icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/pagerduty/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | [pagerduty](https://github.com/StackStorm/st2contrib/tree/master/packs/pagerduty) | Packs which allows integration with PagerDuty services. |  | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#pagerduty-pack)
@@ -2011,20 +2011,24 @@ update_heartbeat | Update an Heartbeat in OpsGenie
 Name | Description
 ---- | -----------
 add_node_to_ncm | Add an Orion Node to NCM.
+drain_poller | Drain nodes from one Orion poller to another.
 get_discovery_progress | Get the progress of an Solarwinds Orion Discovery.
 list_node_custom_properties | List the custom properties for a Solarwinds Orion node's
-list_sdk_verb_args | List all the arguments for a entity and verb that can be invloked via a Solarwinds Orion platform
-list_sdk_verbs | List all the verbs that can be invloked via a Solarwinds Orion platform
+list_nodes_by_poller | List the nodes on a Solarwinds Orion poller
+list_nodes_by_status | List the nodes by status
+list_sdk_verb_args | List all the arguments for a entity and verb that can be invloked via Solarwinds Orion.
+list_sdk_verbs | List all the verbs that can be invloked via Solarwinds Orion
 ncm_config_download | Download config(s) from Solarwinds NCM Orion module.
 ncm_execute_script | Execute an script on an Orion NCM Node.
-node_create | Create an node on a Solarwinds Orion platform
+node_create | Create an node in Solarwinds Orion.
 node_discover_and_add_interfaces | Discover and add Interfaces for a Solarwinds Orion node.
-node_pollnow | Poll an Solarwinds Orion node
+node_remanage | Re-manage an Solarwinds Orion node's
 node_status | Query Solarwinds Orion for a node's status (i.e. Up/Down)
-remanage_node | Re-manage an Solarwinds Orion node's
-start_discovery | Create a discovery profile in Solarwinds Orion platform
-unmanage_node | Unmanage an Solarwinds Orion node's
+node_unmanage | Unmanage an Solarwinds Orion node's
+nodes_pollnow | Force muliple polls of a list of Solarwinds Orion nodes.
+start_discovery | Create a discovery profile in Solarwinds Orion.
 update_node_custom_properties | Update an Orion Nodes custom properties
+update_node_poller | Update an Orion Nodes poller
 
 ### packagecloud pack
 
