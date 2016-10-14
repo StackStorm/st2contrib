@@ -98,9 +98,6 @@ class VMNicEdit(BaseAction):
                     vim.vm.device.VirtualEthernetCard.NetworkBackingInfo()
                 new_spec.device.backing.network = network_obj
                 new_spec.device.backing.deviceName = network_obj.name
-            #new_spec.device.backing.network = network_obj
-            #new_spec.device.backing.deviceName = network_obj.name
-            #new_spec.device.deviceInfo.summary = network_obj.name
 
         # format changes for config spec update
         dev_changes = []
