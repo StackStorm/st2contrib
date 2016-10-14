@@ -102,8 +102,8 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	@rm -rf /tmp/st2
 	@git clone https://github.com/StackStorm/st2.git --depth 1 --single-branch --branch $(ST2_REPO_BRANCH) /tmp/st2
-	@mkdir -p /opt/stackstorm/runners/
-	@chmod /opt/stackstorm/runners/
+	@sudo mkdir -p /opt/stackstorm/runners/
+	@sudo chmod /opt/stackstorm/runners/
 
 .PHONY: requirements
 requirements: virtualenv
