@@ -17,4 +17,4 @@
   vm_basic_build workflow introduction of 12 seconds delay between elements to support parrallel action load balancing
 
   ## V0.4.3
-  Update nic actions to factor in Distributed Port Groups. When setting a network the DPG will be used over a standard port group of the same name
+  Update nic actions to factor in Distributed Port Groups. When setting a network the DPG will be used over a standard port group of the same name.
