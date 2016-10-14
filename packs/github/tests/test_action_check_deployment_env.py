@@ -32,5 +32,3 @@ class CheckDeploymentEnvActionTestCase(GitHubBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "staging")
-
-
