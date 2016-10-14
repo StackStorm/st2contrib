@@ -93,6 +93,11 @@ def get_network(content, moid=None, name=None):
                               moid=moid, name=name)
 
 
+def get_distributedportgroup(content, moid=None, name=None):
+    return get_managed_entity(content, vim.dvs.DistributedVirtualPortgroup,
+                              moid=moid, name=name)
+
+
 def get_virtualmachine(content, moid=None, name=None):
     return get_managed_entity(content, vim.VirtualMachine,
                               moid=moid, name=name)
