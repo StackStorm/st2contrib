@@ -78,7 +78,6 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo "==================== packs-resource-register ===================="
 	@echo
 	# Copy over the runners directory
-	cp -Rp ${ST2_REPO_PATH}/runners/* /opt/stackstorm/runners
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-register-pack-resources $$pack || exit 1 ; fi; done
 
 .PHONY: .packs-tests
@@ -102,8 +101,6 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	@rm -rf /tmp/st2
 	@git clone https://github.com/StackStorm/st2.git --depth 1 --single-branch --branch $(ST2_REPO_BRANCH) /tmp/st2
-	@sudo mkdir -p /opt/stackstorm/runners/
-	@sudo chmod /opt/stackstorm/runners/
 
 .PHONY: requirements
 requirements: virtualenv
