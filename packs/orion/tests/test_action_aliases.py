@@ -22,13 +22,12 @@ class StartDiscovery(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion"  # NOQA
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private"  # NOQA
         expected_parameters = {
             'name': "run-import",
             'nodes': "192.168.1.1",
             'poller': 'primary',
             'snmp_communities': "public,private",
-            'platform': "orion"
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -41,13 +40,12 @@ class StartDiscovery(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private platform orion poller2"  # NOQA
+        command = "orion start discovery name run-import nodes 192.168.1.1 snmp public,private poller2"  # NOQA
         expected_parameters = {
             'name': "run-import",
             'nodes': "192.168.1.1",
             'poller': 'poller2',
             'snmp_communities': "public,private",
-            'platform': "orion"
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -64,9 +62,8 @@ class NcmConfigDownloadActionAliasTestCase(BaseActionAliasTestCase):
         format_string = self.action_alias_db.formats[0]['representation'][0]
         format_strings = self.action_alias_db.get_format_strings()
 
-        command = "orion ncm config-download orion router1"
+        command = "orion ncm config-download router1"
         expected_parameters = {
-            'platform': 'orion',
             'node': 'router1'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
@@ -84,9 +81,8 @@ class NodeStatusActionAliasTestCase(BaseActionAliasTestCase):
         format_strings = self.action_alias_db.get_format_strings()
 
         format_string = self.action_alias_db.formats[0]['representation'][0]
-        command = "orion node status orion router1"
+        command = "orion node status router1"
         expected_parameters = {
-            'platform': 'orion',
             'node': 'router1'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
@@ -105,15 +101,12 @@ class NodeCreateActionAliasTestCase(BaseActionAliasTestCase):
 
         # First Format 'orion node create'
         format_string = self.action_alias_db.formats[0]['representation'][0]
-        command = """
-orion node create router1 ip 192.168.0.1 snmp read platform orion
-"""
+        command = "orion node create router1 ip 192.168.0.1 snmp read"
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': 'orion',
             'poller': 'primary',
-            'std_community': 'read'
+            'community': 'read'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -122,15 +115,12 @@ orion node create router1 ip 192.168.0.1 snmp read platform orion
             format_strings=format_strings,
             command=command)
 
-        command = """
-orion node create router1 ip 192.168.0.1 platform orion poller1
-"""
+        command = "orion node create router1 ip 192.168.0.1 poller1"
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': 'orion',
             'poller': 'poller1',
-            'std_community': None
+            'community': None
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -143,9 +133,8 @@ orion node create router1 ip 192.168.0.1 platform orion poller1
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': None,
             'poller': 'primary',
-            'std_community': 'read'
+            'community': 'read'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -158,9 +147,8 @@ orion node create router1 ip 192.168.0.1 platform orion poller1
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': None,
             'poller': 'primary',
-            'std_community': None
+            'community': None
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -172,15 +160,12 @@ orion node create router1 ip 192.168.0.1 platform orion poller1
         # Second format 'create orion node'
         format_string = self.action_alias_db.formats[1]['representation'][0]
 
-        command = """
-create orion node router1 at 192.168.0.1 with read on orion poller1
-"""
+        command = "create orion node router1 at 192.168.0.1 with read on poller1"
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': 'orion',
             'poller': 'poller1',
-            'std_community': 'read'
+            'community': 'read'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -193,24 +178,8 @@ create orion node router1 at 192.168.0.1 with read on orion poller1
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': None,
             'poller': 'primary',
-            'std_community': 'read'
-        }
-        self.assertExtractedParametersMatch(format_string=format_string,
-                                            command=command,
-                                            parameters=expected_parameters)
-        self.assertCommandMatchesExactlyOneFormatString(
-            format_strings=format_strings,
-            command=command)
-
-        command = "create orion node router1 at 192.168.0.1 on orion"
-        expected_parameters = {
-            'ip_address': "192.168.0.1",
-            'node': 'router1',
-            'platform': 'orion',
-            'poller': 'primary',
-            'std_community': None
+            'community': 'read'
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,
@@ -223,9 +192,22 @@ create orion node router1 at 192.168.0.1 with read on orion poller1
         expected_parameters = {
             'ip_address': "192.168.0.1",
             'node': 'router1',
-            'platform': None,
             'poller': 'primary',
-            'std_community': None
+            'community': None
+        }
+        self.assertExtractedParametersMatch(format_string=format_string,
+                                            command=command,
+                                            parameters=expected_parameters)
+        self.assertCommandMatchesExactlyOneFormatString(
+            format_strings=format_strings,
+            command=command)
+
+        command = "create orion node router1 at 192.168.0.1"
+        expected_parameters = {
+            'ip_address': "192.168.0.1",
+            'node': 'router1',
+            'poller': 'primary',
+            'community': None
         }
         self.assertExtractedParametersMatch(format_string=format_string,
                                             command=command,

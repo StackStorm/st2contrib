@@ -12,21 +12,39 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-# from mock import MagicMock
+from mock import MagicMock
 
 from orion_base_action_test_case import OrionBaseActionTestCase
 
-from orion_health import OrionHealth
+from update_node_poller import UpdateNodePoller
 
 __all__ = [
-    'OrionHealthTestCase'
+    'UpdateNodePollerTestCase'
 ]
 
 
-class OrionHealthTestCase(OrionBaseActionTestCase):
+class UpdateNodePollerTestCase(OrionBaseActionTestCase):
     __test__ = True
-    action_cls = OrionHealth
+    action_cls = UpdateNodePoller
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
-        self.assertRaises(ValueError, action.run)
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "poller1")
+
+    def test_run_node_not_exist(self):
+        action = self.setup_query_blank_results()
+        self.assertRaises(ValueError,
+                          action.run,
+                          "router1",
+                          "poller1")
+
+    def test_run_update(self):
+        action = self.setup_node_exists()
+        action.get_engine_id = MagicMock(return_value=2)
+
+        self.assertTrue(action.run(
+            "router1",
+            "poller1"))

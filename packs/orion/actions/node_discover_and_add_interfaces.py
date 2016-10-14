@@ -17,18 +17,17 @@ from lib.actions import OrionBaseAction
 
 
 class NodeDiscoverAndAddInterfaces(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, node):
         """
         Discover and add interfaces on an Orion node
 
         Args:
            node: Node to discover and add interfaces on.
-           platform: Orion platform to use.
 
         """
         results = {'added': [], 'existing': []}
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

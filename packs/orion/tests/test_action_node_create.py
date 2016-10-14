@@ -44,11 +44,9 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
                           action.run,
                           "router1",
                           "192.168.0.1",
-                          "orion",
                           None,
                           "snmpv2",
                           "internal",
-                          None,
                           "snmp")
 
     def test_run_node_caption_exists(self):
@@ -57,11 +55,9 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
                           action.run,
                           "router1",
                           "192.168.0.1",
-                          "orion",
                           None,
                           "snmpv2",
                           "internal",
-                          None,
                           "snmp")
 
     def test_run_node_ip_exists(self):
@@ -72,7 +68,7 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=None)
         action.create = MagicMock(return_value=None)
@@ -81,21 +77,28 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
                           action.run,
                           "router2",
                           "192.168.0.1",
-                          "orion",
                           None,
                           "snmpv2",
                           "internal",
-                          None,
                           "snmp")
 
+    def test_run_get_snmp_community(self):
+        action = self.get_action_instance(config=self.full_config)
+
+        self.assertEqual(action.get_snmp_community(None), "publ1c")
+        self.assertEqual(action.get_snmp_community("customer"), "foobar")
+        self.assertEqual(action.get_snmp_community("internal"), "barbaz")
+        self.assertEqual(action.get_snmp_community("bazfoo"), "bazfoo")
+
     def test_run_poller_is_none(self):
-        expected = {'node_id': '6', 'platform': 'orion'}
+        expected = {'node_id': '6',
+                    'label': 'orion'}
 
         query_data = self.query_no_results
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(return_value=query_data)
         action.invoke = MagicMock(return_value=None)
         action.get_engine_id = MagicMock(return_value=2)
@@ -104,16 +107,15 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
 
         result = action.run("router2",
                             "192.168.0.1",
-                            "orion",
                             None,
                             "snmpv2",
                             "internal",
-                            None,
                             "snmp")
         self.assertEqual(result, expected)
 
     def test_run_node_additonal_poller(self):
-        expected = {'node_id': '6', 'platform': 'orion'}
+        expected = {'node_id': '6',
+                    'label': 'orion'}
 
         query_data = [self.query_no_results,
                       self.query_no_results,
@@ -121,7 +123,7 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=None)
         action.create = MagicMock(
@@ -129,10 +131,8 @@ class NodeCreateTestCase(OrionBaseActionTestCase):
 
         result = action.run("router2",
                             "192.168.0.1",
-                            "orion",
                             "additonal1",
                             "snmpv2",
                             "internal",
-                            None,
                             "snmp")
         self.assertEqual(result, expected)

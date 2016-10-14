@@ -32,7 +32,6 @@ class NcmConfigDownloadTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
-                          "orion",
                           ["running", "startup"])
 
     def test_run_ncm_node_not_found(self):
@@ -40,7 +39,6 @@ class NcmConfigDownloadTestCase(OrionBaseActionTestCase):
         self.assertRaises(Exception,
                           action.run,
                           "router1",
-                          "orion",
                           ["running", "startup"])
 
     def test_run_ncm_download_complete(self):
@@ -77,12 +75,11 @@ class NcmConfigDownloadTestCase(OrionBaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=invoke_data)
 
         result = action.run("router1",
-                            "orion",
                             ["running", "startup"])
 
         self.assertEqual(result, expected)

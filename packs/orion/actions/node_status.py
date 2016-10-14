@@ -18,7 +18,7 @@ from lib.utils import status_code_to_text, send_user_error
 
 
 class NodeStatus(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, node):
         """
         Query Solarwinds Orion.
         """
@@ -28,7 +28,7 @@ class NodeStatus(OrionBaseAction):
         results['status'] = None
         results['color'] = None
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

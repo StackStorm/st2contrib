@@ -12,43 +12,47 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
+from orion_base_action_test_case import OrionBaseActionTestCase
 from mock import MagicMock
 
-from orion_base_action_test_case import OrionBaseActionTestCase
-
-from node_pollnow import NodePollNow
+from nodes_pollnow import NodesPollNow
 
 __all__ = [
-    'NodePollNowTestCase'
+    'NodesPollNowTestCase'
 ]
 
 
-class NodePollNowTestCase(OrionBaseActionTestCase):
+class NodesPollNowTestCase(OrionBaseActionTestCase):
     __test__ = True
-    action_cls = NodePollNow
+    action_cls = NodesPollNow
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
-                          "router1")
+                          ["router1"],
+                          2,
+                          1)
 
     def test_run_node_not_exist(self):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
-                          "router1")
+                          ["router1"],
+                          2,
+                          1)
 
     def test_run_polled(self):
         action = self.setup_node_exists()
-        self.assertTrue(action.run("router1", "orion"))
+        expected = {'down': [], 'extra_count': False, 'last_count': 2, 'up': [1]}
 
-    def test_run_polled_text(self):
-        expected = "fake"
+        query_data = []
+        query_data.append(self.query_npm_node)
+        query_data.append(self.query_ncm_node)
+        query_data.append({'results': [{'Status': 9}]})
+        query_data.append({'results': [{'Status': 9}]})
+        query_data.append({'results': [{'Status': 1}]})
+        action.query = MagicMock(side_effect=query_data)
 
-        action = self.setup_node_exists()
-        action.invoke = MagicMock(return_value="fake")
-        result = action.run("router1", "orion")
+        result = action.run(["router1"], 5, 5)
         self.assertEqual(result, expected)

@@ -29,11 +29,11 @@ class NodeStatusTestCase(OrionBaseActionTestCase):
 
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
-        self.assertRaises(ValueError, action.run, "router1", "orion")
+        self.assertRaises(ValueError, action.run, "router1")
 
     def test_run_node_not_found(self):
         action = self.setup_query_blank_results()
-        self.assertRaises(ValueError, action.run, "router1", "orion")
+        self.assertRaises(ValueError, action.run, "router1")
 
     def test_run_node_status_up(self):
         expected = {'node': 'router1 (NodeId: 1; ip: 192.168.0.1)',
@@ -46,10 +46,10 @@ class NodeStatusTestCase(OrionBaseActionTestCase):
         query_data.append({'results': [{'Status': 1}]})
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run("router1", "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)
 
     def test_run_node_status_down(self):
@@ -63,10 +63,10 @@ class NodeStatusTestCase(OrionBaseActionTestCase):
         query_data.append({'results': [{'Status': 2}]})
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run("router1", "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)
 
     def test_run_node_status_unknown(self):
@@ -80,10 +80,10 @@ class NodeStatusTestCase(OrionBaseActionTestCase):
         query_data.append({'results': [{'Status': 0}]})
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run("router1", "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)
 
     def test_run_node_status_warning(self):
@@ -97,8 +97,8 @@ class NodeStatusTestCase(OrionBaseActionTestCase):
         query_data.append({'results': [{'Status': 3}]})
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
-        result = action.run("router1", "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)

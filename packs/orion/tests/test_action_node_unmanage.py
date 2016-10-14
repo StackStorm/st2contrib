@@ -31,7 +31,6 @@ class NodeUnmanageTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           30)
 
@@ -39,13 +38,12 @@ class NodeUnmanageTestCase(OrionBaseActionTestCase):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           30)
 
     def test_run_unmanaged(self):
         action = self.setup_node_exists()
-        self.assertTrue(action.run("router1", "orion", 30))
+        self.assertTrue(action.run("router1", 30))
 
     def test_run_invoke_returns_text(self):
         expected = "fake"
@@ -56,19 +54,16 @@ class NodeUnmanageTestCase(OrionBaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value="fake")
 
-        result = action.run("router1",
-                            "orion",
-                            30)
+        result = action.run("router1", 30)
         self.assertEqual(result, expected)
 
     def test_run_unmanage_too_long(self):
         action = self.setup_node_exists()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           90)

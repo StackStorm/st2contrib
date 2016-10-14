@@ -28,31 +28,23 @@ class OrionBaseAction(Action):
 
         self.client = None
 
-        if "orion" not in self.config:
+        if "orion_host" not in self.config:
             raise ValueError("Orion host details not in the config.yaml")
+        elif "orion_user" not in self.config:
+            raise ValueError("Orion user details not in the config.yaml")
+        elif "orion_password" not in self.config:
+            raise ValueError("Orion password details not in the config.yaml")
 
-    def connect(self, platform):
+    def connect(self):
         """
-        Connect to an Orion platform from the packs config.yaml.
+        Connect to the Orion server listed in the config.
         """
-        if platform is None:
-            try:
-                platform = self.config['defaults']['platform']
-            except IndexError:
-                send_user_error("No default Orion platform.")
-                raise ValueError("No default Orion platform.")
 
-        self.logger.debug("Connecting to Orion platform: {}".format(platform))
+        self.client = SwisClient(self.config['orion_host'],
+                                 self.config['orion_user'],
+                                 self.config['orion_password'])
 
-        try:
-            self.client = SwisClient(
-                self.config['orion'][platform]['host'],
-                self.config['orion'][platform]['user'],
-                self.config['orion'][platform]['password'])
-        except KeyError:
-            raise ValueError("Orion host details not in the config.yaml")
-
-        return platform
+        return self.config['orion_label']
 
     def get_node(self, node):
         """
@@ -148,19 +140,18 @@ class OrionBaseAction(Action):
         """
         return self.client.delete(uri)
 
-    def get_snmp_community(self, community, std_community):
+    def get_snmp_community(self, community):
         """
         Return the correct SNMP comminity to use.
         """
-        if community is not None:
+        if community == "customer":
+            return self.config['snmp_customer']
+        elif community == "internal":
+            return self.config['snmp_internal']
+        elif community is None:
+            return self.config['snmp_default']
+        else:
             return community
-        elif std_community is not None:
-            try:
-                return self.config['defaults']['snmp'][std_community]
-            except KeyError:
-                raise ValueError("Invalid standard community")
-        elif std_community is None:
-            raise ValueError("Need one of community or std_community")
 
     def get_snmp_cred_id(self, community):
         """
@@ -168,12 +159,8 @@ class OrionBaseAction(Action):
         the Orion ID for the Credential.
         """
 
-        # Check if community is a know standard, otherwise
-        # use it as the community.
-        try:
-            name = self.get_snmp_community(None, community)
-        except ValueError:
-            name = community
+        # Check if the community should be replaced.
+        name = self.get_snmp_community(community)
 
         swql = """SELECT ID FROM Orion.Credential
         WHERE CredentialType=@CredentialType and Name=@name"""

@@ -23,26 +23,24 @@ class NodeCreate(OrionBaseAction):
     def run(self,
             node,
             ip_address,
-            platform,
             poller,
             mon_protocol,
-            std_community,
             community,
             status):
         """
-        Create an node in an Orion monitoring platform.
+        Create an node in Orion.
         """
         results = {}
 
-        self.logger.info("Connecting to Orion platform: {}".format(platform))
-        self.connect(platform)
-        results['platform'] = platform
+        results['label'] = self.connect()
+        self.logger.info("Connecting to Orion: {}".format(
+            results['label']))
 
         orion_node = self.get_node(node)
         if orion_node.npm:
             self.logger.error(
-                "Node ({}) already in Orion platform: {}".format(orion_node,
-                                                                 platform))
+                "Node ({}) already in Orion: {}".format(orion_node,
+                                                        results['label']))
 
             send_user_error("Node and/or IP is already in Orion!")
             raise ValueError("Node and/or IP already exists!")
@@ -50,17 +48,17 @@ class NodeCreate(OrionBaseAction):
         orion_ip_address = self.get_node(ip_address)
         if orion_ip_address.npm:
             self.logger.error(
-                "IP ({}) already in Orion platform: {}".format(
+                "IP ({}) already in Orion: {}".format(
                     orion_ip_address,
-                    platform))
+                    results['label']))
 
             send_user_error("IP is already in Orion!")
             raise ValueError("IP already exists!")
 
         self.logger.info(
-            "Checking node ({}) is not on Orion platform: {}".format(
+            "Checking node ({}) is not in Orion: {}".format(
                 node,
-                platform))
+                results['label']))
 
         # engineID if happens to be None, default to the primary.
         if poller is not None:
@@ -77,12 +75,8 @@ class NodeCreate(OrionBaseAction):
             kargs['ObjectSubType'] = "SNMP"
             kargs['SNMPVersion'] = 2
 
-        if community is not None:
-            kargs['Community'] = community
-        elif std_community is not None:
-            kargs['Community'] = self.config['defaults']['snmp'][std_community]
-        elif std_community is None:
-            raise ValueError("Need one of community or std_community")
+        # Check if the community should be replaced.
+        kargs['Community'] = self.get_snmp_community(community)
 
         self.logger.info("Creating Orion Node: {}".format(kargs))
         orion_data = self.create('Orion.Nodes', **kargs)

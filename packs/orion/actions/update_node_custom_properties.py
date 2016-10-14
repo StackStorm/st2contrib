@@ -17,11 +17,11 @@ from lib.utils import send_user_error
 
 
 class UpdateNodeCustomProperties(OrionBaseAction):
-    def run(self, platform, node, custom_property, value):
+    def run(self, node, custom_property, value):
         """
         Update a nodes Cutom Properties.
         """
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

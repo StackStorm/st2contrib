@@ -18,7 +18,7 @@ from lib.utils import send_user_error
 
 
 class NcmConfigDownload(OrionBaseAction):
-    def run(self, node, platform, configs):
+    def run(self, node, configs):
         """
         Download configurations via Solarwinds Orion NCM.
         see https://github.com/solarwinds/OrionSDK/wiki/NCM-Config-Transfer
@@ -26,7 +26,6 @@ class NcmConfigDownload(OrionBaseAction):
 
         Args:
            node:
-           platform:
            configs: Array of Configs to download.
 
         Returns:
@@ -39,7 +38,7 @@ class NcmConfigDownload(OrionBaseAction):
         results = {}
         node_ids = []
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

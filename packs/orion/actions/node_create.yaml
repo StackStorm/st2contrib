@@ -1,5 +1,5 @@
 ---
-description: "Create an node on a Solarwinds Orion platform"
+description: "Create an node in Solarwinds Orion."
 enabled: true
 entry_point: 'node_create.py'
 name: "node_create"
@@ -9,15 +9,12 @@ runner_type: "python-script"
 parameters:
   node:
     type: "string"
-    description: "The Caption for the node to add to the monitoring platform."
+    description: "The Caption for the node to add to Orion."
     required: true
   ip_address:
     type: "string"
     required: true
     description: "The ip address to use for polling."
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
   poller:
     type: "string"
     description: "The name of the additional polling engine to use (defaults to primary)."
@@ -33,9 +30,6 @@ parameters:
       - "wmi"
     default: "snmpv2"
     immutable: true
-  std_community:
-    type: "string"
-    description: "Pick a standard SNMP community from the config don't set *community*."
   community:
     type: "string"
     description: "The SNMP community to use (don't set *std_community*)."

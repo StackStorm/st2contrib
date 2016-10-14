@@ -32,7 +32,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=["router1"],
@@ -48,7 +47,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=None,
@@ -68,7 +66,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=nodes,
@@ -85,7 +82,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=nodes,
@@ -102,7 +98,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=nodes,
@@ -119,7 +114,6 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           name="Unit Test Discovery",
-                          platform="orion",
                           poller="primary",
                           snmp_communities=["public"],
                           nodes=nodes,
@@ -148,7 +142,7 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         query_data.append(self.query_no_results)
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
         self.assertRaises(ValueError,
@@ -171,12 +165,11 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         invoke_data.append(10)
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = Mock(side_effect=invoke_data)
 
         result = action.run(name="Unit Test Discovery",
-                            platform="orion",
                             poller="primary",
                             snmp_communities=["public"],
                             nodes=["router1"],
@@ -200,12 +193,11 @@ class StartDiscoveryTestCase(OrionBaseActionTestCase):
         invoke_data.append(10)
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = Mock(side_effect=invoke_data)
 
         result = action.run(name="Unit Test Discovery",
-                            platform="orion",
                             poller="primary",
                             snmp_communities=["public"],
                             nodes=["router1"],

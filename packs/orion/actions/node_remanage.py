@@ -17,12 +17,12 @@ from lib.actions import OrionBaseAction
 
 
 class NodeRemanage(OrionBaseAction):
-    def run(self, node, platform):
+    def run(self, node):
         """
         Remanage an Orion node
         """
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

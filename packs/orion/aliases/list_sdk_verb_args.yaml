@@ -4,9 +4,9 @@ pack: "orion"
 description: "List Ivoke Verb Arguments in the Solarwinds OrionSDK."
 action_ref: "orion.list_sdk_verb_args"
 formats:
-  - display: "orion sdk list {{platform}} verb args {{entity_name}} {{verb_name}}"
+  - display: "orion sdk list verb args {{entity_name}} {{verb_name}}"
     representation:
-      - "orion sdk list {{platform}} verb args {{entity_name}} {{verb_name}}"
+      - "orion sdk list verb args {{entity_name}} {{verb_name}}"
 ack:
   enabled: false
 result:

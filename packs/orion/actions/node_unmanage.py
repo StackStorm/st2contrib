@@ -19,7 +19,7 @@ from lib.actions import OrionBaseAction
 
 
 class NodeUnmanage(OrionBaseAction):
-    def run(self, node, platform, minutes):
+    def run(self, node, minutes):
         """
         Unmanage an Orion node
         """
@@ -29,7 +29,7 @@ class NodeUnmanage(OrionBaseAction):
                 "minutes ({}) greater than unmanage_max ({})".format(
                     minutes, self.config['unmanage_max']))
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 

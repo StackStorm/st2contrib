@@ -10,11 +10,7 @@ runner_type: "python-script"
 parameters:
   node:
     type: "string"
-    description: "The monitoring platform node to act on."
-    required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
+    description: "The node to act on."
     required: true
   configs:
     description: "Which config(s) to download from NCM."

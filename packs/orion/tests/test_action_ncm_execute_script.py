@@ -31,7 +31,6 @@ class NcmExecuteScriptTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           "show failover")
 
@@ -39,7 +38,6 @@ class NcmExecuteScriptTestCase(OrionBaseActionTestCase):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           "show failover")
 
@@ -63,12 +61,10 @@ class NcmExecuteScriptTestCase(OrionBaseActionTestCase):
         invoke_data = ["fake-job-id"]
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=invoke_data)
 
-        result = action.run("orion",
-                            "router1",
-                            "show failover")
+        result = action.run("router1", "show failover")
 
         self.assertEqual(result, expected)

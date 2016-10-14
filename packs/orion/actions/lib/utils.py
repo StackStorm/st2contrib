@@ -35,6 +35,26 @@ def status_code_to_text(status):
         return ("Critical", "#eb0000")  # aka slack 'danger'
 
 
+def status_text_to_code(status):
+    """
+    Takes an Solarwinds Orion status text and translates it
+    to an Orion code.
+    """
+
+    if status == "Up":
+        return 1
+    elif status == "Down":
+        return 2
+    elif status == "Warning":
+        return 3
+    elif status == "Critical":
+        return 14
+    elif status == "Unknown":
+        return 0
+    else:
+        raise ValueError("No matching status text for: {}".format(status))
+
+
 def send_user_error(message):
     """
     Prints an user error message.
