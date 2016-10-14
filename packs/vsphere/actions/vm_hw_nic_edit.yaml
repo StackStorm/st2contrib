@@ -27,6 +27,6 @@
       required: true
     network_name:
       type: "string"
-      description: "Network Adapater should be connected to"
+      description: "Network Adapater should be connected to. Distributed Port Groups take precedence over Standard Port Groups of the same name "
       required: true
 

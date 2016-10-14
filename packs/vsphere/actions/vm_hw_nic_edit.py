@@ -46,8 +46,14 @@ class VMNicEdit(BaseAction):
         vm = inventory.get_virtualmachine(self.si_content,
                                           moid=vm_id,
                                           name=vm_name)
-        network_obj = inventory.get_network(self.si_content,
-                                            name=network_name)
+        try:
+            nettype = "dist"
+            network_obj = inventory.get_distributedportgroup(self.si_content,
+                                                             name=network_name)
+        except:
+            nettype = "std"
+            network_obj = inventory.get_network(self.si_content,
+                                                name=network_name)
 
         # find correct NIC
         for device in vm.config.hardware.device:
@@ -70,9 +76,28 @@ class VMNicEdit(BaseAction):
         # If network name provided assign new network
         # Room to expand the following to set additional flags/values
         if network_name:
-            new_spec.device.backing.network = network_obj
-            new_spec.device.backing.deviceName = network_obj.name
-            new_spec.device.deviceInfo.summary = network_obj.name
+            # Default functionality is to use the
+            # Distributed Port Group over a standard group
+            if nettype == "dist":
+                new_spec.device.backing = \
+                    vim.vm.device.VirtualEthernetCard\
+                    .DistributedVirtualPortBackingInfo()
+                new_spec.device.backing.port = vim.dvs.PortConnection()
+
+                dvs_port_connection = vim.dvs.PortConnection()
+                dvs_port_connection.portgroupKey = network_obj.key
+                dvs_port_connection.switchUuid = \
+                    network_obj.config.distributedVirtualSwitch.uuid
+
+                new_spec.device.backing = \
+                    vim.vm.device.VirtualEthernetCard\
+                    .DistributedVirtualPortBackingInfo()
+                new_spec.device.backing.port = dvs_port_connection
+            else:
+                new_spec.device.backing = \
+                    vim.vm.device.VirtualEthernetCard.NetworkBackingInfo()
+                new_spec.device.backing.network = network_obj
+                new_spec.device.backing.deviceName = network_obj.name
 
         # format changes for config spec update
         dev_changes = []
