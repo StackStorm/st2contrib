@@ -78,6 +78,7 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo "==================== packs-resource-register ===================="
 	@echo
 	# Copy over the runners directory
+	mkdir -p /opt/stackstorm/runners/
 	cp -Rp /tmp/st2/contrib/runners/* /opt/stackstorm/runners
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-register-pack-resources $$pack || exit 1 ; fi; done
 
