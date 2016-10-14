@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.0
+
+* Add deployment event webhook.
+* Add deployment event workflow to trigger packs.install.
+* Add new action check_deployment_env env.
+* Add deployment_environment config option.
+
 ## v0.5.0
 
 * Migrate config.yaml to config.schema.yaml.

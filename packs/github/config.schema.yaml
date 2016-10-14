@@ -32,6 +32,12 @@ enterprise_url:
   description: "GitHub API url (including /api/v3) of your GitHub Enterprise hostname."
   type: "string"
 
+deployment_environment:
+  description: "The enviroment for this StackStorm server."
+  type: "string"
+  required: true
+  default: "production"
+
 # You need to manullay put this into your config, as it's not
 # compatiable with the config schema.
 

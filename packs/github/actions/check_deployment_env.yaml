@@ -1,0 +1,11 @@
+---
+name: "check_deployment_env"
+runner_type: "run-python"
+description: "Check if deployment event applies to this server."
+enabled: true
+entry_point: "check_deployment_env.py"
+parameters:
+  deploy_env:
+    type: "string"
+    description: "The deployement enviroment to check against the config value."
+    required: true

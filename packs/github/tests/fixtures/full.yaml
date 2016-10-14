@@ -2,3 +2,5 @@ enterprise_url: "https://github.exmple.com/api/v3"
 token: "foobar"
 
 default: "online"
+
+deployment_environment: "production"

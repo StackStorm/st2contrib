@@ -70,12 +70,25 @@ class BaseGithubAction(Action):
             raise ValueError("Default GitHub Invalid!")
 
     def _get_user_token(self, user, enterprise):
-        if enterprise:
-            token_name = "token_enterprise_{}".format(user)
-        else:
-            token_name = "token_{}".format(user)
+        """
+        Return a users GitHub OAuth Token, if it fails replace '-'
+        with '.' as '.' is not valid for GitHub names.
+        """
 
-        return self.action_service.get_value(token_name)
+        if enterprise:
+            token_name = "token_enterprise_"
+        else:
+            token_name = "token_"
+
+        token = self.action_service.get_value(token_name + user)
+
+        # if a token is not returned, try using reversing changes made by
+        # GitHub Enterpise during LDAP sync'ing.
+        if token is None:
+            token = self.action_service.get_value(
+                token_name + user.replace("-", "."))
+
+        return token
 
     def _change_to_user_token(self, user, enterprise=False):
         token = self._get_user_token(user, enterprise)
