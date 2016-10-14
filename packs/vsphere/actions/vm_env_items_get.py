@@ -41,6 +41,7 @@ class GetItems(BaseAction):
                  'DataStore': vim.Datastore,
                  'Virtual Machines': vim.VirtualMachine,
                  'Networks': vim.Network,
+                 'Distrubuted Portgroup': vim.DistributedVirtualPortgroup,
                  'Hosts': vim.HostSystem}
 
         objecttype = items[itemtype]
