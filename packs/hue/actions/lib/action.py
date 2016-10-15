@@ -10,6 +10,7 @@ class BaseAction(Action):
     def _get_client(self):
         hue = Hue()
         hue.station_ip = self.config['station_ip']
+        hue.client_identifier = self.config['client_identifier']
         hue.get_state()
 
         return hue
