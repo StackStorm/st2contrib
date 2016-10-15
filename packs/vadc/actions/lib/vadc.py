@@ -3,6 +3,7 @@
 import requests
 import sys
 import json
+import time
 
 
 class Vadc:
@@ -16,6 +17,7 @@ class Vadc:
         self.passwd = passwd
         self.logger = logger
         self.client = None
+        self._cache = {}
 
     def _debug(self, message):
         if Vadc.DEBUG:
@@ -76,6 +78,21 @@ class Vadc:
             k = item.pop(keyName)
             dictionary[k] = item
 
+    def _cacheStore(self, key, data, timeout=10):
+        exp = time.time() + timeout
+        self._debug("Cache Store: {}".format(key))
+        self._cache[key] = {"exp": exp, "data": data}
+
+    def _cacheLookup(self, key):
+        now = time.time()
+        if key in self._cache:
+            entry = self._cache[key]
+            if entry["exp"] > now:
+                self._debug("Cache Hit: {}".format(key))
+                return entry["data"]
+        self._debug("Cache Miss: {}".format(key))
+        return None
+
 
 class Bsd(Vadc):
 
@@ -121,17 +138,32 @@ class Bsd(Vadc):
             raise Exception("Failed to del vTM. Response: {}, {}".format(res.status_code, res.text))
         return res.json()
 
+    def getVtm(self, tag):
+        vtm = self._cacheLookup("getVtm_" + tag)
+        if vtm is None:
+            url = self.baseUrl + "/instance/" + tag
+            res = self._getConfig(url)
+            if res.status_code != 200:
+                raise Exception("Failed to get vTM {}. Response: {}, {}".format(
+                    vtm, res.status_code, res.text))
+            vtm = res.json()
+            self._cacheStore("getVtm_" + tag, vtm)
+        return vtm
+
     def listVtms(self, full, deleted, stringify):
-        url = self.baseUrl + "/instance/"
-        res = self._getConfig(url)
-        if res.status_code != 200:
-            raise Exception("Failed to list. Response: {}, {}".format(res.status_code, res.text))
+        instances = self._cacheLookup("listVtms")
+        if instances is None:
+            url = self.baseUrl + "/instance/"
+            res = self._getConfig(url)
+            if res.status_code != 200:
+                raise Exception("Failed to list vTMs. Response: {}, {}".format(
+                    res.status_code, res.text))
+            instances = res.json()
+            self._cacheStore("listVtms", instances)
 
         output = []
-        instances = res.json()
         for instance in instances["children"]:
-            current = self._getConfig(url + instance["name"])
-            config = current.json()
+            config = self.getVtm(instance["name"])
             if deleted is False and config["status"] == "Deleted":
                 continue
             if full:
@@ -149,12 +181,17 @@ class Bsd(Vadc):
             return output
 
     def getStatus(self, vtm=None, stringify=False):
-        url = self.baseUrl + "/monitoring/instance"
-        res = self._getConfig(url)
-        if res.status_code != 200:
-            raise Exception("Failed get Status. Result: {}, {}".format(res.status_code, res.text))
+        instances = self._cacheLookup("getStatus")
+        if instances is None:
+            url = self.baseUrl + "/monitoring/instance"
+            res = self._getConfig(url)
+            if res.status_code != 200:
+                raise Exception("Failed get Status. Result: {}, {}".format(
+                    res.status_code, res.text))
 
-        instances = res.json()
+            instances = res.json()
+            self._cacheStore("getStatus", instances)
+
         if vtm is not None:
             for instance in instances:
                 if instance["tag"] != vtm and instance["name"] != vtm:
@@ -191,6 +228,42 @@ class Bsd(Vadc):
             return json.dumps(errors, encoding="utf-8")
         else:
             return errors
+
+    def getMonitorIntervals(self, setting=None):
+        intervals = self._cacheLookup("getMonitorIntervals")
+        if intervals is None:
+            url = self.baseUrl + "/settings/monitoring"
+            res = self._getConfig(url)
+            if res.status_code != 200:
+                raise Exception("Failed to get Monitoring Intervals. Result: {}, {}".format(
+                    res.status_code, res.text))
+
+            intervals = res.json()
+            self._cacheStore("getMonitorIntervals", intervals)
+
+        if setting is not None:
+            if setting not in intervals:
+                raise Exception("Setting: {} does not exist.".format(setting))
+            return intervals[setting]
+        return intervals
+
+    def getBandwidth(self, vtm=None, stringify=False):
+        instances = self.getStatus(vtm)
+        bandwidth = {}
+        for instance in instances:
+            config = self.getVtm(instance["name"])
+            current = (instance["throughput_out"] / 1000000.0) * 8
+            assigned = config["bandwidth"]
+            if "metrics_peak_throughput" in config:
+                peak = (config["metrics_peak_throughput"] / 1000000.0) * 8
+            else:
+                peak = 0.0
+            bandwidth[instance["name"]] = {"current": current, "assigned": assigned, "peak": peak}
+
+        if stringify:
+            return json.dumps(bandwidth, encoding="utf-8")
+        else:
+            return bandwidth
 
 
 class Vtm(Vadc):
@@ -257,9 +330,9 @@ class Vtm(Vadc):
         if res.status_code != 200:
             raise Exception("Failed set VS Rules. Result: {}, {}".format(res.status_code, res.text))
 
-    def enableMaintenance(self, vsname, rulename, enable=True):
+    def insertRule(self, vsname, rulename, insert=True):
         rules = self._getVSRules(vsname)
-        if enable:
+        if insert:
             if rulename in rules["request_rules"]:
                 raise Exception("VServer {} already in maintenance".format(vsname))
             rules["request_rules"].insert(0, rulename)
@@ -268,6 +341,9 @@ class Vtm(Vadc):
                 raise Exception("VServer {} is not in maintenance".format(vsname))
             rules["request_rules"].remove(rulename)
         self._setVSRules(vsname, rules)
+
+    def enableMaintenance(self, vsname, rulename="maintenance", enable=True):
+        self.insertRule(vsname, rulename, enable)
 
     def getPoolNodes(self, name):
         nodeTable = self._getNodeTable(name)
