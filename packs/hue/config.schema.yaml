@@ -1,0 +1,10 @@
+---
+  station_ip:
+    description: "IP address or FQDN of Philips Hue Bridge."
+    type: "string"
+    required: true
+  client_identifier:
+    description: "API Key from the Philips Hue Bridge."
+    type: "string"
+    secret: true
+    required: false
