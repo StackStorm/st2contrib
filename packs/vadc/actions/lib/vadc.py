@@ -93,6 +93,12 @@ class Vadc:
         self._debug("Cache Miss: {}".format(key))
         return None
 
+    def dumpCache(self):
+        return json.dumps(self._cache, encoding="utf-8")
+
+    def loadCache(self, cache):
+        self._cache = json.loads(cache, encoding="utf-8")
+
 
 class Bsd(Vadc):
 
@@ -264,6 +270,16 @@ class Bsd(Vadc):
             return json.dumps(bandwidth, encoding="utf-8")
         else:
             return bandwidth
+
+    def setBandwidth(self, vtm, bw):
+        url = self.baseUrl + "/instance/" + vtm
+        config = {"bandwidth": bw}
+        res = self._pushConfig(url, config)
+        if res.status_code != 200:
+            raise Exception("Failed to set Bandwidth. Result: {}, {}".format(
+                res.status_code, res.text))
+        config = res.json()
+        return config
 
 
 class Vtm(Vadc):
