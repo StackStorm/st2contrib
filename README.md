@@ -2719,6 +2719,8 @@ bsd_get_status | Get instance status from the Brocade Services Director.
 bsd_license_vtm | License a vTM from the Services Director.
 bsd_unlicense_vtm | Mark a vTM as Deleted in the Services Director inventory.
 bsd_list_vtms | Get the list of vTMs and information from the Services Director.
+bsd_get_vtm_bandwidth | Get the assigned, current, and peak bandwidth for one or more vTMs
+bsd_set_vtm_bandwidth | Set the assigned bandwidth for a given vTM
 vtm_add_pool | Create a pool on a vTM.
 vtm_del_pool | Delete a pool on a vTM.
 vtm_add_tip | Create a Traffic IP Group on a vTM.
@@ -2734,6 +2736,7 @@ vtm_maintenance_mode | Activate a maintenance TrafficScript rule to take a VServ
 Name | Description
 ---- | -----------
 brcdSdSensor | Monitor the Services Director for system failures
+brcdBwSensor | Monitor the Bandwidth assigned to vTMs
 
 #### Rules
 
@@ -2741,6 +2744,9 @@ Name | Description
 ---- | -----------
 bsd_chatops | Report all errors from the brcdSdSensor to a ChatOps channel.
 vtm_fail_maintenance | enable "maintenance" rule on a vserver when all nodes fail.
+bsd_bandwidth_alert | Report a vTM coming close to it's bandwidth limit to ChatOps.
+bsd_bandwidth_notify | Report a vTM having it's bandwidth increased to ChatOps.
+bsd_bandwidth_modify | Increase the bandwidth of a vTM.
 
 
 ### vault pack
