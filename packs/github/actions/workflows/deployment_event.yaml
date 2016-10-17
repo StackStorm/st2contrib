@@ -2,7 +2,7 @@
 version: '2.0'
 
 github.deployment_event:
-  description: "A workflow to procress an github deployment event and install a pack if the enviroment matches."
+  description: "A workflow to process an github deployment event and install a pack if the environment matches."
 
   input:
     - repo_fullname

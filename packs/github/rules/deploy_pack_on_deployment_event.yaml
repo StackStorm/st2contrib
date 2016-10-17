@@ -1,7 +1,7 @@
 ---
-name: "deployment_event_webhook"
+name: "deploy_pack_on_deployment_event"
 pack: "github"
-description: "Trigger ST2 pack deploy when recieving a deployment event from GitHub."
+description: "Trigger an ST2 pack.install when receiving a deployment event from GitHub."
 enabled: false
 
 trigger:

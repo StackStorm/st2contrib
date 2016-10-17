@@ -1,6 +1,6 @@
 ---
 name: "deployment_event"
-description: "Process an deployment event from GitHub."
+description: "Process an github deployment event and install a pack if the environment matches."
 enabled: true
 entry_point: "workflows/deployment_event.yaml"
 
@@ -21,7 +21,7 @@ parameters:
     default: "master"
   deploy_env:
     type: "string"
-    description: "The enviroment to target."
+    description: "The environment to target."
     default: "production"
   deploy_sha:
     type: "string"
@@ -45,6 +45,6 @@ parameters:
     required: true
   deploy_payload:
     type: "string"
-    description: "Additional payload infomation from GitHub"
+    description: "Additional payload information from GitHub"
     default: "{}"
     immutable: true

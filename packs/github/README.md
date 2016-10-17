@@ -99,7 +99,7 @@ StackStorm webhook handler.
 To enable this rule, run the following on the CLI (with a valid ST2 auth token):
 
 ```bash
-st2 rule enable github.deployment_event_webhook
+st2 rule enable github.deploy_pack_on_deployment_event
 ```
 
 Then you should add a web hook in github sending deployment events to the following URL:
@@ -116,7 +116,7 @@ command:
 @hubot github deployment create me/my_st2_pack description Lets get the feature to production
 ```
 
-#### Limiations
+#### Limitations
 
 - You need to have logged an OAuth key with StackStorm (via `github.store_oauth_token`).
 - It only works for the default `github_type`.
