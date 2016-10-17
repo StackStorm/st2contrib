@@ -449,3 +449,23 @@ class Vtm(Vadc):
         res = self._delConfig(url)
         if res.status_code != 204:
             raise Exception("Failed to del TIP. Result: {}, {}".format(res.status_code, res.text))
+
+    def addServerCert(self, name, public, private):
+        url = self.baseUrl + "/ssl/server_keys/" + name
+
+        public = public.replace("\\n","\n")
+        private = private.replace("\\n","\n")
+
+        config = {"properties": {"basic": {"public": public, "private": private}}}
+
+        res = self._pushConfig(url, config)
+        if res.status_code != 201:
+            raise Exception("Failed to add Server Certificate." +
+                " Result: {}, {}".format(res.status_code, res.text))
+
+    def delServerCert(self, name):
+        url = self.baseUrl + "/ssl/server_keys/" + name
+        res = self._delConfig(url)
+        if res.status_code != 204:
+            raise Exception("Failed to delete Server Certificate." +
+                " Result: {}, {}".format(res.status_code, res.text))
