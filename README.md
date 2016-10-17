@@ -2721,7 +2721,11 @@ bsd_unlicense_vtm | Mark a vTM as Deleted in the Services Director inventory.
 bsd_list_vtms | Get the list of vTMs and information from the Services Director.
 bsd_get_vtm_bandwidth | Get the assigned, current, and peak bandwidth for one or more vTMs
 bsd_set_vtm_bandwidth | Set the assigned bandwidth for a given vTM
+vtm_add_persistence | Configure a Session Persistence Class on a vTM.
+vtm_del_persistence | Delete a Session Persistence Class from a vTM.
 vtm_add_pool | Create a pool on a vTM.
+vtm_add_server_cert | Configure a SSL Server Certifcate on a vTM.
+vtm_del_server_cert | Delete a SSL Server Certifcate from a vTM.
 vtm_del_pool | Delete a pool on a vTM.
 vtm_add_tip | Create a Traffic IP Group on a vTM.
 vtm_del_tip | Delete a Traffic IP Group on a vTM.
@@ -2730,6 +2734,10 @@ vtm_del_vserver | Delete a Virtual Server on a vTM.
 vtm_drain_nodes | Mark nodes as draining in a vTM pool.
 vtm_get_pool_nodes | Get a list of nodes and their status from a pool (active,draining,disabled).
 vtm_maintenance_mode | Activate a maintenance TrafficScript rule to take a VServer out of service
+vtm_enable_ssl_offload | Enable SSL Offload for a Virtual Server.
+vtm_disable_ssl_offload | Disable SSL Offload for a Virtual Server.
+vtm_enable_ssl_encryption | Enable SSL Encryption for a Pool
+vtm_disable_ssl_encryption | Disable SSL Encryption for a Pool
 
 #### Sensors
 
