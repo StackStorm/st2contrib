@@ -38,9 +38,8 @@ class GetIPsAction(CloudflareBaseAction):
 
         url = "{}/client/v4/ips".format(self.API_HOST)
         payload = {}
-        headers = {"Content-Type": "application/json"}
 
-        data = self._get(url, headers, payload)
+        data = self._get(url, payload)
 
         if data['success'] is True:
             results['messages'] = data['messages']

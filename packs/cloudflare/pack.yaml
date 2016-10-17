@@ -2,6 +2,6 @@ name: cloudflare
 description: A pack to interact with the Cloudflare service.
 keywords:
     - cloudflare
-version: 0.3
+version: 0.3.1
 author: Jon Middleton
 email: jon.middleton@pulsant.com
