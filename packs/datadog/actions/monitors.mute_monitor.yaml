@@ -4,6 +4,10 @@ description: "Mute a monitor"
 enabled: true
 entry_point: run.py
 parameters:
+  monitor_id:
+    required: true
+    type: integer
+    description: "The id of the monitor to mute"
   scope:
     required: false
     type: string
