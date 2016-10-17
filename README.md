@@ -79,7 +79,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![consul icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/consul/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | [consul](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | consul |  | [jfryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#consul-pack)
 [![csv icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/csv/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | [csv](https://github.com/StackStorm/st2contrib/tree/master/packs/csv) | st2 content pack containing CSV integrations | csv, serialization, deserialization, text processing | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#csv-pack)
 [![cubesensors icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cubesensors/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | [cubesensors](https://github.com/StackStorm/st2contrib/tree/master/packs/cubesensors) | st2 content pack containing CubeSensors integrations | cubesensors, iot, smart home, sensors, probes, home automation | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#cubesensors-pack)
-[![datadog icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/datadog/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | [datadog](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | datadog | monitoring, alerting, saas | [Lisa Bekdache](mailto:lisa.bekdache@dailymotion.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#datadog-pack)
+[![datadog icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/datadog/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | [datadog](https://github.com/StackStorm/st2contrib/tree/master/packs/datadog) | datadog | monitoring, alerting, saas | [Lisa Bekdache](mailto:lisa.bekdache@dailymotion.com) | 0.0.2 | [click](https://github.com/StackStorm/st2contrib#datadog-pack)
 [![Digital Ocean icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/digitalocean/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | [Digital Ocean](https://github.com/StackStorm/st2contrib/tree/master/packs/Digital Ocean) | st2 content pack containing Digital Ocean integration. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#Digital Ocean-pack)
 [![dimensiondata icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/dimensiondata/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | [dimensiondata](https://github.com/StackStorm/st2contrib/tree/master/packs/dimensiondata) | st2 content pack containing Dimension Data Cloud integrations | cloud, load balancers, dimension data | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#dimensiondata-pack)
 [![docker icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/docker/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | [docker](https://github.com/StackStorm/st2contrib/tree/master/packs/docker) | st2 content pack containing docker integrations | docker, containers, virtualization, cgroups | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#docker-pack)
@@ -1201,7 +1201,6 @@ get_user | Get informations for one your from Datadog
 mute_all_monitors | Muting will prevent all monitors from notifying through email and posts to the event stream. State changes will only be visible by checking the alert page.
 mute_host | Mute a host
 mute_monitor | Mute a monitor
-mute_monitor | Unmute a monitor
 post_check_run | Post check run
 post_event | Post events to the stream
 post_ts_points | Post time-series data that can be graphed on Datadog's dashboards
@@ -1216,6 +1215,7 @@ share_screenboard | Share an existing screenboard with a public URL
 snapshot | Take graph snapshots
 unmute_all_monitors | Disables muting all monitors
 unmute_host | Unmute a host
+unmute_monitor | Unmute a monitor
 update_host_tags | Update all tags for a host on Datadog
 update_screenboard | Update a screenboard
 update_timeboard | Update a timeboard
