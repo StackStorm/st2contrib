@@ -1,0 +1,19 @@
+description: 'vTM - Enable SSL Encryption for a Pool'
+enabled: true
+entry_point: vtm_enable_ssl_encryption.py
+name: vtm_enable_ssl_encryption
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the Pool"
+    type: string
+    required: true
+  verify:
+    description: "Enable strict verification of the servers certificate"
+    required: false
+    type: boolean
+    default: false

@@ -477,5 +477,14 @@ class Vtm(Vadc):
 
         res = self._pushConfig(url, config)
         if res.status_code != 200:
-            raise Exception("Failed to enabled SSl Offload on {}.".format(name) +
+            raise Exception("Failed to configure SSl Offload on {}.".format(name) +
+                " Result: {}, {}".format(res.status_code, res.text))
+
+    def enableSSLEncryption(self, name, on=True, verify=False):
+        url = self.baseUrl + "/pools/" + name
+        config = {"properties": {"ssl": {"enable": on, "strict_verify": verify}}}
+
+        res = self._pushConfig(url, config)
+        if res.status_code != 200:
+            raise Exception("Failed to configure SSl Encryption on {}.".format(name) +
                 " Result: {}, {}".format(res.status_code, res.text))
