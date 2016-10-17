@@ -453,8 +453,8 @@ class Vtm(Vadc):
     def addServerCert(self, name, public, private):
         url = self.baseUrl + "/ssl/server_keys/" + name
 
-        public = public.replace("\\n","\n")
-        private = private.replace("\\n","\n")
+        public = public.replace("\\n", "\n")
+        private = private.replace("\\n", "\n")
 
         config = {"properties": {"basic": {"public": public, "private": private}}}
 
