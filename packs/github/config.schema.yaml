@@ -38,8 +38,8 @@ deployment_environment:
   required: true
   default: "production"
 
-# You need to manullay put this into your config, as it's not
-# compatiable with the config schema.
+# You need to manually put this into your config, as it's not
+# compatible with the config schema.
 
 #repository_sensor:
 #  event_type_whitelist:
