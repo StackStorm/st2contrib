@@ -4,9 +4,9 @@ pack: "orion"
 description: "List Verbs in the Solarwinds OrionSDK that can be Invoked."
 action_ref: "orion.list_sdk_verbs"
 formats:
-  - display: "orion sdk list {{platform}} verbs {{v_filter}}"
+  - display: "orion sdk list verbs [{{v_filter}}]"
     representation:
-      - "orion sdk list {{platform}} verbs {{v_filter}}"
+      - "orion sdk list verbs( {{v_filter}})?"
 ack:
   enabled: false
 result:

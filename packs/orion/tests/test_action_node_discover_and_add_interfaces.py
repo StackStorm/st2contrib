@@ -31,15 +31,13 @@ class NodeDiscoverAndAddInterfacesTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "router1",
-                          "orion")
+                          "router1")
 
     def test_run_node_not_found(self):
         action = self.setup_query_blank_results()
         self.assertRaises(ValueError,
                           action.run,
-                          "router1",
-                          "orion")
+                          "router1")
 
     def test_run_add_interfaces(self):
         expected = {
@@ -59,9 +57,9 @@ class NodeDiscoverAndAddInterfacesTestCase(OrionBaseActionTestCase):
             'invoke_AddInterfacesOnNode.yaml'))
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(side_effect=invoke_data)
 
-        result = action.run("router1", "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)

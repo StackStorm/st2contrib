@@ -23,7 +23,7 @@
         default: ~
       network_name:
         type: "string"
-        description: "Network to attach NIC to"
+        description: "Network to attach NIC to. Distributed Port Groups take precedence over Standard port Groups of the same name."
         required: true
       nictype:
         type: "string"

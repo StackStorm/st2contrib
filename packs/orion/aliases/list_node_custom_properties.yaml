@@ -4,9 +4,9 @@ pack: "orion"
 description: "List Custom Properties for a Solarwinds Node."
 action_ref: "orion.list_node_custom_properties"
 formats:
-  - display: "orion list {{platform}} node {{node}} custom properties <{{cpfilter}}>"
+  - display: "orion list node {{node}} custom properties"
     representation:
-      - "orion list {{platform}} node {{node}} custom properties( {{cfilter}})?"
+      - "orion list node {{node}} custom properties"
 ack:
   enabled: false
 result:

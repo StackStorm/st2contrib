@@ -1,0 +1,50 @@
+---
+name: "deployment_event"
+description: "Process an github deployment event and install a pack if the environment matches."
+enabled: true
+entry_point: "workflows/deployment_event.yaml"
+
+runner_type: "mistral-v2"
+
+parameters:
+  repo_fullname:
+    type: "string"
+    description: "The full repo path (e.g. [Org|User]/repo_name"
+    required: true
+  repo_name:
+    type: "string"
+    description: "The repo name."
+    required: true
+  deploy_ref:
+    type: "string"
+    description: "The branch to deploy (Note: tags are not supported!)"
+    default: "master"
+  deploy_env:
+    type: "string"
+    description: "The environment to target."
+    default: "production"
+  deploy_sha:
+    type: "string"
+    description: "The SHA of the commit to deploy."
+    required: true
+  deploy_desc:
+    type: "string"
+    description: "The description of the deployment."
+    required: true
+  deploy_id:
+    type: "integer"
+    description: "The deployment ID."
+    required: true
+  ssh_url:
+    type: "string"
+    description: "The location of the repo for using with SSH."
+    required: true
+  creator:
+    type: "string"
+    description: "Who created the deployment (will be used to update the deployment status."
+    required: true
+  deploy_payload:
+    type: "string"
+    description: "Additional payload information from GitHub"
+    default: "{}"
+    immutable: true

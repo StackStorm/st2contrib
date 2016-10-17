@@ -1,0 +1,11 @@
+---
+orion_label: "orion"
+orion_host: "orion-npm"
+orion_user: "stanley"
+orion_password: "foobar"
+
+unmanage_max: 60
+
+snmp_default: "publ1c"
+snmp_customer: "foobar"
+snmp_internal: "barbaz"

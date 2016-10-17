@@ -30,8 +30,7 @@ class ListSdkVerbsTestCase(OrionBaseActionTestCase):
     def test_run_connect_fail(self):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
-                          action.run,
-                          "orion")
+                          action.run)
 
     def test_run_listsdk_verbs(self):
         expected = {'Entities': []}
@@ -45,10 +44,10 @@ class ListSdkVerbsTestCase(OrionBaseActionTestCase):
         query_data = self.load_yaml("results_sdk_verbs.yaml")
 
         action = self.get_action_instance(self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(return_value=query_data)
 
-        result = action.run("orion")
+        result = action.run()
         self.assertEqual(result, expected)
 
     def test_run_listsdk_verbs_filtered(self):
@@ -63,8 +62,8 @@ class ListSdkVerbsTestCase(OrionBaseActionTestCase):
         query_data = self.load_yaml("results_sdk_verbs.yaml")
 
         action = self.get_action_instance(self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(return_value=query_data)
 
-        result = action.run("orion", "PollNow")
+        result = action.run("PollNow")
         self.assertEqual(result, expected)

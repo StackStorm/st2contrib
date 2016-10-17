@@ -9,9 +9,5 @@ runner_type: "python-script"
 parameters:
   node:
     type: "string"
-    description: "The node to query for state in the monitoring platform."
-    required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
+    description: "The node to query for state in Orion."
     required: true

@@ -1,21 +1,17 @@
 ---
 description: "Unmanage an Solarwinds Orion node's"
 enabled: true
-entry_point: 'unmanage_node.py'
-name: "unmanage_node"
+entry_point: 'node_unmanage.py'
+name: "node_unmanage"
 pack: "orion"
 runner_type: "python-script"
 
 parameters:
   node:
     type: "string"
-    description: "The node to unmanage on the monitoring platform."
+    description: "The node to unmanage in Orion."
     required: true
   minutes:
     type: "integer"
     description: "Number of minutes to unmanage a node for"
-    required: true
-  platform:
-    type: "string"
-    description: "The Orion Platform to act on."
     required: true

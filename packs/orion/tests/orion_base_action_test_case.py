@@ -24,8 +24,8 @@ class OrionBaseActionTestCase(BaseActionTestCase):
     def setUp(self):
         super(OrionBaseActionTestCase, self).setUp()
 
-        self._blank_config = self.load_yaml('blank.yaml')
-        self._full_config = self.load_yaml('full.yaml')
+        self._blank_config = self.load_yaml('configs/blank.yaml')
+        self._full_config = self.load_yaml('configs/full.yaml')
         self._query_npm_node = self.load_yaml('orion_npm_results.yaml')
         self._query_ncm_node = self.load_yaml('orion_ncm_results.yaml')
 
@@ -65,7 +65,7 @@ class OrionBaseActionTestCase(BaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
 
         return action
@@ -77,7 +77,7 @@ class OrionBaseActionTestCase(BaseActionTestCase):
 
         action = self.get_action_instance(config=self.full_config)
 
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value=None)
         action.update = MagicMock(return_value=None)

@@ -1,0 +1,17 @@
+---
+description: "List the nodes by status"
+enabled: true
+entry_point: 'list_nodes_by_status.py'
+name: "list_nodes_by_status"
+pack: "orion"
+runner_type: "python-script"
+
+parameters:
+  whitelist:
+    type: "array"
+    description: "Limit nodes to the following"
+    default: ~
+  fail_on_unknowns:
+    type: "boolean"
+    description: "Cause the action to fail if there is any unknown nodes."
+    default: false

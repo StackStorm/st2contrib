@@ -4,13 +4,12 @@ pack: "orion"
 description: "Query Solarwinds Orion for a nodes status (e.g. up/down)."
 action_ref: "orion.node_status"
 formats:
-  - display: "orion node status {{platform}} {{node}}"
+  - display: "orion node status {{node}}"
     representation:
-      - "orion node status {{platform}} {{node}}"
+      - "orion node status {{node}}"
 ack:
   enabled: false
   append_url: false
-  format: "Let me check {{execution.parameters.node}} on {{execution.parameters.platform}} Orion Platform for you..."
 result:
   extra:
     color: "{{execution.result.result.color|default('#439FE0')}}"

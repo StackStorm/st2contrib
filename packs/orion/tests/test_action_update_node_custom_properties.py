@@ -31,7 +31,6 @@ class UpdateNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1",
                           "City",
                           "Austin")
@@ -41,7 +40,6 @@ class UpdateNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
-                          "orion",
                           "City",
                           "Austin")
 
@@ -52,7 +50,6 @@ class UpdateNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
         action.read = MagicMock(return_value=read_data)
 
         self.assertTrue(action.run("router1",
-                                   "orion",
                                    "City",
                                    "Austin"))
 
@@ -65,6 +62,5 @@ class UpdateNodeCustomPropertiesTestCase(OrionBaseActionTestCase):
         self.assertRaises(ValueError,
                           action.run,
                           "router1",
-                          "orion",
                           "Cities",
                           "Austin")

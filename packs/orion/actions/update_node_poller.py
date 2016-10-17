@@ -17,23 +17,23 @@ from lib.actions import OrionBaseAction
 from lib.utils import send_user_error
 
 
-class NodePollNow(OrionBaseAction):
-    def run(self, node, platform):
+class UpdateNodePoller(OrionBaseAction):
+    def run(self, node, poller):
         """
-        Invoke a PollNow verb against a Orion Node.
+        Change the poller for an Orion Node.
 
         Args:
-            node: The caption in Orion of the node to poll.
-            platform: The orion platform to act on.
+        - node: The caption in Orion of the node to poll.
+        - poller: The poller to change the node too.
 
         Returns
-            True: As PollNow does not return any data.
+        - True: As PollNow does not return any data.
 
         Raises:
-            IndexError: When a node is not found.
+        - ValueError: When a node is not found.
         """
 
-        self.connect(platform)
+        self.connect()
 
         orion_node = self.get_node(node)
 
@@ -42,9 +42,11 @@ class NodePollNow(OrionBaseAction):
             send_user_error(error_msg)
             raise ValueError(error_msg)
 
-        orion_data = self.invoke("Orion.Nodes",
-                                 "PollNow",
-                                 orion_node.npm_id)
+        engine_id = self.get_engine_id(poller)
+
+        kargs = {"EngineID": engine_id}
+
+        orion_data = self.update(orion_node.uri, **kargs)
 
         # This Invoke always returns None, so check and return True
         if orion_data is None:

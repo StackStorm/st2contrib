@@ -8,12 +8,21 @@ This pack must be used on the same private network as the Hue bridge.
 ## Configuration
 
 * `station_ip` IP address or FQDN of Philips Hue Bridge
+* `client_identifier` API Key from the Philips Hue Bridge
 
 ## First Run
 
+### First Generation Hue Bridge
+
 The first run of any action will block until it is authorized. After
 installation, run the `hue.list_bulbs` and then press the button
-on your Hue device to authorize StackStorm.
+on your Hue device to authorize StackStorm.  Alteratively, you can also
+generate the key manually using the instructions for 2nd Generation.
+
+### Second Generation Hue Bridge
+
+Follow instructions at http://www.developers.meethue.com/documentation/getting-started 
+to generate an API key to place in config.yaml
 
 ## Actions
 

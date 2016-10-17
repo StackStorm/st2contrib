@@ -17,6 +17,7 @@
         - DataStore
         - Virtual Machines
         - Networks
+        - Distrubuted Portgroup
         - Hosts
     parents:
         type: boolean

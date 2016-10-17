@@ -1,0 +1,68 @@
+---
+version: '2.0'
+
+github.deployment_event:
+  description: "A workflow to process an github deployment event and install a pack if the environment matches."
+
+  input:
+    - repo_fullname
+    - repo_name
+    - deploy_ref
+    - deploy_env
+    - deploy_sha
+    - deploy_payload
+    - deploy_desc
+    - deploy_id
+    - ssh_url
+    - creator
+
+  tasks:
+    check_environment:
+      action: github.check_deployment_env
+
+      input:
+        deploy_env: <% $.deploy_env %>
+
+      on-success:
+        - install_pack
+
+      on-error:
+        - no_deloyment
+
+    install_pack:
+      action: packs.install
+
+      input:
+        packs: [  <% $.repo_name %> ]
+        repo_url: <% $.ssh_url %>
+        branch: <% $.deploy_ref %>
+        subtree: false
+
+      on-success:
+        - deployment_successful
+
+      on-error:
+        - deployment_error
+
+    deployment_successful:
+      action: github.create_deployment_status
+
+      input:
+        api_user: <% $.creator %>
+        repository: <% $.repo_fullname %>
+        deployment_id: <% $.deploy_id %>
+        state: "success"
+        description: "Completed deployment of <% $.repo_fullname %> on <% $.deploy_env %>."
+
+    deployment_error:
+      action: github.create_deployment_status
+
+      input:
+        api_user: <% $.creator %>
+        repository: <% $.repo_fullname %>
+        deployment_id: <% $.deploy_id %>
+        state: "failure"
+        description: "Failed deployment of <% $.repo_fullname %> on <% $.deploy_env %>."
+
+    no_deloyment:
+      action: core.noop

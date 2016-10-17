@@ -1,0 +1,29 @@
+---
+name: "deploy_pack_on_deployment_event"
+pack: "github"
+description: "Trigger an ST2 pack.install when receiving a deployment event from GitHub."
+enabled: false
+
+trigger:
+  type: "core.st2.webhook"
+  parameters:
+    url: "github_deployment_event"
+
+criteria:
+  trigger.body:
+    pattern: "deployment"
+    type: "exists"
+
+action:
+  ref: "github.deployment_event"
+  parameters:
+    repo_fullname:  "{{trigger.body.repository.full_name}}"
+    repo_name:      "{{trigger.body.repository.name}}"
+    deploy_ref:     "{{trigger.body.deployment.ref}}"
+    deploy_env:     "{{trigger.body.deployment.environment}}"
+    deploy_sha:     "{{trigger.body.deployment.sha}}"
+    deploy_payload: "{{trigger.body.deployment.payload}}"
+    deploy_desc:    "{{trigger.body.deployment.description}}"
+    deploy_id:      "{{trigger.body.deployment.id}}"
+    ssh_url:        "{{trigger.body.repository.ssh_url}}"
+    creator:        "{{trigger.body.deployment.creator.login}}"

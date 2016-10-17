@@ -32,21 +32,18 @@ class AddNodeToNCMTestCase(OrionBaseActionTestCase):
         action = self.setup_connect_fail()
         self.assertRaises(ValueError,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_node_not_in_npm(self):
         action = self.setup_query_blank_results()
         self.assertRaises(UserWarning,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_node_already_in_ncm(self):
         action = self.setup_node_exists()
         self.assertRaises(UserWarning,
                           action.run,
-                          "orion",
                           "router1")
 
     def test_run_add_node_to_ncm(self):
@@ -57,10 +54,9 @@ class AddNodeToNCMTestCase(OrionBaseActionTestCase):
         query_data.append(self.query_no_results)
 
         action = self.get_action_instance(config=self.full_config)
-        action.connect = MagicMock(return_value=True)
+        action.connect = MagicMock(return_value="orion")
         action.query = MagicMock(side_effect=query_data)
         action.invoke = MagicMock(return_value="abc-1234")
 
-        result = action.run("router1",
-                            "orion")
+        result = action.run("router1")
         self.assertEqual(result, expected)

@@ -17,12 +17,12 @@ from lib.actions import OrionBaseAction
 
 
 class OrionHealth(OrionBaseAction):
-    def run(self, platform):
+    def run(self):
         """
-        Show details on an Orion monitoring platform health.
+        Show details of Orion system health.
         """
 
-        self.connect(platform)
+        self.connect()
 
         # Does nothing yet...
 
