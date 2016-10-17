@@ -15,6 +15,6 @@
     action:
         ref: "chatops.post_message"
         parameters:
-            message: "Bandwidth Alert: {{trigger.instance}}, Bandwidth: {{trigger.bandwidth}}, current: {{trigger.current}}"
+            message: "Bandwidth Alert: {{trigger.instance}}, Tag: {{trigger.tag}}, Bandwidth: {{trigger.bandwidth}}, current: {{trigger.current}}"
             channel: "stackstorm"
 
