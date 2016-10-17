@@ -1,0 +1,22 @@
+description: 'vTM - Configure a Session Persistence Class'
+enabled: true
+entry_point: vtm_add_persistence.py
+name: vtm_add_persistence
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the persistence class"
+    type: string
+    required: true
+  method:
+    description: "The type of persistence to use"
+    required: true
+    type: string
+  cookie:
+    description: "The cookie name for use with the 'cookie' method"
+    type: string
+    required: false

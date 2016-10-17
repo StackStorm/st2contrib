@@ -459,7 +459,7 @@ class Vtm(Vadc):
         config = {"properties": {"basic": {"public": public, "private": private}}}
 
         res = self._pushConfig(url, config)
-        if res.status_code != 201:
+        if res.status_code != 201 and res.status_code != 200:
             raise Exception("Failed to add Server Certificate." +
                 " Result: {}, {}".format(res.status_code, res.text))
 
@@ -487,4 +487,30 @@ class Vtm(Vadc):
         res = self._pushConfig(url, config)
         if res.status_code != 200:
             raise Exception("Failed to configure SSl Encryption on {}.".format(name) +
+                " Result: {}, {}".format(res.status_code, res.text))
+
+    def addSessionPersistence(self, name, method, cookie=None):
+        types = ["ip", "universal", "named", "transparent", "cookie", "j2ee", "asp", "ssl"]
+        if method not in types:
+            raise Exception("Failed to add SP Class. Invalid method: {}".format(method) +
+                "Must be one of: {}".format(types))
+        if method == "cookie" and cookie is None:
+            raise Exception("Failed to add SP Class. You must provide a cookie name.")
+
+        if cookie is None:
+            cookie = ""
+
+        url = self.baseUrl + "/persistence/" + name
+        config = {"properties": {"basic": {"type": method, "cookie": cookie}}}
+
+        res = self._pushConfig(url, config)
+        if res.status_code != 201 and res.status_code != 200:
+            raise Exception("Failed to add Session Persistence Class" +
+                " Result: {}, {}".format(res.status_code, res.text))
+
+    def delSessionPersistence(self, name):
+        url = self.baseUrl + "/persistence/" + name
+        res = self._delConfig(url)
+        if res.status_code != 204:
+            raise Exception("Failed to delete Session Persistence Class." +
                 " Result: {}, {}".format(res.status_code, res.text))
