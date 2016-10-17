@@ -91,3 +91,35 @@ StackStorm webhook handler.
 * ``get_issue`` - Retrieve information about a particular issue. Note: You
   only need to specify authentication token in the config if you use this
   action with a private repository.
+
+## Rules
+
+### github.deployment_event_webhook
+
+To enable this rule, run the following on the CLI (with a valid ST2 auth token):
+
+```bash
+st2 rule enable github.deploy_pack_on_deployment_event
+```
+
+Then you should add a web hook in github sending deployment events to the following URL:
+
+`https://<st2-server>/api/v1/webhooks/github_deployment_event?st2-api-key=<ST2-API-KEY>`
+
+By default the enviroment is set to production, you can change this in
+your own config.yaml.
+
+You can then create a deployment via ChatOPS with the following
+command:
+
+```
+@hubot github deployment create me/my_st2_pack description Lets get the feature to production
+```
+
+#### Limitations
+
+- You need to have logged an OAuth key with StackStorm (via `github.store_oauth_token`).
+- It only works for the default `github_type`.
+- If using with GitHub.com you your ST2 server needs to be contactable via the internet!
+- Deployment Statuses will be logged as the creating user in GitHub.
+- You can't currently deploy tags, due to a limitation in `packs.download`.
