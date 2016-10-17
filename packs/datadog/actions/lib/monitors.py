@@ -42,6 +42,6 @@ class DatadogUnmuteAllMonitors(DatadogBaseAction):
         return api.Monitor.unmute_all()
 
 
-class DatadogUnuteMonitor(DatadogBaseAction):
+class DatadogUnmuteMonitor(DatadogBaseAction):
     def _run(self, **kwargs):
         return api.Monitor.unmute(kwargs.pop("monitor_id"), **kwargs)
