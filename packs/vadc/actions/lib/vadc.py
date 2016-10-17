@@ -419,9 +419,9 @@ class Vtm(Vadc):
         if res.status_code != 204:
             raise Exception("Failed to del pool. Result: {}, {}".format(res.status_code, res.text))
 
-    def addVserver(self, name, pool, tip):
+    def addVserver(self, name, pool, tip, port, protocol):
         url = self.baseUrl + "/virtual_servers/" + name
-        config = {"properties": {"basic": {"pool": pool, "port": 80, "protocol": "http",
+        config = {"properties": {"basic": {"pool": pool, "port": port, "protocol": protocol,
             "listen_on_any": False, "listen_on_traffic_ips": [tip], "enabled": True}}}
 
         res = self._pushConfig(url, config)
