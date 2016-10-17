@@ -37,7 +37,7 @@ class CloudflareBaseAction(Action):
         """
         print(message)
 
-    def _get(self, url, headers, payload):
+    def _get(self, url, payload, headers=None):
         """
         Issue a get request via requests.session()
 
@@ -52,6 +52,11 @@ class CloudflareBaseAction(Action):
         Raises:
             ValueError: On HTTP error or Invalid JSON.
         """
+        if headers is None:
+            headers = {}
+
+        headers['Content-Type'] = "application/json"
+        headers['User-Agent'] = "ST2CloudflarePack/0.3.1"
 
         try:
             r = self.session.get(url,
