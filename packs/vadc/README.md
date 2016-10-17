@@ -46,16 +46,24 @@ Dynamic user values can be set with (for example):
     st2 key set --scope=user brcd_sd_pass "password" --encrypt
 ```
 
-## BSD Status Sensor
+## Sensors
+### Brocade SD Status Sensor
 
 This pack includes a sensor to monitor errors reported by the Services
 Director.
 
 The Sensor monitors your vTM status through the monitor/instance API.
 Any errors which appear in the status of a vTM trigger alerts which can
-then be processed by rule.  
+then be processed by a rule.  
 
-###Rules
+This sensor triggers vadc.bsd\_failure\_event
+
+Enable the sensor with:
+```
+st2 sensor enable vadc.BrcdSdSensor
+```
+
+####Rules
 
 *bsd\_chatops*  
 If you have ChatOps enabled, then take a look at the rule and modify it
@@ -65,11 +73,6 @@ to suit your needs. Then enable the rule with:
 st2 rule enable vadc.bsd_chatops
 ```
 
-Alternatively you can edit rules/bsd\_chatops.yaml and set:
-```
-  enabled: true
-```
-
 *vtm_fail_maintenance*  
 This rule can be used to enable a "maintenance" TS automatically when
 all nodes have failed in a pool. It gets triggered by the BSD Sensor
@@ -77,6 +80,69 @@ when the error\_level is error, and the failed\_nodes is not empty.
 
 It only enabled the maintenance rule on vservers which use the failed
 pool as their default.
+
+Enable rule with:
+```
+st2 rule enable vadc.vtm_fail_maintenance
+```
+
+### Brocade Bandwidth Sensor
+
+This sensor checks the current throughput of the vTMs registered in your
+Services Director, and can alert you when they get close to their assigned
+bandwidth or automatically assign bandwidth according to utilization.
+
+Alerts will be generated when a VTM comes within 10 or `brcd\_bw\_warn` Mbps
+of their currently assigned bandwidth.
+
+If you set brcd\_bw\_manage to "all", or a CSV list of instances or tags,
+then the sensor tracks those instances. The sensor tracks the last 10 or
+`brcd\_bw\_track` throughput measurements, rounded up to the nearest 10 or
+`brcd\_bw\_roundup` Mbps, and adds a headroom of 10 or `brcd\_bw\_headroom`
+Mbps above this value.  
+
+When vTMs get close to the assignment, an update event will be triggered,
+which can be consumed by the `bsd\_bandwidth\_modify` rule.  
+
+When in use, a minimum assigned bandwidth of (brcd\_bw\_minimum) Mbps will
+be applied.  
+
+To change the defaults, add the following static/dynamic keys to the pack
+configuration file:
+```
+  brcd_bw_minimum: "{{system.brcd_bw_minimum}}"
+  brcd_bw_headroom: "{{system.brcd_bw_headroom}}"
+  brcd_bw_roundup: "{{system.brcd_bw_roundup}}"
+  brcd_bw_track: "{{system.brcd_bw_track}}"
+  brcd_bw_warn: "{{system.brcd_bw_vtm_warn}}"
+  brcd_bw_manage: "{{system.brcd_bw_manage}}"
+```
+
+This sensor triggers vadc.bsd\_bandwidth\_event
+
+Enable the sensor with:
+```
+st2 sensor enable vadc.BrcdBwSensor
+```
+####Rules
+
+*bsd\_bandwidth_modify*
+This rule takes the bsd\_bandwidth\_event trigger and updates the bandwidth
+of the given vTM instance using the action: vadc.bsd\_set\_vtm\_bandwidth
+
+*bsd\_bandwidth\_notify*
+Posts the parameters from the vadc.bsd\_set\_vtm\_bandwidth event to a
+chatops channel. Notifies of Bandwidth Change Trigger
+
+*bsd\_bandwidth\_Alert*
+Posts the parameters from the vadc.bsd\_set\_vtm\_bandwidth event to a
+chatops channel. Notifies of Bandwidth Alert
+
+Enable rules with:
+```
+st2 rule enable vadc.<rulename>
+```
+
 
 ## Actions Included
 
@@ -115,6 +181,13 @@ _BSD Actions_
     Retrieve the licensed vTMs from the Service Director. This returns
     a limited amount of information by default, but can provide more
     with full=true.
+
+  * bsd\_get\_vtm\_bandwidth
+    Retrieve the bandwidth assignments and usage from one or all
+    of your vTMs. 
+
+  * bsd\_set\_vtm\_bandwidth
+    Set the bandwidth (bw) assigned to the given instance (vtm)
  
 _vTM Actions_
 

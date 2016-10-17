@@ -1,0 +1,20 @@
+---
+    name: "bsd_bandwidth_modify"
+    pack: "vadc"
+    description: "Realtime Bandwidth Updater for BSD"
+    enabled: false
+
+    trigger:
+        type: "vadc.bsd_bandwidth_event"
+
+    criteria:
+        trigger.action:
+            type: "equals"
+            pattern: "update"
+
+    action:
+        ref: "vadc.bsd_set_vtm_bandwidth"
+        parameters:
+            vtm: "{{trigger.instance}}"
+            bw: "{{trigger.bandwidth}}"
+

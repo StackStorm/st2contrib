@@ -258,13 +258,21 @@ class Bsd(Vadc):
         bandwidth = {}
         for instance in instances:
             config = self.getVtm(instance["name"])
-            current = (instance["throughput_out"] / 1000000.0) * 8
+            tag = config["tag"]
+            # Bytes/Second
+            if "throughput_out" in instance:
+                current = (instance["throughput_out"] / 1000000.0) * 8
+            else:
+                current = 0.0
+            # Mbps
             assigned = config["bandwidth"]
+            # Bytes/Second
             if "metrics_peak_throughput" in config:
                 peak = (config["metrics_peak_throughput"] / 1000000.0) * 8
             else:
                 peak = 0.0
-            bandwidth[instance["name"]] = {"current": current, "assigned": assigned, "peak": peak}
+            bandwidth[instance["name"]] = {"tag": tag, "current": current,
+                "assigned": assigned, "peak": peak}
 
         if stringify:
             return json.dumps(bandwidth, encoding="utf-8")
