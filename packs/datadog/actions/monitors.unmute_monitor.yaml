@@ -1,9 +1,13 @@
-name: mute_monitor
+name: unmute_monitor
 runner_type: run-python
 description: "Unmute a monitor"
 enabled: true
 entry_point: run.py
 parameters:
+  monitor_id:
+    required: true
+    type: integer
+    description: "The id of the monitor to unmute"
   scope:
     required: false
     type: string
@@ -13,7 +17,7 @@ parameters:
     type: boolean
     description: "Clear muting across all scopes"
   cls:
-    default: DatadogMuteMonitor
+    default: DatadogUnmuteMonitor
     immutable: true
     type: string
   module_path:
