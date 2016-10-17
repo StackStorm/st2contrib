@@ -469,3 +469,13 @@ class Vtm(Vadc):
         if res.status_code != 204:
             raise Exception("Failed to delete Server Certificate." +
                 " Result: {}, {}".format(res.status_code, res.text))
+
+    def enableSSLOffload(self, name, cert="", on=True, xproto=False, headers=False):
+        url = self.baseUrl + "/virtual_servers/" + name
+        config = {"properties": {"basic": {"ssl_decrypt": on, "add_x_forwarded_proto": xproto},
+            "ssl": {"add_http_headers": headers, "server_cert_default": cert}}}
+
+        res = self._pushConfig(url, config)
+        if res.status_code != 200:
+            raise Exception("Failed to enabled SSl Offload on {}.".format(name) +
+                " Result: {}, {}".format(res.status_code, res.text))
