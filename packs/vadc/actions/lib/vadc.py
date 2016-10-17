@@ -399,15 +399,15 @@ class Vtm(Vadc):
         if res.status_code != 201 and res.status_code != 200:
             raise Exception("Failed to add pool. Result: {}, {}".format(res.status_code, res.text))
 
-    def addPool(self, name, nodes, algorithm):
+    def addPool(self, name, nodes, algorithm, persistence, monitors):
         url = self.baseUrl + "/pools/" + name
 
         nodeTable = []
         for node in nodes:
             nodeTable.append({"node": node, "state": "active"})
 
-        config = {"properties": {"basic": {"nodes_table": nodeTable, "monitors": ["Ping"]},
-            "load_balancing": {"algorithm": algorithm}}}
+        config = {"properties": {"basic": {"nodes_table": nodeTable, "monitors": monitors,
+            "persistence_class": persistence}, "load_balancing": {"algorithm": algorithm}}}
 
         res = self._pushConfig(url, config)
         if res.status_code != 201 and res.status_code != 200:
