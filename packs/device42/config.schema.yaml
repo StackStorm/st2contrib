@@ -1,0 +1,18 @@
+---
+  d42_server:
+    description: "Device42 instance address (with protocol and without trailing slash)."
+    type: "string"
+    required: true
+  d42_username:
+    description: "Device42 username."
+    type: "string"
+    required: true
+  d42_password:
+    description: "Device42 password."
+    type: "string"
+    secret: true
+    required: true
+  verify_certificate:
+    description: "Set to false in case of self-signed SSL certificate."
+    type: "boolean"
+    default: false
