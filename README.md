@@ -2735,7 +2735,7 @@ Name | Description
 ---- | -----------
 brcdSdSensor | Monitor the Services Director for system failures
 
-#### Rules
+#### Sensors
 
 Name | Description
 ---- | -----------
