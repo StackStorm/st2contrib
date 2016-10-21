@@ -1,0 +1,6 @@
+---
+  template:
+    description: "Path to PPTX template file"
+    type: "string"
+    secret: false
+    required: false
