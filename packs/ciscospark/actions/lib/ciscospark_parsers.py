@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-
 __all__ = [
-    'ResultSets'
+    'CiscoSparkResultSets'
 ]
 
 
@@ -19,7 +17,7 @@ FIELD_LIST_MAP = {
 }
 
 
-class ResultSets(object):
+class CiscoSparkResultSets(object):
 
     def selector(self, output):
         try:
