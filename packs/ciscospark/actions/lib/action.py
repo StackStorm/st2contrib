@@ -1,5 +1,5 @@
 try:
-    from ciscosparkapi import CiscoSparkAPI
+    from ciscosparkapi import CiscoSparkAPI, DEFAULT_BASE_URL
 except ImportError:
     message = ('Missing "ciscosparkapi", please install it using pip:\n'
                'pip install ciscosparkapi')
@@ -17,7 +17,7 @@ class CiscoSparkAction(Action):
     def __init__(self, config):
         super(CiscoSparkAction, self).__init__(config)
         self._access_token = self.config['access_token']
-        self._base_url = self.config.get('base_url', None)
+        self._base_url = self.config.get('base_url', DEFAULT_BASE_URL)
         self.connect()
         self._parser = CiscoSparkResultSets()
 
