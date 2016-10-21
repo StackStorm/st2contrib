@@ -1,0 +1,39 @@
+---
+name: create_webhook
+runner_type: run-python
+description: Create a new webhook
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'webhooks'
+    immutable: true
+  method_name:
+    type: string
+    default: 'create'
+    immutable: true
+  name:
+    type: string
+    required: true
+    description: "Webhook name"
+  targetUrl:
+    type: string
+    required: true
+    description: "URL to call"
+  resource:
+    type: string
+    required: true
+    description: "The resource type for the webhook"
+  event:
+    type: string
+    required: true
+    description: "The event type for the webhook (see doc)"
+  filter:
+    type: string
+    required: false
+    description: "Filter event matching"
+  secret:
+    type: string
+    required: false
+    description: "Secret used to generate paylaod signature"

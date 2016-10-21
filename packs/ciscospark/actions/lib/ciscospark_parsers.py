@@ -6,11 +6,13 @@ __all__ = [
 
 
 FIELD_LIST_MAP = {
-    'ciscosparkapi.api.rooms.Room': ['id', 'title', 'type', 'isLocked',
+    'Room': ['id', 'title', 'type', 'isLocked',
                                      'lastActivity', 'created', 'creatorId',
                                      'teamId'],
-    'ciscosparkapi.api.teams.Team': ['id', 'name', 'created']
-
+    'Team': ['id', 'name', 'created'],
+    'Webhook': ['id', 'name', 'targetUrl', 'resource',
+                                           'event', 'filter', 'secret', 'created',
+                                           'data']
 }
 
 
@@ -18,7 +20,7 @@ class ResultSets(object):
 
     def selector(self, output):
         try:
-            field_list = FIELD_LIST_MAP.get(output.__class__)
+            field_list = FIELD_LIST_MAP.get(output.__name__)
             return self.parse(output, field_list)
         except KeyError:
             return output
