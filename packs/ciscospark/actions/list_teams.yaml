@@ -1,0 +1,15 @@
+---
+name: list_teams
+runner_type: run-python
+description: List teams available
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'teams'
+    immutable: true
+  method_name:
+    type: string
+    default: 'list'
+    immutable: true
