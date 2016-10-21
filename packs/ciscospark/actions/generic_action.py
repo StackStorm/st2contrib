@@ -12,4 +12,7 @@ class GenericAction(CiscoSparkAction):
         result = getattr(a, method_name)(**kwargs)
         if method_name == 'list':
             result = list(result)  # iterate generator
-        return self._parse_result(result)
+        if isinstance(result, list):
+            return [x._json for x in result]
+        else:
+            return result._json
