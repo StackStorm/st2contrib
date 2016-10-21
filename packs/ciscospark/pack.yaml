@@ -1,0 +1,11 @@
+---
+name : ciscospark
+description : cisco spark communication pack
+keywords:
+  - cisco
+  - spark
+  - video
+  - chat
+version : 0.1.0
+author : Anthony Shaw
+email : anthonyshaw@apache.org
