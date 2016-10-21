@@ -60,8 +60,11 @@ class brcdSdSensor(PollingSensor):
 
     def _get_last_errors(self):
         if not self._last_errors and hasattr(self._sensor_service, 'get_value'):
-            self._last_errors = json.loads(self._sensor_service.get_value(name='last_errors'),
-                encoding="utf-8")
+            last_errors = self._sensor_service.get_value(name='last_errors')
+            if last_errors is not None:
+                self._last_errors = json.loads(last_errors, encoding="utf-8")
+            else:
+                self._last_errors = {}
         return self._last_errors
 
     def _set_last_errors(self, last_errors):
