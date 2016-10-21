@@ -1,0 +1,22 @@
+---
+name: update_team
+runner_type: run-python
+description: Update a teams's parameters
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'teams'
+    immutable: true
+  method_name:
+    type: string
+    default: 'update'
+    immutable: true
+  teamId:
+    type: string
+    required: true
+  name:
+    type: string
+    required: true
+    description: "New team name"
