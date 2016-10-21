@@ -149,6 +149,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![twitter icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/twitter/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | [twitter](https://github.com/StackStorm/st2contrib/tree/master/packs/twitter) | st2 content pack containing twitter integrations | twitter, social media, social networks | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#twitter-pack)
 [![typeform icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/typeform/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | [typeform](https://github.com/StackStorm/st2contrib/tree/master/packs/typeform) | Typeform service integration pack |  | [st2-dev](mailto:info@stackstorm.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#typeform-pack)
 [![urbandict icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/urbandict/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | [urbandict](https://github.com/StackStorm/st2contrib/tree/master/packs/urbandict) | st2 content pack containing urban dictionary integrations | urban dict, urban dictionary, puns | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#urbandict-pack)
+[![vadc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vadc/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vadc) | [vadc](https://github.com/StackStorm/st2contrib/tree/master/packs/vadc) | Brocade vADC actions | brocade, vadc, vtm, bsd, loadbalancer | [mbodding](mailto:mbodding@brocade.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#vadc-pack)
 [![vault icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vault/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | [vault](https://github.com/StackStorm/st2contrib/tree/master/packs/vault) | vault |  | [steve.neuharth](mailto:steve.neuharth@target.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vault-pack)
 [![vdx icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vdx/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | [vdx](https://github.com/StackStorm/st2contrib/tree/master/packs/vdx) | Brocade VDX integration pack. |  | [st2-dev](mailto:info@stackstorm.com) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#vdx-pack)
 [![victorops icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/victorops/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | [victorops](https://github.com/StackStorm/st2contrib/tree/master/packs/victorops) | Packs which allows integration with Victorops events. | victorps integration, open, ack and resolve incidents | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#victorops-pack)
@@ -2746,6 +2747,50 @@ get_results | Get Typeform registration results
 Name | Description
 ---- | -----------
 get_definitions | Retrieve definitions from urbandict for the provided term.
+
+### vadc pack
+
+![vadc icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/vadc/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+brcdBwSensor | Brocade SD Bandwidth Sensor
+brcdSdSensor | Brocade Service Director Sensor
+
+#### Actions
+
+Name | Description
+---- | -----------
+bsd_get_errors | Service Director - Get Service Status Errors
+bsd_get_status | Service Director - Get Service Status
+bsd_get_vtm_bandwidth | Service Director - Get vTM Bandwidth Usage
+bsd_license_vtm | Service Director - License a vTM
+bsd_list_vtms | Service Director - Retrieve list of vTMs
+bsd_set_vtm_bandwidth | Service Director - Set vTM Bandwidth Allocation
+bsd_unlicense_vtm | Service Director - UnLicense a vTM
+deploy_chain | An Action Chain to deploy a vTM service
+deploy_workflow | A Mistral Workflow to deploy a vTM service
+remediate_pool_failure | vTM - Check service and enable maintenance when all nodes are down
+undeploy_chain | An Action Chain to remove a vTM service
+vtm_add_persistence | vTM - Configure a Session Persistence Class
+vtm_add_pool | vTM - Configure a Pool
+vtm_add_server_cert | vTM - Configure a SSL Server Certifcate
+vtm_add_tip | vTM - Configure a Traffic IP Group
+vtm_add_vserver | vTM - Configure a Virtual Server
+vtm_del_persistence | vTM - Delete a Session Persistence Class
+vtm_del_pool | vTM - Delete a Pool
+vtm_del_server_cert | vTM - Delete a SSL Server Certifcate
+vtm_del_tip | vTM - Delete a Traffic IP Group
+vtm_del_vserver | vTM - Delete a Virtual Server
+vtm_disable_ssl_encryption | vTM - Disable SSL Encryption for a Pool
+vtm_disable_ssl_offload | vTM - Disable SSL Offload for a Virtual Server
+vtm_drain_nodes | vTM - Drain nodes from a Pool
+vtm_enable_ssl_encryption | vTM - Enable SSL Encryption for a Pool
+vtm_enable_ssl_offload | vTM - Enable SSL Offload for a Virtual Server
+vtm_get_pool_nodes | vTM - Get Nodes in a Pool
+vtm_maintenance_mode | vTM - Enable or Disable Maintenance on a service
 
 ### vault pack
 
