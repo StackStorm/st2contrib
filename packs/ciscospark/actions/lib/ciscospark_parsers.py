@@ -7,12 +7,15 @@ __all__ = [
 
 FIELD_LIST_MAP = {
     'Room': ['id', 'title', 'type', 'isLocked',
-                                     'lastActivity', 'created', 'creatorId',
-                                     'teamId'],
+             'lastActivity', 'created', 'creatorId',
+             'teamId'],
     'Team': ['id', 'name', 'created'],
     'Webhook': ['id', 'name', 'targetUrl', 'resource',
-                                           'event', 'filter', 'secret', 'created',
-                                           'data']
+                'event', 'filter', 'secret', 'created',
+                'data'],
+    'Message': ['id', 'roomId', 'roomType', 'toPersonId', 'toPersonEmail',
+                'text', 'markdown', 'files', 'personId', 'personEmail',
+                'created', 'mentionedPeople']
 }
 
 
