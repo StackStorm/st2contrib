@@ -1,0 +1,11 @@
+---
+  api_user:
+    description: "API username"
+    type: "string"
+    secret: false
+    required: true
+  api_password:
+    description: "API secret"
+    type: "string"
+    secret: true
+    required: true

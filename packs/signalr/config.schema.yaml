@@ -1,0 +1,11 @@
+---
+  hub_url:
+    description: "URL for the signalr hub"
+    type: "string"
+    secret: false
+    required: true
+  hub_name:
+    description: "Name of the hub (namespace)"
+    type: "string"
+    secret: false
+    required: true
