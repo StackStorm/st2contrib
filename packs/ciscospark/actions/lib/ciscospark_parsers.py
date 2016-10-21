@@ -6,7 +6,7 @@ __all__ = [
 
 
 FIELD_LIST_MAP = {
-    'room': ['id', 'title', 'type', 'isLocked', 'lastActivity', 'created', 'creatorId', 'teamId']
+    'ciscosparkapi.api.rooms.Room': ['id', 'title', 'type', 'isLocked', 'lastActivity', 'created', 'creatorId', 'teamId']
 }
 
 
