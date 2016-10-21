@@ -6,7 +6,7 @@ __all__ = [
 
 
 FIELD_LIST_MAP = {
-    'room': ['id', 'name']
+    'room': ['id', 'title', 'type', 'isLocked', 'lastActivity', 'created', 'creatorId', 'teamId']
 }
 
 
