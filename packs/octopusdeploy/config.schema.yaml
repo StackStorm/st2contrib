@@ -1,0 +1,16 @@
+---
+  api_key:
+    description: "API key"
+    type: "string"
+    secret: true
+    required: true
+  host:
+    description: "Octopus Deploy API host name"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "API region to use"
+    type: "string"
+    required: true
+    default: 443

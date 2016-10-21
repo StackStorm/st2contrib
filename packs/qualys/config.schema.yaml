@@ -1,0 +1,16 @@
+---
+  hostname:
+    description: "Hostname of the Qualys API"
+    type: "string"
+    secret: false
+    required: true
+  username:
+    description: "Username for the qualys API"
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "Password"
+    type: "string"
+    secret: true
+    required: true

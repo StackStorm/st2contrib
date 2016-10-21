@@ -1,0 +1,11 @@
+---
+  tesla_username:
+    description: "Username for your Tesla account"
+    type: "string"
+    secret: false
+    required: true
+  tesla_password:
+    description: "Password for your Tesla account"
+    type: "string"
+    secret: true
+    required: true

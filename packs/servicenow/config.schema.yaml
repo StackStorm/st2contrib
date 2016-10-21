@@ -1,0 +1,15 @@
+---
+  instance_name:
+    description: "Instance name, provided by ServiceNow"
+    type: "string"
+    secret: false
+    required: true
+  username:
+    description: "Username for the servicenow account"
+    type: "string"
+    required: true
+  password:
+    description: "Password for the servicenow account"
+    type: "string"
+    secret: true
+    required: true
