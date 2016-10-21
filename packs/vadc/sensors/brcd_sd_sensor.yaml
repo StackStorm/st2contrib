@@ -3,6 +3,7 @@ class_name: "brcdSdSensor"
 entry_point: "brcd_sd_sensor.py"
 description: "Brocade Service Director Sensor"
 poll_interval: 30
+enabled: false
 trigger_types:
   -
     name: "bsd_failure_event"
