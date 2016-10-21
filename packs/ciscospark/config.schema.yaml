@@ -1,0 +1,12 @@
+---
+  access_token:
+    description: "API access token"
+    type: "string"
+    secret: true
+    required: true
+  base_url:
+    description: "The API base URL, override if using private or beta APIs"
+    type: "string"
+    secret: false
+    required: false
+    default: "https://api.ciscospark.com/v1/"
