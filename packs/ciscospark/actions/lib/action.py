@@ -17,7 +17,7 @@ class CiscoSparkAction(Action):
     def __init__(self, config):
         super(CiscoSparkAction, self).__init__(config)
         self._access_token = self.config['access_token']
-        self._base_url = self.config['base_url']
+        self._base_url = self.config.get('base_url', None)
         self.connect()
         self._parser = CiscoSparkResultSets()
 
