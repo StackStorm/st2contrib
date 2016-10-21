@@ -1,0 +1,14 @@
+description: 'vTM - Delete a Pool'
+enabled: true
+entry_point: vtm_del_pool.py
+name: vtm_del_pool
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  name:
+    description: "The name of the pool to delete"
+    type: string
+    required: true

@@ -1,0 +1,14 @@
+description: 'vTM - Get Nodes in a Pool'
+enabled: true
+entry_point: vtm_get_pool_nodes.py
+name: vtm_get_pool_nodes
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  pool:
+    description: "The name of the pool"
+    type: string
+    required: true

@@ -1,0 +1,16 @@
+---
+  description: "An Action Chain to remove a vTM service"
+  entry_point: "chains/undeploy_chain.yaml"
+  runner_type: action-chain
+  name: undeploy_chain
+  enabled: true
+  parameters:
+    vtm:
+      type: string
+      required: true
+      description: "The vTM to deploy service"
+    service:
+      type: string
+      required: true
+      description: "The Service/Application ID"
+      

@@ -1,0 +1,13 @@
+description: 'Service Director - Get vTM Bandwidth Usage'
+enabled: true
+entry_point: bsd_get_vtm_bandwidth.py
+name: bsd_get_vtm_bandwidth
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "Show bandwidth usage of a single vTM"
+    type: string
+  stringify:
+    description: "Output a String rather than JSON"
+    type: boolean
+    default: false

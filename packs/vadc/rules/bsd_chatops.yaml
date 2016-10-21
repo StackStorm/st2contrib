@@ -1,0 +1,15 @@
+---
+    name: "bsd_chatops"
+    pack: "vadc"
+    description: "Send alert to ChatOps on BSD Monitor events"
+    enabled: false
+
+    trigger:
+        type: "vadc.bsd_failure_event"
+
+    action:                                # required
+        ref: "chatops.post_message"
+        parameters:                        # optional
+            message: "status: {{trigger.status}}, level: {{trigger.error_level}}, errors: {{trigger.errors}}"
+            channel: "stackstorm"
+

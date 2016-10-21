@@ -1,0 +1,20 @@
+---
+    name: "bsd_bandwidth_notify"
+    pack: "vadc"
+    description: "Realtime Bandwidth Alerts for BSD"
+    enabled: false
+
+    trigger:
+        type: "vadc.bsd_bandwidth_event"
+
+    criteria:
+        trigger.action:
+            type: "equals"
+            pattern: "update"
+
+    action:
+        ref: "chatops.post_message"
+        parameters:
+            message: "Bandwidth Updated: {{trigger.instance}}, Tag: {{trigger.tag}}, Bandwidth: {{trigger.bandwidth}}, current: {{trigger.current}}, average: {{trigger.average}}"
+            channel: "stackstorm"
+

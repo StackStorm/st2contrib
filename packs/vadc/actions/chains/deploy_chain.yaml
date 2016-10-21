@@ -1,0 +1,52 @@
+---
+  default: "addpool"
+  chain:
+    -
+      name: "addpool"
+      ref: "vadc.vtm_add_pool"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_pool"
+        nodes: "{{nodes}}"
+      on-success: "addtip"
+      on-failure: "bitch"
+    -
+      name: "addtip"
+      ref: "vadc.vtm_add_tip"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_tip"
+        vtms: "{{vtms}}"
+        addresses: "{{addresses}}"
+      on-success: "addvserver"
+      on-failure: "delpool"
+    -
+      name: "addvserver"
+      ref: "vadc.vtm_add_vserver"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_vs"
+        tip: "{{service}}_tip"
+        pool: "{{service}}_pool"
+      on-failure: "deltip"
+    -
+      name: "deltip"
+      ref: "vadc.vtm_del_tip"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_tip"
+      on-failure: "delpool"
+      on-success: "delpool"
+    -
+      name: "delpool"
+      ref: "vadc.vtm_del_pool"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_pool"
+      on-failure: "bitch"
+      on-success: "bitch"
+    -
+      name: "bitch"
+      ref: "core.local"
+      parameters:
+        cmd: "echo It has all gone wrong Stanley!!"

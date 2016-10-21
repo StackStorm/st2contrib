@@ -1,0 +1,22 @@
+description: 'vTM - Configure a Traffic IP Group'
+enabled: true
+entry_point: vtm_add_tip.py
+name: vtm_add_tip
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  name:
+    description: "The name of the Traffic IP Group"
+    type: string
+    required: true
+  vtms:
+    description: "The vTMs in the TIP Group"
+    required: true
+    type: array
+  addresses:
+    description: "The IP Addresses in the TIP Group"
+    required: true
+    type: array

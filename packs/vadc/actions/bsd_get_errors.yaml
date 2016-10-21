@@ -1,0 +1,10 @@
+description: 'Service Director - Get Service Status Errors'
+enabled: true
+entry_point: bsd_get_errors.py
+name: bsd_get_errors
+runner_type: "python-script"
+parameters:
+  stringify:
+    description: "Output a String rather than JSON"
+    type: boolean
+    default: false

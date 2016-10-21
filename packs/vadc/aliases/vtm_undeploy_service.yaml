@@ -1,0 +1,6 @@
+---
+name: "vtm_undeploy_service"
+action_ref: "vadc.undeploy_chain"
+description: "Remove a Web Service"
+formats:
+  - "vtm undeploy {{service}} on {{vtm}}"

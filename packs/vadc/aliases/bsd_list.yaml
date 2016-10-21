@@ -1,0 +1,13 @@
+---
+name: "bsd_list"
+action_ref: "vadc.bsd_list_vtms"
+description: "List deployed vTMs"
+formats:
+  - display: "bsd list [all] [full]"
+    representation:
+      - "bsd list all full {{deleted=true}} {{full=true}} {{stringify=true}}"
+      - "bsd list all {{deleted=true}} {{stringify=true}}"
+      - "bsd list full {{full=true}} {{stringify=true}}"
+      - "bsd list {{stringify=true}}"
+result:
+  format: "{{execution.result.result}}"

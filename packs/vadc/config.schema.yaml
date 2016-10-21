@@ -1,0 +1,18 @@
+---
+brcd_sd_host:
+  description: "Service Director API EndPoint (eg https://sd1:8100/)"
+  type: string
+  default: "{{user.brcd_sd_host}}"
+  required: true
+brcd_sd_user:
+  description: "Service Director REST User"
+  default: "{{user.brcd_sd_user}}"
+  type: string
+  required: true
+brcd_sd_pass:
+  description: "Service Director REST Password"
+  type: string
+  default: "{{user.brcd_sd_pass}}"
+  secret: true
+  required: true
+

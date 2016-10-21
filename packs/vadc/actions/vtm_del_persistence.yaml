@@ -1,0 +1,14 @@
+description: 'vTM - Delete a Session Persistence Class'
+enabled: true
+entry_point: vtm_del_persistence.py
+name: vtm_del_persistence
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the persistence class"
+    type: string
+    required: true

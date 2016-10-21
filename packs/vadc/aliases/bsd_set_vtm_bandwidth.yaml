@@ -1,0 +1,11 @@
+---
+name: "bsd_set_vtm_bandwidth"
+action_ref: "vadc.bsd_set_vtm_bandwidth"
+description: "Set vTM Bandwidth Assignment"
+formats:
+  - display: "bsd set bandwidth [vtm] [bw]"
+    representation:
+      - "bsd set bandwidth {{vtm}} {{bw}}"
+      - "bsd set bw {{vtm}} {{bw}}"
+result:
+  format: "{{execution.result.result}}"

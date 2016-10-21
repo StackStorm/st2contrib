@@ -1,0 +1,11 @@
+---
+name: "bsd_get_status"
+action_ref: "vadc.bsd_get_status"
+description: "Get vTM Health Status from BSD"
+formats:
+  - display: "bsd status [vtm] [full]"
+    representation:
+      - "bsd status {{vtm}} {{stringify=true}}"
+      - "bsd status {{stringify=true}}"
+result:
+  format: "{{execution.result.result}}"

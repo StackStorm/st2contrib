@@ -1,0 +1,25 @@
+description: 'Service Director - License a vTM'
+enabled: true
+entry_point: bsd_license_vtm.py
+name: bsd_license_vtm
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "vTM Hostname"
+    type: string
+    required: true
+  password:
+    description: "vTM Password (Required for Universal FLA, REST Enabled hosts)"
+    type: string
+    secret: true
+  address:
+    description: "vTM IP Address (Hostname will be used if none)"
+    type: string
+  bw:
+    description: "vTM Bandwidth required (Mb/s)"
+    required: true
+    type: integer
+  fp:
+    description: "vTM Feature Pack to apply"
+    default: 'STM-400_full'
+    type: string

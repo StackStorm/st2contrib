@@ -1,0 +1,28 @@
+description: 'vTM - Enable SSL Offload for a Virtual Server'
+enabled: true
+entry_point: vtm_enable_ssl_offload.py
+name: vtm_enable_ssl_offload
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the Virtual Server"
+    type: string
+    required: true
+  cert:
+    description: "The name of the certificate"
+    required: true
+    type: string
+  xproto:
+    description: "Inject the 'x_forwarded_proto' header into HTTP requests"
+    required: false
+    type: boolean
+    default: true
+  headers:
+    description: "Inject SSL Informational headers into HTTP requests"
+    required: false
+    type: boolean
+    default: true

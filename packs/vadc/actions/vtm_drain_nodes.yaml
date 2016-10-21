@@ -1,0 +1,22 @@
+description: 'vTM - Drain nodes from a Pool'
+enabled: true
+entry_point: vtm_drain_nodes.py
+name: vtm_drain_nodes
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  pool:
+    description: "The name of the pool"
+    type: string
+    required: true
+  nodes:
+    description: "Array of nodes to drain"
+    required: true
+    type: array
+  drain:
+    description: "Drain or Un-Drain the nodes"
+    default: true
+    type: boolean

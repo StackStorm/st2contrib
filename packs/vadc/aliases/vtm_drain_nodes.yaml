@@ -1,0 +1,7 @@
+---
+name: "vtm_drain_nodes"
+action_ref: "vadc.vtm_drain_nodes"
+description: "configure node draining for a pool"
+formats:
+  - "vtm drain {{nodes}} in {{pool}} on {{vtm}} {{drain=true}}"
+  - "vtm undrain {{nodes}} in {{pool}} on {{vtm}} {{drain=false}}"

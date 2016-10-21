@@ -1,0 +1,31 @@
+---
+  default: "delvserver"
+  chain:
+    -
+      name: "delvserver"
+      ref: "vadc.vtm_del_vserver"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_vs"
+      on-success: "deltip"
+      on-failure: "bitch"
+    -
+      name: "deltip"
+      ref: "vadc.vtm_del_tip"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_tip"
+      on-success: "delpool"
+      on-failure: "bitch"
+    -
+      name: "delpool"
+      ref: "vadc.vtm_del_pool"
+      parameters:
+        vtm: "{{vtm}}"
+        name: "{{service}}_pool"
+      on-failure: "bitch"
+    -
+      name: "bitch"
+      ref: "core.local"
+      parameters:
+        cmd: "echo It has all gone wrong Stanley!!"

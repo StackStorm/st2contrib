@@ -1,0 +1,14 @@
+description: 'vTM - Delete a SSL Server Certifcate'
+enabled: true
+entry_point: vtm_del_server_cert.py
+name: vtm_del_server_cert
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the Certificate entry"
+    type: string
+    required: true

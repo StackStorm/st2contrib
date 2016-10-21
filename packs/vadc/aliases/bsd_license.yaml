@@ -1,0 +1,6 @@
+---
+name: "bsd_license"
+action_ref: "vadc.bsd_license_vtm"
+description: "License a deployed vTM"
+formats:
+  - "bsd license {{address}} for {{bw}}mb as {{vtm}} using {{password}}"

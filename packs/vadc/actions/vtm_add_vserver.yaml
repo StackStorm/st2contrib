@@ -1,0 +1,32 @@
+description: 'vTM - Configure a Virtual Server'
+enabled: true
+entry_point: vtm_add_vserver.py
+name: vtm_add_vserver
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure"
+    type: string
+    required: true
+  name:
+    description: "The name of the VServer"
+    type: string
+    required: true
+  pool:
+    description: "The name of the pool to use"
+    required: true
+    type: string
+  tip:
+    description: "The name of the TIP Group to use"
+    required: true
+    type: string
+  port:
+    description: "The port for the virtual server to listen on"
+    required: false
+    type: integer
+    default: 80
+  protocol:
+    description: "The protocol for the virtual server"
+    required: false
+    type: string
+    default: "http"

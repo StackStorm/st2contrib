@@ -1,0 +1,15 @@
+---
+name: "bsd_get_vtm_bandwidth"
+action_ref: "vadc.bsd_get_vtm_bandwidth"
+description: "Get vTM Bandwidth Usage"
+formats:
+  - display: "bsd bandwidth [vtm]"
+    representation:
+      - "bsd get bandwidth {{vtm=None}} {{stringify=true}}"
+      - "bsd get bandwidth {{stringify=true}}"
+      - "bsd bw {{vtm}} {{stringify=true}}"
+      - "bsd bw {{stringify=true}}"
+      - "bsd bandwidth {{vtm}} {{stringify=true}}"
+      - "bsd bandwidth {{stringify=true}}"
+result:
+  format: "{{execution.result.result}}"

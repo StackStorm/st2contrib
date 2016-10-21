@@ -1,0 +1,12 @@
+---
+name : vadc
+description : Brocade vADC actions
+keywords:
+  - brocade
+  - vadc
+  - vtm
+  - bsd
+  - loadbalancer
+version : 0.1
+author : mbodding
+email : mbodding@brocade.com

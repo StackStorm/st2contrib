@@ -1,0 +1,60 @@
+---
+  version: '2.0'
+  name: vadc.deploy_workflow
+
+  workflows:
+    main:
+      input:
+        - vtm
+        - service
+        - nodes
+        - vtms
+        - addresses
+      tasks:
+        addpool:
+          action: "vadc.vtm_add_pool"
+          input:
+            vtm: "<% $.vtm %>"
+            name: "<% $.service %>_pool"
+            nodes: "<% $.nodes %>"
+          on-success: 
+            - addtip
+          on-failure: 
+            - bitch
+        addtip:
+          action: "vadc.vtm_add_tip"
+          input:
+            vtm: "<% $.vtm %>"
+            name: "<% $.service %>_tip"
+            vtms: "<% $.vtms %>"
+            addresses: "<% $.addresses %>"
+          on-success: addvserver
+          on-failure: delpool
+        addvserver:
+          action: "vadc.vtm_add_vserver"
+          input:
+            vtm: "<% $.vtm %>"
+            name: "<% $.service %>_tip"
+            tip: "<% $.service %>_tip"
+            pool: "<% $.service %>_pool"
+          on-failure: "deltip"
+        deltip:
+          action: "vadc.vtm_del_tip"
+          input:
+            vtm: "<% $.vtm %>"
+            name: "<% $.service %>_tip"
+          on-failure: "delpool"
+          on-success: "delpool"
+        delpool:
+          action: "vadc.vtm_del_pool"
+          input:
+            vtm: "<% $.vtm %>"
+            name: "<% $.service %>_pool"
+          on-failure: "bitch"
+          on-success: "bitch"
+        bitch:
+          action: "core.local"
+          input:
+            cmd: "echo It has all gone wrong Stanley!!"
+
+

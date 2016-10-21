@@ -1,0 +1,33 @@
+description: 'vTM - Configure a Pool'
+enabled: true
+entry_point: vtm_add_pool.py
+name: vtm_add_pool
+runner_type: "python-script"
+parameters:
+  vtm:
+    description: "The vTM instance to configure, the tag or instance ID on BSD."
+    type: string
+    required: true
+  name:
+    description: "The name of the pool"
+    type: string
+    required: true
+  nodes:
+    description: "Array of nodes for the pool"
+    required: true
+    type: array
+  algorithm:
+    description: "Load Balancing algorithm for the pool"
+    default: 'least_connections'
+    type: string
+    required: false
+  persistence:
+    description: "Persistence class for the pool"
+    default: ""
+    type: string
+    required: false
+  monitors:
+    description: "Health Monitor for the pool"
+    default: ["Ping"]
+    type: array
+    required: false

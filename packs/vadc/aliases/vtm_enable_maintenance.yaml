@@ -1,0 +1,12 @@
+---
+name: "vtm_maintenance_mode"
+action_ref: "vadc.vtm_maintenance_mode"
+description: "Put a service into maintenance, by adding a TS Rule"
+formats:
+  - display: "vtm (enable|disable) maintenance {{vtm}} {{vserver}} {{rule}}"
+    representation:
+      - "vtm enable maintenance on {{vtm}} for {{vserver}} using {{rule=maintenance}} {{enable=true}}"
+      - "vtm disable maintenance on {{vtm}} for {{vserver}} using {{rule=maintenance}} {{enable=false}}"
+      - "vtm disable maintenance {{vtm}} {{vserver}} {{rule=maintenance}} {{enable=false}}"
+      - "vtm enable maintenance {{vtm}} {{vserver}} {{rule=maintenance}} {{enable=true}}"
+
