@@ -1,0 +1,19 @@
+---
+name: get_room
+runner_type: run-python
+description: Get a specific room
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'rooms'
+    immutable: true
+  method_name:
+    type: string
+    default: 'get'
+    immutable: true
+  roomId:
+    type: string
+    required: true
+    description: "The ID"

@@ -1,0 +1,35 @@
+---
+name: list_messages
+runner_type: run-python
+description: List messages available
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'messages'
+    immutable: true
+  method_name:
+    type: string
+    default: 'list'
+    immutable: true
+  roomId:
+    type: string
+    required: true
+    description: "Room ID"
+  mentionedPeople:
+    type: string
+    description: "List messages for a person, by personId or me."
+    required: false
+  before:
+    type: string
+    required: false
+    description: "List messages sent before a date and time, in ISO8601 format"
+  beforeMessage:
+    type: string
+    required: false
+    description: "List messages sent before a message, by message ID"
+  max:
+    type: integer
+    required: false
+    description: "Limit the maximum number of messages returned"

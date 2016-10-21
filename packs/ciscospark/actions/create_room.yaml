@@ -1,0 +1,23 @@
+---
+name: create_room
+runner_type: run-python
+description: Create a new room
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'rooms'
+    immutable: true
+  method_name:
+    type: string
+    default: 'create'
+    immutable: true
+  title:
+    type: string
+    required: true
+    description: "Room title"
+  teamId:
+    type: string
+    required: false
+    description: "The team ID with which this room is associated"

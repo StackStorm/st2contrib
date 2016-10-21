@@ -1,0 +1,22 @@
+---
+name: update_room
+runner_type: run-python
+description: Update a room's parameters
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'rooms'
+    immutable: true
+  method_name:
+    type: string
+    default: 'update'
+    immutable: true
+  roomId:
+    type: string
+    required: true
+  title:
+    type: string
+    required: true
+    description: "New room title"

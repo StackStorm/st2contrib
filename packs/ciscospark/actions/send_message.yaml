@@ -1,0 +1,37 @@
+---
+name: send_message
+runner_type: run-python
+description: Send a message
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'messages'
+    immutable: true
+  method_name:
+    type: string
+    default: 'create'
+    immutable: true
+  roomId:
+    required: false
+    type: string
+    description: The room ID
+  toPersonId:
+    type: string
+    required: false
+    description: "The ID of the recipient when sending a private 1:1 message"
+  toPersonEmail:
+    type: string
+    required: false
+    description: "The email address of the recipient when sending a private 1:1 message"
+  text:
+    type: string
+    required: true
+    description: "The message, in plain text"
+  markdown:
+    required: false
+    description: "The message, in markdown format"
+  files:
+    type: array
+    description: "A list containing local paths or URL references for the message attachment(s)" 

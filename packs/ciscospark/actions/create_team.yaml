@@ -1,0 +1,19 @@
+---
+name: create_team
+runner_type: run-python
+description: Create a new team
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'teams'
+    immutable: true
+  method_name:
+    type: string
+    default: 'create'
+    immutable: true
+  name:
+    type: string
+    required: true
+    description: "Team name"

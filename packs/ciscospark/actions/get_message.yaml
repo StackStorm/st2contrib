@@ -1,0 +1,19 @@
+---
+name: get_message
+runner_type: run-python
+description: Get a specific message
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'messages'
+    immutable: true
+  method_name:
+    type: string
+    default: 'get'
+    immutable: true
+  messageId:
+    type: string
+    required: true
+    description: "The ID"

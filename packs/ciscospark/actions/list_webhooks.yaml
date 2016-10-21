@@ -1,0 +1,15 @@
+---
+name: list_webhooks
+runner_type: run-python
+description: List webhooks
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'webhooks'
+    immutable: true
+  method_name:
+    type: string
+    default: 'list'
+    immutable: true

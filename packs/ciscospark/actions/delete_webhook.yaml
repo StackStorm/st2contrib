@@ -1,0 +1,19 @@
+---
+name: delete_webhook
+runner_type: run-python
+description: Delete a webhook
+enabled: true
+entry_point: generic_action.py
+parameters:
+  accessor:
+    type: string
+    default: 'webhooks'
+    immutable: true
+  method_name:
+    type: string
+    default: 'delete'
+    immutable: true
+  webhookId:
+    type: string
+    required: true
+    description: "The ID"
