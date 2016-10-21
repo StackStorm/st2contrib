@@ -10,7 +10,7 @@
     secret: false
     required: true
   port:
-    description: "API region to use"
+    description: "Server port to use"
     type: "string"
     required: true
     default: 443
