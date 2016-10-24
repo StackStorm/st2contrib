@@ -11,14 +11,17 @@
     secret: true
     required: true
   enable:
-    description: "Authentication method."
+    description: "Enable password."
     type: "string"
-    secret: false
+    secret: true
     required: true
     default: "password"
   method:
     description: "Connection method."
     type: "string"
     secret: false
-    required: true
     default: "ssh"
+    enum:
+      - "ssh"
+      - "telnet"
+    required: true
