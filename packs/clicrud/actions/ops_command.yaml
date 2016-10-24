@@ -11,5 +11,5 @@ parameters:
     required: true
   command:
     type: string
-    description: Command for the operational 'show'
+    description: Command for the operation 'show'
     required: true

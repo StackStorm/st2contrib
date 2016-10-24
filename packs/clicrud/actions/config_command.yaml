@@ -11,11 +11,10 @@ parameters:
     required: true
   command:
     type: array
-    description: List of commands separated by commas.
+    description: List of commands to run.
     required: true
     minItems: 1
   save:
     type: boolean
     required: false
     description: If true, config will be saved. False, it will not.
-
