@@ -1,0 +1,23 @@
+---
+  username:
+    description: "Username used to authenticate."
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "Password used to authenticate."
+    type: "string"
+    secret: true
+    required: true
+  enable:
+    description: "Authentication method."
+    type: "string"
+    secret: false
+    required: true
+    default: "password"
+  method:
+    description: "Connection method."
+    type: "string"
+    secret: false
+    required: true
+    default: "ssh"
