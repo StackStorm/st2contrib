@@ -75,6 +75,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![chef icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/chef/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | [chef](https://github.com/StackStorm/st2contrib/tree/master/packs/chef) | st2 chef integration pack | chef, chef-client, chef-solo, chef-apply, cfg management, configuration management, opscode | [st2-dev](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#chef-pack)
 [![Circle CI icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/circle_ci/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | [Circle CI](https://github.com/StackStorm/st2contrib/tree/master/packs/Circle CI) | Pack which allows integration with Circle CI. | circle, circle ci, continous integration, ci | [StackStorm dev](mailto:support@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#Circle CI-pack)
 [![cisco_spark icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cisco_spark/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cisco_spark) | [cisco_spark](https://github.com/StackStorm/st2contrib/tree/master/packs/cisco_spark) | cisco spark communication pack | cisco, spark, video, chat | [Anthony Shaw](mailto:anthonyshaw@apache.org) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#cisco_spark-pack)
+[![clicrud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/clicrud/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/clicrud) | [clicrud](https://github.com/StackStorm/st2contrib/tree/master/packs/clicrud) | CLICRUD integration for ST2 | icx, mlx, cli, clicrud | [davidjohngee](mailto:david.gee@ipengineer.net) | 0.1 | [click](https://github.com/StackStorm/st2contrib#clicrud-pack)
 [![cloudflare icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/cloudflare/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/cloudflare) | [cloudflare](https://github.com/StackStorm/st2contrib/tree/master/packs/cloudflare) | A pack to interact with the Cloudflare service. | cloudflare | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#cloudflare-pack)
 [![config_demo icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/st2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/config_demo) | [config_demo](https://github.com/StackStorm/st2contrib/tree/master/packs/config_demo) | Pack which demonstrated new pack configuration functionality available in StackStorm v1.5 and above. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#config_demo-pack)
 [![consul icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/consul/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | [consul](https://github.com/StackStorm/st2contrib/tree/master/packs/consul) | consul |  | [jfryman](mailto:james@fryman.io) | 0.0.1 | [click](https://github.com/StackStorm/st2contrib#consul-pack)
@@ -1125,6 +1126,18 @@ send_message | Send a message
 update_room | Update a room's parameters
 update_team | Update a teams's parameters
 update_webhook | Update a webhook's parameters
+
+### clicrud pack
+
+![clicrud icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/clicrud/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+chain_remediate | Simple chain that when triggered by a webhook, will send info to Slack and remediate problem.
+config_command | Login in to a Brocade ICX/MLX and run a configuration command
+ops_command | Login in to a Brocade ICX/MLX and run an operational command
 
 ### cloudflare pack
 
