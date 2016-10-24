@@ -1,0 +1,17 @@
+---
+name: substitution_solver
+description: Encode or decode subsitition puzzle
+runner_type: "run-python"
+entry_point: "substitution_solver.py"
+enabled: true
+parameters:
+  encode:
+    description: "Optionally encode or decode provided message."
+    type: boolean
+  message:
+    description: "Message to encode or decode."
+    type: string
+  cipher:
+    description: "If decoding, which cipher should we use?"
+    type: string
+    secret: True
