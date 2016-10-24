@@ -1,0 +1,19 @@
+---
+name: image_solver
+description: Decode or Encode PNG image.
+runner_type: "run-python"
+entry_point: "image_solver.py"
+enabled: true
+parameters:
+  encode:
+    description: "Encode or decode image?"
+    type: boolean
+  image:
+    description: "Location of image on filesystem. Must be on ST2 server."
+    type: string
+  output_image:
+    description: "Location of output image. Will be put on ST2 server."
+    type: string
+  message:
+    description: "Encrypted message to decrypt."
+    type: string
