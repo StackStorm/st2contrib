@@ -4,6 +4,7 @@
     type: "string"
     secret: false
     required: true
+    default: "admin"
   password:
     description: "Password used to authenticate."
     type: "string"
