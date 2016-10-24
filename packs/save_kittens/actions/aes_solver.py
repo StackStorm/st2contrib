@@ -21,9 +21,9 @@ class AESDecrypt(Action):
         aes_handler = AES.new(key, AES.MODE_CBC, 'Save the kittens')
 
         if encrypt:
-            padding = 16-(len(message) % 16)
+            padding = 16 - (len(message) % 16)
 
-            message += chr(padding)*padding
+            message += chr(padding) * padding
 
             result = {
                 'message': base64.b64encode(aes_handler.encrypt(message))

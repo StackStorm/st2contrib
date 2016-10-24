@@ -29,7 +29,7 @@ def _get_bit_stream(message):
 
 
 def _assemble_bit_stream(message_array):
-    pass
+    return message_array
 
 
 def _encode_image(image, bit_stream):
@@ -52,7 +52,7 @@ def _encode_image(image, bit_stream):
 
 
 def _decode_image(image):
-    pass
+    return image
 
 
 def _save_image(name, image_map):

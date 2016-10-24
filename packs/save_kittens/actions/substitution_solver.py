@@ -15,7 +15,7 @@ def _gen_cipher_mapping():
     alphabet = list(ALPHABET)
 
     for letter in ALPHABET:
-        random_letter = int(floor(random()*len(alphabet)))
+        random_letter = int(floor(random() * len(alphabet)))
         mapping = (letter, alphabet.pop(random_letter))
 
         cipher.append(mapping)
