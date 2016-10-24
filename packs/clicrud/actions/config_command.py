@@ -24,8 +24,9 @@ class ConfigCommand(Action):
         for cmd in command:
             utf8_commands.append(cmd.encode('utf-8', 'ignore'))
 
-        try:
+        transport = None
 
+        try:
             transport = generic(host=utf8_host, username=self.username,
                                 enable=self.enable, method=self.method,
                                 password=self.password)
@@ -36,9 +37,11 @@ class ConfigCommand(Action):
             if save is True:
                 transport.configure(["write mem"])
 
-            transport.close()
             return _return_value
-        except Exception, err:
-            self.logger.info('FUBARd')
-            self.logger.info(err)
+        except Exception as err:
+            self.logger.exception('Config command threw an exception')
+            self.logger.error(err)
             sys.exit(2)
+        finally:
+            if transport:
+                transport.close()
