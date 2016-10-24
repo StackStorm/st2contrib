@@ -134,6 +134,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![rackspace icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/rackspace/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | [rackspace](https://github.com/StackStorm/st2contrib/tree/master/packs/rackspace) | Packs which allows integration with Rackspace services such as servers, load balancers and DNS. |  | [jfryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#rackspace-pack)
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
 [![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.4.4 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
+[![save_kittens icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/save_kittens/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/save_kittens) | [save_kittens](https://github.com/StackStorm/st2contrib/tree/master/packs/save_kittens) | Save the world. One puzzle at a time. |  | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#save_kittens-pack)
 [![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [st2-dev](mailto:info@stackstorm.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 [![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
 [![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
@@ -2410,6 +2411,19 @@ runner_manage.versions | Run Salt Runner functions through Salt API
 runner_pillar.show_pillar | Run Salt Runner functions through Salt API
 runner_pillar.show_top | Run Salt Runner functions through Salt API
 runner_thin.generate | Run Salt Runner functions through Salt API
+
+### save_kittens pack
+
+![save_kittens icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/save_kittens/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+aes_solver | Decrypt or Encrypt AES.
+image_solver | Decode or Encode PNG image.
+shait | SHA Mesage and Twitter handle for solving puzzles.
+substitution_solver | Encode or decode subsitition puzzle
 
 ### sensu pack
 
