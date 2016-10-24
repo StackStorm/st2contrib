@@ -1,0 +1,31 @@
+---
+description: 'GoPE remediate action for internet fail'
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: true
+name: GoPE_Remediate
+trigger:
+  ref: core.a4dedffc-e244-4f78-b442-37d7bc6c139e
+  type: core.st2.webhook
+  parameters:
+    url: gope
+criteria:
+  trigger.body.status:
+    pattern: fail
+    type: eq
+  trigger.body.group:
+    pattern: internet
+    type: eq
+action:
+  ref: clicrud.chain_remediate
+  parameters:
+    status: '{{trigger.body.status}}'
+    group: '{{trigger.body.group}}'
+    host: 10.18.254.67
+    command:
+      - 'ip route 8.8.4.4 255.255.255.255 169.254.1.1'
+pack: clicrud
+ref: clicrud.GoPE_Remediate
+uid: 'rule:clicrud:GoPE_Remediate'

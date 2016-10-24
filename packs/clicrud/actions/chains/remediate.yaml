@@ -1,0 +1,32 @@
+---
+    chain:
+        -
+            name: "alert_slack_users"
+            ref: "chatops.post_message"
+            parameters:
+                channel: "#general"
+                message: "Group {{group}} is in the state: {{status}}\nAttempting to auto-remediate"
+            on-success: "login_run_command"
+            on-failure: "fail"
+        -
+            name: "login_run_command"
+            ref: "clicrud.config_command"
+            parameters:
+                host: "{{host}}"
+                command: "{{command}}"
+            on-success: "update_slack_users"
+            on-failure: "fail"
+        -
+            name: "update_slack_users"
+            ref: "chatops.post_message"
+            parameters:
+                channel: "#general"
+                message: "Autoremediated by posting command: {{command}} to {{host}} was successful.\n Execution-id: {{action_context.parent.execution_id}}"
+            on-failure: "fail"
+        -
+            name: "fail"
+            ref: "chatops.post_message"
+            parameters:
+                channel: "#general"
+                message: "Johnny5 failed to fix issue. Please debug {{action_context.parent.execution_id}}"
+    default: "alert_slack_users"

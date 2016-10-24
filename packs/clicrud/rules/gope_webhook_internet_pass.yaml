@@ -1,0 +1,29 @@
+---
+description: 'Webhook for GoPE -internet pass'
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: true
+name: GoPE_Webhook_Internet_Pass
+trigger:
+  type: core.st2.webhook
+  parameters:
+    url: gope
+criteria:
+  trigger.body.status:
+    pattern: pass
+    type: eq
+  trigger.body.group:
+    pattern: internet
+    type: eq
+action:
+  ref: clicrud.config_command
+  parameters:
+    host: 10.18.254.67
+    command:
+      - 'no ip route 8.8.4.4 255.255.255.255 169.254.1.1'
+pack: clicrud
+ref: clicrud.GoPE_Webhook_Internet_Pass
+uid: 'rule:clicrud:GoPE_Webhook_Internet_Pass'
+

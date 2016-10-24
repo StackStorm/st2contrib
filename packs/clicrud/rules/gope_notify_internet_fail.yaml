@@ -1,0 +1,28 @@
+---
+description: 'Notification for GoPE - internet fail'
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: false
+name: GoPE_Notify_Internet_Fail
+trigger:
+  type: core.st2.webhook
+  parameters:
+    url: gope
+criteria:
+  trigger.body.status:
+    pattern: fail
+    type: eq
+  trigger.body.group:
+    pattern: internet
+    type: eq
+action:
+  ref: chatops.post_message
+  parameters:
+    message: 'Group {{trigger.body.group}} is in the state: {{trigger.body.status}}'
+    channel: '#general'
+pack: clicrud
+ref: clicrud.GoPE_Notify_Internet_Fail
+uid: 'rule:clicrud:GoPE_Notify_Internet_Fail'
+

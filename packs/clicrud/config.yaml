@@ -1,0 +1,5 @@
+---
+  username: "admin"
+  password: "password"
+  enable: "password"
+  method: "ssh"
