@@ -1,0 +1,30 @@
+---
+  excel_file: 
+    description: "Path and filename to excel file"
+    type: "string"
+    secret: false
+    required: true
+  key_column:
+    description: "Column in the spreadsheet that contains the key field"
+    type: "integer"
+    secret: false
+    requried: true
+    default: 1
+  variable_name_row: 
+    description: "Row in the spreadsheet that contains the variables names"
+    type: "integer"
+    secret: false
+    required: true
+    default: 1
+  lock_file_retries: 
+    description: "Number of times to retry to open a the excel file for edits"
+    type: "integer"
+    secret: false
+    required: true
+    default: 3
+  lock_file_delay:
+    description: "Delay in seconds between attempts to read a file that was previously locked"
+    type: "integer"
+    secret: false
+    required: true
+    default: 1 
