@@ -4,7 +4,7 @@ tags: []
 type:
   ref: standard
   parameters:
-enabled: true
+enabled: false
 name: GoPE_Notify_Internet_Pass
 trigger:
   type: core.st2.webhook

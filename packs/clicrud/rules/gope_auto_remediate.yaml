@@ -4,7 +4,7 @@ tags: []
 type:
   ref: standard
   parameters:
-enabled: true
+enabled: false
 name: GoPE_Remediate
 trigger:
   ref: core.a4dedffc-e244-4f78-b442-37d7bc6c139e
