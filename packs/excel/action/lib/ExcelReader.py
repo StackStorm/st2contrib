@@ -173,8 +173,6 @@ class ExcelReader(object):
         # Find row for key
         row = self.get_row_for_key(key)
         if row == -1:
-            if self._data_end_row == self._data_start_row:
-                self._ws.cell(column=self._key_column, row=self._variable_name_row).value = key
             row = self._data_end_row
             self._ws.cell(column=self._key_column, row=row).value = key
             self._data_end_row += 1
@@ -186,6 +184,9 @@ class ExcelReader(object):
             if len(k)>255:
                 self._unlock_file()
                 raise ValueError("Variable name exceeds 255 characters")
+            if len(k)==0:
+                self._unlock_file()
+                raise ValueError("Variable name is blank")
             if len(v)>32767:
                 self._unlock_file()
                 raise ValueError("Variable value exceeds 32,767 characters") 
