@@ -2740,6 +2740,7 @@ send_sms | This sends a SMS using twilio.
 Name | Description
 ---- | -----------
 TwitterSearchSensor | Sensor which monitors twitter timeline for new tweets matching the specified criteria
+TwitterStreamSensor | Sensor which monitors twitter timeline for new tweets matching the specified criteria
 
 #### Actions
 
