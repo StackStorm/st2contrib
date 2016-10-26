@@ -2,7 +2,7 @@
 ---
   class_name: "GitCommitSensor"
   entry_point: "git_commit_sensor.py"
-  description: "Sensor which monitors git repository for new commits"
+  description: "Sensor which monitors git repositories for new commits"
   poll_interval: 30
   trigger_types:
     -
@@ -30,4 +30,6 @@
           revision:
             type: "string"
           branch:
+            type: "string"
+          repository_url:
             type: "string"
