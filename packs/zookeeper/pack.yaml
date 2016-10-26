@@ -1,6 +1,6 @@
 ---
 name: zookeeper
 description: st2 integration pack with zookeeper
-version: 0.1.0
+version: 0.2.0
 author: Cody A. Ray
 email: talktome@codyaray.com
