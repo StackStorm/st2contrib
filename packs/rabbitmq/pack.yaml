@@ -1,4 +1,5 @@
 ---
+ref: rabbitmq
 name : rabbitmq
 description : st2 content pack containing rabbitmq integrations
 keywords:

@@ -1,4 +1,5 @@
 ---
+ref: mmonit
 name : mmonit
 description : st2 content pack containing mmonit integrations
 keywords:

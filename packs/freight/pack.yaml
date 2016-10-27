@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: freight
 name: freight
 description: freight
 version: 0.1.0

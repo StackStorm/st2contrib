@@ -1,4 +1,5 @@
 ---
+ref: nagios
 name : nagios
 description : Nagios integration pack. See README.md for setup instructions.
 keywords:

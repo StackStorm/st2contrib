@@ -1,4 +1,5 @@
 ---
+ref: gpg
 name: gpg
 description: Pack for working with GPG.
 keywords:

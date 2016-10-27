@@ -1,4 +1,5 @@
 ---
+ref: softlayer
 name : softlayer
 description : st2 content pack containing Softlayer integrations.
 keywords:

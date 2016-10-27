@@ -1,4 +1,5 @@
 ---
+ref: docker
 name : docker
 description : st2 content pack containing docker integrations
 keywords :

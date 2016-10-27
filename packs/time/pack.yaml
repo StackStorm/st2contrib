@@ -1,4 +1,5 @@
 ---
+ref: time
 name: time
 description: st2 content pack containing different date and time related functionality
 keywords:

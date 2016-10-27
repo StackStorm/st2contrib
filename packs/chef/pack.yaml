@@ -1,4 +1,5 @@
 ---
+ref: chef
 name : chef
 description : st2 chef integration pack
 keywords:

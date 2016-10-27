@@ -1,4 +1,5 @@
 ---
+ref: kubernetes
 name : kubernetes
 description : st2 content pack containing Kubernetes sensors
 keywords:

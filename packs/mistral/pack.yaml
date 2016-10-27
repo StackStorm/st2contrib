@@ -1,4 +1,5 @@
 ---
+ref: mistral
 name: mistral
 description: Mistral integrations to operate mistral.
 keywords:

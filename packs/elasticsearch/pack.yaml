@@ -1,4 +1,5 @@
 ---
+ref: elasticsearch
 name : elasticsearch
 description : st2 elasticsearch integration pack
 keywords:

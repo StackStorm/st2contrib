@@ -1,4 +1,5 @@
 ---
+ref: zendesk
 name : zendesk
 description : st2 content pack containing zendesk integrations
 keywords:

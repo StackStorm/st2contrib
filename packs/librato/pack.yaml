@@ -1,8 +1,8 @@
 ### Place information about your pack version here.
 ---
+ref: librato
 name: librato
 description: Send and manage metrics with Librato
 version: 0.0.1.0
 author: James Fryman
 email: james@fryman.io
-

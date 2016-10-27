@@ -1,4 +1,5 @@
 ---
+ref: jmx
 name: jmx
 description: st2 content pack containing Java JMX integrations
 keywords:

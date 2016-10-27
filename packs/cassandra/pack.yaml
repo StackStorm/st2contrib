@@ -1,4 +1,5 @@
 ---
+ref: cassandra
 name : cassandra
 description : st2 content pack containing cassandra integrations
 keywords:

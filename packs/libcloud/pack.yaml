@@ -1,4 +1,5 @@
 ---
+ref: libcloud
 name : libcloud
 description : st2 content pack containing libcloud integrations
 keywords:

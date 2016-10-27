@@ -1,4 +1,5 @@
 ---
+ref: csv
 name : csv
 description : st2 content pack containing CSV integrations
 keywords:

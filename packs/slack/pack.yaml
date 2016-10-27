@@ -1,4 +1,5 @@
 ---
+ref: slack
 name : slack
 description : st2 content pack containing slack integrations
 keywords:

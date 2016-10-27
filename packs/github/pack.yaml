@@ -1,4 +1,5 @@
 ---
+ref: github
 name : github
 description : st2 content pack containing github integrations
 keywords:

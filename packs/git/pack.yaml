@@ -1,4 +1,5 @@
 ---
+ref: git
 name : git
 description : st2 content pack containing git integrations
 keywords:

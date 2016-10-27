@@ -1,4 +1,5 @@
 ---
+ref: vault
 name: vault
 description: vault
 version: 0.0.1.0

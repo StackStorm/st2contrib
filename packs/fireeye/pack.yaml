@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: fireeye
 name: fireeye
 description: FireEye CM Series Integration
 version: 0.1.0

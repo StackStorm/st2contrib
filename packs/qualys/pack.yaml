@@ -1,4 +1,5 @@
 ---
+ref: qualys
 name : qualys
 description : Qualys Cloud Security Services integration pack
 keywords:

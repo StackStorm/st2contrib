@@ -1,4 +1,5 @@
 ---
+ref: azure
 name : azure
 description : st2 content pack containing Microsoft Azure integrations.
 keywords:

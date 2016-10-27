@@ -1,4 +1,5 @@
 ---
+ref: jira
 name : jira
 description : st2 content pack containing jira integrations
 keywords:

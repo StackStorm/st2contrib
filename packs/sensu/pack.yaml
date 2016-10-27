@@ -1,4 +1,5 @@
 ---
+ref: sensu
 name : sensu
 description : st2 content pack containing sensu integrations
 keywords:

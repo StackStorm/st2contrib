@@ -1,4 +1,5 @@
 ---
+ref: xml
 name : xml
 description : st2 content pack containing XML integrations
 keywords:

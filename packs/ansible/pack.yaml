@@ -1,4 +1,5 @@
 ---
+ref: ansible
 name : ansible
 description : st2 content pack containing ansible integrations
 keywords:

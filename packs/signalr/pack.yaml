@@ -1,4 +1,5 @@
 ---
+ref: signalr
 name : signalr
 description : st2 content pack containing signalr integrations
 keywords:

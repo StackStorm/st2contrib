@@ -1,4 +1,5 @@
 ---
+ref: opscenter
 name : opscenter
 description : st2 content pack containing datastax opscenter integrations
 keywords:

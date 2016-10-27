@@ -1,4 +1,5 @@
 ---
+ref: newrelic
 name : newrelic
 description : st2 content pack containing newrelic integrations
 keywords:

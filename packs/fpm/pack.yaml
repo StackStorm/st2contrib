@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: fpm
 name: fpm
 description: fpm
 version: 0.1.0

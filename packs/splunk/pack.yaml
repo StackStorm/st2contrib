@@ -1,4 +1,5 @@
 ---
+ref: splunk
 name: splunk
 description: Splunk integration pack
 keywords:

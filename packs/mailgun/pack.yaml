@@ -1,4 +1,5 @@
 ---
+ref: mailgun
 name : mailgun
 description : st2 content pack containing mailgun integrations
 keywords:

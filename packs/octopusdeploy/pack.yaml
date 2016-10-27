@@ -1,4 +1,5 @@
 ---
+ref: octopusdeploy
 name : octopusdeploy
 description : st2 content pack containing octopusdeploy integrations
 keywords:

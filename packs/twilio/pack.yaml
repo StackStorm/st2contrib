@@ -1,4 +1,5 @@
 ---
+ref: twilio
 name : twilio
 description : st2 content pack containing twilio integrations
 version : 0.1.0

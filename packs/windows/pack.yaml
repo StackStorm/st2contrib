@@ -1,4 +1,5 @@
 ---
+ref: windows
 name : windows
 description : st2 content pack containing windows integrations
 keywords:

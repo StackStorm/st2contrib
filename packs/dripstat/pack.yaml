@@ -1,4 +1,5 @@
 ---
+ref: dripstat
 name: dripstat
 description: Integration with the Dripstat Application Performance Monitoring tool
 keywords:

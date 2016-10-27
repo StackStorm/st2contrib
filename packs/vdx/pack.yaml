@@ -1,4 +1,5 @@
 ---
+ref: vdx
 name: vdx
 description: Brocade VDX integration pack.
 version: 0.0.1.0

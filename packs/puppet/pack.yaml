@@ -1,4 +1,5 @@
 ---
+ref: puppet
 name : puppet
 description : st2 content pack containing puppet integrations
 keywords:

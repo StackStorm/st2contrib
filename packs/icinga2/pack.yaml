@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: icinga2
 name: icinga2
 description: Icinga2 Integration pack
 version: 0.2.0

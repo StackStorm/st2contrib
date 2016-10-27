@@ -1,4 +1,5 @@
 ---
+ref: aws
 name : aws
 description : st2 content pack containing Amazon Web Services integrations.
 keywords:
