@@ -4,5 +4,5 @@ description: Splunk integration pack
 keywords:
   - splunk
 version : 0.2
-author : st2-dev
+author : StackStorm, Inc.
 email : info@stackstorm.com
