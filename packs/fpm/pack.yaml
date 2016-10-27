@@ -2,7 +2,6 @@
 ---
 name: fpm
 description: fpm
-version: 0.0.1
+version: 0.1.0
 author: jfryman
 email: jfryman@FryBook-2.local
-

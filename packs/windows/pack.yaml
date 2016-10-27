@@ -6,6 +6,6 @@ keywords:
   - wmi
   - windows management interface
   - wql
-version : 0.3
+version : 0.3.0
 author : StackStorm, Inc.
 email : info@stackstorm.com

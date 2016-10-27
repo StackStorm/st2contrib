@@ -9,6 +9,6 @@ keywords:
   - servers
   - virtual machines
   - azure virtual machines
-version : 0.1
+version : 0.1.0
 author : StackStorm, Inc.
 email : info@stackstorm.com

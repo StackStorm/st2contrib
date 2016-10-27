@@ -5,6 +5,6 @@ keywords:
   - kubenetes
   - sensors
   - thirdpartyresource
-version : 0.1
+version : 0.1.0
 author : Michael Ward
 email : mward29@gmail.com

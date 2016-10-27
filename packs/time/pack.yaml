@@ -4,6 +4,6 @@ description: st2 content pack containing different date and time related functio
 keywords:
   - date
   - time
-version: 0.1
+version: 0.1.0
 author: StackStorm, Inc.
 email: info@stackstorm.com

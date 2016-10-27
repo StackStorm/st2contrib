@@ -4,6 +4,6 @@ description : st2 content pack containing git integrations
 keywords:
   - git
   - scm
-version : 0.2
+version : 0.2.0
 author : StackStorm, Inc.
 email : info@stackstorm.com

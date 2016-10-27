@@ -2,7 +2,7 @@
 ---
 name: nest
 description: StackStorm integration with Nest Thermostats
-version: 0.0.1
+version: 0.0.1.0
 author: James Fryman
 email: james@stackstorm.com
 
