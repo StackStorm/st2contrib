@@ -1,3 +1,5 @@
+---
+ref: pagerduty
 name: pagerduty
 description: Packs which allows integration with PagerDuty services.
 version: 0.1.0

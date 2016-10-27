@@ -1,3 +1,5 @@
+---
+ref: circle_ci
 name: Circle CI
 description: Pack which allows integration with Circle CI.
 keywords:

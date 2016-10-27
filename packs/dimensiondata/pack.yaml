@@ -1,10 +1,11 @@
 ---
+ref: dimensiondata
 name : dimensiondata
 description : st2 content pack containing Dimension Data Cloud integrations
 keywords:
   - cloud
   - load balancers
   - dimension data
-version : 0.1
+version : 0.1.0
 author : Anthony Shaw
 email : anthony.shaw@dimensiondata.com

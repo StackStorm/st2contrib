@@ -1,10 +1,11 @@
 ---
+ref: twitter
 name : twitter
 description : st2 content pack containing twitter integrations
 keywords:
   - twitter
   - social media
   - social networks
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

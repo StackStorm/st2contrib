@@ -1,4 +1,5 @@
 ---
+ref: gpg
 name: gpg
 description: Pack for working with GPG.
 keywords:
@@ -8,6 +9,6 @@ keywords:
   - privacy
   - encryption
   - crypto
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

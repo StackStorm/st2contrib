@@ -1,4 +1,5 @@
 ---
+ref: windows
 name : windows
 description : st2 content pack containing windows integrations
 keywords:
@@ -6,6 +7,6 @@ keywords:
   - wmi
   - windows management interface
   - wql
-version : 0.3
-author : st2-dev
+version : 0.3.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

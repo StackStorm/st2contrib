@@ -1,4 +1,5 @@
 ---
+ref: device42
 name: device42
 description: Device42 Actions for StackStorm
 version: 0.1.0
