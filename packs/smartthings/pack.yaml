@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: smartthings
 name: SmartThings
 description: Integration with SmartThings
 keywords:

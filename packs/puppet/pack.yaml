@@ -1,4 +1,5 @@
 ---
+ref: puppet
 name : puppet
 description : st2 content pack containing puppet integrations
 keywords:
@@ -6,5 +7,5 @@ keywords:
   - cfg management
   - configuration management
 version : 0.2
-author : st2-dev
+author : StackStorm, Inc.
 email : info@stackstorm.com

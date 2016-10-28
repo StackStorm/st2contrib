@@ -1,10 +1,11 @@
 ---
+ref: nagios
 name : nagios
 description : Nagios integration pack. See README.md for setup instructions.
 keywords:
   - nagios
   - monitoring
   - alerting
-version : 0.2
-author : st2-dev
+version : 0.2.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

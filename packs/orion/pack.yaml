@@ -1,4 +1,5 @@
 ---
+ref: orion
 name: orion
 description: Intergrate via the OrionSDK to SolarWinds Orion
 keywords:

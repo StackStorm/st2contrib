@@ -1,6 +1,7 @@
 ---
+ref: config_demo
 name : config_demo
 description : Pack which demonstrated new pack configuration functionality available in StackStorm v1.5 and above.
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

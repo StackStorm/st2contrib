@@ -1,9 +1,10 @@
 ---
+ref: signalr
 name : signalr
 description : st2 content pack containing signalr integrations
 keywords:
   - signalr
   - messaging
-version : 0.1
+version : 0.1.0
 author : Anthony Shaw
 email : anthony.shaw@dimensiondata.com

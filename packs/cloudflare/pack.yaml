@@ -1,3 +1,5 @@
+---
+ref: cloudflare
 name: cloudflare
 description: A pack to interact with the Cloudflare service.
 keywords:

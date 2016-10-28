@@ -1,7 +1,8 @@
 ### Place information about your pack version here.
 ---
+ref: st2
 name: st2
 description: StackStorm pack management
 version: 0.1.2
-author: st2-dev
+author: StackStorm, Inc.
 email: info@stackstorm.com

@@ -1,4 +1,5 @@
 ---
+ref: duo
 name: duo
 description: Use Duo 2FA authenication with StackStorm actions.
 keywords:

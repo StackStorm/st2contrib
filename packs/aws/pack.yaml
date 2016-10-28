@@ -1,4 +1,5 @@
 ---
+ref: aws
 name : aws
 description : st2 content pack containing Amazon Web Services integrations.
 keywords:
@@ -18,5 +19,5 @@ keywords:
   - SQS
 
 version : 0.7.0
-author : st2-dev
+author : StackStorm, Inc.
 email : info@stackstorm.com

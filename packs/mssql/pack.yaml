@@ -1,4 +1,5 @@
 ---
+ref: mssql
 name: mssql
 description: st2 content pack containing Microsoft SQL Server integrations
 keywords:
