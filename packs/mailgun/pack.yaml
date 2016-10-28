@@ -1,10 +1,11 @@
 ---
+ref: mailgun
 name : mailgun
 description : st2 content pack containing mailgun integrations
 keywords:
   - email
   - mail
   - mailgun
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

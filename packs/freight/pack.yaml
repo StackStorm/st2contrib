@@ -1,8 +1,8 @@
 ### Place information about your pack version here.
 ---
+ref: freight
 name: freight
 description: freight
-version: 0.0.1
+version: 0.1.0
 author: James Fryman
 email: james@fryman.io
-

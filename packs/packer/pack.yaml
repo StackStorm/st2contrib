@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: packer
 name: packer
 description: Hashicorp Packer builder integration
 version: 0.1.0

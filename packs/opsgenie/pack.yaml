@@ -1,4 +1,5 @@
 ---
+ref: opsgenie
 name: opsgenie
 description: A intergration pack for the OpsGenie Service
 keywords:

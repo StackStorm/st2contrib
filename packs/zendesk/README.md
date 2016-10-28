@@ -4,13 +4,19 @@ This pack allows for Zendesk integrations.
 
 ## Configuration
 
+Copy the example configuration in [zendesk.yaml.example](./zendesk.yaml.example)
+to `/opt/stackstorm/configs/zendesk.yaml` and edit as required.
+
+It must contain:
+
 * ``email`` - Email of the account being used for the integration
 * ``api_token`` - An API token generated in the admin interface
 * ``subdomain`` - The subdomain of the zendesk account
 
-## Obtaining API Token
+To obtain a Zendesk API token, see the docs [here](https://developer.zendesk.com/rest_api/docs/core/introduction#api-token).
 
-Zendesk's guide to getting access to API tokens can be found [here](https://developer.zendesk.com/rest_api/docs/core/introduction#api-token).
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

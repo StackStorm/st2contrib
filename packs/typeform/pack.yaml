@@ -1,6 +1,7 @@
 ---
+ref: typeform
 name : typeform
 description : Typeform service integration pack
-version : 0.2
-author : st2-dev
+version : 0.2.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

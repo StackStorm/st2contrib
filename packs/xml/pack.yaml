@@ -1,4 +1,5 @@
 ---
+ref: xml
 name : xml
 description : st2 content pack containing XML integrations
 keywords:
@@ -6,6 +7,6 @@ keywords:
   - serialization
   - deserialization
   - text processing
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

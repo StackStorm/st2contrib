@@ -1,0 +1,17 @@
+---
+name: aes_solver
+description: Decrypt or Encrypt AES.
+runner_type: "run-python"
+entry_point: "aes_solver.py"
+enabled: true
+parameters:
+  message:
+    description: "Encrypted message to decrypt."
+    type: string
+  aes_key:
+    description: "Optional AES Key. Default key is used if none provided."
+    type: string
+    secret: True
+  encrypt:
+    description: "Optionally encrypt the message."
+    type: boolean

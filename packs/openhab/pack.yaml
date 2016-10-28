@@ -1,5 +1,6 @@
 ### Place information about your pack version here.
 ---
+ref: openhab
 name: openhab
 description: Integration with OpenHAB
 keywords:
