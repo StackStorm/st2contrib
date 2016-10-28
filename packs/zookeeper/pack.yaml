@@ -1,4 +1,5 @@
 ---
+ref: zookeeper
 name: zookeeper
 description: st2 integration pack with zookeeper
 version: 0.2.0
