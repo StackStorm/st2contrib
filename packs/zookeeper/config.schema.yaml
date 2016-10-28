@@ -1,0 +1,13 @@
+---
+  zookeeper_hosts:
+    description: "Comma-separated list of ZooKeeper hosts (including ports)."
+    type: "string"
+    secret: false
+    required: true
+    default: "localhost:2181"
+  zookeeper_root:
+    description: "The root node to use for all ZooKeeper operations."
+    type: "string"
+    secret: false
+    required: true
+    default: "/"
