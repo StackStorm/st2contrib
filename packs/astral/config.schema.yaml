@@ -1,0 +1,11 @@
+---
+  latitude:
+    description: "Latitude of the location"
+    type: "integer"
+    secret: false
+    requried: true
+  longitude:
+    description: "Longitude of the location"
+    type: "integer"
+    secret: false
+    requried: true
