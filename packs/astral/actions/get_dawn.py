@@ -13,6 +13,7 @@ limitations under the License.
 
 from lib import BaseAction
 
+
 class GetSunriseAction(BaseAction):
     def __init__(self, config):
         super(GetSunriseAction, self).__init__(config)
