@@ -22,8 +22,7 @@ class BaseAction(Action):
         self._longitude = self.config['longitude']
         self._timezone = self.config['timezone']
 
-        location = Location(('name', 'region',
-              float(self._latitude), float(self._longitude),
-              self._timezone, 0))
+        location = Location(('name', 'region', float(self._latitude), 
+                            float(self._longitude), self._timezone, 0))
 
         self.sun = location.sun()
