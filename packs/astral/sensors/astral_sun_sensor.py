@@ -35,7 +35,7 @@ class AstralSunSensor(PollingSensor):
 
         for key in checks:
             if self.is_within_minute(self.sun[key], currenttime):
-                trigger = 'astral.'+key
+                trigger = 'astral.' + key
                 self.sensor_service.dispatch(trigger=trigger, payload={})
 
         self._update_counter += 1
