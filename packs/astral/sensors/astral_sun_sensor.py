@@ -1,10 +1,7 @@
 from st2reactor.sensor.base import PollingSensor
 import st2common.util.date as date
-
-# from datetime import timedelta
-
-# from astral import Astral
 from astral import Location
+
 
 __all__ = [
     'AstralSunSensor'
