@@ -15,8 +15,5 @@ from lib import BaseAction
 
 
 class GetSunriseAction(BaseAction.BaseAction):
-    def __init__(self, config):
-        super(GetSunriseAction, self).__init__(config)
-
     def run(self):
         return str(self.sun['dusk'])
