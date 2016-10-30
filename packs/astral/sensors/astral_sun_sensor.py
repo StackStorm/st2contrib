@@ -11,8 +11,8 @@ __all__ = [
 class AstralSunSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=None):
         super(AstralSunSensor, self).__init__(sensor_service=sensor_service,
-                                                  config=config,
-                                                  poll_interval=poll_interval)
+                                              config=config,
+                                              poll_interval=poll_interval)
         self._logger = self._sensor_service.get_logger(__name__)
 
     def setup(self):
@@ -53,8 +53,8 @@ class AstralSunSensor(PollingSensor):
         pass
 
     def _update_sun_info(self):
-        location = Location(('name', 'region',
-            float(self._latitude), float(self._longitude), 'GMT+0', 0))
+        location = Location(('name', 'region', float(self._latitude),
+                            float(self._longitude), 'GMT+0', 0))
         self.sun = location.sun()
 
     def is_within_minute(self, time1, time2):
