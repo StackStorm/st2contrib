@@ -1,0 +1,18 @@
+---
+  class_name: "AstralSunSensor"
+  entry_point: "astral_sun_sensor.py"
+  description: "Sensor that fires triggers for dawn, sunrise, sunset, and dusk"
+  poll_interval: 60
+  trigger_types:
+    -
+      name: "dawn"
+      description: "It's now dawn"
+    -
+      name: "sunrise"
+      description: "It's now sunrise"
+    -
+      name: "sunset"
+      description: "It's now sunset"
+    -
+      name: "dusk"
+      description: "It's now dusk"
