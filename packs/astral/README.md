@@ -5,7 +5,7 @@ on sun position for a geo lat/long coordinates:
 
 ### Configuration file:
 
-Sets the coordinates (lat/long) for the location of the stackstorm server
+Sets the coordinates (lat/lon) for the location of the stackstorm server
 
 ### Triggers:
 
