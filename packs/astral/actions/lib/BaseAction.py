@@ -14,6 +14,7 @@ limitations under the License.
 from st2actions.runners.pythonrunner import Action
 from astral import Location
 
+
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
