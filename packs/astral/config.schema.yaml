@@ -1,12 +1,12 @@
 ---
   latitude:
     description: "Latitude of the location"
-    type: "string"
+    type: "number"
     secret: false
     requried: true
   longitude:
     description: "Longitude of the location"
-    type: "string"
+    type: "number"
     secret: false
     requried: true
   timezone:
