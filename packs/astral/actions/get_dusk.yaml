@@ -1,0 +1,6 @@
+---
+name: "get_dusk"
+runner_type: "run-python"
+description: "Returns the time of dusk in UTC"
+enabled: true
+entry_point: "get_dusk.py"
