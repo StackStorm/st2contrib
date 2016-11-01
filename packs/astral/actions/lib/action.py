@@ -11,9 +11,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from lib import action
+from st2actions.runners.pythonrunner import Action
+from astral import Location
 
 
-class GetSunriseAction(action.BaseAction):
-    def run(self):
-        return str(self.sun['dawn'])  # pylint: disable=no-member
+class BaseAction(Action):
+    def __init__(self, config):
+        super(BaseAction, self).__init__(config)
+        self._latitude = self.config['latitude']
+        self._longitude = self.config['longitude']
+        self._timezone = self.config['timezone']
+
+        location = Location(('name', 'region', float(self._latitude),
+                            float(self._longitude), self._timezone, 0))
+
+        self.sun = location.sun()

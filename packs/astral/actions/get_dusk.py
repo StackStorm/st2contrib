@@ -11,9 +11,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from lib import BaseAction
+from lib import action
 
 
-class GetSunriseAction(BaseAction.BaseAction):
+class GetSunriseAction(action.BaseAction):
     def run(self):
         return str(self.sun['dusk'])  # pylint: disable=no-member
