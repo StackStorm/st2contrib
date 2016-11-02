@@ -1,0 +1,12 @@
+---
+  wpt_url:
+    description: "Base URL for the WebPageTest instance to use"
+    type: "string"
+    secret: false
+    required: true
+    default: "http://webpagetest.org"
+  key:
+    description: "The API key from the WebPageTest Public Instance"
+    type: "string"
+    secret: true
+    required: true
