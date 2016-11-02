@@ -1,6 +1,6 @@
 ---
   wpt_url:
-    description: "Base URL for the WebPageTest instance to use.:
+    description: "Base URL for the WebPageTest instance to use"
     type: "string"
     secret: false
     required: true
