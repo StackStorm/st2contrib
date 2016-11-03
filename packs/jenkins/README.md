@@ -23,3 +23,4 @@ for this pack to be able to start jobs.
 * `enable_job` - Enable Jenkins job
 * `disable_job` - Disable Jenkins job
 * `get_job_info` - Retrieve Jenkins job information
+* `install_plugin` - Install plugin
