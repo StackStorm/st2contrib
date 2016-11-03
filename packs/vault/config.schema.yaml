@@ -1,0 +1,21 @@
+---
+  url:
+    description: "URL for the Vault server"
+    type: "string"
+    secret: false
+    required: true
+  cert:
+    description: "Path to client-side certificate"
+    type: "string"
+    secret: false
+    required: false
+  token:
+    description: "Authentication token"
+    type: "string"
+    secret: true
+    required: false
+  verify:
+    description: "Whether to verify the SSL certificate or not"
+    type: "string"
+    secret: false
+    default: true
