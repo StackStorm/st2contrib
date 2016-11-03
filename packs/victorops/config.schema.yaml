@@ -1,0 +1,23 @@
+---
+  api_key:
+    description: "API key used for Victorops authentication"
+    type: "string"
+    secret: true
+    required: true
+  routing_key:
+    description: "Routing key used for message handling"
+    type: "string"
+    secret: false
+    required: true
+  debug:
+    description: "Debug flag used for debugging"
+    type: "string"
+    secret: false
+    required: false
+    default: false
+  url:
+    description: "URL of the Victorops system"
+    type: "string"
+    secret: false
+    required: false
+    default: https://alert.victorops.com/integrations/generic
