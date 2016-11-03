@@ -5,6 +5,6 @@ description: Packs which allows integration with Victorops events.
 keywords:
   - victorops integration
   - open, ack and resolve incidents
-version: 0.1.0
+version: 0.2.0
 author: Aamir
 email: raza.aamir01@gmail.com
