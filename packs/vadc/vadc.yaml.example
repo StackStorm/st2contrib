@@ -1,0 +1,5 @@
+---
+bcrd_sd_proxy: true
+brcd_sd_host: "https://sd1.management.local:8100/"
+brcd_sd_user: "admin"
+brcd_sd_pass: "password"
