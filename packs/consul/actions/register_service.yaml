@@ -1,0 +1,34 @@
+name: register_service
+runner_type: run-python
+description: "Register an external service in Consul"
+enabled: true
+entry_point: "register_service.py"
+parameters:
+    nid:
+        type: string
+        description: "Node Name/ID"
+        required: true
+        position: 0
+    name:
+        type: string
+        description: "Service Name"
+        required: true
+        position: 1
+    address:
+        type: string
+        description: "IP Address of the service"
+        required: true
+        position: 2
+    port:
+        type: integer
+        description: "The Service Port"
+        required: true
+        position: 3
+    tags:
+        type: array
+        description: "Optional Array of Tags"
+        required: false
+    dc:
+        type: string
+        description: "Optional Data Center ID"
+        required: false
