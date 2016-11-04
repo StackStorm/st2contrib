@@ -1,0 +1,20 @@
+name: deregister_service
+runner_type: run-python
+description: "De-Register an external service in Consul"
+enabled: true
+entry_point: "deregister_service.py"
+parameters:
+    node:
+        type: string
+        description: "Node Name/ID"
+        required: true
+        position: 0
+    service:
+        type: string
+        description: "Service Name/ID"
+        required: false
+        position: 1
+    dc:
+        type: string
+        description: "Optional Data Center ID"
+        required: false
