@@ -12,4 +12,10 @@ parameters:
     tag:
         type: string
         description: "Optional tags to query"
+        required: false
         position: 1
+    ports:
+        type: boolean
+        description: "Return port numbers in result"
+        required: false
+        position: 2
