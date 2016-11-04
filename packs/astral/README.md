@@ -5,7 +5,7 @@ on sun position for a geo lat/long coordinates:
 
 ### Configuration file:
 
-Sets the coordinates (lat/lon) for the location of the stackstorm server
+Copy and edit the astral.yaml.example into the /opt/stackstorm/configs directory.
 
 ### Triggers:
 
