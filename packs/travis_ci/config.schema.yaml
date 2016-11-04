@@ -1,0 +1,6 @@
+---
+  token:
+    description: "Travis Authentication token"
+    type: "string"
+    secret: true
+    required: true
