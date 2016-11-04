@@ -12,12 +12,13 @@ IT infrastructure
 
 ## Supported Actions
 ```
-+-------------------------------+----------+--------------------+-------------------------------------+
-| ref                           | pack     | name               | description                         |
-+-------------------------------+----------+--------------------+-------------------------------------+
-| device42.device_name_list     | device42 | device_name_list   | Returns list of devices names       |
-| device42.suggest_next_ip      | device42 | suggest_next_ip    | Suggest next available IP Address   |
-+-------------------------------+----------+--------------------+-------------------------------------+
++-------------------------------+----------+--------------------+---------------------------------------------+
+| ref                           | pack     | name               | description                                 |
++-------------------------------+----------+--------------------+---------------------------------------------+
+| device42.device_name_list     | device42 | device_name_list   | Returns list of devices names               |
+| device42.suggest_next_ip      | device42 | suggest_next_ip    | Suggest next available IP Address           |
+| device42.get_dns_zone         | device42 | get_dns_zone       | Returns DNS zone file content for a domain  |
++-------------------------------+----------+--------------------+---------------------------------------------+
 ```
 
 ## Examples
@@ -51,6 +52,25 @@ parameters:
 result:
   exit_code: 0
   result: 10.15.24.1
+  stderr: ''
+  stdout: ''
+```
+
+#### Get `device42.get_dns_zone` for domain
+```sh
+# st2 run device42.get_dns_zone domain=domain.com
+
+id: 581c7c441d41c804d9067e59
+status: succeeded
+parameters:
+  domain: domain.com
+result:
+  exit_code: 0
+  result: ''@ 3600 IN SOA nh-win2k8r2-vm-03 hostmaster. 107493 900 600 86400 3600       
+    @ 600 IN A 192.168.11.161       
+    @ 3600 IN NS nh-win2k8r2-vm-03            
+    gc._msdcs 600 IN A 192.168.11.161                  
+    _ldap._tcp.gc._msdcs 600 IN SRV 0 100 3268 nh-win2k8r2-vm-03'
   stderr: ''
   stdout: ''
 ```
