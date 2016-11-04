@@ -1,0 +1,11 @@
+---
+  account_sid:
+    description: "Account SID, 34-character string starting with AC"
+    type: "string"
+    secret: false
+    required: true
+  auth_token:
+    description: "Twilio authentication token"
+    type: "string"
+    secret: true
+    required: true
