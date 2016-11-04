@@ -4,14 +4,14 @@ description: "Register an external service in Consul"
 enabled: true
 entry_point: "register_service.py"
 parameters:
-    nid:
+    node:
         type: string
         description: "Node Name/ID"
         required: true
         position: 0
-    name:
+    service:
         type: string
-        description: "Service Name"
+        description: "Service Name/ID"
         required: true
         position: 1
     address:

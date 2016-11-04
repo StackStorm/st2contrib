@@ -2,8 +2,8 @@ from lib import action
 
 
 class ConsulRegisterServiceAction(action.ConsulBaseAction):
-    def run(self, nid, name, address, port, tags, dc):
+    def run(self, node, service, address, port, tags, dc):
 
-        definition = {"Service": name, "Port": port, "Tags": tags}
-        result = self.consul.catalog.register(nid, address, service=definition, dc=dc)
-        return result
+        definition = {"Service": service, "Port": port, "Tags": tags}
+        result = self.consul.catalog.register(node, address, service=definition, dc=dc)
+        return (result, "")
