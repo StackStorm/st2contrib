@@ -1,0 +1,28 @@
+---
+  name: "get_dns_zone"
+  runner_type: "run-python"
+  description: "Returns DNS zone file"
+  enabled: true
+  entry_point: "get_dns_zone.py"
+  parameters:
+    domain:
+      type: "string"
+      description: "name of the domain"
+    record_type:
+      type: "string"
+      description: "type of the record. e.g. AAAA"
+    name:
+      type: "string"
+      description: "name on the DNS record"
+    nameserver:
+      type: "string"
+      description: "Nameserver"
+    content:
+      type: "string"
+      description: "Content (e.g. IP address for type A)"
+    tags:
+      type: "string"
+      description: "Match ANY tags"
+    tags_and:
+      type: "string"
+      description: "Match ALL tags"
