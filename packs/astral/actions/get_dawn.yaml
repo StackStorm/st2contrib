@@ -1,0 +1,6 @@
+---
+name: "get_dawn"
+runner_type: "run-python"
+description: "Returns the time of dawn"
+enabled: true
+entry_point: "get_dawn.py"
