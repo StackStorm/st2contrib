@@ -8,22 +8,18 @@ parameters:
         type: string
         description: "Node Name/ID"
         required: true
-        position: 0
     service:
         type: string
         description: "Service Name/ID"
         required: true
-        position: 1
     address:
         type: string
         description: "IP Address of the service"
         required: true
-        position: 2
     port:
         type: integer
         description: "The Service Port"
         required: true
-        position: 3
     tags:
         type: array
         description: "Optional Array of Tags"

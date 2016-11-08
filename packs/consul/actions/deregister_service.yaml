@@ -8,13 +8,10 @@ parameters:
         type: string
         description: "Node Name/ID"
         required: true
-        position: 0
     service:
         type: string
         description: "Service Name/ID"
         required: false
-        position: 1
     dc:
         type: string
         description: "Optional Data Center ID"
-        required: false

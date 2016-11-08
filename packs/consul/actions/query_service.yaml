@@ -8,14 +8,12 @@ parameters:
         type: string
         description: "Service to query in Consul"
         required: true
-        position: 0
     tag:
         type: string
         description: "Optional tags to query"
         required: false
-        position: 1
     ports:
         type: boolean
         description: "Return port numbers in result"
         required: false
-        position: 2
+        default: false
