@@ -127,7 +127,8 @@ class GitCommitSensor(PollingSensor):
         else:
             try:
                 repo_local = Repo.clone_from(url, local_path, branch=branch)
-            except Exception:
-                raise Exception('Unable to clone remote repo from %s [%s]', url, branch)
+            except Exception as e:
+                raise Exception('Unable to clone remote repo from %s [%s]: %s' %
+                                (url, branch, str(e)))
 
         return repo_local, repo_local.remote('origin')
