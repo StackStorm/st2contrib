@@ -86,8 +86,10 @@ st2 run travisci.disable_hook hook_id=<repo_id>
 
 ## Configuration
 
-Replace your Travis CI token in the config file and you are all set to use the
-actions.
+Copy the example configuration in [travis_ci.yaml.example](./travis_ci.yaml.example)
+to `/opt/stackstorm/configs/travis_ci.yaml` and edit as required.
+
+It must contain
 
 ```yaml
 token: Your Travis CI API access token
@@ -96,15 +98,5 @@ token: Your Travis CI API access token
 Note: Access token is not the token you find in your profile. For more
 information, see [Authentication page](http://docs.travis-ci.com/api/#authentication).
 
-### Getting Git Authentication Key
-
-In order to get the git authentication with scopes, you need to go to settings
-tab of your profile and then under settings tab go to `personal access token`.
-Click on `Generate new token` and give it proper permissions read/write. Then
-generate it. It will give you a key, you need to replace that in config file of
-the pack.
-
-![Alt text] (/_images/generate_new_token  "generate new token")
-
-
-![Alt text] (/_images/permissions "Permissions to the token")
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.

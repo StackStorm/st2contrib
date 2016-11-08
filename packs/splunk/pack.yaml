@@ -1,8 +1,9 @@
 ---
+ref: splunk
 name: splunk
 description: Splunk integration pack
 keywords:
   - splunk
-version : 0.2
-author : st2-dev
+version : 0.2.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

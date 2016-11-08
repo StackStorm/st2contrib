@@ -1,6 +1,7 @@
 ---
+ref: vault
 name: vault
 description: vault
-version: 0.0.1
+version: 0.2.0
 author: steve.neuharth
 email: steve.neuharth@target.com

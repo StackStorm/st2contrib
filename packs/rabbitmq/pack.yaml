@@ -1,4 +1,5 @@
 ---
+ref: rabbitmq
 name : rabbitmq
 description : st2 content pack containing rabbitmq integrations
 keywords:
@@ -8,6 +9,6 @@ keywords:
   - aqmp
   - stomp
   - message broker
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

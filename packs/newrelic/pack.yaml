@@ -1,4 +1,5 @@
 ---
+ref: newrelic
 name : newrelic
 description : st2 content pack containing newrelic integrations
 keywords:
@@ -6,6 +7,6 @@ keywords:
   - monitoring
   - app monitoring
   - application level monitoring
-version : 0.2
-author : st2-dev
+version : 0.2.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

@@ -7,6 +7,6 @@ entry_point: "delete.py"
 parameters:
     path:
         type: string
-        description: "Path to delte from Vault"
+        description: "Path to delete from Vault"
         required: true
         position: 0

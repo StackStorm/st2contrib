@@ -8,8 +8,16 @@ Requires:
 
 ## Configuration
 
+Copy the example configuration in [webpagetest.yaml.example](./webpagetest.yaml.example)
+to `/opt/stackstorm/configs/webpagetest.yaml` and edit as required.
+
+It must contain:
+
  * `wpt_url` - Base URL for the WebPageTest instance to use. Defaults to `http://webpagetest.org`.
  * `key` - The API key you received from the [WebPageTest Public Instance](http://www.webpagetest.org/getkey.php). Private instances of WebPageTest do not require a key.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

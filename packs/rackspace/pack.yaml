@@ -1,4 +1,5 @@
 ---
+ref: rackspace
 name: rackspace
 description: Packs which allows integration with Rackspace services such as servers, load balancers and DNS.
 version: 0.1.0

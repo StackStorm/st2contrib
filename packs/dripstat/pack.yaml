@@ -1,4 +1,5 @@
 ---
+ref: dripstat
 name: dripstat
 description: Integration with the Dripstat Application Performance Monitoring tool
 keywords:
@@ -6,6 +7,6 @@ keywords:
   - java
   - monitoring
   - performance monitoring
-version: 0.0.1
+version: 0.1.0
 author: James Fryman
 email: james@fryman.io

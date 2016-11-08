@@ -1,4 +1,5 @@
 ---
+ref: networking_utils
 name: networking_utils
 description: A pack containing useful networking utils for use in workflows.
 keywords:
@@ -6,6 +7,6 @@ keywords:
     - utilities
     - ipv4
     - ipv6
-version: 0.1
+version: 0.1.0
 author: Jon Middleton
 email: jon.middleton@pulsant.com

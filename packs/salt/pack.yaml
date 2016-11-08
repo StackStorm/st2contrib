@@ -1,4 +1,5 @@
 ---
+ref: salt
 name : salt
 description : st2 salt integration pack
 keywords:

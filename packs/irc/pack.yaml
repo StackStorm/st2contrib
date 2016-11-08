@@ -1,4 +1,5 @@
 ---
+ref: irc
 name : irc
 description : st2 content pack containing irc integrations
 keywords:
@@ -7,6 +8,6 @@ keywords:
   - chat
   - messaging
   - instant messaging
-version : 0.1
-author : st2-dev
+version : 0.1.0
+author : StackStorm, Inc.
 email : info@stackstorm.com

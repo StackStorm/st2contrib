@@ -1,4 +1,5 @@
 ---
+ref: hpe-icsp
 name : hpe-icsp
 description : Pack for HP Enterprise Insight Control Server Provisioning Integration
 version : 0.3.1

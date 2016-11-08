@@ -1,0 +1,16 @@
+---
+  email:
+    description: "Email of the account being used for the integration"
+    type: "string"
+    secret: false
+    required: true
+  subdomain:
+    description: "The subdomain of the Zendesk account"
+    type: "string"
+    secret: false
+    required: true
+  api_token:
+    description: "API token generated in the Zendesk admin interface"
+    type: "string"
+    secret: true
+    required: true

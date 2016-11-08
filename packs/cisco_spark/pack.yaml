@@ -1,4 +1,5 @@
 ---
+ref: cisco_spark
 name : cisco_spark
 description : cisco spark communication pack
 keywords:

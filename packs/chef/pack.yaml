@@ -1,4 +1,5 @@
 ---
+ref: chef
 name : chef
 description : st2 chef integration pack
 keywords:
@@ -10,5 +11,5 @@ keywords:
   - configuration management
   - opscode
 version : 0.1.1
-author : st2-dev
+author : StackStorm, Inc.
 email : info@stackstorm.com
