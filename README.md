@@ -66,6 +66,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![activecampaign icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/activecampaign/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | [activecampaign](https://github.com/StackStorm/st2contrib/tree/master/packs/activecampaign) | Integration with ActiveCampaign |  | [DoriftoShoes](mailto:patrick@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#activecampaign-pack)
 [![alertlogic icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/alertlogic/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | [alertlogic](https://github.com/StackStorm/st2contrib/tree/master/packs/alertlogic) | AlertLogic ActiveIntegration APIs | AlertLogic | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.2 | [click](https://github.com/StackStorm/st2contrib#alertlogic-pack)
 [![ansible icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/ansible/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | [ansible](https://github.com/StackStorm/st2contrib/tree/master/packs/ansible) | st2 content pack containing ansible integrations | ansible, cfg management, configuration management | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#ansible-pack)
+[![astral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/astral/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/astral) | [astral](https://github.com/StackStorm/st2contrib/tree/master/packs/astral) | triggers for sunrise/sunset information |  | [Tim Braly](mailto:tbraly@brocade.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#astral-pack)
 [![aws icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/aws/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | [aws](https://github.com/StackStorm/st2contrib/tree/master/packs/aws) | st2 content pack containing Amazon Web Services integrations. | aws, amazon web services, amazon, ec2, sqs, sns, route53, cloud, iam, vpc, s3, CloudFormation, RDS, SQS | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.7.0 | [click](https://github.com/StackStorm/st2contrib#aws-pack)
 [![azure icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/azure/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | [azure](https://github.com/StackStorm/st2contrib/tree/master/packs/azure) | st2 content pack containing Microsoft Azure integrations. | microsoft, azure, cloud, libcloud, servers, virtual machines, azure virtual machines | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#azure-pack)
 [![bitbucket icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/bitbucket/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | [bitbucket](https://github.com/StackStorm/st2contrib/tree/master/packs/bitbucket) | Pack which allows integration with Bitbucket. | bitbucket, vcs, mercuriral, git, source control | [Aamir](mailto:raza.aamir01@gmail.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#bitbucket-pack)
@@ -329,6 +330,25 @@ galaxy.remove | Remove an installed from ansible galaxy role
 playbook | Run ansible playbook
 vault.decrypt | Decrypt ansible data files
 vault.encrypt | Encrypt ansible data files
+
+### astral pack
+
+![astral icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/astral/icon.png)
+
+#### Sensors
+
+Name | Description
+---- | -----------
+AstralSunSensor | Sensor that fires triggers for dawn, sunrise, sunset, and dusk
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_dawn | Returns the time of dawn
+get_dusk | Returns the time of dusk
+get_sunrise | Returns the time of the sunrise
+get_sunset | Returns the time of the sunrise
 
 ### aws pack
 
