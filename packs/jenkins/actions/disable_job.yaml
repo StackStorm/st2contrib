@@ -1,0 +1,12 @@
+---
+name: "disable_job"
+runner_type: "run-python"
+description: "Disable Jenkins Job."
+enabled: true
+entry_point: "disable_job.py"
+parameters:
+  project:
+    type: "string"
+    description: "Project to disable in Jenkins"
+    required: true
+    position: 0

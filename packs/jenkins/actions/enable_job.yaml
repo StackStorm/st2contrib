@@ -1,0 +1,12 @@
+---
+name: "enable_job"
+runner_type: "run-python"
+description: "Enable Jenkins Job."
+enabled: true
+entry_point: "enable_job.py"
+parameters:
+  project:
+    type: "string"
+    description: "Project to enable in Jenkins"
+    required: true
+    position: 0
