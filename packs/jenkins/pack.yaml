@@ -3,6 +3,6 @@
 ref: jenkins
 name: jenkins
 description: Jenkins CI Integration Pack
-version: 0.1.0
+version: 0.1.1
 author: James Fryman
 email: james@stackstorm.com
