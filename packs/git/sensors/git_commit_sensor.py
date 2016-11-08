@@ -95,6 +95,7 @@ class GitCommitSensor(PollingSensor):
         payload['author_email'] = commit.author.email
         payload['authored_date'] = self._to_date(commit.authored_date)
         payload['author_tz_offset'] = commit.author_tz_offset
+        payload['commit_message'] = getattr(commit, 'message', None)
         payload['committer'] = commit.committer.name
         payload['committer_email'] = commit.committer.email
         payload['committed_date'] = self._to_date(commit.committed_date)
