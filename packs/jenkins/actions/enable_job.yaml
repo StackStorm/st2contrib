@@ -9,4 +9,3 @@ parameters:
     type: "string"
     description: "Project to enable in Jenkins"
     required: true
-    position: 0

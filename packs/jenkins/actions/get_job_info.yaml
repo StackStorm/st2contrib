@@ -9,4 +9,3 @@ parameters:
     type: "string"
     description: "Name of the Jenkins job"
     required: true
-    position: 0

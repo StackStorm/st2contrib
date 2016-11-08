@@ -9,4 +9,3 @@ parameters:
     type: "string"
     description: "Name of the plugin to install"
     required: true
-    position: 0
