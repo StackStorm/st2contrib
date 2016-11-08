@@ -5,7 +5,7 @@ description: "Disable Jenkins Job."
 enabled: true
 entry_point: "disable_job.py"
 parameters:
-  project:
+  name:
     type: "string"
-    description: "Project to disable in Jenkins"
+    description: "Name of the job to disable."
     required: true

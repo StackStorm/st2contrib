@@ -5,7 +5,7 @@ description: "Enable Jenkins Job."
 enabled: true
 entry_point: "enable_job.py"
 parameters:
-  project:
+  name:
     type: "string"
-    description: "Project to enable in Jenkins"
+    description: "Name of the job to enable."
     required: true
