@@ -60,13 +60,12 @@ st2 run excel.get_variables key='123' sheet='Accounts' \
 ####set_variables
 
 For a key (row name) in a given Excel Sheet, set the variables provided. If the 
-key does not exist, a new row is created.  If the variables do not exist, a new 
-column will be created unless "strict" mode is enable, and then an Error will be 
-raised 
+key does not exist, a new row is created.  If the sheet or variables do not
+exist, a new sheet or column will be created unless "strict" mode is enable.
 
 When calling this action, the excel file will be locked during the process. If 
 another instance has locked the file, then it will retry by default three times 
-waiting a second between attempts. You can adjust these values in the config.yaml
+waiting a second between attempts. You can adjust these values in the configuration.
 
 Example:
 ```
