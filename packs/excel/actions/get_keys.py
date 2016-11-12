@@ -16,8 +16,8 @@ from lib import excel_action, excel_reader
 
 class GetExcelSheetsAction(excel_action.ExcelAction):
     def run(self, sheet):
-        excel = excel_reader.ExcelReader(self._excel_file)
-        excel.set_sheet(sheet, key_column=self._key_column,
-                        var_name_row=self._var_name_row,
+        excel = excel_reader.ExcelReader(self._excel_file)  # pylint: disable=no-member
+        excel.set_sheet(sheet, key_column=self._key_column,  # pylint: disable=no-member
+                        var_name_row=self._var_name_row,  # pylint: disable=no-member
                         strict=True)
         return excel.get_keys()

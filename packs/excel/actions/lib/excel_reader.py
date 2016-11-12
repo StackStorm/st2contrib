@@ -144,9 +144,9 @@ class ExcelReader(object):
         self._key_column = key_column
         self._set_key_column(key_column)
 
-        self._variable_start_column = key_column+1
+        self._variable_start_column = key_column + 1
         self._variable_end_column = self._variable_start_column
-        self._set_variable_start_column(key_column+1)
+        self._set_variable_start_column(key_column + 1)
 
     def get_row_for_key(self, key):
         ''' Returns the row for a given key, or -1 if not matched '''

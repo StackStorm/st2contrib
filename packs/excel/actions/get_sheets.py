@@ -16,5 +16,5 @@ from lib import excel_action, excel_reader
 
 class GetExcelSheetsAction(excel_action.ExcelAction):
     def run(self):
-        excel = excel_reader.ExcelReader(self._excel_file)
+        excel = excel_reader.ExcelReader(self._excel_file)  # pylint: disable=no-member
         return excel.get_sheets()
