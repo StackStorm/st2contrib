@@ -1,0 +1,6 @@
+---
+excel_file: "/opt/stackstorm/packs/excel/myspreadsheet.xlsx"
+key_column: 1
+variable_name_row: 1
+lock_file_retries: 3
+lock_file_delay: 1
