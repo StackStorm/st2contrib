@@ -1,0 +1,24 @@
+---
+name: "set_variables"
+runner_type: "run-python"
+description: "adds/updates variables to a spreadsheet"
+enabled: true
+entry_point: "set_variables.py"
+parameters:
+  sheet:
+    type: "string"
+    description: "Name of sheet"
+    required: true
+  key:
+    type: "string"
+    description: "Key field for row"
+    required: true
+  variables:
+    type: "string"
+    description: "Variables in JSON format"
+    required: true
+  strict:
+    type: "boolean"
+    description: "When enabled, Sheet must exist & Variable Names must exist"
+    required: true
+    default: True
