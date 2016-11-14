@@ -4,3 +4,8 @@ runner_type: "run-python"
 description: "returns an array in json format of the sheet names in the excel file"
 enabled: true
 entry_point: "get_sheets.py"
+parameters:
+  excel_file:
+    type: "string"
+    description: "Excel file name"
+    required: false

@@ -24,11 +24,12 @@ and/or keys, ensure there is no additional information to the right or below the
 
 ## Actions
 
-There are four actions:
+There are five actions:
 
 ```text
 - get_sheets
-- get_keys
+- get_keys_for_columns
+- get_keys_for_rows
 - get_variables
 - set_variables
 ```
@@ -37,9 +38,13 @@ There are four actions:
 
 Returns an array of all the sheet names in the excel file
 
-####get_keys
+####get_keys_for_columns
 
-Returns all the keys in the specified sheet in the excel file
+Returns all the column keys (aka variable names) in the specified sheet in the excel file
+
+####get_keys_for_rows
+
+Returns all the row keys in the specified sheet in the excel file
 
 ####get_variables
 

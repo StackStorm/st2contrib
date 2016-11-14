@@ -1,9 +1,9 @@
 ---
-name: "get_variables"
+name: "get_keys_for_columns"
 runner_type: "run-python"
-description: "returns a json object of the variables for a given key in the excel file"
+description: "returns an array of the row keys for a given sheet in the excel file"
 enabled: true
-entry_point: "get_variables.py"
+entry_point: "get_keys_for_columns.py"
 parameters:
   excel_file:
     type: "string"
@@ -23,13 +23,3 @@ parameters:
     type: "string"
     description: "Excel sheet name"
     required: true
-    default: "Sheet1"
-  key:
-    type: "string"
-    description: "Key to get"
-    required: true
-  variables:
-    type: "string"
-    description: "Target a specific or subset of variables - in json format"
-    required: false
-    default: "[]"

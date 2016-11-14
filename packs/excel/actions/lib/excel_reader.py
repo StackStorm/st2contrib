@@ -76,19 +76,28 @@ class ExcelReader(object):
 
     def get_sheets(self):
         ''' Returns an array of the sheet names '''
-        sheets = []
-        for sheet in self._wb:
-            sheets.append(sheet.title)
+        sheets = [sheet.title for sheet in self._wb]
         return sheets
 
     def get_keys(self):
         ''' Returns the keys in the sheet '''
         if not self._ws:
             raise KeyError("Sheet not specified")
-        keys = []
-        for key in self._keys:
-            keys.append(key)
+        keys = list(self._keys)
         return keys
+
+    def get_variable_names(self):
+        ''' Returns the variable names in the sheet '''
+        if not self._ws:
+            raise KeyError("Sheet not specified")
+        variable_names = []
+        for col in range(self._variable_start_column,
+                         self._variable_end_column):
+
+            variable_names.append(self._ws.cell(column=col,
+                                  row=self._var_name_row).value)
+
+        return variable_names
 
     def _set_key_column(self, key_column):
         ''' Set the key column '''

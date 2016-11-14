@@ -22,3 +22,12 @@ class ExcelAction(Action):
         self._var_name_row = self.config['variable_name_row']
         self._lock_retries = self.config['lock_file_retries']
         self._lock_delay = self.config['lock_file_delay']
+
+    def replace_defaults(self, excel_file, key_column, var_name_row):
+        ''' Replace defaults if provided '''
+        if excel_file:
+            self._excel_file = excel_file
+        if key_column:
+            self._key_column = key_column
+        if var_name_row:
+            self._var_name_row = var_name_row
