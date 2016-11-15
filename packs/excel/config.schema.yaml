@@ -3,7 +3,7 @@
     description: "Path and filename to excel file"
     type: "string"
     secret: false
-    required: true
+    required: false
   key_column:
     description: "Column in the spreadsheet that contains the key field"
     type: "integer"

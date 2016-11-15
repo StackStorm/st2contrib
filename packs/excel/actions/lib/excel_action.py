@@ -31,3 +31,8 @@ class ExcelAction(Action):
             self._key_column = key_column
         if var_name_row:
             self._var_name_row = var_name_row
+
+        # Verify excel_file is specified either as config option or action parameter
+        if not self._excel_file:
+            raise ValueError('"excel_file" needs to be specified either as config option or '
+                             'as action parameter')
