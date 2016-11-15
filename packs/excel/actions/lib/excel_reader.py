@@ -35,6 +35,9 @@ class ExcelReader(object):
         self._data_start_row = -1
         self._data_end_row = -1
 
+        if not os.path.isfile(self._filename):
+            raise ValueError('File "%s" doesn\'t exist' % (self._filename))
+
         if lock:
             # is file already locked?
             attempts = 0
