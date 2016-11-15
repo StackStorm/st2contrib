@@ -1,21 +1,20 @@
-name: get
+name: list
 runner_type: run-python
-description: "Get value from Consul server"
+description: "List values from Consul server"
 enabled: true
 entry_point: "get.py"
 parameters:
     key:
         type: string
-        description: "Key to retrieve from Consul"
+        description: "Root Key for listing from Consul"
         required: true
     recurse:
         type: boolean
         description: "Do a recursive retrieval?"
         required: false
-        default: false
+        default: true
     listing:
         type: boolean
         description: "Return a list of keys only"
         required: false
-        default: false
-
+        default: true
