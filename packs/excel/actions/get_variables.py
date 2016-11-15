@@ -16,17 +16,24 @@ import json
 
 
 class GetExcelVariablesAction(excel_action.ExcelAction):
-    def run(self, key, sheet='Sheet1', variables='[]'):
-        excel = excel_reader.ExcelReader(self._excel_file)  # pylint: disable=no-member
-        excel.set_sheet(sheet, key_column=self._key_column,  # pylint: disable=no-member
-                        var_name_row=self._var_name_row,  # pylint: disable=no-member
+    def run(self, key, sheet='Sheet', variables='[]', excel_file=None,
+            key_column=None, variable_name_row=None):
+
+        self.replace_defaults(excel_file, key_column, variable_name_row)
+
+        excel = excel_reader.ExcelReader(self._excel_file)
+        excel.set_sheet(sheet, key_column=self._key_column,
+                        var_name_row=self._var_name_row,
                         strict=True)
+
         vfk = excel.get_variables_for_key(key)
         if variables == '[]':  # default
             return vfk
+
         variables = json.loads(variables)
         filtered = {}
         for var_name in variables:
             if var_name in vfk:
                 filtered[var_name] = vfk[var_name]
+
         return filtered

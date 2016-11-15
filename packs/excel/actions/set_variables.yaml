@@ -5,6 +5,20 @@ description: "adds/updates variables to a spreadsheet"
 enabled: true
 entry_point: "set_variables.py"
 parameters:
+  excel_file:
+    type: "string"
+    description: "Excel file name"
+    required: false
+  key_column:
+    type: "integer"
+    description: "Starting column for keys"
+    default: 1
+    required: false
+  variable_name_row:
+    type: "integer"
+    description: "Starting row for variable names"
+    default: 1
+    required: false
   sheet:
     type: "string"
     description: "Name of sheet"
