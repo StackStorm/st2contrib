@@ -91,6 +91,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![duo icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/duo/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/duo) | [duo](https://github.com/StackStorm/st2contrib/tree/master/packs/duo) | Use Duo 2FA authenication with StackStorm actions. | 2Fa, Duo | [Jon Middleton](mailto:jon.middleton@pulsant.com) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#duo-pack)
 [![elasticsearch icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/elasticsearch/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | [elasticsearch](https://github.com/StackStorm/st2contrib/tree/master/packs/elasticsearch) | st2 elasticsearch integration pack | elasticsearch, curator, databases | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#elasticsearch-pack)
 [![email icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/email/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | [email](https://github.com/StackStorm/st2contrib/tree/master/packs/email) | E-Mail Actions/Sensors for StackStorm |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#email-pack)
+[![excel icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/excel/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/excel) | [excel](https://github.com/StackStorm/st2contrib/tree/master/packs/excel) | excel actions to read and write variables to an excel file |  | [Tim Braly](mailto:tbraly@brocade.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#excel-pack)
 [![fireeye icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fireeye/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | [fireeye](https://github.com/StackStorm/st2contrib/tree/master/packs/fireeye) | FireEye CM Series Integration |  | [James Fryman](mailto:james@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fireeye-pack)
 [![fpm icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/fpm/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | [fpm](https://github.com/StackStorm/st2contrib/tree/master/packs/fpm) | fpm |  | [jfryman](mailto:jfryman@FryBook-2.local) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#fpm-pack)
 [![freight icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/freight/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | [freight](https://github.com/StackStorm/st2contrib/tree/master/packs/freight) | freight |  | [James Fryman](mailto:james@fryman.io) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#freight-pack)
@@ -1487,6 +1488,20 @@ SMTPSensor | Sensor that emits triggers when e-mail message is received via SMTP
 Name | Description
 ---- | -----------
 send_email | Send an email.
+
+### excel pack
+
+![excel icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/excel/icon.png)
+
+#### Actions
+
+Name | Description
+---- | -----------
+get_keys_for_columns | returns an array of the row keys for a given sheet in the excel file
+get_keys_for_rows | returns an array of the row keys for a given sheet in the excel file
+get_sheets | returns an array in json format of the sheet names in the excel file
+get_variables | returns a json object of the variables for a given key in the excel file
+set_variables | adds/updates variables to a spreadsheet
 
 ### fireeye pack
 
