@@ -13,7 +13,7 @@ parameters:
         description: "Do a recursive retrieval?"
         required: false
         default: true
-    listing:
+    keys:
         type: boolean
         description: "Return a list of keys only"
         required: false

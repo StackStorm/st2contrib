@@ -4,7 +4,7 @@
 
  - Added consul.list action to get a list of Keys from consul under a given <root> key
  - Added Recursive lookup for consul.get action.
- - Both list and get use the same python runner with additional `recurse`, and `listing`
+ - Both list and get use the same python runner with additional `recurse`, and `keys`
    parameters with appropriate defaults.
 
 ## 0.2.0
