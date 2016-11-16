@@ -9,11 +9,19 @@ Cloud](http://www.rackspace.com/cloud) services such as:
 
 ## Configuration
 
+Copy the example configuration in [rackspace.yaml.example](./rackspace.yaml.example)
+to `/opt/stackstorm/configs/rackspace.yaml` and edit as required.
+
+It should contain:
+
 * ``username`` - Your cloud account username.
 * ``api_key`` - Your cloud account API key.
 * ``region`` - Default region to use for all the operations. Can be overriden
   on per action basis.
 * ``debug`` - True to enable debug mode.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 
