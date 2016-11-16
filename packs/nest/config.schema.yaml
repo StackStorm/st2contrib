@@ -1,0 +1,23 @@
+---
+  username:
+    description: "Nest.com username"
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "Nest.com password"
+    type: "string"
+    secret: true
+    required: true
+  structure:
+    description: "Default nest home ID to query (Default: 0)"
+    type: "string"
+    secret: false
+    required: false
+    default: "0"
+  device:
+    description: "Default nest device ID to query (Default: 0)"
+    type: "string"
+    secret: false
+    required: false
+    default: "0"
