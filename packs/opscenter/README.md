@@ -6,6 +6,9 @@ opscenter/5.1/api/docs/index.html was used.
 
 ## Configuration
 
+Copy the example configuration in [opscenter.yaml.example](./opscenter.yaml.example)
+to `/opt/stackstorm/configs/opscenter.yaml` and edit as required.
+
 You'll need to setup base url for opscenter deployment and cluster_id that you want to work with in config.yaml.
 
 ```yaml
@@ -13,6 +16,9 @@ You'll need to setup base url for opscenter deployment and cluster_id that you w
 opscenter_base_url: http://myopscenter.mydomain.com:8888
 cluster_id: "TestCluster"
 ```
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 
