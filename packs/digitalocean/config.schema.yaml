@@ -1,0 +1,6 @@
+---
+  token:
+    description: "API token for DigitalOcean"
+    type: "string"
+    secret: true
+    required: true
