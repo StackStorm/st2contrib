@@ -4,6 +4,6 @@ name: splunk
 description: Splunk integration pack
 keywords:
   - splunk
-version : 0.2.0
+version : 0.3.0
 author : StackStorm, Inc.
 email : info@stackstorm.com

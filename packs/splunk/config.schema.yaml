@@ -1,0 +1,34 @@
+---
+  host:
+    description: "Splunk server"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Splunk port (default 8089)"
+    type: "string"
+    secret: false
+    required: true
+    default: 8089
+  username:
+    description: "Splunk username"
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "Splunk password"
+    type: "string"
+    secret: true
+    required: true
+  scheme:
+    description: "Protocol used for Splunk API - http or https"
+    type: "string"
+    secret: false
+    required: false
+    default: "https"
+  version:
+    description: "Splunk API version"
+    type: "string"
+    secret: false
+    required: false
+    default: "5.0"
