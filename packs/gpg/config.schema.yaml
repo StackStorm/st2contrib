@@ -11,8 +11,8 @@
     secret: false
     required: false
   debug:
-    description: "Optional debug flag"
+    description: "Optional debug flag - set to True to enable debug mode"
     type: "string"
-    secret: true
+    secret: false
     required: false
     default: false
