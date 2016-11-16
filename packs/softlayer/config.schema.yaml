@@ -1,0 +1,21 @@
+---
+  username:
+    description: "Softlayer username"
+    type: "string"
+    secret: false
+    required: true
+  api_key:
+    description: "API Key for Softlayer integration"
+    type: "string"
+    secret: true
+    required: true
+  region:
+    description: "Not used yet, should be the default region you want to work with for instances"
+    type: "string"
+    secret: false
+    required: false
+  swift_region:
+    description: "Not used yet, will be the Softlayer Object Storage region to work with"
+    type: "string"
+    secret: false
+    required: false
