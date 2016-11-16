@@ -1,0 +1,16 @@
+---
+  api_token:
+    description: "API token to send commands from StackStorm -> SmartThings"
+    type: "string"
+    secret: true
+    required: true
+  api_endpoint:
+    description: "HTTP endpoint for SmartThings SmartApp"
+    type: "string"
+    secret: false
+    required: true
+  api_key:
+    description: "Shared API Key to send SmartThings events -> StackStorm"
+    type: "string"
+    secret: true
+    required: true
