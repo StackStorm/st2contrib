@@ -4,7 +4,13 @@ Pack that provides management/integration with Hubot
 
 ## Configuration
 
+Copy the example configuration in [hubot.yaml.example](./hubot.yaml.example)
+to `/opt/stackstorm/configs/hubot.yaml` and edit as required.
+
 * `endpoint` - Location of Hubot HTTP endpoint (default: http://127.0.0.1:8181)
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 
