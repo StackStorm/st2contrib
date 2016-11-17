@@ -1,0 +1,18 @@
+---
+  host:
+    description: "Consul server IP/name - default 127.0.0.1"
+    type: "string"
+    secret: false
+    required: true
+    default: "127.0.0.1"
+  port:
+    description: "Consul server port. Default 8500"
+    type: "string"
+    secret: false
+    required: true
+    default: "8500"
+  token:
+    description: "Consul API token"
+    type: "string"
+    secret: true
+    required: true
