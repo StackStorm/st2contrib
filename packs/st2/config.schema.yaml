@@ -21,6 +21,6 @@
     required: false
   cacert:
     description: "Set to True or path to validate certificates"
-    type: "string"
+    type: ["string", "boolean"]
     secret: false
     required: false
