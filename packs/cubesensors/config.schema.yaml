@@ -1,0 +1,33 @@
+---
+  consumer_key:
+    description: "Your consumer key."
+    type: "string"
+    required: true
+    secret: true
+  consumer_secret:
+    description: "Your consumer secret."
+    type: "string"
+    required: true
+    secret: true
+  access_token:
+    description: "Your access token."
+    type: "string"
+    required: true
+    secret: true
+  access_token_secret:
+    description: "Your access token secret."
+    type: "string"
+    required: true
+    secret: true
+  sensor:
+    description: "Sensor specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      device_uids:
+        type: "array"
+        description: "A list of device UIDs to poll metrics for."
+        items:
+          type: "string"
+        required: false
