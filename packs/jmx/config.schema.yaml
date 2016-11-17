@@ -1,0 +1,38 @@
+---
+  email:
+    description: "JMX service hostname. Default localhost"
+    type: "string"
+    secret: false
+    required: true
+    default: "localhost"
+  port:
+    description: "JMX service port. Default 7199"
+    type: "string"
+    secret: false
+    required: true
+    default: "7199"
+  username:
+    description: "Optional JMX username"
+    type: "string"
+    secret: false
+    required: false
+  password:
+    description: "Optional JMX password"
+    type: "string"
+    secret: true
+    required: false
+  object_name:
+    description: "Name of the object to be checked - e.g. java.lang:type=Memory"
+    type: "string"
+    secret: false
+    required: true
+  attribute_name:
+    description: "Attribute of the object to be checked - e.g. HeapMemoryUsage"
+    type: "string"
+    secret: false
+    required: true
+  attribute_keys:
+    description: "A list of attribute keys for compound attributes"
+    type: "string"
+    secret: false
+    required: false

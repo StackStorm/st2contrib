@@ -8,6 +8,9 @@ many others.
 
 ## Configuration
 
+Copy the example configuration in [jmx.yaml.example](./jmx.yaml.example)
+to `/opt/stackstorm/configs/jmx.yaml` and edit as required.
+
 * ``hostname`` - JMX service hostname.
 * ``port`` - JMX service port.
 * ``username`` - Optional JMX username.
@@ -15,6 +18,9 @@ many others.
 * ``object_name`` - Name of the object to be checked.
 * ``attribute_name`` - Attribute of the object to be checked.
 * ``attribute_keys`` - A list of attribute keys for compound attributes
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Requirements (for running)
 
