@@ -7,10 +7,10 @@
     default: "localhost"
   port:
     description: "JMX service port. Default 7199"
-    type: "string"
+    type: "integer"
     secret: false
     required: true
-    default: "7199"
+    default: 7199
   username:
     description: "Optional JMX username"
     type: "string"
@@ -34,5 +34,7 @@
   attribute_keys:
     description: "A list of attribute keys for compound attributes"
     type: "string"
+    items:
+      type: "string"
     secret: false
     required: false

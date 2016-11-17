@@ -6,10 +6,10 @@
     required: true
   port:
     description: "Elasticsearch port - default 9200"
-    type: "string"
+    type: "integer"
     secret: false
     required: false
-    default: "9200"
+    default: 9200
   query_window:
     description: "Rolling window size in seconds. Default 30s"
     type: "integer"

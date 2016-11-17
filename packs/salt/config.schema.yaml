@@ -22,7 +22,7 @@
     default: pam
   verify_ssl:
     description: "Whether ST2 should verify the Salt NetAPI SSL certificate or not"
-    type: "string"
+    type: "boolean"
     secret: false
     required: false
     default: true

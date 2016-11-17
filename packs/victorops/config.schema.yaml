@@ -11,7 +11,7 @@
     required: true
   debug:
     description: "Debug flag used for debugging"
-    type: "string"
+    type: "boolean"
     secret: false
     required: false
     default: false
