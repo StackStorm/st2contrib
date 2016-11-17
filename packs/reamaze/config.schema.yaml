@@ -1,0 +1,16 @@
+---
+  brand:
+    description: "Scoped brand to send API requests to"
+    type: "string"
+    secret: false
+    required: true
+  email:
+    description: "Email of user connecting to reamaze"
+    type: "string"
+    secret: false
+    required: true
+  api_token:
+    description: "API token for user"
+    type: "string"
+    secret: true
+    required: true

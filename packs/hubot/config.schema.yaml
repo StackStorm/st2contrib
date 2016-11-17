@@ -1,0 +1,7 @@
+---
+  endpoint:
+    description: "Hubot endpoint - default 'http://127.0.0.1:8181'"
+    type: "string"
+    secret: false
+    required: true
+    default: "http://127.0.0.1:8181"

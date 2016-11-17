@@ -16,7 +16,14 @@ Sensu and StackStorm, up and running. See installation for [Sensu](http://sensua
 	    # Check it:
 	    st2 action list --pack=sensu
 
-2. Adjust Sensu API endpoint and credentials in [`/opt/stackstorm/packs/sensu/config.yaml`](./config.yaml) to point to the right Sensu instance.
+2. Copy the example configuration in [sensu.yaml.example](./sensu.yaml.example)
+to `/opt/stackstorm/configs/sensu.yaml` and edit as required. It must contain:
+
+* ``host`` - Host where Sensu API endpoint is running
+* ``port`` - Sensu API port (default 4567)
+* ``user`` - Sensu integration user
+* ``pass`` - Sensu integration password
+* ``ssl`` - Whether to verify the Sensu SSL certificate or not
 
 3. Check that the actions work:
 

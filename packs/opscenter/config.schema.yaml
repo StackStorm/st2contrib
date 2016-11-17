@@ -1,0 +1,11 @@
+---
+  opscenter_base_url:
+    description: "Opscenter URL, e.g. http://10.0.2.248:8888"
+    type: "string"
+    secret: false
+    required: true
+  cluster_id:
+    description: "Opscenter cluster ID, e.g. st2democluster"
+    type: "string"
+    secret: false
+    required: true

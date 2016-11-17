@@ -4,9 +4,15 @@ StackStorm integration with Lastline Security Breach Detection devices
 
 ## Configuration
 
+Copy the example configuration in [lastline.yaml.example](./lastline.yaml.example)
+to `/opt/stackstorm/configs/lastline.yaml` and edit as required.
+
 * `url` - URL of Lastline Endpoint. By default: uses Lastline Cloud.
 * `key` - Lastline API Key
 * `api_token` - Lastline API token
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

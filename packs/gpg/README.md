@@ -9,10 +9,18 @@ GnuGP executable.
 
 ## Configuration
 
+Copy the example configuration in [gpg.yaml.example](./gpg.yaml.example)
+to `/opt/stackstorm/configs/gpg.yaml` and edit as required.
+
+Configuration options:
+
 * ``gpgbinary`` - Optional path to the gpg binary to use.
 * ``gpghome`` - Optional path to gpg keyring home. If not provided,
   ``~/.gnupg`` is used as a default.
 * ``debug`` - True to enable debug mode.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

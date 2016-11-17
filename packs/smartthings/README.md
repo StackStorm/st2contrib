@@ -9,9 +9,17 @@ called via StackStorm actions located within this pack.
 
 ## Configuration
 
+Copy the example configuration in [smartthings.yaml.example](./smartthings.yaml.example)
+to `/opt/stackstorm/configs/smartthings.yaml` and edit as required. It must contain:
+
 * `api_token` - API token to send commands from StackStorm -> SmartThings
 * `api_endpoint` - HTTP endpoint for SmartThings SmartApp
 * `api_key` - Shared API Key to send SmartThings events -> StackStorm
+
+See below for how to generate the SmartThings api_endpoint and api_key
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

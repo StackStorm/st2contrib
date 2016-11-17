@@ -1,0 +1,18 @@
+---
+  gpgbinary:
+    description: "Optional path to the gpg binary to use"
+    type: "string"
+    secret: false
+    required: false
+    default: "gpg"
+  gpghome:
+    description: "Optional path to gpg keyring home"
+    type: "string"
+    secret: false
+    required: false
+  debug:
+    description: "Optional debug flag - set to True to enable debug mode"
+    type: "string"
+    secret: false
+    required: false
+    default: false

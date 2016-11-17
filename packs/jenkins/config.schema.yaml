@@ -1,0 +1,16 @@
+---
+  url:
+    description: "FQDN to Jenkins API endpoint (e.x.: http://jenkins.mycompany.org:8080)"
+    type: "string"
+    secret: false
+    required: true
+  username:
+    description: "Jenkins Username (if auth is enabled)"
+    type: "string"
+    secret: false
+    required: false
+  password:
+    description: "Jenkins Password (if auth is enabled)"
+    type: "string"
+    secret: true
+    required: false

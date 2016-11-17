@@ -2,9 +2,16 @@
 
 ### Configuration
 
-host - Mistral URL (For example, 'http://localhost:8989/')
+Copy the example configuration in [mistral.yaml.example](./mistral.yaml.example)
+to `/opt/stackstorm/configs/mistral.yaml` and edit as required.
 
-api_version - Mistral API version (For example, 'v2')
+It must contain:
+
+* ``host`` - Mistral URL - e.g. 'http://localhost:8989/'
+* ``api_version`` - Mistral API verson - e.g. 'v2'
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ### Actions
 

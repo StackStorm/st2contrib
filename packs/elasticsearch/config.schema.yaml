@@ -1,0 +1,40 @@
+---
+  host:
+    description: "Host where Elasticsearch is running"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Elasticsearch port - default 9200"
+    type: "string"
+    secret: false
+    required: false
+    default: "9200"
+  query_window:
+    description: "Rolling window size in seconds. Default 30s"
+    type: "string"
+    secret: false
+    required: false
+    default: "30"
+  query_string:
+    description: "String to query for"
+    type: "string"
+    secret: false
+    required: true
+  cooldown_multiplier:
+    description: "Multiple of query window to cooldown after successful hit. Default 2"
+    type: "string"
+    secret: false
+    required: false
+    default: "2"
+  count_threshold:
+    description: "Minimum number of hits before emitting trigger. Default 5"
+    type: "string"
+    secret: false
+    required: false
+    default: "5"
+  index:
+    description: "Index to query"
+    type: "string"
+    secret: false
+    required: true

@@ -1,0 +1,21 @@
+---
+  subdomain:
+    description: "PagerDuty subdomain"
+    type: "string"
+    secret: false
+    required: true
+  api_key:
+    description: "API Key"
+    type: "string"
+    secret: true
+    required: true
+  service_api:
+    description: "Service API"
+    type: "string"
+    secret: true
+    required: true
+  debug:
+    description: "Set to True to enable additional logging"
+    type: "boolean"
+    secret: false
+    default: false

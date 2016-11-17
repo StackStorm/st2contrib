@@ -1,0 +1,28 @@
+---
+  host:
+    description: "Host where Sensu API endpoint is running"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Sensu API port (default 4567)"
+    type: "string"
+    secret: false
+    required: true
+    default: 4567
+  user:
+    description: "Sensu integration user"
+    type: "string"
+    secret: false
+    required: true
+  pass:
+    description: "Sensu integration password"
+    type: "string"
+    secret: true
+    required: true
+  ssl:
+    description: "Whether ST2 should verify the Sensu API SSL certificate or not"
+    type: "string"
+    secret: false
+    required: false
+    default: false

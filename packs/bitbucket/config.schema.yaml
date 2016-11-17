@@ -1,0 +1,16 @@
+---
+  username:
+    description: "Bitbucket username"
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "Bitbucket password"
+    type: "string"
+    secret: true
+    required: true
+  email:
+    description: "Your email address"
+    type: "string"
+    secret: false
+    required: true

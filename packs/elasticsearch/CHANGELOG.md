@@ -1,3 +1,7 @@
+# 0.4.0
+
+Migrate to config.schema
+
 # 0.1.2
 
 Refactoring, and fixes for all major issues.

@@ -1,0 +1,22 @@
+---
+  username:
+    description: "Your cloud account username"
+    type: "string"
+    secret: false
+    required: true
+  api_key:
+    description: "Your cloud account API key"
+    type: "string"
+    secret: true
+    required: true
+  region:
+    description: "Default region to use for all operations. Can be overrriden on per-action basis."
+    type: "string"
+    secret: false
+    required: true
+  debug:
+    description: "Optional debug flag. Set to True to enable additional logging."
+    type: "string"
+    secret: false
+    required: false
+    default: false

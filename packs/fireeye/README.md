@@ -4,9 +4,15 @@ StackStorm integration with FireEye CM and AX threat intelligence devices
 
 ## Configuration
 
-* `api_url` - HTTPS endpoint of FireEye CM appliance. (e.x.: https://fqdn.to.device)
+Copy the example configuration in [fireeye.yaml.example](./fireeye.yaml.example)
+to `/opt/stackstorm/configs/fireeye.yaml` and edit as required.
+
+* `api_url` - HTTPS endpoint of FireEye CM appliance. (e.g.: https://fqdn.to.device)
 * `username` - FireEye username
 * `password` - FireEye password
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

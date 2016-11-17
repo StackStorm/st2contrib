@@ -19,7 +19,7 @@ be running on and where you run ``packs.install``.
 
 #### Configuration
 
-This should be installed on the master
+If ST2 is installed on the master, no local configuration is required.
 
 #### Examples
 
@@ -34,7 +34,10 @@ This should be installed on the master
 
 #### Configuration
 
-In config.yaml:
+Copy the example configuration in [salt.yaml.example](./salt.yaml.example)
+to `/opt/stackstorm/configs/salt.yaml` and edit as required.
+
+It must contain this:
 
 ```yaml
 ---

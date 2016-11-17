@@ -1,13 +1,19 @@
 # OpenHAB Integration Pack
 
-This integration pack allows you to integratie with [OpenHAB](http://openhab.org).
+This pack allows you to integrate with [OpenHAB](http://openhab.org).
 
 ## Configuration
+
+Copy the example configuration in [openhab.yaml.example](./openhab.yaml.example)
+to `/opt/stackstorm/configs/openhab.yaml` and edit as required.
 
 * `hostname` - Hostname of OpenHAB
 * `port` - Port OpenHAB listens on (default: 8080)
 * `username` - Username to connect to OpenHAB (optional)
 * `password` - Password to connect to OpenHAB (optional)
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

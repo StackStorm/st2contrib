@@ -1,5 +1,5 @@
-# Changelog
+# Change Log
 
-## v0.1.0
+# 0.4.0
 
-* Initial release
+- Rename `config.yaml` to `config.schema.yaml` and update to use schema.

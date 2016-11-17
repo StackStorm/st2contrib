@@ -1,5 +1,0 @@
----
-# Where on earth do I actually put these? Needs to be portable
-url: "http://master.jenkins.service.consul:8080"
-username: ""
-password: ""

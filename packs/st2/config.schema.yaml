@@ -1,0 +1,26 @@
+---
+  base_url:
+    description: "Base URL for StackStorm API endpoints"
+    type: "string"
+    secret: false
+    required: false
+  api_url:
+    description: "Base URL for StackStorm API endpoint"
+    type: "string"
+    secret: false
+    required: false
+  auth_url:
+    description: "Base URL for StackStorm AUTH endpoint"
+    type: "string"
+    secret: false
+    required: false
+  api_key:
+    description: "API key used for authentication if custom API key desired"
+    type: "string"
+    secret: true
+    required: false
+  cacert:
+    description: "Set to True or path to validate certificates"
+    type: "string"
+    secret: false
+    required: false

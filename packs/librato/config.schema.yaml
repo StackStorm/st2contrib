@@ -1,0 +1,11 @@
+---
+  user:
+    description: "Librato user"
+    type: "string"
+    secret: false
+    required: true
+  token:
+    description: "Librato access token"
+    type: "string"
+    secret: true
+    required: true

@@ -3,6 +3,6 @@
 ref: st2
 name: st2
 description: StackStorm pack management
-version: 0.1.2
+version: 0.2.0
 author: StackStorm, Inc.
 email: info@stackstorm.com

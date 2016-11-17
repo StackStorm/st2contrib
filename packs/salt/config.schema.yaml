@@ -1,0 +1,28 @@
+---
+  api_url:
+    description: "Salt NetAPI URL if using remote server"
+    type: "string"
+    secret: false
+    required: false
+  username:
+    description: "Username for Salt NetAPI integration"
+    type: "string"
+    secret: false
+    required: false
+  password:
+    description: "Password for Salt NetAPI integration"
+    type: "string"
+    secret: true
+    required: false
+  eauth:
+    description: "Salt External Authentication System"
+    type: "string"
+    secret: false
+    required: false
+    default: pam
+  verify_ssl:
+    description: "Whether ST2 should verify the Salt NetAPI SSL certificate or not"
+    type: "string"
+    secret: false
+    required: false
+    default: true

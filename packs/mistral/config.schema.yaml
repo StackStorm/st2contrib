@@ -1,0 +1,15 @@
+---
+  host:
+    description: "Mistral URL"
+    type: "string"
+    secret: false
+    required: true
+    default: "http://localhost:8989/"
+  api_version:
+    description: "Mistral API version"
+    type: "string"
+    secret: false
+    required: true
+    default: "v2"
+    secret: true
+    required: true

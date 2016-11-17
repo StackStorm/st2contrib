@@ -1,0 +1,8 @@
+---
+host: localhost
+port: 9200
+query_window: 30 #Size in seconds of rolling window
+query_string: '{"match":{"path":"/var/log/st2/st2stream.audit.log"}}' #ES DSL bool must
+cooldown_multiplier: 2 #Multiple of query window to cooldown after successful hit
+count_threshold: 5 #Minimum number of hits before emitting trigger
+index: 'logstash*'

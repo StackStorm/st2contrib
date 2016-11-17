@@ -1,0 +1,11 @@
+---
+  domain:
+    description: "Your mailgun domain, e.g. myuser.mailgun.org"
+    type: "string"
+    secret: false
+    required: true
+  api_key:
+    description: "Mailgun API key"
+    type: "string"
+    secret: true
+    required: true

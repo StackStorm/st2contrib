@@ -1,0 +1,16 @@
+---
+  url:
+    description: "URL of Lastline Endpoint. By default: uses Lastline Cloud"
+    type: "string"
+    secret: false
+    default: "https://analysis.lastline.com"
+  key:
+    description: "Lastline API Key"
+    type: "string"
+    secret: true
+    required: true
+  api_token:
+    description: "Lastline API token"
+    type: "string"
+    secret: true
+    required: true
