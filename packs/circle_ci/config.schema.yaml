@@ -1,0 +1,24 @@
+---
+  token:
+    description: "Circle CI auth token."
+    type: "string"
+    secret: true
+    required: true
+  host:
+    description: "Circle CI server host."
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Circle CI server port."
+    type: "integer"
+    secret: false
+    required: true
+    default: 8531
+  endpoints:
+    type: "array"
+    items:
+      type: "string"
+    required: false
+    default:
+      - "build/events"
