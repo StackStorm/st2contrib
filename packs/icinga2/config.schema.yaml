@@ -1,0 +1,26 @@
+---
+  api_url:
+    description: "URL to the API stream, e.g. 'https://localhost:5665/v1'"
+    type: "string"
+    secret: false
+    required: true
+  api_user:
+    description: "API user name to query Icinga2 host for objects"
+    type: "string"
+    secret: false
+    required: true
+  api_password:
+    description: "API password for querying Icinga2 for objects"
+    type: "string"
+    secret: true
+    required: true
+  api_state_change_user:
+    description: "API user name for querying API state changes"
+    type: "string"
+    secret: false
+    required: true
+  api_state_change_password:
+    description: "API password for querying API state changes"
+    type: "string"
+    secret: true
+    required: true
