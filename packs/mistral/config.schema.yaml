@@ -11,5 +11,3 @@
     secret: false
     required: true
     default: "v2"
-    secret: true
-    required: true
