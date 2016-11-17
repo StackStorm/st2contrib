@@ -26,7 +26,7 @@
     required: true
   poll_interval:
     description: "Polling interval - default 30s"
-    type: "string"
+    type: "integer"
     secret: false
     required: false
     default: 30
