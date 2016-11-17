@@ -4,17 +4,22 @@ This pack consists of a sample JIRA sensor and a JIRA action.
 
 ## Configuration
 
-Sensor and action come with a json configuration file (config.yaml). You'll need to configure the following:
+Copy the example configuration in [jira.yaml.example](./jira.yaml.example)
+to `/opt/stackstorm/configs/jira.yaml` and edit as required.
 
 * ``url`` - URL of the JIRA instance (e.g. ``https://myproject.atlassian.net``)
 * ``rsa_cert_file`` - Path to the file with a private key.
 * ``oauth_token`` - OAuth token.
 * ``oauth_secret`` - OAuth secret.
 * ``consumer_key`` - Consumer key.
+* ``poll_interval`` - Polling interval - default 30s
 * ``project`` - Key of the project which will be used as a default with some of the actions which
   don't require or allow you to specify a project (e.g. ``STORM``).
 
 To get these OAuth credentials, take a look at OAuth section bellow.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ### OAuth
 

@@ -1,0 +1,37 @@
+---
+  url:
+    description: "URL of the JIRA instance (e.g. ``https://myproject.atlassian.net``)"
+    type: "string"
+    secret: false
+    required: true
+  rsa_cert_file:
+    description: "Path to a private key file, e.g. /home/vagrant/jira.pem"
+    type: "string"
+    secret: false
+    required: true
+  oauth_token:
+    description: "OAuth token"
+    type: "string"
+    secret: true
+    required: true
+  oauth_secret:
+    description: "OAuth secret"
+    type: "string"
+    secret: true
+    required: true
+  consumer_key:
+    description: "Consumer key"
+    type: "string"
+    secret: true
+    required: true
+  poll_interval:
+    description: "Polling interval - default 30s"
+    type: "string"
+    secret: false
+    required: false
+    default: 30
+  project:
+    description: "Project to be used as default for actions that don't require or allow a project"
+    type: "string"
+    secret: false
+    required: true
