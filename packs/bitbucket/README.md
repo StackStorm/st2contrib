@@ -205,7 +205,7 @@ This has a number of pre-dependancies:
 /opt/stackstorm/packs/packs/config.yaml
 ```
 
-- Setting an Workflow / Hooks / Post-Receive WebHooks pointing at the URL
+- Setting Workflow / Hooks / Post-Receive WebHooks pointing at the URL:
 
 ```
 https://<my-server>/api/v1/webhooks/bitbucket_post_receive?st2-api-key=<ST2-API-Key>
