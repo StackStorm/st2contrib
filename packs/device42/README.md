@@ -1,14 +1,20 @@
 # Device42 Integration Pack
 
-Integration pack that provides support for Device42, a self-documenting CMDB and  single source of truth for all things
+Integration pack that provides support for Device42, a self-documenting CMDB and single source of truth for all things
 IT infrastructure
 
 ## Configuration
+
+Copy the example configuration in [device42.yaml.example](./device42.yaml.example)
+to `/opt/stackstorm/configs/device42.yaml` and edit as required.
 
 * `d42_server` - Device42 instance address (with protocol and without trailing slash)
 * `d42_username` - Device42 username
 * `d42_password` - Device42 password
 * `verify_certificate` - Set to `false` in case of self-signed SSL certificate
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Supported Actions
 ```
