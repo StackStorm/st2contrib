@@ -23,13 +23,6 @@ You can also use dynamic values from the datastore. See the
 
 Runs a synchronous search to get Splunk data. E.g., `st2 run splunk.search query='search * | head 10`. Refer to [Splunk documentation](http://docs.splunk.com/Documentation/Splunk/5.0/Search/Aboutthesearchlanguage) for search query syntax.
 
-### Sensors
-TBD
+## Sensors
 
----
-host: localhost
-port: 8089
-username: admin
-password: admin
-scheme: https
-version: '5.0'
+TBD
