@@ -29,7 +29,7 @@ flake8: requirements .flake8
 pylint: requirements .clone_st2_repo .pylint
 
 .PHONY: configs-check
-configs-check: requirements .configs-check
+configs-check: requirements .clone_st2_repo .configs-check
 
 .PHONY: metadata-check
 metadata-check: requirements .metadata-check
