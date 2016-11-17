@@ -1,0 +1,21 @@
+---
+  hostname:
+    description: "Hostname of OpenHAB"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Port OpenHAB listens on (default: 8080)"
+    type: "string"
+    secret: false
+    default: "8080"
+  username:
+    description: "Username to connect to OpenHAB (optional)"
+    type: "string"
+    secret: false
+    required: false
+  password:
+    description: "Password to connect to OpenHAB (optional)"
+    type: "string"
+    secret: true
+    required: false
