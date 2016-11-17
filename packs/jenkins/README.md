@@ -12,9 +12,15 @@ for this pack to be able to start jobs.
 
 ## Configuration
 
+Copy the example configuration in [jenkins.yaml.example](./jenkins.yaml.example)
+to `/opt/stackstorm/configs/jenkins.yaml` and edit as required.
+
 * `url` - FQDN to Jenkins API endpoint (e.x.: http://jenkins.mycompany.org:8080)
 * `username` - Jenkins Username (if auth is enabled)
 * `password` - Jenkins Password (if auth is enabled)
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 
