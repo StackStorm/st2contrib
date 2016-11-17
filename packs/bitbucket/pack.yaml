@@ -5,7 +5,7 @@ description: Pack which allows integration with Bitbucket.
 keywords:
   - bitbucket
   - vcs
-  - mercuriral
+  - mercurial
   - git
   - source control
 version: 0.1.1

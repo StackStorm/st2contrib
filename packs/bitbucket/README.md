@@ -3,6 +3,20 @@
 Pack for integration of Bitbucket into StackStorm. The pack includes the
 functionality to perform actions on Bitbucket through StackStorm.
 
+## Configuration
+
+Copy the example configuration in [bitbucket.yaml.example](./bitbucket.yaml.example)
+to `/opt/stackstorm/configs/bitbucket.yaml` and edit as required.
+
+It must contain:
+
+* ``username`` - Bitbucket username
+* ``password`` - Bitbucket password
+* ``email`` - Email associated with bitbucket username
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
+
 ## Actions
 
 ### Repositories
