@@ -22,4 +22,4 @@ You can also use dynamic values from the datastore. See the
 * ``create_instance`` - Action which creates a new instance.
 * ``destroy_instance`` - Action which destroys an existing instance.
 * ``create_keypair`` - Action which creates a new keypair.
-* ``delete_keypair`` - Action which deletes an existing keypair.# Zendesk Integration Pack
+* ``delete_keypair`` - Action which deletes an existing keypair.
