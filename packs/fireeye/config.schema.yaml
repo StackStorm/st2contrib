@@ -1,0 +1,16 @@
+---
+  api_url:
+    description: "HTTPS endpoint of FireEye CM appliance. (e.g.: https://fqdn.to.device)"
+    type: "string"
+    secret: false
+    required: true
+  username:
+    description: "FireEye username"
+    type: "string"
+    secret: false
+    required: true
+  password:
+    description: "FireEye password"
+    type: "string"
+    secret: true
+    required: true
