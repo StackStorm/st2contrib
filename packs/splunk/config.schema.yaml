@@ -6,7 +6,7 @@
     required: true
   port:
     description: "Splunk port (default 8089)"
-    type: "string"
+    type: "integer"
     secret: false
     required: true
     default: 8089
