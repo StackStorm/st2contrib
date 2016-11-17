@@ -2,6 +2,23 @@
 
 Pack provides many operations helping to manage your Elasticsearch indices and snapshots.
 
+## Configuration
+
+Copy the example configuration in [elasticsearch.yaml.example](./elasticsearch.yaml.example)
+to `/opt/stackstorm/configs/elasticsearch.yaml` and edit as required.
+
+It must contain:
+
+* ``host`` - Host where Elasticsearch is running
+* ``port`` - Elasticsearch port - default 9200
+* ``query_window`` - Rolling window size in seconds. Default 30s
+* ``query_string`` - Query string
+* ``cooldown_multiplier`` - Multiple of query window to cooldown after successful hit. Default 2
+* ``count_threshold`` - Minimum number of hits before emitting trigger. Default 5
+* ``index`` - Index to query - e.g. 'logstash*'
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Curator based actions
 

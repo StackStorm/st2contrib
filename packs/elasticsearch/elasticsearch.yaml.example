@@ -1,3 +1,4 @@
+---
 host: localhost
 port: 9200
 query_window: 30 #Size in seconds of rolling window

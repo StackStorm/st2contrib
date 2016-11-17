@@ -19,8 +19,3 @@
     type: "boolean"
     secret: false
     default: false
-
-
-* `subdomain:` name of subdomain
-* `api_key:` API-KEY
-* `service_api:` SERVICE-API
