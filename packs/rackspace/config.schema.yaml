@@ -10,7 +10,7 @@
     secret: true
     required: true
   region:
-    description: "Default region to use for all operations. Can be overrriden on per-action basis."
+    description: "Default region to use for all operations. Can be overriden on per-action basis."
     type: "string"
     secret: false
     required: true
