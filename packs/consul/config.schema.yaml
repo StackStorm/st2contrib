@@ -7,10 +7,10 @@
     default: "127.0.0.1"
   port:
     description: "Consul server port. Default 8500"
-    type: "string"
+    type: "integer"
     secret: false
     required: true
-    default: "8500"
+    default: 8500
   token:
     description: "Consul API token"
     type: "string"

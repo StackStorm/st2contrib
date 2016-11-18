@@ -29,7 +29,7 @@ flake8: requirements .flake8
 pylint: requirements .clone_st2_repo .pylint
 
 .PHONY: configs-check
-configs-check: requirements .configs-check
+configs-check: requirements .clone_st2_repo .configs-check
 
 .PHONY: metadata-check
 metadata-check: requirements .metadata-check
@@ -64,6 +64,7 @@ packs-tests: requirements .clone_st2_repo .packs-tests
 	@echo
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_YAML}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_YAML); do if [ -n "$$file" ]; then st2-check-validate-yaml-file $$file || exit 1 ; fi; done
 	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_JSON}" ]; then echo No files have changed, skipping run...; fi; for file in $(CHANGED_JSON); do if [ -n "$$file" ]; then st2-check-validate-json-file $$file || exit 1 ; fi; done
+	. $(VIRTUALENV_DIR)/bin/activate; if [ ! "${CHANGED_PACKS}" ]; then echo No packs have changed, skipping run...; fi; for pack in $(CHANGED_PACKS); do if [ -n "$$pack" ]; then st2-check-validate-pack-example-config $$pack || exit 1 ; fi; done
 
 .PHONY: .metadata-check
 .metadata-check:

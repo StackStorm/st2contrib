@@ -16,6 +16,6 @@
     required: false
   verify:
     description: "Whether to verify the SSL certificate or not"
-    type: "string"
+    type: "boolean"
     secret: false
     default: true
