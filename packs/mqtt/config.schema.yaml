@@ -1,0 +1,63 @@
+---
+  hostname:
+    description: "MQTT Broker to connect to"
+    type: "string"
+    required: true
+    secret: false
+  subscribe:
+    description: "List of MQTT topics to subscribe to"
+    type: "array"
+    items:
+      type: "string"
+    required: true
+  port:
+    description: "MQTT port to connect to. Default 1883"
+    type: "integer"
+    required: false
+    secret: false
+  protocol:
+    description: "MQTT protocol version. Default MQTTv311"
+    type: "string"
+    required: false
+    secret: false
+  client_id:
+    description: "Client ID to register on MQTT broker"
+    type: "string"
+    required: false
+    secret: false
+  userdata:
+    description: "Custom userdata to include with each MQTT message payload"
+    type: "string"
+    required: false
+    secret: false
+  username:
+    description: "Username to connect to MQTT Broker"
+    type: "string"
+    required: false
+    secret: false
+  password:
+    description: "Password to connect to MQTT Broker"
+    type: "string"
+    required: false
+    secret: true
+  ssl:
+    description: "Enable SSL support. Default: False"
+    type: "boolean"
+    required: false
+    secret: false
+    default: false
+  ssl_cacert:
+    description: "Path to SSL CA Certificate"
+    type: "string"
+    required: false
+    secret: false
+  ssl_cert:
+    description: "Path to SSL Certificate"
+    type: "string"
+    required: false
+    secret: false
+  ssl_key:
+    description: "Path to SSL Key"
+    type: "string"
+    required: false
+    secret: false
