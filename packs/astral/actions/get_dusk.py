@@ -16,4 +16,4 @@ from lib import action
 
 class GetSunriseAction(action.BaseAction):
     def run(self):
-        return str(self.sun['dusk'])  # pylint: disable=no-member
+        return str(self.sun['dusk'])
