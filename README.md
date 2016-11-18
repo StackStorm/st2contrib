@@ -99,7 +99,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![github icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/github/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | [github](https://github.com/StackStorm/st2contrib/tree/master/packs/github) | st2 content pack containing github integrations | github, git, scm | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.6.0 | [click](https://github.com/StackStorm/st2contrib#github-pack)
 [![google icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/google/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | [google](https://github.com/StackStorm/st2contrib/tree/master/packs/google) | st2 content pack containing google integrations | google, search | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.1.1 | [click](https://github.com/StackStorm/st2contrib#google-pack)
 [![gpg icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/gpg/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | [gpg](https://github.com/StackStorm/st2contrib/tree/master/packs/gpg) | Pack for working with GPG. | gpg, pgp, gnupg, privacy, encryption, crypto | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#gpg-pack)
-[![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | [hpe-icsp](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe-icsp) | Pack for HP Enterprise Insight Control Server Provisioning Integration |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.3.1 | [click](https://github.com/StackStorm/st2contrib#hpe-icsp-pack)
+[![hpe_icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe_icsp/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe_icsp) | [hpe_icsp](https://github.com/StackStorm/st2contrib/tree/master/packs/hpe_icsp) | Pack for HP Enterprise Insight Control Server Provisioning Integration |  | [Paul Mulvihill](mailto:paul.mulvihill@pulsant.com) | 0.4.0 | [click](https://github.com/StackStorm/st2contrib#hpe_icsp-pack)
 [![hubot icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hubot/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | [hubot](https://github.com/StackStorm/st2contrib/tree/master/packs/hubot) | Hubot integration pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#hubot-pack)
 [![hue icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hue/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | [hue](https://github.com/StackStorm/st2contrib/tree/master/packs/hue) | Philips Hue Pack | hue, philips, iot | [James Fryman](mailto:james@stackstorm.com) | 0.0.2 | [click](https://github.com/StackStorm/st2contrib#hue-pack)
 [![icinga2 icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/icinga2/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/icinga2) | [icinga2](https://github.com/StackStorm/st2contrib/tree/master/packs/icinga2) | Icinga2 Integration pack |  | [Igor Cherkaev](mailto:emptywee@protonmail.ch) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#icinga2-pack)
@@ -1628,9 +1628,9 @@ encrypt_file | Encrypt a file using asymmetric encryption for the provided recip
 import_keys | Import keys into the keyring.
 list_keys | List all keys in the keyring.
 
-### hpe-icsp pack
+### hpe_icsp pack
 
-![hpe-icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe-icsp/icon.png)
+![hpe_icsp icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/hpe_icsp/icon.png)
 
 #### Actions
 
