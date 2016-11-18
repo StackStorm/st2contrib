@@ -4,7 +4,8 @@ Pack to communicate with HPE's Insight Control Server Provisioning Application. 
 
 ## Connection Configuration
 
-Default Connection details can be specified within the `config.yaml`. These values can be overriden using the connection_data flow parameter.
+Copy the example configuration in [hpe_icsp.yaml.example](./hpe_icsp.yaml.example)
+to `/opt/stackstorm/configs/hpe_icsp.yaml` and edit as required.
 
 ```yaml
   host:
@@ -14,6 +15,9 @@ Default Connection details can be specified within the `config.yaml`. These valu
   sslverify: True
 ```
 Each element of the above can be independently overridden using the "connection_data" object parameter for each action.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Usage considerations
 ### API Versions

@@ -1,6 +1,6 @@
 ---
-  host: 
-  user:
-  pass:
+  host: ""
+  user: ""
+  pass: ""
   apiv: 102
   sslverify: False
