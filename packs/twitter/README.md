@@ -8,6 +8,11 @@ Pack which allows integration with Twitter.
 
 ## Configuration
 
+Copy the example configuration in [twitter.yaml.example](./twitter.yaml.example)
+to `/opt/stackstorm/configs/twitter.yaml` and edit as required.
+
+It should contain:
+
 * ``consumer_key`` - Twitter API consumer key.
 * ``consumer_secret`` - Twitter API consumer secret.
 * ``access_token`` - Twitter API access token.
@@ -20,6 +25,9 @@ Pack which allows integration with Twitter.
   Defaults to 30, maximum is 100.
 * ``language`` - If specified, only return tweets in the provided language.
   For example: `en`, `de`, `jp`, etc.
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ### Obtaining API credentials
 
