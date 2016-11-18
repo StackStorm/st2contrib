@@ -1,6 +1,6 @@
 ---
 version: '2.0'
-name: "hpe-icsp.icsp_ids_to_os"
+name: "hpe_icsp.icsp_ids_to_os"
 description: "Deploy an OS to a list of Servers"
 
 workflows:
@@ -23,7 +23,7 @@ workflows:
         with-items:
           - id in <% $.identifiers %>
           - hostname in <% $.hostnames %>
-        workflow: hpe-icsp.icsp_ids_to_os.single_run
+        workflow: hpe_icsp.icsp_ids_to_os.single_run
         input:
           identifier: <% $.id %>
           id_type: <% $.id_type %>
@@ -46,7 +46,7 @@ workflows:
           - get_mid_uuid: <% $.id_type = 'UUID' %>
           - get_mid_sn: <% $.id_type = 'serialnumber' %>
       get_mid_uuid:
-        action: hpe-icsp.icsp_mid_get
+        action: hpe_icsp.icsp_mid_get
         input:
           identifiers: [<% $.identifier %>]
           identifier_type: "uuid"
@@ -59,7 +59,7 @@ workflows:
         on-success:
           - generate_server_data
       get_mid_sn:
-        action: hpe-icsp.icsp_mid_get
+        action: hpe_icsp.icsp_mid_get
         input:
           identifiers: [<% $.identifier %>]
           identifier_type: "serialnumber"
@@ -72,7 +72,7 @@ workflows:
         on-success:
           - generate_server_data
       generate_server_data:
-        action: hpe-icsp.icsp_server_data_format
+        action: hpe_icsp.icsp_server_data_format
         input:
           identifiers: [<% $.icsp_mid %>]
           identifier_type: "mid" 
@@ -82,7 +82,7 @@ workflows:
         on-success:
           - apply_buildplan
       apply_buildplan:
-        action: hpe-icsp.icsp_buildplan_apply
+        action: hpe_icsp.icsp_buildplan_apply
         input:
           server_data: <% $.icsp_serverdata %>
           buildplan_ids: <% $.buildplan_ids %>
@@ -91,7 +91,7 @@ workflows:
         on-success:
           - monitor_job
       monitor_job:
-        action: hpe-icsp.icsp_job_status_get
+        action: hpe_icsp.icsp_job_status_get
         input:
           job_id: <% $.icsp_jobid %>
           monitor: True

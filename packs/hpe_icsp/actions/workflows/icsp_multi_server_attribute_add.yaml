@@ -1,6 +1,6 @@
 ---
 version: '2.0'
-name: "hpe-icsp.icsp_multi_server_attribute_add"
+name: "hpe_icsp.icsp_multi_server_attribute_add"
 description: "Deploy a Key with server Unique values"
 
 workflows:
@@ -23,7 +23,7 @@ workflows:
         with-items:
           - id in <% $.identifiers %>
           - value in <% $.attribute_values %>
-        workflow: hpe-icsp.icsp_multi_server_attribute_add.single_run
+        workflow: hpe_icsp.icsp_multi_server_attribute_add.single_run
         input:
           identifier: <% $.id %>
           id_type: <% $.id_type %>
@@ -43,7 +43,7 @@ workflows:
     
     tasks:
       get_mid:
-        action: hpe-icsp.icsp_mid_get
+        action: hpe_icsp.icsp_mid_get
         input:
           identifiers: [<% $.identifier %>]
           identifier_type: <% $.id_type %>
@@ -57,7 +57,7 @@ workflows:
           - set_attribute
 
       set_attribute:
-        action: hpe-icsp.icsp_server_attribute_add
+        action: hpe_icsp.icsp_server_attribute_add
         input:
           mid: <% $.icsp_mid %>
           attribute_key: <% $.key %>
