@@ -1,0 +1,16 @@
+name: delete
+pack: consul
+runner_type: run-python
+description: "Delete value from Consul server"
+enabled: true
+entry_point: "delete.py"
+parameters:
+    key:
+        type: string
+        description: "Key to Delete from Consul"
+        required: true
+    recurse:
+        type: boolean
+        description: "Do a recursive deletion?"
+        required: false
+        default: false
