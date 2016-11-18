@@ -1,0 +1,32 @@
+---
+  url:
+    description: "ActiveCampaign Account URL"
+    type: "string"
+    required: true
+    secret: false
+  api_key:
+    description: "ActiveCampaign API Key."
+    type: "string"
+    required: true
+    secret: true
+  webhook:
+    description: "Webhook sensor specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      host:
+        description: "IP to listen on - defaults to 0.0.0.0"
+        type: "string"
+        required: false
+        default: "0.0.0.0"
+      port:
+        description: "Port to listen on - defaults to 9991"
+        type: "integer"
+        required: false
+        default: 9991
+      path:
+        description: "Webhook path - defaults to 'webhook'"
+        type: "string"
+        required: false
+        default: "webhook"
