@@ -1,0 +1,17 @@
+---
+  nickname:
+    description: "Nickname for the bot"
+    type: "string"
+    required: true
+    secret: false
+  server:
+    description: "Server to connect to in `<hostname:port>` format, e.g. `irc.freenode.net:6667`"
+    type: "string"
+    required: true
+    secret: false
+  channels:
+    description: "A list of channels to join and monitor"
+    type: "array"
+    items:
+      type: "string"
+    required: true
