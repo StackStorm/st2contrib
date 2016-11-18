@@ -1,0 +1,28 @@
+---
+  host:
+    description: "HPE ICSP Server"
+    type: "string"
+    secret: false
+    required: true
+  user:
+    description: "ICSP Username"
+    type: "string"
+    secret: false
+    required: true
+  pass:
+    description: "ICSP Password"
+    type: "string"
+    secret: true
+    required: true
+  apiv:
+    description: "API version - default 102"
+    type: "integer"
+    secret: false
+    required: false
+    default: 102
+  sslverify:
+    description: "Set to True to verify SSL certificates. Default False"
+    type: "boolean"
+    secret: false
+    required: false
+    default: false
