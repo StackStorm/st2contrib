@@ -2,6 +2,6 @@
 ref: hpe_icsp
 name : hpe_icsp
 description : Pack for HP Enterprise Insight Control Server Provisioning Integration
-version : 0.3.1
+version : 0.4.0
 author : Paul Mulvihill
 email : paul.mulvihill@pulsant.com
