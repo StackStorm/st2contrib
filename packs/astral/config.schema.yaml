@@ -3,15 +3,15 @@
     description: "Latitude of the location"
     type: "number"
     secret: false
-    requried: true
+    required: true
   longitude:
     description: "Longitude of the location"
     type: "number"
     secret: false
-    requried: true
+    required: true
   timezone:
     description: "Time zone to display in results"
     type: "string"
     secret: false
-    requried: true
+    required: true
     default: "GMT+0"
