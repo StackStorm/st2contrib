@@ -4,6 +4,7 @@ from boto import ec2
 from boto import route53
 from boto import cloudformation
 from boto import rds
+from boto import s3
 
 
 class FieldLists():
@@ -32,7 +33,6 @@ class FieldLists():
     ]
 
     BUCKET = [
-        'connection',
         'creation_date',
         'LoggingGroup',
         'name'
@@ -190,6 +190,8 @@ class ResultSets(object):
             return self.parseStackObject(output)
         elif isinstance(output, rds.dbinstance.DBInstance):
             return self.parseDBInstanceObject(output)
+        elif isinstance(output, s3.bucket.Bucket):
+            return self.parseBucket(output)
         else:
             return output
 
