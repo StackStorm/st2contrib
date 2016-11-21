@@ -13,7 +13,7 @@ parser.add_argument('--expiration', nargs='?', default=False)
 parser.add_argument('--message', default="Stash created by StackStorm")
 args = parser.parse_args()
 
-stashes = sensu.Stashes('config.yaml')
+stashes = sensu.Stashes()
 
 data = {}
 data['message'] = args.message
@@ -32,4 +32,4 @@ if args.check:
 
 data['path'] = path
 
-print(stashes.post_by_path(path, json.dumps(data)))
+print stashes.post_by_path(path, json.dumps(data))

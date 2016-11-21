@@ -1,9 +1,8 @@
 import base64
 import json
-import os
 import requests
 
-import yaml
+from st2actions.runners.pythonrunner import Action
 
 
 def parseOutput(r):
@@ -17,29 +16,21 @@ def parseOutput(r):
         return r.text
 
 
-class Sensu(object):
-
-    def __init__(self, conf):
-
-        config_file = os.path.join(os.path.dirname(__file__), conf)
-        try:
-            fh = open(config_file)
-            self.config = yaml.safe_load(fh)
-            fh.close()
-        except Exception as e:
-            print("Error reading config file %s: %s" % (conf, e))
-
+class SensuAction(Action):
+    def __init__(self, config):
+        super(SensuAction, self).__init__(config)
+        self.username = self.config['user']
+        self.password = self.config['pass']
         if self.config['ssl']:
             protocol = 'https'
         else:
             protocol = "http"
-        self.config[
-            'base_url'] = "%s://%s:%s" % (protocol, self.config['host'], self.config['port'])
+        self.base_url = "%s://%s:%s" % (protocol, self.config['host'], self.config['port'])
 
     def get_headers(self):
         b64auth = base64.b64encode(
             "%s:%s" %
-            (self.config['user'], self.config['pass']))
+            (self.username, self.password))
         auth_header = "BASIC %s" % b64auth
         content_header = "application/json"
         return {"Authorization": auth_header, "Content-Type": content_header}
@@ -47,10 +38,10 @@ class Sensu(object):
 
 class Aggregates(object):
 
-    def __init__(self, conf):
-        sensu = Sensu(conf)
+    def __init__(self):
+        sensu = SensuAction()
         self.headers = sensu.get_headers()
-        self.url = "%s/aggregates" % sensu.config['base_url']
+        self.url = "%s/aggregates" % sensu.base_url
 
     def list(self, limit=None, offset=None):
         data = {}
@@ -96,10 +87,10 @@ class Aggregates(object):
 
 class Checks(object):
 
-    def __init__(self, conf):
-        self.sensu = Sensu(conf)
+    def __init__(self):
+        self.sensu = SensuAction()
         self.headers = self.sensu.get_headers()
-        self.url = "%s/checks" % self.sensu.config['base_url']
+        self.url = "%s/checks" % self.sensu.base_url
 
     def list(self):
         return parseOutput(requests.get(url=self.url, headers=self.headers))
@@ -109,7 +100,7 @@ class Checks(object):
         return parseOutput(requests.get(url=url, headers=self.headers))
 
     def request(self, check, subscribers):
-        url = "%s/request" % self.sensu.config['base_url']
+        url = "%s/request" % self.sensu.base_url
         payload = {}
         subs = []
         if not isinstance(subscribers, list):
@@ -125,10 +116,10 @@ class Checks(object):
 
 class Clients(object):
 
-    def __init__(self, conf):
-        sensu = Sensu(conf)
+    def __init__(self):
+        sensu = SensuAction()
         self.headers = sensu.get_headers()
-        self.url = "%s/clients" % sensu.config['base_url']
+        self.url = "%s/clients" % sensu.base_url
 
     def list(self, limit=None, offset=None):
         data = {}
@@ -158,10 +149,10 @@ class Clients(object):
 
 class Stashes(object):
 
-    def __init__(self, conf):
-        sensu = Sensu(conf)
+    def __init__(self):
+        sensu = SensuAction()
         self.headers = sensu.get_headers()
-        self.url = "%s/stashes" % sensu.config['base_url']
+        self.url = "%s/stashes" % sensu.base_url
 
     def list(self, limit, offset):
         data = {}
@@ -201,10 +192,10 @@ class Stashes(object):
 
 class Status(object):
 
-    def __init__(self, conf):
-        sensu = Sensu(conf)
+    def __init__(self):
+        sensu = SensuAction()
         self.headers = sensu.get_headers()
-        self.url = sensu.config['base_url']
+        self.url = sensu.base_url
 
     def health(self, consumers=2, messages=100):
         url = "%s/health" % self.url
@@ -222,10 +213,10 @@ class Status(object):
 
 class Events(object):
 
-    def __init__(self, conf):
-        self.sensu = Sensu(conf)
+    def __init__(self):
+        self.sensu = SensuAction()
         self.headers = self.sensu.get_headers()
-        self.url = "%s/events" % self.sensu.config['base_url']
+        self.url = "%s/events" % self.sensu.base_url
 
     def list_all(self):
         return parseOutput(requests.get(url=self.url, headers=self.headers))
@@ -243,7 +234,7 @@ class Events(object):
         return parseOutput(requests.delete(url=url, headers=self.headers))
 
     def resolve(self, client, check):
-        url = "%s/resolve" % self.sensu['base_url']
+        url = "%s/resolve" % self.sensu.base_url
         payload = {'client': client, 'check': check}
         return parseOutput(
             requests.post(

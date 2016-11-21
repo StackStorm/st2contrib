@@ -9,10 +9,10 @@ parser.add_argument('--client', nargs='?', required=True)
 parser.add_argument('--check', nargs='?', default=False)
 args = parser.parse_args()
 
-stashes = sensu.Stashes('config.yaml')
+stashes = sensu.Stashes()
 
 path = "silence/%s" % args.client
 if args.check:
     path = "%s/%s" % (path, args.check)
 
-print(stashes.delete(path))
+print stashes.delete(path)

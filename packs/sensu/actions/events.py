@@ -11,17 +11,17 @@ parser.add_argument('--delete', nargs='?', default=False)
 parser.add_argument('--resolve', nargs='?', default=False)
 args = parser.parse_args()
 
-events = sensu.Events('config.yaml')
+events = sensu.Events()
 
 if not args.client:
-    print(events.list_all())
+    print events.list_all()
 else:
     if args.check:
         if args.delete:
-            print(events.delete(client=args.client, check=args.check))
+            print events.delete(client=args.client, check=args.check)
         elif args.resolve:
-            print(events.resolve(client=args.client, check=args.check))
+            print events.resolve(client=args.client, check=args.check)
         else:
-            print(events.get(client=args.client, check=args.check))
+            print events.get(client=args.client, check=args.check)
     else:
-        print(events.list_by_client(client=args.client))
+        print events.list_by_client(client=args.client)

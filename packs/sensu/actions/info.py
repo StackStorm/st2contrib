@@ -5,6 +5,6 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Sensu System Info')
 
-info = sensu.Status('config.yaml')
+info = sensu.Status()
 
-print(info.info())
+print info.info()
