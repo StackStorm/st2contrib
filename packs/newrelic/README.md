@@ -5,8 +5,8 @@ This integration pack allows you to integrate with
 
 ## Configuration
 
-Copy the example configuration in [zendesk.yaml.example](./zendesk.yaml.example)
-to `/opt/stackstorm/configs/zendesk.yaml` and edit as required.
+Copy the example configuration in [newrelic.yaml.example](./newrelic.yaml.example)
+to `/opt/stackstorm/configs/newrelic.yaml` and edit as required.
 
 It must contain:
 

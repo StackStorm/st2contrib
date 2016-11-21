@@ -13,7 +13,7 @@
   sensor_config:
     description: "Sensor specific settings."
     type: "object"
-    required: true
+    required: false
     additionalProperties: false
     properties:
       host:
