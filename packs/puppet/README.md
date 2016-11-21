@@ -30,6 +30,16 @@ work by executing puppet CLI commands on the desired remote host.
 
 #### Configuration
 
+**BREAKING CHANGE**
+
+The configuration in `config.yaml` has been flattened, and moved
+to `config.schema.yaml`.
+
+Any older configurationis (< v0.2.0) will need to be updated. `hostname` and `port`
+are no longer subsections under `master` - they are now top-level
+configuration items. Similarly, `client_cert_path`, `client_cert_key_path`,
+`ca_cert_path` are now top-level items, not under `auth`.
+
 Copy the example configuration in [puppet.yaml.example](./puppet.yaml.example)
 to `/opt/stackstorm/configs/puppet.yaml` and edit as required.
 
