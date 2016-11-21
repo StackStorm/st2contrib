@@ -2,6 +2,7 @@
 # Used for post message action
 post_message_action:
   webhook_url: "https://hooks.slack.com/services/<replace me>"
+  channel: "#mychannel"
   username: "my-bot"
   icon_emoji: ":panda_face:"
 
