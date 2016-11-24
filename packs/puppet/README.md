@@ -30,15 +30,27 @@ work by executing puppet CLI commands on the desired remote host.
 
 #### Configuration
 
-For the Python runner actions to work, you need to configure the following
-items in the config:
+**BREAKING CHANGE**
 
-* `master.hostname` - hostname of the puppet master
-* `master.port` - port of the puppet master
+The configuration in `config.yaml` has been flattened, and moved
+to `config.schema.yaml`.
 
-* `auth.client_cert_path` - path to the client certificate file used for authentication
-* `auth.client_cert_key_path` - path to the private key file for the client certificate
-* `auth.ca_cert_path` - path to the CA cert file
+Any older configurationis (< v0.2.0) will need to be updated. `hostname` and `port`
+are no longer subsections under `master` - they are now top-level
+configuration items. Similarly, `client_cert_path`, `client_cert_key_path`,
+`ca_cert_path` are now top-level items, not under `auth`.
+
+Copy the example configuration in [puppet.yaml.example](./puppet.yaml.example)
+to `/opt/stackstorm/configs/puppet.yaml` and edit as required.
+
+* `hostname` - hostname of the puppet master
+* `port` - port of the puppet master
+* `client_cert_path` - path to the client certificate file used for authentication
+* `client_cert_key_path` - path to the private key file for the client certificate
+* `ca_cert_path` - path to the CA cert file
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 Remote actions require no configuration. You simply need to specify server to
 run the action on when running the action (same as with other remote actions).

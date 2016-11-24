@@ -1,0 +1,27 @@
+---
+  hostname:
+    description: "Hostname of the Puppet master"
+    type: "string"
+    secret: false
+    required: true
+  port:
+    description: "Puppet API port"
+    type: "integer"
+    secret: false
+    required: true
+    default: 8140
+  client_cert_path:
+    description: "Path to the client certificate file used for authentication"
+    type: "string"
+    secret: false
+    required: true
+  client_cert_key_path:
+    description: "Path to the private key file used for the client certificate"
+    type: "string"
+    secret: false
+    required: true
+  ca_cert_path:
+    description: "Path to the CA cert file"
+    type: "string"
+    secret: false
+    required: true
