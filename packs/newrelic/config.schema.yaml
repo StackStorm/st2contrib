@@ -1,0 +1,38 @@
+---
+  api_url:
+    description: "New Relic API URL. Default https://api.newrlic.com/v2/"
+    type: "string"
+    required: true
+    secret: false
+    default: "https://api.newrelic.com/v2/"
+  api_key:
+    description: "New Relic API Key"
+    type: "string"
+    required: true
+    secret: true
+  sensor_config:
+    description: "Sensor specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      host:
+        type: "string"
+        description: "IP Address sensor should listen on. Default 0.0.0.0"
+        required: false
+        default: "0.0.0.0"
+      port:
+        type: "integer"
+        description: "Port Address sensor should listen on. Default 10001"
+        required: false
+        default: 10001
+      url:
+        type: "string"
+        description: "URI path for sensor. Default /st2/nrhook"
+        required: false
+        default: "/st2/nrhook/"
+      normal_report_delay:
+        type: "integer"
+        description: "Delay before firing return to normal event. Default 300s"
+        required: false
+        default: 300

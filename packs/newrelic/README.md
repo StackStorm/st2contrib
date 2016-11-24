@@ -3,6 +3,23 @@
 This integration pack allows you to integrate with
 [New Relic](http://newrelic.com/).
 
+## Configuration
+
+Copy the example configuration in [newrelic.yaml.example](./newrelic.yaml.example)
+to `/opt/stackstorm/configs/newrelic.yaml` and edit as required.
+
+It must contain:
+
+* ``api_url`` - New Relic API URL
+* ``api_key`` - New Relic API key
+* ``host`` - IP Address sensor should listen on. Default 0.0.0.0
+* ``port`` - Port sensor should listen on. Default 10001
+* ``url`` - URI path for sensor. Default /st2/nrhook
+* ``normal_report_delay`` - Delay before firing return to normal event. Default 300s
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
+
 ## Sensors
 
 New Relic integration pack comes with a sensor which watches for alerts which
