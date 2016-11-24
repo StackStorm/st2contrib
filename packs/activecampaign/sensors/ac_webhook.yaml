@@ -1,11 +1,11 @@
 ---
   class_name: "ActiveCampaignWebhook"
   entry_point: "ac_webhook.py"
-  description: "ActiveCapmaign Webhook sensor"
+  description: "ActiveCampaign Webhook sensor"
   trigger_types:
     -
       name: "webhook"
-      description: "ActiveCampaing webhook handler trigger"
+      description: "ActiveCampaign webhook handler trigger"
       payload_schema:
         type: "object"
         properties:

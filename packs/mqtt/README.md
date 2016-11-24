@@ -4,6 +4,9 @@ This pack allows integration with MQTT Brokers
 
 ## Configuration
 
+Copy the example configuration in [mqtt.yaml.example](./mqtt.yaml.example)
+to `/opt/stackstorm/configs/mqtt.yaml` and edit as required.
+
 * `hostname` - MQTT Broker to connect to
 * `subscribe` - An array of MQTT topics to subscribe to (sensor only)
 * `port` - MQTT port to connect to (default: 1883)
@@ -16,6 +19,9 @@ This pack allows integration with MQTT Brokers
 * `ssl_cacert` - Path to SSL CA Certificate
 * `ssl_cert` - Path to SSL Certificate
 * `ssl_key` - Path to SSL Key
+
+You can also use dynamic values from the datastore. See the
+[docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
 
 ## Actions
 

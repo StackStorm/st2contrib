@@ -1,0 +1,38 @@
+---
+  consumer_key:
+    description: "Your consumer key."
+    type: "string"
+    required: true
+    secret: true
+  consumer_secret:
+    description: "Your consumer secret."
+    type: "string"
+    required: true
+    secret: true
+  access_token:
+    description: "Your access token."
+    type: "string"
+    required: true
+    secret: true
+  access_token_secret:
+    description: "Your access token secret."
+    type: "string"
+    required: true
+    secret: true
+  count:
+    description: "Number of latest tweets matching criteria to receive. Default 30"
+    type: "integer"
+    required: true
+    secret: false
+    default: 30
+  language:
+    description: "Optional: only return tweets in this language - e.g. en, jp"
+    type: "string"
+    required: false
+    secret: false
+  query:
+    description: "A list of strings to query for"
+    type: "array"
+    items:
+      type: "string"
+    required: true
