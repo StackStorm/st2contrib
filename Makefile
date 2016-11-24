@@ -1,5 +1,4 @@
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-CHANGED_FILES := $(shell $(ROOT_DIR)/scripts/utils/git-changes files)
 CHANGED_DIRECTORIES := $(shell $(ROOT_DIR)/scripts/utils/git-changes directories)
 CHANGED_PACKS := $(shell $(ROOT_DIR)/scripts/utils/git-changes packs)
 CHANGED_PY := $(shell ${ROOT_DIR}/scripts/utils/git-changes py)
