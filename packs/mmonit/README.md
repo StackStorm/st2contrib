@@ -20,6 +20,9 @@ Pack which allows integration with [Mmonit](http://www.mmonit.com/).
 
 ## Sensors Config
 
+Copy the example configuration in [mmonit.yaml.example](./mmonit.yaml.example)
+to `/opt/stackstorm/configs/mmonit.yaml` and edit the ``shared_sensors_config`` section as required.
+
 * ``host`` - mmonit host to connect to.
 * ``username`` - Username to connect to mmonit.
 * ``password`` - Password to connect to mmonit.
@@ -51,6 +54,9 @@ Pack which allows integration with [Mmonit](http://www.mmonit.com/).
 
 
 ## Actions Config
+
+Copy the example configuration in [mmonit.yaml.example](./mmonit.yaml.example)
+to `/opt/stackstorm/configs/mmonit.yaml` and edit as required.
 
 * ``host`` - mmonit host to connect to.
 * ``username`` - Username to connect to mmonit.

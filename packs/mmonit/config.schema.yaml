@@ -1,0 +1,44 @@
+---
+  host:
+    description: "Mmonit host to connect to for actions."
+    type: "string"
+    required: true
+    secret: false
+  username:
+    description: "Username to connect to mmonit for actions"
+    type: "string"
+    required: true
+    secret: false
+  password:
+    description: "Password to connect to mmonit for actions"
+    type: "string"
+    required: true
+    secret: true
+  shared_sensors_config:
+    description: "Sensor specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      host:
+        description: "Mmonit host to connect to for sensor."
+        type: "string"
+        required: true
+      username:
+        description: "Username to connect to mmonit for sensor"
+        type: "string"
+        required: true
+      password:
+        description: "Password to connect to mmonit for sensor"
+        type: "string"
+        required: true
+      event_types:
+        description: "Comma separated list of events to listen for. Possible values: 0=success, 1=error, 2=change. 1 and 2 by default"
+        type: "string"
+        required: true
+        default: "1,2"
+      active:
+        description: "The active events filter. Possible values: 0=show all events, 1=show only active errors, 2=show only active errors but exclude user dismissed errors. Default 1."
+        type: "integer"
+        required: true
+        default: 1
