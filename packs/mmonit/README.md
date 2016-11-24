@@ -26,7 +26,7 @@ to `/opt/stackstorm/configs/mmonit.yaml` and edit the ``shared_sensors_config`` 
 * ``host`` - mmonit host to connect to.
 * ``username`` - Username to connect to mmonit.
 * ``password`` - Password to connect to mmonit.
-* ``event_types`` - Comma separated list of events to listen for. Possible values: 0=success, 1=error, 2=change. 1 and 2 by default.
+* ``event_types`` - List of events to listen for. Possible values: 0=success, 1=error, 2=change. 1 and 2 by default.
 * ``active`` - The active events filter. Possible values: 0=show all events, 1=show only active errors, 2=show only active errors but exclude user dismissed errors. Defaults to 1.
 
 
