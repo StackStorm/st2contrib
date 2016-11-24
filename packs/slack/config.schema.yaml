@@ -1,0 +1,77 @@
+---
+  post_message_action:
+    description: "Admin-action specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      webhook_url:
+        type: "string"
+        description: "Webhook URL, e.g. https://hooks.slack.com/services/<replace me>"
+        default: true
+        required: true
+      channel:
+        type: "string"
+        description: "Channel to send message to - e.g. #mychannel. If not specified, will use channel selected when configuring webook"
+        required: false
+      username:
+        type: "string"
+        description: "Default name of user under which messages will be posted"
+        required: true
+      icon_emoji:
+        type: "string"
+        description: "Default icon of user under which messages will be posted"
+        default: ":panda_face:"
+        required: false
+  sensor:
+    description: "Sensor specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      token:
+        type: "string"
+        description: "Authentication token used to authenticate against Real Time Messaging API."
+        default: true
+        required: false
+      strip_formatting:
+        type: "boolean"
+        description: "Slack automatically parses URLs, images, channels, and usernames by default. This option returns raw data. Default false"
+        default: false
+        required: false
+  action_token:
+    description: "Slack Action token."
+    type: "string"
+    required: true
+    secret: true
+  admin:
+    description: "Admin-action specific settings."
+    type: "object"
+    required: false
+    additionalProperties: false
+    properties:
+      admin_token:
+        type: "string"
+        description: "Admin-level token for adding new users"
+        default: true
+        required: false
+      organization:
+        type: "string"
+        description: "Name of organisation to add new user to"
+        required: true
+      set_active:
+        type: "boolean"
+        description: "Set new user as active? Default true"
+        default: true
+        required: false
+      attempts:
+        type: "integer"
+        description: "Number of attempts to make to add the new user"
+        default: 1
+        required: false
+      auto_join_channels:
+        type: "array"
+        description: "A list of channels to auto-join the new account to"
+        items:
+          type: "string"
+        required: false
