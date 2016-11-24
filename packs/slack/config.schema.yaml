@@ -1,6 +1,6 @@
 ---
   post_message_action:
-    description: "Admin-action specific settings."
+    description: "Post message action specific settings."
     type: "object"
     required: false
     additionalProperties: false
@@ -34,6 +34,7 @@
         description: "Authentication token used to authenticate against Real Time Messaging API."
         default: true
         required: false
+        secret: true
       strip_formatting:
         type: "boolean"
         description: "Slack automatically parses URLs, images, channels, and usernames by default. This option returns raw data. Default false"
@@ -55,6 +56,7 @@
         description: "Admin-level token for adding new users"
         default: true
         required: false
+        secret: true
       organization:
         type: "string"
         description: "Name of organisation to add new user to"
