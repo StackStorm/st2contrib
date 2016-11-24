@@ -33,10 +33,14 @@
         type: "string"
         required: true
       event_types:
-        description: "Comma separated list of events to listen for. Possible values: 0=success, 1=error, 2=change. 1 and 2 by default"
-        type: "string"
+        description: "List of events to listen for. Possible values: 0=success, 1=error, 2=change. 1 and 2 by default"
+        type: "array"
+        items:
+          type: "string"
         required: true
-        default: "1,2"
+        default:
+          - "1"
+          - "2"
       active:
         description: "The active events filter. Possible values: 0=show all events, 1=show only active errors, 2=show only active errors but exclude user dismissed errors. Default 1."
         type: "integer"

@@ -14,7 +14,7 @@ class MmonitEventsSensor(PollingSensor):
         self.user = self._config['shared_sensors_config']['username']
         self.password = self._config['shared_sensors_config']['password']
         self.active = self._config['shared_sensors_config']['active']
-        self.event_types = self._config['shared_sensors_config']['event_types'].split(',')
+        self.event_types = self._config['shared_sensors_config']['event_types']
         self.session = requests.session()
         self._login()
 
