@@ -1,9 +1,9 @@
 ---
 name: event_delete
-runner_type: run-local-script
+runner_type: run-python
 description: Delete a Sensu event
 enabled: true
-entry_point: events.py
+entry_point: event_delete.py
 parameters:
   client:
     type: string
@@ -12,12 +12,4 @@ parameters:
   check:
     type: string
     description: The check name
-  delete:
-    type: string
-    description: ''
-    default: 'yes'
-    immutable: true
-  sudo:
-    immutable: true
-  kwarg_op:
-    immutable: true
+    required: true
