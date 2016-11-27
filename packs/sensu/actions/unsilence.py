@@ -1,18 +1,14 @@
-#!/usr/bin/python
+from lib.sensu import SensuAction
 
-from lib import sensu
-import argparse
+__all__ = [
+    'UnsilenceAction'
+]
 
-parser = argparse.ArgumentParser(description='Sensu Unsilence Actions')
 
-parser.add_argument('--client', nargs='?', required=True)
-parser.add_argument('--check', nargs='?', default=False)
-args = parser.parse_args()
+class UnsilenceAction(SensuAction):
+    def run(self, check, client):
+        path = 'silence/{}'.format(client)
+        if check:
+            path = "{}/{}".format(path, check)
 
-stashes = sensu.Stashes('config.yaml')
-
-path = "silence/%s" % args.client
-if args.check:
-    path = "%s/%s" % (path, args.check)
-
-print(stashes.delete(path))
+        return self.api.delete_stash(path)

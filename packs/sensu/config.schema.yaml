@@ -21,7 +21,7 @@
     secret: true
     required: true
   ssl:
-    description: "Whether ST2 should verify the Sensu API SSL certificate or not"
+    description: "Set to true to use SSL"
     type: "boolean"
     secret: false
     required: false

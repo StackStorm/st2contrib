@@ -1,10 +1,10 @@
-#!/usr/bin/python
+from lib.sensu import SensuAction
 
-from lib import sensu
-import argparse
+__all__ = [
+    'InfoAction'
+]
 
-parser = argparse.ArgumentParser(description='Sensu System Info')
 
-info = sensu.Status('config.yaml')
-
-print(info.info())
+class InfoAction(SensuAction):
+    def run(self):
+        return self.api.get_info()

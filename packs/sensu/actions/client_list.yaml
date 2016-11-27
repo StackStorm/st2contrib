@@ -1,19 +1,15 @@
 ---
 name: client_list
-runner_type: run-local-script
+runner_type: run-python
 description: List Sensu clients
 enabled: true
-entry_point: clients.py
+entry_point: client_list.py
 parameters:
   limit:
-    type: string
+    type: integer
     description: The number of clients to return.
     default: 
   offset:
-    type: string
+    type: integer
     description: The number of clients to offset before returning items.
     default: 
-  sudo:
-    immutable: true
-  kwarg_op:
-    immutable: true

@@ -1,15 +1,11 @@
 ---
 name: check_info
-runner_type: run-local-script
+runner_type: run-python
 description: Get Sensu check info
 enabled: true
-entry_point: checks.py
+entry_point: check_info.py
 parameters:
   check:
     type: string
     description: The check name
     required: true
-  sudo:
-    immutable: true
-  kwarg_op:
-    immutable: true

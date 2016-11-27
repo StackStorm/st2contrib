@@ -2,6 +2,11 @@
 
 Integrates with [Sensu](http://sensuapp.org/) monitoring framework.
 
+## WARNING
+This pack has had a major rewrite as of version 0.3.0. The local-script runners have been replaced
+with Python runners. Some broken actions have been removed. Some output has changed.
+If you are using Sensu actions, please check your workflows & rules.
+
 ### Prerequisites
 Sensu and StackStorm, up and running. See installation for [Sensu](http://sensuapp.org/docs/latest/installation/) and [StackStorm](http://docs.stackstorm.com/install).
 

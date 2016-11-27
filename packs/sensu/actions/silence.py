@@ -1,35 +1,20 @@
-#!/usr/bin/python
+from lib.sensu import SensuAction
 
-from lib import sensu
-import argparse
-import json
-import time
+__all__ = [
+    'SilenceAction'
+]
 
-parser = argparse.ArgumentParser(description='Sensu Silence Actions')
 
-parser.add_argument('--client', nargs='?', required=True)
-parser.add_argument('--check', nargs='?', default=False)
-parser.add_argument('--expiration', nargs='?', default=False)
-parser.add_argument('--message', default="Stash created by StackStorm")
-args = parser.parse_args()
+class SilenceAction(SensuAction):
+    def run(self, check, client, expiration, message):
+        path = 'silence/{}'.format(client)
+        if check:
+            path = "{}/{}".format(path, check)
 
-stashes = sensu.Stashes('config.yaml')
+        payload = {}
+        payload['message'] = message
 
-data = {}
-data['message'] = args.message
+        if expiration:
+            payload['expire'] = expiration
 
-current_time = time.time()
-data['timestamp'] = int(current_time)
-
-if args.expiration:
-    data['expire'] = int(args.expiration)
-else:
-    expiration = False
-
-path = "silence/%s" % args.client
-if args.check:
-    path = "%s/%s" % (path, args.check)
-
-data['path'] = path
-
-print(stashes.post_by_path(path, json.dumps(data)))
+        return self.api.create_stash(payload, path)
