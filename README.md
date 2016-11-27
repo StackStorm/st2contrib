@@ -137,7 +137,7 @@ Icon | Name | Description | Keywords | Author | Latest Version | Available Resou
 [![reamaze icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/reamaze/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | [reamaze](https://github.com/StackStorm/st2contrib/tree/master/packs/reamaze) | reamaze Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#reamaze-pack)
 [![salt icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/salt/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | [salt](https://github.com/StackStorm/st2contrib/tree/master/packs/salt) | st2 salt integration pack | salt, cfg management, configuration management | [jcockhren](mailto:jurnell@sophicware.com) | 0.5.0 | [click](https://github.com/StackStorm/st2contrib#salt-pack)
 [![save_kittens icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/save_kittens/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/save_kittens) | [save_kittens](https://github.com/StackStorm/st2contrib/tree/master/packs/save_kittens) | Save the world. One puzzle at a time. |  | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#save_kittens-pack)
-[![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
+[![sensu icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/sensu/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | [sensu](https://github.com/StackStorm/st2contrib/tree/master/packs/sensu) | st2 content pack containing sensu integrations | sensu, monitoring, alerting | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#sensu-pack)
 [![servicenow icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/servicenow/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | [servicenow](https://github.com/StackStorm/st2contrib/tree/master/packs/servicenow) | ServiceNow Integration Pack |  | [James Fryman](mailto:james@stackstorm.com) | 0.2.0 | [click](https://github.com/StackStorm/st2contrib#servicenow-pack)
 [![signalr icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/signalr/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | [signalr](https://github.com/StackStorm/st2contrib/tree/master/packs/signalr) | st2 content pack containing signalr integrations | signalr, messaging | [Anthony Shaw](mailto:anthony.shaw@dimensiondata.com) | 0.1.0 | [click](https://github.com/StackStorm/st2contrib#signalr-pack)
 [![slack icon](https://raw.githubusercontent.com/StackStorm/st2contrib/master/packs/slack/icon.png)](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | [slack](https://github.com/StackStorm/st2contrib/tree/master/packs/slack) | st2 content pack containing slack integrations | slack, chat, messaging, instant messaging | [StackStorm, Inc.](mailto:info@stackstorm.com) | 0.3.0 | [click](https://github.com/StackStorm/st2contrib#slack-pack)
@@ -2480,19 +2480,18 @@ Name | Description
 aggregate_list | List Sensu Aggregate Stats
 check_aggregates | Get Sensu check aggregates
 check_aggregates_delete | Delete Sensu check aggregates
-check_aggregates_issued | Get a specific Sensu check aggregate
 check_info | Get Sensu check info
 check_list | List Sensu checks
 check_request | Schedule a Sensu check request
 client_delete | Delete a Sensu client
 client_history | Get Sensu client history
 client_info | Get Sensu client info
-client_info | Get Sensu client info
 client_list | List Sensu clients
 event_client_list | List Sensu events for a given client
 event_delete | Delete a Sensu event
 event_info | Get Sensu event info
 event_list | List Sensu events
+event_resolve | Resolve a Sensu event
 health | Sensu System Health
 info | Sensu System Info
 silence | Silence a Sensu client or check
