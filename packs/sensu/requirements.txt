@@ -1,1 +1,1 @@
--e git+https://github.com/LindsayHill/pysensu#egg=pysensu-ng
+git+https://github.com/LindsayHill/pysensu@master#egg=pysensu-ng
