@@ -82,13 +82,18 @@ class AWSSQSSensor(PollingSensor):
     def remove_trigger(self, trigger):
         pass
 
-    def _get_config_entry(self, key, prefix='setup'):
+    def _get_config_entry(self, key, prefix=None):
         ''' Get configuration values either from Datastore or config file. '''
-        config = self._config.get(prefix, None)
+        config = self.config
+        if prefix:
+            config = self._config.get(prefix, {})
 
         value = self._sensor_service.get_value('aws.%s' % (key), local=False)
         if not value:
             value = config.get(key, None)
+
+        if not value and config.get('setup', None):
+            value = config['setup'].get(key, None)
 
         if not value:
             raise ValueError('[AWSSQSSensor]: Configuration for %s key is missing.' % (key))

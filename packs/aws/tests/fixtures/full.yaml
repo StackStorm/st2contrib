@@ -12,3 +12,6 @@ service_notifications_sensor:
 
 sqs_sensor:
   input_queues: "input_queue"
+
+sqs_other:
+  max_number_of_messages: 1
