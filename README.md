@@ -6,7 +6,7 @@ StackStorm 2.1, our newest version, is landing very soon, and it is going to imp
 
 There's new CLI commands to manage packs, support for source lists, API endpoints, but the most important change in 2.1 goes beyond the StackStorm codebase. We have built [StackStorm Exchange](https://exchange.stackstorm.org): a dedicated pack directory with a consumable JSON index, automatic version tagging, extendable CI for each pack, and more awesome things that you will read about in the release notes.
 
-With all the new features in Exchange, storing all packs in one large repository doesn't cut it anymore, so we are moving away from st2contrib to a separate GitHub organization. **All packs are now stored as separate repositories in [StackStorm-Exchange](https://github.org/StackStorm-Exchange), st2contrib is closed.**
+With all the new features in Exchange, storing all packs in one large repository doesn't cut it anymore, so we are moving away from st2contrib to a separate GitHub organization. **All packs are now stored as separate repositories in [StackStorm-Exchange](https://github.com/StackStorm-Exchange), st2contrib is closed.**
 
 We will keep st2contrib running for backwards compatibility, but there will be no updates to its content. All the issues and pull requests will only be tracked in StackStorm-Exchange repositories.
 
