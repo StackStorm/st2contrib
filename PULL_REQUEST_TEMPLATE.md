@@ -1,20 +1,8 @@
-## Pack (replace this with the pack's name)
+Note: This repository has been deprecated in favor of "repo per pack" repositories
+at the https://github.com/StackStorm-Exchange Github organization.
 
-### Status 
+Please open all the pull request against the corresponding pack repository on the
+StackStorm-Exchange Github organization.
 
-Replace this: describe the pack and PR status. Examples: 
-
-- new pack, complete
-- pack extension, work in progress
-- bugfix
-
-### Description
-
-Replace this with the PR description.
-
-### Checklist (tick everything that applies)
-
-- [ ] Metadata: pack.yaml, icon, structure (required for new packs)
-- [ ] Version bump (required for changed packs)
-- [ ] Code linting (required, can be done after the PR checks)
-- [ ] [Tests](https://docs.stackstorm.com/development/pack_testing.html) (not required but really recommended)
+You can also find a list of all the official packs with links to the corresponding
+Github repositories at https://exchange.stackstorm.org/.
