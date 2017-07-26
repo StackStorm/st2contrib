@@ -20,7 +20,7 @@ _— StackStorm Engineering Team_
 
 [![StackStorm](https://github.com/stackstorm/st2/raw/master/stackstorm_logo.png)](http://www.stackstorm.com)
 
-[![Join our community Slack](https://stackstorm-community.herokuapp.com/badge.svg)](https://stackstorm.typeform.com/to/K76GRP) [![IRC](https://img.shields.io/irc/%23stackstorm.png)](http://webchat.freenode.net/?channels=stackstorm)
+[![Join our community Slack](https://stackstorm-community.herokuapp.com/badge.svg)](https://stackstorm.com/community-signup) [![IRC](https://img.shields.io/irc/%23stackstorm.png)](http://webchat.freenode.net/?channels=stackstorm)
 
 Contents of this repository are comprise of integrations and automations that
 are consumed by the [StackStorm automation platform](http://www.stackstorm.com/product/).
